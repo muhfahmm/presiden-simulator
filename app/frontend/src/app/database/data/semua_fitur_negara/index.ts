@@ -23,23 +23,6 @@ export interface PajakData {
   lainnya: { tarif: number; kepuasan: number; pendapatan: number };
 }
 
-export interface GajiData {
-  gaji_asn: number;
-  gaji_guru: number;
-  gaji_medis: number;
-  gaji_militer: number;
-}
-
-export interface SubsidiData {
-  subsidi_energi: number;
-  subsidi_pangan: number;
-  subsidi_kesehatan: number;
-  subsidi_pendidikan: number;
-  subsidi_umkm: number;
-  subsidi_transportasi: number;
-  subsidi_perumahan: number;
-  subsidi_penumpan?: number; // Optional fallback
-}
 
 export interface HargaData {
   harga_beras: number;
@@ -57,8 +40,6 @@ export interface HargaData {
 
 export interface EkonomiData {
   pajak: PajakData;
-  gaji: GajiData;
-  subsidi: SubsidiData;
   harga: HargaData;
 }
 

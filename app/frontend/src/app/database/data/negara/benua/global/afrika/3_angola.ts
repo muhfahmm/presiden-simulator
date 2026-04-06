@@ -108,24 +108,7 @@ export const angola: CountryData = {
       "pendapatan": 69
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 40,
-    "gaji_guru": 50,
-    "gaji_medis": 40,
-    "gaji_militer": 40
-  },
-  "subsidi": {
-    "subsidi_energi": 25,
-    "subsidi_pangan": 25,
-    "subsidi_kesehatan": 50,
-    "subsidi_pendidikan": 50,
-    "subsidi_umkm": 25,
-    "subsidi_transportasi": 50,
-    "subsidi_perumahan": 25
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

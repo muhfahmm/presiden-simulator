@@ -92,7 +92,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
     }
     return mult; // Direct percentage (10-100)
   };
-  const avgSatisfaction = Math.round(((getSatisfaction(expData.gaji_asn || 1) + getSatisfaction(expData.gaji_guru || 1) + getSatisfaction(expData.gaji_medis || 1) + getSatisfaction(expData.gaji_militer || 1))) / 4);
+  const avgSatisfaction = 100; // Placeholder until new happiness system is implemented
 
   const allMetadata = [
     ...Object.values(KAPASITAS_LISTRIK_METADATA),
@@ -121,30 +121,30 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   const militarySectors = [
     { label: "Manajemen Pertahanan", data: initialCountry.sektor_pertahanan },
     { label: "Sektor Armada Tempur", data: {
-      barak: initialCountry.armada_militer.barak,
-      tank: initialCountry.armada_militer.darat.tank_tempur_utama,
-      apc: initialCountry.armada_militer.darat.apc_ifv,
-      artileri: initialCountry.armada_militer.darat.artileri_berat,
-      carrier: initialCountry.armada_militer.laut.kapal_induk,
-      destroyer: initialCountry.armada_militer.laut.kapal_destroyer,
-      submarine: initialCountry.armada_militer.laut.kapal_selam_nuklir,
-      stealth_jet: initialCountry.armada_militer.udara.jet_tempur_siluman,
-      heli_attack: initialCountry.armada_militer.udara.helikopter_serang,
-      recon_plane: initialCountry.armada_militer.udara.pesawat_pengintai,
+      barak: initialCountry.armada_militer?.barak,
+      tank: initialCountry.armada_militer?.darat?.tank_tempur_utama,
+      apc: initialCountry.armada_militer?.darat?.apc_ifv,
+      artileri: initialCountry.armada_militer?.darat?.artileri_berat,
+      carrier: initialCountry.armada_militer?.laut?.kapal_induk,
+      destroyer: initialCountry.armada_militer?.laut?.kapal_destroyer,
+      submarine: initialCountry.armada_militer?.laut?.kapal_selam_nuklir,
+      stealth_jet: initialCountry.armada_militer?.udara?.jet_tempur_siluman,
+      heli_attack: initialCountry.armada_militer?.udara?.helikopter_serang,
+      recon_plane: initialCountry.armada_militer?.udara?.pesawat_pengintai,
     } },
     { label: "Strategis & Keamanan", data: {
-      satellite: initialCountry.militer_strategis.intel_radar?.sistem_satelit,
-      radar: initialCountry.militer_strategis.intel_radar?.jaringan_radar,
-      operasi_siber: initialCountry.militer_strategis.intel_radar?.operasi_siber,
-      pos_polisi: initialCountry.armada_kepolisian.armada_polisi.pusat_komando.kantor_polisi,
-      mobil_patroli_interceptor: initialCountry.armada_kepolisian.armada_polisi.patroli_lantas.mobil_patroli_interceptor,
-      unit_interceptor_r2: initialCountry.armada_kepolisian.armada_polisi.patroli_lantas.unit_interceptor_r2,
-      unit_k9: initialCountry.armada_kepolisian.armada_polisi.patroli_lantas.unit_k9,
-      swat: initialCountry.armada_kepolisian.armada_polisi.taktis_khusus.swat,
-      police_heli: initialCountry.armada_kepolisian.armada_polisi.taktis_khusus.helikopter_polisi,
-      riot_control: initialCountry.armada_kepolisian.armada_polisi.taktis_khusus.anti_huru_hara,
-      cctv_network: initialCountry.armada_kepolisian.armada_polisi.pusat_komando.kamera_pengawas,
-      forensik: initialCountry.armada_kepolisian.armada_polisi.pusat_komando.pusat_forensik,
+      satellite: initialCountry.militer_strategis?.intel_radar?.sistem_satelit,
+      radar: initialCountry.militer_strategis?.intel_radar?.jaringan_radar,
+      operasi_siber: initialCountry.militer_strategis?.intel_radar?.operasi_siber,
+      pos_polisi: initialCountry.armada_kepolisian?.armada_polisi?.kantor_polisi,
+      mobil_patroli_interceptor: initialCountry.armada_kepolisian?.armada_polisi?.mobil_patroli_interceptor,
+      unit_interceptor_r2: initialCountry.armada_kepolisian?.armada_polisi?.unit_roda_dua,
+      unit_k9: initialCountry.armada_kepolisian?.armada_polisi?.unit_k9,
+      swat: initialCountry.armada_kepolisian?.armada_polisi?.pasukan_swat,
+      police_heli: initialCountry.armada_kepolisian?.armada_polisi?.helikopter_polisi,
+      riot_control: initialCountry.armada_kepolisian?.armada_polisi?.samapta,
+      cctv_network: initialCountry.armada_kepolisian?.armada_polisi?.network_cctv,
+      forensik: initialCountry.armada_kepolisian?.armada_polisi?.pusat_forensik,
     } }
   ];
 
@@ -159,9 +159,9 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
           const cat = metadata.category || metadata.groupId || s.label;
           if (!agg[cat]) agg[cat] = [];
           agg[cat].push({
-            name: metadata.desc || metadata.label || metadata.name || key,
+            name: metadata.deskripsi || metadata.label || metadata.name || key,
             count: count,
-            maintenance: metadata.maintenanceCost || metadata.maintenance || 0
+            maintenance: metadata.biaya_pemeliharaan || metadata.maintenanceCost || metadata.maintenance || 0
           });
         }
       });
@@ -238,14 +238,8 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   const dailyMilitaryExpense = Object.values(aggMilitary).reduce((sum, items) => sum + items.reduce((subSum, item) => subSum + (item.count * item.maintenance), 0), 0) / 100000;
   
   // Extra Fiscal Expenses
-  const totalSubsidyLevel = ((expData.subsidi_energi || 0) + (expData.subsidi_pangan || 0) + (expData.subsidi_kesehatan || 0) + (expData.subsidi_pendidikan || 0) + (expData.subsidi_umkm || 0) + (expData.subsidi_transportasi || 0) + (expData.subsidi_perumahan || 0)) / 7;
-  const subsidyExpense = (totalDailyIncome * (totalSubsidyLevel / 100));
   const coreMaintenance = dailyBaseMaintenance + dailyDeltaMaintenance;
-  const getMult = (v: number) => v <= 2.0 ? v : v / 100;
-  const avgSalaryMultiplier = (getMult(expData.gaji_asn || 1) + getMult(expData.gaji_guru || 1) + getMult(expData.gaji_medis || 1) + getMult(expData.gaji_militer || 1)) / 4;
-  const salaryExpense = (coreMaintenance * 0.1) * avgSalaryMultiplier;
-
-  const totalDailyExpense = coreMaintenance + dailyMilitaryExpense + subsidyExpense + salaryExpense + (expData.debtInterestPaid || 0);
+  const totalDailyExpense = coreMaintenance + dailyMilitaryExpense + (expData.debtInterestPaid || 0);
 
   // 3. Final Balance
   const netDailySurplus = totalDailyIncome - totalDailyExpense;
@@ -253,8 +247,6 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   const expenseItems = [
      { id: "military", label: "Beban Militer & Pertahanan", value: dailyMilitaryExpense, icon: Shield, color: "text-red-400", desc: "Pemeliharaan alutsista dan gaji personel aktif." },
      { id: "maintenance", label: "Pemeliharaan Infrastruktur", value: dailyBaseMaintenance, icon: Zap, color: "text-amber-400", desc: "Listrik, jalan raya, pelabuhan, dan fasilitas publik." },
-     { id: "gaji", label: "Gaji Pegawai Negeri & Birokrasi", value: salaryExpense, icon: Users, color: "text-blue-400", desc: "Gaji Pegawai Negeri, Tenaga Medis, Guru, dan Aparatur.", kepuasan: avgSatisfaction, satisfactionLabel: "Indeks Kepuasan Pegawai" },
-     { id: "subsidi", label: "Subsidi Publik", value: subsidyExpense, icon: Coins, color: "text-green-400", desc: "Bantuan modal dan subsidi harga untuk rakyat.", kepuasan: Math.round(((expData.subsidi_energi || 0) + (expData.subsidi_pangan || 0) + (expData.subsidi_kesehatan || 0) + (expData.subsidi_pendidikan || 0) + (expData.subsidi_umkm || 0) + (expData.subsidi_transportasi || 0) + (expData.subsidi_perumahan || 0)) / 7), satisfactionLabel: "Indeks Kepuasan Publik" },
      ...(expData.debtInterestPaid > 0 ? [{ id: "debt", label: "Bunga Hutang Luar Negeri", value: expData.debtInterestPaid, icon: Landmark, color: "text-rose-500", desc: "Biaya bunga atas pinjaman dana internasional." }] : [])
   ];
 
@@ -422,143 +414,11 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                      </div>
 
                      <div className="flex-1 overflow-y-auto no-scrollbar space-y-6">
-                        {expandedItem === 'gaji' && (() => {
-                           const getSatisfaction = (mult: number) => {
-                              if (mult <= 2.0) {
-                                 if (mult <= 0.5) return 25;
-                                 if (mult <= 1.0) return 50;
-                                 if (mult <= 1.5) return 75;
-                                 return 100;
-                              }
-                              return mult;
-                           };
-                           const satisfyColors = (sat: number) => sat >= 80 ? 'text-emerald-400' : sat >= 60 ? 'text-amber-400' : 'text-red-400';
-                           return (
-                           <div className="bg-zinc-900/40 border border-zinc-800 p-6 rounded-3xl space-y-6">
-                              <div className="flex justify-between items-center">
-                                 <div className="flex items-center gap-3">
-                                    <Users className="h-5 w-5 text-blue-400" />
-                                    <span className="text-sm font-bold text-white">Manajemen Gaji Aparatur & Pegawai</span>
-                                 </div>
-                                 <div className="flex items-center gap-2 bg-zinc-950 px-3 py-1 rounded-full border border-zinc-900">
-                                    <span className="text-[11px] text-zinc-500 font-bold">Indeks Kepuasan Pegawai:</span>
-                                    <span className={`text-xs font-black ${satisfyColors((getSatisfaction(expData.gaji_asn) + getSatisfaction(expData.gaji_guru) + getSatisfaction(expData.gaji_medis) + getSatisfaction(expData.gaji_militer)) / 4)}`}>
-                                       {Math.round((getSatisfaction(expData.gaji_asn) + getSatisfaction(expData.gaji_guru) + getSatisfaction(expData.gaji_medis) + getSatisfaction(expData.gaji_militer)) / 4)}%
-                                    </span>
-                                 </div>
-                              </div>
-                              <p className="text-xs text-zinc-500">Koefisien penggajian departmental. Kepuasan tinggi mencegah demonstrasi/pemogokan kerja dan menjaga kestabilan pemerintahan.</p>
-                              
-                              <div className="grid grid-cols-2 gap-4">
-                                 {[
-                                    { key: 'gaji_asn', label: 'Gaji Pegawai Negeri & Birokrasi', icon: Users, color: 'text-blue-400' },
-                                    { key: 'gaji_guru', label: 'Gaji Guru & Pengajar', icon: Users, color: 'text-cyan-400' },
-                                    { key: 'gaji_medis', label: 'Gaji Tenaga Medis', icon: Activity, color: 'text-rose-400' },
-                                    { key: 'gaji_militer', label: 'Gaji Personel Militer', icon: Shield, color: 'text-red-400' }
-                                 ].map((s: any) => {
-                                    const kepuasan = getSatisfaction((expData as any)[s.key] || 1.0);
-                                    const sumMult = (expData.gaji_asn || 1) + (expData.gaji_guru || 1) + (expData.gaji_medis || 1) + (expData.gaji_militer || 1);
-                                    const sectorExpense = (((expData as any)[s.key] || 1) / (sumMult > 0 ? sumMult : 4)) * salaryExpense;
-                                    
-                                    return (
-                                    <div key={s.key} className="bg-zinc-950 core-border border border-zinc-900 p-4 rounded-xl space-y-3">
-                                       <div className="flex justify-between items-center">
-                                          <div className="flex items-center gap-2">
-                                             <s.icon size={13} className={s.color} />
-                                             <span className="text-xs font-bold text-zinc-300">{s.label}</span>
-                                          </div>
-                                          <div className="flex items-center gap-1.5">
-                                             <span className={`text-[10px] font-bold ${satisfyColors(kepuasan)}`}>{kepuasan}%</span>
-                                              <span className={`text-xs font-black text-white`}>{Math.round(sectorExpense * 100000).toLocaleString('id-ID')}</span>
-                                          </div>
-                                       </div>
-                                        <div className="grid grid-cols-5 gap-1.5 pt-1">
-                                           {[10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((val) => {
-                                              const value = (expData as any)[s.key] || 100;
-                                              const currentVal = value <= 2.0 ? value * 100 : value;
-                                              const isActive = currentVal === val;
-                                              return (
-                                                 <button key={val} onClick={() => {
-                                                    setExpData(prev => ({ ...prev, [s.key]: val }));
-                                                    (expenseStorage as any).updateExpense(initialCountry.name_en, s.key as any, val, initialCountry);
-                                                 }} className={`py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-center ${isActive ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/30' : 'bg-zinc-950 border border-zinc-900 text-zinc-500 hover:bg-zinc-800 hover:text-white'}`}>
-                                                    {val}%
-                                                 </button>
-                                              );
-                                           })}
-                                        </div>
-                                    </div>
-                                 )})}
-                              </div>
-                           </div>
-                        )})()}
-
-                        {expandedItem === 'subsidi' && (
-                           <div className="bg-zinc-900/40 border border-zinc-800 p-6 rounded-3xl space-y-6">
-                              <div className="flex justify-between items-center">
-                                 <div className="flex items-center gap-3">
-                                    <Coins className="h-5 w-5 text-green-400" />
-                                    <span className="text-sm font-bold text-white">Subsidi Publik Modular</span>
-                                 </div>
-                                 <div className="flex items-center gap-2 bg-zinc-950 px-3 py-1 rounded-full border border-zinc-900">
-                                    <span className="text-[11px] text-zinc-500 font-bold">Total Alokasi Rata-rata:</span>
-                                    <span className="text-xs font-black text-green-400">
-                                       {Math.round(((expData.subsidi_energi || 0) + (expData.subsidi_pangan || 0) + (expData.subsidi_kesehatan || 0) + (expData.subsidi_pendidikan || 0) + (expData.subsidi_umkm || 0) + (expData.subsidi_transportasi || 0) + (expData.subsidi_perumahan || 0)) / 7)}%
-                                    </span>
-                                 </div>
-                              </div>
-                              <p className="text-xs text-zinc-500">Mendistribusikan kas negara untuk meredakan biaya hidup rakyat atau mendongkrak stabilitas ekonomi dasar departemen bervalidasi.</p>
-                              <div className="grid grid-cols-2 gap-4 max-h-[300px] overflow-y-auto pr-2 no-scrollbar">
-                                 {[
-                                    { key: 'subsidi_energi', label: 'Energi (BBM & Listrik)', icon: Zap, color: 'text-yellow-400' },
-                                    { key: 'subsidi_pangan', label: 'Pangan (Bahan Pokok)', icon: Coins, color: 'text-green-500' },
-                                    { key: 'subsidi_kesehatan', label: 'Kesehatan', icon: Activity, color: 'text-rose-400' },
-                                    { key: 'subsidi_pendidikan', label: 'Pendidikan', icon: Users, color: 'text-cyan-400' },
-                                    { key: 'subsidi_umkm', label: 'Sektor Tani', icon: Hammer, color: 'text-orange-400' },
-                                    { key: 'subsidi_transportasi', label: 'Transportasi Umum', icon: Car, color: 'text-blue-400' },
-                                    { key: 'subsidi_perumahan', label: 'Perumahan Rakyat', icon: Home, color: 'text-indigo-400' }
-                                 ].map((s: any) => {
-                                    const value = (expData as any)[s.key] || 0;
-                                    // Total alloc Rupiah allocation estimate = Tax pendapatan * (sub % / 100) / 7 (Now 7 categories)
-                                    const allocRupiah = (dailyTaxRevenue * (value / 100)) / 7;
-                                    const formatRupiah = Math.round(allocRupiah).toLocaleString('id-ID');
-                                    return (
-                                    <div key={s.key} className="bg-zinc-950 core-border border border-zinc-900 p-4 rounded-xl space-y-3">
-                                       <div className="flex justify-between items-center">
-                                          <div className="flex items-center gap-2">
-                                             <s.icon size={13} className={s.color} />
-                                             <span className="text-xs font-bold text-zinc-300">{s.label}</span>
-                                          </div>
-                                          <span className="text-xs font-black text-white">{value}%</span>
-                                       </div>
-                                        <div className="grid grid-cols-5 gap-1.5 pt-1">
-                                           {[0, 25, 50, 75, 100].map((val) => {
-                                              const isActive = value === val;
-                                              return (
-                                                 <button key={val} onClick={() => {
-                                                    setExpData(prev => ({ ...prev, [s.key]: val }));
-                                                    (expenseStorage as any).updateExpense(initialCountry.name_en, s.key as any, val, initialCountry);
-                                                 }} className={`py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-center ${isActive ? 'bg-green-500 text-white shadow-lg shadow-green-500/30' : 'bg-zinc-900 border border-zinc-800 text-zinc-500 hover:bg-zinc-800 hover:text-white'}`}>
-                                                    {val}%
-                                                 </button>
-                                              );
-                                           })}
-                                        </div>
-                                       <div className="flex justify-between text-xs font-bold text-zinc-500 mt-0.5">
-                                           <span>{value > 0 ? 'Aktif' : '0% Off'}</span>
-                                           {value > 0 && <span>Alokasi: {formatRupiah}</span>}
-                                        </div>
-                                    </div>
-                                 )})}
-                              </div>
-                           </div>
-                        )}
-
                         {expandedItem === 'military' && renderAggregatedSection(buildAggregated(militarySectors), "Rincian Perawatan Militer", "text-red-400", Shield)}
 
                         {expandedItem === 'maintenance' && renderAggregatedSection(buildAggregated(maintenanceSectors), "Rincian Perawatan Infrastruktur", "text-amber-400", Zap)}
 
-                        {!['gaji', 'subsidi', 'military', 'maintenance'].includes(expandedItem || '') && expandedItem && (
+                        {!['military', 'maintenance'].includes(expandedItem || '') && expandedItem && (
                            <div className="flex flex-col items-center justify-center h-full gap-3">
                               <Info size={24} className="text-zinc-600" />
                               <p className="text-xs text-zinc-500 italic">Rincian statis tidak memiliki kontrol manajemen saat ini.</p>
@@ -609,5 +469,3 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
     </div>
   )
 }
-
-

@@ -12,7 +12,8 @@ export const KAPASITAS_LISTRIK_METADATA = {
     waktu_pembangunan: 182,
     biaya_pembangunan: 1500000,
     lowongan_kerja: 2500,
-    konsumsi_listrik: 0
+    konsumsi_listrik: 0,
+    konsumsi_uranium: 5
   },
   "2_pembangkit_listrik_tenaga_air": {
     key: "2_pembangkit_listrik_tenaga_air",

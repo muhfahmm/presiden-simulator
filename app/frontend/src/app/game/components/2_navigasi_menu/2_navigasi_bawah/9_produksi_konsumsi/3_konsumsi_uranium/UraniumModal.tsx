@@ -4,12 +4,14 @@ import { useState } from "react";
 import { X, Activity, TrendingUp, TrendingDown, Info, Pickaxe, Radiation, Package, Shield, Anchor, Zap } from "lucide-react";
 import { 
   mineralKritisRate,
-  armadaMiliterRate
+  armadaMiliterRate,
+  KAPASITAS_LISTRIK_METADATA
 } from "@/app/database/data/semua_fitur_negara";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
+import { calculateUraniumMetrics } from "./logic/uraniumLogic";
 
 interface UraniumModalProps {
   isOpen: boolean;
@@ -31,38 +33,15 @@ export default function UraniumModal({ isOpen, onClose }: UraniumModalProps) {
   const buildingData = buildingStorage.getData();
   const buildingDeltas = buildingData.buildingDeltas;
 
-  // Sync Logic with Deltas
-  const currentDataWithDeltas = {
-    ...currentData,
-    sektor_ekstraksi: { ...currentData.sektor_ekstraksi || {} },
-  };
-
-  Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
-    if (typeof deltaValue !== 'number' || deltaValue === 0) return;
-    if ((mineralKritisRate as any)[key]) {
-      const dataKey = (mineralKritisRate as any)[key].dataKey;
-      if (dataKey === 'uranium') {
-        (currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] = ((currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] || 0) + deltaValue;
-      }
-    }
-  });
-
-  // Calculate Production (Uranium Mines)
-  const uraniumMineMeta = mineralKritisRate["2_tambang_uranium"];
-  const countMines = currentDataWithDeltas.sektor_ekstraksi.uranium || 0;
-  const totalProduction = countMines * (uraniumMineMeta?.produksi || 2);
-
-  // Military Fleet Consumption Logic (Uranium)
-  const armada = currentData.armada_militer;
-  
-  const countCarrierN = armada.laut?.kapal_induk_nuklir || 0;
-  const countSubN = armada.laut?.kapal_selam_nuklir || 0;
-
-  const consCarrierN = countCarrierN * (armadaMiliterRate["8b_kapal_induk_nuklir"]?.konsumsi_uranium || 0.8);
-  const consSubN = countSubN * (armadaMiliterRate["11_kapal_selam_nuklir"]?.konsumsi_uranium || 0.2);
-
-  const totalConsumption = consCarrierN + consSubN;
-  const surplus = totalProduction - totalConsumption;
+  // Use Shared Uranium Logic
+  const { 
+    totalProduction, 
+    totalConsumption, 
+    surplus, 
+    countMines,
+    counts,
+    consumptionBreakdown 
+  } = calculateUraniumMetrics(currentData, buildingDeltas);
 
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
@@ -175,78 +154,66 @@ export default function UraniumModal({ isOpen, onClose }: UraniumModalProps) {
               </div>
             </div>
 
-            {/* Konsumsi Breakdown */}
+            {/* Konsumsi Breakdown Column */}
             <div className="space-y-6">
               <div className="flex items-center gap-3 px-2">
-                <div className="p-1.5 bg-rose-500/10 rounded-lg"><Shield size={16} className="text-rose-500" /></div>
-                <h3 className="text-lg font-black text-white uppercase italic tracking-widest">Sektor Konsumsi Nuklir</h3>
+                <div className="p-1.5 bg-rose-500/10 rounded-lg"><Activity size={16} className="text-rose-500" /></div>
+                <h3 className="text-lg font-black text-white uppercase italic tracking-widest">Sektor Konsumsi</h3>
                 <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
               </div>
 
               <div className="bg-zinc-900/40 border border-zinc-800/50 p-4 rounded-3xl">
                 <div className="flex items-center gap-3 mb-4 px-2">
                     <Radiation size={18} className="text-rose-500" />
-                    <span className="text-sm font-bold text-white uppercase tracking-tight">Konsumsi Armada Nuklir</span>
+                    <span className="text-sm font-bold text-white uppercase tracking-tight">Konsumsi Terintegrasi</span>
                 </div>
 
-                <div className="space-y-3">
-                  {/* Armada Laut */}
-                  <div className="bg-zinc-950/40 p-4 rounded-3xl border border-zinc-800/30 group hover:border-rose-500/30 transition-all">
-                    <div className="flex items-center gap-3 mb-4">
-                      <Anchor size={20} className="text-zinc-500 group-hover:text-rose-400" />
-                      <span className="text-[11px] font-black text-rose-500 uppercase tracking-widest">Armada Laut</span>
-                    </div>
-                    <div className="grid grid-cols-2 gap-x-6 gap-y-2 mb-4">
-                      <div className="flex justify-between text-[10px] text-zinc-400">
-                        <span>Kapal Induk</span>
-                        <span className="font-bold text-white">{(armada.laut?.kapal_induk || 0).toLocaleString('id-ID')}</span>
+                <div className="space-y-4">
+                  {/* Sektor Energi (PLTN) */}
+                  <div className="bg-zinc-950/40 p-5 rounded-3xl border border-emerald-500/30 group hover:border-emerald-500/50 transition-all shadow-[0_0_15px_rgba(16,185,129,0.05)]">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <Zap size={20} className="text-emerald-400 group-hover:scale-110 transition-transform" />
+                        <span className="text-[11px] font-black text-emerald-500 uppercase tracking-[0.2em]">Sektor Energi</span>
                       </div>
-                      <div className="flex justify-between text-[10px] text-zinc-400">
-                        <span className="text-emerald-500 font-bold">Kapal Induk Nuklir</span>
-                        <span className="font-bold text-emerald-500">{(armada.laut?.kapal_induk_nuklir || 0).toLocaleString('id-ID')}</span>
-                      </div>
-                      <div className="flex justify-between text-[10px] text-zinc-400">
-                        <span>Kapal Destroyer</span>
-                        <span className="font-bold text-white">{(armada.laut?.kapal_destroyer || 0).toLocaleString('id-ID')}</span>
-                      </div>
-                      <div className="flex justify-between text-[10px] text-zinc-400">
-                        <span>Kapal Korvet</span>
-                        <span className="font-bold text-white">{(armada.laut?.kapal_korvet || 0).toLocaleString('id-ID')}</span>
-                      </div>
-                      <div className="flex justify-between text-[10px] text-zinc-400">
-                        <span className="text-emerald-500 font-bold">Kapal Selam Nuklir</span>
-                        <span className="font-bold text-emerald-500">{(armada.laut?.kapal_selam_nuklir || 0).toLocaleString('id-ID')}</span>
-                      </div>
-                      <div className="flex justify-between text-[10px] text-zinc-400">
-                        <span>Kapal Selam Reguler</span>
-                        <span className="font-bold text-white">{(armada.laut?.kapal_selam_regular || 0).toLocaleString('id-ID')}</span>
-                      </div>
-                      <div className="flex justify-between text-[10px] text-zinc-400">
-                        <span>Kapal Ranjau</span>
-                        <span className="font-bold text-white">{(armada.laut?.kapal_ranjau || 0).toLocaleString('id-ID')}</span>
-                      </div>
-                      <div className="flex justify-between text-[10px] text-zinc-400">
-                        <span>Kapal Logistik</span>
-                        <span className="font-bold text-white">{(armada.laut?.kapal_logistik || 0).toLocaleString('id-ID')}</span>
+                      <div className="text-right">
+                         <span className="text-[10px] font-bold text-zinc-500 uppercase">Status: </span>
+                         <span className="text-[10px] font-black text-emerald-400 uppercase tracking-tighter">Pasokan Nasional</span>
                       </div>
                     </div>
-                    <div className="pt-2 border-t border-zinc-800/50">
-                      <p className="text-lg font-black text-white leading-tight">{totalConsumption.toFixed(2)} <span className="text-[10px] text-zinc-600 font-normal">KG /hari</span></p>
-                      <p className="text-[10px] font-bold text-rose-500/80 mt-1 uppercase tracking-wider">
-                        Nuclear Fuel Demand
-                      </p>
+                    <div className="flex justify-between items-center bg-zinc-950 border border-zinc-900 p-3 rounded-2xl mb-4">
+                        <div className="flex flex-col">
+                           <span className="text-[10px] font-bold text-zinc-500 uppercase">PLTN (Fisi Nuklir)</span>
+                           <span className="text-[8px] text-emerald-500/60 font-black italic">Active Atomic Reactor</span>
+                        </div>
+                        <span className="text-sm font-black text-white">{(counts.pltn || 0).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-600 font-normal ml-1">UNIT</span></span>
+                    </div>
+                    <div className="pt-2 border-t border-zinc-800/50 flex justify-between items-baseline">
+                      <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Beban Bahan Bakar</p>
+                      <p className="text-lg font-black text-white leading-tight">{consumptionBreakdown.energy.toFixed(2)} <span className="text-[10px] text-zinc-600 font-normal ml-1">KG /hari</span></p>
                     </div>
                   </div>
 
-                  {/* Additional context for other sectors if needed */}
-                  <div className="bg-zinc-950/40 p-4 rounded-3xl border border-zinc-800/30 opacity-60">
-                    <div className="flex items-center gap-3 mb-2">
-                        <Shield size={16} className="text-zinc-500" />
-                        <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Sektor Darat & Udara</span>
+                  {/* Armada Laut */}
+                  <div className="bg-zinc-950/40 p-5 rounded-3xl border border-rose-500/30 group hover:border-rose-500/50 transition-all shadow-[0_0_15px_rgba(225,29,72,0.05)]">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Anchor size={20} className="text-rose-400 group-hover:rotate-12 transition-transform" />
+                      <span className="text-[11px] font-black text-rose-500 uppercase tracking-[0.2em]">Pertahanan Maritim</span>
                     </div>
-                    <p className="text-[9px] text-zinc-600 leading-tight">
-                        Sektor darat dan udara saat ini menggunakan bahan bakar minyak konvensional. Data lengkap tersedia di dashboard Perminyakan.
-                    </p>
+                    <div className="grid grid-cols-2 gap-3 mb-4">
+                      <div className="flex justify-between items-center p-2.5 rounded-xl bg-zinc-950 border border-zinc-900/50">
+                        <span className="text-[9px] font-bold text-zinc-400 uppercase">Kapal Induk N</span>
+                        <span className="text-[11px] font-black text-emerald-400">{(counts.carrierN || 0).toLocaleString('id-ID')}</span>
+                      </div>
+                      <div className="flex justify-between items-center p-2.5 rounded-xl bg-zinc-950 border border-zinc-900/50">
+                        <span className="text-[9px] font-bold text-zinc-400 uppercase">Kapal Selam N</span>
+                        <span className="text-[11px] font-black text-emerald-400">{(counts.subN || 0).toLocaleString('id-ID')}</span>
+                      </div>
+                    </div>
+                    <div className="pt-2 border-t border-zinc-800/50 flex justify-between items-baseline">
+                      <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Beban Operasional</p>
+                      <p className="text-lg font-black text-white leading-tight">{consumptionBreakdown.military.toFixed(2)} <span className="text-[10px] text-zinc-600 font-normal ml-1">KG /hari</span></p>
+                    </div>
                   </div>
                 </div>
               </div>

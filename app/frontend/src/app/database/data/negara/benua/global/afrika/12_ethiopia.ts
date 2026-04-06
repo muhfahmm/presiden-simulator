@@ -108,24 +108,7 @@ export const ethiopia: CountryData = {
       "pendapatan": 18
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 40,
-    "gaji_guru": 60,
-    "gaji_medis": 50,
-    "gaji_militer": 40
-  },
-  "subsidi": {
-    "subsidi_energi": 25,
-    "subsidi_pangan": 50,
-    "subsidi_kesehatan": 50,
-    "subsidi_pendidikan": 50,
-    "subsidi_umkm": 25,
-    "subsidi_transportasi": 25,
-    "subsidi_perumahan": 25
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

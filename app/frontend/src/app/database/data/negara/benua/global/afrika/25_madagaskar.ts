@@ -108,24 +108,7 @@ export const madagaskar: CountryData = {
       "pendapatan": 4
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 50,
-    "gaji_guru": 40,
-    "gaji_medis": 40,
-    "gaji_militer": 50
-  },
-  "subsidi": {
-    "subsidi_energi": 50,
-    "subsidi_pangan": 50,
-    "subsidi_kesehatan": 50,
-    "subsidi_pendidikan": 25,
-    "subsidi_umkm": 25,
-    "subsidi_transportasi": 25,
-    "subsidi_perumahan": 25
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

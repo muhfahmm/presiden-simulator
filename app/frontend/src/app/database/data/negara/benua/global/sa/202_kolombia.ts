@@ -108,24 +108,7 @@ export const kolombia: CountryData = {
       "pendapatan": 60
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 60,
-    "gaji_guru": 60,
-    "gaji_medis": 60,
-    "gaji_militer": 60
-  },
-  "subsidi": {
-    "subsidi_energi": 75,
-    "subsidi_pangan": 75,
-    "subsidi_kesehatan": 75,
-    "subsidi_pendidikan": 75,
-    "subsidi_umkm": 75,
-    "subsidi_transportasi": 50,
-    "subsidi_perumahan": 50
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

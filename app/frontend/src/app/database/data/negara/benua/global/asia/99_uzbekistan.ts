@@ -108,24 +108,7 @@ export const uzbekistan: CountryData = {
       "pendapatan": 71
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 70,
-    "gaji_guru": 60,
-    "gaji_medis": 80,
-    "gaji_militer": 70
-  },
-  "subsidi": {
-    "subsidi_energi": 50,
-    "subsidi_pangan": 50,
-    "subsidi_kesehatan": 75,
-    "subsidi_pendidikan": 75,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 50,
-    "subsidi_perumahan": 50
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

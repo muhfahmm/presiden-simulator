@@ -36,6 +36,7 @@ import { calculateConstructionProgress, getStatusText } from "@/app/game/data/co
 import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MaterialRequirement from "./MaterialRequirement";
+import { calculateUraniumMetrics } from "../../9_produksi_konsumsi/3_konsumsi_uranium/logic/uraniumLogic";
 
 interface ModalProps {
   isOpen: boolean;
@@ -225,6 +226,9 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   const adjustedTotalBeban = hitungTotalKonsumsiNasional(currentDataWithDeltas);
   const surplus = adjustedTotalPasokan - adjustedTotalBeban;
 
+  // Uranium Requirement Check
+  const uraniumStats = calculateUraniumMetrics(currentDataWithDeltas, buildingDeltas);
+
   const handleBuildRequest = (item: any) => {
     setConfirmBuild(item);
     setQuantity(1);
@@ -302,7 +306,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           sector: confirmBuild.groupId,
           startDate: currentStart,
           endDate: currentEnd,
-          buildTime: confirmBuild.buildTime
+          waktu_pembangunan: confirmBuild.buildTime
         });
 
         if (newItem) {
@@ -392,7 +396,8 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         cost: val.biaya_pembangunan || 1500,
         buildTime: val.waktu_pembangunan || 90,
         maintenanceCost: val.biaya_pemeliharaan ?? 5,
-        lowongan_kerja: val.lowongan_kerja || 0
+        lowongan_kerja: val.lowongan_kerja || 0,
+        konsumsi_uranium: val.konsumsi_uranium || 0
       }))
     },
     {
@@ -708,6 +713,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                                     ? (currentDataWithDeltas.sektor_listrik as any)[(KAPASITAS_LISTRIK_METADATA as any)[item.key]?.dataKey] || 0 
                                     : budgetStorage.getCumulativeProduction()[item.key]
                                 }
+                                hasUraniumMines={uraniumStats.hasMines}
                               />
                             </Fragment>
                           );
@@ -874,7 +880,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   )
 }
 
-function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, onBuild: (item: any) => void, construction?: any, cumulative: number }) {
+function BuildingCard({ item, onBuild, construction, cumulative, hasUraniumMines }: { item: any, onBuild: (item: any) => void, construction?: any, cumulative: number, hasUraniumMines: boolean }) {
   const [showDetail, setShowDetail] = useState(false);
   const currentDate = getStoredGameDate().getTime();
   const progress = construction
@@ -956,9 +962,23 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
                 </div>
               )}
 
+              {item.konsumsi_uranium > 0 && (
+                <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-1.5 bg-emerald-500/10 rounded-lg text-emerald-500">
+                      <Radiation size={12} />
+                    </div>
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Konsumsi Uranium</span>
+                  </div>
+                  <span className="text-[14px] font-black text-emerald-500">-{item.konsumsi_uranium?.toLocaleString('id-ID')} <span className="text-[9px] text-emerald-500/50 italic opacity-80">KG / HARI</span></span>
+                </div>
+              )}
+
               <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                 <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-400">
                     <Users2 size={12} />
+                  </div>
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Lowongan</span>
                 </div>
                 <span className="text-[14px] font-black text-blue-400">+{item.lowongan_kerja?.toLocaleString('id-ID')} <span className="text-[9px] text-blue-500/50 italic opacity-80">/ UNIT</span></span>
@@ -1035,6 +1055,17 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
               Produksi: +{Math.floor(item.tarif).toLocaleString('id-ID')} {item.unit}/bangunan
             </span>
           </div>
+
+          {item.konsumsi_uranium > 0 && (
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 bg-emerald-500/10 rounded-lg">
+                <Radiation size={12} className="text-emerald-500" />
+              </div>
+              <span className="text-[12px] font-bold text-emerald-500/90">
+                Konsumsi Uranium: -{item.konsumsi_uranium?.toLocaleString('id-ID')} KG/hari
+              </span>
+            </div>
+          )}
 
           {(item.groupId !== "kelistrikan" && (item.powerUsage ?? 0) >= 0) && (
             <>
@@ -1116,12 +1147,19 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
               <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span>
               <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost?.toLocaleString('id-ID')}</span>
             </div>
-            <button
-              onClick={(e) => { e.stopPropagation(); onBuild(item); }}
-              className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20"
-            >
-              Bangun
-            </button>
+            {item.key === "1_pembangkit_listrik_tenaga_nuklir" && !hasUraniumMines ? (
+               <button disabled className="flex-1 py-3.5 rounded-2xl bg-zinc-800 text-rose-500/40 text-[9px] font-black uppercase tracking-tight border border-rose-500/20 cursor-not-allowed flex flex-col items-center justify-center leading-none">
+                <span className="text-[7px] text-zinc-500 mb-0.5">SYARAT GAGAL</span>
+                BUTUH TAMBANG URANIUM
+              </button>
+            ) : (
+              <button
+                onClick={(e) => { e.stopPropagation(); onBuild(item); }}
+                className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20"
+              >
+                Bangun
+              </button>
+            )}
           </div>
         )}
       </div>

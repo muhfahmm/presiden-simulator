@@ -108,24 +108,7 @@ export const arab_saudi: CountryData = {
       "pendapatan": 127
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 60,
-    "gaji_guru": 60,
-    "gaji_medis": 60,
-    "gaji_militer": 70
-  },
-  "subsidi": {
-    "subsidi_energi": 50,
-    "subsidi_pangan": 75,
-    "subsidi_kesehatan": 50,
-    "subsidi_pendidikan": 75,
-    "subsidi_umkm": 75,
-    "subsidi_transportasi": 75,
-    "subsidi_perumahan": 50
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

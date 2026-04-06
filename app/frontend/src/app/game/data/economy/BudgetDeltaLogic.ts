@@ -41,14 +41,10 @@ export interface BudgetBreakdown {
   expenses: {
     maintenance: number;
     military: number;
-    subsidies: number;
-    salaries: number;
     debtInterest: number;
     priceSubsidies: number;
   };
   details: {
-    subsidiLevel: number;
-    salaryMultiplier: number;
     priceMultiplier: number;
   }
 }
@@ -91,13 +87,6 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   // Military (Khusus operasional/pabrik jika diperlukan tambahan, saat ini sudah masuk maintenance)
   const militaryExpense = 0; 
 
-  // Subsidies
-  const totalSubsidiLevel = ((expData.subsidi_energi || 0) + (expData.subsidi_pangan || 0) + (expData.subsidi_kesehatan || 0) + (expData.subsidi_pendidikan || 0) + (expData.subsidi_umkm || 0) + (expData.subsidi_transportasi || 0) + (expData.subsidi_perumahan || 0)) / 7;
-  const subsidyExpense = (totalAnnualRevenue * (totalSubsidiLevel / 100));
-
-  // Salaries
-  const avgSalaryMultiplier = ((expData.gaji_asn || 1.0) + (expData.gaji_guru || 1.0) + (expData.gaji_medis || 1.0) + (expData.gaji_militer || 1.0)) / 4;
-  const salaryExpense = (maintenanceExpense * 0.1) * avgSalaryMultiplier;
 
   // Price Subsidies
   const priceData = priceStorage.getData();
@@ -109,7 +98,7 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   ) / 11;
   const priceSubsidyExpense = Math.max(0, (1.0 - avgPriceMultiplier) * 1500);
 
-  const totalAnnualExpense = maintenanceExpense + militaryExpense + subsidyExpense + salaryExpense + (expData.debtInterestPaid || 0) + priceSubsidyExpense;
+  const totalAnnualExpense = maintenanceExpense + militaryExpense + (expData.debtInterestPaid || 0) + priceSubsidyExpense;
   const netAnnualSurplus = totalAnnualRevenue - totalAnnualExpense;
   const dailyDelta = netAnnualSurplus / 365;
 
@@ -123,14 +112,10 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
     expenses: {
       maintenance: maintenanceExpense,
       military: militaryExpense,
-      subsidies: subsidyExpense,
-      salaries: salaryExpense,
       debtInterest: expData.debtInterestPaid || 0,
       priceSubsidies: priceSubsidyExpense
     },
     details: {
-      subsidiLevel: totalSubsidiLevel,
-      salaryMultiplier: avgSalaryMultiplier,
       priceMultiplier: avgPriceMultiplier
     }
   };

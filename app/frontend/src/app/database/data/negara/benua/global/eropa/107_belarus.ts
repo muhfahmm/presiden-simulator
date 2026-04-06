@@ -108,24 +108,7 @@ export const belarus: CountryData = {
       "pendapatan": 9
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 80,
-    "gaji_guru": 100,
-    "gaji_medis": 90,
-    "gaji_militer": 90
-  },
-  "subsidi": {
-    "subsidi_energi": 50,
-    "subsidi_pangan": 25,
-    "subsidi_kesehatan": 75,
-    "subsidi_pendidikan": 100,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 75,
-    "subsidi_perumahan": 75
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

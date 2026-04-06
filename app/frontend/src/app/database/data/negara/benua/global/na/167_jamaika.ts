@@ -108,24 +108,7 @@ export const jamaika: CountryData = {
       "pendapatan": 2
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 100,
-    "gaji_guru": 90,
-    "gaji_medis": 90,
-    "gaji_militer": 80
-  },
-  "subsidi": {
-    "subsidi_energi": 25,
-    "subsidi_pangan": 25,
-    "subsidi_kesehatan": 100,
-    "subsidi_pendidikan": 75,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 75,
-    "subsidi_perumahan": 75
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

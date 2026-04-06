@@ -108,24 +108,7 @@ export const uni_emirat_arab: CountryData = {
       "pendapatan": 227
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 60,
-    "gaji_guru": 70,
-    "gaji_medis": 80,
-    "gaji_militer": 70
-  },
-  "subsidi": {
-    "subsidi_energi": 50,
-    "subsidi_pangan": 75,
-    "subsidi_kesehatan": 50,
-    "subsidi_pendidikan": 50,
-    "subsidi_umkm": 75,
-    "subsidi_transportasi": 50,
-    "subsidi_perumahan": 50
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

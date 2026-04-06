@@ -108,24 +108,7 @@ export const ceko: CountryData = {
       "pendapatan": 131
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 90,
-    "gaji_guru": 100,
-    "gaji_medis": 90,
-    "gaji_militer": 80
-  },
-  "subsidi": {
-    "subsidi_energi": 25,
-    "subsidi_pangan": 50,
-    "subsidi_kesehatan": 75,
-    "subsidi_pendidikan": 75,
-    "subsidi_umkm": 75,
-    "subsidi_transportasi": 75,
-    "subsidi_perumahan": 50
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

@@ -108,24 +108,7 @@ export const bahrain: CountryData = {
       "pendapatan": 31
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 60,
-    "gaji_guru": 60,
-    "gaji_medis": 80,
-    "gaji_militer": 80
-  },
-  "subsidi": {
-    "subsidi_energi": 75,
-    "subsidi_pangan": 75,
-    "subsidi_kesehatan": 50,
-    "subsidi_pendidikan": 50,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 50,
-    "subsidi_perumahan": 25
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

@@ -112,24 +112,7 @@ export const afrika_selatan: CountryData = {
       "pendapatan": 134
     }
   },
-  // =============================================================
-  // 12. Ã°Å¸â€™Â° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 30,
-    "gaji_guru": 50,
-    "gaji_medis": 60,
-    "gaji_militer": 50
-  },
-  "subsidi": {
-    "subsidi_energi": 50,
-    "subsidi_pangan": 25,
-    "subsidi_kesehatan": 50,
-    "subsidi_pendidikan": 50,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 25,
-    "subsidi_perumahan": 25
-  },
+  
   // =============================================================
   // 13. Ã°Å¸â€ºâ€™ HARGA PASAR DOMESTIK
   // =============================================================

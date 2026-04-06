@@ -108,24 +108,7 @@ export const chile: CountryData = {
       "pendapatan": 68
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 50,
-    "gaji_guru": 70,
-    "gaji_medis": 80,
-    "gaji_militer": 50
-  },
-  "subsidi": {
-    "subsidi_energi": 50,
-    "subsidi_pangan": 75,
-    "subsidi_kesehatan": 75,
-    "subsidi_pendidikan": 75,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 50,
-    "subsidi_perumahan": 25
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

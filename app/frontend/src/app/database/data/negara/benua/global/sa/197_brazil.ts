@@ -108,24 +108,7 @@ export const brazil: CountryData = {
       "pendapatan": 95
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 60,
-    "gaji_guru": 60,
-    "gaji_medis": 80,
-    "gaji_militer": 60
-  },
-  "subsidi": {
-    "subsidi_energi": 50,
-    "subsidi_pangan": 75,
-    "subsidi_kesehatan": 75,
-    "subsidi_pendidikan": 50,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 75,
-    "subsidi_perumahan": 50
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

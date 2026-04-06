@@ -108,24 +108,7 @@ export const jepang: CountryData = {
       "pendapatan": 1182
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 70,
-    "gaji_guru": 70,
-    "gaji_medis": 70,
-    "gaji_militer": 60
-  },
-  "subsidi": {
-    "subsidi_energi": 75,
-    "subsidi_pangan": 75,
-    "subsidi_kesehatan": 50,
-    "subsidi_pendidikan": 75,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 50,
-    "subsidi_perumahan": 25
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

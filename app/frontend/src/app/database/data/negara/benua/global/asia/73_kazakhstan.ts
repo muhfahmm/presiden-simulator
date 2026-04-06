@@ -108,24 +108,7 @@ export const kazakhstan: CountryData = {
       "pendapatan": 46
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 70,
-    "gaji_guru": 60,
-    "gaji_medis": 70,
-    "gaji_militer": 70
-  },
-  "subsidi": {
-    "subsidi_energi": 75,
-    "subsidi_pangan": 50,
-    "subsidi_kesehatan": 75,
-    "subsidi_pendidikan": 50,
-    "subsidi_umkm": 75,
-    "subsidi_transportasi": 75,
-    "subsidi_perumahan": 50
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

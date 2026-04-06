@@ -112,24 +112,7 @@ export const malaysia: CountryData = {
       "pendapatan": 167
     }
   },
-  // =============================================================
-  // 12. Ã°Å¸â€™Â° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 50,
-    "gaji_guru": 60,
-    "gaji_medis": 80,
-    "gaji_militer": 70
-  },
-  "subsidi": {
-    "subsidi_energi": 75,
-    "subsidi_pangan": 75,
-    "subsidi_kesehatan": 50,
-    "subsidi_pendidikan": 50,
-    "subsidi_umkm": 75,
-    "subsidi_transportasi": 50,
-    "subsidi_perumahan": 25
-  },
+  
   // =============================================================
   // 13. Ã°Å¸â€ºâ€™ HARGA PASAR DOMESTIK
   // =============================================================

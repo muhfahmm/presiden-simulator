@@ -108,24 +108,7 @@ export const antigua_dan_barbuda: CountryData = {
       "pendapatan": 9
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 100,
-    "gaji_guru": 90,
-    "gaji_medis": 100,
-    "gaji_militer": 90
-  },
-  "subsidi": {
-    "subsidi_energi": 50,
-    "subsidi_pangan": 50,
-    "subsidi_kesehatan": 100,
-    "subsidi_pendidikan": 75,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 75,
-    "subsidi_perumahan": 50
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

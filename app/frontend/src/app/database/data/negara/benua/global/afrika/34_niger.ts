@@ -108,24 +108,7 @@ export const niger: CountryData = {
       "pendapatan": 10
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 50,
-    "gaji_guru": 40,
-    "gaji_medis": 40,
-    "gaji_militer": 40
-  },
-  "subsidi": {
-    "subsidi_energi": 25,
-    "subsidi_pangan": 50,
-    "subsidi_kesehatan": 50,
-    "subsidi_pendidikan": 50,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 50,
-    "subsidi_perumahan": 50
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

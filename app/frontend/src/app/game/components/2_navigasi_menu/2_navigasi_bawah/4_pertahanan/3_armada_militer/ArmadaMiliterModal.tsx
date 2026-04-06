@@ -12,6 +12,7 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import Perbandingan from "./1_menu_modal/1_umumkan_perang/perbandingan";
 import MaterialRequirement from "../../3_pembangunan/1-produksi/MaterialRequirement";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
+import { calculateUraniumMetrics } from "../../9_produksi_konsumsi/3_konsumsi_uranium/logic/uraniumLogic";
 import { 
   armadaPolisiRate, 
   armadaMiliterRate, 
@@ -420,6 +421,9 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
   const totalBeban = hitungTotalKonsumsiNasional(currentDataWithDeltas);
   const surplus = totalPasokan - totalBeban;
 
+  // Uranium Requirement Check
+  const uraniumStats = calculateUraniumMetrics(currentDataWithDeltas, buildingDeltas);
+
   const handleBuildRequest = (item: any) => {
     setConfirmBuild(item);
     setQuantity(1);
@@ -661,6 +665,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
                                 onBuild={handleBuildRequest}
                                 construction={currentConstruction}
                                 tankCapacity={item.key === "tank" ? tankCapacity : undefined}
+                                hasUraniumMines={uraniumStats.hasMines}
                               />
                             </Fragment>
                           );
@@ -842,7 +847,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
                       <div className="flex items-center gap-2">
                         <Radiation size={14} className="text-emerald-500 fill-emerald-500/20" />
                         <span className="text-2xl font-black text-emerald-500 tracking-tight leading-none overflow-hidden text-ellipsis w-full text-center">
-                          {(confirmBuild.konsumsi_uranium * quantity).toLocaleString('id-ID')} <span className="text-[10px] font-bold">g/Hari</span>
+                          {(confirmBuild.konsumsi_uranium * quantity).toLocaleString('id-ID')} <span className="text-[10px] font-bold">KG/Hari</span>
                         </span>
                       </div>
                     </div>
@@ -1053,7 +1058,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
   )
 }
 
-function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
+function BuildingCard({ item, onBuild, construction, tankCapacity, hasUraniumMines }: any) {
   const [showDetail, setShowDetail] = useState(false);
   const currentDate = getStoredGameDate().getTime();
   const progress = construction ? calculateConstructionProgress(construction.startDate, construction.endDate, currentDate) : null;
@@ -1347,6 +1352,11 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
             {item.isFull ? (
               <button disabled className="flex-1 py-3.5 rounded-2xl bg-zinc-800 text-rose-500/50 text-[10px] font-black uppercase tracking-[0.1em] border border-rose-500/20 cursor-not-allowed">
                 {item.storageLabel.replace('Pangkalan ', '')} Penuh
+              </button>
+            ) : item.konsumsi_uranium > 0 && !hasUraniumMines ? (
+              <button disabled className="flex-1 py-3.5 rounded-2xl bg-zinc-800 text-rose-500/40 text-[9px] font-black uppercase tracking-tight border border-rose-500/20 cursor-not-allowed flex flex-col items-center justify-center leading-none">
+                <span className="text-[7px] text-zinc-500 mb-0.5">SYARAT GAGAL</span>
+                BUTUH TAMBANG URANIUM
               </button>
             ) : (
               <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20">

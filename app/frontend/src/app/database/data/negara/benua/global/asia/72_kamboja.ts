@@ -108,24 +108,7 @@ export const kamboja: CountryData = {
       "pendapatan": 18
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 70,
-    "gaji_guru": 70,
-    "gaji_medis": 70,
-    "gaji_militer": 80
-  },
-  "subsidi": {
-    "subsidi_energi": 75,
-    "subsidi_pangan": 75,
-    "subsidi_kesehatan": 75,
-    "subsidi_pendidikan": 50,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 50,
-    "subsidi_perumahan": 50
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

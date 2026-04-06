@@ -108,24 +108,7 @@ export const kamerun: CountryData = {
       "pendapatan": 3
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 50,
-    "gaji_guru": 50,
-    "gaji_medis": 50,
-    "gaji_militer": 60
-  },
-  "subsidi": {
-    "subsidi_energi": 25,
-    "subsidi_pangan": 25,
-    "subsidi_kesehatan": 50,
-    "subsidi_pendidikan": 25,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 50,
-    "subsidi_perumahan": 0
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

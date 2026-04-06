@@ -108,24 +108,7 @@ export const mauritania: CountryData = {
       "pendapatan": 3
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 30,
-    "gaji_guru": 50,
-    "gaji_medis": 50,
-    "gaji_militer": 50
-  },
-  "subsidi": {
-    "subsidi_energi": 25,
-    "subsidi_pangan": 50,
-    "subsidi_kesehatan": 25,
-    "subsidi_pendidikan": 50,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 50,
-    "subsidi_perumahan": 50
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================

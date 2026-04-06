@@ -90,15 +90,13 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
   const buildingDeltas = buildingStorage.getBuildingDeltas();
 
   // 1. WELL-BEING: Living Cost Index
-  // Ratio of Avg Salary to Avg Basic Prices (Food, Power, Water)
-  const avgSalary = (
-    (country.gaji.gaji_asn + country.gaji.gaji_guru + country.gaji.gaji_medis + country.gaji.gaji_militer) / 4
-  );
+  // Ratio of National Income (as proxy for wealth) to Avg Basic Prices
+  const monthlyIncomeProxy = parseInt(country.pendapatan_nasional || "0") / 12;
   const basicPriceAvg = (
     (prices.harga_beras + prices.harga_listrik + prices.harga_air + prices.harga_bbm) / 4
   );
-  // Normalize index (Higher is better)
-  const livingCostIndex = Math.min(100, Math.max(0, (avgSalary / (basicPriceAvg / 10)) * 2));
+  // Normalize index (Higher is better) - Adjusted scaling for new proxy
+  const livingCostIndex = Math.min(100, Math.max(5, (monthlyIncomeProxy / (basicPriceAvg * 2)) * 10));
 
   // 2. QUALITY OF LIFE: Health Score & Life Expectancy
   const rsBesarCount = (country.kesehatan?.rumah_sakit_besar || 0) + (buildingDeltas["rumah_sakit_besar"] || 0);
@@ -224,7 +222,7 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
   const { totalVacancies, totalEmployed, unemploymentRate } = calculateWorkforce();
 
   // 4. SECURITY: Crime Rate
-  const policeStations = (country.armada_kepolisian?.armada_polisi?.pusat_komando?.kantor_polisi || 36) + (buildingDeltas["kantor_polisi"] || 0);
+  const policeStations = (country.armada_kepolisian?.armada_polisi?.kantor_polisi || 36) + (buildingDeltas["kantor_polisi"] || 0);
   const securityIndex = (country.hukum?.indeks_keamanan || 78) + (policeStations * 0.8) - (unemploymentRate * 0.5);
   const crimeRate = Math.max(0, Math.min(100, 100 - securityIndex));
 

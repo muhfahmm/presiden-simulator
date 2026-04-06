@@ -108,24 +108,7 @@ export const saint_vincent_dan_grenadine: CountryData = {
       "pendapatan": 0
     }
   },
-  // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
-  // =============================================================
-  "gaji": {
-    "gaji_asn": 90,
-    "gaji_guru": 90,
-    "gaji_medis": 90,
-    "gaji_militer": 90
-  },
-  "subsidi": {
-    "subsidi_energi": 25,
-    "subsidi_pangan": 50,
-    "subsidi_kesehatan": 75,
-    "subsidi_pendidikan": 100,
-    "subsidi_umkm": 50,
-    "subsidi_transportasi": 75,
-    "subsidi_perumahan": 50
-  },
+  
   // =============================================================
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
