@@ -207,6 +207,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
           ...intelijenRate["sistem_satelit"], 
           groupId: "infra", 
           icon: Satellite, 
+          cost: intelijenRate["sistem_satelit"].biaya_pembangunan,
           biaya_pembangunan: intelijenRate["sistem_satelit"].biaya_pembangunan,
           waktu_pembangunan: intelijenRate["sistem_satelit"].waktu_pembangunan,
           count: (currentData.militer_strategis?.intel_radar?.sistem_satelit || 0) + ((buildingDeltas["sistem_satelit"] as number) || 0) 
@@ -215,6 +216,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
           ...intelijenRate["jaringan_radar"], 
           groupId: "infra", 
           icon: Radar, 
+          cost: intelijenRate["jaringan_radar"].biaya_pembangunan,
           biaya_pembangunan: intelijenRate["jaringan_radar"].biaya_pembangunan,
           waktu_pembangunan: intelijenRate["jaringan_radar"].waktu_pembangunan,
           count: (currentData.militer_strategis?.intel_radar?.jaringan_radar || 0) + ((buildingDeltas["jaringan_radar"] as number) || 0) 
@@ -223,6 +225,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
           ...intelijenRate["operasi_siber"], 
           groupId: "infra", 
           icon: Cpu, 
+          cost: intelijenRate["operasi_siber"].biaya_pembangunan,
           biaya_pembangunan: intelijenRate["operasi_siber"].biaya_pembangunan,
           waktu_pembangunan: intelijenRate["operasi_siber"].waktu_pembangunan,
           count: (currentData.militer_strategis?.intel_radar?.operasi_siber || 0) + ((buildingDeltas["operasi_siber"] as number) || 0) 
@@ -650,7 +653,7 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
             <div className="flex items-center justify-between gap-4">
               <div className="flex flex-col">
                 <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
-                <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost.toLocaleString('id-ID')}</span>
+                <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{(item.cost || 0).toLocaleString('id-ID')}</span>
               </div>
               <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20">
                 Deploy

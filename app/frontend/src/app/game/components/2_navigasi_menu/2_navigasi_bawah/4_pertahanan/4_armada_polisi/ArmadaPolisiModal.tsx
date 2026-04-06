@@ -660,12 +660,6 @@ function BuildingCard({ item, onBuild, construction }: any) {
               </span>
             </div>
 
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-rose-500/10 rounded-lg">
-                <Flame size={12} className="text-rose-400" />
-              </div>
-              <span className="text-[12px] font-bold text-rose-400/90 italic">Pemeliharaan: -{item.biaya_pemeliharaan?.toLocaleString('id-ID') || 5}/hari</span>
-            </div>
 
             {item.konsumsi_listrik > 0 && (
               <div className="flex flex-col gap-2">

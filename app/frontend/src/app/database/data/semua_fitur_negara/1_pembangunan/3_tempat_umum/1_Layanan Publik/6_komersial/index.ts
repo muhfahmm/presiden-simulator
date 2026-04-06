@@ -1,5 +1,5 @@
 export interface SektorKomersial {
-  mall?: number;
+  pusat_belanja?: number;
   hotel?: number;
   pusat_grosir_tekstil?: number;
 }

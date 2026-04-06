@@ -268,7 +268,7 @@ export const KONSUMSI_SOSIAL = {
   kesehatan: { rumah_sakit_besar: 100, rumah_sakit_kecil: 25, pusat_diagnostik: 15 },
   olahraga: { kolam_renang: 10, sirkuit_balap: 80, stadion: 150, stadion_internasional: 150, gym: 15, golf: 40, esports: 120, gokart: 25 },
   hukum: { akademi_polisi: 10, pos_polisi: 3, armada_mobil_polisi: 0.1, kejaksaan: 20, pengadilan: 20, pusat_bantuan_hukum: 5 },
-  komersial: { mall: 50, hotel: 40, pusat_grosir_tekstil: 25 },
+  komersial: { pusat_belanja: 50, hotel: 40, pusat_grosir_tekstil: 25 },
   hiburan: { bioskop: 15, teater: 12 }
 };
 
