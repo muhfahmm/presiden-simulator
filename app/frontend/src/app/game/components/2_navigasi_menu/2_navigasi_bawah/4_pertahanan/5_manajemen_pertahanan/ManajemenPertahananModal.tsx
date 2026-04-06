@@ -162,11 +162,13 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
         desc: val.deskripsi,
         cost: val.biaya_pembangunan,
         buildTime: val.waktu_pembangunan,
-        maintenanceCost: val.maintenanceCost,
+        maintenanceCost: val.biaya_pemeliharaan,
         lowongan_kerja: val.lowongan_kerja,
         dataKey: val.dataKey,
         count: Number(currentData.sektor_pertahanan?.[val.dataKey as keyof typeof currentData.sektor_pertahanan] || 0) + ((buildingDeltas[key] as number) || 0),
-        consumption: val.konsumsi_listrik || 0
+        consumption: val.konsumsi_listrik || 0,
+        kapasitas: val.kapasitas,
+        satuan_kapasitas: val.satuan_kapasitas
       }))
     }
   ];
@@ -691,13 +693,13 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
                </div>
             </div>
 
-            {item.dataKey === "hangar_tank" && (
+            {item.kapasitas > 0 && (
                <div className="flex items-center gap-2.5">
                   <div className="p-1.5 bg-cyan-500/10 rounded-lg">
                      <Truck size={12} className="text-cyan-400" />
                   </div>
                   <span className="text-[12px] font-bold text-cyan-400/90 italic">
-                     Kapasitas: 50 Main Battle Tank/unit
+                     Kapasitas: {item.kapasitas.toLocaleString('id-ID')} {item.satuan_kapasitas}/unit
                   </span>
                </div>
             )}
