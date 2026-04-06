@@ -16,7 +16,7 @@ export const keuangan_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Fiskal ${tier.title}`,
   icon: Briefcase,
-  impact: "Stabilitas Moneter",
+  impact: "Pendapatan Pajak & Kas Negara (+%)",
   description: `Pengelola kas tingkat ${tier.title} untuk kesehatan finansial negara.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

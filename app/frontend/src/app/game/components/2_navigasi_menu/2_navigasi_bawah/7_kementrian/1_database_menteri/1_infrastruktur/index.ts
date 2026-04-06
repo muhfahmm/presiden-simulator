@@ -16,7 +16,7 @@ export const infrastruktur_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Praktisi ${tier.title}`,
   icon: Factory,
-  impact: "Logistik & Konektivitas",
+  impact: "Distribusi Material & Logistik (+%)",
   description: `Ahli infrastruktur tingkat ${tier.title} untuk percepatan pembangunan fisik nasional.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

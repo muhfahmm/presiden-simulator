@@ -16,7 +16,7 @@ export const sains_penelitian_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Ilmuwan ${tier.title}`,
   icon: Microscope,
-  impact: "Inovasi Teknologi",
+  impact: "Riset Teknologi & Efisiensi Energi (+%)",
   description: `Peneliti tingkat ${tier.title} untuk penguasaan IPTEK nasional.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

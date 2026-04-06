@@ -16,7 +16,7 @@ export const luar_negeri_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Diplomat ${tier.title}`,
   icon: Globe,
-  impact: "Diplomasi Global",
+  impact: "Hubungan Diplomatik & Prestasi Global (+%)",
   description: `Utusan tingkat ${tier.title} untuk posisi tawar internasional yang kuat.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

@@ -16,7 +16,7 @@ export const perumahan_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Arsitek ${tier.title}`,
   icon: Factory,
-  impact: "Kelayakan Hunian",
+  impact: "Kapasitas Hunian & Pemukiman Rakyat (+%)",
   description: `Penyedia hunian tingkat ${tier.title} untuk pemerataan tempat tinggal rakyat.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

@@ -16,7 +16,7 @@ export const perdagangan_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Niagawan ${tier.title}`,
   icon: Factory,
-  impact: "Neraca Ekspor",
+  impact: "Margin Ekspor & Optimasi Impor (+%)",
   description: `Negosiator dagang tingkat ${tier.title} untuk keunggulan produk nasional.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

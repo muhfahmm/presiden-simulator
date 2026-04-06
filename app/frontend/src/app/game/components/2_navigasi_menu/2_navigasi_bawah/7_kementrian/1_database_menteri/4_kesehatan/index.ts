@@ -16,7 +16,7 @@ export const kesehatan_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Medis ${tier.title}`,
   icon: Shield,
-  impact: "Harapan Hidup",
+  impact: "Laju Kelahiran & Harapan Hidup (+%)",
   description: `Tenaga kesehatan tingkat ${tier.title} untuk layanan medis berkualitas.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

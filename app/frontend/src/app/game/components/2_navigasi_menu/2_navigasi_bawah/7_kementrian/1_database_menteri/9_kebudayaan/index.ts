@@ -16,7 +16,7 @@ export const kebudayaan_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Budayawan ${tier.title}`,
   icon: Landmark,
-  impact: "Identitas Nasional",
+  impact: "Loyalitas Rakyat & Kebanggaan Nasional (+%)",
   description: `Pelestari budaya tingkat ${tier.title} untuk penguatan karakter bangsa.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

@@ -16,7 +16,7 @@ export const lingkungan_hidup_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Konservasi ${tier.title}`,
   icon: Sprout,
-  impact: "Keberlanjutan Alam",
+  impact: "Kualitas Udara (AQI) & Alam (+%)",
   description: `Penjaga alam tingkat ${tier.title} untuk ekosistem yang sehat dan lestari.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

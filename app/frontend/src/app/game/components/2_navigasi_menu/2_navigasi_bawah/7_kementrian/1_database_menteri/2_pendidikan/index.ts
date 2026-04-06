@@ -16,7 +16,7 @@ export const pendidikan_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Akademisi ${tier.title}`,
   icon: Landmark,
-  impact: "Kualitas SDM",
+  impact: "Pertumbuhan IQ & Kualitas SDM (+%)",
   description: `Pakar pendidikan tingkat ${tier.title} untuk mencerdaskan kehidupan bangsa.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

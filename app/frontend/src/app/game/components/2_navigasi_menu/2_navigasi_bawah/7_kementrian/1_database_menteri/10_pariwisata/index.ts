@@ -16,7 +16,7 @@ export const pariwisata_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Promotor ${tier.title}`,
   icon: Landmark,
-  impact: "Devisa Pariwisata",
+  impact: "Pemasukkan Devisa & Hiburan Rakyat (+%)",
   description: `Pengolah wisata tingkat ${tier.title} untuk daya tarik mancanegara.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

@@ -16,7 +16,7 @@ export const kehakiman_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Yuris ${tier.title}`,
   icon: Shield,
-  impact: "Supremasi Hukum",
+  impact: "Ketertiban Umum & Stabilitas Nasional (+%)",
   description: `Pakar hukum tingkat ${tier.title} untuk keadilan sosial yang merata.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

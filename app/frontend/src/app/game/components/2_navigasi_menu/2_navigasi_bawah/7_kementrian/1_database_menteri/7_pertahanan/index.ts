@@ -16,7 +16,7 @@ export const pertahanan_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Strategis ${tier.title}`,
   icon: Shield,
-  impact: "Keamanan Nasional",
+  impact: "Kesiapan Armada & Operasi Militer (+%)",
   description: `Pakar militer tingkat ${tier.title} untuk kedaulatan wilayah NKRI.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,

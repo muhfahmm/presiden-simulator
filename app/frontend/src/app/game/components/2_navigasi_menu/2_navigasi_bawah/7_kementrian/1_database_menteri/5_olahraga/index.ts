@@ -16,7 +16,7 @@ export const olahraga_options: Ministry[] = TIERS.map((tier, i) => ({
   status: "Kosong",
   minister: `Atlet ${tier.title}`,
   icon: Zap,
-  impact: "Prestasi Internasional",
+  impact: "Moral Penduduk & Kepuasan Publik (+%)",
   description: `Penggerak olahraga tingkat ${tier.title} untuk kebanggaan nasional.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,
