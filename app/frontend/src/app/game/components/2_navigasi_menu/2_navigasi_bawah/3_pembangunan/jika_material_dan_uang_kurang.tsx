@@ -1,9 +1,9 @@
 "use client"
 
 import React from "react";
-import { X, AlertCircle, Landmark, Coins, ArrowRight, Layers, Hammer, TreePine, Package2 } from "lucide-react";
+import { X, AlertOctagon, Landmark, ArrowRight, Coins, Package2 } from "lucide-react";
 
-interface MissingMaterial {
+export interface MissingMaterial {
   label: string;
   required: number;
   current: number;
@@ -15,7 +15,7 @@ interface JikaMaterialDanUangKurangProps {
   onClose: () => void;
   requiredAmount: number;
   currentBalance: number;
-  missingMaterials: MissingMaterial[];
+  missingMaterials?: MissingMaterial[];
 }
 
 const JikaMaterialDanUangKurang: React.FC<JikaMaterialDanUangKurangProps> = ({
@@ -23,114 +23,143 @@ const JikaMaterialDanUangKurang: React.FC<JikaMaterialDanUangKurangProps> = ({
   onClose,
   requiredAmount,
   currentBalance,
-  missingMaterials,
+  missingMaterials = [],
 }) => {
   if (!isOpen) return null;
 
-  const moneyShortage = requiredAmount - currentBalance;
+  const shortage = requiredAmount - currentBalance;
+  const isMoneyShort = shortage > 0;
+  const hasMissingMaterials = missingMaterials.length > 0;
+
+  // Dynamic Title Logic based on shortage type
+  let mainTitle = "Keuangan Tidak Cukup!";
+  let subTitle = "Kas Negara Tidak Memadai";
+
+  if (isMoneyShort && hasMissingMaterials) {
+    mainTitle = "Sumber Daya dan Keuangan Tidak Cukup!";
+    subTitle = "Anggaran & Material Tidak Memadai";
+  } else if (hasMissingMaterials) {
+    mainTitle = "Sumber Daya Tidak Cukup!";
+    subTitle = "Logistik Konstruksi Tidak Memadai";
+  } else if (isMoneyShort) {
+    mainTitle = "Keuangan Tidak Cukup!";
+    subTitle = "Kas Negara Tidak Memadai";
+  }
+ 
+  // Material section title logic - Standardized to "Juga Tidak Cukup"
+  const materialSectionTitle = "Material Juga Tidak Cukup";
 
   return (
     <div className="absolute inset-0 z-[202] flex items-center justify-center bg-black/70 backdrop-blur-lg animate-in fade-in duration-300 px-4">
-      <div className="bg-zinc-950 border border-zinc-800 p-8 rounded-[40px] shadow-[0_0_50px_rgba(0,0,0,0.5)] max-w-2xl w-full flex flex-col items-center text-center gap-8 animate-in zoom-in-95 duration-500 relative overflow-hidden">
+      <div className="bg-zinc-950 border border-zinc-800 p-8 rounded-[40px] shadow-[0_0_50px_rgba(0,0,0,0.5)] max-w-lg w-full flex flex-col items-center text-center gap-6 animate-in zoom-in-95 duration-500 relative overflow-hidden">
+        {/* Background Decorative Pattern */}
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-rose-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-rose-500/10 rounded-full blur-3xl animate-pulse delay-700" />
         
-        {/* Animated Background Gradients */}
-        <div className="absolute -top-32 -right-32 w-64 h-64 bg-rose-500/10 rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-amber-500/10 rounded-full blur-[100px] animate-pulse delay-700" />
-        
-        {/* Header Section */}
-        <div className="flex flex-col items-center gap-4 z-10">
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-tr from-rose-500/40 to-amber-500/40 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700" />
-            <div className="relative p-6 bg-zinc-900 border border-zinc-800 rounded-full shadow-inner">
-              <AlertCircle className="h-12 w-12 text-white" />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <h2 className="text-4xl font-black text-white uppercase tracking-tighter italic leading-none">
-              Krisis Sumber Daya!
-            </h2>
-            <p className="text-zinc-500 text-xs font-black uppercase tracking-[0.3em] opacity-80">
-              Anggaran & Material Tidak Mencukupi
-            </p>
+        {/* Header Icon */}
+        <div className="relative group">
+          <div className="absolute inset-0 bg-rose-500/20 rounded-full blur-xl group-hover:bg-rose-500/30 transition-all duration-500 scale-150" />
+          <div className="relative p-5 bg-rose-500/10 rounded-full border border-rose-500/20 shadow-lg shadow-rose-900/20 text-rose-500">
+            <AlertOctagon className="h-10 w-10 animate-pulse" />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full z-10">
-          {/* Financial Gap Section */}
-          <div className="flex flex-col gap-4 p-6 bg-zinc-900/40 border border-zinc-800/60 rounded-3xl relative group hover:border-rose-500/30 transition-colors">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-rose-500/10 rounded-xl text-rose-500">
-                <Landmark size={18} />
-              </div>
-              <h4 className="text-sm font-black text-white uppercase tracking-widest">Defisit Anggaran</h4>
-            </div>
-            
-            <div className="space-y-3 mt-2">
-              <div className="flex justify-between items-end">
-                <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Kekurangan</span>
-                <span className="text-xl font-black text-rose-500">-{moneyShortage.toLocaleString('id-ID')}</span>
-              </div>
-              <div className="h-1.5 w-full bg-zinc-950 rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-rose-500 transition-all duration-1000"
-                  style={{ width: `${Math.min(100, (currentBalance / requiredAmount) * 100)}%` }}
-                />
-              </div>
-              <div className="flex justify-between text-[8px] font-black text-zinc-600 uppercase tracking-tighter">
-                <span>Kas: {currentBalance.toLocaleString('id-ID')}</span>
-                <span>Butuh: {requiredAmount.toLocaleString('id-ID')}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Material Gap Section */}
-          <div className="flex flex-col gap-4 p-6 bg-zinc-900/40 border border-zinc-800/60 rounded-3xl relative group hover:border-amber-500/30 transition-colors">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-amber-500/10 rounded-xl text-amber-500">
-                <Package2 size={18} />
-              </div>
-              <h4 className="text-sm font-black text-white uppercase tracking-widest">Defisit Material</h4>
-            </div>
-
-            <div className="flex flex-col gap-3 mt-2">
-              {missingMaterials.slice(0, 3).map((m, i) => (
-                <div key={i} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <m.icon size={12} className="text-zinc-500" />
-                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-tighter">{m.label}</span>
-                  </div>
-                  <span className="text-[10px] font-black text-amber-500">
-                    -{(m.required - m.current).toLocaleString('id-ID')} T
-                  </span>
-                </div>
-              ))}
-              {missingMaterials.length === 0 && (
-                <p className="text-[10px] font-bold text-emerald-500 uppercase tracking-tighter italic">Material Mencukupi</p>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Action Button */}
-        <div className="flex flex-col w-full gap-4 z-10">
-          <button 
-            onClick={onClose}
-            className="w-full py-5 rounded-[24px] bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white font-black text-sm uppercase tracking-[0.2em] transition-all cursor-pointer shadow-[0_10px_30px_rgba(225,29,72,0.3)] active:scale-95 flex items-center justify-center gap-3 group"
-          >
-            Tutup & Evaluasi Strategi
-            <ArrowRight size={20} className="group-hover:translate-x-1.5 transition-transform" />
-          </button>
-          <p className="text-[9px] font-bold text-zinc-600 uppercase tracking-[0.4em] animate-pulse">
-            Pembangunan Diblokir Sementara
+        {/* Text Content */}
+        <div className="space-y-2 z-10">
+          <h3 className="text-3xl font-black text-white uppercase tracking-tighter italic leading-none">
+            {mainTitle}
+          </h3>
+          <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.3em] opacity-80">
+            {subTitle}
           </p>
         </div>
 
-        {/* Close Button Overlay */}
+        {/* Breakdown Container */}
+        <div className="w-full space-y-4 z-10 py-2 text-left">
+          {/* Pricing Breakdown */}
+          <div className="bg-zinc-900/40 border border-zinc-800/60 rounded-3xl p-5 flex flex-col gap-4 relative group hover:border-rose-500/30 transition-colors shadow-inner">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 bg-zinc-950/50 rounded-lg text-zinc-500 border border-zinc-800">
+                  <Landmark size={14} />
+                </div>
+                <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Kas Saat Ini</span>
+              </div>
+              <span className="text-sm font-black text-white tracking-widest">{currentBalance.toLocaleString('id-ID')}</span>
+            </div>
+            
+            <div className="h-[1px] w-full bg-zinc-800/50" />
+            
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-2.5">
+                <div className={`p-1.5 rounded-lg border ${isMoneyShort ? "bg-rose-500/10 text-rose-500 border-rose-500/20" : "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"}`}>
+                  <Coins size={14} />
+                </div>
+                <span className={`text-[10px] font-bold uppercase tracking-widest italic leading-none ${isMoneyShort ? "text-rose-500" : "text-emerald-500"}`}>Biaya Dibutuhkan</span>
+              </div>
+              <span className={`text-sm font-black tracking-widest ${isMoneyShort ? "text-rose-500" : "text-emerald-500"}`}>{requiredAmount.toLocaleString('id-ID')}</span>
+            </div>
+
+          </div>
+
+          {/* Material Breakdown Section (Conditional) */}
+          {hasMissingMaterials && (
+            <div className="bg-zinc-900/40 border border-zinc-800/60 rounded-3xl p-5 flex flex-col gap-4 relative group hover:border-rose-500/30 transition-colors shadow-inner">
+              <div className="flex items-center gap-2.5 mb-1 text-left">
+                <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-500 border border-rose-500/20">
+                  <Package2 size={14} />
+                </div>
+                <span className="text-[10px] font-bold text-amber-500 uppercase tracking-widest leading-none italic">{materialSectionTitle}</span>
+              </div>
+              
+              <div className="grid grid-cols-1 gap-2.5">
+                {missingMaterials.map((m, idx) => (
+                  <div key={idx} className="flex flex-col gap-1.5">
+                    <div className="flex justify-between items-end px-1">
+                      <div className="flex items-center gap-2">
+                        <m.icon size={12} className="text-zinc-500 font-bold" />
+                        <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-tighter">{m.label}</span>
+                      </div>
+                      <span className="text-[10px] font-black text-amber-500">
+                        Stok: {m.current.toLocaleString('id-ID')} <span className="text-zinc-600">/ {m.required.toLocaleString('id-ID')} T</span>
+                      </span>
+                    </div>
+                    <div className="h-1.5 w-full bg-zinc-950 rounded-full overflow-hidden border border-zinc-800/30">
+                      <div 
+                        className="h-full bg-gradient-to-r from-rose-600 to-rose-400 opacity-80 transition-all duration-1000"
+                        style={{ width: `${Math.min(100, (m.current / m.required) * 100)}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Actions */}
+        <div className="flex flex-col w-full gap-3 z-10 pt-2">
+          <button 
+            onClick={onClose}
+            className="w-full py-4 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-black text-xs uppercase tracking-[0.2em] transition-all cursor-pointer shadow-[0_10px_20px_rgba(225,29,72,0.3)] active:scale-95 flex items-center justify-center gap-2 group"
+          >
+            Tutup & Evaluasi Strategi
+            <ArrowRight size={16} className="group-hover:translate-x-1.5 transition-transform" />
+          </button>
+          <button 
+            onClick={onClose}
+            className="w-full py-3 rounded-xl hover:bg-zinc-900 border border-transparent hover:border-zinc-800 text-zinc-500 hover:text-zinc-300 font-bold text-[9px] uppercase tracking-[0.4em] transition-all"
+          >
+            Batalkan Pembangunan
+          </button>
+        </div>
+        
+        {/* Close Icon (Top Right) */}
         <button 
           onClick={onClose}
           className="absolute top-8 right-8 p-3 rounded-2xl hover:bg-white/5 text-zinc-600 hover:text-white transition-all cursor-pointer border border-transparent hover:border-zinc-800"
         >
-          <X size={24} />
+          <X size={20} />
         </button>
       </div>
     </div>

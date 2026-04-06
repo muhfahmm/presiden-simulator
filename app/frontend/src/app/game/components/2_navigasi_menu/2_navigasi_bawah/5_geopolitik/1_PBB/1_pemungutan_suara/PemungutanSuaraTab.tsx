@@ -58,7 +58,7 @@ const resolutionMenus: ResolutionMenu[] = [
       { 
         name: "Sanksi Perang (War Sanction)", 
         description: "Hukuman atas agresi militer yang dianggap tidak sah oleh dewan internasional.",
-        effect: "Penurunan Combat Readiness armada sebesar 20%. Biaya pemeliharaan Hub Militer naik 30% karena kesulitan rantai pasok taktis."
+        effect: "Penurunan Combat Readiness armada sebesar 20%. Biaya operasional Hub Militer naik 30% karena kesulitan rantai pasok taktis."
       },
     ]
   },

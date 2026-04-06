@@ -1,6 +1,5 @@
 import React from 'react';
 import { Layers, TreePine, Hammer, Construction, Warehouse } from "lucide-react";
-import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 
 /**
@@ -23,7 +22,7 @@ export const BUILDING_REQUIREMENTS: Record<string, BuildingRequirement> = {
   "3_pembangkit_listrik_tenaga_surya": { beton: 200, baja: 450, kayu: 0 },
   "4_pembangkit_listrik_tenaga_uap": { beton: 850, baja: 1400, kayu: 0 },
   "5_pembangkit_listrik_tenaga_gas": { beton: 600, baja: 950, kayu: 0 },
-  "6_pembangkit_listrik_tenaga_bayu": { beton: 350, baja: 700, kayu: 0 },
+  "6_pembangkit_listrik_tenaga_angin": { beton: 350, baja: 700, kayu: 0 },
 
   // --- 2. SEKTOR EKSTRAKSI ---
   "1_tambang_emas": { beton: 150, baja: 300, kayu: 450 },
@@ -48,22 +47,31 @@ export const BUILDING_REQUIREMENTS: Record<string, BuildingRequirement> = {
   "6_penggergajian_kayu": { beton: 200, baja: 150, kayu: 1000 },
 
   // --- 4. SEKTOR PETERNAKAN ---
-  "1_peternakan_ayam_unggas": { beton: 20, baja: 10, kayu: 150 },
+  "1_peternakan_unggas": { beton: 20, baja: 10, kayu: 150 },
   "2_peternakan_sapi_perah": { beton: 40, baja: 15, kayu: 250 },
   "3_peternakan_sapi_potong": { beton: 40, baja: 15, kayu: 250 },
   "4_peternakan_domba_kambing": { beton: 30, baja: 10, kayu: 200 },
 
   // --- 5. SEKTOR AGRIKULTUR ---
-  "1_pertanian_padi": { beton: 10, baja: 5, kayu: 100 },
-  "2_pertanian_gandum_jagung": { beton: 10, baja: 5, kayu: 100 },
-  "3_pertanian_sayur_umbi": { beton: 5, baja: 2, kayu: 150 },
-  "4_pertanian_kedelai": { beton: 5, baja: 2, kayu: 150 },
-  "5_perkebunan_kelapa_sawit": { beton: 100, baja: 50, kayu: 500 },
-  "6_perkebunan_kopi_teh_kakao": { beton: 30, baja: 10, kayu: 300 },
+  "1_sawah_padi": { beton: 10, baja: 5, kayu: 100 },
+  "2_ladang_gandum": { beton: 10, baja: 5, kayu: 100 },
+  "3_ladang_jagung": { beton: 10, baja: 5, kayu: 100 },
+  "4_ladang_umbi": { beton: 15, baja: 5, kayu: 150 },
+  "5_ladang_kedelai": { beton: 15, baja: 5, kayu: 150 },
+  "6_perkebunan_sawit": { beton: 100, baja: 50, kayu: 500 },
+  "7_perkebunan_teh": { beton: 30, baja: 10, kayu: 300 },
+  "8_perkebunan_kopi": { beton: 30, baja: 10, kayu: 300 },
+  "9_perkebunan_kakao": { beton: 30, baja: 10, kayu: 300 },
+  "10_perkebunan_tebu": { beton: 30, baja: 10, kayu: 300 },
+  "11_kebun_sayur": { beton: 5, baja: 2, kayu: 100 },
+  "12_perkebunan_karet": { beton: 80, baja: 40, kayu: 400 },
+  "13_perkebunan_kapas": { beton: 20, baja: 10, kayu: 200 },
+  "14_perkebunan_tembakau": { beton: 15, baja: 5, kayu: 150 },
 
   // --- 6. SEKTOR PERIKANAN ---
-  "1_budidaya_udang_kerang": { beton: 150, baja: 50, kayu: 200 },
-  "2_budidaya_ikan": { beton: 100, baja: 30, kayu: 300 },
+  "1_tambak_udang": { beton: 150, baja: 50, kayu: 200 },
+  "2_budidaya_ikan_tawar": { beton: 100, baja: 30, kayu: 300 },
+  "3_budidaya_mutiara": { beton: 200, baja: 100, kayu: 150 },
 
   // --- 7. SEKTOR OLAHAN PANGAN ---
   "1_pabrik_air_mineral": { beton: 300, baja: 200, kayu: 0 },
@@ -71,11 +79,16 @@ export const BUILDING_REQUIREMENTS: Record<string, BuildingRequirement> = {
   "3_pabrik_roti": { beton: 250, baja: 150, kayu: 50 },
   "4_pabrik_pengolahan_daging": { beton: 500, baja: 400, kayu: 0 },
   "5_pabrik_mie_instan": { beton: 400, baja: 300, kayu: 0 },
+  "6_pabrik_minyak_goreng": { beton: 450, baja: 350, kayu: 0 },
+  "7_pabrik_pengolahan_susu": { beton: 350, baja: 250, kayu: 0 },
+  "8_pabrik_pakan_ternak": { beton: 300, baja: 200, kayu: 50 },
+  "9_pabrik_pengalengan_ikan": { beton: 400, baja: 300, kayu: 0 },
+  "10_pabrik_pengolahan_kopi_teh": { beton: 250, baja: 150, kayu: 50 },
 
   // --- 8. SEKTOR FARMASI ---
   "1_pabrik_farmasi": { beton: 800, baja: 600, kayu: 0 },
 
-  // --- 9. SEKTOR INFRASTRUKTUR (Contoh) ---
+  // --- 9. SEKTOR INFRASTRUKTUR ---
   "1_jalur_sepeda": { beton: 10, baja: 5, kayu: 0 },
   "2_jalan_tol": { beton: 1500, baja: 800, kayu: 0 },
   "3_terminal_bus": { beton: 400, baja: 300, kayu: 50 },
@@ -85,75 +98,104 @@ export const BUILDING_REQUIREMENTS: Record<string, BuildingRequirement> = {
   "7_bandara": { beton: 4000, baja: 6000, kayu: 200 },
   "8_helipad": { beton: 150, baja: 200, kayu: 0 },
 
-  // --- 10. SEKTOR SOSIAL (Contoh) ---
-  "tk_sd": { beton: 150, baja: 50, kayu: 100 },
-  "smp_sma": { beton: 400, baja: 150, kayu: 50 },
-  "pt_lembaga": { beton: 1200, baja: 800, kayu: 0 },
-  "lab_riset": { beton: 1500, baja: 1200, kayu: 0 },
-  "rumah_sakit_besar": { beton: 2500, baja: 1800, kayu: 0 },
-  "rumah_sakit_kecil": { beton: 600, baja: 300, kayu: 0 },
-  "stadium_int": { beton: 5000, baja: 8000, kayu: 0 },
-  "kejaksaan_court": { beton: 1000, baja: 700, kayu: 0 },
-  "stasiun_komando": { beton: 1200, baja: 1500, kayu: 0 },
+  // --- 10. SEKTOR SOSIAL (PENDIDIKAN) ---
+  "1_prasekolah": { beton: 150, baja: 50, kayu: 100 },
+  "2_dasar": { beton: 250, baja: 80, kayu: 150 },
+  "3_menengah": { beton: 400, baja: 150, kayu: 50 },
+  "4_lanjutan": { beton: 600, baja: 250, kayu: 50 },
+  "5_universitas": { beton: 1200, baja: 800, kayu: 0 },
+  "6_lembaga_pendidikan": { beton: 800, baja: 400, kayu: 50 },
+  "7_laboratorium": { beton: 1500, baja: 1200, kayu: 0 },
+  "8_observatorium": { beton: 1000, baja: 800, kayu: 0 },
+  "9_pusat_penelitian": { beton: 2000, baja: 1500, kayu: 0 },
+  "10_pusat_pengembangan": { beton: 1800, baja: 1200, kayu: 0 },
 
-  // --- 10.5 SEKTOR HUNIAN & PEMUKIMAN ---
+  // --- 11. SEKTOR SOSIAL (KESEHATAN & HUKUM) ---
+  "11_rumah_sakit_besar": { beton: 2500, baja: 1800, kayu: 0 },
+  "12_rumah_sakit_kecil": { beton: 600, baja: 300, kayu: 0 },
+  "13_pusat_diagnostik": { beton: 400, baja: 200, kayu: 0 },
+  "14_kejaksaan_court": { beton: 1500, baja: 800, kayu: 0 },
+  "15_legal_aid": { beton: 300, baja: 150, kayu: 50 },
+
+  // --- 12. SEKTOR SOSIAL (OLAHRAGA, KOMERSIAL, HIBURAN) ---
+  "16_kolam_renang": { beton: 300, baja: 150, kayu: 0 },
+  "17_sirkuit_balap": { beton: 1500, baja: 2000, kayu: 0 },
+  "18_stadium_int": { beton: 5000, baja: 8000, kayu: 0 },
+  "19_gym_center": { beton: 400, baja: 250, kayu: 0 },
+  "20_lapangan_golf": { beton: 200, baja: 100, kayu: 500 },
+  "21_esports_arena": { beton: 800, baja: 1200, kayu: 0 },
+  "22_gokart_circuit": { beton: 600, baja: 400, kayu: 0 },
+  "23_pusat_belanja": { beton: 2500, baja: 3500, kayu: 0 },
+  "24_hotel": { beton: 3500, baja: 4500, kayu: 0 },
+  "25_pusat_grosir_tekstil": { beton: 1200, baja: 800, kayu: 100 },
+  "26_bioskop": { beton: 800, baja: 1200, kayu: 0 },
+  "27_gedung_teater": { beton: 1500, baja: 2000, kayu: 100 },
+
+  // --- 13. PERTAHANAN NASIONAL (MANAJEMEN) ---
+  "1_penjara": { beton: 2500, baja: 1200, kayu: 0 },
+  "2_gudang_senjata": { beton: 1500, baja: 2500, kayu: 0 },
+  "3_hangar_tank": { beton: 3500, baja: 5500, kayu: 0 },
+  "5_pusat_komando": { beton: 12000, baja: 8000, kayu: 0 },
+  "6_pangkalan_udara": { beton: 25000, baja: 18000, kayu: 0 },
+  "7_pangkalan_laut": { beton: 35000, baja: 25000, kayu: 0 },
+  "8_program_luar_angkasa": { beton: 85000, baja: 120000, kayu: 0 },
+  "9_pertahanan_siber": { beton: 4500, baja: 6500, kayu: 0 },
+
+  // --- 14. KEPOLISIAN (ARMADA POLISI) ---
+  "1_pusat_komando_polisi": { beton: 5500, baja: 3500, kayu: 0 },
+  "2_akademi_polisi": { beton: 3500, baja: 1500, kayu: 200 },
+  "3_pusat_forensik": { beton: 1200, baja: 800, kayu: 0 },
+  "4_kantor_polisi": { beton: 800, baja: 400, kayu: 50 },
+  "5_pos_polisi": { beton: 150, baja: 80, kayu: 30 },
+  "6_network_cctv": { beton: 50, baja: 150, kayu: 0 },
+  "7_armada_mobil_polisi": { beton: 0, baja: 25, kayu: 0 },
+  "8_mobil_interceptor": { beton: 0, baja: 30, kayu: 0 },
+  "9_unit_r2": { beton: 0, baja: 5, kayu: 0 },
+  "10_heli_polisi": { beton: 200, baja: 500, kayu: 0 },
+  "11_unit_k9": { beton: 100, baja: 50, kayu: 150 },
+  "12_swat": { beton: 400, baja: 300, kayu: 0 },
+  "13_anti_huru_hara": { beton: 300, baja: 200, kayu: 0 },
+
+  // --- 15. INTELIJEN ---
+  "sistem_satelit": { beton: 5000, baja: 12000, kayu: 0 },
+  "jaringan_radar": { beton: 2500, baja: 4500, kayu: 0 },
+  "operasi_siber": { beton: 1500, baja: 2500, kayu: 0 },
+
+  // --- 16. ARMADA MILITER ---
+  "barak": { beton: 1500, baja: 800, kayu: 300 },
+  "tank": { beton: 0, baja: 1500, kayu: 0 },
+  "apc": { beton: 0, baja: 800, kayu: 0 },
+  "artileri": { beton: 0, baja: 1200, kayu: 0 },
+  "roket_peluncur": { beton: 0, baja: 2500, kayu: 0 },
+  "misil_sam": { beton: 200, baja: 3500, kayu: 0 },
+  "kendaraan_taktis": { beton: 0, baja: 400, kayu: 0 },
+  "kapal_induk": { beton: 10000, baja: 15000, kayu: 0 },
+  "kapal_induk_nuklir": { beton: 15000, baja: 25000, kayu: 0 },
+  "kapal_perusak": { beton: 2000, baja: 4500, kayu: 0 },
+  "kapal_korvet": { beton: 1000, baja: 1500, kayu: 0 },
+  "kapal_selam_nuklir": { beton: 1000, baja: 3500, kayu: 0 },
+  "kapal_selam_reguler": { beton: 800, baja: 2000, kayu: 0 },
+  "penyapu_ranjau": { beton: 400, baja: 500, kayu: 0 },
+  "kapal_logistik": { beton: 1000, baja: 1200, kayu: 0 },
+  "jet_tempur_siluman": { beton: 0, baja: 800, kayu: 0 },
+  "jet_pencegat": { beton: 0, baja: 450, kayu: 0 },
+  "pesawat_pembom": { beton: 0, baja: 1200, kayu: 0 },
+  "helikopter_serbu": { beton: 0, baja: 250, kayu: 0 },
+  "pesawat_intai": { beton: 0, baja: 350, kayu: 0 },
+  "drone_intai": { beton: 0, baja: 20, kayu: 0 },
+  "drone_kamikaze": { beton: 0, baja: 5, kayu: 0 },
+  "transport_udara": { beton: 0, baja: 550, kayu: 0 },
+
+  // --- 17. HUNIAN & PEMUKIMAN ---
   "rumah_subsidi": { beton: 10, baja: 0, kayu: 20 },
   "apartemen": { beton: 100, baja: 50, kayu: 0 },
   "mansion": { beton: 200, baja: 50, kayu: 50 },
 
-  // --- 11. SEKTOR PABRIK MILITER ---
-  "pabrik_amunisi": { beton: 600, baja: 900, kayu: 150 },
-
-  // --- 12. PERTAHANAN NASIONAL ---
-  "1_penjara": { beton: 1200, baja: 800, kayu: 200 },
-  "2_gudang_senjata": { beton: 800, baja: 1400, kayu: 100 },
-  "3_hangar_tank": { beton: 1500, baja: 2500, kayu: 0 },
-  "5_pusat_komando": { beton: 4000, baja: 3000, kayu: 0 },
-  "6_pangkalan_udara": { beton: 3500, baja: 5000, kayu: 200 },
-  "7_pangkalan_laut": { beton: 4500, baja: 7000, kayu: 500 },
-  "8_program_luar_angkasa": { beton: 8000, baja: 15000, kayu: 0 },
-  "9_pertahanan_siber": { beton: 1000, baja: 600, kayu: 0 },
-
-  // --- 13. KEPOLISIAN NEGARA ---
-  "1_pusat_komando": { beton: 1500, baja: 1200, kayu: 0 },
-  "2_akademi_polisi": { beton: 1000, baja: 800, kayu: 0 },
-  "3_pusat_forensik": { beton: 600, baja: 400, kayu: 0 },
-  "4_kantor_polisi": { beton: 400, baja: 200, kayu: 50 },
-  "5_pos_polisi": { beton: 100, baja: 50, kayu: 20 },
-  "6_network_cctv": { beton: 50, baja: 300, kayu: 0 },
-  "7_armada_mobil": { beton: 0, baja: 150, kayu: 0 },
-  "8_mobil_interceptor": { beton: 0, baja: 200, kayu: 0 },
-  "9_unit_r2": { beton: 0, baja: 50, kayu: 0 },
-  "10_heli_polisi": { beton: 100, baja: 1200, kayu: 0 },
-  "11_unit_k9": { beton: 50, baja: 20, kayu: 100 },
-  "12_swat": { beton: 200, baja: 400, kayu: 0 },
-  "13_anti_huru_hara": { beton: 150, baja: 300, kayu: 0 },
-
-  // --- 14. UNIT MILITER (ARMADA MILITER) ---
-  "barak": { beton: 400, baja: 300, kayu: 50 },
-  "tank": { beton: 150, baja: 800, kayu: 0 },
-  "apc": { beton: 80, baja: 400, kayu: 0 },
-  "artileri": { beton: 120, baja: 500, kayu: 0 },
-  "rocket": { beton: 150, baja: 600, kayu: 0 },
-  "sam": { beton: 180, baja: 700, kayu: 0 },
-  "tactical": { beton: 50, baja: 200, kayu: 0 },
-  
-  "carrier": { beton: 2500, baja: 8000, kayu: 200 },
-  "destroyer": { beton: 800, baja: 3500, kayu: 50 },
-  "corvette": { beton: 500, baja: 2000, kayu: 30 },
-  "submarine": { beton: 600, baja: 4500, kayu: 0 },
-  "reg_sub": { beton: 400, baja: 2500, kayu: 0 },
-  "mine_ship": { beton: 200, baja: 800, kayu: 20 },
-  "logistics": { beton: 300, baja: 1200, kayu: 100 },
-
-  "stealth_jet": { beton: 100, baja: 600, kayu: 0 },
-  "interceptor": { beton: 80, baja: 400, kayu: 0 },
-  "bomber": { beton: 150, baja: 900, kayu: 0 },
-  "heli_attack": { beton: 60, baja: 300, kayu: 0 },
-  "recon_plane": { beton: 40, baja: 200, kayu: 0 },
-  "uav": { beton: 10, baja: 50, kayu: 0 },
-  "kamikaze": { beton: 5, baja: 20, kayu: 0 },
-  "transport": { beton: 120, baja: 500, kayu: 20 },
+  // --- 18. PABRIK MILITER ---
+  "2_pabrik_amunisi": { beton: 1200, baja: 1500, kayu: 0 },
+  "2_pabrik_kendaraan_tempur": { beton: 1200, baja: 1500, kayu: 0 },
+  "2_pabrik_senjata_berat": { beton: 1200, baja: 1500, kayu: 0 },
+  "2_pabrik_drone_kamikaze": { beton: 1200, baja: 1500, kayu: 0 },
 };
 
 /**
@@ -234,7 +276,6 @@ export const MaterialRequirement: React.FC<Props> = ({ buildingKey, quantity }) 
                     </div>
                 </div>
                 
-                {/* Visual Progress/Stock indicator */}
                 <div className="h-1 w-full bg-zinc-950 rounded-full overflow-hidden mt-0.5">
                     <div 
                         className={`h-full ${isLowStock ? 'bg-rose-500' : 'bg-emerald-500'} transition-all duration-500`} 

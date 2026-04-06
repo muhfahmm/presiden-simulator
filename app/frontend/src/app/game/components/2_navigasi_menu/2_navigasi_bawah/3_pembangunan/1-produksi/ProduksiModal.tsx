@@ -27,7 +27,6 @@ import { pertahananRate } from "@/app/database/data/semua_fitur_negara/2_pertaha
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
-import JugaMaterialDanUangKurang from "../jika_material_dan_uang_kurang";
 import { getBuildingRequirement } from "./MaterialRequirement";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
@@ -50,7 +49,6 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   const [quantity, setQuantity] = useState(1);
   const [isInsufficientFundsModalOpen, setIsInsufficientFundsModalOpen] = useState(false);
   const [isInsufficientMaterialsModalOpen, setIsInsufficientMaterialsModalOpen] = useState(false);
-  const [isInsufficientBothModalOpen, setIsInsufficientBothModalOpen] = useState(false);
   const [missingMaterialsData, setMissingMaterialsData] = useState<any[]>([]);
   const [requiredAmount, setRequiredAmount] = useState(0);
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
@@ -240,15 +238,9 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       // 1. Calculate total cost
       const totalCost = confirmBuild.cost * quantity;
       
-      // 2. Check if budget is sufficient
+      // 2. Check for Financial Sufficiency
       const currentBalance = budgetStorage.getBudget();
-      
-      if (currentBalance < totalCost) {
-        setRequiredAmount(totalCost);
-        setConfirmBuild(null); // Close the initial confirm modal
-        setIsInsufficientFundsModalOpen(true);
-        return;
-      }
+      const isMoneyShort = currentBalance < totalCost;
 
       // 3. Check for Material Sufficiency
       const requirements = getBuildingRequirement(confirmBuild.key);
@@ -266,28 +258,14 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       checkMaterial("Baja", requirements.baja, cumulativeStock["12_tambang_bijih_besi"] || 0, Hammer);
       checkMaterial("Kayu", requirements.kayu, cumulativeStock["6_penggergajian_kayu"] || 0, TreePine);
 
-      const isMoneyShort = currentBalance < totalCost;
       const areMaterialsShort = missing.length > 0;
 
-      if (isMoneyShort && areMaterialsShort) {
+      // 4. Handle Shortages (Unified Modal)
+      if (isMoneyShort || areMaterialsShort) {
         setRequiredAmount(totalCost);
         setMissingMaterialsData(missing);
         setConfirmBuild(null);
-        setIsInsufficientBothModalOpen(true);
-        return;
-      }
-
-      if (isMoneyShort) {
-        setRequiredAmount(totalCost);
-        setConfirmBuild(null); // Close the initial confirm modal
         setIsInsufficientFundsModalOpen(true);
-        return;
-      }
-
-      if (areMaterialsShort) {
-        setMissingMaterialsData(missing);
-        setConfirmBuild(null);
-        setIsInsufficientMaterialsModalOpen(true);
         return;
       }
 
@@ -636,29 +614,16 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           </div>
         </div>
 
-        {/* Insufficient Funds Modal */}
+        {/* Insufficient Funds / Both Modal */}
         <JikaUangKurang 
           isOpen={isInsufficientFundsModalOpen}
           onClose={() => setIsInsufficientFundsModalOpen(false)}
           requiredAmount={requiredAmount}
           currentBalance={budgetStorage.getBudget()}
-        />
-
-        {/* Insufficient Material Modal */}
-        <JikaMaterialKurang 
-          isOpen={isInsufficientMaterialsModalOpen}
-          onClose={() => setIsInsufficientMaterialsModalOpen(false)}
           missingMaterials={missingMaterialsData}
         />
 
-        {/* Insufficient Both Modal */}
-        <JugaMaterialDanUangKurang 
-          isOpen={isInsufficientBothModalOpen}
-          onClose={() => setIsInsufficientBothModalOpen(false)}
-          requiredAmount={requiredAmount}
-          currentBalance={budgetStorage.getBudget()}
-          missingMaterials={missingMaterialsData}
-        />
+
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">

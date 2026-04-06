@@ -94,7 +94,7 @@ export default function ProgramNuklirRiset({ onBack, data }: Props) {
                <span className="text-[9px] font-black text-zinc-400 uppercase px-2 py-0.5 bg-zinc-950 border border-zinc-800 rounded-full italic tracking-tighter">Budget Alert</span>
             </div>
             <p className="text-[10px] text-zinc-300 font-medium leading-relaxed mt-1">
-               Mengaktifkan unit sentrifugasi akan mengonsumsi <span className="text-white font-bold">{(50000 * nuclearData.labLevel).toLocaleString('id-ID')} GOLD / Hari</span> dari Kas Negara untuk keperluan energi tinggi dan pemeliharaan teknis di Level Lab {nuclearData.labLevel}.
+               Mengaktifkan unit sentrifugasi akan mengonsumsi <span className="text-white font-bold">{(50000 * nuclearData.labLevel).toLocaleString('id-ID')} GOLD / Hari</span> dari Kas Negara untuk keperluan energi tinggi dan stabilitas teknis di Level Lab {nuclearData.labLevel}.
             </p>
          </div>
       </div>
