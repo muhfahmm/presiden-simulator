@@ -2,7 +2,6 @@ export const meksiko_pertahanan = {
     "penjara": 5,
     "gudang_senjata": 20,
     "hangar_tank": 4,
-    "akademi_militer": 34,
     "pusat_komando": 22,
     "pangkalan_udara": 12,
     "pangkalan_laut": 10,

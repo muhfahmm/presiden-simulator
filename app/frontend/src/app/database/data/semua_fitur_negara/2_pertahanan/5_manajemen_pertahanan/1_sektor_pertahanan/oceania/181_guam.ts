@@ -2,7 +2,6 @@ export const guam_pertahanan = {
     "penjara": 14,
     "gudang_senjata": 24,
     "hangar_tank": 2,
-    "akademi_militer": 11,
     "pusat_komando": 26,
     "pangkalan_udara": 32,
     "pangkalan_laut": 17,

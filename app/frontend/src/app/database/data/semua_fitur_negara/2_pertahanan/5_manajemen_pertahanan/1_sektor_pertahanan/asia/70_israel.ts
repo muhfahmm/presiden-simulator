@@ -2,7 +2,6 @@ export const israel_pertahanan = {
     "penjara": 5,
     "gudang_senjata": 5,
     "hangar_tank": 36,
-    "akademi_militer": 38,
     "pusat_komando": 36,
     "pangkalan_udara": 14,
     "pangkalan_laut": 21,

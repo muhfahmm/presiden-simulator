@@ -2,7 +2,6 @@ export const tahiti_pertahanan = {
     "penjara": 37,
     "gudang_senjata": 33,
     "hangar_tank": 18,
-    "akademi_militer": 21,
     "pusat_komando": 5,
     "pangkalan_udara": 31,
     "pangkalan_laut": 11,

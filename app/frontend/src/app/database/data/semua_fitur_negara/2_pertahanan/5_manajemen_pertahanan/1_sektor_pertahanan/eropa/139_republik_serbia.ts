@@ -2,7 +2,6 @@ export const republik_serbia_pertahanan = {
     "penjara": 20,
     "gudang_senjata": 8,
     "hangar_tank": 14,
-    "akademi_militer": 5,
     "pusat_komando": 30,
     "pangkalan_udara": 39,
     "pangkalan_laut": 29,

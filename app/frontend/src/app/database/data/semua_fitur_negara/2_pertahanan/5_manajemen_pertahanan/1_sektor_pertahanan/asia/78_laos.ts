@@ -2,7 +2,6 @@ export const laos_pertahanan = {
     "penjara": 5,
     "gudang_senjata": 10,
     "hangar_tank": 13,
-    "akademi_militer": 32,
     "pusat_komando": 30,
     "pangkalan_udara": 20,
     "pangkalan_laut": 22,

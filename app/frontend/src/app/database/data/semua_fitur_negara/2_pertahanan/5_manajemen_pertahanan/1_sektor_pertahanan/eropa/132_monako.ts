@@ -2,7 +2,6 @@ export const monako_pertahanan = {
     "penjara": 13,
     "gudang_senjata": 21,
     "hangar_tank": 4,
-    "akademi_militer": 6,
     "pusat_komando": 30,
     "pangkalan_udara": 22,
     "pangkalan_laut": 15,

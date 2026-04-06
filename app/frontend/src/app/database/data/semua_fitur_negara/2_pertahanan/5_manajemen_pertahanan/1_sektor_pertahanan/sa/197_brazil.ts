@@ -2,7 +2,6 @@ export const brazil_pertahanan = {
     "penjara": 15,
     "gudang_senjata": 3,
     "hangar_tank": 34,
-    "akademi_militer": 25,
     "pusat_komando": 33,
     "pangkalan_udara": 6,
     "pangkalan_laut": 11,

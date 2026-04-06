@@ -2,7 +2,6 @@ export const kosovo_pertahanan = {
     "penjara": 39,
     "gudang_senjata": 13,
     "hangar_tank": 10,
-    "akademi_militer": 30,
     "pusat_komando": 33,
     "pangkalan_udara": 38,
     "pangkalan_laut": 34,

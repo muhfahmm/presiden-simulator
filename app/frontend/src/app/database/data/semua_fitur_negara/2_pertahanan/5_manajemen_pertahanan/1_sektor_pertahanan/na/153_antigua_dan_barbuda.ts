@@ -2,7 +2,6 @@ export const antigua_dan_barbuda_pertahanan = {
     "penjara": 13,
     "gudang_senjata": 8,
     "hangar_tank": 7,
-    "akademi_militer": 13,
     "pusat_komando": 40,
     "pangkalan_udara": 21,
     "pangkalan_laut": 33,

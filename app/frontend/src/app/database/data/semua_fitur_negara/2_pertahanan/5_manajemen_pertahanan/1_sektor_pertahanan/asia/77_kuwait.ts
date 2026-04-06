@@ -2,7 +2,6 @@ export const kuwait_pertahanan = {
     "penjara": 32,
     "gudang_senjata": 18,
     "hangar_tank": 32,
-    "akademi_militer": 22,
     "pusat_komando": 24,
     "pangkalan_udara": 3,
     "pangkalan_laut": 4,

@@ -2,7 +2,6 @@ export const namibia_pertahanan = {
     "penjara": 34,
     "gudang_senjata": 22,
     "hangar_tank": 4,
-    "akademi_militer": 30,
     "pusat_komando": 34,
     "pangkalan_udara": 40,
     "pangkalan_laut": 12,

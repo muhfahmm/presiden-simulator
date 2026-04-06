@@ -2,7 +2,6 @@ export const pakistan_pertahanan = {
     "penjara": 21,
     "gudang_senjata": 25,
     "hangar_tank": 19,
-    "akademi_militer": 14,
     "pusat_komando": 11,
     "pangkalan_udara": 28,
     "pangkalan_laut": 21,

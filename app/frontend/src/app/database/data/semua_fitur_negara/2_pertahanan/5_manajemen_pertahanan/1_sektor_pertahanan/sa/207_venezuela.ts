@@ -2,7 +2,6 @@ export const venezuela_pertahanan = {
     "penjara": 5,
     "gudang_senjata": 6,
     "hangar_tank": 7,
-    "akademi_militer": 7,
     "pusat_komando": 13,
     "pangkalan_udara": 10,
     "pangkalan_laut": 16,

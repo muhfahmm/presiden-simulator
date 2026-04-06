@@ -2,7 +2,6 @@ export const mikronesia_pertahanan = {
     "penjara": 21,
     "gudang_senjata": 17,
     "hangar_tank": 3,
-    "akademi_militer": 2,
     "pusat_komando": 13,
     "pangkalan_udara": 25,
     "pangkalan_laut": 27,

@@ -2,7 +2,6 @@ export const bosnia_dan_hercegovina_pertahanan = {
     "penjara": 30,
     "gudang_senjata": 9,
     "hangar_tank": 37,
-    "akademi_militer": 30,
     "pusat_komando": 35,
     "pangkalan_udara": 16,
     "pangkalan_laut": 22,

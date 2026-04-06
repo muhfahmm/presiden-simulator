@@ -165,8 +165,7 @@ export const KONSUMSI_PERTAHANAN = {
   penjara: pertahananRate["1_penjara"].konsumsi_listrik,
   barak: armadaMiliterRate["1_barak"].konsumsi_listrik || 1,
   gudang_senjata: pertahananRate["2_gudang_senjata"].konsumsi_listrik,
-  hangar_tank: pertahananRate["3_hangar_tank"].konsumsi_listrik,
-  akademi_militer: pertahananRate["4_akademi_militer"].konsumsi_listrik
+  hangar_tank: pertahananRate["3_hangar_tank"].konsumsi_listrik
 };
 
 export const KONSUMSI_STRATEGIC = {
@@ -179,10 +178,7 @@ export const KONSUMSI_STRATEGIC = {
 };
 
 export const KONSUMSI_PABRIK_MILITER = {
-  pabrik_drone_kamikaze: pabrikMiliterRate["1_pabrik_drone_kamikaze"].konsumsi_listrik,
-  pabrik_amunisi: pabrikMiliterRate["2_pabrik_amunisi"].konsumsi_listrik,
-  pabrik_kendaraan_tempur: pabrikMiliterRate["3_pabrik_kendaraan_tempur"].konsumsi_listrik,
-  pabrik_senjata_berat: pabrikMiliterRate["4_pabrik_senjata_berat"].konsumsi_listrik
+  pabrik_amunisi: pabrikMiliterRate["2_pabrik_amunisi"].konsumsi_listrik
 };
 
 // 5. Konsumsi Unit Intelijen & Strategis ditangani secara dinamis dari intelijenRate
@@ -198,7 +194,6 @@ export function hitungKonsumsiPertahanan(
     (management.penjara ?? 0) * withMin1MW(KONSUMSI_PERTAHANAN.penjara) +
     (management.gudang_senjata ?? 0) * withMin1MW(KONSUMSI_PERTAHANAN.gudang_senjata) +
     (management.hangar_tank ?? 0) * withMin1MW(KONSUMSI_PERTAHANAN.hangar_tank) +
-    (management.akademi_militer ?? 0) * withMin1MW(KONSUMSI_PERTAHANAN.akademi_militer) +
     (management.pusat_komando ?? 0) * withMin1MW(KONSUMSI_STRATEGIC.pusat_komando) +
     (management.pangkalan_udara ?? 0) * withMin1MW(KONSUMSI_STRATEGIC.pangkalan_udara) +
     (management.pangkalan_laut ?? 0) * withMin1MW(KONSUMSI_STRATEGIC.pangkalan_laut)
@@ -214,10 +209,7 @@ export function hitungKonsumsiPertahanan(
   const policeCons = hitungKonsumsiPolisiDatabase(police.armada_polisi);
 
   const pabrikCons = (
-    (pabrik.pabrik_drone_kamikaze ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_drone_kamikaze) +
-    (pabrik.pabrik_amunisi ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_amunisi) +
-    (pabrik.pabrik_kendaraan_tempur ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_kendaraan_tempur) +
-    (pabrik.pabrik_senjata_berat ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_senjata_berat)
+    (pabrik.pabrik_amunisi ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_amunisi)
   );
 
   return base + fleetCons + securityCons + managementCons + policeCons + pabrikCons;
@@ -232,7 +224,6 @@ export function hitungKonsumsiBangunanMiliter(
     (management.penjara ?? 0) * withMin1MW(KONSUMSI_PERTAHANAN.penjara) +
     (management.gudang_senjata ?? 0) * withMin1MW(KONSUMSI_PERTAHANAN.gudang_senjata) +
     (management.hangar_tank ?? 0) * withMin1MW(KONSUMSI_PERTAHANAN.hangar_tank) +
-    (management.akademi_militer ?? 0) * withMin1MW(KONSUMSI_PERTAHANAN.akademi_militer) +
     (management.pusat_komando ?? 0) * withMin1MW(KONSUMSI_STRATEGIC.pusat_komando) +
     (management.pangkalan_udara ?? 0) * withMin1MW(KONSUMSI_STRATEGIC.pangkalan_udara) +
     (management.pangkalan_laut ?? 0) * withMin1MW(KONSUMSI_STRATEGIC.pangkalan_laut) +
@@ -245,10 +236,7 @@ export function hitungKonsumsiBangunanMiliter(
 
 export function hitungKonsumsiPabrikMiliter(pabrik: SektorPabrikMiliter) {
   return (
-    (pabrik.pabrik_drone_kamikaze ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_drone_kamikaze) +
-    (pabrik.pabrik_amunisi ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_amunisi) +
-    (pabrik.pabrik_kendaraan_tempur ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_kendaraan_tempur) +
-    (pabrik.pabrik_senjata_berat ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_senjata_berat)
+    (pabrik.pabrik_amunisi ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_amunisi)
   );
 }
 
@@ -256,7 +244,7 @@ export function hitungKonsumsiIntelDatabase(intel: any) {
   if (!intel) return 0;
   return Object.values(intelijenRate).reduce((total, item) => {
     const count = intel[item.key] ?? 0;
-    const power = item.konsumsi_listrik ?? item.consumption ?? 0;
+    const power = item.konsumsi_listrik ?? 0;
     return total + (count * power);
   }, 0);
 }
@@ -265,7 +253,7 @@ export function hitungKonsumsiPolisiDatabase(police: any) {
   if (!police) return 0;
   return Object.values(armadaPolisiRate).reduce((total, item) => {
     const count = police[item.dataKey] ?? 0;
-    const power = item.konsumsi_listrik ?? item.consumption ?? 0;
+    const power = item.konsumsi_listrik ?? 0;
     return total + (count * power);
   }, 0);
 }
@@ -362,7 +350,7 @@ export function hitungKonsumsiArmadaDatabase(fleet: any) {
   
   // Hanya Barak yang mengonsumsi listrik nasional (Penerangan, Fasilitas, dll)
   // Transportasi tempur (tank, kapal, pesawat) dianggap menggunakan bahan bakar sendiri/internal
-  total += (fleet.barak || 0) * (armadaMiliterRate["1_barak"].konsumsi_listrik || armadaMiliterRate["1_barak"].consumption || 0);
+  total += (fleet.barak || 0) * (armadaMiliterRate["1_barak"].konsumsi_listrik || 0);
   
   return total;
 }

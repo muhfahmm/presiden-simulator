@@ -2,7 +2,6 @@ export const uzbekistan_pertahanan = {
     "penjara": 15,
     "gudang_senjata": 30,
     "hangar_tank": 14,
-    "akademi_militer": 33,
     "pusat_komando": 37,
     "pangkalan_udara": 11,
     "pangkalan_laut": 33,

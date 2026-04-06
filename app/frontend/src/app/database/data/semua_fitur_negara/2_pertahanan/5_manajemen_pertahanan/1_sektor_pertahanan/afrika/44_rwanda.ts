@@ -2,7 +2,6 @@ export const rwanda_pertahanan = {
     "penjara": 3,
     "gudang_senjata": 27,
     "hangar_tank": 28,
-    "akademi_militer": 31,
     "pusat_komando": 34,
     "pangkalan_udara": 40,
     "pangkalan_laut": 29,

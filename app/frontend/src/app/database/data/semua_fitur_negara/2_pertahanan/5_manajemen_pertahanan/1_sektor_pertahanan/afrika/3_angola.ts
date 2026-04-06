@@ -2,7 +2,6 @@ export const angola_pertahanan = {
     "penjara": 10,
     "gudang_senjata": 38,
     "hangar_tank": 9,
-    "akademi_militer": 4,
     "pusat_komando": 14,
     "pangkalan_udara": 7,
     "pangkalan_laut": 32,

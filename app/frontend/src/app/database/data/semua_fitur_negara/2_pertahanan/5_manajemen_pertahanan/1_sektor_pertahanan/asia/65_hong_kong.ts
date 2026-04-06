@@ -2,7 +2,6 @@ export const hong_kong_pertahanan = {
     "penjara": 26,
     "gudang_senjata": 6,
     "hangar_tank": 2,
-    "akademi_militer": 15,
     "pusat_komando": 31,
     "pangkalan_udara": 2,
     "pangkalan_laut": 37,

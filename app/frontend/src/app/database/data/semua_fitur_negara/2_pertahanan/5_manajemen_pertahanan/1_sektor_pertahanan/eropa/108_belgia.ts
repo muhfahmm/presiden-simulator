@@ -2,7 +2,6 @@ export const belgia_pertahanan = {
     "penjara": 28,
     "gudang_senjata": 2,
     "hangar_tank": 22,
-    "akademi_militer": 20,
     "pusat_komando": 23,
     "pangkalan_udara": 6,
     "pangkalan_laut": 28,

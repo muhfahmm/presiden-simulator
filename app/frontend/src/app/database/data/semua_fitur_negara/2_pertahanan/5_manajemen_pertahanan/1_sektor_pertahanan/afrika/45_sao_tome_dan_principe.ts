@@ -2,7 +2,6 @@ export const sao_tome_dan_principe_pertahanan = {
     "penjara": 34,
     "gudang_senjata": 12,
     "hangar_tank": 7,
-    "akademi_militer": 21,
     "pusat_komando": 22,
     "pangkalan_udara": 28,
     "pangkalan_laut": 20,

@@ -2,7 +2,6 @@ export const luksemburg_pertahanan = {
     "penjara": 22,
     "gudang_senjata": 20,
     "hangar_tank": 13,
-    "akademi_militer": 34,
     "pusat_komando": 22,
     "pangkalan_udara": 9,
     "pangkalan_laut": 30,

@@ -2,7 +2,6 @@ export const yaman_pertahanan = {
     "penjara": 17,
     "gudang_senjata": 23,
     "hangar_tank": 27,
-    "akademi_militer": 23,
     "pusat_komando": 5,
     "pangkalan_udara": 32,
     "pangkalan_laut": 36,

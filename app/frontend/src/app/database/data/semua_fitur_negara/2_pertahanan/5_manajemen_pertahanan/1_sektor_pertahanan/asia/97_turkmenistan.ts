@@ -2,7 +2,6 @@ export const turkmenistan_pertahanan = {
     "penjara": 17,
     "gudang_senjata": 32,
     "hangar_tank": 12,
-    "akademi_militer": 1,
     "pusat_komando": 37,
     "pangkalan_udara": 23,
     "pangkalan_laut": 35,

@@ -2,7 +2,6 @@ export const australia_pertahanan = {
     "penjara": 19,
     "gudang_senjata": 4,
     "hangar_tank": 20,
-    "akademi_militer": 28,
     "pusat_komando": 15,
     "pangkalan_udara": 10,
     "pangkalan_laut": 26,

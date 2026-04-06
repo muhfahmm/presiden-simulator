@@ -2,7 +2,6 @@ export const dominika_pertahanan = {
     "penjara": 26,
     "gudang_senjata": 36,
     "hangar_tank": 27,
-    "akademi_militer": 4,
     "pusat_komando": 22,
     "pangkalan_udara": 40,
     "pangkalan_laut": 16,

@@ -2,7 +2,6 @@ export const republik_afrika_tengah_pertahanan = {
     "penjara": 14,
     "gudang_senjata": 6,
     "hangar_tank": 17,
-    "akademi_militer": 5,
     "pusat_komando": 39,
     "pangkalan_udara": 3,
     "pangkalan_laut": 18,

@@ -2,7 +2,6 @@ export const lebanon_pertahanan = {
     "penjara": 21,
     "gudang_senjata": 8,
     "hangar_tank": 2,
-    "akademi_militer": 26,
     "pusat_komando": 18,
     "pangkalan_udara": 8,
     "pangkalan_laut": 31,

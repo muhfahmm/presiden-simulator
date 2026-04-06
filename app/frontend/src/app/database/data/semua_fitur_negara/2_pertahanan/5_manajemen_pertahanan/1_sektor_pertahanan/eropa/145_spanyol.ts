@@ -2,7 +2,6 @@ export const spanyol_pertahanan = {
     "penjara": 4,
     "gudang_senjata": 31,
     "hangar_tank": 30,
-    "akademi_militer": 19,
     "pusat_komando": 21,
     "pangkalan_udara": 39,
     "pangkalan_laut": 37,

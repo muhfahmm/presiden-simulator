@@ -2,7 +2,6 @@ export const republik_rumania_pertahanan = {
     "penjara": 3,
     "gudang_senjata": 4,
     "hangar_tank": 31,
-    "akademi_militer": 26,
     "pusat_komando": 7,
     "pangkalan_udara": 28,
     "pangkalan_laut": 30,

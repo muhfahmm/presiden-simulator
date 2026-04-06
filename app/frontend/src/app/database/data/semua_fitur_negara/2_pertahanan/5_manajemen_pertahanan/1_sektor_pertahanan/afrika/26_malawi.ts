@@ -2,7 +2,6 @@ export const malawi_pertahanan = {
     "penjara": 28,
     "gudang_senjata": 1,
     "hangar_tank": 9,
-    "akademi_militer": 38,
     "pusat_komando": 5,
     "pangkalan_udara": 39,
     "pangkalan_laut": 34,

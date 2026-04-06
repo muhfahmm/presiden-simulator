@@ -2,7 +2,6 @@ export const republik_zimbabwe_pertahanan = {
     "penjara": 35,
     "gudang_senjata": 9,
     "hangar_tank": 2,
-    "akademi_militer": 20,
     "pusat_komando": 15,
     "pangkalan_udara": 6,
     "pangkalan_laut": 20,

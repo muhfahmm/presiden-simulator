@@ -2,7 +2,6 @@ export const andorra_pertahanan = {
     "penjara": 30,
     "gudang_senjata": 18,
     "hangar_tank": 31,
-    "akademi_militer": 3,
     "pusat_komando": 12,
     "pangkalan_udara": 25,
     "pangkalan_laut": 4,

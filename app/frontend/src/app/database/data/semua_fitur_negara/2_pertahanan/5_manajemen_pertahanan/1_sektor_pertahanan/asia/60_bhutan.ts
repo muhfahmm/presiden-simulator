@@ -2,7 +2,6 @@ export const bhutan_pertahanan = {
     "penjara": 30,
     "gudang_senjata": 36,
     "hangar_tank": 38,
-    "akademi_militer": 40,
     "pusat_komando": 20,
     "pangkalan_udara": 33,
     "pangkalan_laut": 32,

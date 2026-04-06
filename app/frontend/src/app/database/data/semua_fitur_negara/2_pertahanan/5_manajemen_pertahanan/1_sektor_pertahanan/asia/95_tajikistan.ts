@@ -2,7 +2,6 @@ export const tajikistan_pertahanan = {
     "penjara": 13,
     "gudang_senjata": 10,
     "hangar_tank": 32,
-    "akademi_militer": 20,
     "pusat_komando": 1,
     "pangkalan_udara": 23,
     "pangkalan_laut": 36,

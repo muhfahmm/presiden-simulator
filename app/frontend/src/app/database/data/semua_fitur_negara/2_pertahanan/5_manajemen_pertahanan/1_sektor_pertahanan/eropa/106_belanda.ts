@@ -2,7 +2,6 @@ export const belanda_pertahanan = {
     "penjara": 27,
     "gudang_senjata": 24,
     "hangar_tank": 10,
-    "akademi_militer": 17,
     "pusat_komando": 4,
     "pangkalan_udara": 23,
     "pangkalan_laut": 18,

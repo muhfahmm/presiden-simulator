@@ -2,7 +2,6 @@ export const azerbaijan_pertahanan = {
     "penjara": 21,
     "gudang_senjata": 33,
     "hangar_tank": 2,
-    "akademi_militer": 26,
     "pusat_komando": 4,
     "pangkalan_udara": 28,
     "pangkalan_laut": 24,

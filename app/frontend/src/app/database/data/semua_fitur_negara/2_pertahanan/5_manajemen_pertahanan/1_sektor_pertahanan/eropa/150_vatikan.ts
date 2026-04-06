@@ -2,7 +2,6 @@ export const vatikan_pertahanan = {
     "penjara": 20,
     "gudang_senjata": 26,
     "hangar_tank": 2,
-    "akademi_militer": 30,
     "pusat_komando": 2,
     "pangkalan_udara": 1,
     "pangkalan_laut": 27,

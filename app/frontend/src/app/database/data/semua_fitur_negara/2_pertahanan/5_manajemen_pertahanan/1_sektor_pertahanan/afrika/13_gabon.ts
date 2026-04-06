@@ -2,7 +2,6 @@ export const gabon_pertahanan = {
     "penjara": 6,
     "gudang_senjata": 30,
     "hangar_tank": 11,
-    "akademi_militer": 27,
     "pusat_komando": 6,
     "pangkalan_udara": 30,
     "pangkalan_laut": 5,

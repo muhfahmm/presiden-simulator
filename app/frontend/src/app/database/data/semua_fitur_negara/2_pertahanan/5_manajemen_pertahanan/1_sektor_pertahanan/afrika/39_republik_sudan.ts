@@ -2,7 +2,6 @@ export const republik_sudan_pertahanan = {
     "penjara": 31,
     "gudang_senjata": 26,
     "hangar_tank": 27,
-    "akademi_militer": 24,
     "pusat_komando": 16,
     "pangkalan_udara": 17,
     "pangkalan_laut": 17,

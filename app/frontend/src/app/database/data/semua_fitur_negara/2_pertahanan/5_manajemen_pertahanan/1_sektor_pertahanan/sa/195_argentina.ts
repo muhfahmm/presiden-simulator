@@ -2,7 +2,6 @@ export const argentina_pertahanan = {
     "penjara": 35,
     "gudang_senjata": 27,
     "hangar_tank": 30,
-    "akademi_militer": 13,
     "pusat_komando": 4,
     "pangkalan_udara": 18,
     "pangkalan_laut": 5,

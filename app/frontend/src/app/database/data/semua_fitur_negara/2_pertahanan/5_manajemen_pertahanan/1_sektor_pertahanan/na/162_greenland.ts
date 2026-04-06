@@ -2,7 +2,6 @@ export const greenland_pertahanan = {
     "penjara": 2,
     "gudang_senjata": 6,
     "hangar_tank": 11,
-    "akademi_militer": 30,
     "pusat_komando": 23,
     "pangkalan_udara": 40,
     "pangkalan_laut": 31,

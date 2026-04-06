@@ -2,7 +2,6 @@ export const qatar_pertahanan = {
     "penjara": 7,
     "gudang_senjata": 6,
     "hangar_tank": 30,
-    "akademi_militer": 3,
     "pusat_komando": 21,
     "pangkalan_udara": 30,
     "pangkalan_laut": 11,

@@ -2,7 +2,6 @@ export const maldives_pertahanan = {
     "penjara": 9,
     "gudang_senjata": 2,
     "hangar_tank": 8,
-    "akademi_militer": 14,
     "pusat_komando": 37,
     "pangkalan_udara": 19,
     "pangkalan_laut": 18,

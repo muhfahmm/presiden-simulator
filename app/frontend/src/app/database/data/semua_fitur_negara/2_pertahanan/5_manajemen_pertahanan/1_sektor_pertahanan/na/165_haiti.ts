@@ -2,7 +2,6 @@ export const haiti_pertahanan = {
     "penjara": 21,
     "gudang_senjata": 35,
     "hangar_tank": 10,
-    "akademi_militer": 15,
     "pusat_komando": 18,
     "pangkalan_udara": 25,
     "pangkalan_laut": 35,

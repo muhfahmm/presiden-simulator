@@ -2,7 +2,6 @@ export const korea_selatan_pertahanan = {
     "penjara": 27,
     "gudang_senjata": 7,
     "hangar_tank": 14,
-    "akademi_militer": 38,
     "pusat_komando": 11,
     "pangkalan_udara": 2,
     "pangkalan_laut": 33,

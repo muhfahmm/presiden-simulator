@@ -2,7 +2,6 @@ export const polandia_pertahanan = {
     "penjara": 16,
     "gudang_senjata": 9,
     "hangar_tank": 29,
-    "akademi_militer": 28,
     "pusat_komando": 13,
     "pangkalan_udara": 26,
     "pangkalan_laut": 36,

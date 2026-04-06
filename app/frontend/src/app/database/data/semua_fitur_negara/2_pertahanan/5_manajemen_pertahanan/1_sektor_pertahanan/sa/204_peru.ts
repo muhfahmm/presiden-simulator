@@ -2,7 +2,6 @@ export const peru_pertahanan = {
     "penjara": 15,
     "gudang_senjata": 17,
     "hangar_tank": 34,
-    "akademi_militer": 7,
     "pusat_komando": 37,
     "pangkalan_udara": 34,
     "pangkalan_laut": 16,

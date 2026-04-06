@@ -2,7 +2,6 @@ export const republik_dominika_pertahanan = {
     "penjara": 21,
     "gudang_senjata": 32,
     "hangar_tank": 5,
-    "akademi_militer": 10,
     "pusat_komando": 7,
     "pangkalan_udara": 18,
     "pangkalan_laut": 8,

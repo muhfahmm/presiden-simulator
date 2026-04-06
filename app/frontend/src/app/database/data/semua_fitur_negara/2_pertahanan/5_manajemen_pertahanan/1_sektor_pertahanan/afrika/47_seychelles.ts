@@ -2,7 +2,6 @@ export const seychelles_pertahanan = {
     "penjara": 18,
     "gudang_senjata": 17,
     "hangar_tank": 9,
-    "akademi_militer": 7,
     "pusat_komando": 24,
     "pangkalan_udara": 4,
     "pangkalan_laut": 23,

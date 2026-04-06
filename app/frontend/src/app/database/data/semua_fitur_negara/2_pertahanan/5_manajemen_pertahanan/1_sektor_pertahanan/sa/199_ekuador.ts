@@ -2,7 +2,6 @@ export const ekuador_pertahanan = {
     "penjara": 27,
     "gudang_senjata": 10,
     "hangar_tank": 11,
-    "akademi_militer": 10,
     "pusat_komando": 7,
     "pangkalan_udara": 6,
     "pangkalan_laut": 6,

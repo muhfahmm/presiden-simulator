@@ -13,7 +13,7 @@ export const buyPriceMap: Record<string, number> = {
   padi: 210, gandum_jagung: 150, sayur_umbi: 120, kedelai: 210,
   kelapa_sawit: 350, kopi_teh_kakao: 950,
   // Military Production
-  pabrik_drone_kamikaze: 12000, pabrik_amunisi: 500
+  pabrik_amunisi: 500
 };
 
 export const sellPriceMap: Record<string, number> = {
@@ -30,7 +30,7 @@ export const sellPriceMap: Record<string, number> = {
   padi: 140, gandum_jagung: 100, sayur_umbi: 80, kedelai: 150,
   kelapa_sawit: 250, kopi_teh_kakao: 650,
   // Military Production
-  pabrik_drone_kamikaze: 9500, pabrik_amunisi: 350
+  pabrik_amunisi: 350
 };
 
 export const labelsMap: Record<string, string> = {
@@ -45,7 +45,7 @@ export const labelsMap: Record<string, string> = {
   domba_kambing: "Domba/Kambing", udang_kerang: "Udang/Kerang", ikan: "Ikan",
   padi: "Padi", gandum_jagung: "Gandum/Jagung", sayur_umbi: "Sayur/Umbi", kedelai: "Kedelai",
   kelapa_sawit: "Kelapa Sawit", kopi_teh_kakao: "Kopi/Teh/Kakao",
-  pabrik_drone_kamikaze: "Drone Kamikaze", pabrik_amunisi: "Amunisi Militer"
+  pabrik_amunisi: "Amunisi Militer"
 };
 
 export const baseKeyMapping: Record<string, string> = {

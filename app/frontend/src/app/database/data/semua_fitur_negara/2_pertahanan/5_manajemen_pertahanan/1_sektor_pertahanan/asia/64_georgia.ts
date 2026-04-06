@@ -2,7 +2,6 @@ export const georgia_pertahanan = {
     "penjara": 20,
     "gudang_senjata": 10,
     "hangar_tank": 26,
-    "akademi_militer": 13,
     "pusat_komando": 4,
     "pangkalan_udara": 13,
     "pangkalan_laut": 10,

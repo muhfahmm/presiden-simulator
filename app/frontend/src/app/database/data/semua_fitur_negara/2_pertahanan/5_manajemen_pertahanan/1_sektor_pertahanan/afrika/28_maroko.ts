@@ -2,7 +2,6 @@ export const maroko_pertahanan = {
     "penjara": 11,
     "gudang_senjata": 17,
     "hangar_tank": 22,
-    "akademi_militer": 23,
     "pusat_komando": 13,
     "pangkalan_udara": 17,
     "pangkalan_laut": 31,

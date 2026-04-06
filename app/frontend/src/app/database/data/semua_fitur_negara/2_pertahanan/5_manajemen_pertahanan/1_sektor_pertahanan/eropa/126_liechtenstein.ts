@@ -2,7 +2,6 @@ export const liechtenstein_pertahanan = {
     "penjara": 13,
     "gudang_senjata": 27,
     "hangar_tank": 7,
-    "akademi_militer": 10,
     "pusat_komando": 21,
     "pangkalan_udara": 35,
     "pangkalan_laut": 10,

@@ -2,7 +2,6 @@ export const guinea_pertahanan = {
     "penjara": 19,
     "gudang_senjata": 13,
     "hangar_tank": 9,
-    "akademi_militer": 28,
     "pusat_komando": 27,
     "pangkalan_udara": 26,
     "pangkalan_laut": 10,

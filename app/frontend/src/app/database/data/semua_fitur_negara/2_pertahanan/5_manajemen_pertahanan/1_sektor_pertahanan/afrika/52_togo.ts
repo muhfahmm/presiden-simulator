@@ -2,7 +2,6 @@ export const togo_pertahanan = {
     "penjara": 28,
     "gudang_senjata": 16,
     "hangar_tank": 40,
-    "akademi_militer": 25,
     "pusat_komando": 9,
     "pangkalan_udara": 34,
     "pangkalan_laut": 39,

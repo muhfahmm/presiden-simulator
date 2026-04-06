@@ -2,7 +2,6 @@ export const vanuatu_pertahanan = {
     "penjara": 32,
     "gudang_senjata": 36,
     "hangar_tank": 36,
-    "akademi_militer": 12,
     "pusat_komando": 34,
     "pangkalan_udara": 20,
     "pangkalan_laut": 19,

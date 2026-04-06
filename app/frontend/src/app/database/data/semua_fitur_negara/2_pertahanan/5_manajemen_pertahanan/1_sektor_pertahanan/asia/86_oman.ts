@@ -2,7 +2,6 @@ export const oman_pertahanan = {
     "penjara": 8,
     "gudang_senjata": 24,
     "hangar_tank": 1,
-    "akademi_militer": 30,
     "pusat_komando": 7,
     "pangkalan_udara": 37,
     "pangkalan_laut": 20,

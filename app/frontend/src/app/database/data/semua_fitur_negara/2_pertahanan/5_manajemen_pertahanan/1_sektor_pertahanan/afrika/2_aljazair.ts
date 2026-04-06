@@ -2,7 +2,6 @@ export const aljazair_pertahanan = {
     "penjara": 3,
     "gudang_senjata": 16,
     "hangar_tank": 20,
-    "akademi_militer": 14,
     "pusat_komando": 31,
     "pangkalan_udara": 23,
     "pangkalan_laut": 18,

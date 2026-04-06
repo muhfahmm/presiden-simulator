@@ -2,7 +2,6 @@ export const trinidad_dan_tobago_pertahanan = {
     "penjara": 37,
     "gudang_senjata": 38,
     "hangar_tank": 34,
-    "akademi_militer": 24,
     "pusat_komando": 32,
     "pangkalan_udara": 7,
     "pangkalan_laut": 15,

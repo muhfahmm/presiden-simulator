@@ -2,7 +2,6 @@ export const samoa_pertahanan = {
     "penjara": 37,
     "gudang_senjata": 2,
     "hangar_tank": 31,
-    "akademi_militer": 13,
     "pusat_komando": 17,
     "pangkalan_udara": 38,
     "pangkalan_laut": 40,

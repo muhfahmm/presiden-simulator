@@ -2,7 +2,6 @@ export const portugal_pertahanan = {
     "penjara": 26,
     "gudang_senjata": 9,
     "hangar_tank": 8,
-    "akademi_militer": 19,
     "pusat_komando": 39,
     "pangkalan_udara": 3,
     "pangkalan_laut": 25,

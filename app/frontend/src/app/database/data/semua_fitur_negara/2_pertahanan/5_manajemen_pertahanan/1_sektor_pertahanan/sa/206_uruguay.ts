@@ -2,7 +2,6 @@ export const uruguay_pertahanan = {
     "penjara": 39,
     "gudang_senjata": 28,
     "hangar_tank": 9,
-    "akademi_militer": 26,
     "pusat_komando": 25,
     "pangkalan_udara": 24,
     "pangkalan_laut": 39,

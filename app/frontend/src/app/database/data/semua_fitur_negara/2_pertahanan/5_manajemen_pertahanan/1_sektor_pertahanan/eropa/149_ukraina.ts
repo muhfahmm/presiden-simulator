@@ -2,7 +2,6 @@ export const ukraina_pertahanan = {
     "penjara": 9,
     "gudang_senjata": 11,
     "hangar_tank": 37,
-    "akademi_militer": 29,
     "pusat_komando": 1,
     "pangkalan_udara": 19,
     "pangkalan_laut": 18,

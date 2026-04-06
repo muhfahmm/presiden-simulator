@@ -2,7 +2,6 @@ export const panama_pertahanan = {
     "penjara": 31,
     "gudang_senjata": 13,
     "hangar_tank": 12,
-    "akademi_militer": 18,
     "pusat_komando": 33,
     "pangkalan_udara": 8,
     "pangkalan_laut": 3,

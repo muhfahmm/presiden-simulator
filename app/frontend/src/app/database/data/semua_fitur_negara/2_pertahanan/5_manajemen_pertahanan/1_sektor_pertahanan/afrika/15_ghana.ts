@@ -2,7 +2,6 @@ export const ghana_pertahanan = {
     "penjara": 34,
     "gudang_senjata": 14,
     "hangar_tank": 20,
-    "akademi_militer": 18,
     "pusat_komando": 19,
     "pangkalan_udara": 3,
     "pangkalan_laut": 19,

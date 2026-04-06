@@ -2,7 +2,6 @@ export const guatemala_pertahanan = {
     "penjara": 4,
     "gudang_senjata": 5,
     "hangar_tank": 9,
-    "akademi_militer": 33,
     "pusat_komando": 8,
     "pangkalan_udara": 38,
     "pangkalan_laut": 12,

@@ -2,7 +2,6 @@ export const sri_lanka_pertahanan = {
     "penjara": 18,
     "gudang_senjata": 4,
     "hangar_tank": 37,
-    "akademi_militer": 3,
     "pusat_komando": 35,
     "pangkalan_udara": 28,
     "pangkalan_laut": 9,

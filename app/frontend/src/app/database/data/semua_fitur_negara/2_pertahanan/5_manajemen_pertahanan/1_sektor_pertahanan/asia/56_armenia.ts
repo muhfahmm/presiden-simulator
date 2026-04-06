@@ -2,7 +2,6 @@ export const armenia_pertahanan = {
     "penjara": 13,
     "gudang_senjata": 11,
     "hangar_tank": 27,
-    "akademi_militer": 38,
     "pusat_komando": 37,
     "pangkalan_udara": 37,
     "pangkalan_laut": 17,

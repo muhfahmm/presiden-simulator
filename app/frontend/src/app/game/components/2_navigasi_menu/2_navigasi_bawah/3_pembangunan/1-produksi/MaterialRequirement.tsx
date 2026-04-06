@@ -102,16 +102,12 @@ export const BUILDING_REQUIREMENTS: Record<string, BuildingRequirement> = {
   "mansion": { beton: 200, baja: 50, kayu: 50 },
 
   // --- 11. SEKTOR PABRIK MILITER ---
-  "pabrik_drone_kamikaze": { beton: 850, baja: 1100, kayu: 0 },
   "pabrik_amunisi": { beton: 600, baja: 900, kayu: 150 },
-  "pabrik_kendaraan_tempur": { beton: 1200, baja: 1800, kayu: 0 },
-  "pabrik_senjata_berat": { beton: 1500, baja: 2200, kayu: 0 },
 
   // --- 12. PERTAHANAN NASIONAL ---
   "1_penjara": { beton: 1200, baja: 800, kayu: 200 },
   "2_gudang_senjata": { beton: 800, baja: 1400, kayu: 100 },
   "3_hangar_tank": { beton: 1500, baja: 2500, kayu: 0 },
-  "4_akademi_militer": { beton: 2500, baja: 1800, kayu: 0 },
   "5_pusat_komando": { beton: 4000, baja: 3000, kayu: 0 },
   "6_pangkalan_udara": { beton: 3500, baja: 5000, kayu: 200 },
   "7_pangkalan_laut": { beton: 4500, baja: 7000, kayu: 500 },

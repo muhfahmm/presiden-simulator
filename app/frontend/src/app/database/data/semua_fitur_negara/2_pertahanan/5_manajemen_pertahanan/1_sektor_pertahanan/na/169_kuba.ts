@@ -2,7 +2,6 @@ export const kuba_pertahanan = {
     "penjara": 13,
     "gudang_senjata": 37,
     "hangar_tank": 18,
-    "akademi_militer": 24,
     "pusat_komando": 18,
     "pangkalan_udara": 7,
     "pangkalan_laut": 4,

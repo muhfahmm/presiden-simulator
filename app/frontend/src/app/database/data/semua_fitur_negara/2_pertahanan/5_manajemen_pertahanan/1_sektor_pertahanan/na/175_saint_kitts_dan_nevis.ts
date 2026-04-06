@@ -2,7 +2,6 @@ export const saint_kitts_dan_nevis_pertahanan = {
     "penjara": 15,
     "gudang_senjata": 32,
     "hangar_tank": 18,
-    "akademi_militer": 8,
     "pusat_komando": 23,
     "pangkalan_udara": 40,
     "pangkalan_laut": 6,

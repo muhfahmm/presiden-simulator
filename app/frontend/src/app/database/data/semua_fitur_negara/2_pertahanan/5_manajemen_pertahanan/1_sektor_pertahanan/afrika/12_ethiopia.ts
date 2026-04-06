@@ -2,7 +2,6 @@ export const ethiopia_pertahanan = {
     "penjara": 28,
     "gudang_senjata": 4,
     "hangar_tank": 8,
-    "akademi_militer": 37,
     "pusat_komando": 40,
     "pangkalan_udara": 10,
     "pangkalan_laut": 33,

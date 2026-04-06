@@ -2,7 +2,6 @@ export const palestina_pertahanan = {
     "penjara": 25,
     "gudang_senjata": 32,
     "hangar_tank": 35,
-    "akademi_militer": 5,
     "pusat_komando": 36,
     "pangkalan_udara": 19,
     "pangkalan_laut": 15,

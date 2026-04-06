@@ -2,7 +2,6 @@ export const latvia_pertahanan = {
     "penjara": 13,
     "gudang_senjata": 25,
     "hangar_tank": 32,
-    "akademi_militer": 38,
     "pusat_komando": 29,
     "pangkalan_udara": 22,
     "pangkalan_laut": 1,

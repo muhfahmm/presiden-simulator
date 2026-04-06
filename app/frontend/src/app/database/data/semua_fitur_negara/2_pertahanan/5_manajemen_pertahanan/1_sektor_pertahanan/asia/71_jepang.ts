@@ -2,7 +2,6 @@ export const jepang_pertahanan = {
     "penjara": 18,
     "gudang_senjata": 36,
     "hangar_tank": 13,
-    "akademi_militer": 12,
     "pusat_komando": 33,
     "pangkalan_udara": 15,
     "pangkalan_laut": 31,

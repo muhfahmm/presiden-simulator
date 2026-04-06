@@ -315,14 +315,14 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
         let currentStart = getStoredGameDate().getTime();
         const itemsToAdd: any[] = [];
         for (let i = 0; i < quantity; i++) {
-          const currentEnd = addDays(new Date(currentStart), confirmBuild.buildTime).getTime();
+          const currentEnd = addDays(new Date(currentStart), confirmBuild.waktu_pembangunan).getTime();
           const newItem = buildingStorage.addToQueue({
             buildingKey: confirmBuild.key,
             label: confirmBuild.label,
             sector: confirmBuild.groupId,
             startDate: currentStart,
             endDate: currentEnd,
-            buildTime: confirmBuild.buildTime
+            waktu_pembangunan: confirmBuild.waktu_pembangunan
           });
           if (newItem) itemsToAdd.push(newItem);
           currentStart = currentEnd;
@@ -341,7 +341,6 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
       case "penjara": return Gavel;
       case "gudang_senjata": return Archive;
       case "hangar_tank": return Truck;
-      case "akademi_militer": return Landmark;
       case "pusat_komando": return TowerControl;
       case "pangkalan_udara": return MapPin;
       case "pangkalan_laut": return Ship;

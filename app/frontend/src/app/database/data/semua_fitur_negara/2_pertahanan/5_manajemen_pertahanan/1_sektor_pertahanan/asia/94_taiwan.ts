@@ -2,7 +2,6 @@ export const taiwan_pertahanan = {
     "penjara": 22,
     "gudang_senjata": 4,
     "hangar_tank": 5,
-    "akademi_militer": 36,
     "pusat_komando": 2,
     "pangkalan_udara": 26,
     "pangkalan_laut": 30,

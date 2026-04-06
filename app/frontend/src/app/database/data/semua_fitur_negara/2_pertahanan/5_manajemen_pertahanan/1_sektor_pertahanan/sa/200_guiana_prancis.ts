@@ -2,7 +2,6 @@ export const guiana_prancis_pertahanan = {
     "penjara": 27,
     "gudang_senjata": 27,
     "hangar_tank": 20,
-    "akademi_militer": 30,
     "pusat_komando": 4,
     "pangkalan_udara": 27,
     "pangkalan_laut": 15,

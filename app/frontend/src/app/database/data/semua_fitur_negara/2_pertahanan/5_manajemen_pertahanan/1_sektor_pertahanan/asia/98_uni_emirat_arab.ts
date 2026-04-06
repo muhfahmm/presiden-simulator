@@ -2,7 +2,6 @@ export const uni_emirat_arab_pertahanan = {
     "penjara": 34,
     "gudang_senjata": 16,
     "hangar_tank": 31,
-    "akademi_militer": 15,
     "pusat_komando": 6,
     "pangkalan_udara": 15,
     "pangkalan_laut": 28,

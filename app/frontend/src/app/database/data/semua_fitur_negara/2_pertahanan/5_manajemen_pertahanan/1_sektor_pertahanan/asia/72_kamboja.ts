@@ -2,7 +2,6 @@ export const kamboja_pertahanan = {
     "penjara": 9,
     "gudang_senjata": 25,
     "hangar_tank": 22,
-    "akademi_militer": 15,
     "pusat_komando": 23,
     "pangkalan_udara": 34,
     "pangkalan_laut": 1,

@@ -138,7 +138,6 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
       case "penjara": return Gavel;
       case "gudang_senjata": return Archive;
       case "hangar_tank": return Truck;
-      case "akademi_militer": return Landmark;
       case "pusat_komando": return TowerControl;
       case "pangkalan_udara": return MapPin;
       case "pangkalan_laut": return Ship;

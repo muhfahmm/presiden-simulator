@@ -2,7 +2,6 @@ export const burundi_pertahanan = {
     "penjara": 39,
     "gudang_senjata": 20,
     "hangar_tank": 8,
-    "akademi_militer": 28,
     "pusat_komando": 7,
     "pangkalan_udara": 28,
     "pangkalan_laut": 37,

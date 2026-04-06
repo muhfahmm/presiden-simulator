@@ -198,7 +198,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   const olahanPanganOrder = ["air_mineral", "gula", "roti", "pengolahan_daging", "mie_instan"];
   const farmasiOrder = ["farmasi"];
   const panganOrder = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing", "udang_kerang", "ikan", "padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"];
-  const militerOrder = ["pabrik_drone_kamikaze", "pabrik_amunisi"];
+  const militerOrder = ["pabrik_amunisi"];
 
   // Logic for Minerals
   const mineralDataToBuildingKey: Record<string, string> = {
@@ -379,7 +379,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
     udang_kerang: Shell, ikan: Fish,
     padi: Sprout, gandum_jagung: Utensils, sayur_umbi: Apple, kedelai: Bean, 
     kelapa_sawit: Droplets, kopi_teh_kakao: Coffee, tebu: Leaf,
-    pabrik_drone_kamikaze: Target, pabrik_amunisi: Box
+    pabrik_amunisi: Box
   };
 
   const getIcon = (key: string, size: string = "h-4 w-4") => {

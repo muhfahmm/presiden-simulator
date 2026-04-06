@@ -2,7 +2,6 @@ export const somalia_pertahanan = {
     "penjara": 8,
     "gudang_senjata": 25,
     "hangar_tank": 11,
-    "akademi_militer": 13,
     "pusat_komando": 33,
     "pangkalan_udara": 30,
     "pangkalan_laut": 13,

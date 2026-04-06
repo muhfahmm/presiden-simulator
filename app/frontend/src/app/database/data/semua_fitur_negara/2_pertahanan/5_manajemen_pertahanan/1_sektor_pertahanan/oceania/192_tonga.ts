@@ -2,7 +2,6 @@ export const tonga_pertahanan = {
     "penjara": 27,
     "gudang_senjata": 28,
     "hangar_tank": 24,
-    "akademi_militer": 19,
     "pusat_komando": 23,
     "pangkalan_udara": 31,
     "pangkalan_laut": 31,

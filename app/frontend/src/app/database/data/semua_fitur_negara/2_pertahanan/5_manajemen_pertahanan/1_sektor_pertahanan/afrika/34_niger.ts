@@ -2,7 +2,6 @@ export const niger_pertahanan = {
     "penjara": 32,
     "gudang_senjata": 18,
     "hangar_tank": 20,
-    "akademi_militer": 19,
     "pusat_komando": 32,
     "pangkalan_udara": 24,
     "pangkalan_laut": 25,

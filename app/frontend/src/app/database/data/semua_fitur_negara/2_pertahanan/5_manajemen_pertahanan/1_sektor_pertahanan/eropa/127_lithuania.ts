@@ -2,7 +2,6 @@ export const lithuania_pertahanan = {
     "penjara": 8,
     "gudang_senjata": 25,
     "hangar_tank": 22,
-    "akademi_militer": 3,
     "pusat_komando": 3,
     "pangkalan_udara": 13,
     "pangkalan_laut": 5,

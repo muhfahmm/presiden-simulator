@@ -2,7 +2,6 @@ export const tuvalu_pertahanan = {
     "penjara": 38,
     "gudang_senjata": 26,
     "hangar_tank": 1,
-    "akademi_militer": 23,
     "pusat_komando": 32,
     "pangkalan_udara": 25,
     "pangkalan_laut": 4,

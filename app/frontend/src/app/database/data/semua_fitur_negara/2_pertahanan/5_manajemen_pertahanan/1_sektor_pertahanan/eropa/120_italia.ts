@@ -2,7 +2,6 @@ export const italia_pertahanan = {
     "penjara": 28,
     "gudang_senjata": 39,
     "hangar_tank": 18,
-    "akademi_militer": 17,
     "pusat_komando": 25,
     "pangkalan_udara": 20,
     "pangkalan_laut": 16,

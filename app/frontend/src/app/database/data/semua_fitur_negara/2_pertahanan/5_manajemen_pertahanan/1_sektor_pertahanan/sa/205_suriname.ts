@@ -2,7 +2,6 @@ export const suriname_pertahanan = {
     "penjara": 36,
     "gudang_senjata": 18,
     "hangar_tank": 1,
-    "akademi_militer": 5,
     "pusat_komando": 27,
     "pangkalan_udara": 14,
     "pangkalan_laut": 3,

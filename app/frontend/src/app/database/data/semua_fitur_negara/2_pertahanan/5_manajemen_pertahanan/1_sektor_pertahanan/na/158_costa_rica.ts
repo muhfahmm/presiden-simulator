@@ -2,7 +2,6 @@ export const costa_rica_pertahanan = {
     "penjara": 22,
     "gudang_senjata": 4,
     "hangar_tank": 29,
-    "akademi_militer": 4,
     "pusat_komando": 17,
     "pangkalan_udara": 33,
     "pangkalan_laut": 2,

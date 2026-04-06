@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { X, Bolt, Activity, TrendingUp, TrendingDown, Battery, Radio, Gauge, Info, Hammer, Shield, Users, Factory, Pickaxe, Lightbulb, ZapOff, CloudLightning, Sprout, Utensils, Pill, MapPin, Bus, TrainFront, Plane, Ship, School, Hospital, Gavel, Trophy, Store, Theater, Home, Truck, Eye, EyeOff, Bird, Fish, Beef, Wrench } from "lucide-react";
+import { X, Bolt, Activity, TrendingUp, TrendingDown, Battery, Radio, Gauge, Info, Hammer, Shield, Users, Factory, Pickaxe, Lightbulb, ZapOff, CloudLightning, Sprout, Utensils, Pill, MapPin, Bus, TrainFront, Plane, Ship, School, Hospital, Gavel, Trophy, Store, Theater, Home, Truck, Eye, EyeOff, Bird, Fish, Beef, Wrench, Archive, TowerControl, Rocket, ShieldAlert } from "lucide-react";
 import { 
   hitungTotalKapasitas, 
   hitungTotalKonsumsiNasional, 
@@ -57,6 +57,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
   const [showPolisi, setShowPolisi] = useState(true);
   const [showArmada, setShowArmada] = useState(true);
   const [showHunian, setShowHunian] = useState(true);
+  const [showPertahanan, setShowPertahanan] = useState(true);
 
   if (!isOpen) return null;
 
@@ -252,6 +253,28 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
       description: "Fasilitas & Pendukung"
     }
   ];
+
+  const getPertahananIcon = (key: string) => {
+    switch (key) {
+      case "1_penjara": return Gavel;
+      case "2_gudang_senjata": return Archive;
+      case "3_hangar_tank": return Truck;
+      case "5_pusat_komando": return TowerControl;
+      case "6_pangkalan_udara": return MapPin;
+      case "7_pangkalan_laut": return Ship;
+      case "8_program_luar_angkasa": return Rocket;
+      case "9_pertahanan_siber": return ShieldAlert;
+      default: return Shield;
+    }
+  };
+
+  const pertahananUsage = Object.entries(pertahananRate).map(([key, val]: [string, any]) => ({
+    name: val.label,
+    description: val.deskripsi,
+    value: ((currentDataWithDeltas.sektor_pertahanan as any)[val.dataKey] || 0) * (val.konsumsi_listrik || 0),
+    icon: getPertahananIcon(val.key),
+    color: "text-amber-600"
+  }));
 
   const hunianUsage = [
     { 
@@ -632,6 +655,38 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
                     </div>
                   ))}
                 </div>
+
+                {/* Sektor Pertahanan Section */}
+                <div className="flex items-center justify-between gap-2 px-2 mt-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-amber-600 rounded-full animate-pulse"></div>
+                    <h4 className="text-[13px] font-black text-amber-600 uppercase tracking-[0.3em]">Manajemen Pertahanan</h4>
+                  </div>
+                  <div className="flex-1 h-[1px] bg-gradient-to-r from-amber-600/30 to-transparent ml-2"></div>
+                  <button onClick={() => setShowPertahanan(!showPertahanan)} className="p-1.5 hover:bg-zinc-800 rounded-lg transition-colors text-zinc-500 cursor-pointer">
+                    {showPertahanan ? <Eye size={14} /> : <EyeOff size={14} />}
+                  </button>
+                </div>
+
+                <div className={`space-y-3 overflow-hidden transition-all duration-300 ${showPertahanan ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"}`}>
+                  {pertahananUsage.map((usage, idx) => (
+                    <div key={idx} className="bg-zinc-950/30 border border-zinc-800/30 p-3 rounded-xl flex items-center justify-between hover:border-zinc-700/50 transition-all group">
+                      <div className="flex items-center gap-3">
+                        <div className={`p-2 bg-zinc-900 rounded-lg ${usage.color}`}>
+                          <usage.icon size={14} />
+                        </div>
+                        <div>
+                          <p className="text-[11px] text-zinc-200 font-black uppercase tracking-widest leading-none">{usage.name}</p>
+                          <p className="text-[9px] text-zinc-400 mt-0.5 uppercase tracking-tighter">{usage.description}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm font-black text-white leading-none">{usage.value.toLocaleString('id-ID')} <span className="text-[8px] text-zinc-500 font-normal ml-0.5">MW</span></p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
               </div>
             </div>
           </div>

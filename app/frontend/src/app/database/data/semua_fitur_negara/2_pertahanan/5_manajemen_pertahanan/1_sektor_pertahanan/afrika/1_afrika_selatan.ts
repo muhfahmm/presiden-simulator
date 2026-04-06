@@ -2,7 +2,6 @@ export const afrika_selatan_pertahanan = {
     "penjara": 27,
     "gudang_senjata": 16,
     "hangar_tank": 17,
-    "akademi_militer": 22,
     "pusat_komando": 15,
     "pangkalan_udara": 38,
     "pangkalan_laut": 9,

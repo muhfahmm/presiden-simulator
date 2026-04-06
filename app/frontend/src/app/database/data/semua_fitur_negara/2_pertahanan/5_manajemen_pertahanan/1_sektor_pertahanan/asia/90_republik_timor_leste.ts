@@ -2,7 +2,6 @@ export const republik_timor_leste_pertahanan = {
     "penjara": 8,
     "gudang_senjata": 40,
     "hangar_tank": 27,
-    "akademi_militer": 36,
     "pusat_komando": 35,
     "pangkalan_udara": 2,
     "pangkalan_laut": 31,

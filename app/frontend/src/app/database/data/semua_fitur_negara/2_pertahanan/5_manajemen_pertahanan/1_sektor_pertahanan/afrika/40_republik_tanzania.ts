@@ -2,7 +2,6 @@ export const republik_tanzania_pertahanan = {
     "penjara": 12,
     "gudang_senjata": 2,
     "hangar_tank": 4,
-    "akademi_militer": 27,
     "pusat_komando": 9,
     "pangkalan_udara": 22,
     "pangkalan_laut": 19,

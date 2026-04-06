@@ -2,7 +2,6 @@ export const benin_pertahanan = {
     "penjara": 30,
     "gudang_senjata": 27,
     "hangar_tank": 12,
-    "akademi_militer": 5,
     "pusat_komando": 33,
     "pangkalan_udara": 16,
     "pangkalan_laut": 5,

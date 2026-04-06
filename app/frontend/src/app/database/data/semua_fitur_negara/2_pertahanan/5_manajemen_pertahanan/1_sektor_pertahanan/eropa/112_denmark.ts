@@ -2,7 +2,6 @@ export const denmark_pertahanan = {
     "penjara": 11,
     "gudang_senjata": 3,
     "hangar_tank": 25,
-    "akademi_militer": 40,
     "pusat_komando": 9,
     "pangkalan_udara": 9,
     "pangkalan_laut": 11,

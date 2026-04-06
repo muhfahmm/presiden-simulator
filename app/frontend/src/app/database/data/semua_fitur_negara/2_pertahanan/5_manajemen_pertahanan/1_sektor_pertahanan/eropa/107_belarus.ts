@@ -2,7 +2,6 @@ export const belarus_pertahanan = {
     "penjara": 28,
     "gudang_senjata": 36,
     "hangar_tank": 1,
-    "akademi_militer": 38,
     "pusat_komando": 17,
     "pangkalan_udara": 6,
     "pangkalan_laut": 36,

@@ -2,7 +2,6 @@ export const pantai_gading_pertahanan = {
     "penjara": 17,
     "gudang_senjata": 19,
     "hangar_tank": 24,
-    "akademi_militer": 3,
     "pusat_komando": 37,
     "pangkalan_udara": 26,
     "pangkalan_laut": 31,

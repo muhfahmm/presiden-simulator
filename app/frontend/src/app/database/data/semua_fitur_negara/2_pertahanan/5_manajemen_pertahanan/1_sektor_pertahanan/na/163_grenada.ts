@@ -2,7 +2,6 @@ export const grenada_pertahanan = {
     "penjara": 24,
     "gudang_senjata": 20,
     "hangar_tank": 21,
-    "akademi_militer": 32,
     "pusat_komando": 14,
     "pangkalan_udara": 25,
     "pangkalan_laut": 11,

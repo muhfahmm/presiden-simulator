@@ -2,7 +2,6 @@ export const eritrea_pertahanan = {
     "penjara": 15,
     "gudang_senjata": 13,
     "hangar_tank": 14,
-    "akademi_militer": 4,
     "pusat_komando": 25,
     "pangkalan_udara": 6,
     "pangkalan_laut": 16,

@@ -2,7 +2,6 @@ export const malaysia_pertahanan = {
     "penjara": 35,
     "gudang_senjata": 9,
     "hangar_tank": 33,
-    "akademi_militer": 18,
     "pusat_komando": 6,
     "pangkalan_udara": 18,
     "pangkalan_laut": 31,

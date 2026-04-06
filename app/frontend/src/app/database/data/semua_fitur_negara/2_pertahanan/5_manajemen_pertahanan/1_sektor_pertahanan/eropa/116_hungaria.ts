@@ -2,7 +2,6 @@ export const hungaria_pertahanan = {
     "penjara": 14,
     "gudang_senjata": 12,
     "hangar_tank": 12,
-    "akademi_militer": 37,
     "pusat_komando": 13,
     "pangkalan_udara": 37,
     "pangkalan_laut": 38,

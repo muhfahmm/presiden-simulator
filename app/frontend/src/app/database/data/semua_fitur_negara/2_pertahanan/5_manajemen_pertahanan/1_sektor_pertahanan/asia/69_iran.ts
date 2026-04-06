@@ -2,7 +2,6 @@ export const iran_pertahanan = {
     "penjara": 18,
     "gudang_senjata": 17,
     "hangar_tank": 4,
-    "akademi_militer": 5,
     "pusat_komando": 15,
     "pangkalan_udara": 16,
     "pangkalan_laut": 5,

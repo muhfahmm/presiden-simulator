@@ -2,7 +2,6 @@ export const jamaika_pertahanan = {
     "penjara": 37,
     "gudang_senjata": 19,
     "hangar_tank": 30,
-    "akademi_militer": 10,
     "pusat_komando": 26,
     "pangkalan_udara": 39,
     "pangkalan_laut": 33,

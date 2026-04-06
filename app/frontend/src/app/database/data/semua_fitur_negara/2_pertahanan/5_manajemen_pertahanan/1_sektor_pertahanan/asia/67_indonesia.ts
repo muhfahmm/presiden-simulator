@@ -2,7 +2,6 @@ export const indonesia_pertahanan = {
     "penjara": 9,
     "gudang_senjata": 39,
     "hangar_tank": 7,
-    "akademi_militer": 23,
     "pusat_komando": 7,
     "pangkalan_udara": 37,
     "pangkalan_laut": 11,

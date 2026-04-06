@@ -2,7 +2,6 @@ export const ceko_pertahanan = {
     "penjara": 6,
     "gudang_senjata": 2,
     "hangar_tank": 6,
-    "akademi_militer": 6,
     "pusat_komando": 23,
     "pangkalan_udara": 1,
     "pangkalan_laut": 34,

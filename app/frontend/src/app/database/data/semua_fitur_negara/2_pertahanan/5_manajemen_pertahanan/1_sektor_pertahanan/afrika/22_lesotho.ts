@@ -2,7 +2,6 @@ export const lesotho_pertahanan = {
     "penjara": 6,
     "gudang_senjata": 28,
     "hangar_tank": 3,
-    "akademi_militer": 35,
     "pusat_komando": 32,
     "pangkalan_udara": 24,
     "pangkalan_laut": 23,

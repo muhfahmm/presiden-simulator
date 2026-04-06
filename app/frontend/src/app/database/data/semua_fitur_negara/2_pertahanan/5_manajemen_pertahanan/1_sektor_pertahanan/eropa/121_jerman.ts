@@ -2,7 +2,6 @@ export const jerman_pertahanan = {
     "penjara": 32,
     "gudang_senjata": 17,
     "hangar_tank": 40,
-    "akademi_militer": 34,
     "pusat_komando": 37,
     "pangkalan_udara": 9,
     "pangkalan_laut": 7,

@@ -2,7 +2,6 @@ export const papua_nugini_pertahanan = {
     "penjara": 25,
     "gudang_senjata": 30,
     "hangar_tank": 13,
-    "akademi_militer": 19,
     "pusat_komando": 35,
     "pangkalan_udara": 33,
     "pangkalan_laut": 21,

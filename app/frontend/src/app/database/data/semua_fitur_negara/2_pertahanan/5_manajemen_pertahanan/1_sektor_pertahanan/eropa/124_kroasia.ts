@@ -2,7 +2,6 @@ export const kroasia_pertahanan = {
     "penjara": 22,
     "gudang_senjata": 9,
     "hangar_tank": 18,
-    "akademi_militer": 12,
     "pusat_komando": 34,
     "pangkalan_udara": 30,
     "pangkalan_laut": 13,

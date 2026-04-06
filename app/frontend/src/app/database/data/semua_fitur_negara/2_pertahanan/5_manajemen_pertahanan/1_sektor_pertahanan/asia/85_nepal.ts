@@ -2,7 +2,6 @@ export const nepal_pertahanan = {
     "penjara": 27,
     "gudang_senjata": 2,
     "hangar_tank": 5,
-    "akademi_militer": 31,
     "pusat_komando": 2,
     "pangkalan_udara": 15,
     "pangkalan_laut": 10,

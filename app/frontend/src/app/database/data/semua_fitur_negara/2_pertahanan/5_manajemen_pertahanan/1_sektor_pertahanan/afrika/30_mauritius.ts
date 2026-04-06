@@ -2,7 +2,6 @@ export const mauritius_pertahanan = {
     "penjara": 29,
     "gudang_senjata": 6,
     "hangar_tank": 10,
-    "akademi_militer": 5,
     "pusat_komando": 17,
     "pangkalan_udara": 28,
     "pangkalan_laut": 15,

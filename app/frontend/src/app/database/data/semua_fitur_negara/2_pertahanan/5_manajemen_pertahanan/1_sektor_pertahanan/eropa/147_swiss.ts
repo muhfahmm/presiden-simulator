@@ -2,7 +2,6 @@ export const swiss_pertahanan = {
     "penjara": 19,
     "gudang_senjata": 5,
     "hangar_tank": 26,
-    "akademi_militer": 29,
     "pusat_komando": 4,
     "pangkalan_udara": 26,
     "pangkalan_laut": 30,

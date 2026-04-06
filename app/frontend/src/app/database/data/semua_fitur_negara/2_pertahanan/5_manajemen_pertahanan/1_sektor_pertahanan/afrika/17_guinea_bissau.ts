@@ -2,7 +2,6 @@ export const guinea_bissau_pertahanan = {
     "penjara": 6,
     "gudang_senjata": 9,
     "hangar_tank": 11,
-    "akademi_militer": 11,
     "pusat_komando": 31,
     "pangkalan_udara": 18,
     "pangkalan_laut": 40,

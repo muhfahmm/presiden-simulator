@@ -2,7 +2,6 @@ export const belize_pertahanan = {
     "penjara": 38,
     "gudang_senjata": 14,
     "hangar_tank": 14,
-    "akademi_militer": 24,
     "pusat_komando": 39,
     "pangkalan_udara": 36,
     "pangkalan_laut": 32,
