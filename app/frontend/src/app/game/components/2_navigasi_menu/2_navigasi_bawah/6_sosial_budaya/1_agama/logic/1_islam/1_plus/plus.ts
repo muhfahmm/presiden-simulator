@@ -1,3 +1,3 @@
 export const islamPlus = [
-  "Pajak Sektor Komersial +10%",
+  "Pendapatan Sektor Komersial +10%",
 ];

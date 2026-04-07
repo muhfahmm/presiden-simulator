@@ -79,7 +79,7 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   revenues.other["investments"] = incomeData.investments || 0;
 
   // 1.1 Resource Income (Gold Mines)
-  const goldRevenue = calculateGoldMineRevenue(buildingDeltas);
+  const goldRevenue = calculateGoldMineRevenue(buildingDeltas, countryData);
   if (goldRevenue > 0) {
     revenues.resources["emas"] = goldRevenue * 365; // Annualized
   }
@@ -125,10 +125,7 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
     totalAnnualExpense,
     netAnnualSurplus,
     dailyDelta,
-    dailyTaxRevenue: Object.values(revenues.domestic).reduce((a, b) => a + b, 0) + 
-                     Object.values(revenues.trade).reduce((a, b) => a + b, 0) +
-                     (Object.values(revenues.resources).reduce((a, b) => a + b, 0) / 365) +
-                     (revenues.other["sektor_jasa"] || 0) / 365,
+    dailyTaxRevenue: totalAnnualRevenue / 365,
     revenues,
     expenses: {
       maintenance: maintenanceExpense,

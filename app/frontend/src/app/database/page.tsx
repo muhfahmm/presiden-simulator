@@ -13,6 +13,8 @@ import { countries } from "./data/negara/benua/index";
 import { gameStorage } from "../game/gamestorage";
 import { taxStorage } from "../game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { CountryData } from "./data/semua_fitur_negara";
+import { calculateGoldMineRevenue } from "../game/components/1_navbar/3_kas_negara/GoldMineRevenue";
+import { calculateTempatUmumRevenue } from "../game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/logic/TempatUmumRevenueLogic";
 
 export default function DatabasePage() {
   const router = useRouter();
@@ -73,7 +75,10 @@ export default function DatabasePage() {
   const hasSelection = !!selectedData;
 
   const currentTaxes = hasSelection ? (taxStorage.getTaxes(selectedCountry) || selectedData?.pajak || {}) : {};
-  const totalPendapatanPajak = Object.values(currentTaxes as any).reduce((sum: number, v: any) => sum + ((v as any)?.pendapatan || 0), 0);
+  const summedTaxes = Object.values(currentTaxes as any).reduce((sum: number, v: any) => sum + ((v as any)?.pendapatan || 0), 0) / 365;
+  const goldRevenue = hasSelection ? calculateGoldMineRevenue({}, baseData) : 0;
+  const serviceRevenue = hasSelection ? calculateTempatUmumRevenue({}, baseData) : 0;
+  const totalPendapatanPajak = summedTaxes + goldRevenue + serviceRevenue;
 
   const currentData: CountryData = baseData;
 

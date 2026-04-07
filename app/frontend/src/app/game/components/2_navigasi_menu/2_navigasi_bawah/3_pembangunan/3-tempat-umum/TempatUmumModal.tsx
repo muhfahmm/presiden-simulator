@@ -16,6 +16,7 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
 import { getBuildingRequirement, MaterialRequirement } from "../1-produksi/MaterialRequirement";
+import { REVENUE_RATES } from "./logic/TempatUmumRevenueLogic";
 // import HunianPemukiman from "./HunianPemukiman";
 
 interface ModalProps {
@@ -891,6 +892,27 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
             </>
           )}
 
+          {REVENUE_RATES[item.key] > 0 && (
+            <>
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 bg-emerald-500/10 rounded-lg">
+                  <Coins size={12} className="text-emerald-500/90" />
+                </div>
+                <span className="text-[12px] font-bold text-emerald-500/80">
+                  Pendapatan: +{REVENUE_RATES[item.key].toLocaleString('id-ID')} / hari
+                </span>
+              </div>
+              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-emerald-500/10 pl-3">
+                <div className="p-1.5 bg-emerald-500/5 rounded-lg">
+                  <TrendingUp size={12} className="text-emerald-400/70" />
+                </div>
+                <span className="text-[11px] font-bold text-emerald-400/70 uppercase">
+                  Total Pendapatan Kas: {(item.count * REVENUE_RATES[item.key]).toLocaleString('id-ID')} / hari
+                </span>
+              </div>
+            </>
+          )}
+
           {lowongan > 0 && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-blue-500/10 rounded-lg">
@@ -914,11 +936,13 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
           )}
 
           {!progress && (
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-zinc-800/50 rounded-lg">
-                <Clock size={12} className="text-zinc-500" />
+            <div className="flex flex-col gap-2.5">
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 bg-zinc-800/50 rounded-lg">
+                  <Clock size={12} className="text-zinc-500" />
+                </div>
+                <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
               </div>
-              <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
             </div>
           )}
         </div>

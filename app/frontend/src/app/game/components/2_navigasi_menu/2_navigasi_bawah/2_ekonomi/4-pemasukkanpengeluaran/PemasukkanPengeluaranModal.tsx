@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, BarChart3, TrendingUp, TrendingDown, Landmark, PieChart, Coins, Shield, Zap, Building2, Activity, Info, Wallet, ArrowRight, Hammer, Users, Eye, ChevronLeft, Car, Home, Search } from "lucide-react"
+import { X, BarChart3, TrendingUp, TrendingDown, Landmark, PieChart, Coins, Shield, Zap, Building2, Activity, Info, Wallet, ArrowRight, Hammer, Users, Eye, EyeOff, ChevronLeft, Car, Home, Search } from "lucide-react"
 import { countries } from "@/app/database/data/negara/benua/index"
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index"
 import { gameStorage } from "@/app/game/gamestorage"
@@ -40,6 +40,11 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   const [expData, setExpData] = useState(() => expenseStorage.getData(initialCountry.name_en, initialCountry));
   const [incData, setIncData] = useState(incomeStorage.getData());
   const [searchQuery, setSearchQuery] = useState("");
+  
+  // Visibility toggles for sections
+  const [showDomestic, setShowDomestic] = useState(true);
+  const [showTrade, setShowTrade] = useState(true);
+  const [showServices, setShowServices] = useState(true);
 
   useEffect(() => {
     const update = () => {
@@ -76,14 +81,14 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   const dynamicDomestic = allTaxKeys.filter(k => !TRADE_KEYS.has(k)).map(k => ({ id: k, label: autoLabel(k) }));
   const dynamicTrade = allTaxKeys.filter(k => TRADE_KEYS.has(k)).map(k => ({ id: k, label: autoLabel(k) }));
 
-  const activeDomesticRevenue = dynamicDomestic.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0);
-  const activeTradeRevenue = dynamicTrade.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0);
+  const activeDomesticRevenue = dynamicDomestic.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0) / 365;
+  const activeTradeRevenue = dynamicTrade.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0) / 365;
 
   // 2. Expenses
   const buildingData = buildingStorage.getData();
 
   const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue;
-  const goldRevenue = calculateGoldMineRevenue(buildingData.buildingDeltas);
+  const goldRevenue = calculateGoldMineRevenue(buildingData.buildingDeltas, initialCountry);
   const serviceRevenue = calculateTempatUmumRevenue(buildingData.buildingDeltas, initialCountry);
   const totalDailyIncome = dailyTaxRevenue + (incData.grants || 0) + (incData.investments || 0) + goldRevenue + serviceRevenue;
 
@@ -202,35 +207,59 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                    <span className="text-xs font-black text-emerald-400">+{Math.round(totalDailyIncome).toLocaleString('id-ID')}</span>
                 </div>
                                  <div className="space-y-4 max-h-[400px] overflow-y-auto no-scrollbar pr-2">
-                    {/* Domestic Taxes â€” dynamic */}
+                    {/* Domestic Taxes — dynamic */}
                     {dynamicDomestic.length > 0 && (
                     <div className="space-y-3">
-                       <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Domestic Fiscal</span>
-                       {dynamicDomestic.map((tax) => (
-                          <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
-                             <div className="flex items-center gap-3">
-                                <Coins size={14} className="text-purple-400" />
-                                <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{tax.label}</span>
+                       <div className="flex items-center justify-between px-1">
+                          <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block">Domestic Fiscal</span>
+                          <button 
+                             onClick={() => setShowDomestic(!showDomestic)}
+                             className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-all cursor-pointer group/btn"
+                             title={showDomestic ? "Sembunyikan" : "Tampilkan"}
+                          >
+                             {showDomestic ? <Eye size={14} className="group-hover/btn:scale-110 transition-transform" /> : <EyeOff size={14} className="group-hover/btn:scale-110 transition-transform" />}
+                          </button>
+                       </div>
+                       
+                       <div className={`space-y-3 overflow-hidden transition-all duration-700 ease-in-out ${showDomestic ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+                          {dynamicDomestic.map((tax) => (
+                             <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
+                                <div className="flex items-center gap-3">
+                                   <Coins size={14} className="text-purple-400" />
+                                   <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{tax.label}</span>
+                                </div>
+                                <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
                              </div>
-                             <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
-                          </div>
-                       ))}
+                          ))}
+                       </div>
                     </div>
                     )}
 
-                    {/* Trade Taxes â€” dynamic */}
+                    {/* Trade Taxes — dynamic */}
                     {dynamicTrade.length > 0 && (
                     <div className="space-y-3 mt-6">
-                       <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Trade &amp; Logistics</span>
-                       {dynamicTrade.map((tax) => (
-                          <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
-                             <div className="flex items-center gap-3">
-                                <Landmark size={14} className="text-amber-400" />
-                                <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{tax.label}</span>
+                       <div className="flex items-center justify-between px-1">
+                          <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block">Trade &amp; Logistics</span>
+                          <button 
+                             onClick={() => setShowTrade(!showTrade)}
+                             className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-all cursor-pointer group/btn"
+                             title={showTrade ? "Sembunyikan" : "Tampilkan"}
+                          >
+                             {showTrade ? <Eye size={14} className="group-hover/btn:scale-110 transition-transform" /> : <EyeOff size={14} className="group-hover/btn:scale-110 transition-transform" />}
+                          </button>
+                       </div>
+
+                       <div className={`space-y-3 overflow-hidden transition-all duration-700 ease-in-out ${showTrade ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+                          {dynamicTrade.map((tax) => (
+                             <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
+                                <div className="flex items-center gap-3">
+                                   <Landmark size={14} className="text-amber-400" />
+                                   <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{tax.label}</span>
+                                </div>
+                                <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
                              </div>
-                             <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
-                          </div>
-                       ))}
+                          ))}
+                       </div>
                     </div>
                     )}
 
@@ -253,57 +282,68 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
 
                     {/* Services & Commercial Income Breakdown (Always Visible) */}
                     <div className="space-y-3 mt-6">
-                      <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Service & Commercial Sectors</span>
+                      <div className="flex items-center justify-between px-1">
+                         <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block">Service & Commercial Sectors</span>
+                         <button 
+                            onClick={() => setShowServices(!showServices)}
+                            className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-all cursor-pointer group/btn"
+                            title={showServices ? "Sembunyikan" : "Tampilkan"}
+                         >
+                            {showServices ? <Eye size={14} className="group-hover/btn:scale-110 transition-transform" /> : <EyeOff size={14} className="group-hover/btn:scale-110 transition-transform" />}
+                         </button>
+                      </div>
                       
-                      {/* Sektor Olahraga */}
-                      <div className="space-y-2">
-                        <div className="bg-zinc-950/50 border border-cyan-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-cyan-500/40 transition-all">
-                          <div className="flex items-center gap-3">
-                             <div className="p-1.5 bg-cyan-500/10 rounded-lg"><Activity size={14} className="text-cyan-400" /></div>
-                             <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Olahraga & Rekreasi ({serviceUnitCount.olahraga} Unit)</span>
+                      <div className={`space-y-3 overflow-hidden transition-all duration-700 ease-in-out ${showServices ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+                        {/* Sektor Olahraga */}
+                        <div className="space-y-2">
+                          <div className="bg-zinc-950/50 border border-cyan-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-cyan-500/40 transition-all">
+                            <div className="flex items-center gap-3">
+                               <div className="p-1.5 bg-cyan-500/10 rounded-lg"><Activity size={14} className="text-cyan-400" /></div>
+                               <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Olahraga & Rekreasi ({serviceUnitCount.olahraga} Unit)</span>
+                            </div>
+                            <span className={`text-[13px] font-black ${serviceBreakdown.olahraga > 0 ? 'text-cyan-400' : 'text-zinc-600'}`}>+{serviceBreakdown.olahraga.toLocaleString('id-ID')}</span>
                           </div>
-                          <span className={`text-[13px] font-black ${serviceBreakdown.olahraga > 0 ? 'text-cyan-400' : 'text-zinc-600'}`}>+{serviceBreakdown.olahraga.toLocaleString('id-ID')}</span>
+                          {serviceDetailedBreakdown.filter((d: any) => d.sector === 'olahraga').map((item: any) => (
+                            <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
+                              <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
+                              <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
+                            </div>
+                          ))}
                         </div>
-                        {serviceDetailedBreakdown.filter((d: any) => d.sector === 'olahraga').map((item: any) => (
-                          <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
-                            <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
-                            <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
-                          </div>
-                        ))}
-                      </div>
 
-                      {/* Sektor Komersial */}
-                      <div className="space-y-2">
-                        <div className="bg-zinc-950/50 border border-emerald-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-emerald-500/40 transition-all">
-                          <div className="flex items-center gap-3">
-                             <div className="p-1.5 bg-emerald-500/10 rounded-lg"><Building2 size={14} className="text-emerald-400" /></div>
-                             <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Komersial & Retail ({serviceUnitCount.komersial} Unit)</span>
+                        {/* Sektor Komersial */}
+                        <div className="space-y-2">
+                          <div className="bg-zinc-950/50 border border-emerald-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-emerald-500/40 transition-all">
+                            <div className="flex items-center gap-3">
+                               <div className="p-1.5 bg-emerald-500/10 rounded-lg"><Building2 size={14} className="text-emerald-400" /></div>
+                               <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Komersial & Retail ({serviceUnitCount.komersial} Unit)</span>
+                            </div>
+                            <span className={`text-[13px] font-black ${serviceBreakdown.komersial > 0 ? 'text-emerald-400' : 'text-zinc-600'}`}>+{serviceBreakdown.komersial.toLocaleString('id-ID')}</span>
                           </div>
-                          <span className={`text-[13px] font-black ${serviceBreakdown.komersial > 0 ? 'text-emerald-400' : 'text-zinc-600'}`}>+{serviceBreakdown.komersial.toLocaleString('id-ID')}</span>
+                          {serviceDetailedBreakdown.filter((d: any) => d.sector === 'komersial').map((item: any) => (
+                            <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
+                              <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
+                              <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
+                            </div>
+                          ))}
                         </div>
-                        {serviceDetailedBreakdown.filter((d: any) => d.sector === 'komersial').map((item: any) => (
-                          <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
-                            <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
-                            <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
-                          </div>
-                        ))}
-                      </div>
 
-                      {/* Sektor Hiburan */}
-                      <div className="space-y-2">
-                        <div className="bg-zinc-950/50 border border-purple-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-purple-500/40 transition-all">
-                          <div className="flex items-center gap-3">
-                             <div className="p-1.5 bg-purple-500/10 rounded-lg"><PieChart size={14} className="text-purple-400" /></div>
-                             <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Hiburan & Seni ({serviceUnitCount.hiburan} Unit)</span>
+                        {/* Sektor Hiburan */}
+                        <div className="space-y-2">
+                          <div className="bg-zinc-950/50 border border-purple-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-purple-500/40 transition-all">
+                            <div className="flex items-center gap-3">
+                               <div className="p-1.5 bg-purple-500/10 rounded-lg"><PieChart size={14} className="text-purple-400" /></div>
+                               <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Hiburan & Seni ({serviceUnitCount.hiburan} Unit)</span>
+                            </div>
+                            <span className={`text-[13px] font-black ${serviceBreakdown.hiburan > 0 ? 'text-purple-400' : 'text-zinc-600'}`}>+{serviceBreakdown.hiburan.toLocaleString('id-ID')}</span>
                           </div>
-                          <span className={`text-[13px] font-black ${serviceBreakdown.hiburan > 0 ? 'text-purple-400' : 'text-zinc-600'}`}>+{serviceBreakdown.hiburan.toLocaleString('id-ID')}</span>
+                          {serviceDetailedBreakdown.filter((d: any) => d.sector === 'hiburan').map((item: any) => (
+                            <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
+                              <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
+                              <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
+                            </div>
+                          ))}
                         </div>
-                        {serviceDetailedBreakdown.filter((d: any) => d.sector === 'hiburan').map((item: any) => (
-                          <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
-                            <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
-                            <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
-                          </div>
-                        ))}
                       </div>
                     </div>
                  </div>
