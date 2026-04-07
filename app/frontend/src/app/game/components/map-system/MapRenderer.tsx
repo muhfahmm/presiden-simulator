@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import GameMapCanvas from "./mainGameMap";
-import TradeMapCanvas from "../2_navigasi_menu/1_navigasi_atas/import_map_jalur_perdagangan/importTradeMapCanvas";
+import TradeMapCanvas from "../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/jalur_perdagangan/1_map/TradeMapCanvas";
 import MapSDA from "../2_navigasi_menu/1_navigasi_atas/SDA/mapSDA";
 import MapHubungan from "../2_navigasi_menu/1_navigasi_atas/Hubungan/mapHubungan";
 
