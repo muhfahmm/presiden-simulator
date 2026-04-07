@@ -7,6 +7,7 @@ import { religionStorage } from "./religionStorage";
 import { ReligionInfoOverlay } from "./3_ReligionInfoOverlay";
 import { ReligionEffectDetail } from "./2_ReligionEffectDetail";
 import { GantiAgamaModals } from "./4_GantiAgamaModals";
+import { RELIGION_PRICES } from "./agama_prices";
 
 const religionEffects: Record<string, { plus: string[]; minus: string[] }> = allReligionLogic.reduce((acc, curr) => ({
   ...acc,
@@ -91,12 +92,18 @@ export function ReligionCard({ religion, isActive, countryData, activeMenu, setA
 
         <div className="mt-auto pt-4 flex items-center justify-between">
            {!isActive ? (
-             <button 
-               onClick={() => setShowGantiModal(true)}
-               className="px-4 py-1.5 bg-amber-500/10 hover:bg-amber-500 border border-amber-500/20 hover:border-amber-500 text-amber-500 hover:text-black text-[10px] font-black uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(245,158,11,0)] hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]"
-             >
-               Ganti
-             </button>
+             <div className="flex flex-col items-start gap-1">
+               <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">Biaya Konstitusi</span>
+               <div className="flex items-center gap-3">
+                 <span className="text-xs font-black text-zinc-400 tabular-nums">{(RELIGION_PRICES[religion] || 0).toLocaleString('id-ID')}</span>
+                 <button 
+                   onClick={() => setShowGantiModal(true)}
+                   className="px-4 py-1.5 bg-amber-500/10 hover:bg-amber-500 border border-amber-500/20 hover:border-amber-500 text-amber-500 hover:text-black text-[10px] font-black uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(245,158,11,0)] hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                 >
+                   Ganti
+                 </button>
+               </div>
+             </div>
            ) : (
              <div className="flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.8)]"></div>
@@ -141,6 +148,7 @@ export function ReligionCard({ religion, isActive, countryData, activeMenu, setA
       {showGantiModal && (
         <GantiAgamaModals 
           religion={religion}
+          cost={RELIGION_PRICES[religion]}
           onClose={() => setShowGantiModal(false)}
           onConfirm={() => {
             // Persist the religion change

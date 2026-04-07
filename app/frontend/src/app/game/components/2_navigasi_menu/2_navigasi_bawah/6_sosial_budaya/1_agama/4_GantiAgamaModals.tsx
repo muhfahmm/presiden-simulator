@@ -1,14 +1,32 @@
 "use client"
 
-import { X, AlertTriangle, CheckCircle } from "lucide-react"
+import { X, AlertTriangle, CheckCircle, Coins } from "lucide-react"
+import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
+import { useState, useEffect } from "react";
 
 interface GantiAgamaModalsProps {
   religion: string;
+  cost: number;
   onClose: () => void;
   onConfirm: () => void;
 }
 
-export function GantiAgamaModals({ religion, onClose, onConfirm }: GantiAgamaModalsProps) {
+export function GantiAgamaModals({ religion, cost, onClose, onConfirm }: GantiAgamaModalsProps) {
+  const [userBudget, setUserBudget] = useState(budgetStorage.getBudget());
+  const isInsufficient = userBudget < cost;
+
+  useEffect(() => {
+    const handleUpdate = () => setUserBudget(budgetStorage.getBudget());
+    window.addEventListener('budget_storage_updated', handleUpdate);
+    return () => window.removeEventListener('budget_storage_updated', handleUpdate);
+  }, []);
+
+  const handleConfirmAction = () => {
+    if (isInsufficient) return;
+    budgetStorage.updateBudget(-cost);
+    onConfirm();
+  };
+
   return (
     <div className="absolute inset-0 z-30 bg-zinc-950/98 backdrop-blur-3xl flex flex-col p-6 animate-in fade-in zoom-in-95 duration-300">
       {/* Header */}
@@ -29,27 +47,46 @@ export function GantiAgamaModals({ religion, onClose, onConfirm }: GantiAgamaMod
         <p className="text-[13px] font-bold text-zinc-300 leading-relaxed tracking-tight font-sans">
           Apakah Anda yakin ingin menetapkan <span className="text-amber-500 italic uppercase">"{religion}"</span> sebagai religi resmi negara?
         </p>
-        <div className="mt-4 p-3 bg-white/5 rounded-2xl border border-white/5">
+        <div className="mt-4 p-3 bg-white/5 rounded-2xl border border-white/5 space-y-3">
           <p className="text-[10px] text-zinc-500 font-medium leading-normal italic font-sans">
             "Perubahan religi konstitusional akan berdampak pada stabilitas sosial dan memerlukan penyesuaian kebijakan nasional."
           </p>
+          <div className={`flex items-center justify-between p-2.5 rounded-xl border ${isInsufficient ? 'bg-rose-500/10 border-rose-500/30' : 'bg-emerald-500/10 border-emerald-500/30'}`}>
+            <div className="flex items-center gap-2">
+              <Coins className={`h-3.5 w-3.5 ${isInsufficient ? 'text-rose-500' : 'text-emerald-500'}`} />
+              <span className={`text-[9px] font-black uppercase tracking-widest ${isInsufficient ? 'text-rose-500' : 'text-emerald-500'}`}>Biaya Transisi</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className={`text-xs font-black tabular-nums ${isInsufficient ? 'text-rose-400' : 'text-white'}`}>
+                {cost.toLocaleString('id-ID')}
+              </span>
+              <button
+                onClick={handleConfirmAction}
+                disabled={isInsufficient}
+                className={`px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-2 font-sans ${
+                  isInsufficient ? 'bg-zinc-800 text-zinc-600 grayscale cursor-not-allowed border border-zinc-700 shadow-none' : 'bg-amber-500 text-black shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:bg-amber-400 active:scale-95'
+                }`}
+              >
+                <CheckCircle className="h-3.5 w-3.5" />
+                {isInsufficient ? 'Dana Kurang' : 'Tetapkan'}
+              </button>
+            </div>
+          </div>
+          {isInsufficient && (
+            <p className="text-[9px] text-rose-500 font-bold uppercase tracking-tight animate-pulse">
+              Dana Negara Tidak Mencukupi untuk Perubahan Ini
+            </p>
+          )}
         </div>
       </div>
 
       {/* Footer Buttons */}
-      <div className="mt-auto grid grid-cols-2 gap-3 pt-4">
+      <div className="mt-auto pt-4">
         <button
           onClick={onClose}
-          className="py-3 bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer active:scale-95 font-sans"
+          className="w-full py-3 bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer active:scale-95 font-sans"
         >
           Batalkan
-        </button>
-        <button
-          onClick={onConfirm}
-          className="py-3 bg-amber-500 text-black rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:bg-amber-400 active:scale-95 flex items-center justify-center gap-2 font-sans"
-        >
-          <CheckCircle className="h-3.5 w-3.5" />
-          Tetapkan
         </button>
       </div>
     </div>
