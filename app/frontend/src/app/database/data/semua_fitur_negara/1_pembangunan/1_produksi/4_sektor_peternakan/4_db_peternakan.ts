@@ -8,8 +8,8 @@ export const peternakanRate = {
     deskripsi: "Peternakan Unggas",
     produksi: 150000,
     satuan: "EKOR",
-    waktu_pembangunan: 15,
-    biaya_pembangunan: 25000,
+    waktu_pembangunan: 7,
+    biaya_pembangunan: 12000000,
     lowongan_kerja: 1500,
     konsumsi_listrik: 15
   },
@@ -19,8 +19,8 @@ export const peternakanRate = {
     deskripsi: "Peternakan Sapi Perah",
     produksi: 75000,
     satuan: "LITER",
-    waktu_pembangunan: 30,
-    biaya_pembangunan: 38000,
+    waktu_pembangunan: 15,
+    biaya_pembangunan: 28000000,
     lowongan_kerja: 2500,
     konsumsi_listrik: 25
   },
@@ -30,8 +30,8 @@ export const peternakanRate = {
     deskripsi: "Peternakan Sapi Potong",
     produksi: 12000,
     satuan: "EKOR",
-    waktu_pembangunan: 45,
-    biaya_pembangunan: 45000,
+    waktu_pembangunan: 20,
+    biaya_pembangunan: 35000000,
     lowongan_kerja: 2800,
     konsumsi_listrik: 20
   },
@@ -41,8 +41,8 @@ export const peternakanRate = {
     deskripsi: "Peternakan Domba & Kambing",
     produksi: 18000,
     satuan: "EKOR",
-    waktu_pembangunan: 30,
-    biaya_pembangunan: 32000,
+    waktu_pembangunan: 10,
+    biaya_pembangunan: 18000000,
     lowongan_kerja: 1800,
     konsumsi_listrik: 18
   }

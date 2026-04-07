@@ -8,8 +8,8 @@ export const manufakturRate = {
     deskripsi: "Pabrik Semikonduktor",
     produksi: 150,
     satuan: "UNIT",
-    waktu_pembangunan: 45,
-    biaya_pembangunan: 350000,
+    waktu_pembangunan: 360,
+    biaya_pembangunan: 150000000,
     lowongan_kerja: 15000,
     konsumsi_listrik: 650
   },
@@ -19,8 +19,8 @@ export const manufakturRate = {
     deskripsi: "Pabrik Mobil",
     produksi: 5500,
     satuan: "UNIT",
-    waktu_pembangunan: 60,
-    biaya_pembangunan: 180000,
+    waktu_pembangunan: 240,
+    biaya_pembangunan: 85000000,
     lowongan_kerja: 35000,
     konsumsi_listrik: 420
   },
@@ -30,8 +30,8 @@ export const manufakturRate = {
     deskripsi: "Pabrik Motor",
     produksi: 18000,
     satuan: "UNIT",
-    waktu_pembangunan: 30,
-    biaya_pembangunan: 95000,
+    waktu_pembangunan: 120,
+    biaya_pembangunan: 45000000,
     lowongan_kerja: 22000,
     konsumsi_listrik: 280
   },
@@ -41,8 +41,8 @@ export const manufakturRate = {
     deskripsi: "Pabrik Logam (Smelter)",
     produksi: 35000,
     satuan: "TON",
-    waktu_pembangunan: 45,
-    biaya_pembangunan: 145000,
+    waktu_pembangunan: 180,
+    biaya_pembangunan: 95000000,
     lowongan_kerja: 12000,
     konsumsi_listrik: 950
   },
@@ -52,8 +52,8 @@ export const manufakturRate = {
     deskripsi: "Pabrik Beton & Semen",
     produksi: 95000,
     satuan: "TON",
-    waktu_pembangunan: 30,
-    biaya_pembangunan: 75000,
+    waktu_pembangunan: 90,
+    biaya_pembangunan: 35000000,
     lowongan_kerja: 8000,
     konsumsi_listrik: 580
   },
@@ -63,8 +63,8 @@ export const manufakturRate = {
     deskripsi: "Penggergajian Kayu",
     produksi: 32000,
     satuan: "M3",
-    waktu_pembangunan: 15,
-    biaya_pembangunan: 45000,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 18000000,
     lowongan_kerja: 5000,
     konsumsi_listrik: 150
   },
@@ -74,8 +74,8 @@ export const manufakturRate = {
     deskripsi: "Pabrik Pupuk",
     produksi: 42000,
     satuan: "TON",
-    waktu_pembangunan: 30,
-    biaya_pembangunan: 68000,
+    waktu_pembangunan: 90,
+    biaya_pembangunan: 25000000,
     lowongan_kerja: 7000,
     konsumsi_listrik: 320
   }

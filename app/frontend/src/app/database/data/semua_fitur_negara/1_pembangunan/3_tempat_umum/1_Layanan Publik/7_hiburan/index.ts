@@ -13,8 +13,8 @@ export const hiburanRate: Record<string, any> = {
     produksi: 1,
     satuan: "Unit",
     deskripsi: "Kompleks Bioskop Nasional",
-    waktu_pembangunan: 45,
-    biaya_pembangunan: 55000,
+    waktu_pembangunan: 120,
+    biaya_pembangunan: 35000000,
     lowongan_kerja: 2500,
     konsumsi_listrik: 120
   },
@@ -24,8 +24,8 @@ export const hiburanRate: Record<string, any> = {
     produksi: 1,
     satuan: "Unit",
     deskripsi: "Gedung Teater & Seni Pertunjukan Nasional",
-    waktu_pembangunan: 60,
-    biaya_pembangunan: 85000,
+    waktu_pembangunan: 150,
+    biaya_pembangunan: 65000000,
     lowongan_kerja: 3500,
     konsumsi_listrik: 150
   },

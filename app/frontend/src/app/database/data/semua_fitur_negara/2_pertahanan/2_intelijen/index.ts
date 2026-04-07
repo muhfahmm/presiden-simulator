@@ -10,7 +10,7 @@ export const intelijenRate = {
     dataKey: "sistem_satelit",
     label: "Sistem Satelit Intelijen",
     deskripsi: "Sistem Satelit Intelijen Strategis Nasional",
-    biaya_pembangunan: 850000,
+    biaya_pembangunan: 150000000,
     waktu_pembangunan: 90,
 
     lowongan_kerja: 4500,
@@ -21,8 +21,8 @@ export const intelijenRate = {
     dataKey: "jaringan_radar",
     label: "Jaringan Radar Nasional",
     deskripsi: "Jaringan Radar Pertahanan Nasional Terpadu",
-    biaya_pembangunan: 450000,
-    waktu_pembangunan: 45,
+    biaya_pembangunan: 85000000,
+    waktu_pembangunan: 30,
 
     lowongan_kerja: 3500,
     konsumsi_listrik: 550,
@@ -32,7 +32,7 @@ export const intelijenRate = {
     dataKey: "operasi_siber",
     label: "Pusat Operasi Siber",
     deskripsi: "Pusat Operasi Intelijen & Pertahanan Siber",
-    biaya_pembangunan: 350000,
+    biaya_pembangunan: 65000000,
     waktu_pembangunan: 60,
 
     lowongan_kerja: 12000,

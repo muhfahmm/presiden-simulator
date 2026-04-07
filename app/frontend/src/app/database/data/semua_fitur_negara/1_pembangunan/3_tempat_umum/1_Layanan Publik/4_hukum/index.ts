@@ -19,8 +19,8 @@ export const hukumRate: Record<string, any> = {
     produksi: 1,
     satuan: "Unit",
     deskripsi: "Pusat Peradilan & Kejaksaan Agung",
-    waktu_pembangunan: 45,
-    biaya_pembangunan: 85000,
+    waktu_pembangunan: 30,
+    biaya_pembangunan: 85000000,
     lowongan_kerja: 5500,
     konsumsi_listrik: 150
   },
@@ -31,7 +31,7 @@ export const hukumRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Pusat Bantuan Hukum Nasional",
     waktu_pembangunan: 15,
-    biaya_pembangunan: 25000,
+    biaya_pembangunan: 25000000,
     lowongan_kerja: 1200,
     konsumsi_listrik: 45
   },

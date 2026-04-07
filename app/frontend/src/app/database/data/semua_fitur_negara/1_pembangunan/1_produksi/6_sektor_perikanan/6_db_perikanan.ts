@@ -8,8 +8,8 @@ export const perikananRate = {
     deskripsi: "Tambang Udang Intensif",
     produksi: 75000,
     satuan: "KG",
-    waktu_pembangunan: 22,
-    biaya_pembangunan: 32000,
+    waktu_pembangunan: 15,
+    biaya_pembangunan: 32000000,
     lowongan_kerja: 3500,
     konsumsi_listrik: 25
   },
@@ -19,8 +19,8 @@ export const perikananRate = {
     deskripsi: "Budidaya Ikan Air Tawar",
     produksi: 120000,
     satuan: "KG",
-    waktu_pembangunan: 22,
-    biaya_pembangunan: 28000,
+    waktu_pembangunan: 10,
+    biaya_pembangunan: 20000000,
     lowongan_kerja: 4500,
     konsumsi_listrik: 18
   },
@@ -30,8 +30,8 @@ export const perikananRate = {
     deskripsi: "Budidaya Kerang & Mutiara",
     produksi: 15000,
     satuan: "GRAM",
-    waktu_pembangunan: 60,
-    biaya_pembangunan: 65000,
+    waktu_pembangunan: 30,
+    biaya_pembangunan: 55000000,
     lowongan_kerja: 2500,
     konsumsi_listrik: 45
   }

@@ -8,8 +8,8 @@ export const olahanPanganRate = {
     deskripsi: "Pabrik Air Mineral",
     produksi: 250000,
     satuan: "LITER",
-    waktu_pembangunan: 15,
-    biaya_pembangunan: 32000,
+    waktu_pembangunan: 7,
+    biaya_pembangunan: 20000000,
     lowongan_kerja: 4500,
     konsumsi_listrik: 35
   },
@@ -19,8 +19,8 @@ export const olahanPanganRate = {
     deskripsi: "Pabrik Gula",
     produksi: 45000,
     satuan: "TON",
-    waktu_pembangunan: 30,
-    biaya_pembangunan: 65000,
+    waktu_pembangunan: 20,
+    biaya_pembangunan: 65000000,
     lowongan_kerja: 8000,
     konsumsi_listrik: 95
   },
@@ -30,8 +30,8 @@ export const olahanPanganRate = {
     deskripsi: "Pabrik Roti",
     produksi: 150000,
     satuan: "UNIT",
-    waktu_pembangunan: 15,
-    biaya_pembangunan: 28000,
+    waktu_pembangunan: 7,
+    biaya_pembangunan: 18000000,
     lowongan_kerja: 3500,
     konsumsi_listrik: 42
   },
@@ -42,7 +42,7 @@ export const olahanPanganRate = {
     produksi: 12000,
     satuan: "TON",
     waktu_pembangunan: 30,
-    biaya_pembangunan: 85000,
+    biaya_pembangunan: 75000000,
     lowongan_kerja: 6500,
     konsumsi_listrik: 120
   },
@@ -53,7 +53,7 @@ export const olahanPanganRate = {
     produksi: 550000,
     satuan: "UNIT",
     waktu_pembangunan: 15,
-    biaya_pembangunan: 45000,
+    biaya_pembangunan: 45000000,
     lowongan_kerja: 7500,
     konsumsi_listrik: 85
   },
@@ -63,8 +63,8 @@ export const olahanPanganRate = {
     deskripsi: "Pabrik Minyak Goreng",
     produksi: 95000,
     satuan: "TON",
-    waktu_pembangunan: 22,
-    biaya_pembangunan: 55000,
+    waktu_pembangunan: 20,
+    biaya_pembangunan: 55000000,
     lowongan_kerja: 6000,
     konsumsi_listrik: 75
   },
@@ -74,8 +74,8 @@ export const olahanPanganRate = {
     deskripsi: "Pabrik Pengolahan Susu",
     produksi: 180000,
     satuan: "LITER",
-    waktu_pembangunan: 20,
-    biaya_pembangunan: 42000,
+    waktu_pembangunan: 10,
+    biaya_pembangunan: 35000000,
     lowongan_kerja: 5000,
     konsumsi_listrik: 60
   },
@@ -85,8 +85,8 @@ export const olahanPanganRate = {
     deskripsi: "Pabrik Pakan Ternak",
     produksi: 85000,
     satuan: "TON",
-    waktu_pembangunan: 20,
-    biaya_pembangunan: 35000,
+    waktu_pembangunan: 10,
+    biaya_pembangunan: 25000000,
     lowongan_kerja: 4500,
     konsumsi_listrik: 55
   },
@@ -96,8 +96,8 @@ export const olahanPanganRate = {
     deskripsi: "Pabrik Pengalengan Ikan",
     produksi: 25000,
     satuan: "TON",
-    waktu_pembangunan: 22,
-    biaya_pembangunan: 48000,
+    waktu_pembangunan: 10,
+    biaya_pembangunan: 32000000,
     lowongan_kerja: 5500,
     konsumsi_listrik: 65
   },
@@ -107,8 +107,8 @@ export const olahanPanganRate = {
     deskripsi: "Pabrik Pengolahan Kopi & Teh",
     produksi: 35000,
     satuan: "KG",
-    waktu_pembangunan: 15,
-    biaya_pembangunan: 30000,
+    waktu_pembangunan: 7,
+    biaya_pembangunan: 15000000,
     lowongan_kerja: 4000,
     konsumsi_listrik: 45
   }

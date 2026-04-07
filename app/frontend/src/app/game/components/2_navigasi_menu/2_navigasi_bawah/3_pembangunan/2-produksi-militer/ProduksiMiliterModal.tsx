@@ -672,7 +672,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
                     <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><TrendingUp size={12} /></div>
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Produksi</span>
                   </div>
-                  <span className="text-[14px] font-black text-amber-500">+{Math.floor(item.tarif)} <span className="text-[9px] text-amber-500/50 italic opacity-80">{item.unit}/HARI</span></span>
+                  <span className="text-[14px] font-black text-amber-500">+{Math.floor(item.tarif || 0).toLocaleString('id-ID')} <span className="text-[9px] text-amber-500/50 italic opacity-80">{item.unit}/HARI</span></span>
                 </div>
               )}
 
@@ -682,7 +682,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
                     <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-500"><Zap size={12} /></div>
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                   </div>
-                  <span className="text-[14px] font-black text-rose-500">{item.consumption} MW</span>
+                  <span className="text-[14px] font-black text-rose-500">{item.consumption?.toLocaleString('id-ID')} MW</span>
                 </div>
               )}
 
@@ -744,7 +744,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
             {item.desc}
           </div>
           <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-            Terbangun: {item.count} Unit {item.consumption > 0 && `(${(item.count * item.consumption).toLocaleString('id-ID')} MW)`}
+            Terbangun: {(item.count || 0).toLocaleString('id-ID')} Unit {item.consumption > 0 && `(${(item.count * item.consumption).toLocaleString('id-ID')} MW)`}
           </div>
         </div>
       </div>
@@ -762,9 +762,9 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
               <div className="p-1.5 bg-amber-500/10 rounded-lg">
                 <TrendingUp size={12} className="text-amber-500" />
               </div>
-              <span className="text-[12px] font-bold text-amber-500/90">
-                Produksi: +{Math.floor(item.tarif)} {item.unit}/bangunan
-              </span>
+               <span className="text-[12px] font-bold text-amber-500/90">
+                 Produksi: +{Math.floor(item.tarif || 0).toLocaleString('id-ID')} {item.unit}/bangunan
+               </span>
             </div>
           )}
 
@@ -774,9 +774,9 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
                   <div className="p-1.5 bg-rose-500/10 rounded-lg">
                      <Zap size={12} className="text-rose-500/90" />
                   </div>
-                  <span className="text-[12px] font-bold text-rose-500/80">
-                     Konsumsi: {Math.max(item.consumption, 1)} MW/bangunan
-                  </span>
+                   <span className="text-[12px] font-bold text-rose-500/80">
+                     Konsumsi: {Math.max(item.consumption || 0, 1).toLocaleString('id-ID')} MW/bangunan
+                   </span>
                </div>
                <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
                   <div className="p-1.5 bg-rose-500/5 rounded-lg">
@@ -805,7 +805,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
               <div className="p-1.5 bg-zinc-800/50 rounded-lg">
                 <Clock size={12} className="text-zinc-500" />
               </div>
-              <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
+              <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime?.toLocaleString('id-ID')} Hari</span>
             </div>
           )}
         </div>
@@ -849,7 +849,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
               <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span>
-              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
+              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost?.toLocaleString('id-ID')}</span>
             </div>
             <button
               onClick={(e) => { e.stopPropagation(); onBuild(item); }}

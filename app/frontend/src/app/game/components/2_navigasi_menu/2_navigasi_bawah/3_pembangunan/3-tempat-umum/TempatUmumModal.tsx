@@ -958,7 +958,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
                 <div className="p-1.5 bg-zinc-800/50 rounded-lg">
                   <Clock size={12} className="text-zinc-500" />
                 </div>
-                <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
+                <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime?.toLocaleString('id-ID')} Hari</span>
               </div>
             </div>
           )}

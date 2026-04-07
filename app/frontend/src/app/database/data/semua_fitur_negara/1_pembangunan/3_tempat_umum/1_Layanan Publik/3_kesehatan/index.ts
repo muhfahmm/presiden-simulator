@@ -16,8 +16,8 @@ export const kesehatanRate: Record<string, any> = {
     produksi: 1,
     satuan: "Unit",
     deskripsi: "Rumah Sakit Umum Pusat (RSUP)",
-    waktu_pembangunan: 90,
-    biaya_pembangunan: 250000,
+    waktu_pembangunan: 45,
+    biaya_pembangunan: 110000000,
     lowongan_kerja: 18000,
     konsumsi_listrik: 850
   },
@@ -27,8 +27,8 @@ export const kesehatanRate: Record<string, any> = {
     produksi: 1,
     satuan: "Unit",
     deskripsi: "Rumah Sakit Daerah (RSUD)",
-    waktu_pembangunan: 22,
-    biaya_pembangunan: 55000,
+    waktu_pembangunan: 30,
+    biaya_pembangunan: 45000000,
     lowongan_kerja: 4500,
     konsumsi_listrik: 120
   },
@@ -39,7 +39,7 @@ export const kesehatanRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Laboratorium Medik & Diagnostik Nasional",
     waktu_pembangunan: 15,
-    biaya_pembangunan: 32000,
+    biaya_pembangunan: 25000000,
     lowongan_kerja: 2500,
     konsumsi_listrik: 75
   },
