@@ -40,7 +40,7 @@ export function IdeologyCard({ ideology, isActive, countryData, activeMenu, setA
     if (activeMenu === `Menu:Ideologi:${ideology}`) {
       setShowInfo(true);
       setShowEffectDetail(false);
-    } else if (activeMenu.startsWith(`Menu:Ideologi:${ideology}:`)) {
+    } else if (activeMenu && activeMenu.startsWith(`Menu:Ideologi:${ideology}:`)) {
       setShowInfo(true);
       const subPart = activeMenu.split(":")[3]; 
       if (subPart) {
@@ -51,7 +51,7 @@ export function IdeologyCard({ ideology, isActive, countryData, activeMenu, setA
            setShowEffectDetail(true);
         }
       }
-    } else if (showInfo && !activeMenu.startsWith(`Menu:Ideologi:${ideology}`)) {
+    } else if (showInfo && activeMenu && !activeMenu.startsWith(`Menu:Ideologi:${ideology}`)) {
       if (!showEffectDetail) setShowInfo(false);
     }
   }, [activeMenu, ideology, effects]);

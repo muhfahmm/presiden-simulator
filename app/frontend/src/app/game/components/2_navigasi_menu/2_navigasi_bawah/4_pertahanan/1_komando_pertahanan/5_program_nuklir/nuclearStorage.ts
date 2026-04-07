@@ -181,8 +181,19 @@ export const nuclearStorage = {
        data.lastProcessedDate = gameDate.toISOString();
        
        if (data.isEnriching) {
-          // Enrichment Speed (scaled by Lab Level)
-          const gainPerDay = 0.1 * data.labLevel; // 0.1% for level 1, 0.3% for level 3
+          let innovationMultiplier = 1;
+          try {
+            const { ideologyStorage } = require("../../6_sosial_budaya/2_ideologi/ideologyStorage");
+            const { KOMUNISME_INNOVATION_PENALTY } = require("../../6_sosial_budaya/2_ideologi/logic/2_komunisme/2_minus/minus");
+            const session = gameStorage.getSession() as any;
+            const currentIdeology = ideologyStorage.getCurrentIdeology(session?.country || "Indonesia");
+            if (currentIdeology === "Komunisme") innovationMultiplier = KOMUNISME_INNOVATION_PENALTY;
+          } catch (e) {
+            console.error("Ideology check failed in nuclearStorage", e);
+          }
+
+          // Enrichment Speed (scaled by Lab Level & Ideology)
+          const gainPerDay = (0.1 * data.labLevel) * innovationMultiplier; 
           data.uraniumPurity = Math.min(100, data.uraniumPurity + gainPerDay);
           
           // Waste Generation

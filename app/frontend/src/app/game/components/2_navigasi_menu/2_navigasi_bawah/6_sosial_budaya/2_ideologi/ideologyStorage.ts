@@ -39,5 +39,14 @@ export const ideologyStorage = {
     
     // Log info untuk debugging
     console.log(`[IdeologyStorage] National ideology updated to: ${newIdeology}`);
+  },
+
+  /**
+   * Menghapus status ideologi nasional (digunakan saat restart game).
+   */
+  clear: () => {
+    if (typeof window === "undefined") return;
+    localStorage.removeItem(IDEOLOGY_STORAGE_KEY);
+    console.log(`[IdeologyStorage] National ideology storage cleared.`);
   }
 };

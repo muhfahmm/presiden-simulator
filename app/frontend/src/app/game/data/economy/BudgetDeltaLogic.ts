@@ -7,6 +7,11 @@ import { calculateGoldMineRevenue } from "@/app/game/components/1_navbar/3_kas_n
 import { calculateTempatUmumRevenue } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/logic/TempatUmumRevenueLogic";
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 import { PROTESTAN_GROWTH_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/2_protestan/1_plus/plus";
+import { ideologyStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/ideologyStorage";
+import { KAPITALISME_TREASURY_GROWTH_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/logic/3_kapitalisme/1_plus/plus";
+import { SOSIALISME_TREASURY_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/logic/4_sosialisme/2_minus/minus";
+import { LIBERALISME_COMMERCIAL_GROWTH_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/logic/5_liberalisme/1_plus/plus";
+import { NASIONALISME_IMPORT_COST_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/logic/7_nasionalisme/2_minus/minus";
 import { ORTODOKS_RAW_PRODUCTION_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/4_ortodoks/1_plus/plus";
 import { HINDU_AGRICULTURE_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/5_hindu/1_plus/plus";
 import { HINDU_LIVESTOCK_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/5_hindu/2_minus/minus";
@@ -193,6 +198,33 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
     const baseHeavyIndustryAnnual = (revenues.domestic["pajak_manufaktur"] || revenues.domestic["manufaktur"] || 0) + 
                                     (revenues.domestic["pajak_ekstraksi"] || revenues.domestic["ekstraksi"] || 0);
     revenues.other["penalti_industri_taoisme"] = baseHeavyIndustryAnnual * TAOISME_HEAVY_INDUSTRY_PENALTY;
+  }
+
+  // 1.9 Capitalism Growth Bonus (+30% of tax revenue)
+  const currentIdeology = ideologyStorage.getCurrentIdeology(countryData.ideology);
+  if (currentIdeology === "Kapitalisme") {
+    const baseTaxRevenueAnnual = Object.values(revenues.domestic).reduce((a, b) => a + b, 0) + 
+                                Object.values(revenues.trade).reduce((a, b) => a + b, 0);
+    revenues.other["efisiensi_pasar_kapitalisme"] = baseTaxRevenueAnnual * KAPITALISME_TREASURY_GROWTH_BONUS;
+  }
+
+  // 1.10 Sosialisme Treasury Accumulation Penalty (-15% of tax revenue)
+  if (currentIdeology === "Sosialisme") {
+    const baseTaxRevenueAnnual = Object.values(revenues.domestic).reduce((a, b) => a + b, 0) + 
+                                Object.values(revenues.trade).reduce((a, b) => a + b, 0);
+    revenues.other["penalti_kas_sosialisme"] = baseTaxRevenueAnnual * SOSIALISME_TREASURY_PENALTY;
+  }
+
+  // 1.11 Liberalisme Commercial Growth Bonus (+25% of commercial revenue)
+  if (currentIdeology === "Liberalisme") {
+    const serviceRevenueAnnual = revenues.other["sektor_jasa"] || 0;
+    revenues.other["pertumbuhan_komersial_liberalisme"] = serviceRevenueAnnual * LIBERALISME_COMMERCIAL_GROWTH_BONUS;
+  }
+
+  // 1.12 Nasionalisme Import Cost Penalty (+25% of Import Tariff cost - applied as negative adjustment to revenue)
+  if (currentIdeology === "Nasionalisme") {
+    const importTariffAnnual = revenues.trade["tarif_impor"] || 0;
+    revenues.other["penalti_impor_nasionalisme"] = -(importTariffAnnual * NASIONALISME_IMPORT_COST_PENALTY);
   }
 
   const totalAnnualRevenue = 

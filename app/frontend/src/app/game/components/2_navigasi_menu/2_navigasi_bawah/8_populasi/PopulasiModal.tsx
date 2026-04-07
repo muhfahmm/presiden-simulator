@@ -71,7 +71,15 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
   const basicPriceAvg = (
     (prices.harga_beras + prices.harga_listrik + prices.harga_air + prices.harga_bbm) / 4
   );
-  const livingCostIndex = Math.min(100, Math.max(5, (monthlyIncomeProxy / (basicPriceAvg * 2)) * 10));
+  const { ideologyStorage } = require("../6_sosial_budaya/2_ideologi/ideologyStorage");
+  const { SOSIALISME_WELFARE_BONUS } = require("../6_sosial_budaya/2_ideologi/logic/4_sosialisme/1_plus/plus");
+  const currentIdeology = ideologyStorage.getCurrentIdeology(country.ideology);
+
+  let livingCostIndex = Math.min(100, Math.max(5, (monthlyIncomeProxy / (basicPriceAvg * 2)) * 10));
+  if (currentIdeology === "Sosialisme") {
+    livingCostIndex = Math.min(100, livingCostIndex * SOSIALISME_WELFARE_BONUS);
+  }
+
 
   const currentDateMs = getStoredGameDate().getTime();
   const diffTime = Math.abs(currentDateMs - INITIAL_GAME_DATE.getTime());
@@ -160,11 +168,16 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
       }
     });
 
+    const { ideologyStorage } = require("../6_sosial_budaya/2_ideologi/ideologyStorage");
+    const currentIdeology = ideologyStorage.getCurrentIdeology(country.ideology);
+    const isKomunisme = currentIdeology === "Komunisme";
+
     return {
       totalVacancies: totalVacanciesCount,
       totalEmployed: totalEmployedCount,
       // Base unemployment rate is now more responsive to expanded sector coverage
-      unemploymentRate: Math.max(1.8, 100 - (91.5 + (totalEmployedCount / population * 100)))
+      // Communism always has 0% unemployment
+      unemploymentRate: isKomunisme ? 0 : Math.max(1.8, 100 - (91.5 + (totalEmployedCount / population * 100)))
     };
   };
 
@@ -486,6 +499,33 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
                     <div className={`h-1.5 w-1.5 rounded-full animate-pulse ${crimeRate < 10 ? 'bg-emerald-400' : 'bg-amber-400'}`} />
                     <span className="text-[7px] font-black uppercase tracking-widest">{crimeRate < 10 ? 'SAFE' : 'RISK'}</span>
                   </div>
+                </div>
+              </div>
+
+              {/* SOCIAL INEQUALITY Card */}
+              <div className="p-6 rounded-3xl bg-zinc-900 border border-zinc-800/50 shadow-xl group hover:border-orange-500/30 transition-all relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-orange-500/50" />
+                <div className="flex items-start justify-between mb-6">
+                  <div className="p-3 rounded-2xl bg-orange-500/10 border border-orange-500/20 text-orange-400">
+                    <Gavel className="h-5 w-5" />
+                  </div>
+                  <div className="text-right">
+                    <span className={`text-2xl font-black text-white italic tabular-nums`}>
+                      {(() => {
+                        const { ideologyStorage } = require("../6_sosial_budaya/2_ideologi/ideologyStorage");
+                        const { KAPITALISME_INEQUALITY_PENALTY } = require("../6_sosial_budaya/2_ideologi/logic/3_kapitalisme/2_minus/minus");
+                        const currentIdeology = ideologyStorage.getCurrentIdeology(country.ideology);
+                        const baseGini = (country.hukum as any)?.kesenjangan_sosial || 38.0;
+                        const isKapitalisme = currentIdeology === "Kapitalisme";
+                        return (isKapitalisme ? baseGini * KAPITALISME_INEQUALITY_PENALTY : baseGini).toFixed(1);
+                      })()}
+                    </span>
+                    <p className="text-[8px] font-black text-zinc-500 uppercase tracking-widest mt-1">Indeks Gini</p>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-1">Kesenjangan Sosial</h4>
+                  <p className="text-sm text-zinc-300 font-bold italic transition-colors group-hover:text-white">Distribusi Pendapatan Nasional</p>
                 </div>
               </div>
             </div>

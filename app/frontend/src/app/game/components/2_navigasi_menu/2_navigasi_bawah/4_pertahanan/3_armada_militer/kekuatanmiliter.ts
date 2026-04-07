@@ -26,6 +26,7 @@ export const KAMIKAZE_POWER_PER_UNIT = 150;
 export const TRANSPORT_POWER_PER_UNIT = 300;
 
 import { SHINTO_ALUTSISTA_QUALITY } from "../../6_sosial_budaya/1_agama/logic/11_shinto/1_plus/plus";
+import { NASIONALISME_MILITARY_DAMAGE_BONUS } from "../../6_sosial_budaya/2_ideologi/logic/7_nasionalisme/1_plus/plus";
 
 
 /**
@@ -105,9 +106,10 @@ export const calculateTransportPower = (count: number): number => count * TRANSP
  * @param armadaData Data armada_militer dari objek negara
  * @param deltas (Optional) Data buildingDeltas untuk menghitung bangunan yang baru selesai/sedang dikonstruksi
  * @param religion (Optional) Agama negara untuk efek kualitas alutsista
+ * @param ideology (Optional) Ideologi negara untuk efek kekuatan militer
  * @returns Object berisi total kekuatan masing-masing matra dan total gabungan
  */
-export const calculateTotalMilitaryPower = (armadaData: any, deltas: Record<string, any> = {}, religion?: string) => {
+export const calculateTotalMilitaryPower = (armadaData: any, deltas: Record<string, any> = {}, religion?: string, ideology?: string) => {
   if (!armadaData) return { darat: 0, laut: 0, udara: 0, total: 0 };
 
   const totalDarat =
@@ -139,20 +141,22 @@ export const calculateTotalMilitaryPower = (armadaData: any, deltas: Record<stri
     ((armadaData.udara?.drone_kamikaze || 0) + (deltas["kamikaze"] || 0)) * KAMIKAZE_POWER_PER_UNIT +
     ((armadaData.udara?.pesawat_angkut || 0) + (deltas["transport"] || 0)) * TRANSPORT_POWER_PER_UNIT;
 
-  const multiplier = religion === "Shinto" ? SHINTO_ALUTSISTA_QUALITY : 1.0;
+  const religionMultiplier = religion === "Shinto" ? SHINTO_ALUTSISTA_QUALITY : 1.0;
+  const ideologyMultiplier = ideology === "Nasionalisme" ? (1.0 + NASIONALISME_MILITARY_DAMAGE_BONUS) : 1.0;
+  const totalMultiplier = religionMultiplier * ideologyMultiplier;
 
   return {
-    darat: totalDarat * multiplier,
-    laut: totalLaut * multiplier,
-    udara: totalUdara * multiplier,
-    total: (totalDarat + totalLaut + totalUdara) * multiplier
+    darat: totalDarat * totalMultiplier,
+    laut: totalLaut * totalMultiplier,
+    udara: totalUdara * totalMultiplier,
+    total: (totalDarat + totalLaut + totalUdara) * totalMultiplier
   };
 };
 
 /**
  * Menghitung total kekuatan militer dari objek WarForces (pasukan yang dikirim).
  */
-export const calculateForcesPower = (forces: any, religion?: string) => {
+export const calculateForcesPower = (forces: any, religion?: string, ideology?: string) => {
   if (!forces) return { darat: 0, laut: 0, udara: 0, total: 0 };
 
   const totalDarat =
@@ -184,13 +188,14 @@ export const calculateForcesPower = (forces: any, religion?: string) => {
     (forces.udara?.drone_kamikaze || 0) * KAMIKAZE_POWER_PER_UNIT +
     (forces.udara?.pesawat_angkut || 0) * TRANSPORT_POWER_PER_UNIT;
 
-  const multiplier = religion === "Shinto" ? SHINTO_ALUTSISTA_QUALITY : 1.0;
+  const religionMultiplier = religion === "Shinto" ? SHINTO_ALUTSISTA_QUALITY : 1.0;
+  const ideologyMultiplier = ideology === "Nasionalisme" ? (1.0 + NASIONALISME_MILITARY_DAMAGE_BONUS) : 1.0;
+  const totalMultiplier = religionMultiplier * ideologyMultiplier;
 
   return {
-    darat: totalDarat * multiplier,
-    laut: totalLaut * multiplier,
-    udara: totalUdara * multiplier,
-    total: (totalDarat + totalLaut + totalUdara) * multiplier
+    darat: totalDarat * totalMultiplier,
+    laut: totalLaut * totalMultiplier,
+    udara: totalUdara * totalMultiplier,
+    total: (totalDarat + totalLaut + totalUdara) * totalMultiplier
   };
 };
-

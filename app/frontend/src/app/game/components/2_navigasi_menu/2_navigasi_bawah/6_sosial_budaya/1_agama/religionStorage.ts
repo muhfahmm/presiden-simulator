@@ -39,5 +39,14 @@ export const religionStorage = {
     
     // Log info untuk debugging
     console.log(`[ReligionStorage] National religion updated to: ${newReligion}`);
+  },
+
+  /**
+   * Menghapus status religi nasional (digunakan saat restart game).
+   */
+  clear: () => {
+    if (typeof window === "undefined") return;
+    localStorage.removeItem(RELIGION_STORAGE_KEY);
+    console.log(`[ReligionStorage] National religion storage cleared.`);
   }
 };

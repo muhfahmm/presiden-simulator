@@ -225,6 +225,36 @@ export const happinessStorage = {
       totalDailyDelta += KONGHUCU_PRESS_FREEDOM_PENALTY;
     }
 
+    // 7. Democracy Satisfaction Stability Bonus (+0.1% per day)
+    const { ideologyStorage } = require("../6_sosial_budaya/2_ideologi/ideologyStorage");
+    const { DEMOKRASI_SATISFACTION_DAILY_BONUS } = require("../6_sosial_budaya/2_ideologi/logic/1_demokrasi/1_plus/plus");
+    const { KONSERVATISME_SATISFACTION_DAILY_BONUS } = require("../6_sosial_budaya/2_ideologi/logic/6_konservatisme/1_plus/plus");
+    const { KAPITALISME_HAPPINESS_PENALTY } = require("../6_sosial_budaya/2_ideologi/logic/3_kapitalisme/2_minus/minus");
+    const { SOSIALISME_WELFARE_BONUS } = require("../6_sosial_budaya/2_ideologi/logic/4_sosialisme/1_plus/plus");
+    const currentIdeology = ideologyStorage.getCurrentIdeology(country.ideology);
+    
+    if (currentIdeology === "Demokrasi") {
+      totalDailyDelta += DEMOKRASI_SATISFACTION_DAILY_BONUS;
+    }
+    
+    // 8. Capitalism Satisfaction Penalty (-0.2% per day)
+    if (currentIdeology === "Kapitalisme") {
+      totalDailyDelta += KAPITALISME_HAPPINESS_PENALTY;
+    }
+
+    // 9. Conservatism Satisfaction Bonus (+0.1% per day)
+    if (currentIdeology === "Konservatisme") {
+      totalDailyDelta += KONSERVATISME_SATISFACTION_DAILY_BONUS;
+    }
+
+    // 10. Socialism Welfare Bonus (Small daily boost)
+    if (currentIdeology === "Sosialisme") {
+      // Socialism gives a small boost to daily satisfaction due to welfare (e.g. 0.05% per day)
+      // Since SOSIALISME_WELFARE_BONUS is 1.2 (20% bonus to welfare effect), 
+      // we can use a small constant for now or derive it.
+      totalDailyDelta += 0.0005; // 0.05% boost
+    }
+
     // Jika sudah di zona merah (< 40), efeknya dilipatduakan
     const isRedZone = stats.value < 40;
     if (isRedZone && totalDailyDelta < 0) totalDailyDelta *= 2;

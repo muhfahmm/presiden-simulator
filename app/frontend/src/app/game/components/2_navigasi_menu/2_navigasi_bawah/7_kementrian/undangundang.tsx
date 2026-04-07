@@ -1,32 +1,58 @@
 import { MOCK_LAWS, Law } from "./2_database_undang_undang/database_uu";
 import { getAiRecommendations } from "./2_database_undang_undang/ai_bot/routes";
-import { Sparkles, Brain, Target, Info, Scale, FileText, ShieldCheck, Zap, Heart, Briefcase, ChevronRight, Activity } from "lucide-react";
+import { Sparkles, Brain, Target, Info, Scale, FileText, ShieldCheck, Zap, Heart, Briefcase, ChevronRight, Activity, Coins, CheckCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { gameStorage } from "@/app/game/gamestorage";
-import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
-import { countries } from "@/app/database/data/negara/benua/index";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { calculatePopulationHappiness } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan";
+import { countries } from "@/app/database/data/negara/benua/index";
+import { lawStorage } from "./2_database_undang_undang/lawStorage";
+import { ideologyStorage } from "../6_sosial_budaya/2_ideologi/ideologyStorage";
+import { DEMOKRASI_POLITICAL_COST_MULTIPLIER } from "../6_sosial_budaya/2_ideologi/logic/1_demokrasi/2_minus/minus";
+
+const BASE_LEGISLATION_COST = 500000;
 
 export default function UndangUndangTab() {
   const [recommendations, setRecommendations] = useState<any[]>([]);
+  const [activeLawIds, setActiveLawIds] = useState<number[]>(lawStorage.getActiveLawIds());
+  const [userBudget, setUserBudget] = useState(budgetStorage.getBudget());
   
   // Ambil data real dari storage
   const session = gameStorage.getSession();
   const countryName = session?.country || "Indonesia";
   const currentCountry = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
   
+  const currentIdeology = ideologyStorage.getCurrentIdeology(currentCountry.ideology);
+  const isDemokrasi = currentIdeology === "Demokrasi";
+  const legislationCost = isDemokrasi ? BASE_LEGISLATION_COST * DEMOKRASI_POLITICAL_COST_MULTIPLIER : BASE_LEGISLATION_COST;
+
   const happiness = calculatePopulationHappiness();
-  const budget = budgetStorage.getBudget();
 
   useEffect(() => {
     const aiSession = { 
       approval_rating: happiness.global,
-      cash: budget
+      cash: userBudget
     };
     const recs = getAiRecommendations(currentCountry, aiSession);
     setRecommendations(recs);
+
+    const handleBudgetUpdate = () => setUserBudget(budgetStorage.getBudget());
+    const handleLawUpdate = () => setActiveLawIds(lawStorage.getActiveLawIds());
+    
+    window.addEventListener('budget_storage_updated', handleBudgetUpdate);
+    window.addEventListener('law_activated', handleLawUpdate);
+    return () => {
+      window.removeEventListener('budget_storage_updated', handleBudgetUpdate);
+      window.removeEventListener('law_activated', handleLawUpdate);
+    };
   }, []);
+
+  const handleSahkanLaw = (lawId: number) => {
+    if (userBudget < legislationCost) return;
+    
+    budgetStorage.updateBudget(-legislationCost);
+    lawStorage.activateLaw(lawId);
+  };
 
   const groupedLaws = MOCK_LAWS.reduce((acc, law) => {
     if (!acc[law.category]) acc[law.category] = [];
@@ -43,7 +69,8 @@ export default function UndangUndangTab() {
         </div>
         <div className="flex gap-6 mb-3">
           <StatBox label="Total UU" value={MOCK_LAWS.length} color="text-purple-400" />
-          <StatBox label="Rancangan" value={MOCK_LAWS.filter(l => l.status === "Rancangan").length} color="text-amber-400" />
+          <StatBox label="Rancangan" value={MOCK_LAWS.filter(l => !activeLawIds.includes(l.id)).length} color="text-amber-400" />
+          <StatBox label="Aktif" value={activeLawIds.length} color="text-emerald-400" />
         </div>
       </div>
 
@@ -104,14 +131,24 @@ export default function UndangUndangTab() {
               <div className="grid grid-cols-5 gap-6 px-1">
                 {laws.map((law) => {
                   const isRecommended = recommendations.some(r => r.lawId === law.id);
+                  const isActive = activeLawIds.includes(law.id);
+                  const isInsufficient = userBudget < legislationCost;
+
                   return (
                     <div 
                       key={law.id}
-                      className={`bg-zinc-950/60 border p-6 rounded-3xl transition-all hover:border-purple-500/50 group flex flex-col gap-5 relative overflow-hidden h-full min-h-[380px] shadow-2xl ${
-                        isRecommended ? 'border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.15)] ring-1 ring-purple-500/20' : 'border-zinc-900'
+                      className={`bg-zinc-950/60 border p-6 rounded-3xl transition-all group flex flex-col gap-5 relative overflow-hidden h-full min-h-[380px] shadow-2xl ${
+                        isActive 
+                          ? "border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/20"
+                          : isRecommended 
+                            ? 'border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.15)] ring-1 ring-purple-500/20 hover:border-purple-500' 
+                            : 'border-zinc-900 hover:border-purple-500/50'
                       }`}
                     >
-                      {isRecommended && (
+                      {isActive && (
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent z-20" />
+                      )}
+                      {isRecommended && !isActive && (
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent z-20" />
                       )}
                       
@@ -123,13 +160,13 @@ export default function UndangUndangTab() {
                         </div>
                         <div className="flex flex-col items-end gap-2">
                           <div className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-colors ${
-                            law.status === "Aktif" 
-                              ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400" 
+                            isActive 
+                              ? "bg-emerald-500 text-black border-emerald-400" 
                               : "bg-amber-500/10 border-amber-500/30 text-amber-400"
                           }`}>
-                            {law.status}
+                            {isActive ? "Aktif" : "Rancangan"}
                           </div>
-                          {isRecommended && (
+                          {isRecommended && !isActive && (
                             <div className="px-2 py-1 bg-purple-500/10 border border-purple-500/30 text-[8px] font-black text-purple-400 uppercase tracking-widest rounded-md animate-pulse">
                               AI Suggestion
                             </div>
@@ -139,7 +176,7 @@ export default function UndangUndangTab() {
 
                       <div className="relative z-10 space-y-2">
                         <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">{law.category}</p>
-                        <h4 className="text-base font-black text-white leading-tight group-hover:text-purple-400 transition-colors uppercase italic mb-1 tracking-tight min-h-[3.5rem] flex items-center">
+                        <h4 className={`text-base font-black leading-tight transition-colors uppercase italic mb-1 tracking-tight min-h-[3.5rem] flex items-center ${isActive ? 'text-emerald-400' : 'text-white group-hover:text-purple-400'}`}>
                           {law.title}
                         </h4>
                         <p className="text-xs font-bold text-zinc-400 leading-relaxed italic line-clamp-3">
@@ -159,16 +196,40 @@ export default function UndangUndangTab() {
                             <p className="text-xs font-black text-rose-400 uppercase tracking-widest flex items-center gap-1.5 opacity-80">
                               <ShieldCheck className="h-3.5 w-3.5" /> Kerugian
                             </p>
-                            <p className="text-[11px] font-bold text-zinc-400 italic leading-tight">{law.minus}</p>
+                            <p className="text-[11px] font-bold text-zinc-300 italic leading-tight">{law.minus}</p>
                           </div>
                         </div>
                         
-                        <button 
-                          className="w-full py-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800 text-xs font-black uppercase tracking-widest text-zinc-400 hover:bg-purple-600 hover:text-white hover:border-purple-500 transition-all active:scale-95 flex items-center justify-center gap-2 group/btn cursor-pointer shadow-lg"
-                        >
-                          <FileText className="h-4 w-4" />
-                          Sahkan Undang-Undang
-                        </button>
+                        {!isActive ? (
+                          <div className="flex flex-col gap-2">
+                             <div className="flex items-center justify-between px-2">
+                                <div className="flex items-center gap-1.5">
+                                   <Coins className={`h-3 w-3 ${isDemokrasi ? 'text-amber-500' : 'text-zinc-500'}`} />
+                                   <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Biaya Politik {isDemokrasi && <span className="text-amber-500 italic">(Demokrasi +50%)</span>}</span>
+                                </div>
+                                <span className={`text-[10px] font-black tabular-nums ${isInsufficient ? 'text-rose-500' : 'text-white'}`}>
+                                   {legislationCost.toLocaleString('id-ID')}
+                                </span>
+                             </div>
+                             <button 
+                                onClick={() => handleSahkanLaw(law.id)}
+                                disabled={isInsufficient}
+                                className={`w-full py-3.5 rounded-xl border text-xs font-black uppercase tracking-widest transition-all active:scale-95 flex items-center justify-center gap-2 group/btn cursor-pointer shadow-lg ${
+                                   isInsufficient 
+                                   ? "bg-zinc-900/50 border-zinc-800 text-zinc-600 grayscale cursor-not-allowed" 
+                                   : "bg-purple-600 border-purple-500 text-white hover:bg-purple-500"
+                                }`}
+                             >
+                                <FileText className="h-4 w-4" />
+                                {isInsufficient ? 'Dana Kurang' : 'Sahkan Undang-Undang'}
+                             </button>
+                          </div>
+                        ) : (
+                          <div className="w-full py-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-2 italic">
+                            <CheckCircle className="h-4 w-4" />
+                            Hukum Berlaky
+                          </div>
+                        )}
                       </div>
                     </div>
                   );

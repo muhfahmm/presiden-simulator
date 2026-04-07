@@ -40,7 +40,7 @@ export function ReligionCard({ religion, isActive, countryData, activeMenu, setA
     if (activeMenu === `Menu:Agama:${religion}`) {
       setShowInfo(true);
       setShowEffectDetail(false);
-    } else if (activeMenu.startsWith(`Menu:Agama:${religion}:`)) {
+    } else if (activeMenu && activeMenu.startsWith(`Menu:Agama:${religion}:`)) {
       setShowInfo(true);
       const subPart = activeMenu.split(":")[3]; // e.g. "islam_plus" or "islam_minus"
       if (subPart) {
@@ -51,7 +51,7 @@ export function ReligionCard({ religion, isActive, countryData, activeMenu, setA
            setShowEffectDetail(true);
         }
       }
-    } else if (showInfo && !activeMenu.startsWith(`Menu:Agama:${religion}`)) {
+    } else if (showInfo && activeMenu && !activeMenu.startsWith(`Menu:Agama:${religion}`)) {
       if (!showEffectDetail) setShowInfo(false);
     }
   }, [activeMenu, religion, effects]);

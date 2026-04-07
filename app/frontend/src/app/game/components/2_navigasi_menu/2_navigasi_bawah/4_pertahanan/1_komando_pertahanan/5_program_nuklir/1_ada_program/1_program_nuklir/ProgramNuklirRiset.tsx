@@ -137,7 +137,17 @@ export default function ProgramNuklirRiset({ onBack, data }: Props) {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="p-4 bg-zinc-950/50 border border-zinc-800 rounded-2xl flex flex-col gap-1">
                       <span className="text-[8px] font-black text-zinc-400 uppercase tracking-widest leading-none">Output Harian</span>
-                      <span className="text-lg font-black text-white italic">{(0.1 * nuclearData.labLevel).toFixed(2)} <span className="text-[10px] text-zinc-400 uppercase">%</span></span>
+                      <span className="text-lg font-black text-white italic">
+                        {(() => {
+                           const { ideologyStorage } = require("../../../../../6_sosial_budaya/2_ideologi/ideologyStorage");
+                           const { KOMUNISME_INNOVATION_PENALTY } = require("../../../../../6_sosial_budaya/2_ideologi/logic/2_komunisme/2_minus/minus");
+                           const session = require("@/app/game/gamestorage").gameStorage.getSession();
+                           const currentIdeology = ideologyStorage.getCurrentIdeology(session?.country || "Indonesia");
+                           const innovationMultiplier = currentIdeology === "Komunisme" ? KOMUNISME_INNOVATION_PENALTY : 1;
+                           
+                           return (0.1 * nuclearData.labLevel * innovationMultiplier).toFixed(2);
+                        })()} <span className="text-[10px] text-zinc-400 uppercase">%</span>
+                      </span>
                     </div>
                     <div className="p-4 bg-zinc-950/50 border border-zinc-800 rounded-2xl flex flex-col gap-1">
                       <span className="text-[8px] font-black text-zinc-400 uppercase tracking-widest leading-none">Beban Energi</span>

@@ -14,6 +14,7 @@ import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/
 import { budgetDeltaStorage } from "@/app/game/components/1_navbar/3_kas_negara/BudgetDeltaStorage";
 import { calculateDailyPopulationDelta } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
 import { happinessStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/happinessStorage";
+import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
@@ -75,10 +76,11 @@ export default function GameTimeControls() {
       populationStorage.updatePopulation(populationDelta);
       populationDeltaStorage.setDelta(populationDelta);
 
-      // Weekly Happiness Decay/Bonus (based on tax & price policy, applied every 7 game days)
+      // Weekly Happiness & Stability Decay/Bonus (applied every 7 game days)
       const isWeeklyTick = state.gameDate.getDate() % 7 === 0;
       if (isWeeklyTick) {
         happinessStorage.applyDailyHappinessDecay(state.gameDate);
+        stabilityStorage.applyDailyStabilityDecay();
       }
 
       // ── Tax Warning: Inbox notification after 10 consecutive days of negative tax impact ──

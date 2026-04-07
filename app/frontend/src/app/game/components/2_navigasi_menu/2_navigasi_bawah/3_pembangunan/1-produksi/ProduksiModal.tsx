@@ -39,6 +39,11 @@ import { calculateUraniumMetrics } from "../../9_produksi_konsumsi/3_konsumsi_ur
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 import { PROTESTAN_PRODUCTION_SPEED_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/2_protestan/1_plus/plus";
 import { TAOISME_HEAVY_INDUSTRY_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/10_taoisme/2_minus/minus";
+import { ideologyStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/ideologyStorage";
+import { DEMOKRASI_DECISION_SPEED_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/logic/1_demokrasi/2_minus/minus";
+import { KOMUNISME_FACTORY_COST_MULTIPLIER } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/logic/2_komunisme/1_plus/plus";
+import { KAPITALISME_CONSTRUCTION_SPEED_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/logic/3_kapitalisme/1_plus/plus";
+import { KOMUNISME_INNOVATION_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/logic/2_komunisme/2_minus/minus";
 
 interface ModalProps {
   isOpen: boolean;
@@ -238,8 +243,16 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   const handleConfirmBuild = () => {
     if (!confirmBuild) return;
     try {
-      // 1. Calculate total cost
-      const totalCost = confirmBuild.cost * quantity;
+      // 1. Calculate total cost with Ideology Modifiers
+      const currentData = countries.find(c => c.name_id === (gameStorage.getSession() as any)?.country || c.name_en === (gameStorage.getSession() as any)?.country) || countries[0];
+      const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
+      const isKomunisme = currentIdeology === "Komunisme";
+      const isFactory = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi" || confirmBuild.groupId === "olahan_pangan";
+      
+      let effectiveUnitCost = confirmBuild.cost;
+      if (isKomunisme && isFactory) effectiveUnitCost = Math.ceil(effectiveUnitCost * KOMUNISME_FACTORY_COST_MULTIPLIER);
+
+      const totalCost = effectiveUnitCost * quantity;
       
       // 2. Check for Financial Sufficiency
       const currentBalance = budgetStorage.getBudget();
@@ -280,8 +293,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
 
       for (let i = 0; i < quantity; i++) {
         const currentReligion = religionStorage.getCurrentReligion(currentData?.religion || "Islam");
+        const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
         const isProtestan = currentReligion === "Protestan";
         const isTaoisme = currentReligion === "Taoisme";
+        const isDemokrasi = currentIdeology === "Demokrasi";
         const isHeavyIndustry = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi";
 
         let effectiveBuildTime = confirmBuild.buildTime;
@@ -289,6 +304,15 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         if (isTaoisme && isHeavyIndustry) {
           // -20% speed means 0.8x speed, which is 1.25x time
           effectiveBuildTime = Math.ceil(effectiveBuildTime * 1.25);
+        }
+        if (isDemokrasi) {
+          // -30% speed means 0.7x speed, which is ~1.43x time
+          effectiveBuildTime = Math.ceil(effectiveBuildTime / DEMOKRASI_DECISION_SPEED_PENALTY);
+        }
+        const isKapitalisme = currentIdeology === "Kapitalisme";
+        if (isKapitalisme) {
+          // +20% speed means 1.2x speed, which is time / 1.2
+          effectiveBuildTime = Math.ceil(effectiveBuildTime / KAPITALISME_CONSTRUCTION_SPEED_BONUS);
         }
 
         const currentEnd = addDays(new Date(currentStart), effectiveBuildTime).getTime();
@@ -726,7 +750,20 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                       <div className="grid grid-cols-2 gap-3">
                         <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Satuan</span>
-                          <span className="text-xl font-black text-amber-500 tracking-tight">{(Number(confirmBuild.cost || 0)).toLocaleString('id-ID')}</span>
+                          <span className="text-xl font-black text-amber-500 tracking-tight">
+                            {(() => {
+                               const session = gameStorage.getSession() as any;
+                               const currentData = countries.find(c => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
+                               const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
+                               const isKomunisme = currentIdeology === "Komunisme";
+                               const isFactory = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi" || confirmBuild.groupId === "olahan_pangan";
+                               
+                               let effectiveUnitCost = confirmBuild.cost;
+                               if (isKomunisme && isFactory) effectiveUnitCost = Math.ceil(effectiveUnitCost * KOMUNISME_FACTORY_COST_MULTIPLIER);
+                               
+                               return (Number(effectiveUnitCost || 0)).toLocaleString('id-ID');
+                            })()}
+                          </span>
                         </div>
                         <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>
@@ -735,13 +772,18 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                             <span className="text-xl font-black text-white tracking-tight">
                               {(() => {
                                 const currentReligion = religionStorage.getCurrentReligion(currentData?.religion || "Islam");
-                                const isProtestan = currentReligion === "Protestan";
+                                const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
+                                const isProtestan = currentReligion === "Protestan"
                                 const isTaoisme = currentReligion === "Taoisme";
+                                const isDemokrasi = currentIdeology === "Demokrasi";
+                                const isKapitalisme = currentIdeology === "Kapitalisme";
                                 const isHeavyIndustry = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi";
 
                                 let effectiveBuildTime = confirmBuild.buildTime;
                                 if (isProtestan) effectiveBuildTime = Math.ceil(effectiveBuildTime / PROTESTAN_PRODUCTION_SPEED_BONUS);
                                 if (isTaoisme && isHeavyIndustry) effectiveBuildTime = Math.ceil(effectiveBuildTime * 1.25);
+                                if (isDemokrasi) effectiveBuildTime = Math.ceil(effectiveBuildTime / DEMOKRASI_DECISION_SPEED_PENALTY);
+                                if (isKapitalisme) effectiveBuildTime = Math.ceil(effectiveBuildTime / KAPITALISME_CONSTRUCTION_SPEED_BONUS);
                                 
                                 return effectiveBuildTime.toLocaleString('id-ID');
                               })()} Hari
@@ -769,13 +811,18 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
                          {(() => {
                             const currentReligion = religionStorage.getCurrentReligion(currentData?.religion || "Islam");
+                            const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
                             const isProtestan = currentReligion === "Protestan";
                             const isTaoisme = currentReligion === "Taoisme";
+                            const isDemokrasi = currentIdeology === "Demokrasi";
+                            const isKapitalisme = currentIdeology === "Kapitalisme";
                             const isHeavyIndustry = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi";
 
                             let effectiveBuildTime = confirmBuild.buildTime;
                             if (isProtestan) effectiveBuildTime = Math.ceil(effectiveBuildTime / PROTESTAN_PRODUCTION_SPEED_BONUS);
                             if (isTaoisme && isHeavyIndustry) effectiveBuildTime = Math.ceil(effectiveBuildTime * 1.25);
+                            if (isDemokrasi) effectiveBuildTime = Math.ceil(effectiveBuildTime / DEMOKRASI_DECISION_SPEED_PENALTY);
+                                 if (isKapitalisme) effectiveBuildTime = Math.ceil(effectiveBuildTime / KAPITALISME_CONSTRUCTION_SPEED_BONUS);
 
                             return formatGameDate(addDays(getStoredGameDate(), effectiveBuildTime * quantity));
                          })()}
