@@ -61,7 +61,7 @@ const getContinentColor = (name: string, id: string): string => {
 export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, active = true, geoData }: TradeMapCanvasProps) {
   const bgCanvasRef = useRef<HTMLCanvasElement>(null);
   const fgCanvasRef = useRef<HTMLCanvasElement>(null);
-  
+
   const [isHoveringPlane, setIsHoveringPlane] = useState(false);
   const [selectedPlane, setSelectedPlane] = useState<any>(null);
   const [sessionTrades, setSessionTrades] = useState<any[]>([]);
@@ -113,7 +113,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         }
         setTick(t => t + 1);
         debounceTimerRef.current = null;
-      }, 200); 
+      }, 200);
     };
     update();
     window.addEventListener('trade_storage_updated', update);
@@ -163,7 +163,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       const targetHover = targetCountry ? ({ "United States": "United States of America" }[targetCountry] || targetCountry) : null;
       const isPlayer = name === targetUser, isTarget = name === targetHover;
       const isPartner = tradePartners.has(name.toLowerCase().trim()) || tradePartners.has((fullGeoToIndoMap[name] || name).toLowerCase().trim());
-      
+
       let fill = getContinentColor(name, item.id), stroke = "rgba(245, 245, 220, 0.15)";
       if (isPartner && !isPlayer && !isTarget) { fill = "rgba(6, 182, 212, 0.4)"; stroke = "rgba(6, 182, 212, 0.6)"; }
       if (isPlayer || isTarget) {
@@ -262,7 +262,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               ctx.lineTo(2, 3);            // Body lower
               ctx.closePath();
               ctx.fill();
-              
+
               // Cockpit / Nose detail (slightly different shade or highlight)
               ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
               ctx.beginPath();
@@ -287,7 +287,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
   }, []);
 
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
-  
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!active || !fgCanvasRef.current) return;
     const rect = fgCanvasRef.current.getBoundingClientRect();
@@ -297,10 +297,10 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
     // Check hit on planes (higher priority)
     let planeHit = false;
     Object.values(planePositionsRef.current).forEach(p => {
-        const dist = Math.sqrt((p.x - x)**2 + (p.y - y)**2);
-        if (dist < 40) planeHit = true; // Use larger radius for airplanes
+      const dist = Math.sqrt((p.x - x) ** 2 + (p.y - y) ** 2);
+      if (dist < 40) planeHit = true; // Use larger radius for airplanes
     });
-    
+
     setIsHoveringPlane(planeHit);
   };
 
@@ -314,16 +314,16 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
     let clickedPlane: any = null;
     let minDist = 50;
     Object.values(planePositionsRef.current).forEach(p => {
-        const d = Math.sqrt((p.x - x)**2 + (p.y - y)**2);
-        if (d < minDist) {
-            minDist = d;
-            clickedPlane = p.tx;
-        }
+      const d = Math.sqrt((p.x - x) ** 2 + (p.y - y) ** 2);
+      if (d < minDist) {
+        minDist = d;
+        clickedPlane = p.tx;
+      }
     });
 
     if (clickedPlane) {
-        setSelectedPlane(clickedPlane);
-        return;
+      setSelectedPlane(clickedPlane);
+      return;
     }
 
     // 2. Click outside to close (Optional: Country clicks disabled as requested)
@@ -335,10 +335,10 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       <div className="flex h-full w-fit">
         <div className="relative h-full shrink-0">
           <canvas ref={bgCanvasRef} width={mapWidth} height={mapHeight} className="h-full w-auto max-w-none z-0" style={{ pointerEvents: "none" }} />
-          <canvas 
-            ref={fgCanvasRef} 
-            width={mapWidth} height={mapHeight} 
-            className="absolute inset-0 h-full w-auto max-w-none z-10" 
+          <canvas
+            ref={fgCanvasRef}
+            width={mapWidth} height={mapHeight}
+            className="absolute inset-0 h-full w-auto max-w-none z-10"
             style={{ cursor: isHoveringPlane ? "pointer" : defaultCursor, pointerEvents: active ? "auto" : "none" }}
             onMouseMove={handleMouseMove}
             onClick={handleCanvasClick}
@@ -347,8 +347,8 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       </div>
 
       {selectedPlane && (
-        <PlaneDetailCard 
-          selectedPlane={selectedPlane} 
+        <PlaneDetailCard
+          selectedPlane={selectedPlane}
           onClose={() => setSelectedPlane(null)}
           planePositionsRef={planePositionsRef}
           mapWidth={mapWidth}

@@ -52,22 +52,22 @@ const geoJsonToIndo: { [key: string]: string } = {
 
 const getRelation = (name: string, userCountry: string) => {
   if (name === userCountry) return 100;
-  
+
   const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
   const userId = userEntry ? userEntry.name_id.toLowerCase().trim() : userCountry.toLowerCase().trim();
-  
+
   const countryEntry = centersData.find(c => c.name_en === name || c.name_id === name);
   let targetId = countryEntry ? countryEntry.name_id.toLowerCase().trim() : name.toLowerCase().trim();
-  
+
   if (geoJsonToIndo[name]) {
     targetId = geoJsonToIndo[name].toLowerCase().trim();
   }
-  
+
   const userRelations = allRelations[userId];
-  if (!userRelations) return 50; 
-  
+  if (!userRelations) return 50;
+
   const relationItem = userRelations.find(item => item.name.toLowerCase().trim() === targetId);
-  return relationItem ? relationItem.relation : 50; 
+  return relationItem ? relationItem.relation : 50;
 };
 
 // Tactical Maritime Labels (Oceans, Seas, Gulfs, Straits)
@@ -119,7 +119,7 @@ const maritimeLabels = [
 
 export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectSDA, active = true, geoData }: MapSDAProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [isHovering, setIsHovering] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
 
   const mapWidth = 6000;
@@ -140,8 +140,8 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
       ctx.translate(offset, 0);
 
       const bgGradient = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
-      bgGradient.addColorStop(0, "#121d31"); 
-      bgGradient.addColorStop(1, "#070b13"); 
+      bgGradient.addColorStop(0, "#121d31");
+      bgGradient.addColorStop(1, "#070b13");
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, mapWidth, mapHeight);
 
@@ -217,7 +217,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
       ctx.textBaseline = "middle";
 
       const labelGrid: { x: number, y: number }[] = [];
-      const minLabelDist = 120; 
+      const minLabelDist = 120;
 
       const sortedCenters = [...centersData].sort((a, b) => {
         if (a.name_en === targetCountry) return 1;
@@ -237,7 +237,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
         ctx.beginPath();
         if (isPlayer) {
           ctx.arc(x, y, 6, 0, Math.PI * 2);
-          ctx.fillStyle = "#22d3ee"; 
+          ctx.fillStyle = "#22d3ee";
           ctx.shadowColor = "#22d3ee";
           ctx.shadowBlur = 15;
         } else if (isTarget) {
@@ -249,11 +249,11 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
           ctx.shadowColor = ctx.fillStyle as string;
           ctx.shadowBlur = 15;
         } else {
-          ctx.arc(x, y, 2.5, 0, Math.PI * 2); 
-          ctx.fillStyle = "rgba(148, 163, 184, 0.5)"; 
+          ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(148, 163, 184, 0.5)";
         }
         ctx.fill();
-        ctx.shadowBlur = 0; 
+        ctx.shadowBlur = 0;
 
         // Maritime Labels
         maritimeLabels.forEach(label => {
@@ -328,7 +328,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
           const startPos = mouseDownPosRef.current;
           if (startPos) {
             const dist = Math.hypot(e.clientX - startPos.x, e.clientY - startPos.y);
-            if (dist > 15) return; 
+            if (dist > 15) return;
           }
 
           const canvas = canvasRef.current;
@@ -339,7 +339,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
           const mappedClickX = clickX % mapWidth;
 
           let closest: any = null;
-          let minDist = 100; 
+          let minDist = 100;
 
           centersData.forEach((center: any) => {
             const x = ((center.lon + 180) / 360) * mapWidth;
@@ -360,34 +360,34 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
       {/* Absolute Markers Overlay - Single Icon Trigger */}
       <div className="absolute inset-0 pointer-events-none z-20">
         {[0, 1, 2].map(offsetIdx => (
-           centersData.map((center: any) => {
-             const x = ((center.lon + 180) / 360) * mapWidth + (offsetIdx * mapWidth);
-             const y = ((90 - center.lat) / 180) * mapHeight;
-             
-             const resources = center.sektor_ekstraksi || {};
-             const activeResources = Object.entries(resources).filter(([_, v]) => (v as number) > 0);
-             
-             if (activeResources.length === 0) return null;
+          centersData.map((center: any) => {
+            const x = ((center.lon + 180) / 360) * mapWidth + (offsetIdx * mapWidth);
+            const y = ((90 - center.lat) / 180) * mapHeight;
 
-             return (
-               <div 
-                 key={`${center.name_en}-${offsetIdx}`} 
-                 style={{ left: `${(x / (mapWidth * 3)) * 100}%`, top: `${(y / mapHeight) * 100}%` }} 
-                 className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto cursor-pointer"
-                 onClick={(e) => {
-                   e.stopPropagation();
-                   if (onSelectSDA) {
-                     onSelectSDA({ name: center.name_en, flag: center.flag, resources });
-                   }
-                 }}
-               >
-                 <div className="bg-zinc-900 border border-zinc-700 p-0.5 rounded shadow backdrop-blur-sm hover:border-orange-500 hover:scale-110 flex items-center justify-center transition-all">
-                   <Pickaxe size={12} className="text-orange-400" />
-                 </div>
-               </div>
-             );
-           })
-         ))}
+            const resources = center.sektor_ekstraksi || {};
+            const activeResources = Object.entries(resources).filter(([_, v]) => (v as number) > 0);
+
+            if (activeResources.length === 0) return null;
+
+            return (
+              <div
+                key={`${center.name_en}-${offsetIdx}`}
+                style={{ left: `${(x / (mapWidth * 3)) * 100}%`, top: `${(y / mapHeight) * 100}%` }}
+                className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (onSelectSDA) {
+                    onSelectSDA({ name: center.name_en, flag: center.flag, resources });
+                  }
+                }}
+              >
+                <div className="bg-zinc-900 border border-zinc-700 p-0.5 rounded shadow backdrop-blur-sm hover:border-orange-500 hover:scale-110 flex items-center justify-center transition-all">
+                  <Pickaxe size={12} className="text-orange-400" />
+                </div>
+              </div>
+            );
+          })
+        ))}
       </div>
 
     </div>

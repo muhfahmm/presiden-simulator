@@ -6,6 +6,7 @@ import { allRelations } from "@/app/database/data/negara/hubungan/index";
 import { relationStorage } from "./modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { unSecurityCouncilStorage } from "../2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 import { timeStorage } from "../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
+import { getRiskAssessment, getRiskGlowColor, projectMiller } from "./polyglot/ts/map_logic";
 
 interface GameMapCanvasProps {
   userCountry: string;
@@ -125,8 +126,12 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
   const lastTimeRef = useRef<number>(Date.now());
 
   const mapWidth = 6000;
-  const mapHeight = 2400;
-  const project = (lon: number, lat: number) => ({ x: ((lon + 180) / 360) * mapWidth, y: ((90 - lat) / 180) * mapHeight });
+  const mapHeight = 2800; // Increased to accommodate Miller projection headroom
+  
+  // High-performance projection delegate to Polyglot modules
+  const project = (lon: number, lat: number) => {
+    return projectMiller(lat, lon, mapWidth, mapHeight);
+  };
 
   useEffect(() => {
     const handleUpdate = () => {
@@ -139,8 +144,12 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
     window.addEventListener("relation_storage_updated", handleUpdate);
     window.addEventListener("relation_status_updated", handleUpdate);
 
+    // Continuous tick for animations
+    const interval = setInterval(() => setTick(t => t + 1), 50);
+
     return () => {
       if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+      clearInterval(interval);
       window.removeEventListener("relation_storage_updated", handleUpdate);
       window.removeEventListener("relation_status_updated", handleUpdate);
     };
@@ -186,9 +195,22 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
     if (!ctx) return;
 
     ctx.clearRect(0, 0, mapWidth, mapHeight);
-    const bgGradient = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
-    bgGradient.addColorStop(0, "#121d31"); bgGradient.addColorStop(1, "#070b13");
-    ctx.fillStyle = bgGradient; ctx.fillRect(0, 0, mapWidth, mapHeight);
+    
+    // 1. ADVANCED OCEAN GRADIENT (DEEP ABYSS TO SHALLOW)
+    const bgGradient = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 200, mapWidth / 2, mapHeight / 2, mapWidth / 1.4);
+    bgGradient.addColorStop(0, "#0e182b"); // Center depth
+    bgGradient.addColorStop(0.5, "#070b13"); // Deep ocean
+    bgGradient.addColorStop(1, "#020408"); // Edge abyss
+    ctx.fillStyle = bgGradient; 
+    ctx.fillRect(0, 0, mapWidth, mapHeight);
+
+    // 2. SPHERICAL ATMOSPHERE GLOW (The "Lengkungan" Simulation)
+    const glowGradient = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, mapWidth / 3, mapWidth / 2, mapHeight / 2, mapWidth / 2);
+    glowGradient.addColorStop(0, "rgba(34, 211, 238, 0)");
+    glowGradient.addColorStop(0.8, "rgba(34, 211, 238, 0.03)");
+    glowGradient.addColorStop(1, "rgba(34, 211, 238, 0.08)");
+    ctx.fillStyle = glowGradient;
+    ctx.fillRect(0, 0, mapWidth, mapHeight);
 
     paths.forEach((item: any) => {
       const isPlayer = item.name === userCountry || geoJsonToIndo[item.name] === userCountry;
@@ -198,15 +220,48 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
       let isHigh = isPlayer || isTarget;
       
       ctx.lineWidth = 1; ctx.shadowBlur = 0;
+      
       if (isHigh) {
-        if (isPlayer) { fillColor = "rgba(34, 197, 94, 0.3)"; strokeColor = "#4ade80"; ctx.lineWidth = 3; ctx.shadowColor = "#4ade80"; ctx.shadowBlur = 20; }
+        if (isPlayer) { 
+          fillColor = "rgba(34, 197, 94, 0.35)"; 
+          strokeColor = "#4ade80"; 
+          ctx.lineWidth = 4; 
+          ctx.shadowColor = "#4ade80"; 
+          ctx.shadowBlur = 30 * pulseFactor; 
+        }
         else { 
           const rel = getRelation(item.name, userCountry);
           const meta = relationStorage.getRelationMetadata(rel);
-          fillColor = `${meta.hex}66`; strokeColor = meta.hex; ctx.lineWidth = 3; ctx.shadowColor = strokeColor; ctx.shadowBlur = 20;
+          const risk = getRiskAssessment(item.name);
+          const riskColor = getRiskGlowColor(risk);
+          
+          fillColor = `${meta.hex}44`; 
+          strokeColor = meta.hex; 
+          ctx.lineWidth = 4; 
+          ctx.shadowColor = riskColor; 
+          ctx.shadowBlur = 25 * pulseFactor;
+
+          // Special "High Risk" indicator overlay pattern if risk is high
+          if (risk > 70) {
+            ctx.save();
+            ctx.clip(item.path);
+            ctx.strokeStyle = "rgba(239, 68, 68, 0.2)";
+            ctx.lineWidth = 2;
+            for(let i=0; i<mapWidth; i+=20) {
+              ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i-1000, mapHeight); ctx.stroke();
+            }
+            ctx.restore();
+          }
         }
+      } else {
+        // Base country style: Subtle tech outline
+        strokeColor = "rgba(34, 211, 238, 0.15)";
       }
-      ctx.fillStyle = fillColor; ctx.strokeStyle = strokeColor; ctx.fill(item.path); ctx.stroke(item.path);
+
+      ctx.fillStyle = fillColor; 
+      ctx.strokeStyle = strokeColor; 
+      ctx.fill(item.path); 
+      ctx.stroke(item.path);
       if (isHigh) ctx.shadowBlur = 0;
     });
 
@@ -256,11 +311,47 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
   }, [geoData, paths, userCountry, targetCountry, tick]);
 
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
+  
+  const pulseFactor = useMemo(() => 1 + Math.sin(tick * 0.2) * 0.05, [tick]);
+
   return (
-    <canvas
-      ref={canvasRef} width={mapWidth} height={mapHeight}
-      className="h-full w-auto max-w-none z-10"
-      style={{ cursor: isHovering ? "pointer" : defaultCursor, pointerEvents: active ? "auto" : "none" }}
+    <div className="relative w-full h-full overflow-hidden bg-[#0a0f1d] group">
+      {/* 1. DIGITAL GRID LAYER */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px',
+          maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 90%)'
+        }}
+      />
+
+      {/* 2. SCANLINE EFFECT */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-20 opacity-[0.03]"
+        style={{
+          background: 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06))',
+          backgroundSize: '100% 4px, 3px 100%',
+          pointerEvents: 'none'
+        }}
+      />
+
+      {/* 3. VIGNETTE & GLOW */}
+      <div className="absolute inset-0 pointer-events-none z-30 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.4)_100%)]" />
+
+      <canvas
+        ref={canvasRef} 
+        width={mapWidth} 
+        height={mapHeight}
+        className="h-full w-auto max-w-none z-10 transition-transform duration-700 ease-out"
+        style={{ 
+          cursor: isHovering ? "pointer" : defaultCursor, 
+          pointerEvents: active ? "auto" : "none",
+          filter: `drop-shadow(0 0 10px rgba(34, 211, 238, 0.2))`
+        }}
       onMouseMove={(e) => {
         const canvas = canvasRef.current; if (!canvas) return;
         const rect = canvas.getBoundingClientRect();
@@ -290,6 +381,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
 
         if (closest) onSelect(closest.name_en);
       }}
-    />
+      />
+    </div>
   );
 }

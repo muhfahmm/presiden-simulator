@@ -44,12 +44,12 @@ const getRelation = (name: string, userCountry: string) => {
   const userId = userEntry ? userEntry.name_id.toLowerCase().trim() : userCountry.toLowerCase().trim();
   const targetId = relationStorage.normalizeTargetId(name, centersData);
   const userRelations = (allRelations as any)[userId];
-  const relationData = Array.isArray(userRelations) 
+  const relationData = Array.isArray(userRelations)
     ? userRelations.find((item: any) => item.name.toLowerCase().trim() === targetId)
     : null;
   const baseScore = relationData ? relationData.relation : 50;
   const rawScore = relationStorage.getRelationScore(targetId, baseScore);
-  const isUNSCMember = unSecurityCouncilStorage.getData()?.members?.some((m: any) => 
+  const isUNSCMember = unSecurityCouncilStorage.getData()?.members?.some((m: any) =>
     m.name.toLowerCase() === userCountry.toLowerCase()
   );
   return relationStorage.calculateFinalScore(rawScore, !!isUNSCMember);
@@ -134,11 +134,11 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
       lastTimeRef.current = now;
 
       const { isPaused, speed } = timeStorage.getState();
-      
+
       if (!isPaused) {
         // Mission progress logic removed
       }
-      
+
       requestRef.current = requestAnimationFrame(animate);
     };
     requestRef.current = requestAnimationFrame(animate);
@@ -202,7 +202,7 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
       if (isPlayer) { ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fillStyle = "#22d3ee"; ctx.shadowColor = "#22d3ee"; ctx.shadowBlur = 15; }
       else if (isTarget) {
         ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fillStyle = "#f59e0b"; ctx.shadowColor = "#f59e0b"; ctx.shadowBlur = 15;
-      } else { 
+      } else {
         const relation = getRelation(center.name_en, userCountry);
         const meta = relationStorage.getRelationMetadata(relation);
         ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fillStyle = meta.hex; ctx.shadowColor = meta.hex; ctx.shadowBlur = 10;
@@ -215,40 +215,40 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
   return (
     <div className="relative h-full">
-    <canvas
-      ref={canvasRef} width={mapWidth} height={mapHeight}
-      className="h-full w-auto max-w-none z-10"
-      style={{ cursor: isHovering ? "pointer" : defaultCursor, pointerEvents: active ? "auto" : "none" }}
-      onMouseMove={(e) => {
-        const canvas = canvasRef.current; if (!canvas) return;
-        const rect = canvas.getBoundingClientRect();
-        const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
-        const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-        setIsHovering(centersData.some((c: any) => {
-          const { x, y } = project(c.lon, c.lat);
-          return Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2) < 60;
-        }));
-      }}
-      onMouseDown={(e) => mouseDownPosRef.current = { x: e.clientX, y: e.clientY }}
-      onClick={(e) => {
-        if (!active) return;
-        if (mouseDownPosRef.current) {
-          if (Math.hypot(e.clientX - mouseDownPosRef.current.x, e.clientY - mouseDownPosRef.current.y) > 15) return;
-        }
-        const canvas = canvasRef.current; if (!canvas) return;
-        const rect = canvas.getBoundingClientRect();
-        const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
-        const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-        let closest: any = null; let minDist = 100;
-        centersData.forEach((c: any) => {
-          const { x, y } = project(c.lon, c.lat);
-          const dist = Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2);
-          if (dist < minDist) { minDist = dist; closest = c; }
-        });
+      <canvas
+        ref={canvasRef} width={mapWidth} height={mapHeight}
+        className="h-full w-auto max-w-none z-10"
+        style={{ cursor: isHovering ? "pointer" : defaultCursor, pointerEvents: active ? "auto" : "none" }}
+        onMouseMove={(e) => {
+          const canvas = canvasRef.current; if (!canvas) return;
+          const rect = canvas.getBoundingClientRect();
+          const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
+          const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
+          setIsHovering(centersData.some((c: any) => {
+            const { x, y } = project(c.lon, c.lat);
+            return Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2) < 60;
+          }));
+        }}
+        onMouseDown={(e) => mouseDownPosRef.current = { x: e.clientX, y: e.clientY }}
+        onClick={(e) => {
+          if (!active) return;
+          if (mouseDownPosRef.current) {
+            if (Math.hypot(e.clientX - mouseDownPosRef.current.x, e.clientY - mouseDownPosRef.current.y) > 15) return;
+          }
+          const canvas = canvasRef.current; if (!canvas) return;
+          const rect = canvas.getBoundingClientRect();
+          const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
+          const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
+          let closest: any = null; let minDist = 100;
+          centersData.forEach((c: any) => {
+            const { x, y } = project(c.lon, c.lat);
+            const dist = Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2);
+            if (dist < minDist) { minDist = dist; closest = c; }
+          });
 
-        if (closest) onSelect(closest.name_en);
-      }}
-    />
+          if (closest) onSelect(closest.name_en);
+        }}
+      />
     </div>
   );
 }

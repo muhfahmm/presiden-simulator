@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react"
-import { 
+import {
   X, ArrowRightLeft, TrendingUp, TrendingDown, Globe, Ship, Landmark, BarChart3,
-  Cpu, Car, Bike, Construction, TreePine, Droplet, Cookie, Croissant, Pill, FlaskConical, Beef, Soup, 
-  Bird, Milk, Leaf, Shell, Fish, Sprout, Utensils, Apple, Bean, Layers, Mountain, Gem, Waves, Flame, 
+  Cpu, Car, Bike, Construction, TreePine, Droplet, Cookie, Croissant, Pill, FlaskConical, Beef, Soup,
+  Bird, Milk, Leaf, Shell, Fish, Sprout, Utensils, Apple, Bean, Layers, Mountain, Gem, Waves, Flame,
   Battery, Droplets, Box, Pickaxe, Radio, Coffee, Carrot, Eye, ChevronRight, Plus,
   Target, Shield, Sword, Navigation, Ban, History as HistoryIcon, Newspaper, ChevronLeft
 } from "lucide-react"
@@ -19,7 +19,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
 import { countries } from "@/app/database/data/negara/benua/index"
 
-import { 
+import {
   produkIndustriRate,
   mineralKritisRate
 } from "@/app/database/data/semua_fitur_negara";
@@ -43,7 +43,7 @@ interface ModalProps {
 export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiveMenu }: ModalProps) {
   const session = tradeStorage.getSession();
   const currentCountry = tradeStorage.getCurrentCountry(session);
-  
+
   // Local state for managed trade data
   const [managedTrades, setManagedTrades] = React.useState<any>(null);
   const [isAddPartnerOpen, setIsAddPartnerOpen] = React.useState(false);
@@ -100,10 +100,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   // Evaluate pending trades when the component renders or opens
   React.useEffect(() => {
     if (!managedTrades || !currentCountry) return;
-    
+
     let changed = false;
     const today = getStoredGameDate();
-    
+
     const newTrades = managedTrades.map((t: any) => {
       if (t.status === 'Tertunda' && t.targetDate) {
         const targetDate = new Date(t.targetDate);
@@ -111,11 +111,11 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
           changed = true;
           // Determine success based on chance
           const isAccepted = Math.random() * 100 <= (t.chance || 40);
-          
+
           // Send Inbox Notification for result
           inboxStorage.addMessage({
             source: 'Diplomasi Internasional',
-            subject: isAccepted 
+            subject: isAccepted
               ? `Kabar Baik! Pengajuan Perdagangan dengan ${t.mitra} DISETUJUI`
               : `Sayang Sekali, Pengajuan Perdagangan dengan ${t.mitra} DITOLAK`,
             time: 'Baru saja',
@@ -162,13 +162,13 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   // Synchronize with database: Always prioritize lookup in the official countries list
   const activeCountryData = useMemo(() => {
     if (!selectedTradePartner) return null;
-    
+
     // 1. Determine the name we are looking for
     const targetName = selectedTradePartner;
-    
+
     // 2. Search in the regional countries database (main source for all stats)
-    const found = countries.find(c => 
-      c.name_id?.toLowerCase() === targetName.toLowerCase() || 
+    const found = countries.find(c =>
+      c.name_id?.toLowerCase() === targetName.toLowerCase() ||
       c.name_en?.toLowerCase() === targetName.toLowerCase() ||
       getCountryKey(c.name_id || "") === getCountryKey(targetName)
     );
@@ -202,10 +202,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
   // Logic for Minerals
   const mineralDataToBuildingKey: Record<string, string> = {
-    emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", 
-    minyak_bumi: "oil_well", gas_alam: "gas_well", garam: "salt_mine", 
-    nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine", 
-    aluminium: "aluminum_mine", logam_tanah_jarang: "rare_earth_mine", 
+    emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine",
+    minyak_bumi: "oil_well", gas_alam: "gas_well", garam: "salt_mine",
+    nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine",
+    aluminium: "aluminum_mine", logam_tanah_jarang: "rare_earth_mine",
     bijih_besi: "iron_ore_mine"
   };
 
@@ -216,11 +216,11 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
     const data = getContextualData();
     const lookupId = data?.name_id || data?.name_en || "indonesia";
     const extractionStats = data?.sektor_ekstraksi || {};
-    
+
     return mineralOrder.map(key => {
-      const baseVal = (extractionStats as any)[key] ?? 
-                      (data?.sektor_ekstraksi as any)?.[key] ?? 0;
-      
+      const baseVal = (extractionStats as any)[key] ??
+        (data?.sektor_ekstraksi as any)?.[key] ?? 0;
+
       const buildingKey = mineralDataToBuildingKey[key] || key;
       const delta = isPlayerContext ? ((buildingDeltas[buildingKey] || 0) as number) : 0;
       return [key, baseVal + delta];
@@ -349,35 +349,35 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
       if (detail.includes("=")) {
         const [action, item] = detail.split("=");
         if (action === "partner") {
-           setSelectedTradePartner(item);
+          setSelectedTradePartner(item);
         } else {
-           const type = action === "impor" ? "buy" : "sell";
-           setSelectedKey(item);
-           setExecutionModalItem({ type });
-           setTradeType(action as "impor" | "ekspor");
-           setActiveChartTab(type === "buy" ? "buy" : "sell");
+          const type = action === "impor" ? "buy" : "sell";
+          setSelectedKey(item);
+          setExecutionModalItem({ type });
+          setTradeType(action as "impor" | "ekspor");
+          setActiveChartTab(type === "buy" ? "buy" : "sell");
         }
       }
     } else if (isOpen && activeMenu === "Menu:Perdagangan") {
-       setExecutionModalItem(null);
+      setExecutionModalItem(null);
     }
   }, [activeMenu, isOpen]);
 
   const currentDate = getStoredGameDate();
   const baseBuyPrice = getDynamicPrice(selectedKey, "buy", currentDate);
   const baseSellPrice = getDynamicPrice(selectedKey, "sell", currentDate);
-  
+
   if (!isOpen) return null;
 
   const iconMap: Record<string, any> = {
     emas: Gem, uranium: Radio, batu_bara: Layers, minyak_bumi: Droplets, gas_alam: Flame, garam: Waves,
     nikel: Box, litium: Battery, tembaga: Pickaxe, aluminium: Layers, logam_tanah_jarang: Cpu, bijih_besi: Mountain,
-    semikonduktor: Cpu, mobil: Car, sepeda_motor: Bike, smelter: FlaskConical, semen_beton: Construction, 
-    kayu: TreePine, air_mineral: Droplet, gula: Cookie, roti: Croissant, farmasi: Pill, 
+    semikonduktor: Cpu, mobil: Car, sepeda_motor: Bike, smelter: FlaskConical, semen_beton: Construction,
+    kayu: TreePine, air_mineral: Droplet, gula: Cookie, roti: Croissant, farmasi: Pill,
     pupuk: FlaskConical, pengolahan_daging: Beef, mie_instan: Soup,
     ayam_unggas: Bird, sapi_perah: Milk, sapi_potong: Beef, domba_kambing: Leaf,
     udang_kerang: Shell, ikan: Fish,
-    padi: Sprout, gandum_jagung: Utensils, sayur_umbi: Apple, kedelai: Bean, 
+    padi: Sprout, gandum_jagung: Utensils, sayur_umbi: Apple, kedelai: Bean,
     kelapa_sawit: Droplets, kopi_teh_kakao: Coffee, tebu: Leaf,
     pabrik_amunisi: Box
   };
@@ -394,34 +394,34 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
   const selectedName = labelsMap[selectedKey] || selectedKey.charAt(0).toUpperCase() + selectedKey.slice(1).replace(/_/g, ' ');
   const selectedUnits = selectedItem ? (selectedItem[1] as number) : 0;
-  
+
   const exportPriceVal = baseSellPrice;
   const importPriceVal = baseBuyPrice;
 
-  const activePartnersList = (managedTrades?.filter((a: any) => 
-    (a.type === 'Perdagangan' || a.jenis === 'Perdagangan') && 
-    a.mitra.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
+  const activePartnersList = (managedTrades?.filter((a: any) =>
+    (a.type === 'Perdagangan' || a.jenis === 'Perdagangan') &&
+    a.mitra.toLowerCase() !== currentCountry.name_id.toLowerCase() &&
     a.mitra.toLowerCase() !== currentCountry.name_en.toLowerCase()
-  ).length > 0 
-    ? managedTrades.filter((a: any) => 
-          (a.type === 'Perdagangan' || a.jenis === 'Perdagangan') && 
-          a.mitra.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
-          a.mitra.toLowerCase() !== currentCountry.name_en.toLowerCase()
-        ).sort((a: any, b: any) => a.mitra.localeCompare(b.mitra))
+  ).length > 0
+    ? managedTrades.filter((a: any) =>
+      (a.type === 'Perdagangan' || a.jenis === 'Perdagangan') &&
+      a.mitra.toLowerCase() !== currentCountry.name_id.toLowerCase() &&
+      a.mitra.toLowerCase() !== currentCountry.name_en.toLowerCase()
+    ).sort((a: any, b: any) => a.mitra.localeCompare(b.mitra))
     : getInitialAgreements(currentCountry.name_en, currentCountry.name_id).length > 0
       ? getInitialAgreements(currentCountry.name_en, currentCountry.name_id)
       : [
-          { mitra: "Afrika Selatan", status: "Aktif" },
-          { mitra: "Tiongkok", status: "Aktif" },
-          { mitra: "Uni Emirat Arab", status: "Aktif" },
-          { mitra: "Vietnam", status: "Aktif" }
-        ]
+        { mitra: "Afrika Selatan", status: "Aktif" },
+        { mitra: "Tiongkok", status: "Aktif" },
+        { mitra: "Uni Emirat Arab", status: "Aktif" },
+        { mitra: "Vietnam", status: "Aktif" }
+      ]
   );
 
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
-        
+
         {/* Glow Effects */}
         <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent blur-sm"></div>
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
@@ -431,37 +431,37 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
         {/* Header */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30 relative z-10">
-           <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-500/10 rounded-xl">
-                 <ArrowRightLeft className="h-6 w-6 text-blue-500" />
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-blue-500/10 rounded-xl">
+              <ArrowRightLeft className="h-6 w-6 text-blue-500" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-white tracking-tight leading-none">Hub Perdagangan Strategis</h2>
+              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-1">{currentCountry.flag} {currentCountry.name_id} â€” Strategic Trade Terminal</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2.5 px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-inner group/budget overflow-hidden relative">
+              <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover/budget:opacity-100 transition-opacity duration-500"></div>
+              <div className="p-1.5 bg-emerald-500/10 rounded-lg group-hover/budget:bg-emerald-500 group-hover/budget:text-white transition-all duration-500">
+                <Landmark className="h-4 w-4 text-emerald-500 group-hover/budget:text-current" />
               </div>
-              <div>
-                 <h2 className="text-2xl font-bold text-white tracking-tight leading-none">Hub Perdagangan Strategis</h2>
-                 <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-1">{currentCountry.flag} {currentCountry.name_id} â€” Strategic Trade Terminal</p>
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest leading-none mb-0.5 opacity-60 group-hover/budget:opacity-100 transition-opacity">Kas Negara</span>
+                <span className="text-sm font-black text-white tracking-tight italic tabular-nums leading-none">
+                  ${userBudget.toLocaleString('id-ID')}
+                </span>
               </div>
-           </div>
-           <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2.5 px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-inner group/budget overflow-hidden relative">
-                 <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover/budget:opacity-100 transition-opacity duration-500"></div>
-                 <div className="p-1.5 bg-emerald-500/10 rounded-lg group-hover/budget:bg-emerald-500 group-hover/budget:text-white transition-all duration-500">
-                    <Landmark className="h-4 w-4 text-emerald-500 group-hover/budget:text-current" />
-                 </div>
-                 <div className="flex flex-col">
-                    <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest leading-none mb-0.5 opacity-60 group-hover/budget:opacity-100 transition-opacity">Kas Negara</span>
-                    <span className="text-sm font-black text-white tracking-tight italic tabular-nums leading-none">
-                       ${userBudget.toLocaleString('id-ID')}
-                    </span>
-                 </div>
-              </div>
-              <NavigasiWaktu />
-              <button className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group shadow-[0_0_15px_rgba(59,130,246,0.1)] active:scale-95">
-                 <Ship className="h-6 w-6 text-blue-500 group-hover:scale-110 transition-transform" />
-              </button>
-              <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
-                 <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
-                 <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
-              </button>
-           </div>
+            </div>
+            <NavigasiWaktu />
+            <button className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group shadow-[0_0_15px_rgba(59,130,246,0.1)] active:scale-95">
+              <Ship className="h-6 w-6 text-blue-500 group-hover:scale-110 transition-transform" />
+            </button>
+            <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
+              <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+              <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+            </button>
+          </div>
         </div>
 
         <div className="flex-1 flex overflow-hidden relative z-10">
@@ -477,9 +477,8 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 <button
                   key={idx}
                   onClick={() => setSelectedTradePartner(selectedTradePartner === agreement.mitra ? null : agreement.mitra)}
-                  className={`w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border ${
-                    selectedTradePartner === agreement.mitra ? 'bg-emerald-600/10 border-emerald-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'
-                  }`}
+                  className={`w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border ${selectedTradePartner === agreement.mitra ? 'bg-emerald-600/10 border-emerald-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'
+                    }`}
                 >
                   <div className={`p-2 rounded-xl ${selectedTradePartner === agreement.mitra ? 'bg-emerald-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
                     <Globe className="h-4 w-4" />
@@ -513,7 +512,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 <>
                   {/* Minerals */}
                   <div className="border-b border-zinc-900/80">
-                    <div 
+                    <div
                       onClick={() => setShowMinerals(!showMinerals)}
                       className="p-8 flex items-center justify-between cursor-pointer group"
                     >
@@ -523,10 +522,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showMinerals ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       <div className="px-4 pb-8 space-y-2">
                         {minerals.map(([key, val]) => (
-                          <button 
-                            key={key} 
+                          <button
+                            key={key}
                             disabled={val === 0}
-                            onClick={() => setSelectedKey(key)} 
+                            onClick={() => setSelectedKey(key)}
                             className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : 'cursor-pointer ' + (selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent')}`}
                           >
                             <div className="flex items-center gap-4">
@@ -534,7 +533,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                                 {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key)}
                               </div>
                               <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key] || key.replace(/_/g, ' ')} 
+                                {labelsMap[key] || key.replace(/_/g, ' ')}
                                 <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
                               </span>
                             </div>
@@ -546,7 +545,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
                   {/* Manufaktur */}
                   <div className="border-b border-zinc-900/80">
-                    <div 
+                    <div
                       onClick={() => setShowManufaktur(!showManufaktur)}
                       className="p-8 flex items-center justify-between cursor-pointer group"
                     >
@@ -556,10 +555,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showManufaktur ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       <div className="px-4 pb-8 space-y-2">
                         {manufakturItems.map(([key, val]) => (
-                          <button 
-                            key={key} 
+                          <button
+                            key={key}
                             disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)} 
+                            onClick={() => setSelectedKey(key as string)}
                             className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
                           >
                             <div className="flex items-center gap-4">
@@ -567,7 +566,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                                 {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
                               </div>
                               <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
                                 <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
                               </span>
                             </div>
@@ -579,7 +578,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
                   {/* Pangan */}
                   <div className="border-b border-zinc-900/80">
-                    <div 
+                    <div
                       onClick={() => setShowPangan(!showPangan)}
                       className="p-8 flex items-center justify-between cursor-pointer group"
                     >
@@ -589,10 +588,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showPangan ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       <div className="px-4 pb-8 space-y-4">
                         {peternakanItems.map(([key, val]) => (
-                          <button 
-                            key={key} 
+                          <button
+                            key={key}
                             disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)} 
+                            onClick={() => setSelectedKey(key as string)}
                             className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
                           >
                             <div className="flex items-center gap-4">
@@ -600,17 +599,17 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                                 {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
                               </div>
                               <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
                                 <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
                               </span>
                             </div>
                           </button>
                         ))}
                         {perikananItems.map(([key, val]) => (
-                          <button 
-                            key={key} 
+                          <button
+                            key={key}
                             disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)} 
+                            onClick={() => setSelectedKey(key as string)}
                             className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
                           >
                             <div className="flex items-center gap-4">
@@ -618,17 +617,17 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                                 {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
                               </div>
                               <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
                                 <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
                               </span>
                             </div>
                           </button>
                         ))}
                         {agrikulturItems.map(([key, val]) => (
-                          <button 
-                            key={key} 
+                          <button
+                            key={key}
                             disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)} 
+                            onClick={() => setSelectedKey(key as string)}
                             className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
                           >
                             <div className="flex items-center gap-4">
@@ -636,7 +635,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                                 {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
                               </div>
                               <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
                                 <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
                               </span>
                             </div>
@@ -648,7 +647,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
                   {/* Industri Pengolahan */}
                   <div className="border-b border-zinc-900/80">
-                    <div 
+                    <div
                       onClick={() => setShowIndustriPengolahan(!showIndustriPengolahan)}
                       className="p-8 flex items-center justify-between cursor-pointer group"
                     >
@@ -658,10 +657,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showIndustriPengolahan ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       <div className="px-4 pb-8 space-y-2">
                         {olahanPanganItems.map(([key, val]) => (
-                          <button 
-                            key={key} 
+                          <button
+                            key={key}
                             disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)} 
+                            onClick={() => setSelectedKey(key as string)}
                             className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
                           >
                             <div className="flex items-center gap-4">
@@ -669,7 +668,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                                 {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
                               </div>
                               <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
                                 <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
                               </span>
                             </div>
@@ -681,7 +680,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
                   {/* Farmasi */}
                   <div className="border-b border-zinc-900/80">
-                    <div 
+                    <div
                       onClick={() => setShowFarmasi(!showFarmasi)}
                       className="p-8 flex items-center justify-between cursor-pointer group"
                     >
@@ -691,10 +690,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showFarmasi ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       <div className="px-4 pb-8 space-y-2">
                         {farmasiItems.map(([key, val]) => (
-                          <button 
-                            key={key} 
+                          <button
+                            key={key}
                             disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)} 
+                            onClick={() => setSelectedKey(key as string)}
                             className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
                           >
                             <div className="flex items-center gap-4">
@@ -702,7 +701,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                                 {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
                               </div>
                               <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
                                 <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
                               </span>
                             </div>
@@ -714,7 +713,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
                   {/* Militer */}
                   <div className="border-b border-zinc-900/80">
-                    <div 
+                    <div
                       onClick={() => setShowMiliter(!showMiliter)}
                       className="p-8 flex items-center justify-between cursor-pointer group"
                     >
@@ -724,10 +723,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showMiliter ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       <div className="px-4 pb-8 space-y-2">
                         {militerItems.map(([key, val]) => (
-                          <button 
-                            key={key} 
+                          <button
+                            key={key}
                             disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)} 
+                            onClick={() => setSelectedKey(key as string)}
                             className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
                           >
                             <div className="flex items-center gap-4">
@@ -735,7 +734,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                                 {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
                               </div>
                               <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
                                 <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
                               </span>
                             </div>
@@ -744,64 +743,60 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                       </div>
                     </div>
                   </div>
-                  </>
-                )}
-              </div>
+                </>
+              )}
             </div>
+          </div>
 
           {/* Main Content Area */}
           <div className="flex-1 bg-zinc-950 p-8 lg:p-16 overflow-y-auto relative scrollbar-thin scrollbar-thumb-zinc-800">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none"></div>
             <div className="max-w-4xl mx-auto space-y-12">
               <div className="flex items-center gap-2 bg-zinc-900/50 p-1.5 rounded-3xl border border-zinc-800/50 backdrop-blur-xl w-fit">
-                <button 
+                <button
                   onClick={() => {
                     setTradeType("impor");
                     setActiveChartTab("buy");
                   }}
-                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 cursor-pointer ${
-                    tradeType === "impor" 
-                    ? "bg-red-500 text-white shadow-[0_0_30px_rgba(239,68,68,0.3)] hover:shadow-[0_0_40px_rgba(239,68,68,0.5)]" 
-                    : "text-zinc-500 hover:text-zinc-300"
-                  }`}
+                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 cursor-pointer ${tradeType === "impor"
+                      ? "bg-red-500 text-white shadow-[0_0_30px_rgba(239,68,68,0.3)] hover:shadow-[0_0_40px_rgba(239,68,68,0.5)]"
+                      : "text-zinc-500 hover:text-zinc-300"
+                    }`}
                 >
                   Impor
                 </button>
-                <button 
+                <button
                   onClick={() => {
                     setTradeType("ekspor");
                     setActiveChartTab("sell");
                   }}
-                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 cursor-pointer ${
-                    tradeType === "ekspor" 
-                    ? "bg-green-500 text-white shadow-[0_0_30px_rgba(34,197,94,0.3)] hover:shadow-[0_0_40px_rgba(34,197,94,0.5)]" 
-                    : "text-zinc-500 hover:text-zinc-300"
-                  }`}
+                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 cursor-pointer ${tradeType === "ekspor"
+                      ? "bg-green-500 text-white shadow-[0_0_30px_rgba(34,197,94,0.3)] hover:shadow-[0_0_40px_rgba(34,197,94,0.5)]"
+                      : "text-zinc-500 hover:text-zinc-300"
+                    }`}
                 >
                   Ekspor
                 </button>
-                
+
                 <div className="w-[1px] h-4 bg-zinc-800 mx-2"></div>
-                
-                <button 
+
+                <button
                   onClick={() => setTradeType("histori")}
-                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 flex items-center gap-2 cursor-pointer ${
-                    tradeType === "histori" 
-                    ? "bg-blue-500 text-white shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-[0_0_40px_rgba(59,130,246,0.5)]" 
-                    : "text-zinc-500 hover:text-zinc-300"
-                  }`}
+                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 flex items-center gap-2 cursor-pointer ${tradeType === "histori"
+                      ? "bg-blue-500 text-white shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-[0_0_40px_rgba(59,130,246,0.5)]"
+                      : "text-zinc-500 hover:text-zinc-300"
+                    }`}
                 >
                   <HistoryIcon size={14} />
                   Histori
                 </button>
-                
-                <button 
+
+                <button
                   onClick={() => setTradeType("berita")}
-                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 flex items-center gap-2 cursor-pointer ${
-                    tradeType === "berita" 
-                    ? "bg-amber-600 text-white shadow-[0_0_30px_rgba(217,119,6,0.3)] hover:shadow-[0_0_40px_rgba(217,119,6,0.5)]" 
-                    : "text-zinc-500 hover:text-zinc-300"
-                  }`}
+                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 flex items-center gap-2 cursor-pointer ${tradeType === "berita"
+                      ? "bg-amber-600 text-white shadow-[0_0_30px_rgba(217,119,6,0.3)] hover:shadow-[0_0_40px_rgba(217,119,6,0.5)]"
+                      : "text-zinc-500 hover:text-zinc-300"
+                    }`}
                 >
                   <Newspaper size={14} />
                   Berita
@@ -820,7 +815,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 </div>
               ) : (
                 activeMenu === "Menu:Perdagangan:ekspor_eksekusi" ? (
-                  <EksporEksekusi 
+                  <EksporEksekusi
                     selectedKey={selectedKey}
                     selectedName={selectedName}
                     selectedUnits={selectedUnits}
@@ -836,7 +831,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     selectedTradePartner={selectedTradePartner}
                   />
                 ) : activeMenu === "Menu:Perdagangan:impor_eksekusi" ? (
-                  <ImporEksekusi 
+                  <ImporEksekusi
                     selectedKey={selectedKey}
                     selectedName={selectedName}
                     selectedUnits={selectedUnits}
@@ -855,23 +850,21 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 ) : tradeType === "histori" ? (
                   <div className="flex flex-col h-full space-y-6">
                     <div className="flex items-center gap-4 border-b border-zinc-900 pb-4">
-                      <button 
+                      <button
                         onClick={() => setHistoriType("impor")}
-                        className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${
-                          historiType === "impor" 
-                          ? "bg-red-500/10 text-red-500 border border-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.1)]" 
-                          : "text-zinc-600 hover:text-zinc-400 border border-transparent"
-                        }`}
+                        className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${historiType === "impor"
+                            ? "bg-red-500/10 text-red-500 border border-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.1)]"
+                            : "text-zinc-600 hover:text-zinc-400 border border-transparent"
+                          }`}
                       >
                         Histori Impor
                       </button>
-                      <button 
+                      <button
                         onClick={() => setHistoriType("ekspor")}
-                        className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${
-                          historiType === "ekspor" 
-                          ? "bg-green-500/10 text-green-500 border border-green-500/20 shadow-[0_0_20px_rgba(34,197,94,0.1)]" 
-                          : "text-zinc-600 hover:text-zinc-400 border border-transparent"
-                        }`}
+                        className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${historiType === "ekspor"
+                            ? "bg-green-500/10 text-green-500 border border-green-500/20 shadow-[0_0_20px_rgba(34,197,94,0.1)]"
+                            : "text-zinc-600 hover:text-zinc-400 border border-transparent"
+                          }`}
                       >
                         Histori Ekspor
                       </button>
@@ -881,7 +874,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     </div>
                   </div>
                 ) : tradeType === "ekspor" ? (
-                  <EksporHalaman 
+                  <EksporHalaman
                     selectedKey={selectedKey}
                     selectedName={selectedName}
                     selectedUnits={selectedUnits}
@@ -897,7 +890,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     baseKeyMapping={baseKeyMapping}
                   />
                 ) : (
-                  <ImporHalaman 
+                  <ImporHalaman
                     selectedKey={selectedKey}
                     selectedName={selectedName}
                     selectedUnits={selectedUnits}
@@ -950,7 +943,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
         </div>
       </div>
 
-      <AddTradePartnerModal 
+      <AddTradePartnerModal
         isOpen={isAddPartnerOpen}
         onClose={() => setIsAddPartnerOpen(false)}
         onAddProposal={handleAddProposal}
