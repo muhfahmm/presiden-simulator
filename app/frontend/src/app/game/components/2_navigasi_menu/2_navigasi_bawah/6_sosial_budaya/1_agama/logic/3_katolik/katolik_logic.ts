@@ -1,10 +1,12 @@
 import { Star } from "lucide-react";
+import { katolikPlus } from "./1_plus/plus";
+import { katolikMinus } from "./2_minus/minus";
 
 export const katolikLogic = {
   name: "Katolik",
   icon: Star,
   effects: {
-    plus: ["Loyalitas Warga +10%", "Pembangunan Infrastruktur +10%", "Bantuan Diplomasi Vatican"],
-    minus: ["Kecepatan Riset Teknologi -10%", "Risiko Protes Klerikal", "Biaya Perawatan Situs Suci"]
+    plus: katolikPlus,
+    minus: katolikMinus
   }
 };

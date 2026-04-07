@@ -1,10 +1,12 @@
 import { Book } from "lucide-react";
+import { ortodoksPlus } from "./1_plus/plus";
+import { ortodoksMinus } from "./2_minus/minus";
 
 export const ortodoksLogic = {
   name: "Kristen Ortodoks",
   icon: Book,
   effects: {
-    plus: ["Ketahanan Militer +10%", "Stabilitas Nasional +5%", "Konservasi Budaya Leluhur"],
-    minus: ["Hubungan Perdagangan Global -5%"]
+    plus: ortodoksPlus,
+    minus: ortodoksMinus
   }
 };

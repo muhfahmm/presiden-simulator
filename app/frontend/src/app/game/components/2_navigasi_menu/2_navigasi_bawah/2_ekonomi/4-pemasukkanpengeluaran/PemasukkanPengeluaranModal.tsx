@@ -22,6 +22,8 @@ import {
 import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMaintenance } from "@/app/game/data/economy/BudgetDeltaLogic"
 import { incomeStorage } from "./pemasukkan/IncomeStorage"
 import NavigasiWaktu from "../1-perdagangan/NavigasiWaktu"
+import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
+import { PROTESTAN_GROWTH_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/2_protestan/1_plus/plus";
 import { expenseStorage } from "./pengeluaran/ExpenseStorage"
 import { calculateGoldMineRevenue } from "@/app/game/components/1_navbar/3_kas_negara/GoldMineRevenue"
 import { calculateTempatUmumRevenue, getTempatUmumRevenueBreakdown, getTempatUmumUnitCount, getDetailedTempatUmumBreakdown } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/logic/TempatUmumRevenueLogic"
@@ -88,9 +90,12 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   const buildingData = buildingStorage.getData();
 
   const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue;
+  const isProtestan = religionStorage.getCurrentReligion(initialCountry.religion) === "Protestan";
+  const economicGrowthBonus = isProtestan ? dailyTaxRevenue * PROTESTAN_GROWTH_BONUS : 0;
+
   const goldRevenue = calculateGoldMineRevenue(buildingData.buildingDeltas, initialCountry);
   const serviceRevenue = calculateTempatUmumRevenue(buildingData.buildingDeltas, initialCountry);
-  const totalDailyIncome = dailyTaxRevenue + (incData.grants || 0) + (incData.investments || 0) + goldRevenue + serviceRevenue;
+  const totalDailyIncome = dailyTaxRevenue + economicGrowthBonus + (incData.grants || 0) + (incData.investments || 0) + goldRevenue + serviceRevenue;
 
   // Breakdown functions for UI
   const serviceBreakdown = getTempatUmumRevenueBreakdown(buildingData.buildingDeltas, initialCountry);
@@ -344,6 +349,22 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                             </div>
                           ))}
                         </div>
+
+                        {/* Protestant Economic Growth Bonus */}
+                        {isProtestan && economicGrowthBonus > 0 && (
+                          <div className="space-y-2 mt-4">
+                            <div className="bg-indigo-500/5 border border-indigo-500/20 p-4 rounded-2xl flex justify-between items-center group hover:border-indigo-500/40 transition-all shadow-[0_0_15px_rgba(99,102,241,0.05)]">
+                              <div className="flex items-center gap-3">
+                                <div className="p-1.5 bg-indigo-500/10 rounded-lg"><TrendingUp size={14} className="text-indigo-400" /></div>
+                                <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight italic">Pertumbuhan Ekonomi (Protestan)</span>
+                              </div>
+                              <span className="text-[13px] font-black text-indigo-400">+{Math.round(economicGrowthBonus).toLocaleString('id-ID')}</span>
+                            </div>
+                            <div className="px-4 py-1.5 ml-4 border-l border-indigo-500/30">
+                              <p className="text-[10px] text-zinc-500 italic uppercase font-medium">Bonus 5% dari pendapatan fiskal harian.</p>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                  </div>

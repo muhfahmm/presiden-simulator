@@ -5,6 +5,8 @@ import { expenseStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi
 import { priceStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 import { calculateGoldMineRevenue } from "@/app/game/components/1_navbar/3_kas_negara/GoldMineRevenue";
 import { calculateTempatUmumRevenue } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/logic/TempatUmumRevenueLogic";
+import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
+import { PROTESTAN_GROWTH_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/2_protestan/1_plus/plus";
 
 /**
  * Calculates the total daily maintenance cost.
@@ -88,6 +90,15 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   const serviceRevenue = calculateTempatUmumRevenue(buildingDeltas, countryData);
   if (serviceRevenue > 0) {
     revenues.other["sektor_jasa"] = serviceRevenue * 365; // Annualized
+  }
+
+  // 1.3 Protestant Growth Bonus (+5% of tax revenue)
+  const currentReligion = religionStorage.getCurrentReligion(countryData.religion);
+  if (currentReligion === "Protestan") {
+    const taxRevenueAnnual = Object.values(revenues.domestic).reduce((a, b) => a + b, 0) + 
+                            Object.values(revenues.trade).reduce((a, b) => a + b, 0);
+    const growthBonusAnnual = taxRevenueAnnual * PROTESTAN_GROWTH_BONUS;
+    revenues.other["pertumbuhan_ekonomi"] = growthBonusAnnual;
   }
 
   const totalAnnualRevenue = 

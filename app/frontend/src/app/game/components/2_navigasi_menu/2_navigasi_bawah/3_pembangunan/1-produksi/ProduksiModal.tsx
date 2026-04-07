@@ -36,6 +36,8 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MaterialRequirement from "./MaterialRequirement";
 import { calculateUraniumMetrics } from "../../9_produksi_konsumsi/3_konsumsi_uranium/logic/uraniumLogic";
+import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
+import { PROTESTAN_PRODUCTION_SPEED_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/2_protestan/1_plus/plus";
 
 interface ModalProps {
   isOpen: boolean;
@@ -276,7 +278,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       const itemsToAdd: any[] = [];
 
       for (let i = 0; i < quantity; i++) {
-        const currentEnd = addDays(new Date(currentStart), confirmBuild.buildTime).getTime();
+        const isProtestan = religionStorage.getCurrentReligion(currentData?.religion || "Islam") === "Protestan";
+        const effectiveBuildTime = isProtestan ? Math.ceil(confirmBuild.buildTime / PROTESTAN_PRODUCTION_SPEED_BONUS) : confirmBuild.buildTime;
+
+        const currentEnd = addDays(new Date(currentStart), effectiveBuildTime).getTime();
 
         const newItem = buildingStorage.addToQueue({
           buildingKey: confirmBuild.key,
@@ -284,7 +289,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           sector: confirmBuild.groupId,
           startDate: currentStart,
           endDate: currentEnd,
-          waktu_pembangunan: confirmBuild.buildTime
+          waktu_pembangunan: effectiveBuildTime
         });
 
         if (newItem) {
@@ -717,7 +722,13 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>
                           <div className="flex items-center gap-1.5">
                             <Clock size={14} className="text-cyan-500" />
-                            <span className="text-xl font-black text-white tracking-tight">{(confirmBuild.buildTime).toLocaleString('id-ID')} Hari</span>
+                            <span className="text-xl font-black text-white tracking-tight">
+                              {(() => {
+                                const isProtestan = religionStorage.getCurrentReligion(currentData?.religion || "Islam") === "Protestan";
+                                const effectiveBuildTime = isProtestan ? Math.ceil(confirmBuild.buildTime / PROTESTAN_PRODUCTION_SPEED_BONUS) : confirmBuild.buildTime;
+                                return effectiveBuildTime.toLocaleString('id-ID');
+                              })()} Hari
+                            </span>
                           </div>
                         </div>
                         {(confirmBuild.groupId === "kelistrikan" || (confirmBuild.powerUsage && confirmBuild.powerUsage > 0)) && (
@@ -739,7 +750,11 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                     <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
                       <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian Seluruh Unit</span>
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
-                         {formatGameDate(addDays(getStoredGameDate(), confirmBuild.buildTime * quantity))}
+                         {(() => {
+                            const isProtestan = religionStorage.getCurrentReligion(currentData?.religion || "Islam") === "Protestan";
+                            const effectiveBuildTime = isProtestan ? Math.ceil(confirmBuild.buildTime / PROTESTAN_PRODUCTION_SPEED_BONUS) : confirmBuild.buildTime;
+                            return formatGameDate(addDays(getStoredGameDate(), effectiveBuildTime * quantity));
+                         })()}
                       </p>
                     </div>
                   </div>

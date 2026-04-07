@@ -55,6 +55,7 @@ function getBaseBuildingCount(key: string, countryData?: any): number {
 }
 
 import { ISLAM_COMMERCIAL_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/1_islam/1_plus/plus";
+import { PROTESTAN_ENTERTAINMENT_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/2_protestan/2_minus/minus";
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 
 /**
@@ -64,6 +65,7 @@ export function calculateTempatUmumRevenue(buildingDeltas: Record<string, number
   let totalRevenue = 0;
   const currentReligion = religionStorage.getCurrentReligion(countryData?.religion || "Islam");
   const isIslam = currentReligion === "Islam";
+  const isProtestan = currentReligion === "Protestan";
 
   Object.entries(REVENUE_RATES).forEach(([key, rate]) => {
     const deltaCount = buildingDeltas[key] || 0;
@@ -75,6 +77,11 @@ export function calculateTempatUmumRevenue(buildingDeltas: Record<string, number
     // Apply 10% Bonus for Islam (Komersial Sector: 23, 24, 25)
     if (isIslam && ["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) {
       buildingRevenue *= ISLAM_COMMERCIAL_BONUS;
+    }
+
+    // Apply 15% Penalty for Protestan (Hiburan Sector: 26, 27)
+    if (isProtestan && ["26_bioskop", "27_gedung_teater"].includes(key)) {
+      buildingRevenue *= PROTESTAN_ENTERTAINMENT_PENALTY;
     }
 
     totalRevenue += buildingRevenue;
@@ -95,6 +102,7 @@ export function getTempatUmumRevenueBreakdown(buildingDeltas: Record<string, num
 
   const currentReligion = religionStorage.getCurrentReligion(countryData?.religion || "Islam");
   const isIslam = currentReligion === "Islam";
+  const isProtestan = currentReligion === "Protestan";
 
   Object.entries(REVENUE_RATES).forEach(([key, rate]) => {
     const deltaCount = buildingDeltas[key] || 0;
@@ -108,6 +116,7 @@ export function getTempatUmumRevenueBreakdown(buildingDeltas: Record<string, num
       if (isIslam) revenue *= ISLAM_COMMERCIAL_BONUS;
       breakdown.komersial += revenue;
     } else if (["26_bioskop", "27_gedung_teater"].includes(key)) {
+      if (isProtestan) revenue *= PROTESTAN_ENTERTAINMENT_PENALTY;
       breakdown.hiburan += revenue;
     }
   });
@@ -165,6 +174,7 @@ export function getDetailedTempatUmumBreakdown(buildingDeltas: Record<string, nu
 
   const currentReligion = religionStorage.getCurrentReligion(countryData?.religion || "Islam");
   const isIslam = currentReligion === "Islam";
+  const isProtestan = currentReligion === "Protestan";
 
   Object.entries(REVENUE_RATES).forEach(([key, rate]) => {
     const deltaCount = buildingDeltas[key] || 0;
@@ -179,7 +189,10 @@ export function getDetailedTempatUmumBreakdown(buildingDeltas: Record<string, nu
         sector = 'komersial';
         if (isIslam) total *= ISLAM_COMMERCIAL_BONUS;
       }
-      else if (["26_bioskop", "27_gedung_teater"].includes(key)) sector = 'hiburan';
+      else if (["26_bioskop", "27_gedung_teater"].includes(key)) {
+        sector = 'hiburan';
+        if (isProtestan) total *= PROTESTAN_ENTERTAINMENT_PENALTY;
+      }
 
       result.push({
         key,

@@ -1,10 +1,12 @@
 import { Wind } from "lucide-react";
+import { buddhaPlus } from "./1_plus/plus";
+import { buddhaMinus } from "./2_minus/minus";
 
 export const buddhaLogic = {
   name: "Buddha",
   icon: Wind,
   effects: {
-    plus: ["Indeks Kebahagiaan +20%", "Skor Kesehatan Masyarakat +5%", "Diplomasi Perdamaian Global"],
-    minus: ["Rekrutmen Militer -20%"]
+    plus: buddhaPlus,
+    minus: buddhaMinus
   }
 };

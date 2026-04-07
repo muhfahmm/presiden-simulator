@@ -1,10 +1,12 @@
 import { Landmark } from "lucide-react";
+import { konghucuPlus } from "./1_plus/plus";
+import { konghucuMinus } from "./2_minus/minus";
 
 export const konghucuLogic = {
   name: "Konghucu",
   icon: Landmark,
   effects: {
-    plus: ["Efisiensi Birokrasi +15%"],
-    minus: ["Indeks Demokrasi -10%", "Inovasi Disruptif Lambat", "Subsidi Jaring Pengaman Keluarga"]
+    plus: konghucuPlus,
+    minus: konghucuMinus
   }
 };
