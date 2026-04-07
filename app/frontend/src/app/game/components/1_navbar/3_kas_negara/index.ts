@@ -19,34 +19,53 @@ export const budgetStorage = {
     if (typeof window === 'undefined') return { anggaran: 0, cumulativeProduction: {} };
     
     const stored = localStorage.getItem(BUDGET_STORAGE_KEY);
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        return {
-          anggaran: typeof parsed.anggaran === 'number' ? parsed.anggaran : 0,
-          cumulativeProduction: parsed.cumulativeProduction || {},
-          lastProcessedDate: parsed.lastProcessedDate
-        };
-      } catch (e) {
-        console.error("Failed to parse budget storage", e);
-      }
-    }
-
-    // MIGRATION / INITIALIZATION FALLBACK: Try to get from gameStorage
     const session = gameStorage.getSession() as any;
-    if (session) {
-      const countryData = countries.find(c => c.name_en === session.country || c.name_id === session.country) || countries[0];
-      const defaultBudget = typeof countryData.anggaran === 'number' ? countryData.anggaran : 1240;
+    const countryName = session?.country || localStorage.getItem("selectedCountry");
 
-      const migratedData: BudgetData = {
-        anggaran: defaultBudget, // Force reset to database value if storage is missing
-        cumulativeProduction: {}, // Always reset production to 0 on full init
-        lastProcessedDate: INITIAL_GAME_DATE.toISOString() // Mark first day as processed to show initial budget
-      };
+    // 1. If we have a session but data is missing or corrupted, initialize from DB
+    if (countryName) {
+      const countryData = countries.find(c => 
+        c.name_en === countryName || 
+        c.name_id === countryName || 
+        c.name_id.toLowerCase() === countryName.toLowerCase() ||
+        c.name_en.toLowerCase() === countryName.toLowerCase()
+      ) || countries[0];
       
-      // Save it to the new key immediately
-      budgetStorage.saveData(migratedData);
-      return migratedData;
+      const dbBudget = typeof countryData.anggaran === 'number' ? countryData.anggaran : 1240;
+
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          // NEW: If stored budget is 0 but DB budget is > 0, sync from DB
+          // This fixes the issue where treasury is stuck at 0
+          if ((!parsed.anggaran || parsed.anggaran === 0) && dbBudget > 0) {
+            const syncedData = {
+              ...parsed,
+              anggaran: dbBudget,
+              lastProcessedDate: parsed.lastProcessedDate || INITIAL_GAME_DATE.toISOString()
+            };
+            budgetStorage.saveData(syncedData);
+            return syncedData;
+          }
+
+          return {
+            anggaran: typeof parsed.anggaran === 'number' ? parsed.anggaran : dbBudget,
+            cumulativeProduction: parsed.cumulativeProduction || {},
+            lastProcessedDate: parsed.lastProcessedDate
+          };
+        } catch (e) {
+          console.error("Failed to parse budget storage", e);
+        }
+      }
+
+      // Initial initialization if no storage exists
+      const initialData: BudgetData = {
+        anggaran: dbBudget,
+        cumulativeProduction: {},
+        lastProcessedDate: INITIAL_GAME_DATE.toISOString()
+      };
+      budgetStorage.saveData(initialData);
+      return initialData;
     }
 
     return { anggaran: 0, cumulativeProduction: {}, lastProcessedDate: undefined };

@@ -10,6 +10,8 @@ import { gameStorage } from "@/app/game/gamestorage";
 import TandaTanganPaktaBerhasil from "./tanda_tangan_pakta_berhasil";
 import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import KonfirmasiPemutusan from "../../shared/KonfirmasiPemutusan";
+import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
+import { getDiplomacyCostModifier } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/ReligionEffectLogic";
 
 interface TandaTanganPaktaProps {
   isOpen: boolean;
@@ -26,7 +28,13 @@ const REQUIRED_RELATION = 50;
 
 export default function TandaTanganPakta({ isOpen, onClose, targetCountry }: TandaTanganPaktaProps) {
   const [duration, setDuration] = useState<1 | 5 | 10>(1);
-  const currentCost = COST_MAP[duration];
+  
+  // Dynamic Cost Calculation
+  const BASE_COST = COST_MAP[duration];
+  const userCountry = (typeof window !== 'undefined' ? localStorage.getItem("selectedCountry") : "") || "";
+  const currentReligion = religionStorage.getCurrentReligion(""); // fallback
+  const costModifier = getDiplomacyCostModifier(targetCountry, currentReligion);
+  const currentCost = BASE_COST * costModifier;
   
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

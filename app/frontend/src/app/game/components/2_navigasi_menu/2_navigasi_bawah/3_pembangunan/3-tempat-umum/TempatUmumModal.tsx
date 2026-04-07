@@ -16,7 +16,7 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
 import { getBuildingRequirement, MaterialRequirement } from "../1-produksi/MaterialRequirement";
-import { REVENUE_RATES } from "./logic/TempatUmumRevenueLogic";
+import { REVENUE_RATES, getTempatUmumRevenueBreakdown } from "./logic/TempatUmumRevenueLogic";
 // import HunianPemukiman from "./HunianPemukiman";
 
 interface ModalProps {
@@ -517,8 +517,25 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
               <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
                 <div className="flex items-center gap-3 mb-5 px-1">
                   <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>
-                  <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title} <span className="text-cyan-400 ml-3 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span></h3>
-                  <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
+                  <div className="flex flex-col flex-1">
+                    <h3 className="text-xl font-black text-white uppercase tracking-widest italic flex items-center gap-3">
+                      {group.title} 
+                      <span className="text-cyan-400 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span>
+                    </h3>
+                    {['olahraga', 'komersial', 'hiburan'].includes(group.id) && (
+                      <div className="flex items-center gap-6 mt-1 flex-wrap">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">Pendapatan:</span>
+                          <span className="text-[10px] font-black text-emerald-500 italic">+{ (getTempatUmumRevenueBreakdown(buildingDeltas, currentData) as any)[group.id]?.toLocaleString('id-ID') } / hari</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 border-l border-zinc-800 pl-4">
+                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">Total Pendapatan Kas:</span>
+                          <span className="text-[10px] font-black text-emerald-400 italic">Rp { (getTempatUmumRevenueBreakdown(buildingDeltas, currentData) as any)[group.id]?.toLocaleString('id-ID') } / hari</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50 hidden lg:block"></div>
                   <button onClick={() => toggleSector(group.id)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95">
                     {collapsedSectors.has(group.id) ? <EyeOff size={16} /> : <Eye size={16} className="text-cyan-400" />}
                   </button>

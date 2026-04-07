@@ -54,17 +54,30 @@ function getBaseBuildingCount(key: string, countryData?: any): number {
   }
 }
 
+import { ISLAM_COMMERCIAL_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/1_islam/1_plus/plus";
+import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
+
 /**
  * Calculates the total revenue from all service and commercial buildings (Base + Built).
  */
 export function calculateTempatUmumRevenue(buildingDeltas: Record<string, number>, countryData?: any): number {
   let totalRevenue = 0;
+  const currentReligion = religionStorage.getCurrentReligion(countryData?.religion || "Islam");
+  const isIslam = currentReligion === "Islam";
 
   Object.entries(REVENUE_RATES).forEach(([key, rate]) => {
     const deltaCount = buildingDeltas[key] || 0;
     const baseCount = getBaseBuildingCount(key, countryData);
     const totalCount = deltaCount + baseCount;
-    totalRevenue += (totalCount * rate);
+
+    let buildingRevenue = totalCount * rate;
+    
+    // Apply 10% Bonus for Islam (Komersial Sector: 23, 24, 25)
+    if (isIslam && ["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) {
+      buildingRevenue *= ISLAM_COMMERCIAL_BONUS;
+    }
+
+    totalRevenue += buildingRevenue;
   });
 
   return totalRevenue;
@@ -80,15 +93,19 @@ export function getTempatUmumRevenueBreakdown(buildingDeltas: Record<string, num
     hiburan: 0
   };
 
+  const currentReligion = religionStorage.getCurrentReligion(countryData?.religion || "Islam");
+  const isIslam = currentReligion === "Islam";
+
   Object.entries(REVENUE_RATES).forEach(([key, rate]) => {
     const deltaCount = buildingDeltas[key] || 0;
     const baseCount = getBaseBuildingCount(key, countryData);
     const totalCount = deltaCount + baseCount;
-    const revenue = totalCount * rate;
+    let revenue = totalCount * rate;
 
     if (["16_kolam_renang", "17_sirkuit_balap", "18_stadium_int", "19_gym_center", "20_lapangan_golf", "21_esports_arena", "22_gokart_circuit"].includes(key)) {
       breakdown.olahraga += revenue;
     } else if (["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) {
+      if (isIslam) revenue *= ISLAM_COMMERCIAL_BONUS;
       breakdown.komersial += revenue;
     } else if (["26_bioskop", "27_gedung_teater"].includes(key)) {
       breakdown.hiburan += revenue;
@@ -146,6 +163,9 @@ export function getDetailedTempatUmumBreakdown(buildingDeltas: Record<string, nu
     "27_gedung_teater": "Gedung Teater"
   };
 
+  const currentReligion = religionStorage.getCurrentReligion(countryData?.religion || "Islam");
+  const isIslam = currentReligion === "Islam";
+
   Object.entries(REVENUE_RATES).forEach(([key, rate]) => {
     const deltaCount = buildingDeltas[key] || 0;
     const baseCount = getBaseBuildingCount(key, countryData);
@@ -153,7 +173,12 @@ export function getDetailedTempatUmumBreakdown(buildingDeltas: Record<string, nu
 
     if (totalCount > 0) {
       let sector: 'olahraga' | 'komersial' | 'hiburan' = 'olahraga';
-      if (["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) sector = 'komersial';
+      let total = totalCount * rate;
+
+      if (["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) {
+        sector = 'komersial';
+        if (isIslam) total *= ISLAM_COMMERCIAL_BONUS;
+      }
       else if (["26_bioskop", "27_gedung_teater"].includes(key)) sector = 'hiburan';
 
       result.push({
@@ -161,7 +186,7 @@ export function getDetailedTempatUmumBreakdown(buildingDeltas: Record<string, nu
         label: labels[key] || key,
         count: totalCount,
         rate,
-        total: totalCount * rate,
+        total,
         sector
       });
     }

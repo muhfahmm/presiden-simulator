@@ -195,7 +195,9 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         countryData={countryData}
       />
       <AgamaModal
-        isOpen={activeMenu === "Menu:Agama"}
+        isOpen={activeMenu === "Menu:Agama" || activeMenu.startsWith("Menu:Agama:")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
         onClose={() => setActiveMenu("Sosial & Budaya")}
         countryData={countryData}
       />

@@ -6,6 +6,8 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { relationStorage } from "../1_kedutaan/logic/relationStorage";
 import { allRelations } from "@/app/database/data/negara/hubungan/index";
 import { tradeStorage } from "./logic/tradeStorage";
+import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
+import { getDiplomacyCostModifier } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/ReligionEffectLogic";
 
 interface TandaTanganDagangProps {
   isOpen: boolean;
@@ -23,6 +25,13 @@ export default function TandaTanganDagang({ isOpen, onClose, targetCountry }: Ta
   // States for requirements
   const [currentBudget, setCurrentBudget] = useState(0);
   const [relationScore, setRelationScore] = useState(0);
+
+  // Dynamic Cost Calculation
+  const BASE_COST = 25000;
+  const userCountry = (typeof window !== 'undefined' ? localStorage.getItem("selectedCountry") : "") || "";
+  const currentReligion = religionStorage.getCurrentReligion(""); // fallback
+  const costModifier = getDiplomacyCostModifier(targetCountry, currentReligion);
+  const dynamicCost = BASE_COST * costModifier;
 
   // Load requirements on mount
   useEffect(() => {
@@ -69,7 +78,7 @@ export default function TandaTanganDagang({ isOpen, onClose, targetCountry }: Ta
   }, [isOpen, targetCountry]);
 
   const handleSignTrade = async () => {
-    if (currentBudget < COST) {
+    if (currentBudget < dynamicCost) {
       setError("Anggaran negara tidak mencukupi.");
       return;
     }
@@ -95,7 +104,7 @@ export default function TandaTanganDagang({ isOpen, onClose, targetCountry }: Ta
 
       if (result.eligible) {
         // 1. Deduct Budget
-        budgetStorage.updateBudget(-COST);
+        budgetStorage.updateBudget(-dynamicCost);
         
         // 2. Update Storage
         tradeStorage.updateTradeStatus(targetCountry, 'active');
@@ -147,13 +156,13 @@ export default function TandaTanganDagang({ isOpen, onClose, targetCountry }: Ta
                 {relationScore >= REQUIRED_RELATION ? <CheckCircle2 size={16} className="text-emerald-500" /> : <AlertTriangle size={16} className="text-red-400" />}
               </div>
             </div>
-            <div className={`p-4 rounded-2xl border transition-all ${currentBudget >= COST ? 'bg-zinc-900/50 border-zinc-800' : 'bg-red-500/5 border-red-500/20'}`}>
+            <div className={`p-4 rounded-2xl border transition-all ${currentBudget >= dynamicCost ? 'bg-zinc-900/50 border-zinc-800' : 'bg-red-500/5 border-red-500/20'}`}>
               <span className="text-[10px] text-zinc-500 uppercase font-black tracking-widest mb-1 block">Biaya Diplomasi</span>
               <div className="flex items-center justify-between">
-                <span className={`text-sm font-mono font-bold ${currentBudget >= COST ? 'text-amber-400' : 'text-red-400'}`}>
-                  {COST.toLocaleString('id-ID')}
+                <span className={`text-sm font-mono font-bold ${currentBudget >= dynamicCost ? 'text-amber-400' : 'text-red-400'}`}>
+                  {dynamicCost.toLocaleString('id-ID')}
                 </span>
-                {currentBudget >= COST ? <CheckCircle2 size={16} className="text-emerald-500" /> : <AlertTriangle size={16} className="text-red-400" />}
+                {currentBudget >= dynamicCost ? <CheckCircle2 size={16} className="text-emerald-500" /> : <AlertTriangle size={16} className="text-red-400" />}
               </div>
             </div>
           </div>
@@ -201,7 +210,7 @@ export default function TandaTanganDagang({ isOpen, onClose, targetCountry }: Ta
             </button>
             <button 
               onClick={handleSignTrade}
-              disabled={isLoading || relationScore < REQUIRED_RELATION || currentBudget < COST}
+              disabled={isLoading || relationScore < REQUIRED_RELATION || currentBudget < dynamicCost}
               className="flex-1 py-4 bg-amber-600 hover:bg-amber-500 disabled:opacity-50 disabled:hover:bg-amber-600 text-white text-xs font-black rounded-xl transition-all shadow-lg shadow-amber-500/20 uppercase tracking-[0.2em] flex items-center justify-center gap-2"
             >
               {isLoading ? (

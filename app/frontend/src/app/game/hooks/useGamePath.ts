@@ -81,7 +81,17 @@ export function useGamePath(path: string[]) {
     initialMenu = "Dashboard:Populasi";
 
   } else if (category === 'agama') {
-    initialMenu = "Menu:Agama";
+    if (subMenu && subMenu.endsWith("_effects")) {
+      const religion = subMenu.replace("_effects", "");
+      const effectType = path[2]; // e.g. "islam_plus" or "islam_minus"
+      if (effectType) {
+        initialMenu = `Menu:Agama:${religion}:${effectType}`;
+      } else {
+        initialMenu = `Menu:Agama:${religion}`;
+      }
+    } else {
+      initialMenu = "Menu:Agama";
+    }
   } else if (category === 'misi-taktis') {
     const target = path[1];
     const detail = path[2];
@@ -183,6 +193,17 @@ export function useGamePath(path: string[]) {
       targetPath = `/game/geopolitik/diplomasi/${detail}`;
     }
 
+    // Dynamic path handling for Religion details
+    if (!targetPath && activeMenu.startsWith("Menu:Agama:")) {
+      const parts = activeMenu.split(":");
+      const religion = parts[2];
+      const effectType = parts[3];
+      targetPath = `/game/agama/${religion.toLowerCase()}_effects`;
+      if (effectType) {
+        targetPath += `/${effectType.toLowerCase()}`;
+      }
+    }
+    
     // Dynamic path handling for Country Modals
     if (!targetPath && activeMenu.startsWith("CountryModal:")) {
       const parts = activeMenu.split(":");

@@ -249,7 +249,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                           </button>
                        </div>
 
-                       <div className={`space-y-3 overflow-hidden transition-all duration-700 ease-in-out ${showTrade ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+                       <div className={`space-y-3 overflow-hidden transition-all duration-700 ease-in-out ${showTrade ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
                           {dynamicTrade.map((tax) => (
                              <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
                                 <div className="flex items-center gap-3">
@@ -259,6 +259,23 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                                 <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
                              </div>
                           ))}
+
+                          {/* INJECTED: Sektor Komersial & Retail (Synchronized) */}
+                          <div className="pt-2">
+                            <div className="bg-zinc-950/50 border border-emerald-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-emerald-500/40 transition-all">
+                              <div className="flex items-center gap-3">
+                                <div className="p-1.5 bg-emerald-500/10 rounded-lg"><Building2 size={14} className="text-emerald-400" /></div>
+                                <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Komersial & Retail (Sync)</span>
+                              </div>
+                              <span className={`text-[13px] font-black ${serviceBreakdown.komersial > 0 ? 'text-emerald-400' : 'text-zinc-600'}`}>+{serviceBreakdown.komersial.toLocaleString('id-ID')}</span>
+                            </div>
+                            {serviceDetailedBreakdown.filter((d: any) => d.sector === 'komersial').map((item: any) => (
+                              <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
+                                <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
+                                <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
+                              </div>
+                            ))}
+                          </div>
                        </div>
                     </div>
                     )}
@@ -304,23 +321,6 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                             <span className={`text-[13px] font-black ${serviceBreakdown.olahraga > 0 ? 'text-cyan-400' : 'text-zinc-600'}`}>+{serviceBreakdown.olahraga.toLocaleString('id-ID')}</span>
                           </div>
                           {serviceDetailedBreakdown.filter((d: any) => d.sector === 'olahraga').map((item: any) => (
-                            <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
-                              <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
-                              <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Sektor Komersial */}
-                        <div className="space-y-2">
-                          <div className="bg-zinc-950/50 border border-emerald-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-emerald-500/40 transition-all">
-                            <div className="flex items-center gap-3">
-                               <div className="p-1.5 bg-emerald-500/10 rounded-lg"><Building2 size={14} className="text-emerald-400" /></div>
-                               <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Komersial & Retail ({serviceUnitCount.komersial} Unit)</span>
-                            </div>
-                            <span className={`text-[13px] font-black ${serviceBreakdown.komersial > 0 ? 'text-emerald-400' : 'text-zinc-600'}`}>+{serviceBreakdown.komersial.toLocaleString('id-ID')}</span>
-                          </div>
-                          {serviceDetailedBreakdown.filter((d: any) => d.sector === 'komersial').map((item: any) => (
                             <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
                               <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
                               <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
