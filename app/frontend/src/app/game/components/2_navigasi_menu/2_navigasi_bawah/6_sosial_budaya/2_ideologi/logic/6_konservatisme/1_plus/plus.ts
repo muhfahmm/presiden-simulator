@@ -1,4 +1,3 @@
 export const konservatismePlus = [
-  "Stabilitas Politik +20%",
-  "Ketahanan Budaya +15%"
+  "Kepuasan +0.1% per hari"
 ];

@@ -1,4 +1,3 @@
 export const demokrasiPlus = [
-  "Approval Rating +30%",
-  "Investasi Asing (FDI) +20%"
+  "Stabilitas Kepuasan rakyak +0.1% per hari",
 ];

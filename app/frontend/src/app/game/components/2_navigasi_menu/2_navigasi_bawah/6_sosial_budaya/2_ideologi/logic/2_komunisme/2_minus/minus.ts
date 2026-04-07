@@ -1,4 +1,4 @@
 export const komunismeMinus = [
-  "Daily Revenue (Pajak Swasta) -50%",
-  "Inovasi Teknologi -20%"
+  "Inovasi Teknologi -20%",
+  "Risiko Embargo dari Blok Barat"
 ];

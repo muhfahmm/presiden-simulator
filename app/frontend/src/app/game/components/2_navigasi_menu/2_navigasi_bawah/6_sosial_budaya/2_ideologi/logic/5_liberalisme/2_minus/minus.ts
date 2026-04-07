@@ -1,4 +1,4 @@
 export const liberalismeMinus = [
-  "Kriminalitas +10%",
+  "Kriminalitas +15%",
   "Stabilitas Nasional sulit dijaga (Protes Mudah Terjadi)"
 ];

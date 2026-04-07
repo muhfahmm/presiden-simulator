@@ -1,4 +1,3 @@
 export const monarkiPlus = [
-  "Pengambilan Keputusan Instan (Tanpa Delay)",
-  "Loyalitas Pejabat +30%"
+  "Loyalitas Pejabat & Menteri +30%"
 ];

@@ -1,4 +1,4 @@
 export const komunismePlus = [
-  "Biaya Produksi Pabrik -30%",
+  "Biaya Pembangunan Pabrik -50%",
   "Pengangguran 0%"
 ];
