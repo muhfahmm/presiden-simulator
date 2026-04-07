@@ -7,7 +7,7 @@ import { budgetDeltaStorage } from "@/app/game/components/1_navbar/3_kas_negara/
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
-import { calculateDailyPopulationDelta } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
+import { calculateDetailedPopulationMetrics } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
 import { calculatePopulationHappiness } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan";
 import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
@@ -69,7 +69,10 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
         setHappiness(calculatePopulationHappiness());
 
         const currentPop = populationStorage.getPopulation();
-        const popDelta = calculateDailyPopulationDelta(currentCountry, currentPop);
+        const buildingDeltas = buildingStorage.getBuildingDeltas();
+        const popMetrics = calculateDetailedPopulationMetrics(currentCountry, currentPop, buildingDeltas);
+        const popDelta = popMetrics.totalDailyDelta;
+        
         setPopulationDelta(popDelta);
         populationDeltaStorage.setDelta(popDelta);
       }

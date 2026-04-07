@@ -4,6 +4,7 @@ import { incomeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_
 import { expenseStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
 import { priceStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 import { calculateGoldMineRevenue } from "@/app/game/components/1_navbar/3_kas_negara/GoldMineRevenue";
+import { calculateTempatUmumRevenue } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/logic/TempatUmumRevenueLogic";
 
 /**
  * Calculates the total daily maintenance cost.
@@ -83,6 +84,12 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
     revenues.resources["emas"] = goldRevenue * 365; // Annualized
   }
 
+  // 1.2 Services Income (Tempat Umum: Olahraga, Komersial, Hiburan)
+  const serviceRevenue = calculateTempatUmumRevenue(buildingDeltas, countryData);
+  if (serviceRevenue > 0) {
+    revenues.other["sektor_jasa"] = serviceRevenue * 365; // Annualized
+  }
+
   const totalAnnualRevenue = 
     Object.values(revenues.domestic).reduce((a, b) => a + b, 0) +
     Object.values(revenues.trade).reduce((a, b) => a + b, 0) +
@@ -120,7 +127,8 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
     dailyDelta,
     dailyTaxRevenue: Object.values(revenues.domestic).reduce((a, b) => a + b, 0) + 
                      Object.values(revenues.trade).reduce((a, b) => a + b, 0) +
-                     (Object.values(revenues.resources).reduce((a, b) => a + b, 0) / 365),
+                     (Object.values(revenues.resources).reduce((a, b) => a + b, 0) / 365) +
+                     (revenues.other["sektor_jasa"] || 0) / 365,
     revenues,
     expenses: {
       maintenance: maintenanceExpense,

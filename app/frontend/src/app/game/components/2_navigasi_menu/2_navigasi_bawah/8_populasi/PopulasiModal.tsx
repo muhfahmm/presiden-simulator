@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { X, Users, TrendingUp, TrendingDown, Minus, ShoppingCart, CalendarDays, Users2, Clock, Heart, Brain, ShieldAlert, BadgeDollarSign, Activity, GraduationCap, Gavel, Landmark, Briefcase, ChevronRight, Baby } from "lucide-react";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
+import { calculateDetailedPopulationMetrics } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
@@ -44,70 +45,33 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
   const countryName = session?.country || "Indonesia";
   const country = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
 
-  // Tax impact on population growth
-  const domesticKeys = ["ppn", "korporasi", "pendapatan_nasional", "lingkungan", "lainnya"];
-  const currentTaxes = taxStorage.getTaxes(country.name_en) || country.pajak;
-  const avgTaxRate = domesticKeys.length > 0
-    ? domesticKeys.reduce((acc, key) => acc + ((currentTaxes as any)[key]?.tarif || 0), 0) / domesticKeys.length
-    : 0;
+  // Unified calculation using shared logic
+  const buildingDeltas = buildingStorage.getBuildingDeltas();
+  const {
+    totalDailyDelta,
+    naturalDailyDelta,
+    dailyTaxDelta,
+    dailyPriceDelta,
+    healthScore,
+    lifeExpectancy,
+    taxGrowthRate,
+    priceGrowthRate,
+    dailyBirths,
+    dailyDeaths
+  } = calculateDetailedPopulationMetrics(country, population, buildingDeltas);
 
-  const getPopGrowthRate = (rate: number): number => {
-    if (rate <= 15) return 0.0001;
-    if (rate <= 35) return 0.00005;
-    if (rate <= 55) return 0.00002;
-    if (rate <= 75) return -0.00003;
-    return -0.00008;
-  };
-
-  const taxGrowthRate = getPopGrowthRate(avgTaxRate);
   const monthlyTaxGrowthPercent = taxGrowthRate * 30 * 100;
-  const dailyTaxDelta = Math.round(population * taxGrowthRate);
-
-  // Price impact on population growth
-  const prices = priceStorage.getData(country);
-  const priceKeys = Object.keys(BASE_PRICES) as Array<keyof typeof BASE_PRICES>;
-  const avgPriceMult = priceKeys.reduce((acc: number, key) => {
-    const base = (BASE_PRICES as any)[key] || 1;
-    const current = (prices as any)[key] || base;
-    return acc + (current / base);
-  }, 0) / 11;
-
-  const getPopGrowthRateFromPrice = (multiplier: number): number => {
-    if (multiplier <= 0.8) return 0.0001;
-    if (multiplier <= 1.2) return 0.00005;
-    if (multiplier <= 1.5) return 0.00002;
-    if (multiplier <= 2.0) return -0.00003;
-    return -0.00008;
-  };
-
-  const priceGrowthRate = getPopGrowthRateFromPrice(avgPriceMult);
   const monthlyPriceGrowthPercent = priceGrowthRate * 30 * 100;
-  const dailyPriceDelta = Math.round(population * priceGrowthRate);
-
-
 
   // --- ADVANCED STATISTICS CALCULATION ---
-  const buildingDeltas = buildingStorage.getBuildingDeltas();
+  const prices = priceStorage.getData(country);
 
   // 1. WELL-BEING: Living Cost Index
-  // Ratio of National Income (as proxy for wealth) to Avg Basic Prices
   const monthlyIncomeProxy = parseInt(country.pendapatan_nasional || "0") / 12;
   const basicPriceAvg = (
     (prices.harga_beras + prices.harga_listrik + prices.harga_air + prices.harga_bbm) / 4
   );
-  // Normalize index (Higher is better) - Adjusted scaling for new proxy
   const livingCostIndex = Math.min(100, Math.max(5, (monthlyIncomeProxy / (basicPriceAvg * 2)) * 10));
-
-  // 2. QUALITY OF LIFE: Health Score & Life Expectancy
-  const rsBesarCount = (country.kesehatan?.rumah_sakit_besar || 0) + (buildingDeltas["rumah_sakit_besar"] || 0);
-  const rsKecilCount = (country.kesehatan?.rumah_sakit_kecil || 0) + (buildingDeltas["rumah_sakit_kecil"] || 0);
-  const factoryCount = Object.values(country.sektor_manufaktur || {}).reduce((a: number, b: any) => a + (typeof b === 'number' ? b : 0), 0) +
-    Object.values(buildingDeltas).filter((_, i) => Object.keys(buildingDeltas)[i].includes("pabrik")).reduce((a, b) => a + b, 0);
-
-  const healthScore = Math.min(100, Math.max(0,
-    (country.kesehatan?.indeks_kesehatan || 85) + (rsBesarCount * 2) + (rsKecilCount * 0.5) - (factoryCount * 0.1)
-  ));
-  const lifeExpectancy = (country.kesehatan?.harapan_hidup || 72) + (healthScore > 90 ? 5 : healthScore > 70 ? 2 : healthScore < 50 ? -5 : 0);
 
   const currentDateMs = getStoredGameDate().getTime();
   const diffTime = Math.abs(currentDateMs - INITIAL_GAME_DATE.getTime());
@@ -118,21 +82,6 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
   const nextUpdateDate = new Date(nextUpdateMs);
   const nextDateStr = `${nextUpdateDate.getDate().toString().padStart(2, '0')}-${(nextUpdateDate.getMonth() + 1).toString().padStart(2, '0')}-${nextUpdateDate.getFullYear()}`;
 
-  // Birth & Death Engine (Realistic Dynamics)
-  const baseBirthRate = 1.72; // Annual 1.72%
-  const baseDeathRate = 0.68; // Annual 0.68%
-
-  // Health Impact: Better health = fewer deaths, slightly higher birth success
-  const healthModifier = (healthScore - 72) / 100; // e.g., if health is 85, mod is +0.13%
-  const finalBirthRate = (baseBirthRate + (healthModifier * 0.1)) / 100;
-  const finalDeathRate = (baseDeathRate - (healthModifier * 0.4)) / 100;
-
-  const dailyBirths = Math.round((population * finalBirthRate) / 365);
-  const dailyDeaths = Math.round((population * finalDeathRate) / 365);
-  const naturalDailyDelta = dailyBirths - dailyDeaths;
-
-  // External impacts (Tax & Price)
-  const totalDailyDelta = naturalDailyDelta + dailyTaxDelta + dailyPriceDelta;
   const totalMonthlyGrowthPercent = ((totalDailyDelta * 30) / population) * 100;
 
   // 3. HUMAN CAPITAL: National Workforce Stats

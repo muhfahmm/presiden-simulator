@@ -481,80 +481,107 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
         {/* Confirmation Modal Overlay */}
         {confirmBuild && (
           <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
-            <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[32px] shadow-2xl max-w-md w-full mx-4 flex flex-col items-center text-center gap-6 animate-in zoom-in-95">
-              <div className="p-5 bg-cyan-500/10 rounded-full border border-cyan-500/20">
-                <confirmBuild.icon className="h-10 w-10 text-cyan-500" />
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-2xl font-black text-white uppercase tracking-tighter italic">Konfirmasi Bangun?</h3>
-                <p className="text-zinc-400 text-sm font-medium">Anda akan membangun <span className="text-white font-black underline">{confirmBuild.label}</span> untuk meningkatkan kapasitas produksi militer nasional.</p>
+            <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[40px] shadow-2xl max-w-4xl w-full mx-4 flex flex-col gap-6 animate-in zoom-in-95 max-h-[90vh]">
+              
+              {/* Header: Icon & Title (Full Width) */}
+              <div className="flex items-center gap-6 shrink-0 border-b border-zinc-800/50 pb-6">
+                <div className="p-4 bg-cyan-500/10 rounded-3xl border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
+                  <confirmBuild.icon className="h-10 w-10 text-cyan-500" />
+                </div>
+                <div className="flex-1 text-left">
+                  <h3 className="text-3xl font-black text-white uppercase tracking-tighter italic leading-none">Konfirmasi Bangun?</h3>
+                  <p className="text-zinc-400 text-sm font-medium mt-2">Membangun <span className="text-white font-black underline">{confirmBuild.label}</span> untuk meningkatkan kapasitas produksi militer nasional.</p>
+                </div>
               </div>
 
-              <div className={`w-full grid ${confirmBuild.consumption > 0 ? 'grid-cols-3' : 'grid-cols-2'} gap-3`}>
-                <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
-                  <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Total</span>
-                  <span className="text-xl font-black text-amber-500 group-hover:scale-110 transition-transform duration-300 tracking-tight">{(confirmBuild.cost * quantity).toLocaleString('id-ID')}</span>
-                </div>
-                <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
-                  <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Waktu Total</span>
-                  <div className="flex items-center gap-2">
-                    <Clock size={14} className="text-cyan-500" />
-                    <span className="text-xl font-black text-white group-hover:scale-110 transition-transform duration-300 tracking-tight">{(confirmBuild.buildTime * quantity).toLocaleString('id-ID')} Hari</span>
-                  </div>
-                </div>
-                {confirmBuild.consumption > 0 && (
-                  <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
-                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Energi Beban</span>
-                    <div className="flex items-center gap-2">
-                      <Zap size={14} className="text-rose-500" />
-                      <span className="text-xl font-black text-rose-500 group-hover:scale-110 transition-transform duration-300 tracking-tight">{(confirmBuild.consumption * quantity).toLocaleString('id-ID')} MW</span>
+              {/* Main Content: 2-Column Grid Area */}
+              <div className="flex-1 overflow-y-auto no-scrollbar py-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  
+                  {/* Column 1: Stats & Info */}
+                  <div className="space-y-6">
+                    <div className="flex flex-col gap-3">
+                      <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest italic leading-none ml-1">Spesifikasi Militer</span>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
+                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Satuan</span>
+                          <span className="text-xl font-black text-amber-500 tracking-tight">{(Number(confirmBuild.cost || 0)).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
+                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>
+                          <div className="flex items-center gap-1.5">
+                            <Clock size={14} className="text-cyan-500" />
+                            <span className="text-xl font-black text-white tracking-tight">{(confirmBuild.buildTime).toLocaleString('id-ID')} Hari</span>
+                          </div>
+                        </div>
+                        {confirmBuild.consumption > 0 && (
+                          <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group col-span-2">
+                            <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Estimasi Beban Energi</span>
+                            <div className="flex items-center gap-1.5">
+                              <Zap size={14} className="text-rose-500" />
+                              <span className="text-xl font-black text-rose-500 tracking-tight">{(confirmBuild.consumption).toLocaleString('id-ID')} MW</span>
+                            </div>
+                          </div>
+                        )}
+                        {confirmBuild.tarif > 0 && (
+                          <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group col-span-2">
+                             <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Produksi Strategis</span>
+                             <span className="text-xl font-black text-amber-400">+{confirmBuild.tarif.toLocaleString('id-ID')} {confirmBuild.unit}/HARI</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
+                      <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian Seluruh Unit</span>
+                      <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
+                         {formatGameDate(addDays(getStoredGameDate(), confirmBuild.buildTime * quantity))}
+                      </p>
                     </div>
                   </div>
-                )}
-              </div>
 
-              {/* Material Requirements */}
-              <MaterialRequirement buildingKey={confirmBuild.key} quantity={quantity} />
+                  {/* Column 2: Materials & Quantity */}
+                  <div className="space-y-6">
+                    <MaterialRequirement buildingKey={confirmBuild.key} quantity={quantity} />
 
-              {/* Quantity Selector */}
-              <div className="w-full flex flex-col gap-2">
-                <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Jumlah Unit Pembangunan</span>
-                <div className="flex items-center justify-center gap-6 bg-zinc-950/80 border border-zinc-800 p-2 rounded-2xl">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 text-xl font-black text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all cursor-pointer shadow-inner active:scale-95"
-                  >
-                    -
-                  </button>
-                  <div className="flex flex-col items-center min-w-[80px]">
-                    <span className="text-3xl font-black text-white tracking-tighter">{quantity.toLocaleString('id-ID')}</span>
-                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter italic">Unit</span>
+                    <div className="space-y-3">
+                      <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest italic ml-1">Kuantitas Pembangunan</span>
+                      <div className="flex items-center justify-center gap-6 bg-zinc-950/80 border border-zinc-800 p-2 rounded-2xl shadow-inner">
+                        <button
+                          onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                          className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 text-xl font-black text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all cursor-pointer shadow-lg active:scale-95"
+                        >
+                          -
+                        </button>
+                        <div className="flex flex-col items-center min-w-[90px]">
+                          <span className="text-3xl font-black text-white tracking-tighter">{quantity.toLocaleString('id-ID')}</span>
+                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter italic leading-none">Unit Strategis</span>
+                        </div>
+                        <button
+                          onClick={() => setQuantity(quantity + 1)}
+                          className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 text-xl font-black text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all cursor-pointer shadow-lg active:scale-95"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 text-xl font-black text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all cursor-pointer shadow-inner active:scale-95"
-                  >
-                    +
-                  </button>
                 </div>
               </div>
 
-              <div className="w-full py-2 px-4 rounded-xl bg-cyan-500/5 border border-cyan-500/10 text-[10px] font-medium text-cyan-500/80 italic">
-                Selesai Bertahap S/D: {formatGameDate(addDays(getStoredGameDate(), confirmBuild.buildTime * quantity))}
-              </div>
-
-              <div className="flex gap-4 w-full mt-2">
+              {/* Footer: Action Buttons */}
+              <div className="flex gap-4 shrink-0 mt-2 border-t border-zinc-800/50 pt-6">
                 <button
                   onClick={() => setConfirmBuild(null)}
-                  className="flex-1 px-6 py-4 rounded-2xl bg-zinc-800/50 text-zinc-400 font-black text-xs uppercase tracking-widest border border-zinc-700 hover:bg-zinc-800 hover:text-white transition-all cursor-pointer"
+                  className="flex-1 px-8 py-5 rounded-3xl bg-zinc-800/50 text-zinc-400 font-black text-xs uppercase tracking-widest border border-zinc-700 hover:bg-zinc-800 hover:text-white transition-all cursor-pointer"
                 >
                   Batal
                 </button>
                 <button
                   onClick={handles.handleConfirmBuild}
-                  className="flex-2 px-6 py-4 rounded-2xl bg-cyan-600 text-white font-black text-xs uppercase tracking-widest shadow-[0_10px_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_20px_40px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95"
+                  className="flex-[2] px-8 py-5 rounded-3xl bg-cyan-600 text-white font-black text-sm uppercase tracking-widest shadow-[0_10px_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_20px_40px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95"
                 >
-                  Bangun Sekarang
+                  Konfirmasi & Bangun Sekarang
                 </button>
               </div>
             </div>

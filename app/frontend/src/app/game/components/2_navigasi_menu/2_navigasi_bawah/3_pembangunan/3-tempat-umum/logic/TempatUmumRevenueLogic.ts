@@ -1,0 +1,171 @@
+/**
+ * Sektor Layanan Publik Revenue Logic
+ * 
+ * This module calculates daily revenue for Sports, Commercial, and Entertainment sectors.
+ * Each unit of a certain building generates a specific amount of money (in national budget units).
+ */
+
+export const REVENUE_RATES: Record<string, number> = {
+  // 5. Sektor Olahraga & Rekreasi (7 jenis)
+  "16_kolam_renang": 350,
+  "17_sirkuit_balap": 1200,
+  "18_stadium_int": 2500,
+  "19_gym_center": 450,
+  "20_lapangan_golf": 1800,
+  "21_esports_arena": 850,
+  "22_gokart_circuit": 600,
+
+  // 6. Sektor Komersial & Retail (3 jenis)
+  "23_pusat_belanja": 3500,
+  "24_hotel": 2800,
+  "25_pusat_grosir_tekstil": 2200,
+
+  // 7. Sektor Hiburan & Seni (2 jenis)
+  "26_bioskop": 1100,
+  "27_gedung_teater": 900,
+};
+
+/**
+ * Base Mapping to lookup buildings in initial country data
+ */
+function getBaseBuildingCount(key: string, countryData?: any): number {
+  if (!countryData) return 0;
+  
+  switch(key) {
+    // Sektor Olahraga
+    case "16_kolam_renang": return countryData.sektor_olahraga?.kolam_renang || 0;
+    case "17_sirkuit_balap": return countryData.sektor_olahraga?.sirkuit_balap || 0;
+    case "18_stadium_int": return (countryData.sektor_olahraga?.stadion || 0) + (countryData.sektor_olahraga?.stadion_internasional || 0);
+    case "19_gym_center": return countryData.sektor_olahraga?.gym || 0;
+    case "20_lapangan_golf": return countryData.sektor_olahraga?.golf || 0;
+    case "21_esports_arena": return countryData.sektor_olahraga?.esports || 0;
+    case "22_gokart_circuit": return countryData.sektor_olahraga?.gokart || 0;
+    
+    // Sektor Komersial
+    case "23_pusat_belanja": return countryData.sektor_komersial?.pusat_belanja || 0;
+    case "24_hotel": return countryData.sektor_komersial?.hotel || 0;
+    case "25_pusat_grosir_tekstil": return countryData.sektor_komersial?.pusat_grosir_tekstil || 0;
+    
+    // Sektor Hiburan
+    case "26_bioskop": return countryData.sektor_hiburan?.bioskop || 0;
+    case "27_gedung_teater": return countryData.sektor_hiburan?.teater || 0;
+    
+    default: return 0;
+  }
+}
+
+/**
+ * Calculates the total revenue from all service and commercial buildings (Base + Built).
+ */
+export function calculateTempatUmumRevenue(buildingDeltas: Record<string, number>, countryData?: any): number {
+  let totalRevenue = 0;
+
+  Object.entries(REVENUE_RATES).forEach(([key, rate]) => {
+    const deltaCount = buildingDeltas[key] || 0;
+    const baseCount = getBaseBuildingCount(key, countryData);
+    const totalCount = deltaCount + baseCount;
+    totalRevenue += (totalCount * rate);
+  });
+
+  return totalRevenue;
+}
+
+/**
+ * Get revenue breakdown by sector (Olahraga, Komersial, Hiburan) (Base + Built)
+ */
+export function getTempatUmumRevenueBreakdown(buildingDeltas: Record<string, number>, countryData?: any) {
+  const breakdown = {
+    olahraga: 0,
+    komersial: 0,
+    hiburan: 0
+  };
+
+  Object.entries(REVENUE_RATES).forEach(([key, rate]) => {
+    const deltaCount = buildingDeltas[key] || 0;
+    const baseCount = getBaseBuildingCount(key, countryData);
+    const totalCount = deltaCount + baseCount;
+    const revenue = totalCount * rate;
+
+    if (["16_kolam_renang", "17_sirkuit_balap", "18_stadium_int", "19_gym_center", "20_lapangan_golf", "21_esports_arena", "22_gokart_circuit"].includes(key)) {
+      breakdown.olahraga += revenue;
+    } else if (["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) {
+      breakdown.komersial += revenue;
+    } else if (["26_bioskop", "27_gedung_teater"].includes(key)) {
+      breakdown.hiburan += revenue;
+    }
+  });
+
+  return breakdown;
+}
+
+/**
+ * Get total unit count by category (Base + Built)
+ */
+export function getTempatUmumUnitCount(buildingDeltas: Record<string, number>, countryData?: any) {
+  const counts = {
+    olahraga: 0,
+    komersial: 0,
+    hiburan: 0
+  };
+
+  Object.keys(REVENUE_RATES).forEach(key => {
+    const deltaCount = buildingDeltas[key] || 0;
+    const baseCount = getBaseBuildingCount(key, countryData);
+    const totalCount = deltaCount + baseCount;
+
+    if (["16_kolam_renang", "17_sirkuit_balap", "18_stadium_int", "19_gym_center", "20_lapangan_golf", "21_esports_arena", "22_gokart_circuit"].includes(key)) {
+      counts.olahraga += totalCount;
+    } else if (["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) {
+      counts.komersial += totalCount;
+    } else if (["26_bioskop", "27_gedung_teater"].includes(key)) {
+      counts.hiburan += totalCount;
+    }
+  });
+
+  return counts;
+}
+
+/**
+ * Get detailed breakdown per building (Base + Built)
+ */
+export function getDetailedTempatUmumBreakdown(buildingDeltas: Record<string, number>, countryData?: any) {
+  const result: { key: string, label: string, count: number, rate: number, total: number, sector: 'olahraga' | 'komersial' | 'hiburan' }[] = [];
+
+  const labels: Record<string, string> = {
+    "16_kolam_renang": "Kolam Renang",
+    "17_sirkuit_balap": "Sirkuit Balap",
+    "18_stadium_int": "Stadium Internasional",
+    "19_gym_center": "Gym Center",
+    "20_lapangan_golf": "Lapangan Golf",
+    "21_esports_arena": "E-Sports Arena",
+    "22_gokart_circuit": "Sirkuit Gokart",
+    "23_pusat_belanja": "Pusat Perbelanjaan",
+    "24_hotel": "Hotel & Resort",
+    "25_pusat_grosir_tekstil": "Pusat Grosir Tekstil",
+    "26_bioskop": "Bioskop",
+    "27_gedung_teater": "Gedung Teater"
+  };
+
+  Object.entries(REVENUE_RATES).forEach(([key, rate]) => {
+    const deltaCount = buildingDeltas[key] || 0;
+    const baseCount = getBaseBuildingCount(key, countryData);
+    const totalCount = deltaCount + baseCount;
+
+    if (totalCount > 0) {
+      let sector: 'olahraga' | 'komersial' | 'hiburan' = 'olahraga';
+      if (["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) sector = 'komersial';
+      else if (["26_bioskop", "27_gedung_teater"].includes(key)) sector = 'hiburan';
+
+      result.push({
+        key,
+        label: labels[key] || key,
+        count: totalCount,
+        rate,
+        total: totalCount * rate,
+        sector
+      });
+    }
+  });
+
+  return result;
+}
