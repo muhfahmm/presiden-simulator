@@ -38,6 +38,7 @@ import MaterialRequirement from "./MaterialRequirement";
 import { calculateUraniumMetrics } from "../../9_produksi_konsumsi/3_konsumsi_uranium/logic/uraniumLogic";
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 import { PROTESTAN_PRODUCTION_SPEED_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/2_protestan/1_plus/plus";
+import { TAOISME_HEAVY_INDUSTRY_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/10_taoisme/2_minus/minus";
 
 interface ModalProps {
   isOpen: boolean;
@@ -278,8 +279,17 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       const itemsToAdd: any[] = [];
 
       for (let i = 0; i < quantity; i++) {
-        const isProtestan = religionStorage.getCurrentReligion(currentData?.religion || "Islam") === "Protestan";
-        const effectiveBuildTime = isProtestan ? Math.ceil(confirmBuild.buildTime / PROTESTAN_PRODUCTION_SPEED_BONUS) : confirmBuild.buildTime;
+        const currentReligion = religionStorage.getCurrentReligion(currentData?.religion || "Islam");
+        const isProtestan = currentReligion === "Protestan";
+        const isTaoisme = currentReligion === "Taoisme";
+        const isHeavyIndustry = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi";
+
+        let effectiveBuildTime = confirmBuild.buildTime;
+        if (isProtestan) effectiveBuildTime = Math.ceil(effectiveBuildTime / PROTESTAN_PRODUCTION_SPEED_BONUS);
+        if (isTaoisme && isHeavyIndustry) {
+          // -20% speed means 0.8x speed, which is 1.25x time
+          effectiveBuildTime = Math.ceil(effectiveBuildTime * 1.25);
+        }
 
         const currentEnd = addDays(new Date(currentStart), effectiveBuildTime).getTime();
 
@@ -724,8 +734,15 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                             <Clock size={14} className="text-cyan-500" />
                             <span className="text-xl font-black text-white tracking-tight">
                               {(() => {
-                                const isProtestan = religionStorage.getCurrentReligion(currentData?.religion || "Islam") === "Protestan";
-                                const effectiveBuildTime = isProtestan ? Math.ceil(confirmBuild.buildTime / PROTESTAN_PRODUCTION_SPEED_BONUS) : confirmBuild.buildTime;
+                                const currentReligion = religionStorage.getCurrentReligion(currentData?.religion || "Islam");
+                                const isProtestan = currentReligion === "Protestan";
+                                const isTaoisme = currentReligion === "Taoisme";
+                                const isHeavyIndustry = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi";
+
+                                let effectiveBuildTime = confirmBuild.buildTime;
+                                if (isProtestan) effectiveBuildTime = Math.ceil(effectiveBuildTime / PROTESTAN_PRODUCTION_SPEED_BONUS);
+                                if (isTaoisme && isHeavyIndustry) effectiveBuildTime = Math.ceil(effectiveBuildTime * 1.25);
+                                
                                 return effectiveBuildTime.toLocaleString('id-ID');
                               })()} Hari
                             </span>
@@ -751,8 +768,15 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                       <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian Seluruh Unit</span>
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
                          {(() => {
-                            const isProtestan = religionStorage.getCurrentReligion(currentData?.religion || "Islam") === "Protestan";
-                            const effectiveBuildTime = isProtestan ? Math.ceil(confirmBuild.buildTime / PROTESTAN_PRODUCTION_SPEED_BONUS) : confirmBuild.buildTime;
+                            const currentReligion = religionStorage.getCurrentReligion(currentData?.religion || "Islam");
+                            const isProtestan = currentReligion === "Protestan";
+                            const isTaoisme = currentReligion === "Taoisme";
+                            const isHeavyIndustry = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi";
+
+                            let effectiveBuildTime = confirmBuild.buildTime;
+                            if (isProtestan) effectiveBuildTime = Math.ceil(effectiveBuildTime / PROTESTAN_PRODUCTION_SPEED_BONUS);
+                            if (isTaoisme && isHeavyIndustry) effectiveBuildTime = Math.ceil(effectiveBuildTime * 1.25);
+
                             return formatGameDate(addDays(getStoredGameDate(), effectiveBuildTime * quantity));
                          })()}
                       </p>

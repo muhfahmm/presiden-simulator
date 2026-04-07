@@ -56,7 +56,10 @@ function getBaseBuildingCount(key: string, countryData?: any): number {
 
 import { ISLAM_COMMERCIAL_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/1_islam/1_plus/plus";
 import { PROTESTAN_ENTERTAINMENT_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/2_protestan/2_minus/minus";
+import { ORTODOKS_COMMERCIAL_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/4_ortodoks/2_minus/minus";
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
+import { ATEISME_COMMERCIAL_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/7_ateisme/1_plus/plus";
+import { YAHUDI_COMMERCIAL_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/8_yahudi/1_plus/plus";
 
 /**
  * Calculates the total revenue from all service and commercial buildings (Base + Built).
@@ -66,6 +69,9 @@ export function calculateTempatUmumRevenue(buildingDeltas: Record<string, number
   const currentReligion = religionStorage.getCurrentReligion(countryData?.religion || "Islam");
   const isIslam = currentReligion === "Islam";
   const isProtestan = currentReligion === "Protestan";
+  const isOrtodoks = currentReligion === "Kristen Ortodoks";
+  const isAteisme = currentReligion === "Atheisme";
+  const isYahudi = currentReligion === "Yahudi";
 
   Object.entries(REVENUE_RATES).forEach(([key, rate]) => {
     const deltaCount = buildingDeltas[key] || 0;
@@ -77,6 +83,21 @@ export function calculateTempatUmumRevenue(buildingDeltas: Record<string, number
     // Apply 10% Bonus for Islam (Komersial Sector: 23, 24, 25)
     if (isIslam && ["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) {
       buildingRevenue *= ISLAM_COMMERCIAL_BONUS;
+    }
+
+    // Apply 10% Penalty for Ortodoks (Komersial Sector: 23, 24, 25)
+    if (isOrtodoks && ["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"]. includes(key)) {
+      buildingRevenue *= (1 + ORTODOKS_COMMERCIAL_PENALTY);
+    }
+
+    // Apply 50% Bonus for Atheisme (Komersial Sector: 23, 24, 25)
+    if (isAteisme && ["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) {
+      buildingRevenue *= (1 + ATEISME_COMMERCIAL_BONUS);
+    }
+
+    // Apply 20% Bonus for Yahudi (Komersial Sector: 23, 24, 25)
+    if (isYahudi && ["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) {
+      buildingRevenue *= (1 + YAHUDI_COMMERCIAL_BONUS);
     }
 
     // Apply 15% Penalty for Protestan (Hiburan Sector: 26, 27)
@@ -103,6 +124,9 @@ export function getTempatUmumRevenueBreakdown(buildingDeltas: Record<string, num
   const currentReligion = religionStorage.getCurrentReligion(countryData?.religion || "Islam");
   const isIslam = currentReligion === "Islam";
   const isProtestan = currentReligion === "Protestan";
+  const isOrtodoks = currentReligion === "Kristen Ortodoks";
+  const isAteisme = currentReligion === "Atheisme";
+  const isYahudi = currentReligion === "Yahudi";
 
   Object.entries(REVENUE_RATES).forEach(([key, rate]) => {
     const deltaCount = buildingDeltas[key] || 0;
@@ -114,6 +138,9 @@ export function getTempatUmumRevenueBreakdown(buildingDeltas: Record<string, num
       breakdown.olahraga += revenue;
     } else if (["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) {
       if (isIslam) revenue *= ISLAM_COMMERCIAL_BONUS;
+      if (isOrtodoks) revenue *= (1 + ORTODOKS_COMMERCIAL_PENALTY);
+      if (isAteisme) revenue *= (1 + ATEISME_COMMERCIAL_BONUS);
+      if (isYahudi) revenue *= (1 + YAHUDI_COMMERCIAL_BONUS);
       breakdown.komersial += revenue;
     } else if (["26_bioskop", "27_gedung_teater"].includes(key)) {
       if (isProtestan) revenue *= PROTESTAN_ENTERTAINMENT_PENALTY;
@@ -175,6 +202,9 @@ export function getDetailedTempatUmumBreakdown(buildingDeltas: Record<string, nu
   const currentReligion = religionStorage.getCurrentReligion(countryData?.religion || "Islam");
   const isIslam = currentReligion === "Islam";
   const isProtestan = currentReligion === "Protestan";
+  const isOrtodoks = currentReligion === "Kristen Ortodoks";
+  const isAteisme = currentReligion === "Atheisme";
+  const isYahudi = currentReligion === "Yahudi";
 
   Object.entries(REVENUE_RATES).forEach(([key, rate]) => {
     const deltaCount = buildingDeltas[key] || 0;
@@ -188,6 +218,9 @@ export function getDetailedTempatUmumBreakdown(buildingDeltas: Record<string, nu
       if (["23_pusat_belanja", "24_hotel", "25_pusat_grosir_tekstil"].includes(key)) {
         sector = 'komersial';
         if (isIslam) total *= ISLAM_COMMERCIAL_BONUS;
+        if (isOrtodoks) total *= (1 + ORTODOKS_COMMERCIAL_PENALTY);
+        if (isAteisme) total *= (1 + ATEISME_COMMERCIAL_BONUS);
+        if (isYahudi) total *= (1 + YAHUDI_COMMERCIAL_BONUS);
       }
       else if (["26_bioskop", "27_gedung_teater"].includes(key)) {
         sector = 'hiburan';

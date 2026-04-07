@@ -20,6 +20,8 @@ import { SektorListrik, KAPASITAS_LISTRIK_METADATA } from "./1_db_listrik";
 import { intelijenRate } from "../../../2_pertahanan/2_intelijen";
 import { armadaMiliterRate } from "../../../2_pertahanan/3_armada_militer";
 import { armadaPolisiRate } from "../../../2_pertahanan/4_armada_polisi";
+import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
+import { TAOISME_ELECTRICITY_EFFICIENCY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/10_taoisme/1_plus/plus";
 
 export const KAPASITAS_LISTRIK = Object.fromEntries(
   Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]) => [val.dataKey, val.produksi])
@@ -356,7 +358,7 @@ export function hitungKonsumsiArmadaDatabase(fleet: any) {
 }
 
 export function hitungTotalKonsumsiNasional(data: any) {
-  return (
+  let total = (
     hitungKonsumsiEkstraksi(data.sektor_ekstraksi) +
     hitungKonsumsiProduksi(data.sektor_manufaktur) +
     hitungKonsumsiOlahanPangan(data.sektor_olahan_pangan) +
@@ -371,7 +373,13 @@ export function hitungTotalKonsumsiNasional(data: any) {
     hitungKonsumsiHiburan(data.sektor_hiburan) +
     hitungKonsumsiHunian(data.hunian) +
     hitungKonsumsiTransportasi(data.infrastruktur)
-    // NB: Intel, Armada, dan Polisi sudah termasuk di dalam hitungKonsumsiPertahanan 
-    // atau jika ingin memisahkan total panggil fungsi spesifiknya di bawah:
   );
+
+  // Taoisme Efficiency Bonus (Harmony with Nature)
+  const currentReligion = religionStorage.getCurrentReligion(data.religion || "Islam");
+  if (currentReligion === "Taoisme") {
+    total *= TAOISME_ELECTRICITY_EFFICIENCY;
+  }
+
+  return total;
 }

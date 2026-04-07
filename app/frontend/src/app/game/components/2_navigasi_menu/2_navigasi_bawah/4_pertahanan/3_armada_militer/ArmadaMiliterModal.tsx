@@ -14,6 +14,9 @@ import MaterialRequirement, { getBuildingRequirement } from "../../3_pembangunan
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import JikaUangKurang from "../../3_pembangunan/jika_uang_kurang";
 import { calculateUraniumMetrics } from "../../9_produksi_konsumsi/3_konsumsi_uranium/logic/uraniumLogic";
+import { religionStorage } from "../../6_sosial_budaya/1_agama/religionStorage";
+import { BUDDHA_RECRUITMENT_PENALTY } from "../../6_sosial_budaya/1_agama/logic/6_buddha/2_minus/minus";
+import { TAOISME_MILITARY_MODERNIZATION_PENALTY } from "../../6_sosial_budaya/1_agama/logic/10_taoisme/2_minus/minus";
 import { 
   armadaPolisiRate, 
   armadaMiliterRate, 
@@ -99,7 +102,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
           });
         }
 
-        const power = calculateTotalMilitaryPower(c.armada_militer, finalDeltas);
+        const power = calculateTotalMilitaryPower(c.armada_militer, finalDeltas, c.religion);
         return {
           id: c.name_id || c.name_en,
           name: c.name_id || c.name_en,
@@ -475,15 +478,22 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
 
       let currentStart = getStoredGameDate().getTime();
       const itemsToAdd: any[] = [];
+      const currentReligion = religionStorage.getCurrentReligion(currentData.religion);
+      let recruitmentTimeMult = 1.0;
+      if (currentReligion === "Buddha") recruitmentTimeMult = BUDDHA_RECRUITMENT_PENALTY;
+      if (currentReligion === "Taoisme") recruitmentTimeMult = TAOISME_MILITARY_MODERNIZATION_PENALTY;
+      
+      const finalBuildTime = Math.ceil(confirmBuild.waktu_pembangunan * recruitmentTimeMult);
+
       for (let i = 0; i < quantity; i++) {
-        const currentEnd = addDays(new Date(currentStart), confirmBuild.waktu_pembangunan).getTime();
+        const currentEnd = addDays(new Date(currentStart), finalBuildTime).getTime();
         const newItem = buildingStorage.addToQueue({
           buildingKey: confirmBuild.key,
           label: confirmBuild.label,
           sector: confirmBuild.groupId,
           startDate: currentStart,
           endDate: currentEnd,
-          waktu_pembangunan: confirmBuild.waktu_pembangunan
+          waktu_pembangunan: finalBuildTime
         });
         if (newItem) itemsToAdd.push(newItem);
         currentStart = currentEnd;
@@ -570,7 +580,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
 
         {/* Strength Badges Strip */}
         {(() => {
-          const power = calculateTotalMilitaryPower(currentData.armada_militer, effectiveDeltas);
+        const power = calculateTotalMilitaryPower(currentData.armada_militer, effectiveDeltas, currentData.religion);
 
           const badges = [
             { label: "Armada Darat", value: power.darat, icon: Truck, accent: "text-amber-400", glow: "shadow-[0_0_18px_rgba(251,191,36,0.15)]", border: "border-amber-500/20", bg: "bg-amber-500/5" },
@@ -858,13 +868,20 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Satuan</span>
                           <span className="text-xl font-black text-amber-500 tracking-tight">{(Number(confirmBuild.biaya || confirmBuild.biaya_pembangunan || 0)).toLocaleString('id-ID')}</span>
                         </div>
-                        <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>
                           <div className="flex items-center gap-1.5">
                             <Clock size={14} className="text-cyan-500" />
-                            <span className="text-xl font-black text-white tracking-tight">{(confirmBuild.waktu_pembangunan).toLocaleString('id-ID')} Hari</span>
+                            <span className="text-xl font-black text-white tracking-tight">
+                              {(() => {
+                                const currentReligion = religionStorage.getCurrentReligion(currentData.religion);
+                                let mult = 1.0;
+                                if (currentReligion === "Buddha") mult = BUDDHA_RECRUITMENT_PENALTY;
+                                if (currentReligion === "Taoisme") mult = TAOISME_MILITARY_MODERNIZATION_PENALTY;
+                                
+                                return Math.ceil(confirmBuild.waktu_pembangunan * mult).toLocaleString('id-ID');
+                              })()} Hari
+                            </span>
                           </div>
-                        </div>
                         {confirmBuild.consumption > 0 && confirmBuild.dataKey === 'barak' && (
                           <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                             <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Energi Beban</span>
@@ -898,7 +915,15 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
                     <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
                       <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian Seluruh Unit</span>
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
-                         {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
+                         {(() => {
+                            const currentReligion = religionStorage.getCurrentReligion(currentData.religion);
+                            let mult = 1.0;
+                            if (currentReligion === "Buddha") mult = BUDDHA_RECRUITMENT_PENALTY;
+                            if (currentReligion === "Taoisme") mult = TAOISME_MILITARY_MODERNIZATION_PENALTY;
+                            
+                            const val = Math.ceil(confirmBuild.waktu_pembangunan * mult);
+                            return formatGameDate(addDays(getStoredGameDate(), val * quantity));
+                         })()}
                       </p>
                     </div>
                   </div>

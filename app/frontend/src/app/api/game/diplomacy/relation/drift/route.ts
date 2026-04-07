@@ -4,7 +4,8 @@ import path from "path";
 
 export async function POST(req: NextRequest) {
   try {
-    const { countries } = await req.json();
+    const body = await req.json();
+    const { countries } = body;
 
     if (!countries || !Array.isArray(countries)) {
       return NextResponse.json({ error: "Missing or invalid countries array" }, { status: 400 });
@@ -22,7 +23,7 @@ export async function POST(req: NextRequest) {
       let stderrData = "";
 
       // Write data to stdin and end stream
-      child.stdin.write(JSON.stringify(countries));
+      child.stdin.write(JSON.stringify(body));
       child.stdin.end();
 
       child.stdout.on("data", (data) => {

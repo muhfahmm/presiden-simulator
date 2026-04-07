@@ -21,7 +21,7 @@ const ideologyEffects: Record<string, { plus: string[]; minus: string[] }> = {
     minus: ["Daily Revenue (Pajak Swasta) -50%", "Inovasi Teknologi -20%"]
   },
   "Kapitalisme": {
-    plus: ["Pertumbuhan Kas Negara +35%", "Kecepatan Pembangunan +20%"],
+    plus: ["Pertumbuhan Kas Negara +40%", "Kecepatan Pembangunan +20%"],
     minus: ["Kesenjangan Sosial +25%", "Happiness Index Warga Bawah -15%"]
   },
   "Sosialisme": {

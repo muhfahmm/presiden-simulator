@@ -6,6 +6,9 @@ import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inbox
 import { formatGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
+import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
+import { BUDDHA_SATISFACTION_DAILY_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/6_buddha/1_plus/plus";
+import { KONGHUCU_PRESS_FREEDOM_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/9_konghucu/2_minus/minus";
 
 export interface HappinessStats {
   value: number; // 0-100
@@ -210,6 +213,17 @@ export const happinessStorage = {
 
     // 4. Gabungkan Dampak (Daily Delta Total)
     let totalDailyDelta = taxDelta + priceDelta;
+
+    const currentReligion = religionStorage.getCurrentReligion(country.religion);
+    // 5. Buddhist Satisfaction Bonus (+0.2% per day)
+    if (currentReligion === "Buddha") {
+      totalDailyDelta += BUDDHA_SATISFACTION_DAILY_BONUS;
+    }
+
+    // 6. Konghucu Press Freedom Penalty (-0.2% per day)
+    if (currentReligion === "Konghucu") {
+      totalDailyDelta += KONGHUCU_PRESS_FREEDOM_PENALTY;
+    }
 
     // Jika sudah di zona merah (< 40), efeknya dilipatduakan
     const isRedZone = stats.value < 40;

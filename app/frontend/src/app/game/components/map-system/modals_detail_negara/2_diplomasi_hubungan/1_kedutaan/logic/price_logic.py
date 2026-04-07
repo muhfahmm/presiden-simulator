@@ -99,6 +99,16 @@ def calculate_embassy_price(
             "detail": f"{user_continent} = {target_continent}"
         })
 
+    # --- Shinto Penalty ---
+    if user_religion == "Shinto":
+        multiplier += 0.25
+        adjustments.append({
+            "category": "Kebijakan Agama",
+            "status": "Berbeda",
+            "change": "+25%",
+            "detail": "Tradisi Shinto (Biaya Diplomasi)"
+        })
+
     final_price = math.floor(BASE_PRICE * multiplier)
 
     return {

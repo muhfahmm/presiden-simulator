@@ -5,6 +5,7 @@ Fungsi: Menggabungkan hasil perhitungan dari berbagai instrumen diplomatik:
 1. Kedutaan Besar (Up/Down 0.1%) - logic dalam file ini
 2. Pakta Non-Agresi (+0.01%) - logic di 2_pakta_non_agresi/
 3. Aliansi Pertahanan (+0.01%) - logic di 3_aliansi_pertahanan/
+4. Efek Religi (Katolik: Bonus Vatikan, Penalti Timur Tengah)
 """
 
 import sys
@@ -28,7 +29,17 @@ except ImportError as e:
 GROWTH_RATE = 1.001   # +0.1% per hari
 DECAY_RATE  = 0.999   # -0.1% per hari
 
-def calculate_master_drift(countries: list) -> list:
+# Daftar Negara Timur Tengah (Middle East) untuk Penalti Katolik
+TIMUR_TENGAH_IDS = [
+    "arab_saudi", "irak", "iran", "israel", "yordania", 
+    "kuwait", "lebanon", "oman", "palestina", "qatar", 
+    "suriah", "turki", "uni_emirat_arab", "yaman", 
+    "bahrain", "mesir"
+]
+
+def calculate_master_drift(data_input: dict) -> list:
+    countries = data_input.get("countries", [])
+    player_religion = data_input.get("religion", "Islam")
     results = []
 
     for entry in countries:
@@ -58,8 +69,19 @@ def calculate_master_drift(countries: list) -> list:
         if not has_embassy and not has_pact and not has_alliance:
             isolation_penalty = -(current_score * 0.0001) # -0.01%
 
-        # 5. Total Akumulasi
-        total_delta = base_delta + pact_delta + alliance_delta + isolation_penalty
+        # 5. Efek Religi (Katolik)
+        religion_delta = 0.0
+        if player_religion == "Katolik":
+            # [+] Bonus Vatikan (+0.1% daily)
+            if country_id == "vatikan":
+                religion_delta += current_score * 0.001
+            
+            # [-] Penalti Timur Tengah (-0.05% daily)
+            if country_id in TIMUR_TENGAH_IDS:
+                religion_delta -= current_score * 0.0005
+
+        # 6. Total Akumulasi
+        total_delta = base_delta + pact_delta + alliance_delta + isolation_penalty + religion_delta
         final_score = current_score + total_delta
 
         # Clamp between 0 and 100
@@ -83,9 +105,13 @@ if __name__ == "__main__":
         if not input_data:
             print(json.dumps({"error": "Input data kosong"}))
             sys.exit(1)
-        countries = json.loads(input_data)
+        data_input = json.loads(input_data)
         
-        results = calculate_master_drift(countries)
+        # Backward compatibility: jika input hanya berupa list, bungkus dalam dict
+        if isinstance(data_input, list):
+            data_input = {"countries": data_input, "religion": "Islam"}
+            
+        results = calculate_master_drift(data_input)
         print(json.dumps(results))
     except Exception as e:
         print(json.dumps({"error": str(e)}))

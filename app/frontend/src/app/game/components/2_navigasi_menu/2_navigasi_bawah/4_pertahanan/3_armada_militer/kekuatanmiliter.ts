@@ -25,6 +25,8 @@ export const UAV_POWER_PER_UNIT = 100;
 export const KAMIKAZE_POWER_PER_UNIT = 150;
 export const TRANSPORT_POWER_PER_UNIT = 300;
 
+import { SHINTO_ALUTSISTA_QUALITY } from "../../6_sosial_budaya/1_agama/logic/11_shinto/1_plus/plus";
+
 
 /**
  * Melakukan kalkulasi total infanteri berdasarkan jumlah barak militer.
@@ -102,9 +104,10 @@ export const calculateTransportPower = (count: number): number => count * TRANSP
  * 
  * @param armadaData Data armada_militer dari objek negara
  * @param deltas (Optional) Data buildingDeltas untuk menghitung bangunan yang baru selesai/sedang dikonstruksi
+ * @param religion (Optional) Agama negara untuk efek kualitas alutsista
  * @returns Object berisi total kekuatan masing-masing matra dan total gabungan
  */
-export const calculateTotalMilitaryPower = (armadaData: any, deltas: Record<string, any> = {}) => {
+export const calculateTotalMilitaryPower = (armadaData: any, deltas: Record<string, any> = {}, religion?: string) => {
   if (!armadaData) return { darat: 0, laut: 0, udara: 0, total: 0 };
 
   const totalDarat =
@@ -136,18 +139,20 @@ export const calculateTotalMilitaryPower = (armadaData: any, deltas: Record<stri
     ((armadaData.udara?.drone_kamikaze || 0) + (deltas["kamikaze"] || 0)) * KAMIKAZE_POWER_PER_UNIT +
     ((armadaData.udara?.pesawat_angkut || 0) + (deltas["transport"] || 0)) * TRANSPORT_POWER_PER_UNIT;
 
+  const multiplier = religion === "Shinto" ? SHINTO_ALUTSISTA_QUALITY : 1.0;
+
   return {
-    darat: totalDarat,
-    laut: totalLaut,
-    udara: totalUdara,
-    total: totalDarat + totalLaut + totalUdara
+    darat: totalDarat * multiplier,
+    laut: totalLaut * multiplier,
+    udara: totalUdara * multiplier,
+    total: (totalDarat + totalLaut + totalUdara) * multiplier
   };
 };
 
 /**
  * Menghitung total kekuatan militer dari objek WarForces (pasukan yang dikirim).
  */
-export const calculateForcesPower = (forces: any) => {
+export const calculateForcesPower = (forces: any, religion?: string) => {
   if (!forces) return { darat: 0, laut: 0, udara: 0, total: 0 };
 
   const totalDarat =
@@ -179,11 +184,13 @@ export const calculateForcesPower = (forces: any) => {
     (forces.udara?.drone_kamikaze || 0) * KAMIKAZE_POWER_PER_UNIT +
     (forces.udara?.pesawat_angkut || 0) * TRANSPORT_POWER_PER_UNIT;
 
+  const multiplier = religion === "Shinto" ? SHINTO_ALUTSISTA_QUALITY : 1.0;
+
   return {
-    darat: totalDarat,
-    laut: totalLaut,
-    udara: totalUdara,
-    total: totalDarat + totalLaut + totalUdara
+    darat: totalDarat * multiplier,
+    laut: totalLaut * multiplier,
+    udara: totalUdara * multiplier,
+    total: (totalDarat + totalLaut + totalUdara) * multiplier
   };
 };
 

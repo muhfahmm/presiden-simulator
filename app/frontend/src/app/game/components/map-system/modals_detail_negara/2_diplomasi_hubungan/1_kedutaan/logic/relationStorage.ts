@@ -11,6 +11,7 @@ import { embassyStorage } from "./embassyStorage";
 import { nonAggressionStorage } from "../../2_pakta_non_agresi/logic/nonAggressionStorage";
 import { aliansiStorage } from "../../3_aliansi_pertahanan/logic/aliansiStorage";
 import { relationDeltaStorage } from "../../8_hubungan_internasional/logic/relationDeltaStorage";
+import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 
 const RELATION_STORAGE_KEY = "em2_relation_scores";
 
@@ -146,10 +147,14 @@ export const relationStorage = {
     if (countries.length === 0) return;
 
     try {
+      const currentReligion = religionStorage.getCurrentReligion("Islam");
       const res = await fetch("/api/game/diplomacy/relation/drift", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ countries })
+        body: JSON.stringify({ 
+          countries,
+          religion: currentReligion
+        })
       });
 
       const data = await res.json();
