@@ -66,63 +66,54 @@ function IdeologyCard({ ideology, isActive, countryData }: { ideology: string; i
 
   return (
     <div
-      className={`relative p-6 rounded-3xl border transition-all group overflow-hidden h-[280px] flex flex-col ${isActive
-          ? "bg-cyan-500/10 border-cyan-500 shadow-[0_0_30px_rgba(6,182,212,0.1)]"
-          : "bg-zinc-900/40 border-zinc-800 hover:border-zinc-700"
+      className={`relative p-6 rounded-3xl border transition-all duration-500 group overflow-hidden h-[240px] flex flex-col ${isActive
+          ? "bg-cyan-500/10 border-cyan-500 shadow-[0_0_40px_rgba(6,182,212,0.15)] ring-1 ring-cyan-500/20"
+          : "bg-zinc-900/40 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900/60"
         }`}
     >
-      <div className={`absolute -top-10 -right-10 w-32 h-32 blur-3xl rounded-full transition-opacity ${isActive ? "bg-cyan-500/10 opacity-100" : "bg-white/5 opacity-0 group-hover:opacity-100"}`}></div>
+      <div className={`absolute -top-10 -right-10 w-32 h-32 blur-3xl rounded-full transition-opacity duration-700 ${isActive ? "bg-cyan-500/20 opacity-100" : "bg-white/5 opacity-0 group-hover:opacity-100"}`}></div>
 
       {/* Content */}
       <div className="flex flex-col gap-4 relative z-10 h-full">
         <div className="flex justify-between items-start">
-          <div className={`p-3 rounded-2xl ${isActive ? "bg-cyan-500 text-black" : "bg-zinc-800 text-zinc-400 group-hover:text-white transition-colors"}`}>
+          <div className={`p-4 rounded-2xl transition-all duration-500 ${isActive ? "bg-cyan-500 text-black shadow-[0_0_20px_rgba(6,182,212,0.4)] scale-110" : "bg-zinc-800 text-zinc-400 group-hover:text-white"}`}>
             <Icon className="h-6 w-6" />
           </div>
           <div className="flex gap-2">
             <button
               onClick={() => setShowInfo(true)}
-              className="p-2 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl transition-all active:scale-90 cursor-pointer"
+              className="p-2.5 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl transition-all active:scale-90 cursor-pointer shadow-sm"
+              title="Informasi Detail"
             >
-              <Info className="h-4 w-4 text-zinc-400 group-hover:text-white" />
+              <Info className="h-4 w-4 text-zinc-400 group-hover:text-cyan-400" />
             </button>
-            {isActive && (
-              <div className="px-3 py-1 bg-cyan-500/20 border border-cyan-500/30 rounded-full">
-                <span className="text-[9px] font-black text-cyan-400 uppercase tracking-widest">Aktif</span>
-              </div>
-            )}
           </div>
         </div>
 
-        <div className="space-y-1">
-          <h3 className="text-xl font-black text-white uppercase tracking-tight italic">{ideology}</h3>
-          <p className="text-[11px] text-zinc-500 font-medium leading-tight">Haluan filosofi dan sistem pemerintahan negara.</p>
+        <div className="space-y-1.5 mt-2">
+          <h3 className={`text-xl font-black uppercase tracking-tight italic transition-colors ${isActive ? "text-cyan-400" : "text-white"}`}>{ideology}</h3>
+          <p className="text-[11px] text-zinc-500 font-medium leading-tight max-w-[90%] font-sans">Haluan filosofi dan sistem pemerintahan negara dalam berbangsa.</p>
         </div>
 
-        <div className="mt-auto pt-2 border-t border-white/5">
-          {!isActive ? (
-            <button 
-              className="w-full py-2.5 bg-zinc-800/50 hover:bg-cyan-500/20 border border-white/5 hover:border-cyan-500/30 rounded-xl text-[10px] font-black text-zinc-400 hover:text-cyan-400 uppercase tracking-[0.2em] transition-all cursor-pointer group/btn flex items-center justify-center gap-2"
-            >
-              <span>Ganti</span>
-              <Plus className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </button>
-          ) : (
-            <div className="w-full py-2.5 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-[10px] font-black text-cyan-400 uppercase tracking-[0.2em] flex items-center justify-center gap-2">
-              <CheckCircle2 className="h-3 w-3" />
-              <span>Haluan Aktif</span>
-            </div>
-          )}
+        <div className="mt-auto pt-4 flex items-center justify-between">
+           {!isActive ? (
+             <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity italic">Data Base: 207 Profiles</span>
+           ) : (
+             <div className="flex items-center gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_8px_rgba(6,182,212,0.8)]"></div>
+                <span className="text-[10px] font-black text-cyan-400 uppercase tracking-widest">Ideologi Konstitusional</span>
+             </div>
+           )}
         </div>
       </div>
 
       {/* Info Overlay (Inside Card) */}
       {showInfo && (
-        <div className="absolute inset-0 z-20 bg-zinc-950/95 backdrop-blur-md p-6 flex flex-col animate-in slide-in-from-bottom-2 duration-300">
+        <div className="absolute inset-0 z-20 bg-zinc-950/98 backdrop-blur-xl p-6 flex flex-col animate-in fade-in zoom-in-95 duration-300">
           <div className="flex justify-between items-center mb-4">
             <h4 className="text-[10px] font-black text-cyan-400 uppercase tracking-widest italic">{ideology} Effects</h4>
             <button onClick={() => setShowInfo(false)} className="p-1.5 hover:bg-white/5 rounded-lg transition-colors cursor-pointer">
-              <X className="h-4 w-4 text-zinc-500" />
+              <X className="h-4 w-4 text-zinc-500 hover:text-white" />
             </button>
           </div>
 
@@ -131,17 +122,17 @@ function IdeologyCard({ ideology, isActive, countryData }: { ideology: string; i
               {effects.plus.map((eff, i) => (
                 <div 
                   key={i} 
-                  className="flex items-center gap-2 group/eff cursor-pointer hover:bg-white/5 p-2 -mx-2 rounded-xl transition-all"
+                  className="flex items-center gap-2 group/eff cursor-pointer hover:bg-emerald-500/5 p-2 -mx-2 rounded-xl transition-all"
                   onClick={() => {
                     setSelectedEffect(eff);
                     setShowEffectDetail(true);
                   }}
                 >
-                  <div className="p-1 bg-emerald-500/20 rounded-lg shrink-0">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                  <div className="p-1 bg-emerald-500/10 rounded-lg shrink-0 border border-emerald-500/20">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
                   </div>
-                  <span className="text-[16px] font-bold text-zinc-100 leading-tight tracking-tight flex-1">{eff}</span>
-                  <ChevronRight className="h-4 w-4 text-zinc-600 group-hover/eff:text-emerald-400 transition-colors" />
+                  <span className="text-[14px] font-bold text-zinc-200 leading-tight tracking-tight flex-1 group-hover/eff:text-white transition-colors">{eff}</span>
+                  <ChevronRight className="h-3.5 w-3.5 text-zinc-700 group-hover/eff:text-emerald-500 transition-colors" />
                 </div>
               ))}
             </div>
@@ -150,17 +141,17 @@ function IdeologyCard({ ideology, isActive, countryData }: { ideology: string; i
               {effects.minus.map((eff, i) => (
                 <div 
                   key={i} 
-                  className="flex items-center gap-2 group/eff cursor-pointer hover:bg-white/5 p-2 -mx-2 rounded-xl transition-all"
+                  className="flex items-center gap-2 group/eff cursor-pointer hover:bg-rose-500/5 p-2 -mx-2 rounded-xl transition-all"
                   onClick={() => {
                     setSelectedEffect(eff);
                     setShowEffectDetail(true);
                   }}
                 >
-                  <div className="p-1 bg-rose-500/20 rounded-lg shrink-0">
-                    <X className="h-4 w-4 text-rose-500" />
+                  <div className="p-1 bg-rose-500/10 rounded-lg shrink-0 border border-rose-500/20">
+                    <X className="h-3.5 w-3.5 text-rose-500" />
                   </div>
-                  <span className="text-[16px] font-bold text-zinc-100 leading-tight tracking-tight flex-1">{eff}</span>
-                  <ChevronRight className="h-4 w-4 text-zinc-600 group-hover/eff:text-rose-400 transition-colors" />
+                  <span className="text-[14px] font-bold text-zinc-200 leading-tight tracking-tight flex-1 group-hover/eff:text-white transition-colors">{eff}</span>
+                  <ChevronRight className="h-3.5 w-3.5 text-zinc-700 group-hover/eff:text-rose-500 transition-colors" />
                 </div>
               ))}
             </div>
@@ -168,9 +159,9 @@ function IdeologyCard({ ideology, isActive, countryData }: { ideology: string; i
 
           <button
             onClick={() => setShowInfo(false)}
-            className="mt-4 w-full py-2 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 rounded-xl text-[9px] font-black text-cyan-400 uppercase tracking-widest transition-all cursor-pointer"
+            className="mt-4 w-full py-2.5 bg-cyan-500 text-black rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer shadow-lg active:scale-95"
           >
-            Tutup Info
+            Kembali Ke Dashboard
           </button>
         </div>
       )}
