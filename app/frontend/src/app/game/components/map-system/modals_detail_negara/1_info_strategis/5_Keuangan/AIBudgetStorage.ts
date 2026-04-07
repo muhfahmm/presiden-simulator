@@ -1,6 +1,8 @@
 "use client"
 
 import { countries } from "@/app/database/data/negara/benua/index";
+import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLogic";
+
 
 const AI_BUDGET_KEY = "em4_ai_budgets";
 const LAST_PROCESSED_KEY = "em4_ai_last_processed";
@@ -76,8 +78,8 @@ export const aiBudgetStorage = {
    * Calculate daily tax income for a country (same logic as database page).
    */
   calculateDailyIncome: (country: any): number => {
-    if (!country.pajak) return 0;
-    return Object.values(country.pajak).reduce((sum: number, v: any) => sum + (Number(v?.pendapatan) || 0), 0);
+    // We use empty building deltas for AI to represent their baseline state
+    return calculateDailyBudgetDelta(country, {});
   },
 
   clear: () => {

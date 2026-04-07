@@ -182,16 +182,18 @@ export default function StrategyModal({
     const updateStats = () => {
       const isUser = targetId === userId;
       let currentAnggaran = 0;
-      const currentTaxes = taxStorage.getTaxes(countryEntry.name_en) || countryEntry.pajak || {};
-      const totalTaxRevenue = Object.values(currentTaxes as any).reduce((sum: number, v: any) => sum + (Number(v?.pendapatan) || 0), 0);
-      
+      let currentDailyDelta = 0;
+
       if (isUser) {
         currentAnggaran = budgetStorage.getBudget();
+        currentDailyDelta = calculateDailyBudgetDelta(countryEntry as any, buildingStorage.getBuildingDeltas());
       } else {
         currentAnggaran = aiBudgetStorage.getBudget(countryEntry.name_en);
+        // For AI, we use empty building deltas as a baseline for comparison
+        currentDailyDelta = calculateDailyBudgetDelta(countryEntry as any, {});
       }
 
-      setLiveStats({ anggaran: currentAnggaran, dailyDelta: totalTaxRevenue });
+      setLiveStats({ anggaran: currentAnggaran, dailyDelta: currentDailyDelta });
       setRelationScore(relationStorage.getRelationScore(targetK, initialBase));
     };
 
