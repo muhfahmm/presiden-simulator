@@ -132,160 +132,152 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    ctx.clearRect(0, 0, mapWidth * 3, mapHeight);
+    ctx.clearRect(0, 0, mapWidth, mapHeight);
 
-    const offsets = [0, mapWidth, mapWidth * 2];
-    offsets.forEach(offset => {
-      ctx.save();
-      ctx.translate(offset, 0);
+    // 1. BACKGROUND
+    const bgGradient = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
+    bgGradient.addColorStop(0, "#121d31");
+    bgGradient.addColorStop(1, "#070b13");
+    ctx.fillStyle = bgGradient;
+    ctx.fillRect(0, 0, mapWidth, mapHeight);
 
-      const bgGradient = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
-      bgGradient.addColorStop(0, "#121d31");
-      bgGradient.addColorStop(1, "#070b13");
-      ctx.fillStyle = bgGradient;
-      ctx.fillRect(0, 0, mapWidth, mapHeight);
+    const project = (lon: number, lat: number) => {
+      const x = ((lon + 180) / 360) * mapWidth;
+      const y = ((90 - lat) / 180) * mapHeight;
+      return { x, y };
+    };
 
-      const project = (lon: number, lat: number) => {
-        const x = ((lon + 180) / 360) * mapWidth;
-        const y = ((90 - lat) / 180) * mapHeight;
-        return { x, y };
+    // 2. DRAW COUNTRIES
+    geoData.features.forEach((feature: any) => {
+      const name = feature.properties.name;
+      const isPlayer = name === userCountry;
+      const isTarget = name === targetCountry;
+
+      ctx.beginPath();
+
+      const drawCoords = (coordinates: any) => {
+        coordinates.forEach((polyline: any) => {
+          polyline.forEach((coord: any, cIdx: number) => {
+            const { x, y } = project(coord[0], coord[1]);
+            if (cIdx === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          });
+        });
       };
 
-      // Draw Countries
-      geoData.features.forEach((feature: any) => {
-        const name = feature.properties.name;
-        const isPlayer = name === userCountry;
-        const isTarget = name === targetCountry;
+      if (feature.geometry.type === "Polygon") {
+        drawCoords(feature.geometry.coordinates);
+      } else if (feature.geometry.type === "MultiPolygon") {
+        feature.geometry.coordinates.forEach((polygon: any) => drawCoords(polygon));
+      }
 
-        ctx.beginPath();
+      ctx.closePath();
 
-        const drawCoords = (coordinates: any) => {
-          coordinates.forEach((polyline: any) => {
-            polyline.forEach((coord: any, cIdx: number) => {
-              const { x, y } = project(coord[0], coord[1]);
-              if (cIdx === 0) ctx.moveTo(x, y);
-              else ctx.lineTo(x, y);
-            });
-          });
-        };
+      // SDA Mode style:
+      let fillColor = "rgba(71, 85, 105, 0.4)";
+      let strokeColor = "rgba(255, 255, 255, 0.1)";
+      let isHighlighted = isPlayer || isTarget;
 
-        if (feature.geometry.type === "Polygon") {
-          drawCoords(feature.geometry.coordinates);
-        } else if (feature.geometry.type === "MultiPolygon") {
-          feature.geometry.coordinates.forEach((polygon: any) => drawCoords(polygon));
-        }
-
-        ctx.closePath();
-
-        // SDA Mode style:
-        let fillColor = "rgba(71, 85, 105, 0.4)";
-        let strokeColor = "rgba(255, 255, 255, 0.1)";
-        let isHighlighted = isPlayer || isTarget;
-
-        if (isHighlighted) {
-          if (isPlayer) {
-            fillColor = "rgba(34, 197, 94, 0.3)";
-            strokeColor = "#4ade80";
-            ctx.lineWidth = 2;
-          } else if (isTarget) {
-            const rel = getRelation(name, userCountry);
-            if (rel >= 70) {
-              fillColor = "rgba(34, 197, 94, 0.4)"; // Green
-              strokeColor = "#4ade80";
-            } else if (rel >= 41) {
-              fillColor = "rgba(234, 179, 8, 0.4)"; // Yellow
-              strokeColor = "#fbbf24";
-            } else {
-              fillColor = "rgba(239, 68, 68, 0.4)"; // Red
-              strokeColor = "#f87171";
-            }
-            ctx.lineWidth = 2;
-          }
-        } else {
-          ctx.lineWidth = 1;
-        }
-
-        ctx.fillStyle = fillColor;
-        ctx.strokeStyle = strokeColor;
-        ctx.fill();
-        ctx.stroke();
-        ctx.shadowBlur = 0;
-      });
-
-      // Draw Country Markers 
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-
-      const labelGrid: { x: number, y: number }[] = [];
-      const minLabelDist = 120;
-
-      const sortedCenters = [...centersData].sort((a, b) => {
-        if (a.name_en === targetCountry) return 1;
-        if (b.name_en === targetCountry) return -1;
-        if (a.name_en === userCountry) return 1;
-        if (b.name_en === userCountry) return -1;
-        return 0;
-      });
-
-      sortedCenters.forEach((center: any) => {
-        const x = ((center.lon + 180) / 360) * mapWidth;
-        const y = ((90 - center.lat) / 180) * mapHeight;
-        const isPlayer = center.name_en === userCountry;
-        const isTarget = center.name_en === targetCountry;
-
-        // Glowing dot marker
-        ctx.beginPath();
+      if (isHighlighted) {
         if (isPlayer) {
-          ctx.arc(x, y, 6, 0, Math.PI * 2);
-          ctx.fillStyle = "#22d3ee";
-          ctx.shadowColor = "#22d3ee";
-          ctx.shadowBlur = 15;
+          fillColor = "rgba(34, 197, 94, 0.3)";
+          strokeColor = "#4ade80";
+          ctx.lineWidth = 2;
         } else if (isTarget) {
-          const rel = getRelation(center.name_en, userCountry);
-          ctx.arc(x, y, 6, 0, Math.PI * 2);
-          if (rel >= 70) ctx.fillStyle = "#22c55e";
-          else if (rel >= 41) ctx.fillStyle = "#eab308";
-          else ctx.fillStyle = "#ef4444";
-          ctx.shadowColor = ctx.fillStyle as string;
-          ctx.shadowBlur = 15;
-        } else {
-          ctx.arc(x, y, 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(148, 163, 184, 0.5)";
+          const rel = getRelation(name, userCountry);
+          if (rel >= 70) {
+            fillColor = "rgba(34, 197, 94, 0.4)"; // Green
+            strokeColor = "#4ade80";
+          } else if (rel >= 41) {
+            fillColor = "rgba(234, 179, 8, 0.4)"; // Yellow
+            strokeColor = "#fbbf24";
+          } else {
+            fillColor = "rgba(239, 68, 68, 0.4)"; // Red
+            strokeColor = "#f87171";
+          }
+          ctx.lineWidth = 2;
         }
-        ctx.fill();
-        ctx.shadowBlur = 0;
+      } else {
+        ctx.lineWidth = 1;
+      }
 
-        // Maritime Labels
-        maritimeLabels.forEach(label => {
-          const { x, y } = project(label.lon, label.lat);
-          ctx.font = `italic ${label.size}px 'Inter', sans-serif`;
-          ctx.fillStyle = label.color;
-          if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) {
-            ctx.fillText(label.name, x, y);
-          }
-        });
+      ctx.fillStyle = fillColor;
+      ctx.strokeStyle = strokeColor;
+      ctx.fill();
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    });
 
-        // Text Labels (Plain style like main map)
-        if (isPlayer || isTarget) {
-          ctx.font = "48px sans-serif";
-          ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 10;
-          ctx.fillText(center.flag, x, y - 90);
-          ctx.shadowBlur = 0;
-        } else {
-          const isTooCrowded = labelGrid.some(pos =>
-            Math.abs(pos.x - x) < minLabelDist && Math.abs(pos.y - y) < minLabelDist / 2
-          );
+    // 3. DRAW MARKERS & LABELS
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
 
-          if (!isTooCrowded) {
-            ctx.font = "14px 'Inter', sans-serif";
-            ctx.fillStyle = "rgba(148, 163, 184, 0.35)";
-            ctx.fillText(center.flag, x, y - 18);
-            labelGrid.push({ x, y });
-          }
+    const labelGrid: { x: number, y: number }[] = [];
+    const minLabelDist = 120;
+
+    const sortedCenters = [...centersData].sort((a, b) => {
+      if (a.name_en === targetCountry) return 1;
+      if (b.name_en === targetCountry) return -1;
+      if (a.name_en === userCountry) return 1;
+      if (b.name_en === userCountry) return -1;
+      return 0;
+    });
+
+    sortedCenters.forEach((center: any) => {
+      const { x, y } = project(center.lon, center.lat);
+      const isPlayer = center.name_en === userCountry;
+      const isTarget = center.name_en === targetCountry;
+
+      // Dot marker
+      ctx.beginPath();
+      if (isPlayer) {
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = "#22d3ee";
+        ctx.shadowColor = "#22d3ee";
+        ctx.shadowBlur = 15;
+      } else if (isTarget) {
+        const rel = getRelation(center.name_en, userCountry);
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        if (rel >= 70) ctx.fillStyle = "#22c55e";
+        else if (rel >= 41) ctx.fillStyle = "#eab308";
+        else ctx.fillStyle = "#ef4444";
+        ctx.shadowColor = ctx.fillStyle as string;
+        ctx.shadowBlur = 15;
+      } else {
+        ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(148, 163, 184, 0.5)";
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Maritime Labels
+      maritimeLabels.forEach(label => {
+        const { x, y } = project(label.lon, label.lat);
+        ctx.font = `italic ${label.size}px 'Inter', sans-serif`;
+        ctx.fillStyle = label.color;
+        if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) {
+          ctx.fillText(label.name, x, y);
         }
       });
 
-      ctx.restore();
+      // Text Labels
+      if (isPlayer || isTarget) {
+        ctx.font = "48px sans-serif";
+        ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 10;
+        ctx.fillText(center.flag, x, y - 90);
+        ctx.shadowBlur = 0;
+      } else {
+        const isTooCrowded = labelGrid.some(pos =>
+          Math.abs(pos.x - x) < minLabelDist && Math.abs(pos.y - y) < minLabelDist / 2
+        );
+
+        if (!isTooCrowded) {
+          ctx.font = "14px 'Inter', sans-serif";
+          ctx.fillStyle = "rgba(148, 163, 184, 0.35)";
+          ctx.fillText(center.flag, x, y - 18);
+          labelGrid.push({ x, y });
+        }
+      }
     });
 
   }, [geoData, userCountry, targetCountry, centersData]);
@@ -297,7 +289,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
     <div className="relative w-full h-full">
       <canvas
         ref={canvasRef}
-        width={mapWidth * 3}
+        width={mapWidth}
         height={mapHeight}
         className="h-full w-auto max-w-none z-10"
         style={{ cursor: isHovering ? hoverCursor : defaultCursor, pointerEvents: active ? "auto" : "none" }}
@@ -306,15 +298,14 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
           const canvas = canvasRef.current;
           if (!canvas) return;
           const rect = canvas.getBoundingClientRect();
-          const clickX = ((e.clientX - rect.left) / rect.width) * (mapWidth * 3);
+          const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
           const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-          const mappedClickX = clickX % mapWidth;
 
           let foundHover = false;
           centersData.forEach((center: any) => {
             const x = ((center.lon + 180) / 360) * mapWidth;
             const y = ((90 - center.lat) / 180) * mapHeight;
-            const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
+            const dist = Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2);
             if (dist < 60) foundHover = true;
           });
 
@@ -334,9 +325,8 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
           const canvas = canvasRef.current;
           if (!canvas) return;
           const rect = canvas.getBoundingClientRect();
-          const clickX = ((e.clientX - rect.left) / rect.width) * (mapWidth * 3);
+          const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
           const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-          const mappedClickX = clickX % mapWidth;
 
           let closest: any = null;
           let minDist = 100;
@@ -344,7 +334,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
           centersData.forEach((center: any) => {
             const x = ((center.lon + 180) / 360) * mapWidth;
             const y = ((90 - center.lat) / 180) * mapHeight;
-            const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
+            const dist = Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2);
             if (dist < minDist) {
               minDist = dist;
               closest = center;
@@ -357,39 +347,36 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
         }}
       />
 
-      {/* Absolute Markers Overlay - Single Icon Trigger */}
       <div className="absolute inset-0 pointer-events-none z-20">
-        {[0, 1, 2].map(offsetIdx => (
-          centersData.map((center: any) => {
-            const x = ((center.lon + 180) / 360) * mapWidth + (offsetIdx * mapWidth);
-            const y = ((90 - center.lat) / 180) * mapHeight;
+        {centersData.map((center: any) => {
+          const x = ((center.lon + 180) / 360) * mapWidth;
+          const y = ((90 - center.lat) / 180) * mapHeight;
 
-            const resources = center.sektor_ekstraksi || {};
-            const activeResources = Object.entries(resources).filter(([_, v]) => (v as number) > 0);
+          const resources = center.sektor_ekstraksi || {};
+          const activeResources = Object.entries(resources).filter(([_, v]) => (v as number) > 0);
 
-            if (activeResources.length === 0) return null;
+          if (activeResources.length === 0) return null;
 
-            return (
-              <div
-                key={`${center.name_en}-${offsetIdx}`}
-                style={{ left: `${(x / (mapWidth * 3)) * 100}%`, top: `${(y / mapHeight) * 100}%` }}
-                className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto cursor-pointer"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (onSelectSDA) {
-                    onSelectSDA({ name: center.name_en, flag: center.flag, resources });
-                  }
-                }}
-              >
-                <div className="bg-zinc-900 border border-zinc-700 p-0.5 rounded shadow backdrop-blur-sm hover:border-orange-500 hover:scale-110 flex items-center justify-center transition-all">
-                  <Pickaxe size={12} className="text-orange-400" />
-                </div>
+          return (
+            <div
+              key={center.name_en}
+              style={{ left: `${(x / mapWidth) * 100}%`, top: `${(y / mapHeight) * 100}%` }}
+              className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onSelectSDA) {
+                  onSelectSDA({ name: center.name_en, flag: center.flag, resources });
+                }
+              }}
+            >
+              <div className="bg-zinc-900 border border-zinc-700 p-0.5 rounded shadow backdrop-blur-sm hover:border-orange-500 hover:scale-110 flex items-center justify-center transition-all">
+                <Pickaxe size={12} className="text-orange-400" />
               </div>
-            );
-          })
-        ))}
+            </div>
+          );
+        })}
       </div>
-
     </div>
+
   );
 }
