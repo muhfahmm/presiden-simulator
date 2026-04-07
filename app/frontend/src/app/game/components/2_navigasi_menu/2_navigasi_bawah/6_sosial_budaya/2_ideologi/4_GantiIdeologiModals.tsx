@@ -56,10 +56,23 @@ export function GantiIdeologiModals({ ideology, cost, onClose, onConfirm }: Gant
               <Coins className={`h-3.5 w-3.5 ${isInsufficient ? 'text-rose-500' : 'text-cyan-400'}`} />
               <span className={`text-[9px] font-black uppercase tracking-widest ${isInsufficient ? 'text-rose-500' : 'text-cyan-400'}`}>Biaya Transisi</span>
             </div>
-            <span className={`text-xs font-black tabular-nums ${isInsufficient ? 'text-rose-400' : 'text-white'}`}>
-              {cost.toLocaleString('id-ID')}
-            </span>
+            <div className="flex items-center gap-4">
+              <span className={`text-xs font-black tabular-nums ${isInsufficient ? 'text-rose-400' : 'text-white'}`}>
+                {cost.toLocaleString('id-ID')}
+              </span>
+              <button
+                onClick={handleConfirmAction}
+                disabled={isInsufficient}
+                className={`px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-2 font-sans ${
+                  isInsufficient ? 'bg-zinc-800 text-zinc-600 grayscale cursor-not-allowed border border-zinc-700 shadow-none' : 'bg-cyan-500 text-black shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:bg-cyan-400 active:scale-95'
+                }`}
+              >
+                <CheckCircle className="h-3.5 w-3.5" />
+                {isInsufficient ? 'Dana Kurang' : 'Tetapkan'}
+              </button>
+            </div>
           </div>
+
           {isInsufficient && (
             <p className="text-[9px] text-rose-500 font-bold uppercase tracking-tight animate-pulse">
               Dana Negara Tidak Mencukupi untuk Perubahan Ini
@@ -68,27 +81,6 @@ export function GantiIdeologiModals({ ideology, cost, onClose, onConfirm }: Gant
         </div>
       </div>
 
-      <div className="flex items-center gap-4 mt-6">
-          <div className="flex-1">
-             <div className="flex items-center justify-between p-2.5 rounded-xl border bg-emerald-500/10 border-emerald-500/30">
-                <div className="flex items-center gap-4">
-                  <span className="text-[12px] font-black text-white tabular-nums">
-                    {cost.toLocaleString('id-ID')}
-                  </span>
-                  <button
-                    onClick={handleConfirmAction}
-                    disabled={isInsufficient}
-                    className={`px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-2 font-sans ${
-                      isInsufficient ? 'bg-zinc-800 text-zinc-600 grayscale cursor-not-allowed border border-zinc-700 shadow-none' : 'bg-cyan-500 text-black shadow-[0_0_20px_rgba(6,185,129,0.3)] hover:bg-cyan-400 active:scale-95'
-                    }`}
-                  >
-                    <CheckCircle className="h-3.5 w-3.5" />
-                    {isInsufficient ? 'Dana Kurang' : 'Tetapkan'}
-                  </button>
-                </div>
-              </div>
-          </div>
-      </div>
 
       {/* Footer Buttons */}
       <div className="mt-4 pt-4 border-t border-white/5">
