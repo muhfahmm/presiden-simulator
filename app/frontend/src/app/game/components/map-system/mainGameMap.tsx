@@ -232,7 +232,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
 
     maritimeLabels.forEach(label => {
       const { x, y } = project(label.lon, label.lat);
-      ctx.font = `italic 18px 'Inter', sans-serif`; ctx.fillStyle = label.color;
+      ctx.font = `italic ${label.size}px 'Inter', sans-serif`; ctx.fillStyle = label.color;
       ctx.textAlign = "center"; ctx.textBaseline = "middle";
       if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) ctx.fillText(label.name, x, y);
     });
