@@ -8,9 +8,9 @@ import { calculatePopulationHappiness } from "@/app/game/components/2_navigasi_m
 import { countries } from "@/app/database/data/negara/benua/index";
 import { lawStorage } from "./2_database_undang_undang/lawStorage";
 import { ideologyStorage } from "../6_sosial_budaya/2_ideologi/ideologyStorage";
+import { religionStorage } from "../6_sosial_budaya/1_agama/religionStorage";
 import { DEMOKRASI_POLITICAL_COST_MULTIPLIER } from "../6_sosial_budaya/2_ideologi/logic/1_demokrasi/2_minus/minus";
 
-const BASE_LEGISLATION_COST = 500000;
 
 export default function UndangUndangTab() {
   const [recommendations, setRecommendations] = useState<any[]>([]);
@@ -21,36 +21,75 @@ export default function UndangUndangTab() {
   const session = gameStorage.getSession();
   const countryName = session?.country || "Indonesia";
   const currentCountry = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
-  
-  const currentIdeology = ideologyStorage.getCurrentIdeology(currentCountry.ideology);
+
+  const [currentIdeology, setCurrentIdeology] = useState(ideologyStorage.getCurrentIdeology(currentCountry.ideology));
+  const [currentReligion, setCurrentReligion] = useState(religionStorage.getCurrentReligion(currentCountry.religion));
+
   const isDemokrasi = currentIdeology === "Demokrasi";
-  const legislationCost = isDemokrasi ? BASE_LEGISLATION_COST * DEMOKRASI_POLITICAL_COST_MULTIPLIER : BASE_LEGISLATION_COST;
 
   const happiness = calculatePopulationHappiness();
 
   useEffect(() => {
-    const aiSession = { 
-      approval_rating: happiness.global,
-      cash: userBudget
+    const fetchRecommendations = async () => {
+      try {
+        const aiSession = { 
+          approval_rating: happiness.global,
+          cash: userBudget,
+          religion: currentReligion,
+          ideology: currentIdeology
+        };
+        
+        const response = await fetch('/api/ai_recommend', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            country: currentCountry,
+            session: aiSession
+          })
+        });
+
+        if (response.ok) {
+          const recs = await response.json();
+          setRecommendations(recs);
+        } else {
+          // Fallback to local mock if API fails
+          const recs = getAiRecommendations(currentCountry, { 
+            approval_rating: happiness.global, 
+            cash: userBudget,
+            religion: currentReligion,
+            ideology: currentIdeology
+          });
+          setRecommendations(recs);
+        }
+      } catch (err) {
+        console.error("AI Recommendation Fetch Error:", err);
+      }
     };
-    const recs = getAiRecommendations(currentCountry, aiSession);
-    setRecommendations(recs);
+
+    fetchRecommendations();
 
     const handleBudgetUpdate = () => setUserBudget(budgetStorage.getBudget());
     const handleLawUpdate = () => setActiveLawIds(lawStorage.getActiveLawIds());
+    const handleReligionUpdate = (e: any) => setCurrentReligion(e.detail.religion);
+    const handleIdeologyUpdate = (e: any) => setCurrentIdeology(e.detail.ideology);
     
     window.addEventListener('budget_storage_updated', handleBudgetUpdate);
     window.addEventListener('law_activated', handleLawUpdate);
+    window.addEventListener('religion_updated', handleReligionUpdate as any);
+    window.addEventListener('ideology_updated', handleIdeologyUpdate as any);
+
     return () => {
       window.removeEventListener('budget_storage_updated', handleBudgetUpdate);
       window.removeEventListener('law_activated', handleLawUpdate);
+      window.removeEventListener('religion_updated', handleReligionUpdate as any);
+      window.removeEventListener('ideology_updated', handleIdeologyUpdate as any);
     };
-  }, []);
+  }, [currentReligion, currentIdeology, userBudget, happiness.global]);
 
-  const handleSahkanLaw = (lawId: number) => {
-    if (userBudget < legislationCost) return;
+  const handleSahkanLaw = (lawId: number, cost: number) => {
+    if (userBudget < cost) return;
     
-    budgetStorage.updateBudget(-legislationCost);
+    budgetStorage.updateBudget(-cost);
     lawStorage.activateLaw(lawId);
   };
 
@@ -74,49 +113,6 @@ export default function UndangUndangTab() {
         </div>
       </div>
 
-      {/* AI RECOMMENDATION HUD */}
-      <div className="mx-4 p-8 rounded-[2.5rem] bg-zinc-950 border border-zinc-800/80 relative overflow-hidden shadow-2xl group">
-        <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity">
-          <Brain className="h-48 w-48 text-purple-500 -mr-16 -mt-16" />
-        </div>
-        <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-purple-600/10 rounded-full blur-[100px]" />
-        
-        <div className="relative z-10 flex flex-col md:flex-row gap-10 items-start">
-          <div className="flex-1 space-y-4">
-            <div className="flex items-center gap-3">
-               <div className="p-2 bg-purple-500/20 rounded-xl border border-purple-500/30 animate-pulse">
-                <Sparkles className="h-5 w-5 text-purple-400" />
-               </div>
-               <h4 className="text-sm font-black text-white uppercase tracking-[0.4em] italic">AI Intelligence Hub</h4>
-            </div>
-            <h2 className="text-3xl font-black text-white tracking-tighter uppercase italic leading-none max-w-lg">
-              Sistem Otomasi <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Rekomendasi Kebijakan</span>
-            </h2>
-            <p className="text-xs text-zinc-400 font-bold uppercase tracking-[0.2em] max-w-xl leading-relaxed">
-              Bot AI menganalisis parameter ekonomi, tingkat kriminalitas, dan stabilitas nasional untuk merekomendasikan legislasi strategis.
-            </p>
-          </div>
-          
-          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full">
-            {recommendations.map((rec, idx) => {
-              const law = MOCK_LAWS.find(l => l.id === rec.lawId);
-              return (
-                <div key={idx} className="p-3 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-purple-500/40 transition-all flex flex-col gap-1.5 min-h-[80px] group/item relative overflow-hidden">
-                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-purple-500/[0.02] group-hover/item:to-purple-500/10 transition-colors" />
-                   <div className="relative z-10 flex items-center gap-2">
-                    <div className={`p-1 rounded-md bg-zinc-900 border border-zinc-800 ${law?.color}`}>
-                       {law && <law.icon className="h-3 w-3" />}
-                    </div>
-                    <span className="text-[9px] font-black text-white uppercase tracking-wider truncate">{law?.title}</span>
-                  </div>
-                  <p className="relative z-10 text-[9px] font-bold text-zinc-400 italic leading-tight line-clamp-2">"{rec.reason}"</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
       <div className="pb-32">
         {Object.entries(groupedLaws).map(([category, laws], index) => (
           <div key={category} className="animate-in fade-in slide-in-from-left-4 duration-500">
@@ -132,7 +128,8 @@ export default function UndangUndangTab() {
                 {laws.map((law) => {
                   const isRecommended = recommendations.some(r => r.lawId === law.id);
                   const isActive = activeLawIds.includes(law.id);
-                  const isInsufficient = userBudget < legislationCost;
+                  const individualCost = isDemokrasi ? law.price * DEMOKRASI_POLITICAL_COST_MULTIPLIER : law.price;
+                  const isInsufficient = userBudget < individualCost;
 
                   return (
                     <div 
@@ -159,12 +156,20 @@ export default function UndangUndangTab() {
                           <law.icon className="h-6 w-6" />
                         </div>
                         <div className="flex flex-col items-end gap-2">
-                          <div className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-colors ${
-                            isActive 
-                              ? "bg-emerald-500 text-black border-emerald-400" 
-                              : "bg-amber-500/10 border-amber-500/30 text-amber-400"
-                          }`}>
-                            {isActive ? "Aktif" : "Rancangan"}
+                          <div className="flex items-center gap-2">
+                            <div className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-colors ${
+                              isActive 
+                                ? "bg-emerald-500 text-black border-emerald-400" 
+                                : "bg-amber-500/10 border-amber-500/30 text-amber-400"
+                            }`}>
+                              {isActive ? "Aktif" : "Rancangan"}
+                            </div>
+                            <button 
+                              className="p-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-500 hover:text-purple-400 hover:border-purple-500/50 hover:bg-purple-500/10 transition-all active:scale-90 group/info"
+                              title="Detail Regulasi"
+                            >
+                              <Info className="h-3 w-3" />
+                            </button>
                           </div>
                           {isRecommended && !isActive && (
                             <div className="px-2 py-1 bg-purple-500/10 border border-purple-500/30 text-[8px] font-black text-purple-400 uppercase tracking-widest rounded-md animate-pulse">
@@ -208,11 +213,11 @@ export default function UndangUndangTab() {
                                    <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Biaya Politik {isDemokrasi && <span className="text-amber-500 italic">(Demokrasi +50%)</span>}</span>
                                 </div>
                                 <span className={`text-[10px] font-black tabular-nums ${isInsufficient ? 'text-rose-500' : 'text-white'}`}>
-                                   {legislationCost.toLocaleString('id-ID')}
+                                   {individualCost.toLocaleString('id-ID')}
                                 </span>
                              </div>
                              <button 
-                                onClick={() => handleSahkanLaw(law.id)}
+                                onClick={() => handleSahkanLaw(law.id, individualCost)}
                                 disabled={isInsufficient}
                                 className={`w-full py-3.5 rounded-xl border text-xs font-black uppercase tracking-widest transition-all active:scale-95 flex items-center justify-center gap-2 group/btn cursor-pointer shadow-lg ${
                                    isInsufficient 

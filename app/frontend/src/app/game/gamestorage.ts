@@ -41,6 +41,7 @@ import { newsStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_eko
 import { relationDeltaStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/8_hubungan_internasional/logic/relationDeltaStorage";
 import { religionStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 import { ideologyStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/ideologyStorage";
+import { lawStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/7_kementrian/2_database_undang_undang/lawStorage";
 
 const STORAGE_KEY = "game_session";
 
@@ -117,6 +118,7 @@ export const gameStorage = {
     relationDeltaStorage.clear();
     religionStorage.clear();
     ideologyStorage.clear();
+    lawStorage.clear();
   },
 
   getSession: (): GameSession | null => {
@@ -202,6 +204,7 @@ export const gameStorage = {
     relationDeltaStorage.clear();
     religionStorage.clear();
     ideologyStorage.clear();
+    lawStorage.clear();
     
     window.location.href = '/database';
   },
@@ -262,5 +265,6 @@ export const gameStorage = {
     relationDeltaStorage.clear();
     religionStorage.clear();
     ideologyStorage.clear();
+    lawStorage.clear();
   },
 };

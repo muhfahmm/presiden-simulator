@@ -42,5 +42,14 @@ export const lawStorage = {
    */
   isLawActive: (lawId: number): boolean => {
     return lawStorage.getActiveLawIds().includes(lawId);
+  },
+
+  /**
+   * Menghapus semua hukum aktif (biasanya untuk reset game).
+   */
+  clear: () => {
+    if (typeof window === "undefined") return;
+    localStorage.removeItem(LAW_STORAGE_KEY);
+    console.log("[LawStorage] All laws cleared.");
   }
 };

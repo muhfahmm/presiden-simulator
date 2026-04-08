@@ -17,6 +17,7 @@ export interface Law {
   category: string;
   icon: any;
   color: string;
+  price: number;
 }
 
 export const MOCK_LAWS: Law[] = [
@@ -30,7 +31,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Industri",
     icon: Cpu,
-    color: "text-purple-500"
+    color: "text-purple-500",
+    price: 25000000
   },
   {
     id: 2,
@@ -41,7 +43,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Industri",
     icon: TrendingUp,
-    color: "text-indigo-400"
+    color: "text-indigo-400",
+    price: 15000000
   },
   {
     id: 19,
@@ -52,7 +55,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Industri",
     icon: Factory,
-    color: "text-orange-500"
+    color: "text-orange-500",
+    price: 35000000
   },
   {
     id: 26,
@@ -63,7 +67,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Industri",
     icon: HardDrive,
-    color: "text-blue-400"
+    color: "text-blue-400",
+    price: 8000000
   },
   {
     id: 27,
@@ -74,7 +79,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Industri",
     icon: Factory,
-    color: "text-yellow-500"
+    color: "text-yellow-500",
+    price: 40000000
   },
 
   // === KEAMANAN ===
@@ -87,7 +93,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Keamanan",
     icon: Shield,
-    color: "text-cyan-500"
+    color: "text-cyan-500",
+    price: 20000000
   },
   {
     id: 4,
@@ -98,7 +105,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Keamanan",
     icon: Lock,
-    color: "text-sky-400"
+    color: "text-sky-400",
+    price: 30000000
   },
   {
     id: 24,
@@ -109,7 +117,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Keamanan",
     icon: Radio,
-    color: "text-sky-500"
+    color: "text-sky-500",
+    price: 45000000
   },
   {
     id: 28,
@@ -120,7 +129,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Keamanan",
     icon: Fingerprint,
-    color: "text-cyan-400"
+    color: "text-cyan-400",
+    price: 35000000
   },
   {
     id: 29,
@@ -131,7 +141,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Keamanan",
     icon: Lock,
-    color: "text-emerald-500"
+    color: "text-emerald-500",
+    price: 12000000
   },
 
   // === EKONOMI ===
@@ -144,7 +155,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Ekonomi",
     icon: Scale,
-    color: "text-emerald-500"
+    color: "text-emerald-500",
+    price: 10000000
   },
   {
     id: 20,
@@ -155,7 +167,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Ekonomi",
     icon: Landmark,
-    color: "text-emerald-600"
+    color: "text-emerald-600",
+    price: 25000000
   },
   {
     id: 30,
@@ -166,7 +179,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Ekonomi",
     icon: Landmark,
-    color: "text-amber-500"
+    color: "text-amber-500",
+    price: 50000000
   },
   {
     id: 31,
@@ -177,7 +191,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Ekonomi",
     icon: Briefcase,
-    color: "text-blue-400"
+    color: "text-blue-400",
+    price: 18000000
   },
   {
     id: 32,
@@ -188,7 +203,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Ekonomi",
     icon: Bitcoin,
-    color: "text-orange-400"
+    color: "text-orange-400",
+    price: 12000000
   },
 
   // === MILITER & PERTAHANAN ===
@@ -201,7 +217,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Militer & Pertahanan",
     icon: Swords,
-    color: "text-amber-500"
+    color: "text-amber-500",
+    price: 20000000
   },
   {
     id: 7,
@@ -212,7 +229,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Militer & Pertahanan",
     icon: Users,
-    color: "text-orange-500"
+    color: "text-orange-500",
+    price: 40000000
   },
   {
     id: 33,
@@ -223,7 +241,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Militer & Pertahanan",
     icon: Target,
-    color: "text-red-500"
+    color: "text-red-500",
+    price: 50000000
   },
   {
     id: 34,
@@ -234,7 +253,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Militer & Pertahanan",
     icon: Ship,
-    color: "text-blue-500"
+    color: "text-blue-500",
+    price: 45000000
   },
   {
     id: 35,
@@ -245,7 +265,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Militer & Pertahanan",
     icon: Satellite,
-    color: "text-purple-400"
+    color: "text-purple-400",
+    price: 50000000
   },
 
   // === SOSIAL & KEPENDUDUKAN ===
@@ -258,7 +279,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Sosial & Kependudukan",
     icon: Eye,
-    color: "text-rose-500"
+    color: "text-rose-500",
+    price: 25000000
   },
   {
     id: 9,
@@ -269,7 +291,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Sosial & Kependudukan",
     icon: Handshake,
-    color: "text-pink-400"
+    color: "text-pink-400",
+    price: 40000000
   },
   {
     id: 23,
@@ -280,7 +303,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Sosial & Kependudukan",
     icon: Network,
-    color: "text-blue-500"
+    color: "text-blue-500",
+    price: 15000000
   },
   {
     id: 25,
@@ -291,7 +315,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Sosial & Kependudukan",
     icon: HeartPulse,
-    color: "text-rose-400"
+    color: "text-rose-400",
+    price: 7000000
   },
   {
     id: 36,
@@ -302,7 +327,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Sosial & Kependudukan",
     icon: Baby,
-    color: "text-rose-500"
+    color: "text-rose-500",
+    price: 5000000
   },
 
   // === ENERGI & LINGKUNGAN ===
@@ -315,7 +341,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Energi & Lingkungan",
     icon: Leaf,
-    color: "text-green-400"
+    color: "text-green-400",
+    price: 30000000
   },
   {
     id: 11,
@@ -326,7 +353,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Energi & Lingkungan",
     icon: Power,
-    color: "text-yellow-400"
+    color: "text-yellow-400",
+    price: 45000000
   },
   {
     id: 12,
@@ -337,7 +365,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Energi & Lingkungan",
     icon: Waves,
-    color: "text-blue-400"
+    color: "text-blue-400",
+    price: 20000000
   },
   {
     id: 13,
@@ -348,7 +377,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Energi & Lingkungan",
     icon: Zap,
-    color: "text-orange-400"
+    color: "text-orange-400",
+    price: 15000000
   },
   {
     id: 22,
@@ -359,7 +389,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Energi & Lingkungan",
     icon: Flame,
-    color: "text-amber-600"
+    color: "text-amber-600",
+    price: 10000000
   },
 
   // === HUKUM & KETERTIBAN ===
@@ -372,7 +403,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Hukum & Ketertiban",
     icon: Gavel,
-    color: "text-red-500"
+    color: "text-red-500",
+    price: 20000000
   },
   {
     id: 15,
@@ -383,7 +415,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Hukum & Ketertiban",
     icon: Eye,
-    color: "text-violet-400"
+    color: "text-violet-400",
+    price: 40000000
   },
   {
     id: 16,
@@ -394,7 +427,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Hukum & Ketertiban",
     icon: AlertTriangle,
-    color: "text-red-400"
+    color: "text-red-400",
+    price: 35000000
   },
   {
     id: 21,
@@ -405,7 +439,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Hukum & Ketertiban",
     icon: Scale,
-    color: "text-zinc-300"
+    color: "text-zinc-300",
+    price: 25000000
   },
   {
     id: 37,
@@ -416,7 +451,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Hukum & Ketertiban",
     icon: Scale,
-    color: "text-zinc-400"
+    color: "text-zinc-400",
+    price: 30000000
   },
 
   // === HUBUNGAN INTERNASIONAL ===
@@ -429,7 +465,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Hubungan Internasional",
     icon: Anchor,
-    color: "text-teal-400"
+    color: "text-teal-400",
+    price: 15000000
   },
   {
     id: 18,
@@ -440,7 +477,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Hubungan Internasional",
     icon: Globe,
-    color: "text-cyan-400"
+    color: "text-cyan-400",
+    price: 25000000
   },
   {
     id: 38,
@@ -451,7 +489,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Hubungan Internasional",
     icon: Flag,
-    color: "text-blue-500"
+    color: "text-blue-500",
+    price: 35000000
   },
   {
     id: 39,
@@ -462,7 +501,8 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Hubungan Internasional",
     icon: Music,
-    color: "text-indigo-400"
+    color: "text-indigo-400",
+    price: 10000000
   },
   {
     id: 40,
@@ -473,6 +513,7 @@ export const MOCK_LAWS: Law[] = [
     status: "Rancangan",
     category: "Hubungan Internasional",
     icon: UserCheck,
-    color: "text-cyan-500"
+    color: "text-cyan-500",
+    price: 12000000
   },
 ];

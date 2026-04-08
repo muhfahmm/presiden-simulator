@@ -2,14 +2,9 @@ import { MOCK_LAWS } from "../database_uu";
 
 export const getAiRecommendations = (country: any, session: any) => {
   const recommendations: { lawId: number; reason: string }[] = [];
+  const religion = session?.religion || "Islam";
+  const ideology = session?.ideology || "Demokrasi";
   
-  // Helper to add recommendation but only one per category
-  const categories = [
-    "Industri", "Keamanan", "Ekonomi", "Militer & Pertahanan", 
-    "Sosial & Kependudukan", "Energi & Lingkungan", "Hukum & Ketertiban", 
-    "Hubungan Internasional"
-  ];
-
   const gdp = parseInt(country.pendapatan_nasional || "0");
   const securityIndex = country.sektor_sosial?.hukum?.indeks_keamanan || 70;
   const crimeRate = 100 - securityIndex;
@@ -53,16 +48,21 @@ export const getAiRecommendations = (country: any, session: any) => {
     });
   }
 
-  // 3. EKONOMI
-  if (parseInt(session?.cash || "0") < 20000) {
+  // 3. EKONOMI (IDEOLOGY BASED)
+  if (ideology === "Komunisme" || ideology === "Sosialisme") {
+    recommendations.push({
+      lawId: 30,
+      reason: `Sebagai negara ${ideology}, Nasionalisasi Strategis adalah langkah mutlak untuk memastikan kemandirian ekonomi dari cengkeraman modal asing.`
+    });
+  } else if (ideology === "Kapitalisme" || ideology === "Liberalisme") {
+    recommendations.push({
+      lawId: 18,
+      reason: `Visi ${ideology} kita menuntut pasar yang terbuka. Zona Perdagangan Bebas akan mendongkrak devisa negara melalui ekspor-impor.`
+    });
+  } else if (parseInt(session?.cash || "0") < 20000) {
     recommendations.push({
       lawId: 30,
       reason: "Kas negara menipis. Nasionalisasi aset strategis akan mengalihkan 100% laba perusahaan vital ke anggaran negara."
-    });
-  } else if (approvalRating < 55) {
-    recommendations.push({
-      lawId: 31,
-      reason: "Guna meredam volatilitas sosial, subsidi UMKM digital akan menciptakan lapangan kerja massal di tingkat akar rumput."
     });
   } else {
     recommendations.push({
@@ -89,16 +89,21 @@ export const getAiRecommendations = (country: any, session: any) => {
     });
   }
 
-  // 5. SOSIAL & KEPENDUDUKAN
-  if (approvalRating < 60) {
+  // 5. SOSIAL & KEPENDUDUKAN (RELIGION BASED)
+  if (religion === "Islam" || religion === "Katolik" || religion === "Protestan") {
+    recommendations.push({
+      lawId: 9,
+      reason: `Nilai-nilai ${religion} kita menekankan kepedulian sosial. Jaminan Sosial Semesta akan menjamin kesejahteraan seluruh rakyat tanpa kecuali.`
+    });
+  } else if (religion === "Ateisme" || religion === "Shinto") {
+    recommendations.push({
+      lawId: 23,
+      reason: `Fokus pada efisiensi dan pendidikan ${religion} menuntut Infrastruktur Pendidikan Digital yang mumpuni untuk masa depan bangsa.`
+    });
+  } else if (approvalRating < 60) {
     recommendations.push({
       lawId: 9,
       reason: "Jaminan Sosial Semesta akan menjamin loyalitas warga kelas bawah dan mencegah risiko demonstrasi massal."
-    });
-  } else if (population > 200000) {
-    recommendations.push({
-      lawId: 36,
-      reason: "Ledakan penduduk mengancam suplai pangan. Program Keluarga Berencana harus diperketat kembali."
     });
   } else {
     recommendations.push({
@@ -113,46 +118,51 @@ export const getAiRecommendations = (country: any, session: any) => {
       lawId: 10,
       reason: "Transisi Hijau Paksa akan membersihkan udara kota dan menarik investor teknologi masa depan."
     });
-  } else if ((country.sektor_agrikultur?.kelapa_sawit || 0) > 30) {
+  } else if (ideology === "Komunisme") {
     recommendations.push({
-      lawId: 22,
-      reason: "Produksi sawit melimpah. Biofuel Mandatori akan menghemat devisa dengan mengurangi impor BBM."
+      lawId: 11,
+      reason: "Monopoli Energi Negara memastikan rakyat mendapatkan tarif listrik termurah demi kesejahteraan umum, sesuai prinsip sosialisme."
     });
   } else {
     recommendations.push({
-      lawId: 11,
-      reason: "Monopoli Energi Negara memastikan rakyat mendapatkan tarif listrik termurah demi kesejahteraan umum."
+      lawId: 22,
+      reason: "Biofuel Mandatori akan menghemat devisa dengan mengurangi impor BBM dan mendukung kemandirian energi."
     });
   }
 
-  // 7. HUKUM & KETERTIBAN
-  if (corruptionIndex < 70) {
+  // 7. HUKUM & KETERTIBAN (IDEOLOGY BASED)
+  if (ideology === "Demokrasi") {
+    recommendations.push({
+      lawId: 21,
+      reason: "Sebagai negara Demokrasi, transparansi adalah harga mati. Audit Pejabat diperlukan untuk menjaga integritas pemerintahan."
+    });
+  } else if (ideology === "Otoriter" || ideology === "Monarki") {
+    recommendations.push({
+      lawId: 15,
+      reason: `Kestabilan pusat kekuasaan ${ideology} menuntut Pengawasan Biometrik Massal untuk mencegah infiltrasi dan menjaga ketertiban umum.`
+    });
+  } else if (corruptionIndex < 70) {
     recommendations.push({
       lawId: 21,
       reason: "Indeks korupsi rendah. Audit Transparansi Pejabat secara berkala akan membersihkan birokrasi dari tikus kantor."
     });
-  } else if (securityIndex < 60) {
+  } else {
     recommendations.push({
       lawId: 14,
       reason: "Hukuman Mati bagi pengedar narkoba dan teroris akan memberikan shock therapy bagi pelaku kriminal."
     });
-  } else {
-    recommendations.push({
-      lawId: 37,
-      reason: "Kedaulatan Yudisial yang independen akan memberikan kepastian hukum yang sangat dihargai oleh investor asing."
-    });
   }
 
   // 8. HUBUNGAN INTERNASIONAL
-  if (crimeRate > 25) {
+  if (ideology === "Nasionalisme") {
     recommendations.push({
       lawId: 40,
-      reason: "Banyak koruptor kabur ke luar negeri. Perjanjian Ekstradisi massal akan mempermudah penjemputan paksa mereka."
+      reason: "Kedaulatan hukum nasional harus ditegakkan. Perjanjian Ekstradisi akan memastikan tidak ada tempat aman bagi pengkhianat bangsa."
     });
-  } else if ((country.sektor_sosial?.pariwisata?.indeks_pariwisata || 0) < 50) {
+  } else if (approvalRating > 80) {
     recommendations.push({
       lawId: 39,
-      reason: "Citra negara di dunia perlu diperbaiki. Pertukaran Budaya Global akan mendongkrak Soft Power kita."
+      reason: "Dengan dukungan rakyat yang kuat, Pertukaran Budaya Global akan mendongkrak Soft Power kita di mata dunia."
     });
   } else {
     recommendations.push({
@@ -161,6 +171,5 @@ export const getAiRecommendations = (country: any, session: any) => {
     });
   }
 
-  // Pastikan kita mengambil 1 rekomendasi unik per kategori (sudah dijamin oleh logika di atas)
   return recommendations;
 };
