@@ -7,6 +7,7 @@ import { EmbargoCard } from "./3_embargo/EmbargoCard";
 import { ConfigurationSection } from "./components/ConfigurationSection";
 import { ActiveConfigHeader } from "./components/ActiveConfigHeader";
 import { VoteVisualization } from "./components/VoteVisualization";
+import { ActiveResolutionGrid } from "./components/ActiveResolutionGrid";
 
 export default function PemungutanSuaraTab() {
   const [selectedItem, setSelectedItem] = useState<{ category: string, name: string, description: string, effect: string } | null>(null);
@@ -65,6 +66,15 @@ export default function PemungutanSuaraTab() {
         <RancanganResolusiCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />
         <SanksiCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />
         <EmbargoCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />
+      </div>
+
+      {/* SECTION 2: Active Resolution Status Grid */}
+      <div className="shrink-0">
+        <h3 className="text-[11px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-3 mb-4">
+          <div className="h-1 w-6 bg-zinc-600 rounded-full" />
+          Status Resolusi Aktif
+        </h3>
+        <ActiveResolutionGrid selectedItem={selectedItem} />
       </div>
 
       {/* SECTION 3: Dynamic Configuration (Rendered below guide if active) */}
