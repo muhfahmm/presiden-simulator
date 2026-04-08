@@ -29,3 +29,37 @@ export type {
 } from './votingSystem';
 
 export { useGlobalVoting } from './useGlobalVoting';
+
+// Trade Partner Color System
+export {
+  getTradePartnerColor,
+  isCountryEmbargoed,
+  isCountrySanctioned,
+  getAllTradePartnersWithColors,
+  getTradePartnerColorClass,
+  getTradePartnerStatusBadge,
+  getTradePartnerStatusDescription,
+  canTrade,
+  getTradePenalty,
+  updateMapCountryColor,
+} from './tradePartnerColorSystem';
+export type {
+  TradePartnerColorStatus,
+  TradePartnerColorInfo,
+} from './tradePartnerColorSystem';
+
+// Proposal Permissions System
+export {
+  checkProposalPermission,
+  isPrivilegedCountry,
+  getPrivilegedCountries,
+  addPrivilegedCountry,
+  removePrivilegedCountry,
+  canProposeType,
+  getProposalErrorMessage,
+  validateProposal,
+} from './proposalPermissions';
+export type { ProposalPermissions } from './proposalPermissions';
+
+export { useProposalPermissions } from './useProposalPermissions';
+export type { UseProposalPermissionsReturn } from './useProposalPermissions';

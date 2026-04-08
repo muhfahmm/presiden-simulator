@@ -32,7 +32,8 @@ export function calculateSanksiEkonomiEffect(): SanksiEkonomiEffect {
 export function applySanksiEkonomiEffect(
   duration: string,
   targetCountry: string,
-  currentGameState: any
+  currentGameState: any,
+  tradePartners?: string[]
 ): any {
   const effect = calculateSanksiEkonomiEffect();
   const durationDays = parseDuration(duration);
@@ -56,12 +57,18 @@ export function applySanksiEkonomiEffect(
     };
   }
 
-  // Dampak perdagangan
+  // Dampak perdagangan - ubah warna mitra dagang menjadi kuning
   if (effect.effects.tradeImpact > 0) {
     updatedState.trade = {
       ...updatedState.trade,
       tradeEfficiency: (updatedState.trade?.tradeEfficiency || 100) * (1 - effect.effects.tradeImpact / 100),
       tradeRestricted: true,
+      sanctionedCountry: targetCountry,
+      tradePartnerStatus: (tradePartners || []).map(partner => ({
+        countryName: partner,
+        status: 'sanctioned' as const,
+        reason: `Sanksi Ekonomi dari ${targetCountry}`,
+      })),
     };
   }
 
@@ -82,6 +89,7 @@ export function applySanksiEkonomiEffect(
       startDate: new Date(),
       durationDays,
       targetCountry,
+      tradePartners: tradePartners || [],
       effects: effect.effects,
       appliedImmediately: true, // Dapat dilakukan kapan saja
     },
@@ -114,12 +122,18 @@ export function removeSanksiEkonomiEffect(currentGameState: any): any {
     };
   }
 
-  // Restore trade
+  // Restore trade and trade partner colors
   if (updatedState.trade?.tradeRestricted) {
     updatedState.trade = {
       ...updatedState.trade,
       tradeEfficiency: (updatedState.trade?.tradeEfficiency || 100) / (1 - sanksiEkonomiEffect.effects.tradeImpact / 100),
       tradeRestricted: false,
+      sanctionedCountry: null,
+      tradePartnerStatus: updatedState.trade?.tradePartnerStatus?.map((p: any) => ({
+        ...p,
+        status: 'normal' as const,
+        reason: undefined,
+      })) || [],
     };
   }
 

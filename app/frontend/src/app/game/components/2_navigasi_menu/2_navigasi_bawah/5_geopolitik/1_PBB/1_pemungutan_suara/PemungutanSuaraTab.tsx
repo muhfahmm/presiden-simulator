@@ -7,7 +7,6 @@ import { EmbargoCard } from "./3_embargo/EmbargoCard";
 import { ConfigurationSection } from "./components/ConfigurationSection";
 import { ActiveConfigHeader } from "./components/ActiveConfigHeader";
 import { VoteVisualization } from "./components/VoteVisualization";
-import { estimateVotes } from "./utils/voteEstimation";
 
 export default function PemungutanSuaraTab() {
   const [selectedItem, setSelectedItem] = useState<{ category: string, name: string, description: string, effect: string } | null>(null);
@@ -20,9 +19,16 @@ export default function PemungutanSuaraTab() {
   const [selectedContinent, setSelectedContinent] = useState("SEMUA");
 
   useEffect(() => {
-    const data = unSecurityCouncilStorage.getData();
-    const isMember = data.members.some(m => m.name === "Indonesia");
-    setIsUNSCMember(isMember);
+    const session = gameStorage.getSession();
+    if (session) {
+      const countryName = session.country || localStorage.getItem("selectedCountry") || "Indonesia";
+      setUserCountry(countryName);
+      
+      // Cek apakah negara user adalah anggota UNSC
+      const data = unSecurityCouncilStorage.getData();
+      const isMember = data.members.some(m => m.name === countryName);
+      setIsUNSCMember(isMember);
+    }
   }, []);
 
   useEffect(() => {
@@ -36,16 +42,6 @@ export default function PemungutanSuaraTab() {
       }
     }
   }, [selectedItem]);
-
-  useEffect(() => {
-    const session = gameStorage.getSession();
-    if (session) {
-      const countryName = session.country || localStorage.getItem("selectedCountry") || "Indonesia";
-      setUserCountry(countryName);
-    }
-  }, []);
-
-  const estimation = estimateVotes(selectedCountry);
 
   return (
     <div className="flex-1 overflow-y-auto p-8 animate-in fade-in duration-300 flex flex-col gap-10 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
@@ -82,8 +78,8 @@ export default function PemungutanSuaraTab() {
             {/* Right Column: Visualization */}
             <VoteVisualization
               selectedCountry={selectedCountry}
-              estimation={estimation}
               isUNSCMember={isUNSCMember}
+              userCountry={userCountry}
               onSubmit={() => {
                 // Handle submission logic here
                 console.log("Resolusi diajukan:", {
