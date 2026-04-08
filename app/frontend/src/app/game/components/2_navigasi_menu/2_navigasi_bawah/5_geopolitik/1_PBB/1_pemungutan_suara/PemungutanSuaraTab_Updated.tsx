@@ -1,3 +1,11 @@
+/**
+ * Updated PemungutanSuaraTab dengan integrasi Modal Pengajuan Sukses
+ * 
+ * CARA MENGGUNAKAN:
+ * 1. Ganti import di parent component dari PemungutanSuaraTab ke PemungutanSuaraTab_Updated
+ * 2. Atau copy-paste kode ini ke PemungutanSuaraTab.tsx yang sudah ada
+ */
+
 import { useState, useEffect } from "react";
 import { gameStorage } from "@/app/game/gamestorage";
 import { unSecurityCouncilStorage } from "../2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
@@ -84,15 +92,12 @@ export default function PemungutanSuaraTab() {
   };
 
   // Mock data - replace with actual game data
-  const allCountries: any[] = []; // TODO: Get from game storage
+  const allCountries = []; // Get from game storage
   const gameState = {
     currentDay: 0,
     diplomaticRelations: {},
     tradeData: {},
-    playerData: {},
-    active_wars: [],
-    active_sanctions: [],
-    nuclear_threats: false
+    playerData: {}
   };
 
   return (
@@ -110,7 +115,10 @@ export default function PemungutanSuaraTab() {
           <div className="h-1 w-6 bg-zinc-600 rounded-full" />
           Status Resolusi Aktif
         </h3>
-        <ActiveResolutionGrid selectedItem={selectedItem} votingState={votingState} />
+        <ActiveResolutionGrid 
+          selectedItem={selectedItem}
+          votingState={votingState}
+        />
       </div>
 
       {/* SECTION 3: Dynamic Configuration (Rendered below guide if active) */}
@@ -178,11 +186,10 @@ export default function PemungutanSuaraTab() {
             onVotingStateUpdate={setVotingState}
             allCountries={allCountries}
             gameState={gameState}
-            enableAIVoting={false}
+            enableAIVoting={true}
           />
         </div>
       )}
     </div>
   );
 }
-
