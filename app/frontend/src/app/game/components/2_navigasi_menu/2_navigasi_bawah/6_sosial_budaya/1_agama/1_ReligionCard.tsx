@@ -58,7 +58,7 @@ export function ReligionCard({ religion, isActive, countryData, activeMenu, setA
 
   return (
     <div
-      className={`relative p-6 rounded-3xl border transition-all duration-500 group overflow-hidden h-[240px] flex flex-col ${isActive
+      className={`relative px-6 pt-6 pb-7 rounded-3xl border transition-all duration-500 group overflow-hidden h-[260px] flex flex-col ${isActive
           ? "bg-amber-500/10 border-amber-500 shadow-[0_0_40px_rgba(245,158,11,0.15)] ring-1 ring-amber-500/20"
           : "bg-zinc-900/40 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900/60"
         }`}
@@ -90,20 +90,20 @@ export function ReligionCard({ religion, isActive, countryData, activeMenu, setA
           <p className="text-[11px] text-zinc-500 font-medium leading-tight max-w-[90%] font-sans">Sistem kepercayaan dan panduan moral masyarakat dalam bernegara.</p>
         </div>
 
-        <div className="mt-auto pt-4 flex items-center justify-between">
+        <div className="mt-auto pt-2 flex items-center justify-between w-full">
            {!isActive ? (
-             <div className="flex flex-col items-start gap-1">
-               <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">Biaya Konstitusi</span>
-               <div className="flex items-center gap-3">
-                 <span className="text-xs font-black text-zinc-400 tabular-nums">{(RELIGION_PRICES[religion] || 0).toLocaleString('id-ID')}</span>
-                 <button 
-                   onClick={() => setShowGantiModal(true)}
-                   className="px-4 py-1.5 bg-amber-500/10 hover:bg-amber-500 border border-amber-500/20 hover:border-amber-500 text-amber-500 hover:text-black text-[10px] font-black uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(245,158,11,0)] hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]"
-                 >
-                   Ganti
-                 </button>
-               </div>
-             </div>
+             <>
+              <div className="flex flex-col items-start gap-1">
+                <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">Biaya Konstitusi</span>
+                <span className="text-xs font-black text-zinc-400 tabular-nums">{(RELIGION_PRICES[religion] || 0).toLocaleString('id-ID')}</span>
+              </div>
+              <button 
+                onClick={() => setShowGantiModal(true)}
+                className="px-4 py-1.5 bg-amber-500/10 hover:bg-amber-500 border border-amber-500/20 hover:border-amber-500 text-amber-500 hover:text-black text-[10px] font-black uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(245,158,11,0)] hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+              >
+                Ganti
+              </button>
+             </>
            ) : (
              <div className="flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.8)]"></div>

@@ -81,8 +81,10 @@ export function useGamePath(path: string[]) {
     initialMenu = "Dashboard:Populasi";
 
   } else if (category === 'agama') {
+    const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+    
     if (subMenu && subMenu.endsWith("_effects")) {
-      const religion = subMenu.replace("_effects", "");
+      const religion = capitalize(subMenu.replace("_effects", ""));
       const effectType = path[2]; // e.g. "islam_plus" or "islam_minus"
       if (effectType) {
         initialMenu = `Menu:Agama:${religion}:${effectType}`;
@@ -101,7 +103,19 @@ export function useGamePath(path: string[]) {
     }
     else initialMenu = "Komando Pertahanan:PerbandinganMisi";
   } else if (category === 'ideologi') {
-    initialMenu = "Menu:Ideologi";
+    const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+    if (subMenu && subMenu.endsWith("_effects")) {
+      const ideology = capitalize(subMenu.replace("_effects", ""));
+      const effectType = path[2]; 
+      if (effectType) {
+        initialMenu = `Menu:Ideologi:${ideology}:${effectType}`;
+      } else {
+        initialMenu = `Menu:Ideologi:${ideology}`;
+      }
+    } else {
+      initialMenu = "Menu:Ideologi";
+    }
   } else if (category === 'produksi_konsumsi') {
     if (subMenu === 'grid-nasional') initialMenu = "Menu:Kelistrikan";
     else if (subMenu === 'perminyakan') initialMenu = "Menu:Perminyakan";
@@ -199,6 +213,17 @@ export function useGamePath(path: string[]) {
       const religion = parts[2];
       const effectType = parts[3];
       targetPath = `/game/agama/${religion.toLowerCase()}_effects`;
+      if (effectType) {
+        targetPath += `/${effectType.toLowerCase()}`;
+      }
+    }
+    
+    // Dynamic path handling for Ideology details
+    if (!targetPath && activeMenu.startsWith("Menu:Ideologi:")) {
+      const parts = activeMenu.split(":");
+      const ideology = parts[2];
+      const effectType = parts[3];
+      targetPath = `/game/ideologi/${ideology.toLowerCase()}_effects`;
       if (effectType) {
         targetPath += `/${effectType.toLowerCase()}`;
       }

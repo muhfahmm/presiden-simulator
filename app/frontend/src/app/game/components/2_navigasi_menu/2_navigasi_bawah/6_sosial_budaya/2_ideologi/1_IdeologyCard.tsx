@@ -58,7 +58,7 @@ export function IdeologyCard({ ideology, isActive, countryData, activeMenu, setA
 
   return (
     <div
-      className={`relative p-6 rounded-3xl border transition-all duration-500 group overflow-hidden h-[240px] flex flex-col ${isActive
+      className={`relative px-6 pt-6 pb-7 rounded-3xl border transition-all duration-500 group overflow-hidden h-[260px] flex flex-col ${isActive
           ? "bg-cyan-500/10 border-cyan-500 shadow-[0_0_40px_rgba(6,182,212,0.15)] ring-1 ring-cyan-500/20"
           : "bg-zinc-900/40 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900/60"
         }`}
@@ -90,20 +90,20 @@ export function IdeologyCard({ ideology, isActive, countryData, activeMenu, setA
           <p className="text-[11px] text-zinc-500 font-medium leading-tight max-w-[90%] font-sans uppercase tracking-[0.05em]">Haluan filosofi dan sistem pemerintahan negara dalam berbangsa.</p>
         </div>
 
-        <div className="mt-auto pt-4 flex items-center justify-between">
+        <div className="mt-auto pt-2 flex items-center justify-between w-full">
            {!isActive ? (
-             <div className="flex flex-col items-start gap-0.5">
-               <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest leading-none">Biaya Transisi</span>
-               <div className="flex items-center gap-3">
-                 <span className="text-xs font-black text-zinc-400 tabular-nums">{(IDEOLOGY_PRICES[ideology] || 0).toLocaleString('id-ID')}</span>
-                 <button 
-                   onClick={() => setShowGantiModal(true)}
-                   className="px-4 py-1.5 bg-cyan-500/10 hover:bg-cyan-500 border border-cyan-500/20 hover:border-cyan-500 text-cyan-400 hover:text-black text-[10px] font-black uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(6,182,212,0)] hover:shadow-[0_0_15px_rgba(6,182,212,0.4)]"
-                 >
-                   Ganti
-                 </button>
-               </div>
-             </div>
+             <>
+              <div className="flex flex-col items-start gap-0.5">
+                <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest leading-none">Biaya Transisi</span>
+                <span className="text-xs font-black text-zinc-400 tabular-nums">{(IDEOLOGY_PRICES[ideology] || 0).toLocaleString('id-ID')}</span>
+              </div>
+              <button 
+                onClick={() => setShowGantiModal(true)}
+                className="px-4 py-1.5 bg-cyan-500/10 hover:bg-cyan-500 border border-cyan-500/20 hover:border-cyan-500 text-cyan-400 hover:text-black text-[10px] font-black uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer active:scale-95 shadow-[0_0_15px_rgba(6,182,212,0)] hover:shadow-[0_0_15px_rgba(6,182,212,0.4)]"
+              >
+                Ganti
+              </button>
+             </>
            ) : (
              <div className="flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_8px_rgba(6,182,212,0.8)]"></div>

@@ -202,7 +202,7 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         countryData={countryData}
       />
       <IdeologiModal
-        isOpen={activeMenu === "Menu:Ideologi"}
+        isOpen={activeMenu === "Menu:Ideologi" || activeMenu.startsWith("Menu:Ideologi:")}
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}
         onClose={() => setActiveMenu("Sosial & Budaya")}
