@@ -3,10 +3,9 @@ import { Gavel } from "../utils/icons";
 
 interface ActiveConfigHeaderProps {
   selectedItem: { category: string; name: string; description: string; effect: string } | null;
-  onReset: () => void;
 }
 
-export function ActiveConfigHeader({ selectedItem, onReset }: ActiveConfigHeaderProps) {
+export function ActiveConfigHeader({ selectedItem }: ActiveConfigHeaderProps) {
   if (!selectedItem) return null;
 
   const getColorClasses = () => {
@@ -44,12 +43,6 @@ export function ActiveConfigHeader({ selectedItem, onReset }: ActiveConfigHeader
           </div>
         </div>
       </div>
-      <button 
-        onClick={onReset}
-        className="px-8 py-4 rounded-2xl border border-zinc-800 text-[11px] font-black uppercase tracking-[0.2em] text-zinc-500 hover:text-white hover:border-rose-500/50 hover:bg-rose-500/10 transition-all cursor-pointer bg-zinc-900 shadow-2xl active:scale-95 shrink-0"
-      >
-        Reset Konfigurasi
-      </button>
     </div>
   );
 }

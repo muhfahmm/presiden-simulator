@@ -1,5 +1,5 @@
-import { Clock, Globe, FileText, Search, AlertTriangle } from "lucide-react";
-import { durations, techItems, resourceItems } from "../utils/configData";
+import { Globe, FileText, Search, AlertTriangle } from "lucide-react";
+import { techItems, resourceItems } from "../utils/configData";
 import { countries, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
 
 interface ConfigurationSectionProps {
@@ -76,31 +76,6 @@ export function ConfigurationSection({
           </div>
         </div>
       )}
-
-      {/* Duration Selection */}
-      <div className="flex flex-col gap-5">
-        <div className="flex items-center gap-3">
-          <div className="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-            <Clock className="h-3.5 w-3.5 text-cyan-400" />
-          </div>
-          <h4 className="text-[11px] font-black text-white uppercase tracking-widest">2. Durasi Pelaksanaan</h4>
-        </div>
-        <div className="grid grid-cols-3 md:grid-cols-5 gap-2.5">
-          {durations.map(d => (
-            <button
-              key={d}
-              onClick={() => onDurationChange(d)}
-              className={`px-3 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest border transition-all cursor-pointer ${
-                selectedDuration === d 
-                  ? "bg-cyan-500 text-white border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)]" 
-                  : "bg-zinc-900/50 border-zinc-800 text-zinc-500 hover:text-zinc-300 hover:border-zinc-700"
-              }`}
-            >
-              {d}
-            </button>
-          ))}
-        </div>
-      </div>
 
       {/* Country Selection */}
       <div className="flex flex-col gap-5">
