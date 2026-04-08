@@ -183,8 +183,8 @@ export const nuclearStorage = {
        if (data.isEnriching) {
           let innovationMultiplier = 1;
           try {
-            const { ideologyStorage } = require("../../6_sosial_budaya/2_ideologi/ideologyStorage");
-            const { KOMUNISME_INNOVATION_PENALTY } = require("../../6_sosial_budaya/2_ideologi/logic/2_komunisme/2_minus/minus");
+            const { ideologyStorage } = require("../../../6_sosial_budaya/2_ideologi/ideologyStorage");
+            const { KOMUNISME_INNOVATION_PENALTY } = require("../../../6_sosial_budaya/2_ideologi/logic/2_komunisme/2_minus/minus");
             const session = gameStorage.getSession() as any;
             const currentIdeology = ideologyStorage.getCurrentIdeology(session?.country || "Indonesia");
             if (currentIdeology === "Komunisme") innovationMultiplier = KOMUNISME_INNOVATION_PENALTY;

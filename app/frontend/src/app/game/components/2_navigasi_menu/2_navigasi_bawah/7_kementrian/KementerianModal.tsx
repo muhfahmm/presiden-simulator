@@ -216,7 +216,7 @@ export default function KementerianModal({ isOpen, onClose, countryData }: Modal
                       {slot.status === "Terisi" && (
                         <div className="flex flex-col gap-1 pt-1">
                           <p className="text-sm font-bold text-zinc-400 italic truncate">{slot.minister}</p>
-                          <p className="text-[11px] font-black text-emerald-500/90 uppercase tracking-[0.1em] mt-1">Biaya: {(slot.cost || 0).toLocaleString()} CR</p>
+                          <p className="text-[11px] font-black text-emerald-500/90 uppercase tracking-[0.1em] mt-1">Biaya: {(slot.cost || 0).toLocaleString()}</p>
                         </div>
                       )}
                     </div>
