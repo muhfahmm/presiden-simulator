@@ -22,16 +22,6 @@ export const sanksiEffects: Record<string, SanksiEffect> = {
       buildingCostIncrease: 15,
     },
   },
-  'Sanksi Perang (War Sanction)': {
-    name: 'Sanksi Perang (War Sanction)',
-    description: 'Hukuman atas agresi militer yang dianggap tidak sah oleh dewan internasional.',
-    effects: {
-      combatReadinessReduction: 20,
-      militaryHubCostIncrease: 30,
-      revenueReduction: 0,
-      buildingCostIncrease: 0,
-    },
-  },
 };
 
 export function calculateSanksiEffect(sanctionName: string): SanksiEffect | null {

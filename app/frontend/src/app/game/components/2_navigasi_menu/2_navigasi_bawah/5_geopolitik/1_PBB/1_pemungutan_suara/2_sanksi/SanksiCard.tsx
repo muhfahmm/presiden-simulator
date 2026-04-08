@@ -31,12 +31,7 @@ export const sanksiMenu: SanksiMenu = {
     { 
       name: "Sanksi Ekonomi (Economic Sanction)", 
       description: "Pembatasan akses keuangan dan pembekuan aset negara di bank internasional.",
-      effect: "Penurunan Pajak & Daily Revenue sebesar 25%. Biaya pembangunan gedung baru naik 15% karena kesulitan modal."
-    },
-    { 
-      name: "Sanksi Perang (War Sanction)", 
-      description: "Hukuman atas agresi militer yang dianggap tidak sah oleh dewan internasional.",
-      effect: "Penurunan Combat Readiness armada sebesar 20%. Biaya operasional Hub Militer naik 30% karena kesulitan rantai pasok taktis."
+      effect: "Penurunan Pajak & Daily Revenue sebesar 25%. Biaya pembangunan gedung baru naik 15% karena kesulitan modal. Dapat dilakukan kapan saja tanpa perlu voting."
     },
   ]
 };

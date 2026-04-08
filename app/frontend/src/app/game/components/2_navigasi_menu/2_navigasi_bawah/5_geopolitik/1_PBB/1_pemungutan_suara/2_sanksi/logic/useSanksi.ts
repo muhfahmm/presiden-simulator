@@ -49,7 +49,6 @@ export function useSanksi() {
   const validateSanction = useCallback((sanctionName: string): boolean => {
     const validSanctions = [
       'Sanksi Ekonomi (Economic Sanction)',
-      'Sanksi Perang (War Sanction)',
     ];
     return validSanctions.includes(sanctionName);
   }, []);
