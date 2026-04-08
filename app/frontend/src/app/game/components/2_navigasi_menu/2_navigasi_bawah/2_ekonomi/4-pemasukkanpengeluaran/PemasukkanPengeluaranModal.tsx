@@ -21,7 +21,7 @@ import {
 
 import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMaintenance } from "@/app/game/data/economy/BudgetDeltaLogic"
 import { incomeStorage } from "./pemasukkan/IncomeStorage"
-import NavigasiWaktu from "../1-perdagangan/NavigasiWaktu"
+
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 import { PROTESTAN_GROWTH_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/2_protestan/1_plus/plus";
 import { expenseStorage } from "./pengeluaran/ExpenseStorage"
@@ -159,7 +159,6 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                  <Activity className="h-6 w-6 text-emerald-500" />
                  <span className="text-[10px] font-black text-zinc-300 uppercase tracking-widest">Kesehatan Fiskal: <span className="text-emerald-500 ml-1">Optimis</span></span>
               </div>
-              <NavigasiWaktu />
               <button
                  onClick={onClose}
                  className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"

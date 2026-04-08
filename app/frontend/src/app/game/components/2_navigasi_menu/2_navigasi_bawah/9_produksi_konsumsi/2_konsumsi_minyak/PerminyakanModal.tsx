@@ -10,7 +10,7 @@ import {
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { countries } from "@/app/database/data/negara/benua/index";
-import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
+
 import { VEHICLE_CAPACITIES } from "./perminyakan_data";
 import { getVehicleData } from "@/app/database/data/database_kendaraan_bermotor";
 
@@ -137,13 +137,10 @@ export default function PerminyakanModal({ isOpen, onClose }: PerminyakanModalPr
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <NavigasiWaktu />
-            <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
+          <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
               <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
               <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
             </button>
-          </div>
         </div>
 
         {/* Live Dashboard Grid */}

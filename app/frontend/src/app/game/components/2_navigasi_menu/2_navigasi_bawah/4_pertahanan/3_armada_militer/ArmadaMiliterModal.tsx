@@ -11,7 +11,7 @@ import { calculateConstructionProgress, getStatusText } from "@/app/game/data/co
 import { countries } from "@/app/database/data/negara/benua/index";
 import Perbandingan from "./1_menu_modal/1_umumkan_perang/perbandingan";
 import MaterialRequirement, { getBuildingRequirement } from "../../3_pembangunan/1-produksi/MaterialRequirement";
-import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
+
 import JikaUangKurang from "../../3_pembangunan/jika_uang_kurang";
 import { calculateUraniumMetrics } from "../../9_produksi_konsumsi/3_konsumsi_uranium/logic/uraniumLogic";
 import { religionStorage } from "../../6_sosial_budaya/1_agama/religionStorage";
@@ -569,7 +569,6 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
                 <Clock className="h-6 w-6 text-cyan-500 group-hover:scale-110 group-hover:rotate-12 transition-transform" />
                 {activeConstructions.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-cyan-500 text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-zinc-950 shadow-lg animate-in zoom-in">{activeConstructions.length}</span>}
               </button>
-              <NavigasiWaktu />
               <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
                 <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
                 <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />

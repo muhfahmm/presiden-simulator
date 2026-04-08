@@ -8,7 +8,7 @@ import {
 } from "lucide-react"
 import { AddTradePartnerModal } from "./mitra_dagang_internasional/AddTradePartnerModal"
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index"
-import NavigasiWaktu from "./NavigasiWaktu"
+
 import { tradeStorage } from "./TradeStorage"
 import { buyPriceMap, sellPriceMap, labelsMap, baseKeyMapping, getDynamicPrice } from "./tradeData"
 import { TradePriceChart } from "./TradePriceChart"
@@ -453,7 +453,6 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 </span>
               </div>
             </div>
-            <NavigasiWaktu />
             <button className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group shadow-[0_0_15px_rgba(59,130,246,0.1)] active:scale-95">
               <Ship className="h-6 w-6 text-blue-500 group-hover:scale-110 transition-transform" />
             </button>

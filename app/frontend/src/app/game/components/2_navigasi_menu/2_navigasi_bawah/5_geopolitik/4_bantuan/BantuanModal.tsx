@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { X, HandHelping, Coins, Building2, Landmark, GraduationCap, Heart, HelpCircle, Info, Clock, CheckCircle2, AlertCircle, TrendingUp, TrendingDown, DollarSign } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
-import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
+
 
 export default function BantuanModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [currentData, setCurrentData] = useState<any>(null);
@@ -59,7 +59,6 @@ export default function BantuanModal({ isOpen, onClose }: { isOpen: boolean; onC
               <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Aid & Global Assistance Management</p>
             </div>
           </div>
-          <NavigasiWaktu />
           <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
             <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
             <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { X, Tag, ShoppingCart, Zap, Fuel, Pill, GraduationCap, AlertCircle, TrendingDown, TrendingUp, Droplets, Wheat, Beef, Droplet, Package, Egg, Users } from "lucide-react";
 import { priceStorage, PriceData } from "./priceStorage";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
-import NavigasiWaktu from "../1-perdagangan/NavigasiWaktu"
+
 
 interface HargaModalProps {
   isOpen: boolean;
@@ -206,16 +206,13 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
               <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Sovereignty &amp; Inflation Control</p>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <NavigasiWaktu />
-            <button
+          <button
               onClick={onClose}
               className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
             >
               <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
               <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
             </button>
-          </div>
         </div>
 
         {/* Dashboard Summary Bar */}

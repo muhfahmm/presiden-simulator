@@ -119,6 +119,7 @@ export function useGamePath(path: string[]) {
   } else if (category === 'produksi_konsumsi') {
     if (subMenu === 'grid-nasional') initialMenu = "Menu:Kelistrikan";
     else if (subMenu === 'perminyakan') initialMenu = "Menu:Perminyakan";
+    else if (subMenu === 'uranium') initialMenu = "Menu:Uranium";
     else initialMenu = "ProduksiKonsumsi";
   }
 
@@ -173,6 +174,7 @@ export function useGamePath(path: string[]) {
       "ProduksiKonsumsi": "/game/produksi_konsumsi",
       "Menu:Kelistrikan": "/game/produksi_konsumsi/grid-nasional",
       "Menu:Perminyakan": "/game/produksi_konsumsi/perminyakan",
+      "Menu:Uranium": "/game/produksi_konsumsi/uranium",
       "Komando Pertahanan:PerbandinganMisi": "/game/misi-taktis"
     };
 

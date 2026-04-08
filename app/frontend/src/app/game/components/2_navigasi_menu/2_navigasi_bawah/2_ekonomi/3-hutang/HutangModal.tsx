@@ -1,7 +1,7 @@
 "use client"
 
 import { X, CreditCard, TrendingDown, Landmark, ShieldAlert, BadgeInfo, ArrowDownToLine, Wallet } from "lucide-react"
-import NavigasiWaktu from "../1-perdagangan/NavigasiWaktu"
+
 
 interface ModalProps {
   isOpen: boolean;
@@ -43,7 +43,6 @@ export default function HutangModal({ isOpen, onClose }: ModalProps) {
               >
                  <ShieldAlert className="h-6 w-6 text-rose-500 group-hover:scale-110 transition-transform" />
               </button>
-              <NavigasiWaktu />
               <button
                  onClick={onClose}
                  className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"

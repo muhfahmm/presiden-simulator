@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { X, Globe, Shield, Gavel, Crown } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
-import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 // Import Modular Tabs
 import PemungutanSuaraTab from "./1_pemungutan_suara/PemungutanSuaraTab";
@@ -88,7 +87,6 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
             ))}
           </div>
 
-           <NavigasiWaktu />
           {/* Close Button */}
           <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
             <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>

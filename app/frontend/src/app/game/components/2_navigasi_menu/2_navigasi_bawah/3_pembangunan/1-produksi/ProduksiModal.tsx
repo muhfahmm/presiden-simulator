@@ -33,7 +33,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/negara/benua/index";
-import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
+
 import MaterialRequirement from "./MaterialRequirement";
 import { calculateUraniumMetrics } from "../../9_produksi_konsumsi/3_konsumsi_uranium/logic/uraniumLogic";
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
@@ -605,7 +605,6 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                 </span>
               )}
             </button>
-            <NavigasiWaktu />
             <button
               onClick={onClose}
               className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"

@@ -11,7 +11,7 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { allRelations } from "@/app/database/data/negara/hubungan/index"; // Added relations import
-import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
+
 
 // Import modular action components
 import Kedutaan from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/1_Kedutaan";
@@ -171,7 +171,6 @@ export default function DiplomasiModal({ isOpen, onClose, activeMenu, setActiveM
                 </span>
               </div>
             </div>
-            <NavigasiWaktu />
             <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
               <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
               <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
