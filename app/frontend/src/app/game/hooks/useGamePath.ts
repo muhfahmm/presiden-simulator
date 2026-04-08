@@ -164,7 +164,7 @@ export function useGamePath(path: string[]) {
       "Menu:Berita": "/game/berita",
       "Menu:Inbox": "/game/inbox",
       "Kepuasan": "/game/kepuasan",
-      "Dashboard:Kepuasan": "/game/kepuasan/dashboard",
+      "Dashboard:Kepuasan": "/game/kepuasan/statistik_kepuasan",
       "Action:NaikkanKepuasan": "/game/kepuasan/naikkan",
       "Dashboard:Populasi": "/game/kependudukan",
       "Dashboard:Budget": "/game/anggaran/dashboard",

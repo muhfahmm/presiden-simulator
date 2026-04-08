@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { 
   X, Sparkles, Music, Trophy, Users, ShieldCheck, 
-  Coins, TrendingUp, Clock, CheckCircle2, AlertCircle
+  Coins, TrendingUp, Clock, CheckCircle2, AlertCircle, Globe, 
+  Calendar, BarChart3, History, Eye, Landmark, Ship
 } from "lucide-react";
 import { DATA_ACARA, acaraStorage, Acara } from "./acaraStorage";
 import { happinessStorage } from "../happinessStorage";
@@ -17,6 +18,7 @@ interface AcaraModalProps {
 
 export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
   const [selectedAcara, setSelectedAcara] = useState<Acara | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [history, setHistory] = useState(acaraStorage.getHistory());
   const [currentBudget, setCurrentBudget] = useState(budgetStorage.getBudget());
   const gameDate = getStoredGameDate();
@@ -57,222 +59,331 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-300">
-      <div className="relative w-full max-w-4xl bg-zinc-900 border border-white/10 rounded-[32px] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col max-h-[90vh]">
-        
-        {/* Header Section */}
-        <div className="p-8 border-b border-white/5 bg-gradient-to-r from-cyan-500/10 to-blue-600/10 flex justify-between items-center">
-          <div>
-            <div className="flex items-center gap-3 mb-1">
-              <div className="p-2 bg-cyan-500/20 rounded-xl">
-                <Sparkles className="text-cyan-400" size={24} />
-              </div>
-              <h2 className="text-3xl font-black text-white tracking-tighter uppercase italic">Acara Nasional</h2>
-            </div>
-            <p className="text-zinc-400 text-sm font-medium">Tingkatkan moral dan kepuasan rakyat melalui perayaan kenegaraan.</p>
-          </div>
-          <button 
-            onClick={onClose}
-            className="p-3 hover:bg-white/5 rounded-full transition-colors text-zinc-500 hover:text-white"
-          >
-            <X size={24} />
-          </button>
-        </div>
+  // Filter acara berdasarkan kategori
+  const categories = ["Semua", "Budaya", "Olahraga", "Sosial", "Militer"];
+  const filteredAcara = selectedCategory && selectedCategory !== "Semua" 
+    ? DATA_ACARA.filter(a => a.category === selectedCategory)
+    : DATA_ACARA;
 
-        {/* Content Section */}
-        <div className="flex-1 overflow-y-auto p-8 space-y-8 no-scrollbar">
-          
-          {/* Budget Info */}
-          <div className="flex items-center gap-4 p-4 bg-zinc-950/50 border border-white/5 rounded-2xl">
-            <div className="p-3 bg-yellow-500/10 rounded-xl">
-              <Coins className="text-yellow-500" size={20} />
+  return (
+    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+        
+        {/* Glow Effects */}
+        <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent blur-sm"></div>
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
+
+        {/* Header */}
+        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30 relative z-10">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-cyan-500/10 rounded-xl">
+              <Sparkles className="h-6 w-6 text-cyan-500" />
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold mb-0.5">Anggaran Negara Tersedia</p>
-              <p className="text-xl font-black text-white">{currentBudget.toLocaleString('id-ID')} Triliun</p>
+              <h2 className="text-2xl font-bold text-white tracking-tight leading-none">Pusat Manajemen Acara Nasional</h2>
+              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-1">🇮🇩 Indonesia — National Event Management Center</p>
             </div>
           </div>
-
-          {/* Events Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {DATA_ACARA.map((acara) => {
-              const cooldown = acaraStorage.getCooldownStatus(acara.id, gameDate);
-              const active = acaraStorage.getActiveStatus(acara.id, gameDate);
-              const canAfford = currentBudget >= acara.cost;
-              const isLocked = cooldown.onCooldown;
-
-              return (
-                <div 
-                  key={acara.id}
-                  onClick={() => !isLocked && setSelectedAcara(acara)}
-                  className={`group relative p-6 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                    selectedAcara?.id === acara.id
-                      ? 'bg-cyan-500/10 border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.1)]'
-                      : isLocked
-                        ? 'bg-zinc-900/50 border-white/5 opacity-60 cursor-not-allowed'
-                        : 'bg-zinc-800/40 border-white/5 hover:border-white/20 hover:bg-zinc-800/60'
-                  }`}
-                >
-                  {active.isActive && (
-                    <div className="absolute top-3 right-3 px-2 py-0.5 bg-emerald-500/20 border border-emerald-500/30 rounded-md animate-pulse">
-                      <span className="text-[8px] font-black text-emerald-400 uppercase tracking-tighter">Berlangsung</span>
-                    </div>
-                  )}
-                  {!active.isActive && !canAfford && !isLocked && (
-                    <div className="absolute top-3 right-3 px-2 py-0.5 bg-rose-500/20 border border-rose-500/30 rounded-md">
-                      <span className="text-[8px] font-black text-rose-400 uppercase tracking-tighter">Dana Kurang</span>
-                    </div>
-                  )}
-                  <div className="flex gap-4">
-                    <div className={`p-4 rounded-xl text-2xl bg-zinc-950/50 border border-white/5 group-hover:scale-110 transition-transform ${selectedAcara?.id === acara.id ? 'border-cyan-500/30' : ''}`}>
-                      {acara.icon}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex justify-between items-start mb-1">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 flex items-center gap-1.5">
-                          {getIcon(acara.category)}
-                          {acara.category}
-                        </span>
-                        {isLocked && !active.isActive && (
-                          <span className="text-[10px] font-bold text-rose-500 bg-rose-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
-                            <Clock size={10} />
-                            Cooldown: {cooldown.daysRemaining}d
-                          </span>
-                        )}
-                      </div>
-                      <h3 className="text-lg font-black text-white leading-tight mb-2 tracking-tight group-hover:text-cyan-400 transition-colors">
-                        {acara.name}
-                      </h3>
-                      
-                      <div className="flex gap-4">
-                        <div className={`flex items-center gap-1.5 transition-colors ${canAfford ? 'text-zinc-400 group-hover:text-white' : 'text-rose-400'}`}>
-                          <Coins size={14} className={canAfford ? 'text-yellow-500' : 'text-rose-500'} />
-                          <span className="text-xs font-bold">{acara.cost.toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 text-zinc-400 group-hover:text-white transition-colors">
-                          <TrendingUp size={14} className="text-emerald-500" />
-                          <span className="text-xs font-bold">+{acara.happinessBoost}%</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 text-zinc-400 group-hover:text-white transition-colors">
-                          <Clock size={14} className="text-blue-500" />
-                          <span className="text-xs font-bold">{acara.durationDays} Hari</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Persistent Progress Bar at the Bottom */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/60 overflow-hidden">
-                    {active.isActive ? (
-                      <div 
-                        className="h-full bg-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.8)] transition-all duration-1000"
-                        style={{ width: `${active.progress}%` }}
-                      />
-                    ) : (
-                      <div className="h-full w-full bg-zinc-950/40" />
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Selected Preview Section */}
-          {selectedAcara && (() => {
-            const activeStatus = acaraStorage.getActiveStatus(selectedAcara.id, gameDate);
-            return (
-              <div className="p-8 bg-zinc-950/80 border border-cyan-500/30 rounded-[24px] animate-in slide-in-from-bottom-4 duration-500 flex flex-col md:flex-row gap-8 items-center">
-                <div className="flex-1 space-y-4">
-                  <div className="space-y-1">
-                    <h4 className="text-xs font-black uppercase tracking-[0.2em] text-cyan-400 italic">
-                      {activeStatus.isActive ? "Informasi Acara Aktif" : "Konfirmasi Penyelenggaraan"}
-                    </h4>
-                    <h3 className="text-2xl font-black text-white tracking-tighter uppercase leading-none">{selectedAcara.name}</h3>
-                  </div>
-                  <p className="text-zinc-400 text-sm leading-relaxed italic">
-                    "{selectedAcara.description}"
-                  </p>
-                  <div className="flex gap-6">
-                    <div className="flex flex-col">
-                      <span className="text-[10px] font-black text-zinc-500 uppercase">Biaya</span>
-                      <span className={currentBudget < selectedAcara.cost && !activeStatus.isActive ? "text-xl font-black text-rose-500" : "text-xl font-black text-white"}>
-                        {selectedAcara.cost.toLocaleString('id-ID')}
-                      </span>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[10px] font-black text-zinc-500 uppercase">Efek</span>
-                      <span className="text-xl font-black text-emerald-400">+{selectedAcara.happinessBoost}%</span>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[10px] font-black text-zinc-500 uppercase">Durasi</span>
-                      <span className="text-xl font-black text-blue-400 tracking-tighter">{selectedAcara.durationDays} Hari</span>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[10px] font-black text-zinc-500 uppercase">Berakhir</span>
-                      <span className="text-xl font-black text-purple-400 tracking-tighter">
-                        {acaraStorage.getEndDate(formatGameDate(gameDate), selectedAcara.durationDays)}
-                      </span>
-                    </div>
-                  </div>
-                  {activeStatus.isActive && (
-                    <div className="pt-2">
-                       <div className="flex justify-between items-center mb-1">
-                         <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Progress Pelaksanaan</span>
-                         <span className="text-[10px] font-bold text-zinc-500">{Math.round(activeStatus.progress)}%</span>
-                       </div>
-                       <div className="h-2 w-full bg-zinc-900 rounded-full border border-white/5 overflow-hidden">
-                         <div 
-                           className="h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"
-                           style={{ width: `${activeStatus.progress}%` }}
-                         />
-                       </div>
-                    </div>
-                  )}
-                </div>
-                <div className="w-full md:w-auto flex flex-col gap-3">
-                  <button 
-                    disabled={currentBudget < selectedAcara.cost || activeStatus.isActive}
-                    onClick={() => handleExecute(selectedAcara)}
-                    className={`w-full md:w-48 font-black py-4 rounded-xl shadow-lg transition-all active:scale-95 uppercase text-[10px] tracking-widest group ${
-                      activeStatus.isActive
-                        ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 cursor-default'
-                        : currentBudget < selectedAcara.cost
-                          ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed border border-white/5'
-                          : 'bg-cyan-600 hover:bg-cyan-500 text-white cursor-pointer'
-                    }`}
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      {activeStatus.isActive ? "Sedang Berlangsung" : currentBudget < selectedAcara.cost ? "Dana Tidak Cukup" : "Laksanakan Acara"}
-                      <CheckCircle2 size={16} className={currentBudget < selectedAcara.cost || activeStatus.isActive ? "hidden" : "animate-pulse"} />
-                    </span>
-                  </button>
-                  <button 
-                    onClick={() => setSelectedAcara(null)}
-                    className="w-full md:w-48 bg-zinc-900 border border-white/10 hover:border-white/20 text-zinc-400 font-bold py-4 rounded-xl transition-all cursor-pointer text-[10px] uppercase tracking-widest"
-                  >
-                    Batalkan
-                  </button>
-                </div>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2.5 px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-inner group/budget overflow-hidden relative">
+              <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover/budget:opacity-100 transition-opacity duration-500"></div>
+              <div className="p-1.5 bg-emerald-500/10 rounded-lg group-hover/budget:bg-emerald-500 group-hover/budget:text-white transition-all duration-500">
+                <Landmark className="h-4 w-4 text-emerald-500 group-hover/budget:text-current" />
               </div>
-            );
-          })()}
-
-          {!selectedAcara && (
-            <div className="flex flex-col items-center justify-center py-12 text-center bg-zinc-950/30 border border-dashed border-white/5 rounded-[24px]">
-              <div className="p-4 bg-white/5 rounded-full mb-4">
-                <AlertCircle className="text-zinc-500" size={32} />
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest leading-none mb-0.5 opacity-60 group-hover/budget:opacity-100 transition-opacity">Kas Negara</span>
+                <span className="text-sm font-black text-white tracking-tight italic tabular-nums leading-none">
+                  {currentBudget.toLocaleString('id-ID')}
+                </span>
               </div>
-              <h4 className="text-white font-black uppercase tracking-widest mb-2 italic">Belum Ada Acara Terpilih</h4>
-              <p className="text-zinc-500 text-xs max-w-xs leading-relaxed">Pilih salah satu program perayaan dari daftar di atas untuk memperkuat hubungan dengan rakyat.</p>
             </div>
-          )}
+            <button className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group shadow-[0_0_15px_rgba(59,130,246,0.1)] active:scale-95">
+              <Ship className="h-6 w-6 text-cyan-500 group-hover:scale-110 transition-transform" />
+            </button>
+            <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
+              <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+              <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+            </button>
+          </div>
         </div>
 
-        {/* Footer Area */}
-        <div className="px-8 py-4 bg-zinc-950/80 border-t border-white/5 flex justify-between items-center text-[10px] font-bold tracking-widest text-zinc-600 uppercase">
-          <span>Sistem Manajemen Diplomasi Publik v1.0</span>
-          <span>Presiden Simulator {gameDate.getFullYear()}</span>
+        <div className="flex-1 flex overflow-hidden relative z-10">
+          {/* Sidebar Kiri - Kategori Acara */}
+          <div className="w-[320px] border-r border-zinc-900 bg-zinc-950/50 flex flex-col backdrop-blur-sm">
+            <div className="p-6 border-b border-zinc-900/80 shrink-0">
+              <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">Kategori Acara</h3>
+              <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic mt-1">Filter Berdasarkan Jenis</p>
+            </div>
+            <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent p-4 space-y-1.5">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border ${
+                    (selectedCategory === cat || (!selectedCategory && cat === "Semua"))
+                      ? 'bg-cyan-600/10 border-cyan-500/40 text-white'
+                      : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'
+                  }`}
+                >
+                  <div className={`p-2 rounded-xl ${
+                    (selectedCategory === cat || (!selectedCategory && cat === "Semua"))
+                      ? 'bg-cyan-500 text-white'
+                      : 'bg-zinc-900 text-zinc-600'
+                  }`}>
+                    {cat === "Semua" ? <BarChart3 className="h-4 w-4" /> : getIcon(cat)}
+                  </div>
+                  <div className="text-left flex-1 min-w-0">
+                    <span className="text-[14px] font-black uppercase tracking-tight block leading-tight truncate">{cat}</span>
+                    <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic">
+                      {cat === "Semua" ? `${DATA_ACARA.length} Acara` : `${DATA_ACARA.filter(a => a.category === cat).length} Acara`}
+                    </span>
+                  </div>
+                </button>
+              ))}
+              
+              <div className="h-px bg-zinc-900 my-3"></div>
+              
+              <button className="w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border text-zinc-500 hover:bg-zinc-900/50 border-transparent">
+                <div className="p-2 rounded-xl bg-zinc-900 text-zinc-600">
+                  <History className="h-4 w-4" />
+                </div>
+                <div className="text-left flex-1 min-w-0">
+                  <span className="text-[14px] font-black uppercase tracking-tight block leading-tight truncate">Riwayat</span>
+                  <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic">{history.length} Event</span>
+                </div>
+              </button>
+
+              <button className="w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border text-zinc-500 hover:bg-zinc-900/50 border-transparent">
+                <div className="p-2 rounded-xl bg-zinc-900 text-zinc-600">
+                  <Calendar className="h-4 w-4" />
+                </div>
+                <div className="text-left flex-1 min-w-0">
+                  <span className="text-[14px] font-black uppercase tracking-tight block leading-tight truncate">Kalender</span>
+                  <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic">Planning</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          {/* Sidebar Tengah - Daftar Acara */}
+          <div className="w-[320px] border-r border-zinc-900 bg-zinc-950/50 flex flex-col backdrop-blur-sm">
+            <div className="p-6 border-b border-zinc-900/80 shrink-0">
+              <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic text-center">
+                {selectedCategory && selectedCategory !== "Semua" ? `Acara ${selectedCategory}` : "Semua Acara"}
+              </h3>
+              <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic mt-1 text-center">
+                {filteredAcara.length} Program Tersedia
+              </p>
+            </div>
+            <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent p-4 space-y-2">
+              {filteredAcara.map((acara) => {
+                const cooldown = acaraStorage.getCooldownStatus(acara.id, gameDate);
+                const active = acaraStorage.getActiveStatus(acara.id, gameDate);
+                const canAfford = currentBudget >= acara.cost;
+                const isLocked = cooldown.onCooldown;
+
+                return (
+                  <button
+                    key={acara.id}
+                    onClick={() => !isLocked && setSelectedAcara(acara)}
+                    disabled={isLocked}
+                    className={`w-full p-4 rounded-2xl transition-all border ${
+                      selectedAcara?.id === acara.id
+                        ? 'bg-cyan-600/10 border-cyan-500/40 text-white'
+                        : isLocked
+                          ? 'bg-zinc-900/50 border-zinc-800/50 opacity-60 cursor-not-allowed'
+                          : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent cursor-pointer'
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className={`p-2 rounded-xl text-xl shrink-0 ${
+                        selectedAcara?.id === acara.id
+                          ? 'bg-cyan-500 text-white'
+                          : isLocked
+                            ? 'bg-zinc-900 text-zinc-700'
+                            : 'bg-zinc-900 text-zinc-600'
+                      }`}>
+                        {acara.icon}
+                      </div>
+                      <div className="flex-1 text-left min-w-0">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">
+                            {acara.category}
+                          </span>
+                          {active.isActive && (
+                            <span className="text-[8px] font-black text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded uppercase">
+                              Aktif
+                            </span>
+                          )}
+                          {isLocked && !active.isActive && (
+                            <span className="text-[8px] font-black text-rose-400 bg-rose-500/10 px-1.5 py-0.5 rounded uppercase">
+                              {cooldown.daysRemaining}d
+                            </span>
+                          )}
+                        </div>
+                        <h4 className="text-[13px] font-black text-white leading-tight mb-2 truncate">
+                          {acara.name}
+                        </h4>
+                        <div className="flex gap-3 text-[10px]">
+                          <span className={`font-bold ${canAfford ? 'text-yellow-500' : 'text-rose-500'}`}>
+                            {acara.cost.toLocaleString()}
+                          </span>
+                          <span className="font-bold text-emerald-500">
+                            +{acara.happinessBoost}%
+                          </span>
+                          <span className="font-bold text-blue-500">
+                            {acara.durationDays}d
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Progress bar */}
+                    {active.isActive && (
+                      <div className="mt-3 h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-cyan-500 transition-all duration-1000"
+                          style={{ width: `${active.progress}%` }}
+                        />
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Area Utama - Detail Acara */}
+          <div className="flex-1 bg-zinc-950 p-8 lg:p-16 overflow-y-auto relative scrollbar-thin scrollbar-thumb-zinc-800">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-600/5 blur-[120px] rounded-full pointer-events-none"></div>
+            <div className="max-w-4xl mx-auto space-y-12">
+              
+              {selectedAcara ? (() => {
+                const activeStatus = acaraStorage.getActiveStatus(selectedAcara.id, gameDate);
+                const canAfford = currentBudget >= selectedAcara.cost;
+                
+                return (
+                  <>
+                    {/* Header Info */}
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-400 italic">
+                          {activeStatus.isActive ? "Acara Sedang Berlangsung" : "Detail Acara"}
+                        </span>
+                      </div>
+                      <h2 className="text-4xl font-black text-white tracking-tighter uppercase leading-none">
+                        {selectedAcara.name}
+                      </h2>
+                      <p className="text-zinc-400 text-base leading-relaxed italic">
+                        "{selectedAcara.description}"
+                      </p>
+                    </div>
+
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="p-6 rounded-2xl bg-zinc-950/50 border border-zinc-800/50">
+                        <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">Biaya</div>
+                        <div className={`text-3xl font-black ${canAfford && !activeStatus.isActive ? 'text-white' : 'text-rose-500'}`}>
+                          {selectedAcara.cost.toLocaleString()}
+                        </div>
+                      </div>
+                      
+                      <div className="p-6 rounded-2xl bg-zinc-950/50 border border-zinc-800/50">
+                        <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">Efek Kepuasan</div>
+                        <div className="text-3xl font-black text-emerald-400">
+                          +{selectedAcara.happinessBoost}%
+                        </div>
+                      </div>
+                      
+                      <div className="p-6 rounded-2xl bg-zinc-950/50 border border-zinc-800/50">
+                        <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">Durasi</div>
+                        <div className="text-3xl font-black text-blue-400">
+                          {selectedAcara.durationDays} Hari
+                        </div>
+                      </div>
+                      
+                      <div className="p-6 rounded-2xl bg-zinc-950/50 border border-zinc-800/50">
+                        <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">Berakhir</div>
+                        <div className="text-3xl font-black text-purple-400 tracking-tighter">
+                          {acaraStorage.getEndDate(formatGameDate(gameDate), selectedAcara.durationDays)}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Progress Section */}
+                    {activeStatus.isActive && (
+                      <div className="p-8 rounded-[2.5rem] bg-zinc-950 border border-zinc-800/50">
+                        <div className="flex justify-between items-center mb-4">
+                          <span className="text-[12px] font-black text-emerald-400 uppercase tracking-widest">Progress Pelaksanaan</span>
+                          <span className="text-[12px] font-bold text-zinc-500">{Math.round(activeStatus.progress)}%</span>
+                        </div>
+                        <div className="h-4 w-full bg-zinc-900 rounded-full border border-zinc-800 overflow-hidden">
+                          <div 
+                            className="h-full bg-gradient-to-r from-emerald-600 to-cyan-500 shadow-[0_0_15px_rgba(16,185,129,0.5)] transition-all duration-1000"
+                            style={{ width: `${activeStatus.progress}%` }}
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-4">
+                      <button 
+                        disabled={currentBudget < selectedAcara.cost || activeStatus.isActive}
+                        onClick={() => handleExecute(selectedAcara)}
+                        className={`flex-1 font-black py-6 rounded-2xl shadow-lg transition-all active:scale-95 uppercase text-[12px] tracking-widest ${
+                          activeStatus.isActive
+                            ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 cursor-default'
+                            : currentBudget < selectedAcara.cost
+                              ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed border border-zinc-800'
+                              : 'bg-cyan-600 hover:bg-cyan-500 text-white cursor-pointer border border-cyan-500'
+                        }`}
+                      >
+                        <span className="flex items-center justify-center gap-2">
+                          {activeStatus.isActive ? "Sedang Berlangsung" : currentBudget < selectedAcara.cost ? "Dana Tidak Cukup" : "Laksanakan Acara"}
+                          {!activeStatus.isActive && canAfford && <CheckCircle2 size={20} className="animate-pulse" />}
+                        </span>
+                      </button>
+                      
+                      <button 
+                        onClick={() => setSelectedAcara(null)}
+                        className="px-8 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800 text-zinc-400 font-bold py-6 rounded-2xl transition-all cursor-pointer text-[12px] uppercase tracking-widest"
+                      >
+                        Batalkan
+                      </button>
+                    </div>
+
+                    {/* Info Box */}
+                    <div className="flex items-start gap-4 p-6 bg-cyan-500/5 rounded-2xl border border-cyan-500/20">
+                      <AlertCircle className="h-5 w-5 text-cyan-500 shrink-0 mt-0.5" />
+                      <div className="space-y-1">
+                        <div className="text-[10px] font-bold text-cyan-500 uppercase tracking-widest">Informasi Penting</div>
+                        <p className="text-xs text-zinc-300 leading-relaxed font-medium">
+                          {activeStatus.isActive 
+                            ? `Acara ini sedang berlangsung dan akan selesai pada ${acaraStorage.getEndDate(formatGameDate(gameDate), selectedAcara.durationDays)}. Efek kepuasan akan diterapkan secara bertahap.`
+                            : `Setelah dilaksanakan, acara ini akan meningkatkan kepuasan rakyat sebesar ${selectedAcara.happinessBoost}% selama ${selectedAcara.durationDays} hari. Pastikan anggaran mencukupi sebelum melaksanakan.`
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                );
+              })() : (
+                <div className="flex flex-col items-center justify-center h-full text-center space-y-6">
+                  <div className="w-24 h-24 rounded-full bg-zinc-900/50 border border-zinc-800 flex items-center justify-center text-zinc-700">
+                    <Sparkles className="h-12 w-12 animate-pulse" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-black text-white uppercase tracking-widest italic">Pilih Acara</h3>
+                    <p className="text-xs text-zinc-500 font-bold uppercase tracking-tighter max-w-md">
+                      Pilih salah satu acara dari daftar di sebelah kiri untuk melihat detail dan melaksanakan program perayaan nasional
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>

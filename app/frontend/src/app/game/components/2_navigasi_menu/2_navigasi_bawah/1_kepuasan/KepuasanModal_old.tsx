@@ -95,28 +95,26 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
         
-        {/* Glow Effects */}
-        <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent blur-sm"></div>
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
+        {/* Header Decor */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-cyan-500/10 to-transparent pointer-events-none" />
 
         {/* Header */}
-        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30 relative z-10">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-cyan-500/10 rounded-xl">
-              <Smile className="h-6 w-6 text-cyan-500" />
+        <div className="relative flex items-center justify-between p-6 border-b border-zinc-800/50">
+          <div className="flex items-center gap-4">
+            <div className="h-12 w-12 rounded-2xl bg-cyan-500/20 flex items-center justify-center border border-cyan-500/30">
+              <Smile className="h-6 w-6 text-cyan-400 fill-cyan-400/20" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white tracking-tight leading-none">Pusat Analisis Kepuasan Rakyat</h2>
-              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-1">🇮🇩 Indonesia — National Happiness Analytics</p>
+              <h2 className="text-xl font-bold text-white tracking-tight">Kepuasan Rakyat</h2>
+              <p className="text-sm text-zinc-500 font-medium">Indeks Kebahagiaan Nasional</p>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
-              <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
-              <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
-            </button>
-          </div>
+          <button 
+            onClick={onClose}
+            className="p-2 hover:bg-zinc-800 rounded-xl transition-colors text-zinc-500 hover:text-white cursor-pointer"
+          >
+            <X className="h-6 w-6" />
+          </button>
         </div>
 
         {/* Content */}
