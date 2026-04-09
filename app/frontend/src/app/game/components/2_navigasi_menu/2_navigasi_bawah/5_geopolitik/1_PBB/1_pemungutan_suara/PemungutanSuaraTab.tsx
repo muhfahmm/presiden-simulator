@@ -12,6 +12,8 @@ import { VotingProgressGrid } from "./components/VotingProgressGrid";
 import { GlobalVotingState, initializeVotingState } from "./utils/votingSystem";
 import { unCountries } from "./utils/unCountries";
 import { useProposalSubmission } from "./hooks/useProposalSubmission";
+import { getInitialAgreements } from "@/app/database/data/database_mitra_perdagangan/agreementsRegistry";
+import { getInitialEmbassy } from "@/app/database/data/database_kedutaan_besar/embassyRegistry";
 
 export default function PemungutanSuaraTab() {
   const [selectedItem, setSelectedItem] = useState<{ category: string, name: string, description: string, effect: string } | null>(null);
@@ -106,11 +108,36 @@ export default function PemungutanSuaraTab() {
   // Connect to actual database
   const allCountries = unCountries;
   
+  // Build a map of relationships for the AI
+  const diplomaticRelationsMap: Record<string, Record<string, number>> = {};
+  const tradeDataMap: Record<string, Record<string, number>> = {};
+
+  // For the target country of a proposal, we need to know who its allies are
+  if (selectedItem && selectedItem.category !== 'resolution') {
+    allCountries.forEach(country => {
+      const countryName = country.name_id || country.name_en;
+      
+      // Get agreements for this country
+      const agreements = getInitialAgreements(country.name_en, country.name_id);
+      const relations: Record<string, number> = {};
+      const trade: Record<string, number> = {};
+      
+      agreements.forEach(a => {
+        if (a.status === 'Aktif') {
+          relations[a.mitra] = 100; // Close relations
+          trade[a.mitra] = 1; // 1.0 multiplier/scale
+        }
+      });
+      
+      diplomaticRelationsMap[countryName] = relations;
+      tradeDataMap[countryName] = trade;
+    });
+  }
+  
   const gameState = {
     currentDay: 0, // Fallback for context
-    diplomaticRelations: {}, 
-    // Optional: can be loaded for better accuracy
-    tradeData: {},
+    diplomaticRelations: diplomaticRelationsMap, 
+    tradeData: tradeDataMap,
     playerData: gameStorage.getSession() || {},
     active_wars: [],
     active_sanctions: (votingState.implementedProposals || []).filter(p => p.type === 'sanction' && p.status === 'approved'),

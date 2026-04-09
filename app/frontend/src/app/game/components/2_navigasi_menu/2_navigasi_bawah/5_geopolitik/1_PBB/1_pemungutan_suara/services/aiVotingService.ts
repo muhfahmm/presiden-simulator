@@ -174,14 +174,19 @@ class AIVotingService {
     
     const decisionScore = 
       0.4 * diplomaticScore +
-      0.3 * economicScore +
+      0.6 * economicScore + // Increase weight of economic loyalty
       0.2 * ideologyBonus +
       0.1 * stabilityPenalty;
 
     let vote: 'agree' | 'abstain' | 'disagree';
     let reasoning: string;
 
-    if (decisionScore > 0.3) {
+    // Special Logic: If they are allies (economicScore is strong negative), 
+    // force a "Disagree" vote unless global tension is extreme
+    if (economicScore < -0.5 && resolution.type !== 'resolution') {
+       vote = 'disagree';
+       reasoning = `${country.name} menolak resolusi ini karena ${resolution.target_country} adalah mitra strategis kami.`;
+    } else if (decisionScore > 0.25) {
       vote = 'agree';
       reasoning = `${country.name} mendukung resolusi ini.`;
     } else if (decisionScore < -0.3) {
