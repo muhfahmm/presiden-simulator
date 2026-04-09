@@ -31,7 +31,7 @@ export const sanksiMenu: SanksiMenu = {
     { 
       name: "Sanksi Ekonomi (Economic Sanction)", 
       description: "Pembatasan akses keuangan dan pembekuan aset negara di bank internasional.",
-      effect: "Penurunan Pajak & Daily Revenue sebesar 25%. Biaya pembangunan gedung baru naik 15% karena kesulitan modal. Dapat dilakukan kapan saja tanpa perlu voting."
+      effect: "Penurunan Pajak & Daily Revenue sebesar 25%. Biaya pembangunan gedung baru naik 15% karena kesulitan modal."
     },
   ]
 };

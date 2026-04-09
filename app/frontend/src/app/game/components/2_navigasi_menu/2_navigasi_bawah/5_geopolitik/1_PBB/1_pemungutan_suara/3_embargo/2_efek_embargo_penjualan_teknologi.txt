@@ -1,0 +1,39 @@
+============================================================
+KONFIGURASI EFEK: EMBARGO PENJUALAN TEKNOLOGI
+============================================================
+
+1. SEKTOR RISET & PENGEMBANGAN (R&D)
+------------------------------------------------------------
+* Kecepatan Kerja: Penurunan -50% (Multiplier 0.5x) pada semua proyek riset.
+* Biaya Fasilitas: Biaya upgrade Laboratorium dan Pusat Inovasi naik +25%.
+* Ketergantungan: Akses ke blueprint teknologi internasional diputus.
+* Sinyal Visual: Progress bar riset berwarna Ungu (Tech) akan berkedip pelan.
+
+2. SEKTOR INDUSTRI HIGH-TECH
+------------------------------------------------------------
+* Output Produksi: 
+  - Semikonduktor (-30% kecepatan)
+  - Peralatan Elektronik (-25% kecepatan)
+  - Superkomputer (-40% kecepatan)
+* Pendapatan Ekspor: Keuntungan dari penjualan barang manufaktur teknologi turun -60%.
+* Alasan: Pemutusan rantai pasok komponen mikrochip dan lisensi software global.
+
+3. SEKTOR PERTAHANAN (ALUTSISTA CANGGIH)
+------------------------------------------------------------
+* Unit Modern: Waktu produksi Drone, Satelit, dan Alutsista Elektronik naik +50%.
+* Biaya Maintenance: Pemeliharaan unit berbasis teknologi tinggi naik 10%.
+* Pembatasan: Tidak dapat membeli unit militer "Generasi Terbaru" dari Mitra Dagang.
+
+4. SEKTOR EKONOMI DIGITAL
+------------------------------------------------------------
+* Efisiensi: Sektor jasa digital (Fintech, E-commerce) mengalami stagnasi pertumbuhan.
+* Investasi: Investor teknologi asing menarik modal (-15% Investasi Asing).
+
+5. REPUTASI & GEOPOLITIK
+------------------------------------------------------------
+* Status: Negara dicap sebagai "Risiko Teknologi Tinggi" oleh Aliansi Global.
+* Hubungan: Hubungan diplomatik dengan negara-negara pemimpin industri (G7/BRICS) memburuk.
+
+============================================================
+Dibuat untuk integrasi Geopolitik PBB - Presiden Simulator
+============================================================
