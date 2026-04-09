@@ -23,8 +23,8 @@ export default function PenghasilanHarian({ dailyDelta, countryName }: Penghasil
         {isPositive ? '+' : ''}{Math.round(dailyDelta * (multipliers.tax || 1)).toLocaleString('id-ID')}
       </span>
       {multipliers.impactLevel !== 'clear' && (
-        <span className="text-[8px] animate-pulse ml-0.5 opacity-80 uppercase tracking-tighter">
-          ({multipliers.impactLevel})
+        <span className="text-[10px] font-black animate-pulse ml-1 opacity-90 uppercase tracking-tighter">
+          (-{Math.round((1 - multipliers.tax) * 100)}%)
         </span>
       )}
     </div>

@@ -228,7 +228,14 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                       </div>
                       Pendapatan Harian
                    </h3>
-                   <span className={`text-xs font-black ${incomeStatusColor}`}>+{Math.round(totalDailyIncome).toLocaleString('id-ID')}</span>
+                    <div className="flex items-center gap-2">
+                       <span className={`text-xs font-black ${incomeStatusColor}`}>+{Math.round(totalDailyIncome).toLocaleString('id-ID')}</span>
+                       {pbbMultipliers.impactLevel !== 'clear' && (
+                          <span className={`text-[10px] font-black italic px-1.5 py-0.5 rounded-md border animate-pulse ${pbbMultipliers.impactLevel === 'embargoed' ? 'text-rose-500 border-rose-500/30 bg-rose-500/10' : 'text-amber-500 border-amber-500/30 bg-amber-500/10'}`}>
+                             -{Math.round((1 - pbbMultipliers.tax) * 100)}%
+                          </span>
+                       )}
+                    </div>
                 </div>
                                  <div className="space-y-4 max-h-[400px] overflow-y-auto no-scrollbar pr-2">
                     {/* Domestic Taxes — dynamic */}
