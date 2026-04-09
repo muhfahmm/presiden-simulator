@@ -47,7 +47,7 @@ export function ConfigurationSection({
   );
 
   return (
-    <div className="lg:col-span-7 flex flex-col gap-12">
+    <div className="w-full flex flex-col gap-12">
       {/* Sub-Item Selection */}
       {(selectedItem?.name === "Embargo Penjualan Teknologi" || selectedItem?.name === "Embargo Penjualan Sumber Daya") && (
         <div className="flex flex-col gap-5 animate-in slide-in-from-top duration-500">

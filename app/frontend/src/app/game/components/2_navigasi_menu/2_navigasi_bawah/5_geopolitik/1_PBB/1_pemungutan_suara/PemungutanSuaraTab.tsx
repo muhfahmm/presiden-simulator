@@ -173,7 +173,7 @@ export default function PemungutanSuaraTab() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20 animate-in fade-in duration-1000">
+          <div className="flex flex-col gap-12 mb-20 animate-in fade-in duration-1000">
             {/* Config inputs (Duration & Country) */}
             <ConfigurationSection
               selectedItem={selectedItem}
