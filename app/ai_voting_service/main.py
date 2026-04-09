@@ -1,6 +1,7 @@
 """
 AI Voting Service untuk Simulasi Pemungutan Suara PBB
 Menggunakan FastAPI sebagai microservice
+Includes: Voting AI + Proposal Generator
 """
 
 from fastapi import FastAPI, HTTPException
@@ -9,6 +10,8 @@ from pydantic import BaseModel
 from typing import List, Dict, Optional, Literal
 import json
 from datetime import datetime
+from enum import Enum
+import random
 
 app = FastAPI(title="UN Voting AI Service", version="1.0.0")
 
@@ -66,7 +69,260 @@ class BatchVotingResponse(BaseModel):
     votes: Dict[str, VotingResponse]
     summary: Dict[str, int]  # {"agree": X, "abstain": Y, "disagree": Z}
 
+# ==================== PROPOSAL MODELS ====================
+
+class ProposalType(str, Enum):
+    RESOLUTION = "resolution"
+    SANCTION = "sanction"
+    EMBARGO = "embargo"
+
+class GeneratedProposal(BaseModel):
+    type: ProposalType
+    proposer_country: str
+    target_country: Optional[str] = None
+    proposal_name: str
+    description: str
+    duration: str
+    sub_item: Optional[str] = None
+    reasoning: str
+    confidence: float
+    priority: int  # 1-10
+
+class ProposalGenerationRequest(BaseModel):
+    country: CountryProfile
+    all_countries: List[CountryProfile]
+    global_tension: float = 0.5
+    active_proposals_count: int = 0
+
+class ProposalGenerationResponse(BaseModel):
+    proposal: Optional[GeneratedProposal] = None
+    reason: str = ""
+
 # ==================== CORE AI LOGIC ====================
+
+class AIProposalGenerator:
+    """
+    Menghasilkan proposal untuk negara AI
+    """
+    
+    def __init__(self):
+        self.max_active_proposals_per_country = 2
+        self.min_confidence = 0.6
+    
+    def generate_proposal(
+        self,
+        country: CountryProfile,
+        all_countries: List[CountryProfile],
+        global_tension: float,
+        active_proposals_count: int = 0
+    ) -> Optional[GeneratedProposal]:
+        """Generate proposal untuk satu negara"""
+        
+        if active_proposals_count >= self.max_active_proposals_per_country:
+            return None
+        
+        proposal_type = self._select_proposal_type(country, global_tension)
+        if not proposal_type:
+            return None
+        
+        target_country = self._select_target_country(country, all_countries, proposal_type)
+        proposal = self._generate_proposal_details(
+            country, proposal_type, target_country, all_countries, global_tension
+        )
+        
+        return proposal
+    
+    def _select_proposal_type(
+        self, country: CountryProfile, global_tension: float
+    ) -> Optional[ProposalType]:
+        """Tentukan tipe proposal berdasarkan kondisi negara"""
+        rand = random.random()
+        
+        if country.stability < 0.4:
+            return ProposalType.RESOLUTION if rand < 0.7 else (
+                ProposalType.SANCTION if rand < 0.85 else ProposalType.EMBARGO
+            )
+        
+        if country.military_power > 0.7:
+            return ProposalType.SANCTION if rand < 0.4 else (
+                ProposalType.EMBARGO if rand < 0.7 else ProposalType.RESOLUTION
+            )
+        
+        if country.political_ideology in ["neutral", "non_aligned"]:
+            return ProposalType.RESOLUTION if rand < 0.6 else (
+                ProposalType.SANCTION if rand < 0.8 else ProposalType.EMBARGO
+            )
+        
+        rand_type = random.random()
+        if rand_type < 0.4:
+            return ProposalType.RESOLUTION
+        elif rand_type < 0.7:
+            return ProposalType.SANCTION
+        else:
+            return ProposalType.EMBARGO
+    
+    def _select_target_country(
+        self, country: CountryProfile, all_countries: List[CountryProfile],
+        proposal_type: ProposalType
+    ) -> Optional[CountryProfile]:
+        """Pilih negara target untuk sanksi/embargo"""
+        if proposal_type == ProposalType.RESOLUTION:
+            return None
+        
+        candidates = []
+        for c in all_countries:
+            if c.name == country.name:
+                continue
+            
+            ideology_diff = 1 if country.political_ideology != c.political_ideology else 0
+            military_threat = 1 if c.military_power > 0.6 else 0
+            stability_risk = 1 if c.stability < 0.4 else 0
+            
+            score = ideology_diff + military_threat + stability_risk
+            if score > 0:
+                candidates.append((c, score))
+        
+        if not candidates:
+            return None
+        
+        total_score = sum(score for _, score in candidates)
+        rand_val = random.uniform(0, total_score)
+        current = 0
+        
+        for candidate, score in candidates:
+            current += score
+            if rand_val <= current:
+                return candidate
+        
+        return candidates[-1][0] if candidates else None
+    
+    def _generate_proposal_details(
+        self, country: CountryProfile, proposal_type: ProposalType,
+        target_country: Optional[CountryProfile], all_countries: List[CountryProfile],
+        global_tension: float
+    ) -> GeneratedProposal:
+        """Generate detail proposal"""
+        templates = self._get_proposal_templates(proposal_type, country, target_country)
+        template = random.choice(templates)
+        
+        confidence = self._calculate_confidence(
+            country, proposal_type, target_country, all_countries
+        )
+        priority = self._calculate_priority(country, proposal_type, global_tension, confidence)
+        
+        return GeneratedProposal(
+            type=proposal_type,
+            proposer_country=country.name,
+            target_country=target_country.name if target_country else None,
+            proposal_name=template["name"],
+            description=template["description"],
+            duration=template["duration"],
+            sub_item=template.get("sub_item"),
+            reasoning=template["reasoning"],
+            confidence=confidence,
+            priority=priority
+        )
+    
+    def _get_proposal_templates(
+        self, proposal_type: ProposalType, country: CountryProfile,
+        target_country: Optional[CountryProfile]
+    ) -> List[dict]:
+        """Template proposal untuk berbagai skenario"""
+        if proposal_type == ProposalType.RESOLUTION:
+            return [
+                {
+                    "name": "Resolusi Perdamaian Global",
+                    "description": "Mendorong dialog internasional dan penyelesaian konflik secara damai",
+                    "duration": "30 hari",
+                    "reasoning": "Stabilitas global diperlukan untuk pertumbuhan ekonomi"
+                },
+                {
+                    "name": "Resolusi Perlindungan Lingkungan",
+                    "description": "Komitmen bersama untuk mengurangi emisi karbon dan melindungi ekosistem",
+                    "duration": "60 hari",
+                    "reasoning": "Perubahan iklim mempengaruhi semua negara"
+                },
+                {
+                    "name": "Resolusi Kerjasama Ekonomi",
+                    "description": "Meningkatkan perdagangan dan investasi antar negara",
+                    "duration": "30 hari",
+                    "reasoning": "Pertumbuhan ekonomi bersama menguntungkan semua pihak"
+                }
+            ]
+        
+        if proposal_type == ProposalType.SANCTION:
+            target_name = target_country.name if target_country else "Negara Target"
+            return [
+                {
+                    "name": f"Sanksi Ekonomi terhadap {target_name}",
+                    "description": f"Membatasi perdagangan dengan {target_name}",
+                    "duration": "90 hari",
+                    "reasoning": "Tekanan ekonomi untuk perubahan kebijakan"
+                },
+                {
+                    "name": f"Embargo Senjata terhadap {target_name}",
+                    "description": f"Melarang penjualan senjata ke {target_name}",
+                    "duration": "180 hari",
+                    "reasoning": "Mencegah eskalasi konflik regional"
+                }
+            ]
+        
+        target_name = target_country.name if target_country else "Negara Target"
+        return [
+            {
+                "name": f"Embargo Minyak terhadap {target_name}",
+                "description": f"Melarang ekspor minyak dari {target_name}",
+                "duration": "120 hari",
+                "sub_item": "energi",
+                "reasoning": "Tekanan untuk mengubah kebijakan luar negeri"
+            },
+            {
+                "name": f"Embargo Teknologi terhadap {target_name}",
+                "description": f"Melarang transfer teknologi ke {target_name}",
+                "duration": "180 hari",
+                "sub_item": "teknologi",
+                "reasoning": "Membatasi kemampuan militer dan ekonomi"
+            }
+        ]
+    
+    def _calculate_confidence(
+        self, country: CountryProfile, proposal_type: ProposalType,
+        target_country: Optional[CountryProfile], all_countries: List[CountryProfile]
+    ) -> float:
+        """Hitung confidence proposal"""
+        confidence = 0.5
+        confidence += (country.diplomatic_standing / 100) * 0.2
+        
+        aligned_countries = sum(
+            1 for c in all_countries
+            if c.political_ideology == country.political_ideology and c.name != country.name
+        )
+        confidence += (aligned_countries / len(all_countries)) * 0.2
+        
+        if proposal_type != ProposalType.RESOLUTION and target_country:
+            is_enemy = target_country.political_ideology != country.political_ideology
+            confidence += 0.15 if is_enemy else -0.1
+        
+        if proposal_type != ProposalType.RESOLUTION:
+            confidence += (country.military_power / 2) * 0.15
+        
+        return max(0.3, min(1.0, confidence))
+    
+    def _calculate_priority(
+        self, country: CountryProfile, proposal_type: ProposalType,
+        global_tension: float, confidence: float
+    ) -> int:
+        """Hitung priority proposal (1-10)"""
+        priority = 5
+        priority += confidence * 3
+        
+        if proposal_type == ProposalType.RESOLUTION and global_tension > 0.7:
+            priority += 2
+        
+        if proposal_type != ProposalType.RESOLUTION and country.military_power > 0.7:
+            priority += 2
+        
+        return min(10, max(1, round(priority)))
 
 class VotingAI:
     """
@@ -253,9 +509,10 @@ class VotingAI:
         
         return 0.0
 
-# ==================== GLOBAL INSTANCE ====================
+# ==================== GLOBAL INSTANCES ====================
 
 voting_ai = VotingAI()
+proposal_generator = AIProposalGenerator()
 
 # ==================== API ENDPOINTS ====================
 
@@ -264,8 +521,74 @@ async def root():
     return {
         "service": "UN Voting AI Service",
         "version": "1.0.0",
-        "status": "running"
+        "status": "running",
+        "features": ["voting", "proposal_generation"]
     }
+
+@app.post("/proposal/generate", response_model=ProposalGenerationResponse)
+async def generate_proposal(request: ProposalGenerationRequest):
+    """Generate proposal untuk satu negara"""
+    try:
+        proposal = proposal_generator.generate_proposal(
+            request.country,
+            request.all_countries,
+            request.global_tension,
+            request.active_proposals_count
+        )
+        
+        if proposal:
+            return ProposalGenerationResponse(
+                proposal=proposal,
+                reason="Proposal generated successfully"
+            )
+        else:
+            return ProposalGenerationResponse(
+                proposal=None,
+                reason="Country already has max active proposals or confidence too low"
+            )
+    except Exception as e:
+        return ProposalGenerationResponse(
+            proposal=None,
+            reason=f"Error generating proposal: {str(e)}"
+        )
+
+@app.post("/proposal/generate-batch")
+async def generate_batch_proposals(
+    countries: List[CountryProfile],
+    global_tension: float = 0.5,
+    active_proposals_per_country: Dict[str, int] = {}
+):
+    """Generate proposals untuk multiple negara"""
+    try:
+        proposals = []
+        
+        for country in countries:
+            if country.name == "Player":
+                continue
+            
+            active_count = active_proposals_per_country.get(country.name, 0)
+            proposal = proposal_generator.generate_proposal(
+                country,
+                countries,
+                global_tension,
+                active_count
+            )
+            
+            if proposal:
+                proposals.append(proposal)
+        
+        return {
+            "success": True,
+            "proposals": proposals,
+            "count": len(proposals)
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "error": str(e),
+            "proposals": [],
+            "count": 0
+        }
 
 @app.post("/vote/single", response_model=VotingResponse)
 async def calculate_single_vote(request: VotingRequest):
