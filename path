@@ -26,3 +26,5 @@ go run cmd/main.go
 # Tutup / Force Stop
 Stop Frontend: taskkill /F /IM node.exe
 Stop Backend: taskkill /F /IM main.exe
+
+git add .
