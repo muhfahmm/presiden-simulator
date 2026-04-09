@@ -28,3 +28,4 @@ Stop Frontend: taskkill /F /IM node.exe
 Stop Backend: taskkill /F /IM main.exe
 
 git add .
+git commit -m "presiden-simulator"
