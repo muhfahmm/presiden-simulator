@@ -211,13 +211,13 @@ export function ModalPengajuanSukses({
                   Progress
                 </span>
                 <span className="text-xs font-bold text-blue-400">
-                  0 / 30 Hari
+                  {30 - proposal.daysRemaining} / 30 Hari
                 </span>
               </div>
               <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
                 <div 
                   className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-500"
-                  style={{ width: '0%' }}
+                  style={{ width: `${((30 - proposal.daysRemaining) / 30) * 100}%` }}
                 />
               </div>
             </div>

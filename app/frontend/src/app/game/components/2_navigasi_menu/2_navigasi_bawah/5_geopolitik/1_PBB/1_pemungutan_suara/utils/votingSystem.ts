@@ -33,6 +33,7 @@ export interface GlobalProposal {
   startDate: Date;
   endDate: Date;
   daysRemaining: number;
+  implementationDaysRemaining?: number; // Days left for the active effect
   
   // Vote counts
   votes: VoteCount;
@@ -43,10 +44,15 @@ export interface GlobalProposal {
   rejectionPercentage: number;
   abstainPercentage: number;
   result?: 'approved' | 'rejected' | 'pending';
+
+  // Incremental AI Voting
+  plannedAIVotes?: ProposalVote[];
+  aiVotesProcessed?: number;
 }
 
 export interface GlobalVotingState {
   activeProposals: GlobalProposal[];
+  implementedProposals: GlobalProposal[];
   completedProposals: GlobalProposal[];
   currentGameDay: number;
 }
@@ -62,9 +68,9 @@ export function createProposal(
   description: string,
   duration: string,
   subItem?: string,
-  currentGameDay: number = 0
+  currentGameDay: number = 0,
+  startDate: Date = new Date()
 ): GlobalProposal {
-  const startDate = new Date();
   const endDate = new Date(startDate.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 hari
 
   return {
@@ -127,18 +133,21 @@ export function addVote(
  * Update persentase vote
  */
 function updateVotePercentages(proposal: GlobalProposal): void {
-  const total = proposal.votes.agree + proposal.votes.abstain + proposal.votes.disagree;
+  // UN Rule: Abstentions are NOT counted in the total of those 'present and voting'
+  const totalVoting = proposal.votes.agree + proposal.votes.disagree;
+  const totalGlobal = proposal.votes.agree + proposal.votes.disagree + proposal.votes.abstain;
   
-  if (total === 0) {
+  if (totalVoting === 0) {
     proposal.approvalPercentage = 0;
     proposal.rejectionPercentage = 0;
-    proposal.abstainPercentage = 0;
+    // Abstain percentage is still relative to total countries present
+    proposal.abstainPercentage = totalGlobal > 0 ? (proposal.votes.abstain / totalGlobal) * 100 : 0;
     return;
   }
 
-  proposal.approvalPercentage = (proposal.votes.agree / total) * 100;
-  proposal.rejectionPercentage = (proposal.votes.disagree / total) * 100;
-  proposal.abstainPercentage = (proposal.votes.abstain / total) * 100;
+  proposal.approvalPercentage = (proposal.votes.agree / totalVoting) * 100;
+  proposal.rejectionPercentage = (proposal.votes.disagree / totalVoting) * 100;
+  proposal.abstainPercentage = (proposal.votes.abstain / totalGlobal) * 100;
 }
 
 /**
@@ -146,39 +155,107 @@ function updateVotePercentages(proposal: GlobalProposal): void {
  */
 export function updateProposalStatus(
   proposal: GlobalProposal,
-  currentDate: Date = new Date()
+  currentDate: Date
 ): GlobalProposal {
   const updatedProposal = { ...proposal };
   
   // Hitung hari yang tersisa
   const timeDiff = updatedProposal.endDate.getTime() - currentDate.getTime();
-  const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  const daysRemaining = Math.max(0, Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
   
-  updatedProposal.daysRemaining = Math.max(0, daysRemaining);
+  updatedProposal.daysRemaining = daysRemaining;
 
   // Jika waktu habis, tentukan hasil
   if (daysRemaining <= 0) {
     updatedProposal.status = 'expired';
     determineProposalResult(updatedProposal);
+  } else {
+    // Process incremental AI votes if they exist
+    processDailyAIVotes(updatedProposal, currentDate);
   }
 
   return updatedProposal;
 }
 
 /**
+ * Process AI votes incrementally based on elapsed time
+ */
+export function processDailyAIVotes(
+  proposal: GlobalProposal,
+  currentDate: Date = new Date()
+): void {
+  if (!proposal.plannedAIVotes || proposal.plannedAIVotes.length === 0) {
+    return;
+  }
+
+  // Initialize processed count if not exists
+  if (proposal.aiVotesProcessed === undefined) {
+    proposal.aiVotesProcessed = 0;
+  }
+
+  // Calculate elapsed days
+  const totalDurationMs = proposal.endDate.getTime() - proposal.startDate.getTime();
+  const elapsedMs = currentDate.getTime() - proposal.startDate.getTime();
+  const totalDays = Math.ceil(totalDurationMs / (1000 * 60 * 60 * 24));
+  const elapsedDays = Math.max(0, Math.ceil(elapsedMs / (1000 * 60 * 60 * 24)));
+
+  // Calculate target number of votes to reveal
+  // We want to reveal them gradually over the duration
+  // Use a slight random factor or just linear for now
+  const totalPlanned = proposal.plannedAIVotes.length;
+  const targetToProcess = Math.min(
+    totalPlanned,
+    Math.ceil((elapsedDays / totalDays) * totalPlanned)
+  );
+
+  const needed = targetToProcess - proposal.aiVotesProcessed;
+
+  if (needed > 0) {
+    // Take the next 'needed' votes from plannedAIVotes
+    const nextVotes = proposal.plannedAIVotes.slice(
+      proposal.aiVotesProcessed,
+      proposal.aiVotesProcessed + needed
+    );
+
+    // Apply each vote
+    nextVotes.forEach(v => {
+      // Avoid duplicate votes if already voted (safety check)
+      const alreadyVoted = proposal.votedCountries.some(vc => vc.countryName === v.countryName);
+      if (!alreadyVoted) {
+        proposal.votes[v.vote]++;
+        proposal.votedCountries.push({
+          ...v,
+          timestamp: currentDate // Update timestamp to when it was actually revealed
+        });
+      }
+    });
+
+    proposal.aiVotesProcessed += needed;
+    
+    // Recalculate percentages
+    const total = proposal.votes.agree + proposal.votes.abstain + proposal.votes.disagree;
+    if (total > 0) {
+      proposal.approvalPercentage = (proposal.votes.agree / total) * 100;
+      proposal.rejectionPercentage = (proposal.votes.disagree / total) * 100;
+      proposal.abstainPercentage = (proposal.votes.abstain / total) * 100;
+    }
+  }
+}
+
+/**
  * Tentukan hasil proposal
  */
 function determineProposalResult(proposal: GlobalProposal): void {
-  const total = proposal.votes.agree + proposal.votes.abstain + proposal.votes.disagree;
+  const totalVoting = proposal.votes.agree + proposal.votes.disagree;
   
-  if (total === 0) {
+  if (totalVoting === 0) {
     proposal.result = 'rejected';
     proposal.status = 'rejected';
     return;
   }
 
-  // Proposal disetujui jika lebih dari 50% setuju
-  const approvalRate = proposal.votes.agree / total;
+  // Proposal disetujui jika lebih dari 50% setuju (dari yang voting)
+  const approvalRate = proposal.votes.agree / totalVoting;
   
   if (approvalRate > 0.5) {
     proposal.result = 'approved';
@@ -211,36 +288,90 @@ export function getCompletedProposals(state: GlobalVotingState): GlobalProposal[
 }
 
 /**
+ * Converts a duration string to days
+ */
+export function getDurationInDays(duration: string): number {
+  switch (duration) {
+    case '1 Bulan': return 30;
+    case '3 Bulan': return 90;
+    case '6 Bulan': return 180;
+    case '9 Bulan': return 270;
+    case '1 Tahun': return 365;
+    default: return 30;
+  }
+}
+
+/**
  * Pindahkan proposal yang selesai ke completed
  */
 export function moveFinishedProposals(state: GlobalVotingState): GlobalVotingState {
   const updatedState = { ...state };
   
-  const finished = updatedState.activeProposals.filter(p => isProposalFinished(p));
-  const active = updatedState.activeProposals.filter(p => !isProposalFinished(p));
+  const newlyFinished = updatedState.activeProposals.filter(p => isProposalFinished(p));
+  const stillActive = updatedState.activeProposals.filter(p => !isProposalFinished(p));
   
-  updatedState.activeProposals = active;
-  updatedState.completedProposals = [...updatedState.completedProposals, ...finished];
+  // Proposals that were approved move to implemented list
+  const approved = newlyFinished.filter(p => p.status === 'approved').map(p => ({
+    ...p,
+    implementationDaysRemaining: getDurationInDays(p.duration)
+  }));
+  // Others (rejected/expired) move to historical list
+  const historical = newlyFinished.filter(p => p.status !== 'approved');
+
+  updatedState.activeProposals = stillActive;
+  updatedState.implementedProposals = [...(updatedState.implementedProposals || []), ...approved];
+  updatedState.completedProposals = [...updatedState.completedProposals, ...historical];
   
-  return updatedState;
+  return moveExpiredImplementedProposals(updatedState);
 }
 
+/**
+ * Pindahkan resolusi yang masa berlakunya habis ke history
+ */
+export function moveExpiredImplementedProposals(state: GlobalVotingState): GlobalVotingState {
+  const updatedState = { ...state };
+  if (!updatedState.implementedProposals) return updatedState;
+
+  const expired = updatedState.implementedProposals.filter(p => 
+    p.implementationDaysRemaining !== undefined && p.implementationDaysRemaining <= 0
+  );
+  
+  const stillActive = updatedState.implementedProposals.filter(p => 
+    p.implementationDaysRemaining === undefined || p.implementationDaysRemaining > 0
+  );
+
+  updatedState.implementedProposals = stillActive;
+  updatedState.completedProposals = [...updatedState.completedProposals, ...expired];
+
+  return updatedState;
+}
 /**
  * Update semua proposal berdasarkan game day
  */
 export function updateAllProposals(
   state: GlobalVotingState,
-  currentGameDay: number
+  currentGameDay: number,
+  currentDate: Date
 ): GlobalVotingState {
   const updatedState = { ...state };
   updatedState.currentGameDay = currentGameDay;
   
-  // Update status setiap proposal
+  // Update status setiap proposal voting
   updatedState.activeProposals = updatedState.activeProposals.map(p => 
-    updateProposalStatus(p)
+    updateProposalStatus(p, currentDate)
   );
+
+  // Update countdown untuk resolusi yang diimplementasikan (Aktif)
+  if (updatedState.implementedProposals) {
+    updatedState.implementedProposals = updatedState.implementedProposals.map(p => ({
+      ...p,
+      implementationDaysRemaining: p.implementationDaysRemaining !== undefined 
+        ? Math.max(0, p.implementationDaysRemaining - 1) 
+        : p.implementationDaysRemaining
+    }));
+  }
   
-  // Pindahkan proposal yang selesai
+  // Pindahkan proposal yang selesai (voting -> implemented ATAU implemented -> history)
   return moveFinishedProposals(updatedState);
 }
 
@@ -325,6 +456,7 @@ export function formatProposalForDisplay(proposal: GlobalProposal): {
 export function initializeVotingState(): GlobalVotingState {
   return {
     activeProposals: [],
+    implementedProposals: [],
     completedProposals: [],
     currentGameDay: 0,
   };

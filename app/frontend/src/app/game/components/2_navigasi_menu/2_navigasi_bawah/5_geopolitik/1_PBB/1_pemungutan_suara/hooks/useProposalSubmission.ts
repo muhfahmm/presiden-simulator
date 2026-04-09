@@ -3,8 +3,9 @@
  */
 
 import { useState, useCallback } from 'react';
-import { GlobalProposal, createProposal, GlobalVotingState } from '../utils/votingSystem';
+import { GlobalProposal, createProposal, GlobalVotingState, initializeVotingState } from '../utils/votingSystem';
 import { useAIVoting } from './useAIVoting';
+import { unVotingStorage } from '../utils/unVotingStorage';
 
 interface SubmitProposalParams {
   type: 'resolution' | 'sanction' | 'embargo';
@@ -15,6 +16,7 @@ interface SubmitProposalParams {
   duration: string;
   subItem?: string;
   currentGameDay?: number;
+  gameDate?: Date;
 }
 
 export function useProposalSubmission() {
@@ -47,7 +49,8 @@ export function useProposalSubmission() {
         params.description,
         params.duration,
         params.subItem,
-        params.currentGameDay
+        params.currentGameDay,
+        params.gameDate || new Date()
       );
 
       // 2. Add to voting state
@@ -106,54 +109,14 @@ export function useProposalSubmission() {
    * Save voting state to localStorage
    */
   const saveVotingState = (state: GlobalVotingState) => {
-    try {
-      localStorage.setItem('un_voting_state', JSON.stringify(state));
-    } catch (err) {
-      console.error('Failed to save voting state:', err);
-    }
+    unVotingStorage.save(state);
   };
 
   /**
    * Load voting state from localStorage
    */
   const loadVotingState = useCallback((): GlobalVotingState => {
-    try {
-      const saved = localStorage.getItem('un_voting_state');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        // Convert date strings back to Date objects
-        return {
-          ...parsed,
-          activeProposals: parsed.activeProposals.map((p: any) => ({
-            ...p,
-            startDate: new Date(p.startDate),
-            endDate: new Date(p.endDate),
-            votedCountries: p.votedCountries.map((v: any) => ({
-              ...v,
-              timestamp: new Date(v.timestamp)
-            }))
-          })),
-          completedProposals: parsed.completedProposals.map((p: any) => ({
-            ...p,
-            startDate: new Date(p.startDate),
-            endDate: new Date(p.endDate),
-            votedCountries: p.votedCountries.map((v: any) => ({
-              ...v,
-              timestamp: new Date(v.timestamp)
-            }))
-          }))
-        };
-      }
-    } catch (err) {
-      console.error('Failed to load voting state:', err);
-    }
-
-    // Return initial state if no saved state
-    return {
-      activeProposals: [],
-      completedProposals: [],
-      currentGameDay: 0
-    };
+    return unVotingStorage.load();
   }, []);
 
   /**

@@ -15,11 +15,11 @@ export function ActiveResolutionGrid({ selectedItem, votingState }: ActiveResolu
   const isSanksi = selectedItem?.category === "Sanksi";
   const isEmbargo = selectedItem?.category === "Embargo";
 
-  // Get active proposals from voting state
-  const activeProposals = votingState?.activeProposals || [];
-  const resolutionProposals = activeProposals.filter(p => p.type === 'resolution');
-  const sanctionProposals = activeProposals.filter(p => p.type === 'sanction');
-  const embargoProposals = activeProposals.filter(p => p.type === 'embargo');
+  // Filter ONLY implemented proposals (approved results)
+  const implemented = votingState?.implementedProposals || [];
+  const resolutionProposals = implemented.filter(p => p.type === 'resolution');
+  const sanctionProposals = implemented.filter(p => p.type === 'sanction');
+  const embargoProposals = implemented.filter(p => p.type === 'embargo');
 
   return (
     <>
@@ -28,53 +28,24 @@ export function ActiveResolutionGrid({ selectedItem, votingState }: ActiveResolu
         {/* Rancangan Resolusi Box */}
         <ActiveRancanganResolusiBox
           isActive={isRancangan}
-          itemName={isRancangan ? selectedItem?.name : null}
+          proposals={resolutionProposals}
+          mode="active"
         />
 
         {/* Sanksi Box */}
         <ActiveSanksiBox
           isActive={isSanksi}
-          itemName={isSanksi ? selectedItem?.name : null}
+          proposals={sanctionProposals}
+          mode="active"
         />
 
         {/* Embargo Box */}
         <ActiveEmbargoBox
           isActive={isEmbargo}
-          itemName={isEmbargo ? selectedItem?.name : null}
+          proposals={embargoProposals}
+          mode="active"
         />
       </div>
-
-      {/* Active Proposals Lists */}
-      {votingState && (resolutionProposals.length > 0 || sanctionProposals.length > 0 || embargoProposals.length > 0) && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Resolution Proposals */}
-          {resolutionProposals.length > 0 && (
-            <ActiveProposalsList
-              proposals={resolutionProposals}
-              title="Resolusi Aktif"
-              color="cyan"
-            />
-          )}
-
-          {/* Sanction Proposals */}
-          {sanctionProposals.length > 0 && (
-            <ActiveProposalsList
-              proposals={sanctionProposals}
-              title="Sanksi Aktif"
-              color="orange"
-            />
-          )}
-
-          {/* Embargo Proposals */}
-          {embargoProposals.length > 0 && (
-            <ActiveProposalsList
-              proposals={embargoProposals}
-              title="Embargo Aktif"
-              color="red"
-            />
-          )}
-        </div>
-      )}
     </>
   );
 }

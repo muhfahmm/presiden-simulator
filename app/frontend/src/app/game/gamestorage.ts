@@ -42,6 +42,7 @@ import { relationDeltaStorage } from "./components/map-system/modals_detail_nega
 import { religionStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 import { ideologyStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/ideologyStorage";
 import { lawStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/7_kementrian/2_database_undang_undang/lawStorage";
+import { unVotingStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/1_pemungutan_suara/utils/unVotingStorage";
 
 const STORAGE_KEY = "game_session";
 
@@ -119,6 +120,7 @@ export const gameStorage = {
     religionStorage.clear();
     ideologyStorage.clear();
     lawStorage.clear();
+    unVotingStorage.clear();
   },
 
   getSession: (): GameSession | null => {
@@ -205,6 +207,7 @@ export const gameStorage = {
     religionStorage.clear();
     ideologyStorage.clear();
     lawStorage.clear();
+    unVotingStorage.clear();
     
     window.location.href = '/database';
   },
@@ -266,5 +269,6 @@ export const gameStorage = {
     religionStorage.clear();
     ideologyStorage.clear();
     lawStorage.clear();
+    unVotingStorage.clear();
   },
 };

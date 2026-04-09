@@ -8,7 +8,9 @@ import { ConfigurationSection } from "./components/ConfigurationSection";
 import { ActiveConfigHeader } from "./components/ActiveConfigHeader";
 import { ProposalSubmissionHandler } from "./components/ProposalSubmissionHandler";
 import { ActiveResolutionGrid } from "./components/ActiveResolutionGrid";
+import { VotingProgressGrid } from "./components/VotingProgressGrid";
 import { GlobalVotingState, initializeVotingState } from "./utils/votingSystem";
+import { unCountries } from "./utils/unCountries";
 import { useProposalSubmission } from "./hooks/useProposalSubmission";
 
 export default function PemungutanSuaraTab() {
@@ -25,10 +27,28 @@ export default function PemungutanSuaraTab() {
   const [votingState, setVotingState] = useState<GlobalVotingState>(initializeVotingState());
   const { loadVotingState } = useProposalSubmission();
 
-  // Load voting state on mount
+  // Load voting state on mount and keep it synced
   useEffect(() => {
-    const savedState = loadVotingState();
-    setVotingState(savedState);
+    const refreshState = () => {
+      const savedState = loadVotingState();
+      setVotingState(savedState);
+    };
+
+    refreshState();
+
+    // Listen to custom updates from storage service
+    window.addEventListener('un_voting_updated', refreshState);
+    // Also listen to storage events from other tabs
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'un_voting_state') refreshState();
+    });
+
+    return () => {
+      window.removeEventListener('un_voting_updated', refreshState);
+      window.removeEventListener('storage', (e) => {
+        if (e.key === 'un_voting_state') refreshState();
+      });
+    };
   }, [loadVotingState]);
 
   useEffect(() => {
@@ -83,15 +103,17 @@ export default function PemungutanSuaraTab() {
     }
   };
 
-  // Mock data - replace with actual game data
-  const allCountries: any[] = []; // TODO: Get from game storage
+  // Connect to actual database
+  const allCountries = unCountries;
+  
   const gameState = {
-    currentDay: 0,
-    diplomaticRelations: {},
+    currentDay: 0, // Fallback for context
+    diplomaticRelations: {}, 
+    // Optional: can be loaded for better accuracy
     tradeData: {},
-    playerData: {},
+    playerData: gameStorage.getSession() || {},
     active_wars: [],
-    active_sanctions: [],
+    active_sanctions: (votingState.implementedProposals || []).filter(p => p.type === 'sanction' && p.status === 'approved'),
     nuclear_threats: false
   };
 
@@ -104,7 +126,7 @@ export default function PemungutanSuaraTab() {
         <EmbargoCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />
       </div>
 
-      {/* SECTION 2: Active Resolution Status Grid */}
+      {/* SECTION 2: Active Resolution Status Grid (Implemented items) */}
       <div id="active-resolutions-section" className="shrink-0">
         <h3 className="text-[11px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-3 mb-4">
           <div className="h-1 w-6 bg-zinc-600 rounded-full" />
@@ -113,7 +135,16 @@ export default function PemungutanSuaraTab() {
         <ActiveResolutionGrid selectedItem={selectedItem} votingState={votingState} />
       </div>
 
-      {/* SECTION 3: Dynamic Configuration (Rendered below guide if active) */}
+      {/* SECTION 3: Voting Progress Section (Items in voting phase) */}
+      <div className="shrink-0 mb-10">
+        <h3 className="text-[11px] font-black text-amber-500 uppercase tracking-widest flex items-center gap-3 mb-4">
+          <div className="h-1 w-6 bg-amber-500 rounded-full" />
+          Pemungutan Suara Sedang Berlangsung
+        </h3>
+        <VotingProgressGrid selectedItem={selectedItem} votingState={votingState} />
+      </div>
+
+      {/* SECTION 4: Dynamic Configuration (Rendered below guide if active) */}
       {selectedItem && (
         <div className="flex-1 flex flex-col gap-10 pt-10 border-t border-zinc-800/50 animate-in slide-in-from-bottom duration-500">
           {/* Active Configuration Header with Duration Section */}
@@ -185,4 +216,3 @@ export default function PemungutanSuaraTab() {
     </div>
   );
 }
-

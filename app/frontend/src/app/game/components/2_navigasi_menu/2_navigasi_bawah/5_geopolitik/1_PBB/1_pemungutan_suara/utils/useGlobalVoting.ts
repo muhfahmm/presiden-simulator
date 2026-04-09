@@ -30,7 +30,8 @@ export function useGlobalVoting(initialGameDay: number = 0) {
       proposalName: string,
       description: string,
       duration: string,
-      subItem?: string
+      subItem?: string,
+      startDate: Date = new Date()
     ) => {
       const newProposal = createProposal(
         type,
@@ -40,7 +41,8 @@ export function useGlobalVoting(initialGameDay: number = 0) {
         description,
         duration,
         subItem,
-        votingState.currentGameDay
+        votingState.currentGameDay,
+        startDate
       );
 
       setVotingState(prev => ({
@@ -78,8 +80,8 @@ export function useGlobalVoting(initialGameDay: number = 0) {
   /**
    * Update game day (dipanggil setiap hari game)
    */
-  const updateGameDay = useCallback((newGameDay: number) => {
-    setVotingState(prev => updateAllProposals(prev, newGameDay));
+  const updateGameDay = useCallback((newGameDay: number, currentDate: Date) => {
+    setVotingState(prev => updateAllProposals(prev, newGameDay, currentDate));
   }, []);
 
   /**

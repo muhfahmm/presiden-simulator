@@ -88,6 +88,20 @@ export function ActiveProposalsList({ proposals, title, color }: ActiveProposals
               </span>
             </div>
 
+            {/* Daily Progress Bar */}
+            <div className="mb-3 space-y-1">
+              <div className="flex items-center justify-between text-[8px] font-black uppercase tracking-tighter text-zinc-500">
+                <span>Progress Voting</span>
+                <span className={`text-${color}-400`}>{30 - proposal.daysRemaining}/30 Hari</span>
+              </div>
+              <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden">
+                <div 
+                  className={`h-full bg-${color === 'cyan' ? 'cyan' : color === 'orange' ? 'orange' : 'red'}-500 transition-all duration-500`}
+                  style={{ width: `${((30 - proposal.daysRemaining) / 30) * 100}%` }}
+                />
+              </div>
+            </div>
+
             {/* Votes */}
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1">

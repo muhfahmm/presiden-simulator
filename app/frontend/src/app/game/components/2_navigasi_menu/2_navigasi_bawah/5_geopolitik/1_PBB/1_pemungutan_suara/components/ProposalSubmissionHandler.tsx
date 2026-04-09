@@ -3,6 +3,7 @@
  */
 
 import { useState } from 'react';
+import { getStoredGameDate } from '@/app/game/components/1_navbar/5_navigasi_waktu/gameTime';
 import { VoteVisualization } from './VoteVisualization';
 import { ModalPengajuanSukses } from './ModalPengajuanSukses';
 import { useProposalSubmission } from '../hooks/useProposalSubmission';
@@ -81,7 +82,8 @@ export function ProposalSubmissionHandler({
       targetCountry: selectedCountry?.name_id || selectedCountry?.name || undefined,
       duration: selectedDuration,
       subItem: selectedSubItem,
-      currentGameDay: gameState?.currentDay || 0
+      currentGameDay: gameState?.currentDay || 0,
+      gameDate: getStoredGameDate()
     };
 
     console.log('params:', params);
@@ -163,7 +165,7 @@ export function ProposalSubmissionHandler({
       <ModalPengajuanSukses
         isOpen={showSuccessModal}
         onClose={handleCloseModal}
-        proposal={submittedProposal}
+        proposal={votingState.activeProposals.find(p => p.id === submittedProposal?.id) || submittedProposal}
         onViewStatus={onViewStatus}
       />
 

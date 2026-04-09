@@ -70,17 +70,22 @@ export function useAIVoting() {
 
       setProgress(60);
 
-      // 5. Apply votes ke proposal
-      let updatedProposal = { ...proposal };
+      // 5. Create vote list
       const votingResults: AIVotingResult[] = [];
+      const plannedVotes: any[] = [];
 
       Object.entries(batchResult.votes).forEach(([countryName, voteData]) => {
-        updatedProposal = addVote(updatedProposal, countryName, voteData.vote);
         votingResults.push({
           countryName,
           vote: voteData.vote,
           reasoning: voteData.reasoning,
           confidence: voteData.confidence,
+        });
+        
+        plannedVotes.push({
+          countryName,
+          vote: voteData.vote,
+          timestamp: new Date()
         });
       });
 
@@ -88,7 +93,8 @@ export function useAIVoting() {
       setResults(votingResults);
       setIsProcessing(false);
 
-      return updatedProposal;
+      // Return the planned votes so the caller can store them in plannedAIVotes
+      return { ...proposal, plannedAIVotes: plannedVotes, aiVotesProcessed: 0 };
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error occurred';
       setError(errorMessage);
