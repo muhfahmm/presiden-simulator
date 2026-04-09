@@ -1,5 +1,5 @@
 import { AlertTriangle, X } from "lucide-react";
-import { ActiveResolutionGrid } from "./ActiveResolutionGrid";
+import { ActiveResolutionGrid } from "../1_pemungutan_suara/components/ActiveResolutionGrid";
 import { GlobalVotingState } from "../1_pemungutan_suara/utils/votingSystem";
 import { useProposalSubmission } from "../1_pemungutan_suara/hooks/useProposalSubmission";
 import { useEffect, useState } from "react";
@@ -59,7 +59,7 @@ export function StatusAktif({ isOpen, onClose }: StatusAktifProps) {
         <div className="flex-1 overflow-y-auto p-12 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
           {votingState ? (
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <ActiveResolutionGrid selectedItem={null} votingState={votingState} />
+              <ActiveResolutionGrid selectedItem={null} votingState={votingState || undefined} />
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-80 gap-4">
