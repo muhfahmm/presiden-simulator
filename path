@@ -29,3 +29,4 @@ Stop Backend: taskkill /F /IM main.exe
 
 git add .
 git commit -m "presiden-simulator"
+git push origin main
