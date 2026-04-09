@@ -159,7 +159,7 @@ class AIProposalGenerator {
       proposalName: template.name,
       description: template.description,
       duration: template.duration,
-      subItem: template.subItem,
+      subItem: template.subItem || undefined,
       reasoning: template.reasoning,
       confidence,
       priority,
@@ -173,7 +173,7 @@ class AIProposalGenerator {
     type: ProposalType,
     country: CountryProfile,
     targetCountry?: CountryProfile
-  ) {
+  ): Array<{ name: string; description: string; duration: string; reasoning: string; subItem?: string }> {
     if (type === 'resolution') {
       return [
         {
