@@ -21,6 +21,7 @@ import {
 
 import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMaintenance } from "@/app/game/data/economy/BudgetDeltaLogic"
 import { incomeStorage } from "./pemasukkan/IncomeStorage"
+import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic"
 
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 import { PROTESTAN_GROWTH_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/2_protestan/1_plus/plus";
@@ -89,13 +90,25 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   // 2. Expenses
   const buildingData = buildingStorage.getData();
 
-  const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue;
-  const isProtestan = religionStorage.getCurrentReligion(initialCountry.religion) === "Protestan";
-  const economicGrowthBonus = isProtestan ? dailyTaxRevenue * PROTESTAN_GROWTH_BONUS : 0;
-
   const goldRevenue = calculateGoldMineRevenue(buildingData.buildingDeltas, initialCountry);
   const serviceRevenue = calculateTempatUmumRevenue(buildingData.buildingDeltas, initialCountry);
-  const totalDailyIncome = dailyTaxRevenue + economicGrowthBonus + (incData.grants || 0) + (incData.investments || 0) + goldRevenue + serviceRevenue;
+
+  // 3. PBB IMPACTS (Integrated multipliers)
+  const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(initialCountry.name_en);
+  
+  const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue;
+  const isProtestan = religionStorage.getCurrentReligion(initialCountry.religion) === "Protestan";
+  
+  // Apply Tax Sanction (-25%) & Trade Embargo impacts
+  const adjustedTradeRevenue = activeTradeRevenue * pbbMultipliers.trade * pbbMultipliers.tax;
+  const adjustedDomesticRevenue = activeDomesticRevenue * pbbMultipliers.tax;
+  
+  const dailyTaxRevenueAdjusted = adjustedDomesticRevenue + adjustedTradeRevenue;
+  const economicGrowthBonus = isProtestan ? dailyTaxRevenueAdjusted * PROTESTAN_GROWTH_BONUS : 0;
+  
+  const totalDailyIncome = dailyTaxRevenueAdjusted + economicGrowthBonus + (incData.grants || 0) + (incData.investments || 0) + goldRevenue + serviceRevenue;
+
+  const incomeStatusColor = pbbImpactLogic.getStatusColor(pbbMultipliers.impactLevel, 'text-emerald-400');
 
   // Breakdown functions for UI
   const serviceBreakdown = getTempatUmumRevenueBreakdown(buildingData.buildingDeltas, initialCountry);
@@ -155,9 +168,14 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
               </div>
            </div>
            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-white flex items-center gap-3 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all">
-                 <Activity className="h-6 w-6 text-emerald-500" />
-                 <span className="text-[10px] font-black text-zinc-300 uppercase tracking-widest">Kesehatan Fiskal: <span className="text-emerald-500 ml-1">Optimis</span></span>
+              <div className={`p-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-white flex items-center gap-3 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all ${pbbMultipliers.impactLevel !== 'clear' ? 'border-amber-500/30 ring-1 ring-amber-500/20' : ''}`}>
+                 <Activity className={`h-6 w-6 ${pbbMultipliers.impactLevel === 'embargoed' ? 'text-rose-500' : pbbMultipliers.impactLevel === 'sanctioned' ? 'text-amber-500' : 'text-emerald-500'}`} />
+                 <span className="text-[10px] font-black text-zinc-300 uppercase tracking-widest">
+                   Kesehatan Fiskal: 
+                   <span className={`ml-1 ${pbbMultipliers.impactLevel === 'embargoed' ? 'text-rose-500' : pbbMultipliers.impactLevel === 'sanctioned' ? 'text-amber-500 font-black' : 'text-emerald-500'}`}>
+                     {pbbMultipliers.impactLevel === 'embargoed' ? 'Kritis (Embargo)' : pbbMultipliers.impactLevel === 'sanctioned' ? 'Terbatas (Sanksi)' : 'Optimis'}
+                   </span>
+                 </span>
               </div>
               <button
                  onClick={onClose}
@@ -189,7 +207,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                 <div>
                    <span className="text-xs font-black text-zinc-500 uppercase tracking-widest block mb-2">Pendapatan Pajak</span>
                    <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-black text-blue-400 tracking-tight">{Math.round(dailyTaxRevenue).toLocaleString('id-ID')}</span>
+                      <span className="text-3xl font-black text-blue-400 tracking-tight">{Math.round(dailyTaxRevenueAdjusted).toLocaleString('id-ID')}</span>
                       <span className="text-sm font-bold text-zinc-500 uppercase">/ Hari</span>
                    </div>
                 </div>
@@ -205,10 +223,12 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
              <div className="bg-zinc-900/30 border border-zinc-800 rounded-[2rem] p-8 space-y-8 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                    <h3 className="text-xl font-black text-white uppercase tracking-tighter italic flex items-center gap-3">
-                      <div className="p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20"><TrendingUp size={18} className="text-emerald-400" /></div>
+                      <div className={`p-2 rounded-lg border ${pbbMultipliers.impactLevel !== 'clear' ? 'bg-amber-500/10 border-amber-500/20' : 'bg-emerald-500/10 border-emerald-500/20'}`}>
+                         <TrendingUp size={18} className={pbbMultipliers.impactLevel !== 'clear' ? 'text-amber-400' : 'text-emerald-400'} />
+                      </div>
                       Pendapatan Harian
                    </h3>
-                   <span className="text-xs font-black text-emerald-400">+{Math.round(totalDailyIncome).toLocaleString('id-ID')}</span>
+                   <span className={`text-xs font-black ${incomeStatusColor}`}>+{Math.round(totalDailyIncome).toLocaleString('id-ID')}</span>
                 </div>
                                  <div className="space-y-4 max-h-[400px] overflow-y-auto no-scrollbar pr-2">
                     {/* Domestic Taxes — dynamic */}
@@ -295,7 +315,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                                  <div className="p-1.5 bg-amber-500/10 rounded-lg"><Coins size={14} className="text-amber-400" /></div>
                                  <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Hasil Tambang Emas ({goldMineCount} Unit)</span>
                               </div>
-                              <span className="text-[13px] font-black text-amber-500">+{goldRevenue.toLocaleString('id-ID')}</span>
+                              <span className="text-[13px] font-black text-amber-500">+{Math.round(goldRevenue * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
                            </div>
                         </div>
                       ) : null;

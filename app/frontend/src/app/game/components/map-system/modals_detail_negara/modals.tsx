@@ -272,7 +272,7 @@ export default function StrategyModal({
                     <KasNegara anggaran={liveStats.anggaran} />
                   } />
                   <InfoRow label="Penghasilan Harian" value={
-                    <PenghasilanHarian dailyDelta={liveStats.dailyDelta} />
+                    <PenghasilanHarian dailyDelta={liveStats.dailyDelta} countryName={targetCountry} />
                   } />
                 </div>
               </div>

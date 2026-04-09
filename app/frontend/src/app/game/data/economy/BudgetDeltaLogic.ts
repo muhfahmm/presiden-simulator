@@ -17,7 +17,8 @@ import { HINDU_AGRICULTURE_BONUS } from "@/app/game/components/2_navigasi_menu/2
 import { HINDU_LIVESTOCK_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/5_hindu/2_minus/minus";
 import { ATEISME_MANUFACTURING_BONUS, ATEISME_AGRICULTURE_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/7_ateisme/1_plus/plus";
 import { KONGHUCU_TAX_EFFICIENCY_BONUS, KONGHUCU_MANUFACTURING_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/9_konghucu/1_plus/plus";
-import { TAOISME_HEAVY_INDUSTRY_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/10_taoisme/2_minus/minus";
+import { TAOISME_HEAVY_INDUSTRY_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/10_taoisme/2_minus/minus"
+import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic"
 
 /**
  * Calculates the total daily maintenance cost.
@@ -71,6 +72,8 @@ export interface BudgetBreakdown {
  * Calculates a complete breakdown of the national budget.
  */
 export function calculateBudgetBreakdown(countryData: CountryData, buildingDeltas: Record<string, number>): BudgetBreakdown {
+  const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(countryData.name_en);
+  
   // 1. Income (Revenue) â€” iterate ALL tax keys dynamically (same as PajakModal)
   const currentTaxes = taxStorage.getTaxes(countryData.name_en) || countryData.pajak;
   const TRADE_KEYS = new Set(["bea_cukai", "transit_sekutu", "transit_non_sekutu", "tarif_ekspor", "tarif_impor"]);
@@ -227,11 +230,19 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
     revenues.other["penalti_impor_nasionalisme"] = -(importTariffAnnual * NASIONALISME_IMPORT_COST_PENALTY);
   }
 
-  const totalAnnualRevenue = 
+  const totalAnnualRevenueRaw = 
     Object.values(revenues.domestic).reduce((a, b) => a + b, 0) +
     Object.values(revenues.trade).reduce((a, b) => a + b, 0) +
     Object.values(revenues.resources).reduce((a, b) => a + b, 0) +
     Object.values(revenues.other).reduce((a, b) => a + b, 0);
+
+  // Apply PBB Multipliers
+  const adjustedDomestic = Object.values(revenues.domestic).reduce((a, b) => a + b, 0) * pbbMultipliers.tax;
+  const adjustedTrade = Object.values(revenues.trade).reduce((a, b) => a + b, 0) * pbbMultipliers.tax * pbbMultipliers.trade;
+  const adjustedResources = Object.values(revenues.resources).reduce((a, b) => a + b, 0) * pbbMultipliers.tax * pbbMultipliers.resource;
+  const adjustedOther = Object.values(revenues.other).reduce((a, b) => a + b, 0) * pbbMultipliers.tax;
+
+  const totalAnnualRevenue = adjustedDomestic + adjustedTrade + adjustedResources + adjustedOther;
 
   // 2. Expenses
   const expData = expenseStorage.getData(countryData.name_en, countryData);

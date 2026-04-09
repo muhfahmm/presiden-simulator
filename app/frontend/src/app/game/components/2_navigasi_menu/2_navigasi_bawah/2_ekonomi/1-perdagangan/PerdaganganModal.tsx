@@ -887,6 +887,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     setActiveChartTab={setActiveChartTab}
                     budgetData={budgetData}
                     baseKeyMapping={baseKeyMapping}
+                    currentCountryName={currentCountry.name_en}
                   />
                 ) : (
                   <ImporHalaman

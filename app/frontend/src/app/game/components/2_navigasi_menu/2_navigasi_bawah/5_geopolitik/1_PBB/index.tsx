@@ -9,6 +9,8 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import PemungutanSuaraTab from "./1_pemungutan_suara/PemungutanSuaraTab";
 import DewanKeamananTab from "./2_dewan_keamanan/DewanKeamananTab";
 import SuaraPBBTab from "./3_suara_pbb/SuaraPBBTab";
+import { ActiveStatusModal } from "./1_pemungutan_suara/components/ActiveStatusModal";
+import { Activity } from "lucide-react";
 
 type Tab = "pemungutan_suara" | "dewan_keamanan" | "suara_PBB";
 
@@ -22,6 +24,7 @@ interface PBBModalProps {
 export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }: PBBModalProps) {
   const [currentData, setCurrentData] = useState<any>(null);
   const [activeTab, setActiveTab] = useState<Tab>("pemungutan_suara");
+  const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
 
   useEffect(() => {
     if (activeMenu) {
@@ -70,21 +73,34 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
           </div>
 
           {/* Tabs Navigation */}
-          <div className="flex gap-1.5 p-1.5 bg-zinc-900 border border-zinc-800 rounded-2xl">
-            {tabs.map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => handleTabChange(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${
-                  activeTab === tab.id
-                    ? "bg-cyan-600 text-white shadow-lg shadow-cyan-500/20"
-                    : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50"
-                }`}
-              >
-                <tab.icon className="h-3.5 w-3.5" />
-                {tab.label}
-              </button>
-            ))}
+          <div className="flex items-center gap-4">
+            <div className="flex gap-1.5 p-1.5 bg-zinc-900 border border-zinc-800 rounded-2xl">
+              {tabs.map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => handleTabChange(tab.id)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${
+                    activeTab === tab.id
+                      ? "bg-cyan-600 text-white shadow-lg shadow-cyan-500/20"
+                      : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50"
+                  }`}
+                >
+                  <tab.icon className="h-3.5 w-3.5" />
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Separator / Additional Actions */}
+            <div className="h-8 w-px bg-zinc-800 mx-2" />
+
+            <button
+              onClick={() => setIsStatusModalOpen(true)}
+              className="group flex items-center gap-3 px-6 py-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-cyan-500/50 hover:bg-cyan-500/5 text-zinc-400 hover:text-cyan-400 transition-all cursor-pointer shadow-lg active:scale-95"
+            >
+              <Activity className="h-5 w-5 group-hover:animate-pulse" />
+              <span className="text-[11px] font-black uppercase tracking-widest">Status Aktif</span>
+            </button>
           </div>
 
           {/* Close Button */}
@@ -98,6 +114,9 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
         {activeTab === "pemungutan_suara" && <PemungutanSuaraTab />}
         {activeTab === "dewan_keamanan" && <DewanKeamananTab />}
         {activeTab === "suara_PBB" && <SuaraPBBTab currentData={currentData} />}
+
+        {/* Global Modals */}
+        <ActiveStatusModal isOpen={isStatusModalOpen} onClose={() => setIsStatusModalOpen(false)} />
       </div>
     </div>
   )

@@ -44,6 +44,8 @@ import { DEMOKRASI_DECISION_SPEED_PENALTY } from "@/app/game/components/2_naviga
 import { KOMUNISME_FACTORY_COST_MULTIPLIER } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/logic/2_komunisme/1_plus/plus";
 import { KAPITALISME_CONSTRUCTION_SPEED_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/logic/3_kapitalisme/1_plus/plus";
 import { KOMUNISME_INNOVATION_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/logic/2_komunisme/2_minus/minus";
+import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic";
+import { AlertTriangle } from "lucide-react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -131,6 +133,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
 
   const buildingData = buildingStorage.getData();
   const buildingDeltas = buildingData.buildingDeltas || {};
+
+  // PBB Impacts
+  const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(currentCountryName);
+  const pbbStatusColor = pbbImpactLogic.getStatusColor(pbbMultipliers.impactLevel);
 
   // --- ENERGY DASHBOARD SYNCHRONIZATION ---
   // Apply construction deltas to a temporary country object to get accurate supply/usage
@@ -251,6 +257,9 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       
       let effectiveUnitCost = confirmBuild.cost;
       if (isKomunisme && isFactory) effectiveUnitCost = Math.ceil(effectiveUnitCost * KOMUNISME_FACTORY_COST_MULTIPLIER);
+      
+      // Apply PBB Sanction Cost Penalty (+15%)
+      effectiveUnitCost = Math.ceil(effectiveUnitCost * pbbMultipliers.buildCost);
 
       const totalCost = effectiveUnitCost * quantity;
       
@@ -300,6 +309,14 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         const isHeavyIndustry = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi";
 
         let effectiveBuildTime = confirmBuild.buildTime;
+        
+        // PBB Production Penalties
+        const isHighTech = confirmBuild.key.includes("electronics") || confirmBuild.key.includes("semikonduktor") || confirmBuild.groupId === "cyber" || confirmBuild.groupId === "space";
+        const isArms = confirmBuild.groupId === "militer" || confirmBuild.key.includes("pabrik_amunisi");
+        
+        if (isHighTech) effectiveBuildTime = Math.ceil(effectiveBuildTime / pbbMultipliers.techSpeed);
+        if (isArms) effectiveBuildTime = Math.ceil(effectiveBuildTime / pbbMultipliers.armsSpeed);
+
         if (isProtestan) effectiveBuildTime = Math.ceil(effectiveBuildTime / PROTESTAN_PRODUCTION_SPEED_BONUS);
         if (isTaoisme && isHeavyIndustry) {
           // -20% speed means 0.8x speed, which is 1.25x time
@@ -709,6 +726,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                                     : budgetStorage.getCumulativeProduction()[item.key]
                                 }
                                 hasUraniumMines={uraniumStats.hasMines}
+                                countryName={currentCountryName}
                               />
                             </Fragment>
                           );
@@ -943,7 +961,8 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   )
 }
 
-function BuildingCard({ item, onBuild, construction, cumulative, hasUraniumMines }: { item: any, onBuild: (item: any) => void, construction?: any, cumulative: number, hasUraniumMines: boolean }) {
+function BuildingCard({ item, onBuild, construction, cumulative, hasUraniumMines, countryName }: { item: any, onBuild: (item: any) => void, construction?: any, cumulative: number, hasUraniumMines: boolean, countryName: string }) {
+  const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(countryName);
   const [showDetail, setShowDetail] = useState(false);
   const currentDate = getStoredGameDate().getTime();
   const progress = construction
@@ -1093,14 +1112,14 @@ function BuildingCard({ item, onBuild, construction, cumulative, hasUraniumMines
 
         <div className="flex flex-col gap-2.5 flex-1">
 
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 bg-amber-500/10 rounded-lg">
-              <TrendingUp size={12} className="text-amber-500" />
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 bg-amber-500/10 rounded-lg">
+                <TrendingUp size={12} className={item.groupId === 'ekstraksi' && pbbMultipliers.resource < 1 ? 'text-rose-500 animate-pulse' : 'text-amber-500'} />
+              </div>
+              <span className={`text-[12px] font-bold ${item.groupId === 'ekstraksi' && pbbMultipliers.resource < 1 ? 'text-rose-500' : 'text-amber-500/90'}`}>
+                Produksi: +{Math.floor(item.tarif * (item.groupId === 'ekstraksi' ? pbbMultipliers.resource : 1)).toLocaleString('id-ID')} {item.unit}/unit
+              </span>
             </div>
-            <span className="text-[12px] font-bold text-amber-500/90">
-              Produksi: +{Math.floor(item.tarif).toLocaleString('id-ID')} {item.unit}/bangunan
-            </span>
-          </div>
 
           {item.konsumsi_uranium > 0 && (
             <div className="flex items-center gap-2.5">

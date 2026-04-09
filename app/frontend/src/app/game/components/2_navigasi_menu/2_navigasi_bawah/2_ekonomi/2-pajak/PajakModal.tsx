@@ -8,6 +8,8 @@ import { gameStorage } from "@/app/game/gamestorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
 import { taxStorage } from "./TaxStorage"
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi"
+import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic"
+import { AlertTriangle } from "lucide-react"
 
 
 interface ModalProps {
@@ -41,6 +43,10 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
       }
     }
   }, [initialCountry, isOpen]);
+
+  const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(initialCountry.name_en);
+  const pbbStatusColor = pbbImpactLogic.getStatusColor(pbbMultipliers.impactLevel, 'text-green-400');
+  const isImpacted = pbbMultipliers.impactLevel !== 'clear';
 
   if (!isOpen || !managedTaxes) return null;
 
@@ -138,10 +144,12 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
   };
 
   const allTaxItems = [...domesticTaxes, ...tradeTaxes];
-  const totalRevenue = allTaxItems.reduce((acc, item) => acc + (managedTaxes[item.key]?.pendapatan || 0), 0);
+  const rawTotalRevenue = allTaxItems.reduce((acc, item) => acc + (managedTaxes[item.key]?.pendapatan || 0), 0);
+  const totalRevenue = Math.floor(rawTotalRevenue * pbbMultipliers.tax);
   const initialTaxes = taxStorage.getTaxes(initialCountry.name_en) || initialCountry.pajak;
   const activeTotalRevenue = allKeys.reduce((acc, k) => acc + ((initialTaxes as any)[k]?.pendapatan || 0), 0);
-  const revenueDelta = totalRevenue - activeTotalRevenue;
+  const activeAdjustedRevenue = Math.floor(activeTotalRevenue * pbbImpactLogic.getCountryMultipliers(initialCountry.name_en).tax);
+  const revenueDelta = totalRevenue - activeAdjustedRevenue;
   const revenueDeltaDaily = revenueDelta / 365;
   const newDailyTax = totalRevenue / 365;
   const projectedBudget = currentBudget + revenueDelta;
@@ -240,7 +248,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
                 <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-tighter">Penerimaan</span>
                 <div className="flex items-center gap-2">
                   <Coins size={14} className="text-yellow-500" />
-                  <span className="text-xs font-black text-white">{data.pendapatan?.toLocaleString('id-ID')}</span>
+                  <span className="text-[13px] font-black text-white">+{Math.round(data.pendapatan * pbbMultipliers.tax).toLocaleString('id-ID')}</span>
                 </div>
              </div>
              <div className="flex flex-col gap-1 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-900 items-end">
@@ -297,9 +305,31 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
         
         <div className="px-10 py-6 bg-zinc-900/10 border-b border-zinc-900 flex items-center justify-between">
           <div className="flex items-center gap-12">
-            <div className="flex flex-col">
-              <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Total Pendapatan Pajak</span>
-              <span className="text-3xl font-black text-green-400 italic">{totalRevenue.toLocaleString('id-ID')}</span>
+            <div className="flex flex-col relative group/pbb">
+              <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 flex items-center gap-2">
+                Total Pendapatan Pajak
+                {isImpacted && <AlertTriangle size={12} className={pbbMultipliers.impactLevel === 'embargoed' ? 'text-rose-500' : 'text-amber-500'} />}
+              </span>
+              <div className="flex items-baseline gap-3">
+                <span className={`text-3xl font-black italic transition-colors duration-500 ${pbbStatusColor}`}>
+                  {totalRevenue.toLocaleString('id-ID')}
+                </span>
+                {isImpacted && (
+                  <span className="text-sm font-bold text-zinc-600 line-through opacity-50">
+                    {rawTotalRevenue.toLocaleString('id-ID')}
+                  </span>
+                )}
+              </div>
+              
+              {isImpacted && (
+                <div className="absolute -top-12 left-0 opacity-0 group-hover/pbb:opacity-100 transition-all duration-300 pointer-events-none z-50">
+                  <div className="bg-zinc-900 border border-zinc-800 p-3 rounded-2xl shadow-2xl flex items-center gap-3 whitespace-nowrap">
+                    <span className="text-[9px] font-black uppercase text-rose-500 animate-pulse">
+                      Sanksi PBB: -25% Pendapatan
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="flex flex-col">
               <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Proyeksi Perubahan</span>

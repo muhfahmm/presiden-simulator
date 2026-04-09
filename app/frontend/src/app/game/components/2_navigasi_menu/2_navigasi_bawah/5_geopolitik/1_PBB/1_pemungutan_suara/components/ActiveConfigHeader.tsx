@@ -17,31 +17,30 @@ export function ActiveConfigHeader({ selectedItem }: ActiveConfigHeaderProps) {
   const theme = getColorClasses();
   
   return (
-    <div className={`flex items-start md:items-center gap-8 p-10 rounded-[40px] bg-zinc-950/60 border ${theme.border} ${theme.glow} backdrop-blur-xl group/header transition-all duration-700`}>
-      <div className={`p-5 rounded-3xl ${theme.iconBg} border ${theme.border} ${theme.text} shadow-2xl shrink-0 animate-pulse-slow`}>
-        <Gavel className="h-8 w-8" />
+    <div className={`w-full flex items-center gap-6 p-4 rounded-2xl bg-zinc-950/60 border ${theme.border} ${theme.glow} backdrop-blur-xl group/header transition-all duration-700 animate-in slide-in-from-top duration-500 shadow-inner`}>
+      {/* Icon Section (Slimmer) */}
+      <div className={`p-2.5 rounded-xl ${theme.iconBg} border ${theme.border} ${theme.text} shadow-lg shrink-0`}>
+        <AlertTriangle className="h-5 w-5" />
       </div>
-      <div className="flex-1">
-        <div className="flex items-center gap-4 mb-2">
-          <h3 className={`text-[11px] font-black ${theme.text} uppercase tracking-[0.3em]`}>Konfigurasi Aktif</h3>
-          <div className={`h-px w-16 ${theme.bg.replace('bg-', 'bg-')}`} style={{ background: 'currentColor', opacity: 0.2 }} />
-          <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest">{selectedItem.category}</span>
+
+      {/* Content Section (Horizontal Layout) */}
+      <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-5 flex-1 min-w-0">
+        <div className="flex items-center gap-2 shrink-0">
+          <span className={`text-[10px] font-black ${theme.text} uppercase tracking-widest italic whitespace-nowrap opacity-80`}>
+            Strategi & Dampak Sistemik
+          </span>
+          <div className={`hidden md:block h-3 w-px ${theme.bg.replace('bg-', 'bg-')}`} style={{ background: 'currentColor', opacity: 0.2 }} />
         </div>
-        <p className="text-3xl font-black text-white uppercase tracking-tighter italic mb-2 drop-shadow-2xl">{selectedItem.name}</p>
-        <p className="text-[12px] font-bold text-zinc-400 leading-relaxed italic uppercase tracking-tight opacity-80 max-w-3xl mb-6">
-          {selectedItem.description}
+        
+        <p className="text-[12px] font-black text-white leading-tight uppercase tracking-wide truncate md:whitespace-normal">
+          {selectedItem.effect}
         </p>
-        <div className={`flex items-start gap-4 p-6 rounded-[28px] ${theme.bg} border ${theme.border} max-w-3xl animate-in slide-in-from-left duration-700 shadow-inner backdrop-blur-md`}>
-          <div className={`mt-1 p-1 rounded-md ${theme.iconBg}`}>
-            <AlertTriangle className={`h-4 w-4 ${theme.text}`} />
-          </div>
-          <div className="flex flex-col gap-1">
-            <span className={`text-[10px] font-black ${theme.text} uppercase tracking-widest opacity-60 italic`}>Strategi & Dampak Sistemik</span>
-            <p className="text-[13px] font-black text-white leading-relaxed uppercase tracking-wide">
-              {selectedItem.effect}
-            </p>
-          </div>
-        </div>
+      </div>
+
+      {/* Category Indicator (Subtle) */}
+      <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 shrink-0">
+        <span className="text-[8px] font-black text-zinc-500 uppercase tracking-[0.2em]">{selectedItem.category}</span>
+        <div className={`h-1 w-1 rounded-full ${theme.bg.replace('bg-', 'bg-')}`} style={{ background: 'currentColor' }} />
       </div>
     </div>
   );

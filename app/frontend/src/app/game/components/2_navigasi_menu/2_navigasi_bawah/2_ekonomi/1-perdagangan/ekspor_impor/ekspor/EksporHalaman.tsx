@@ -1,6 +1,8 @@
 import React from "react";
 import { buyPriceMap, sellPriceMap } from "../../tradeData";
 import { TradePriceChart } from "../../TradePriceChart";
+import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic";
+import { Landmark, AlertTriangle } from "lucide-react";
 
 interface EksporHalamanProps {
   selectedKey: string;
@@ -16,6 +18,7 @@ interface EksporHalamanProps {
   setActiveChartTab: (tab: "buy" | "sell") => void;
   budgetData: any;
   baseKeyMapping: any;
+  currentCountryName?: string;
 }
 
 export const EksporHalaman: React.FC<EksporHalamanProps> = ({
@@ -31,8 +34,15 @@ export const EksporHalaman: React.FC<EksporHalamanProps> = ({
   activeChartTab,
   setActiveChartTab,
   budgetData,
-  baseKeyMapping
+  baseKeyMapping,
+  currentCountryName
 }) => {
+  const pbbMultipliers = currentCountryName ? pbbImpactLogic.getCountryMultipliers(currentCountryName) : pbbImpactLogic.getDefaults();
+  const statusColor = pbbImpactLogic.getStatusColor(pbbMultipliers.impactLevel, 'text-emerald-400');
+  const isEmbargoed = pbbMultipliers.impactLevel === 'embargoed';
+
+  const rawDailyIncome = Math.floor(selectedUnits * getProductionRate(selectedKey) * baseSellPrice);
+  const adjustedDailyIncome = Math.floor(rawDailyIncome * pbbMultipliers.trade);
   return (
     <div className="animate-in fade-in duration-700 space-y-10">
       <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-10">
@@ -51,9 +61,30 @@ export const EksporHalaman: React.FC<EksporHalamanProps> = ({
               <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Produksi Harian</span>
               <span className="text-blue-400 text-base tracking-normal">{(selectedUnits * getProductionRate(selectedKey)).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
             </div>
-            <div className="flex flex-col gap-2 col-span-1 md:col-span-3 mt-4">
-              <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Estimasi Pendapatan Harian</span>
-              <span className="text-emerald-400 text-2xl font-black tracking-tight">{Math.floor(selectedUnits * getProductionRate(selectedKey) * baseSellPrice).toLocaleString('id-ID')}</span>
+            <div className="flex flex-col gap-2 col-span-1 md:col-span-3 mt-4 relative group/impact">
+              <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">
+                Estimasi Pendapatan Harian 
+                {isEmbargoed && <span className="ml-2 text-rose-500 animate-pulse text-[10px] leading-none">(PBB EMBARGO -80%)</span>}
+              </span>
+              <div className="flex items-baseline gap-3">
+                <span className={`${statusColor} text-2xl font-black tracking-tight transition-all duration-500`}>
+                  {adjustedDailyIncome.toLocaleString('id-ID')}
+                </span>
+                {isEmbargoed && (
+                  <span className="text-sm text-zinc-600 line-through decoration-rose-500/50">
+                    {rawDailyIncome.toLocaleString('id-ID')}
+                  </span>
+                )}
+              </div>
+              
+              {pbbMultipliers.impactLevel !== 'clear' && (
+                <div className="absolute -right-4 top-0 opacity-0 group-hover/impact:opacity-100 transition-all duration-300">
+                  <div className="bg-zinc-900 border border-zinc-800 p-3 rounded-2xl shadow-2xl flex items-center gap-3 whitespace-nowrap">
+                    <AlertTriangle size={14} className={pbbMultipliers.impactLevel === 'embargoed' ? 'text-rose-500' : 'text-amber-500'} />
+                    <span className="text-[9px] font-black uppercase text-zinc-400">Dibatasi Kebijakan PBB</span>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="flex flex-col gap-2 col-span-2 mt-2">
               <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Stok Tersedia</span>

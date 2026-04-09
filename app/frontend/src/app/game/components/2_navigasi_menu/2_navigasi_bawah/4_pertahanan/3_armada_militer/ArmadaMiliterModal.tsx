@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect, Fragment, useMemo } from "react";
-import { X, Wrench, Zap, Shield, Truck, MapPin, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship, Plane, Rocket, Crosshair, Activity, Wifi, Radio, Cctv, Search, Siren, Car, Bike, Dog, ShieldAlert, Anchor, Waves, Waypoints, Satellite, RadioTower, Cpu, Target, Radar, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, EyeOff, Building, Archive, Info, Briefcase, Users, Flame, Coins, MessageSquare, Handshake, ThumbsUp, BookOpen, Scale, Layers, Hammer, TreePine } from "lucide-react"
+import { X, Wrench, Zap, Shield, Truck, MapPin, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship, Plane, Rocket, Crosshair, Activity, Wifi, Radio, Cctv, Search, Siren, Car, Bike, Dog, ShieldAlert, Anchor, Waves, Waypoints, Satellite, RadioTower, Cpu, Target, Radar, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, EyeOff, Building, Archive, Info, Briefcase, Users, Flame, Coins, MessageSquare, Handshake, ThumbsUp, BookOpen, Scale, Layers, Hammer, TreePine, AlertTriangle } from "lucide-react"
+import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic"
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL } from "@/app/database/data/semua_fitur_negara";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { gameStorage } from "@/app/game/gamestorage";
@@ -171,6 +172,12 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
   }, [isOpen]);
 
   const buildingData = buildingStorage.getData();
+  
+  // PBB Impacts
+  const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(currentData?.name_en || "Indonesia");
+  const pbbStatusColor = pbbImpactLogic.getStatusColor(pbbMultipliers.impactLevel);
+  const isImpacted = pbbMultipliers.impactLevel !== 'clear';
+
   // LOGIKA STORAGE CONFIG
   const STORAGE_CONFIG: Record<string, { storageKey: string, ratio: number, label: string, icon: any, isCumulative?: boolean }> = {
     tank: { storageKey: "hangar_tank", ratio: 50, label: "Hangar Tank", icon: Truck },
@@ -438,9 +445,10 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
   const handleConfirmBuild = () => {
     if (!confirmBuild) return;
     try {
-      // 1. Calculate total cost
+      // 1. Calculate total cost with PBB Sanction (+15%)
       const unitCost = Number(confirmBuild.biaya_pembangunan || confirmBuild.biaya || 0);
-      const totalCost = unitCost * quantity;
+      const effectiveUnitCost = Math.ceil(unitCost * pbbMultipliers.buildCost);
+      const totalCost = effectiveUnitCost * quantity;
       
       // 2. Check for Financial Sufficiency
       const currentBalance = budgetStorage.getBudget();
@@ -483,7 +491,8 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
       if (currentReligion === "Buddha") recruitmentTimeMult = BUDDHA_RECRUITMENT_PENALTY;
       if (currentReligion === "Taoisme") recruitmentTimeMult = TAOISME_MILITARY_MODERNIZATION_PENALTY;
       
-      const finalBuildTime = Math.ceil(confirmBuild.waktu_pembangunan * recruitmentTimeMult);
+      // Apply PBB Arms Embargo
+      const finalBuildTime = Math.ceil(confirmBuild.waktu_pembangunan * recruitmentTimeMult / pbbMultipliers.armsSpeed);
 
       for (let i = 0; i < quantity; i++) {
         const currentEnd = addDays(new Date(currentStart), finalBuildTime).getTime();
@@ -725,6 +734,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
                                 construction={currentConstruction}
                                 tankCapacity={item.key === "tank" ? tankCapacity : undefined}
                                 hasUraniumMines={uraniumStats.hasMines}
+                                countryName={currentData.name_en}
                               />
                             </Fragment>
                           );
@@ -1117,7 +1127,9 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
   )
 }
 
-function BuildingCard({ item, onBuild, construction, tankCapacity, hasUraniumMines }: any) {
+function BuildingCard({ item, onBuild, construction, tankCapacity, hasUraniumMines, countryName }: any) {
+  const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(countryName || "Indonesia");
+  const isArmsImpacted = pbbMultipliers.armsSpeed < 1;
   const [showDetail, setShowDetail] = useState(false);
   const currentDate = getStoredGameDate().getTime();
   const progress = construction ? calculateConstructionProgress(construction.startDate, construction.endDate, currentDate) : null;
@@ -1285,10 +1297,11 @@ function BuildingCard({ item, onBuild, construction, tankCapacity, hasUraniumMin
         <div className="flex flex-col gap-2.5 flex-1">
           <div className="flex items-center gap-2.5">
             <div className="p-1.5 bg-cyan-500/10 rounded-lg">
-              <MilitaryIcon size={12} className="text-cyan-400" />
+              <MilitaryIcon size={12} className={isArmsImpacted ? 'text-amber-500 animate-pulse' : 'text-cyan-400'} />
             </div>
-            <span className="text-[12px] font-bold text-cyan-400/90">
+            <span className={`text-[12px] font-bold ${isArmsImpacted ? 'text-amber-500' : 'text-cyan-400/90'}`}>
               Daya Tempur: +{item.power?.toLocaleString('id-ID')} / {item.dataKey === 'barak' ? 'person' : 'unit'}
+              {isArmsImpacted && " (EMBARGO)"}
             </span>
           </div>
 
@@ -1351,8 +1364,10 @@ function BuildingCard({ item, onBuild, construction, tankCapacity, hasUraniumMin
 
           {!progress && (
             <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-zinc-800/50 rounded-lg"><Clock size={12} className="text-zinc-500" /></div>
-              <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.waktu_pembangunan} Hari</span>
+              <div className="p-1.5 bg-zinc-800/50 rounded-lg"><Clock size={12} className={isArmsImpacted ? 'text-rose-500' : 'text-zinc-500'} /></div>
+              <span className={`text-[11px] font-bold italic ${isArmsImpacted ? 'text-rose-500' : 'text-zinc-500'}`}>
+                Waktu: {Math.ceil(item.waktu_pembangunan / pbbMultipliers.armsSpeed)} Hari
+              </span>
             </div>
           )}
         </div>
@@ -1393,7 +1408,9 @@ function BuildingCard({ item, onBuild, construction, tankCapacity, hasUraniumMin
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
               <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
-              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya_pembangunan?.toLocaleString('id-ID')}</span>
+              <span className={`text-sm font-black tracking-tight mt-1 ${pbbMultipliers.buildCost > 1 ? 'text-rose-500' : 'text-zinc-400'}`}>
+                {Math.ceil((item.biaya_pembangunan || item.biaya || 0) * pbbMultipliers.buildCost).toLocaleString('id-ID')}
+              </span>
             </div>
             {item.isFull ? (
               <button disabled className="flex-1 py-3.5 rounded-2xl bg-zinc-800 text-rose-500/50 text-[10px] font-black uppercase tracking-[0.1em] border border-rose-500/20 cursor-not-allowed">

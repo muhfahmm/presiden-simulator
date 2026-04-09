@@ -18,7 +18,8 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
 import { getBuildingRequirement } from "../1-produksi/MaterialRequirement";
-import { Layers, Hammer, TreePine } from "lucide-react";
+import { Layers, Hammer, TreePine, AlertTriangle } from "lucide-react";
+import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic";
 import { 
   calculateTotalInfantry, 
   calculateInfantryPower,
@@ -142,6 +143,10 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
   const buildingData = buildingStorage.getData();
   const buildingDeltas = buildingData.buildingDeltas;
 
+  // PBB Impacts
+  const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(currentCountryCode);
+  const pbbStatusColor = pbbImpactLogic.getStatusColor(pbbMultipliers.impactLevel);
+
   // --- ENERGY DASHBOARD SYNCHRONIZATION ---
   // Apply construction deltas to a temporary country object to get accurate supply/usage
   const currentDataWithDeltas = {
@@ -253,8 +258,9 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
     handleConfirmBuild: () => {
       if (!confirmBuild) return;
       try {
-        // 1. Calculate total cost
-        const totalCost = confirmBuild.cost * quantity;
+        // 1. Calculate total cost with PBB Sanction (+15%)
+        const effectiveUnitCost = Math.ceil(confirmBuild.cost * pbbMultipliers.buildCost);
+        const totalCost = effectiveUnitCost * quantity;
         
         // 2. Check for Financial Sufficiency
         const currentBalance = budgetStorage.getBudget();
@@ -293,14 +299,17 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
         let currentStart = getStoredGameDate().getTime();
         const itemsToAdd: any[] = [];
         for (let i = 0; i < quantity; i++) {
-          const currentEnd = addDays(new Date(currentStart), confirmBuild.waktu_pembangunan).getTime();
+          // Apply PBB Arms Embargo (0.6x speed = 1.67x time)
+          const effectiveBuildTime = Math.ceil(confirmBuild.waktu_pembangunan / pbbMultipliers.armsSpeed);
+          
+          const currentEnd = addDays(new Date(currentStart), effectiveBuildTime).getTime();
           const newItem = buildingStorage.addToQueue({
             buildingKey: confirmBuild.key,
             label: confirmBuild.label,
             sector: confirmBuild.groupId,
             startDate: currentStart,
             endDate: currentEnd,
-            waktu_pembangunan: confirmBuild.waktu_pembangunan
+            waktu_pembangunan: effectiveBuildTime
           });
           if (newItem) itemsToAdd.push(newItem);
           currentStart = currentEnd;
@@ -464,6 +473,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
                               onBuild={handles.handleBuildRequest}
                               construction={currentConstruction}
                               cumulative={0}
+                              countryCode={currentCountryCode}
                             />
                           </Fragment>
                         );
@@ -504,13 +514,17 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
                       <div className="grid grid-cols-2 gap-3">
                         <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Satuan</span>
-                          <span className="text-xl font-black text-amber-500 tracking-tight">{(Number(confirmBuild.cost || 0)).toLocaleString('id-ID')}</span>
+                          <span className={`${pbbMultipliers.buildCost > 1 ? 'text-rose-500' : 'text-amber-500'} text-xl font-black tracking-tight transition-colors`}>
+                            {(Math.ceil(confirmBuild.cost * pbbMultipliers.buildCost)).toLocaleString('id-ID')}
+                          </span>
                         </div>
                         <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>
                           <div className="flex items-center gap-1.5">
-                            <Clock size={14} className="text-cyan-500" />
-                            <span className="text-xl font-black text-white tracking-tight">{(confirmBuild.buildTime).toLocaleString('id-ID')} Hari</span>
+                            <Clock size={14} className={pbbMultipliers.armsSpeed < 1 ? 'text-rose-500 animate-pulse' : 'text-cyan-500'} />
+                            <span className={`${pbbMultipliers.armsSpeed < 1 ? 'text-rose-500' : 'text-white'} text-xl font-black tracking-tight transition-colors`}>
+                              {(Math.ceil(confirmBuild.buildTime / pbbMultipliers.armsSpeed)).toLocaleString('id-ID')} Hari
+                            </span>
                           </div>
                         </div>
                         {confirmBuild.consumption > 0 && (
@@ -534,7 +548,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
                     <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
                       <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian Seluruh Unit</span>
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
-                         {formatGameDate(addDays(getStoredGameDate(), confirmBuild.buildTime * quantity))}
+                         {formatGameDate(addDays(getStoredGameDate(), Math.ceil(confirmBuild.buildTime / pbbMultipliers.armsSpeed) * quantity))}
                       </p>
                     </div>
                   </div>
@@ -616,7 +630,8 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
   )
 }
 
-function BuildingCard({ item, onBuild, construction, cumulative }: any) {
+function BuildingCard({ item, onBuild, construction, cumulative, countryCode }: any) {
+  const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(countryCode);
   const [showDetail, setShowDetail] = useState(false);
   const currentDate = getStoredGameDate().getTime();
   const progress = construction ? calculateConstructionProgress(construction.startDate, construction.endDate, currentDate) : null;
@@ -759,10 +774,10 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
           {item.tarif > 0 && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-amber-500/10 rounded-lg">
-                <TrendingUp size={12} className="text-amber-500" />
+                <TrendingUp size={12} className={pbbMultipliers.armsSpeed < 1 ? 'text-rose-500 animate-pulse' : 'text-amber-500'} />
               </div>
-               <span className="text-[12px] font-bold text-amber-500/90">
-                 Produksi: +{Math.floor(item.tarif || 0).toLocaleString('id-ID')} {item.unit}/bangunan
+               <span className={`text-[12px] font-bold ${pbbMultipliers.armsSpeed < 1 ? 'text-rose-500' : 'text-amber-500/90'}`}>
+                 Produksi: +{Math.floor(item.tarif).toLocaleString('id-ID')} {item.unit}/unit
                </span>
             </div>
           )}
