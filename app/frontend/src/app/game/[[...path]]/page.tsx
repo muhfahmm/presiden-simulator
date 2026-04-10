@@ -17,6 +17,7 @@ import WelcomeOverlay from "@/app/game/components/6_overlays/WelcomeOverlay";
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import GameNavbar from "@/app/game/components/1_navbar";
+import { initAiDiplomacy } from "../components/map-system/ai_diplomacy_engine/AiGlobalDiplomacy";
 
 import { useGameState } from "../hooks/useGameState";
 import { useGamePath } from "../hooks/useGamePath";
@@ -38,6 +39,10 @@ export default function GamePage() {
     isMenuOpen, setIsMenuOpen
   } = useMapData();
 
+
+  useEffect(() => {
+    initAiDiplomacy();
+  }, []);
 
   // Sync Modal with activeMenu (URL)
   useEffect(() => {

@@ -13,12 +13,12 @@ export interface NonAggressionData {
   };
 }
 
-const NON_AGGRESSION_STORAGE_KEY = "em2_non_aggression_status_v2";
+const NON_AGG_STORAGE_KEY_V2 = "em2_non_aggression_status_v2";
 
 export const nonAggressionStorage = {
   getData: (): Record<string, NonAggressionData> => {
     if (typeof window === "undefined") return {};
-    const stored = localStorage.getItem(NON_AGGRESSION_STORAGE_KEY);
+    const stored = localStorage.getItem(NON_AGG_STORAGE_KEY_V2);
     if (!stored) return {};
     try {
       return JSON.parse(stored);
@@ -78,16 +78,13 @@ export const nonAggressionStorage = {
     window.dispatchEvent(new CustomEvent("non_aggression_updated", { detail: { targetCountry: key, details } }));
   },
 
-  // Perbarui status sederhana (mengatur data default)
   updateSimpleStatus: (targetCountry: string, status: NonAggressionStatus) => {
     nonAggressionStorage.updateStatus(targetCountry, { status });
   },
 
   clear: () => {
     if (typeof window === "undefined") return;
-    localStorage.removeItem(NON_AGGRESSION_STORAGE_KEY);
+    localStorage.removeItem(NON_AGG_STORAGE_KEY_V2);
     window.dispatchEvent(new Event("non_aggression_updated"));
   }
 };
-
-const NON_AGG_STORAGE_KEY_V2 = "em2_non_aggression_status_v2";

@@ -110,95 +110,9 @@ export const relationStorage = {
    * - Tidak punya kedubes: hubungan turun 0.1%
    */
   processDailyDrift: async () => {
-    if (typeof window === "undefined") return;
-    
-    const playerCountry = localStorage.getItem("selectedCountry")?.toLowerCase().trim();
-    if (!playerCountry) return;
-
-    // Get all country keys from the relations database to use as base scores
-    const userRelations = (allRelations as any)[playerCountry];
-    const baseRelationMap = new Map<string, number>();
-    if (Array.isArray(userRelations)) {
-      userRelations.forEach((rel: any) => {
-        if (rel.name) baseRelationMap.set(rel.name.toLowerCase().trim(), rel.relation);
-      });
-    }
-
-    // Build the payload: for EVERY country in the game (except player)
-    const countries = centersData
-      .filter(c => c.name_id.toLowerCase().trim() !== playerCountry)
-      .map(c => {
-        const countryId = c.name_id.toLowerCase().trim();
-        const baseScore = baseRelationMap.get(countryId) ?? 50;
-        const currentScore = relationStorage.getRelationScore(countryId, baseScore);
-        const hasEmbassy = embassyStorage.getEmbassyStatus(countryId) === 'completed';
-        const hasPact = nonAggressionStorage.getStatus(countryId) === 'active';
-        const hasAlliance = aliansiStorage.getStatus(countryId) === 'active';
-
-        return {
-          country_id: countryId,
-          current_score: currentScore,
-          has_embassy: hasEmbassy,
-          has_pact: hasPact,
-          has_alliance: hasAlliance
-        };
-      });
-
-    if (countries.length === 0) return;
-
-    try {
-      const currentReligion = religionStorage.getCurrentReligion("Islam");
-      const res = await fetch("/api/game/diplomacy/relation/drift", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          countries,
-          religion: currentReligion
-        })
-      });
-
-      const data = await res.json();
-      if (data.error || !data.results) return;
-
-      // Batch update all scores from Python output
-      const storedData = relationStorage.getRelationData();
-      const oldScores = { ...storedData };
-
-      for (const entry of data.results) {
-        const countryId = entry.country_id;
-        const newScore = entry.new_score;
-        const oldScore = oldScores[countryId] ?? 50;
-
-        // Deterioration Check for daily drift
-        if (newScore <= 49 && oldScore > 49) {
-          const meta = relationStorage.getRelationMetadata(newScore);
-          window.dispatchEvent(new CustomEvent("relation_alert", {
-            detail: {
-              countryId: countryId,
-              newScore: newScore,
-              status: meta.label,
-              color: meta.hex
-            }
-          }));
-        }
-
-        storedData[countryId] = newScore;
-      }
-
-      localStorage.setItem(RELATION_STORAGE_KEY, JSON.stringify(storedData));
-      
-      // Save deltas
-      const deltas: Record<string, number> = {};
-      data.results.forEach((r: any) => {
-        deltas[r.country_id] = r.delta || 0;
-      });
-      relationDeltaStorage.updateDeltas(deltas);
-      
-      // Notify UI
-      window.dispatchEvent(new Event("relation_storage_updated"));
-    } catch (err) {
-      console.error("Gagal memproses drift hubungan:", err);
-    }
+    // Legacy drift disabled to prevent conflicts with AI Global Engine.
+    // ALL diplomatic processing is now handled by AiGlobalDiplomacy.ts
+    console.log("[STORAGE] Legacy drift call ignored.");
   },
 
   clear: () => {

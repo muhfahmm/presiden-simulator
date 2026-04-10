@@ -1,0 +1,29 @@
+RENCANA PRIORITAS PENGEMBANGAN - PRESIDEN SIMULATOR
+==================================================
+
+FASE 1: SISTEM DIPLOMASI GLOBAL (AI-TO-AI) - [PRIORITAS UTAMA]
+------------------------------------------------------------
+Fokus: Membangun fondasi agar dunia terasa "hidup" tanpa campur tangan pemain.
+- Restrukturisasi 'relationStorage' ke sistem Matriks (N x N).
+- Pengembangan 'Global Drift Engine' (Python) untuk simulasi harian.
+- Implementasi World Events (kontrak aliansi, ketegangan antar blok).
+- UI Update: Panel Hubungan Internasional Global.
+
+FASE 2: PENGEMBANGAN PBB (SISTEM GEOPOLITIK)
+--------------------------------------------
+Fokus: Mekanisme kontrol, hukum internasional, dan interaksi diplomatik lanjut.
+- Aktivasi sistem Pemungutan Suara (Voting) berdasarkan kedekatan diplomatik.
+- Implementasi sistem Sanksi Ekonomi dan Embargo (Senjata, Teknologi, Sumber Daya).
+- Dewan Keamanan: Hak Veto untuk negara super power (hasil dari skor diplomasi).
+- Dampak resolusi PBB terhadap ekonomi negara yang terkena sanksi.
+
+FASE 3: SIMULASI PERANG (SYSTEM MILITER)
+----------------------------------------
+Fokus: Konsekuensi fisik dari kegagalan diplomasi.
+- Mekanik deklarasi perang dan mobilisasi pasukan.
+- Sistem perhitungan kekuatan militer (Combat Engine).
+- Dampak perang terhadap suplai global (Global Supply Chain).
+- Sistem perdamaian/kapitulasi dan perubahan batas wilayah (Map Update).
+
+--------------------------------------------------
+Catatan: Setiap fase harus selesai secara fungsional (Logic & Data) sebelum lanjut ke fase berikutnya untuk menjaga stabilitas sistem.
