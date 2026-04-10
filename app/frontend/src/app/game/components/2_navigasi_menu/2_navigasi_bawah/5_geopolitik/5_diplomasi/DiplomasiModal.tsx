@@ -10,7 +10,7 @@ import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
-import { allRelations } from "@/app/database/data/negara/hubungan/index"; // Added relations import
+import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index"; // Added relations import
 
 
 // Import modular action components

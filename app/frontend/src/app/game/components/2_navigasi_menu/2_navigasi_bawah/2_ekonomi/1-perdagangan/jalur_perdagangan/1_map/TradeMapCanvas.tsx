@@ -6,7 +6,7 @@ import { countries as centersData } from "@/app/database/data/negara/benua/index
 import { internationalHubs } from "../3_hub/hubs";
 import { getInitialAgreements } from "@/app/database/data/database_mitra_perdagangan/agreementsRegistry";
 import { tradeStorage } from "../../TradeStorage";
-import { allRelations } from "@/app/database/data/negara/hubungan/index";
+import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index";
 import { calculateTradeRoute, getHubForCountry, Point } from "../2_rute/tradeRoutes";
 import { timeStorage } from "../../timeStorage";
 

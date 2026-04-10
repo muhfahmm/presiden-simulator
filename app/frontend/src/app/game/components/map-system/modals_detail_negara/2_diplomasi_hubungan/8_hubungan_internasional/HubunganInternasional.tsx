@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Globe2, X, Search, ArrowUpDown, Users } from "lucide-react";
-import { allRelations } from "@/app/database/data/negara/hubungan";
+import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
 import { countries as centersData, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
 import { relationStorage } from "../1_kedutaan/logic/relationStorage";
 import { relationDeltaStorage } from "./logic/relationDeltaStorage";

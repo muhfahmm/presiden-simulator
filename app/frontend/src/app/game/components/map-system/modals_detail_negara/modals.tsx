@@ -32,7 +32,7 @@ import TanamkanIdeologiModal from "./4_bantuan_dan_kerjasama/6_tanamkan_ideologi
 import { tradeStorage } from "./2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
 
 import { COUNTRY_REGIONS, getRegion } from "./2_diplomasi_hubungan/1_kedutaan/logic/regions";
-import { allRelations } from "@/app/database/data/negara/hubungan";
+import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
 import { relationStorage } from "./2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";

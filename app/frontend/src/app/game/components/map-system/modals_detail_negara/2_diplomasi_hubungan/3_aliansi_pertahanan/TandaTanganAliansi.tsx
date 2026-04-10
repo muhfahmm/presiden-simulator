@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { X, Handshake, Shield, Clock, AlertTriangle, CheckCircle2, Loader2, Info, Swords, Zap, Activity } from "lucide-react";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { relationStorage } from "../1_kedutaan/logic/relationStorage";
-import { allRelations } from "@/app/database/data/negara/hubungan/index";
+import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index";
 import { aliansiStorage } from "./logic/aliansiStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 import AliansiBerhasil from "./AliansiBerhasil";

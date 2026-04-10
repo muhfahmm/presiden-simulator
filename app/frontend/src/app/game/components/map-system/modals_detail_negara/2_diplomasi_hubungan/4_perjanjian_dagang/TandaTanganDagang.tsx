@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { X, ShoppingBag, Globe, Info, AlertTriangle, CheckCircle2, Loader2, DollarSign, Handshake, TrendingUp } from "lucide-react";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { relationStorage } from "../1_kedutaan/logic/relationStorage";
-import { allRelations } from "@/app/database/data/negara/hubungan/index";
+import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index";
 import { tradeStorage } from "./logic/tradeStorage";
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 import { getDiplomacyCostModifier } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/ReligionEffectLogic";

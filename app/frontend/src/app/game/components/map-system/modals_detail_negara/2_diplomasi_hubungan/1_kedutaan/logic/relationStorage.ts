@@ -5,7 +5,7 @@
  * Menyimpan perubahan skor hubungan di localStorage untuk kegigihan sesi game.
  */
 
-import { allRelations } from "@/app/database/data/negara/hubungan";
+import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { embassyStorage } from "./embassyStorage";
 import { nonAggressionStorage } from "../../2_pakta_non_agresi/logic/nonAggressionStorage";

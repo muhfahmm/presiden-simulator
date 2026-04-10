@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { Layers, Mountain, Gem, Waves, Flame, Battery, Droplets, Box, Cpu, Pickaxe, Radio } from "lucide-react";
 
-import { allRelations } from "@/app/database/data/negara/hubungan/index";
+import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index";
 
 export const sdaIcons: { [key: string]: { icon: any, color: string, label: string } } = {
   aluminium: { icon: Layers, color: "text-blue-200", label: "Alumunium" },

@@ -5,7 +5,7 @@ import {
   Landmark, X, ShieldCheck, Zap, Globe, Coins, Info, Trash2, 
   ArrowUpCircle, Users, BarChart3, ShieldAlert, Activity 
 } from "lucide-react";
-import { allRelations } from "@/app/database/data/negara/hubungan";
+import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
 import { relationStorage } from "./logic/relationStorage";
 import { embassyStorage } from "./logic/embassyStorage";
 import ModalKonfirmasiHancurkan from "./modals_konfirmasi_hancurkan";

@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { X, HeartHandshake, Search, MapPin, Globe2, SearchSlash, Info, TrendingUp, TrendingDown, Activity, Users, ShieldCheck, Zap, ChevronRight, Map as LucideMap, XCircle, Command, ArrowUpDown, ArrowUp, ArrowDown, Sparkles } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
 import ModalsTingkatkanHubunganGlobal from "./ModalsTingkatkanHubunganGlobal";
-import { allRelations } from "@/app/database/data/negara/hubungan/index";
+import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index";
 
 import { unSecurityCouncilStorage } from "../1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
