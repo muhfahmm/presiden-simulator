@@ -27,7 +27,7 @@ except ImportError as e:
 
 # Base Rates Kedutaan
 GROWTH_RATE = 1.001   # +0.1% per hari
-DECAY_RATE  = 0.999   # -0.1% per hari
+DECAY_RATE  = 0.999857   # -0.1% per minggu (rata-rata -0.014% per hari)
 
 # Daftar Negara Timur Tengah (Middle East) untuk Penalti Katolik
 TIMUR_TENGAH_IDS = [

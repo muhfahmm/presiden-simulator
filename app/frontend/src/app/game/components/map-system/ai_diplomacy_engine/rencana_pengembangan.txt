@@ -1,0 +1,24 @@
+RUNTUTAN RENCANA PENGEMBANGAN: HUBUNGAN AI-KE-AI (NPC-TO-NPC)
+===========================================================
+
+1. RESTREKTURISASI PENYIMPANAN DATA (Data Architecture)
+   - Mengubah 'relationStorage' agar tidak hanya mendukung "Pemain -> Dunia".
+   - Membuat sistem penyimpanan matriks (N x N) di LocalStorage atau Backend untuk melacak hubungan antar sesama AI secara dinamis.
+   - Nama Key Baru: 'em2_global_relation_matrix'.
+
+2. MESIN SIMULASI HARIAN (Global Drift Engine)
+   - Membuat skrip Python khusus 'global_drift.py' yang dipanggil setiap hari game berganti.
+   - Algoritma: Mengacak probabilitas konflik atau perdamaian antar blok (blok Barat, blok Timur, Non-Blok).
+   - Memasukkan faktor Geopolitik Statis (Misal: Iran & Arab Saudi punya nilai dasar rendah, peluang konflik lebih tinggi).
+
+3. SISTEM EVENT DUNIA (World Events System)
+   - Menambahkan event "Breaking News" jika terjadi perubahan drastis antar AI.
+   - Contoh: "China dan Rusia baru saja menandatangani Pakta Aliansi Baru" - ini akan mengubah skor hubungan mereka di database secara otomatis.
+
+4. INTEGRASI UI
+   - Memperbarui menu "Hubungan Internasional" agar pemain bisa memilih "Negara Sumber" (saat ini terkunci hanya pada negara pemain).
+   - Pemain bisa melihat statistik: "Siapa musuh terbesar Amerika Serikat saat ini?" atau "Siapa sekutu terdekat China?".
+
+5. DAMPAK TERHADAP PEMAIN
+   - Jika dua negara AI berperang, perdagangan pemain ke kedua negara tersebut mungkin terganggu.
+   - Pemain bisa diminta memihak (diplomatic pressure) saat terjadi konflik AI-ke-AI.
