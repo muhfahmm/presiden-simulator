@@ -7,7 +7,7 @@ export interface InboxItem {
   time: string;
   read: boolean;
   priority: 'low' | 'medium' | 'high';
-  category?: 'finance' | 'trade' | 'defense' | 'intelligence' | 'diplomacy' | 'general';
+  category?: 'finance' | 'trade' | 'pact' | 'alliance' | 'embassy' | 'intelligence' | 'general';
   isProposal?: boolean;
   timestamp: number;
   content?: string;

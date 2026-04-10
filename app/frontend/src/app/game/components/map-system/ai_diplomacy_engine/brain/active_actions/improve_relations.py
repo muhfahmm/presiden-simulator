@@ -10,8 +10,9 @@ def simulate_active_diplomacy(matrix_data):
     matrix = matrix_data.get("matrix", {})
     events = []
     
-    # Peluang harian ada negara yang berinisiatif (15% chance)
-    if random.random() > 0.15:
+    # Peluang harian ada negara yang berinisiatif (40% chance)
+    # Ditingkatkan agar bantuan dana lebih sering muncul dibanding pakta/aliansi
+    if random.random() > 0.40:
         return {"matrix": matrix, "events": []}
 
     source_countries = list(matrix.keys())
@@ -42,12 +43,14 @@ def simulate_active_diplomacy(matrix_data):
         new_score = round(float(old_score + improvement), 2)
         matrix[source][target]["s"] = new_score
         
-        # Tambah Event ke Inbox
+        # Tentukan Rute: Ke Inbox (jika target user) atau Ke Berita (jika target AI lain)
+        event_type = "NPC_GRANT_TO_USER" if target.lower() == "indonesia" else "GLOBAL_NEWS"
+        
         events.append({
-            "type": "GLOBAL_NEWS",
+            "type": event_type,
             "source": source,
             "target": target,
-            "subject": "Inisiatif Diplomatik Aktif",
+            "subject": f"Program Hibah Dana Pembangunan: {source.capitalize()} - {target.capitalize()}",
             "content": f"{source.capitalize()} telah menyalurkan bantuan dana pembangunan sebesar {cost:,} kepada {target.capitalize()} untuk mempererat kemitraan strategis. Hubungan naik dari {old_score:.2f}% menjadi {new_score:.2f}%.",
             "priority": "low"
         })

@@ -69,7 +69,7 @@ def calculate_daily_drift(matrix_data):
                     event = {
                         "type": "GLOBAL_NEWS",
                         "source": source, "target": target,
-                        "subject": "Aliansi Pertahanan Strategis",
+                        "subject": f"Aliansi Pertahanan Strategis: {source.capitalize()} - {target.capitalize()}",
                         "content": f"Aliansi militer baru terbentuk! {source.capitalize()} dan {target.capitalize()} sepakat untuk saling membela."
                     }
 
@@ -79,7 +79,7 @@ def calculate_daily_drift(matrix_data):
                     event = {
                         "type": "GLOBAL_NEWS",
                         "source": source, "target": target,
-                        "subject": "Penandatanganan Pakta Non-Agresi",
+                        "subject": f"Penandatanganan Pakta Non-Agresi: {source.capitalize()} - {target.capitalize()}",
                         "content": f"{source.capitalize()} dan {target.capitalize()} telah menandatangani Pakta Non-Agresi."
                     }
 
@@ -89,7 +89,7 @@ def calculate_daily_drift(matrix_data):
                     event = {
                         "type": "GLOBAL_NEWS",
                         "source": source, "target": target,
-                        "subject": "Kesepakatan Perdagangan Bebas",
+                        "subject": f"Kesepakatan Perdagangan Bebas: {source.capitalize()} - {target.capitalize()}",
                         "content": f"{source.capitalize()} dan {target.capitalize()} mengumumkan pakta perdagangan baru."
                     }
 
@@ -105,7 +105,7 @@ def calculate_daily_drift(matrix_data):
                     event = {
                         "type": "GLOBAL_NEWS",
                         "source": source, "target": target,
-                        "subject": "Pembukaan Kedutaan Besar Baru",
+                        "subject": f"Pembukaan Kedutaan Besar Baru: {source.capitalize()} - {target.capitalize()}",
                         "content": f"{source.capitalize()} dan {target.capitalize()} sepakat untuk membuka kedutaan besar. Hubungan kedua negara kini masuk ke fase kemitraan strategis."
                     }
 

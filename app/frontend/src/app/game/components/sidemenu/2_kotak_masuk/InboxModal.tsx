@@ -16,7 +16,8 @@ import {
   Briefcase,
   Shield,
   Filter,
-  Search
+  Search,
+  Building2
 } from 'lucide-react';
 import { inboxStorage, InboxItem } from './inboxStorage';
 import EmbassyRequiredModal from '../../map-system/ai_diplomacy_engine/components/EmbassyRequiredModal';
@@ -103,7 +104,11 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
         bg: 'bg-blue-500/5', border: 'border-blue-500/20', text: 'text-blue-400', indicator: 'bg-blue-500', icon: <Briefcase className="h-4 w-4" />,
         glow: 'shadow-[0_0_30px_rgba(59,130,246,0.15)]'
       };
-      case 'defense': return { 
+      case 'pact': return { 
+        bg: 'bg-orange-500/5', border: 'border-orange-500/20', text: 'text-orange-400', indicator: 'bg-orange-500', icon: <Shield className="h-4 w-4" />,
+        glow: 'shadow-[0_0_30px_rgba(249,115,22,0.15)]'
+      };
+      case 'alliance': return { 
         bg: 'bg-red-500/5', border: 'border-red-500/20', text: 'text-red-400', indicator: 'bg-red-500', icon: <Shield className="h-4 w-4" />,
         glow: 'shadow-[0_0_30px_rgba(239,68,68,0.15)]'
       };
@@ -111,9 +116,9 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
         bg: 'bg-amber-500/5', border: 'border-amber-500/20', text: 'text-amber-400', indicator: 'bg-amber-500', icon: <Globe className="h-4 w-4" />,
         glow: 'shadow-[0_0_30px_rgba(245,158,11,0.15)]'
       };
-      case 'diplomacy': return { 
-        bg: 'bg-purple-500/5', border: 'border-purple-500/20', text: 'text-purple-400', indicator: 'bg-purple-500', icon: <Handshake className="h-4 w-4" />,
-        glow: 'shadow-[0_0_30px_rgba(168,85,247,0.15)]'
+      case 'embassy': return { 
+        bg: 'bg-purple-500/5', border: 'border-purple-500/20', text: 'text-purple-400', indicator: 'bg-purple-500', icon: <Building2 className="h-4 w-4" />,
+        glow: 'shadow-[0_0_30_rgba(168,85,247,0.15)]'
       };
       default: return { 
         bg: 'bg-zinc-900/50', border: 'border-zinc-800', text: 'text-zinc-400', indicator: 'bg-zinc-700', icon: <Mail className="h-4 w-4" />,
@@ -150,15 +155,22 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
         {/* Dashboard/Filter Section */}
         <div className="px-8 py-6 bg-zinc-900/20 border-b border-zinc-800/50 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-2 bg-zinc-950/50 p-1 rounded-2xl border border-zinc-800">
-            {['all', 'finance', 'trade', 'defense', 'diplomacy', 'intelligence'].map((cat) => (
+            {[
+              { id: 'all', label: 'semua' },
+              { id: 'finance', label: 'keuangan' },
+              { id: 'trade', label: 'perdagangan' },
+              { id: 'embassy', label: 'kedutaan' },
+              { id: 'pact', label: 'pakta' },
+              { id: 'alliance', label: 'aliansi' }
+            ].map((tab) => (
               <button
-                key={cat}
-                onClick={() => setFilter(cat)}
+                key={tab.id}
+                onClick={() => setFilter(tab.id)}
                 className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${
-                  filter === cat ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'
+                  filter === tab.id ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'
                 }`}
               >
-                {cat}
+                {tab.label}
               </button>
             ))}
           </div>

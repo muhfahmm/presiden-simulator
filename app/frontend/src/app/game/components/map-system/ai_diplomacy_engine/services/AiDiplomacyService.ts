@@ -7,6 +7,7 @@ import { nonAggressionStorage } from '../../modals_detail_negara/2_diplomasi_hub
 import { aliansiStorage } from '../../modals_detail_negara/2_diplomasi_hubungan/3_aliansi_pertahanan/logic/aliansiStorage';
 import { embassyStorage } from '../../modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage';
 import { tradeStorage } from '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/TradeStorage';
+import { timeStorage } from '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage';
 
 /**
  * AiDiplomacyService
@@ -17,6 +18,9 @@ export const AiDiplomacyService = {
      * Menjalankan simulasi harian masal untuk seluruh dunia.
      */
     async runDailyDrift(userCountry: string = "Indonesia") {
+        // CEK 1: Jangan jalan jika game sedang PAUSE
+        if (timeStorage.getState().isPaused) return;
+
         const currentMatrix = getGlobalRelationMatrix();
         const normalizedUser = userCountry.toLowerCase().trim();
         
@@ -32,6 +36,12 @@ export const AiDiplomacyService = {
 
             const data = await response.json();
             if (data.error) throw new Error(data.error);
+
+            // CEK 2: Jika game di-pause saat sedang menunggu response dari Python, batalkan update UI
+            if (timeStorage.getState().isPaused) {
+                console.log("Game paused during diplomacy processing. Aborting updates.");
+                return;
+            }
 
             // 1. Sinkronisasi Data Matrix ke Seluruh Sistem UI (MASAL)
             if (data.matrix) {
@@ -115,8 +125,9 @@ export const AiDiplomacyService = {
                     const isGlobalNews = type === 'GLOBAL_NEWS';
                     const isGrant = type === 'NPC_GRANT_TO_USER';
                     const isTrade = type === 'USER_TRADE_OFFER';
-                    const isMilitary = type === 'USER_PACT_OFFER' || type === 'USER_ALLIANCE_OFFER';
-                    const isEmbassy = type === 'USER_EMBASSY_OFFER';
+                    const isPact = type === 'USER_PACT_OFFER';
+                    const isAlliance = type === 'USER_ALLIANCE_OFFER';
+                    const isEmbassy = type === 'USER_EMBASSY_OFFER' || type === 'USER_EMBASSY_ACCEPTED' || type === 'USER_EMBASSY_REJECTED';
                     
                     if (isGlobalNews) {
                         newsStorage.addNews({
@@ -128,21 +139,24 @@ export const AiDiplomacyService = {
                             priority: 'low'
                         });
                     } else {
+                        const safeSource = (event.source || "Negara").toUpperCase();
                         inboxStorage.addMessage({
-                            source: isGrant ? `Dinas Keuangan (${event.source.toUpperCase()})` : 
-                                    isTrade ? `Kementerian Perdagangan (${event.source.toUpperCase()})` :
-                                    isMilitary ? `Kementerian Pertahanan (${event.source.toUpperCase()})` :
-                                    isEmbassy ? `Kementerian Luar Negeri (${event.source.toUpperCase()})` :
-                                    `Intelijen (${event.source.toUpperCase()})`,
+                            source: isGrant ? `Dinas Keuangan (${safeSource})` : 
+                                    isTrade ? `Kementerian Perdagangan (${safeSource})` :
+                                    isPact ? `Kementerian Pertahanan (${safeSource})` :
+                                    isAlliance ? `Markas Besar Aliansi (${safeSource})` :
+                                    isEmbassy ? `Kementerian Luar Negeri (${safeSource})` :
+                                    `Intelijen (${safeSource})`,
                             category: isGrant ? 'finance' : 
                                       isTrade ? 'trade' : 
-                                      isMilitary ? 'defense' : 
-                                      isEmbassy ? 'diplomacy' : 'intelligence',
-                            isProposal: isGrant || isTrade || isMilitary || isEmbassy,
+                                      isPact ? 'pact' :
+                                      isAlliance ? 'alliance' : 
+                                      isEmbassy ? 'embassy' : 'intelligence',
+                            isProposal: isGrant || isTrade || isPact || isAlliance || isEmbassy,
                             subject: isEmbassy ? event.subject : `[DUNIA] ${event.subject}`,
                             content: event.content,
                             time: "HARI INI",
-                            priority: (isGrant || isMilitary || isEmbassy) ? 'high' : 'medium'
+                            priority: (isGrant || isPact || isAlliance || isEmbassy) ? 'high' : 'medium'
                         });
                     }
                 });
@@ -190,9 +204,10 @@ export const AiDiplomacyService = {
                             embassyStorage.updateEmbassyStatus(proposedCountry, 'completed');
                         }
 
+                        const safeSource = (event.source || proposedCountry || "Negara").toUpperCase();
                         inboxStorage.addMessage({
-                            source: `Kementerian Luar Negeri (${event.source.toUpperCase()})`,
-                            category: 'diplomacy', // Warna Ungu (Diplomasi)
+                            source: `Kementerian Luar Negeri (${safeSource})`,
+                            category: 'embassy', 
                             isProposal: false,
                             subject: event.subject,
                             content: event.content,
