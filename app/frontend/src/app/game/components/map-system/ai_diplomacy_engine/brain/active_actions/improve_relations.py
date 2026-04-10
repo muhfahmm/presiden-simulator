@@ -44,7 +44,7 @@ def simulate_active_diplomacy(matrix_data):
         
         # Tambah Event ke Inbox
         events.append({
-            "type": "DIPLOMATIC_INITIATIVE",
+            "type": "GLOBAL_NEWS",
             "source": source,
             "target": target,
             "subject": "Inisiatif Diplomatik Aktif",

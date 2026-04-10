@@ -3,34 +3,53 @@ import sys
 import random
 
 def simulate_trade_offers(input_data):
-    """Logika AI menawarkan Perjanjian Perdagangan (Trade Agreement)."""
+    """Logika AI menawarkan Kerjasama Ekonomi (Trade) dengan berpikir kritis."""
     matrix = input_data.get("matrix", {})
-    user_country = input_data.get("userCountry", "").lower().strip()
+    user_country = input_data.get("userCountry", "indonesia").lower().strip()
     events = []
     
-    if not user_country: return {"matrix": matrix, "events": []}
-    if random.random() > 0.15: return {"matrix": matrix, "events": []}
+    # 1. THROTTLING GLOBAL (Berpikir Kritis)
+    # Peluang rendah agar ekonomi tidak terasa seperti spam
+    if random.random() > 0.05: 
+        return {"matrix": matrix, "events": []}
 
-    potential = []
-    for source, targets in matrix.items():
+    potential_trade = []
+    potential_embassy = []
+
+    for source_country, targets in matrix.items():
         if user_country in targets:
             rel = targets[user_country]
-            # Syarat Perdagangan: Hubungan > 60 dan sudah ada Kedubes (e)
-            if rel.get("s", 0) >= 60 and not rel.get("t", 0) and rel.get("e", 0):
-                potential.append(source)
+            score = rel.get("s", 50)
+            has_embassy = rel.get("e", 0) == 1
+            has_trade = rel.get("t", 0) == 1
 
-    if not potential: return {"matrix": matrix, "events": []}
+            if score >= 60:
+                if not has_embassy:
+                    potential_embassy.append((source_country, score))
+                elif not has_trade:
+                    potential_trade.append((source_country, score))
 
-    source = random.choice(potential)
-    matrix[source][user_country]["t"] = 1
-    events.append({
-        "type": "USER_TRADE_OFFER",
-        "source": source,
-        "target": user_country,
-        "subject": "Proposal Kerjasama Perdagangan Eksklusif",
-        "content": f"Sektor ekonomi {source.capitalize()} menyatakan ketertarikan besar untuk menjalin kerjasama perdagangan bilateral dengan negara kita. Proposal ini mencakup kemudahan ekspor-impor dan tarif bea cukai yang lebih kompetitif.",
-        "priority": "medium"
-    })
+    # Tentukan manuver terbaik
+    if potential_trade:
+        potential_trade.sort(key=lambda x: x[1], reverse=True)
+        best = potential_trade[0][0]
+        events.append({
+            "type": "USER_TRADE_OFFER",
+            "source": best,
+            "subject": "Proposal Kerjasama Perdagangan Eksklusif",
+            "content": f"Sektor industri {best.capitalize()} mulai melirik pasar Indonesia secara serius. Kami mengusulkan Perjanjian Dagang Aktif untuk mengurangi tarif bea masuk dan mempercepat aliran komoditas antar negara.",
+            "priority": "medium"
+        })
+    elif potential_embassy:
+        potential_embassy.sort(key=lambda x: x[1], reverse=True)
+        best = potential_embassy[0][0]
+        events.append({
+            "type": "USER_EMBASSY_OFFER",
+            "source": best,
+            "subject": "Inisatif Hubungan Ekonomi",
+            "content": f"Pemerintah {best.capitalize()} melihat potensi besar dalam kerjasama ekonomi dengan Indonesia. Kami mengusulkan pembukaan Kedutaan Besar sebagai langkah awal formalisasi hubungan dagang kita.",
+            "priority": "medium"
+        })
 
     return {"matrix": matrix, "events": events}
 
@@ -40,3 +59,4 @@ if __name__ == "__main__":
         print(json.dumps(simulate_trade_offers(input_data)))
     except Exception as e:
         print(json.dumps({"error": str(e)}))
+        sys.exit(1)

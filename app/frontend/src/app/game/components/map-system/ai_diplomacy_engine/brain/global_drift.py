@@ -67,7 +67,7 @@ def calculate_daily_drift(matrix_data):
                     statuses["a"] = 1
                     statuses["p"] = 1 
                     event = {
-                        "type": "ALLIANCE",
+                        "type": "GLOBAL_NEWS",
                         "source": source, "target": target,
                         "subject": "Aliansi Pertahanan Strategis",
                         "content": f"Aliansi militer baru terbentuk! {source.capitalize()} dan {target.capitalize()} sepakat untuk saling membela."
@@ -77,7 +77,7 @@ def calculate_daily_drift(matrix_data):
                 elif new_score > 65 and statuses["e"] and not statuses["p"] and random.random() < 0.1:
                     statuses["p"] = 1
                     event = {
-                        "type": "PACT",
+                        "type": "GLOBAL_NEWS",
                         "source": source, "target": target,
                         "subject": "Penandatanganan Pakta Non-Agresi",
                         "content": f"{source.capitalize()} dan {target.capitalize()} telah menandatangani Pakta Non-Agresi."
@@ -87,7 +87,7 @@ def calculate_daily_drift(matrix_data):
                 elif new_score > 60 and statuses["e"] and not statuses["t"] and random.random() < 0.15:
                     statuses["t"] = 1
                     event = {
-                        "type": "TRADE",
+                        "type": "GLOBAL_NEWS",
                         "source": source, "target": target,
                         "subject": "Kesepakatan Perdagangan Bebas",
                         "content": f"{source.capitalize()} dan {target.capitalize()} mengumumkan pakta perdagangan baru."
@@ -103,7 +103,7 @@ def calculate_daily_drift(matrix_data):
                         new_score = boost_score
                     
                     event = {
-                        "type": "EMBASSY",
+                        "type": "GLOBAL_NEWS",
                         "source": source, "target": target,
                         "subject": "Pembukaan Kedutaan Besar Baru",
                         "content": f"{source.capitalize()} dan {target.capitalize()} sepakat untuk membuka kedutaan besar. Hubungan kedua negara kini masuk ke fase kemitraan strategis."

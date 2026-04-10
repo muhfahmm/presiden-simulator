@@ -7,7 +7,7 @@ export interface InboxItem {
   time: string;
   read: boolean;
   priority: 'low' | 'medium' | 'high';
-  category?: 'finance' | 'trade' | 'defense' | 'intelligence' | 'general';
+  category?: 'finance' | 'trade' | 'defense' | 'intelligence' | 'diplomacy' | 'general';
   isProposal?: boolean;
   timestamp: number;
   content?: string;
@@ -76,5 +76,16 @@ export const inboxStorage = {
   
   getUnreadCount: (): number => {
     return inboxStorage.getMessages().filter(m => !m.read).length;
+  },
+  
+  deleteMessage: (id: string) => {
+    const key = inboxStorage.getStorageKey();
+    if (typeof window === 'undefined') return;
+    
+    const messages = inboxStorage.getMessages();
+    const updated = messages.filter(m => m.id !== id);
+    
+    localStorage.setItem(key, JSON.stringify(updated));
+    window.dispatchEvent(new Event('inbox_updated'));
   }
 };

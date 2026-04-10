@@ -22,7 +22,8 @@ export async function POST(req: NextRequest) {
         path.join(brainPath, "npc_to_user", "tingkatkan_hubungan.py"), // Ganti nama dari grant_initiatives
         path.join(brainPath, "npc_to_user", "1_pakta_non_agresi.py"),
         path.join(brainPath, "npc_to_user", "2_aliansi_pertahanan.py"),
-        path.join(brainPath, "npc_to_user", "3_perjanjian_dagang.py")
+        path.join(brainPath, "npc_to_user", "3_perjanjian_dagang.py"),
+        path.join(brainPath, "npc_to_npc", "1_kedutaan_besar.py")
     ];
 
     const runScript = (scriptPath: string, inputData: any): Promise<any> => {

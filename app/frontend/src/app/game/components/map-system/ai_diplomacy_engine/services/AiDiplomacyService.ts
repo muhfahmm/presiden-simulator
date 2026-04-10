@@ -1,9 +1,11 @@
 import { getGlobalRelationMatrix, saveGlobalRelationMatrix } from './MatrixHandler';
 import { inboxStorage } from '@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage';
+import { newsStorage } from '@/app/game/components/sidemenu/1_berita/newsStorage';
 import { budgetStorage } from '@/app/game/components/1_navbar/3_kas_negara';
 import { relationStorage } from '../../modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage';
 import { nonAggressionStorage } from '../../modals_detail_negara/2_diplomasi_hubungan/2_pakta_non_agresi/logic/nonAggressionStorage';
 import { aliansiStorage } from '../../modals_detail_negara/2_diplomasi_hubungan/3_aliansi_pertahanan/logic/aliansiStorage';
+import { embassyStorage } from '../../modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage';
 import { tradeStorage } from '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/TradeStorage';
 
 /**
@@ -110,22 +112,39 @@ export const AiDiplomacyService = {
             if (Array.isArray(data.events)) {
                 data.events.forEach((event: any) => {
                     const type = event.type || "";
+                    const isGlobalNews = type === 'GLOBAL_NEWS';
                     const isGrant = type === 'NPC_GRANT_TO_USER';
                     const isTrade = type === 'USER_TRADE_OFFER';
                     const isMilitary = type === 'USER_PACT_OFFER' || type === 'USER_ALLIANCE_OFFER';
+                    const isEmbassy = type === 'USER_EMBASSY_OFFER';
                     
-                    inboxStorage.addMessage({
-                        source: isGrant ? `Dinas Keuangan (${event.source.toUpperCase()})` : 
-                                isTrade ? `Kementerian Perdagangan (${event.source.toUpperCase()})` :
-                                isMilitary ? `Kementerian Pertahanan (${event.source.toUpperCase()})` :
-                                `Intelijen (${event.source.toUpperCase()})`,
-                        category: isGrant ? 'finance' : isTrade ? 'trade' : isMilitary ? 'defense' : 'intelligence',
-                        isProposal: isGrant || isTrade || isMilitary,
-                        subject: `[DUNIA] ${event.subject}`,
-                        content: event.content,
-                        time: "HARI INI",
-                        priority: (isGrant || isMilitary) ? 'high' : 'medium'
-                    });
+                    if (isGlobalNews) {
+                        newsStorage.addNews({
+                            source: event.source || "Intelijen",
+                            category: 'global',
+                            subject: event.subject,
+                            content: event.content,
+                            time: "HARI INI",
+                            priority: 'low'
+                        });
+                    } else {
+                        inboxStorage.addMessage({
+                            source: isGrant ? `Dinas Keuangan (${event.source.toUpperCase()})` : 
+                                    isTrade ? `Kementerian Perdagangan (${event.source.toUpperCase()})` :
+                                    isMilitary ? `Kementerian Pertahanan (${event.source.toUpperCase()})` :
+                                    isEmbassy ? `Kementerian Luar Negeri (${event.source.toUpperCase()})` :
+                                    `Intelijen (${event.source.toUpperCase()})`,
+                            category: isGrant ? 'finance' : 
+                                      isTrade ? 'trade' : 
+                                      isMilitary ? 'defense' : 
+                                      isEmbassy ? 'diplomacy' : 'intelligence',
+                            isProposal: isGrant || isTrade || isMilitary || isEmbassy,
+                            subject: isEmbassy ? event.subject : `[DUNIA] ${event.subject}`,
+                            content: event.content,
+                            time: "HARI INI",
+                            priority: (isGrant || isMilitary || isEmbassy) ? 'high' : 'medium'
+                        });
+                    }
                 });
             }
 
@@ -133,9 +152,96 @@ export const AiDiplomacyService = {
             if (data.budgetGain && data.budgetGain > 0) {
                 budgetStorage.updateBudget(data.budgetGain);
             }
-
         } catch (error) {
             console.error("Critical Failure in AI Diplomacy Service:", error);
         }
+    },
+
+    /**
+     * Mengajukan pembangunan Kedutaan Besar ke suatu negara.
+     */
+    async proposeEmbassy(proposedCountry: string) {
+        const userCountry = (localStorage.getItem('selected_country') || "indonesia").toLowerCase();
+        const currentMatrix = getGlobalRelationMatrix();
+        
+        try {
+            const response = await fetch('/api/game/diplomacy/ai-global/propose-embassy', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    matrix: currentMatrix,
+                    userCountry: userCountry,
+                    proposedCountry: proposedCountry
+                })
+            });
+
+            const data = await response.json();
+            if (data.error) throw new Error(data.error);
+
+            // Gunakan logika sinkronisasi yang sama dengan harian
+            if (data.matrix) {
+                saveGlobalRelationMatrix(data.matrix);
+
+                // Update data untuk notifikasi instan
+                if (Array.isArray(data.events)) {
+                    data.events.forEach((event: any) => {
+                        // SINKRONISASI KE STORAGE BANGUNAN JIKA DITERIMA
+                        if (event.type === 'USER_EMBASSY_ACCEPTED') {
+                            embassyStorage.updateEmbassyStatus(proposedCountry, 'completed');
+                        }
+
+                        inboxStorage.addMessage({
+                            source: `Kementerian Luar Negeri (${event.source.toUpperCase()})`,
+                            category: 'diplomacy', // Warna Ungu (Diplomasi)
+                            isProposal: false,
+                            subject: event.subject,
+                            content: event.content,
+                            time: "BARU SAJA",
+                            priority: 'high'
+                        });
+                    });
+                }
+            }
+        } catch (error) {
+            console.error("Failed to propose embassy:", error);
+        }
+    },
+
+    /**
+     * Menyelesaikan perjanjian (Aliansi/Pakta/Dagang/Kedubes) setelah disetujui User.
+     */
+    finalizeTreaty(targetCountry: string, type: 'pact' | 'alliance' | 'trade' | 'embassy') {
+        const userCountryRaw = localStorage.getItem('selected_country') || "Indonesia";
+        const matrix = getGlobalRelationMatrix();
+        
+        // Cari kunci negara
+        const countryKey = Object.keys(matrix).find(k => k.toLowerCase() === targetCountry.toLowerCase()) || targetCountry;
+        
+        if (!matrix[countryKey]) matrix[countryKey] = {};
+        const npcRelations = matrix[countryKey];
+        
+        // Cari entri pemain di dalam sub-objek NPC
+        let playerKeyInNpc = Object.keys(npcRelations).find(k => k.toLowerCase() === userCountryRaw.toLowerCase());
+        if (!playerKeyInNpc) {
+            playerKeyInNpc = userCountryRaw;
+            npcRelations[playerKeyInNpc] = { s: 50, e: 0, a: 0, p: 0, t: 0 };
+        }
+
+        const rel = npcRelations[playerKeyInNpc];
+
+        if (type === 'embassy') {
+            rel.e = 1;
+            embassyStorage.updateEmbassyStatus(targetCountry, 'completed');
+        } else if (type === 'pact') {
+            rel.p = 1;
+            nonAggressionStorage.updateSimpleStatus(targetCountry, 'active');
+        } else if (type === 'alliance') {
+            rel.a = 1;
+            aliansiStorage.updateStatus(targetCountry, { status: 'active' });
+        } else if (type === 'trade') {
+            rel.t = 1;
+        }
+
+        saveGlobalRelationMatrix(matrix);
     }
 };
