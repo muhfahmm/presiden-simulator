@@ -16,12 +16,6 @@ export default function PemungutanSuaraTab() {
 
   return (
     <div className="flex-1 overflow-y-auto p-8 animate-in fade-in duration-300 flex flex-col gap-10 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
-      {/* Prototype Header */}
-      <div className="flex flex-col gap-2">
-        <h2 className="text-2xl font-black text-white italic uppercase tracking-tight">Eksplorasi Kebijakan PBB</h2>
-        <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest">Pilih salah satu instrumen di bawah untuk melihat detail resolusi (Prototype)</p>
-      </div>
-
       {/* SECTION 1: Resolution Selection Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 shrink-0">
         <RancanganResolusiCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />
