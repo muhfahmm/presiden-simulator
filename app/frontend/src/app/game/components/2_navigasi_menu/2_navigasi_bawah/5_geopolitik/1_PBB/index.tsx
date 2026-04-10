@@ -9,9 +9,6 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import PemungutanSuaraTab from "./1_pemungutan_suara/PemungutanSuaraTab";
 import DewanKeamananTab from "./2_dewan_keamanan/DewanKeamananTab";
 import SuaraPBBTab from "./3_suara_pbb/SuaraPBBTab";
-import { StatusAktif } from "./4_status_histori/StatusAktif";
-import { Histori } from "./4_status_histori/Histori";
-import { Activity, History } from "lucide-react";
 
 type Tab = "pemungutan_suara" | "dewan_keamanan" | "suara_PBB";
 
@@ -25,8 +22,6 @@ interface PBBModalProps {
 export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }: PBBModalProps) {
   const [currentData, setCurrentData] = useState<any>(null);
   const [activeTab, setActiveTab] = useState<Tab>("pemungutan_suara");
-  const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
-  const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
 
   useEffect(() => {
     if (activeMenu) {
@@ -74,22 +69,6 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
               <h2 className="text-xl font-black text-white tracking-tight italic uppercase">Markas Besar PBB</h2>
               <p className="text-[10px] text-zinc-500 font-medium uppercase tracking-widest">United Nations Headquarters • New York</p>
             </div>
-
-            <button
-              onClick={() => setIsStatusModalOpen(true)}
-              className="group flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-cyan-500/50 hover:bg-cyan-500/5 text-zinc-400 hover:text-cyan-400 transition-all cursor-pointer shadow-lg active:scale-95"
-            >
-              <Activity className="h-4 w-4 group-hover:animate-pulse text-cyan-500" />
-              <span className="text-[10px] font-black uppercase tracking-widest">Status Aktif</span>
-            </button>
-
-            <button
-              onClick={() => setIsHistoryModalOpen(true)}
-              className="group flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95"
-            >
-              <History className="h-4 w-4 group-hover:rotate-[-45deg] transition-transform" />
-              <span className="text-[10px] font-black uppercase tracking-widest">Histori PBB</span>
-            </button>
           </div>
 
           {/* Tabs Navigation */}
@@ -126,10 +105,6 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
         {activeTab === "pemungutan_suara" && <PemungutanSuaraTab />}
         {activeTab === "dewan_keamanan" && <DewanKeamananTab />}
         {activeTab === "suara_PBB" && <SuaraPBBTab currentData={currentData} />}
-
-        {/* Global Modals */}
-        <StatusAktif isOpen={isStatusModalOpen} onClose={() => setIsStatusModalOpen(false)} />
-        <Histori isOpen={isHistoryModalOpen} onClose={() => setIsHistoryModalOpen(false)} />
       </div>
     </div>
   )

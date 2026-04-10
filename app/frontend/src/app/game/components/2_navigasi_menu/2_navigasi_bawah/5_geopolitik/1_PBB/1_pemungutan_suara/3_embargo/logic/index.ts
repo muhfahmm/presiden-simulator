@@ -1,71 +1,47 @@
-export { useEmbargo } from './useEmbargo';
-export type { EmbargoState } from './useEmbargo';
-export { calculateEmbargoEffect, applyEmbargoEffect } from './embargoEffects';
-export type { EmbargoEffect } from './embargoEffects';
+// Logic removed for prototype
+export const useEmbargo = () => ({});
+export const calculateEmbargoEffect = () => ({});
+export const applyEmbargoEffect = () => {};
 
-// Embargo Ekonomi (Total Trade)
-export {
-  useEmbargoEkonomi,
-} from './1_embargo_ekonomi/useEmbargoEkonomi';
-export {
-  calculateEmbargoEkonomiEffect,
-  applyEmbargoEkonomiEffect,
-  checkEmbargoEkonomiActive,
-  removeEmbargoEkonomiEffect,
-  getEmbargoEkonomiDuration,
-  getEmbargoEkonomiRemainingDays,
-  isCountryIsolated,
-  getTradePartnerStatus,
-  getTradePartnerColor,
-  embargoEkonomiEffect,
-} from './1_embargo_ekonomi/embargoEkonomiEffects';
-export type { EmbargoEkonomiState } from './1_embargo_ekonomi/useEmbargoEkonomi';
-export type { EmbargoEkonomiEffect, TradePartnerStatus } from './1_embargo_ekonomi/embargoEkonomiEffects';
+// Embargo Ekonomi
+export const useEmbargoEkonomi = () => ({});
+export const calculateEmbargoEkonomiEffect = () => ({});
+export const applyEmbargoEkonomiEffect = () => {};
+export const checkEmbargoEkonomiActive = () => false;
+export const removeEmbargoEkonomiEffect = () => {};
+export const getEmbargoEkonomiDuration = () => 0;
+export const getEmbargoEkonomiRemainingDays = () => 0;
+export const isCountryIsolated = () => false;
+export const getTradePartnerStatus = () => "normal";
+export const getTradePartnerColor = () => "text-zinc-400";
+export const embargoEkonomiEffect = {};
 
-// Embargo Teknologi (Technology Transfer)
-export {
-  useEmbargoTeknologi,
-} from './2_embargo_teknologi/useEmbargoTeknologi';
-export {
-  calculateEmbargoTeknologiEffect,
-  applyEmbargoTeknologiEffect,
-  checkEmbargoTeknologiActive,
-  removeEmbargoTeknologiEffect,
-  getEmbargoTeknologiDuration,
-  getEmbargoTeknologiRemainingDays,
-  embargoTeknologiEffect,
-} from './2_embargo_teknologi/embargoTeknologiEffects';
-export type { EmbargoTeknologiState } from './2_embargo_teknologi/useEmbargoTeknologi';
-export type { EmbargoTeknologiEffect } from './2_embargo_teknologi/embargoTeknologiEffects';
+// Embargo Teknologi
+export const useEmbargoTeknologi = () => ({});
+export const calculateEmbargoTeknologiEffect = () => ({});
+export const applyEmbargoTeknologiEffect = () => {};
+export const checkEmbargoTeknologiActive = () => false;
+export const removeEmbargoTeknologiEffect = () => {};
+export const getEmbargoTeknologiDuration = () => 0;
+export const getEmbargoTeknologiRemainingDays = () => 0;
+export const embargoTeknologiEffect = {};
 
-// Embargo Sumber Daya (Resource Embargo)
-export {
-  useEmbargoSumberDaya,
-} from './3_embargo_sumber_daya/useEmbargoSumberDaya';
-export {
-  calculateEmbargoSumberDayaEffect,
-  applyEmbargoSumberDayaEffect,
-  checkEmbargoSumberDayaActive,
-  removeEmbargoSumberDayaEffect,
-  getEmbargoSumberDayaDuration,
-  getEmbargoSumberDayaRemainingDays,
-  embargoSumberDayaEffect,
-} from './3_embargo_sumber_daya/embargoSumberDayaEffects';
-export type { EmbargoSumberDayaState } from './3_embargo_sumber_daya/useEmbargoSumberDaya';
-export type { EmbargoSumberDayaEffect } from './3_embargo_sumber_daya/embargoSumberDayaEffects';
+// Embargo Sumber Daya
+export const useEmbargoSumberDaya = () => ({});
+export const calculateEmbargoSumberDayaEffect = () => ({});
+export const applyEmbargoSumberDayaEffect = () => {};
+export const checkEmbargoSumberDayaActive = () => false;
+export const removeEmbargoSumberDayaEffect = () => {};
+export const getEmbargoSumberDayaDuration = () => 0;
+export const getEmbargoSumberDayaRemainingDays = () => 0;
+export const embargoSumberDayaEffect = {};
 
-// Embargo Senjata (Arms Embargo)
-export {
-  useEmbargoSenjata,
-} from './4_embargo_senjata/useEmbargoSenjata';
-export {
-  calculateEmbargoSenjataEffect,
-  applyEmbargoSenjataEffect,
-  checkEmbargoSenjataActive,
-  removeEmbargoSenjataEffect,
-  getEmbargoSenjataDuration,
-  getEmbargoSenjataRemainingDays,
-  embargoSenjataEffect,
-} from './4_embargo_senjata/embargoSenjataEffects';
-export type { EmbargoSenjataState } from './4_embargo_senjata/useEmbargoSenjata';
-export type { EmbargoSenjataEffect } from './4_embargo_senjata/embargoSenjataEffects';
+// Embargo Senjata
+export const useEmbargoSenjata = () => ({});
+export const calculateEmbargoSenjataEffect = () => ({});
+export const applyEmbargoSenjataEffect = () => {};
+export const checkEmbargoSenjataActive = () => false;
+export const removeEmbargoSenjataEffect = () => {};
+export const getEmbargoSenjataDuration = () => 0;
+export const getEmbargoSenjataRemainingDays = () => 0;
+export const embargoSenjataEffect = {};

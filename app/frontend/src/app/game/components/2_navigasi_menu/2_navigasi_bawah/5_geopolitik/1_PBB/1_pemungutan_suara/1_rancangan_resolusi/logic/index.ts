@@ -1,15 +1,16 @@
-export { useRancanganResolusi } from './useRancanganResolusi';
-export type { RancanganResolusiState } from './useRancanganResolusi';
-export { calculateRancanganResolusiEffect, applyRancanganResolusiEffect } from './rancanganResolusiEffects';
-export type { RancanganResolusiEffect } from './rancanganResolusiEffects';
+// Logic removed for prototype
+export const useRancanganResolusi = () => ({
+  state: { selectedResolution: null, isActive: false },
+  selectResolution: () => {},
+  resetResolution: () => {},
+  validateResolution: () => true
+});
 
-// Export dari folder 1_larangan_perang
-export { useLaranganPerang } from './1_larangan_perang';
-export type { LaranganPerangState } from './1_larangan_perang';
-export {
-  calculateLaranganPerangEffect,
-  applyLaranganPerangEffect,
-  checkLaranganPerangViolation,
-  removeLaranganPerangEffect,
-} from './1_larangan_perang';
-export type { LaranganPerangEffect } from './1_larangan_perang';
+export const calculateRancanganResolusiEffect = () => ({});
+export const applyRancanganResolusiEffect = () => {};
+
+export const useLaranganPerang = () => ({});
+export const calculateLaranganPerangEffect = () => ({});
+export const applyLaranganPerangEffect = () => {};
+export const checkLaranganPerangViolation = () => false;
+export const removeLaranganPerangEffect = () => {};
