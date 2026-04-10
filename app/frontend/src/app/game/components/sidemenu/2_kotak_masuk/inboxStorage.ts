@@ -4,9 +4,11 @@ export interface InboxItem {
   id: string;
   source: string;
   subject: string;
-  time: string; // Stored as a formatted string or game date
+  time: string;
   read: boolean;
   priority: 'low' | 'medium' | 'high';
+  category?: 'finance' | 'trade' | 'defense' | 'intelligence' | 'general';
+  isProposal?: boolean;
   timestamp: number;
   content?: string;
 }

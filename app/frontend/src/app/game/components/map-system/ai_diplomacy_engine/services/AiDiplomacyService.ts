@@ -109,17 +109,22 @@ export const AiDiplomacyService = {
             // 2. Berikan Notifikasi Event Global
             if (Array.isArray(data.events)) {
                 data.events.forEach((event: any) => {
-                    const isFromDonor = event.type === 'NPC_GRANT_TO_USER';
-                    const isMilitary = event.type.includes('OFFER');
+                    const type = event.type || "";
+                    const isGrant = type === 'NPC_GRANT_TO_USER';
+                    const isTrade = type === 'USER_TRADE_OFFER';
+                    const isMilitary = type === 'USER_PACT_OFFER' || type === 'USER_ALLIANCE_OFFER';
                     
                     inboxStorage.addMessage({
-                        source: isFromDonor ? `Dinas Keuangan (${event.source.toUpperCase()})` : 
+                        source: isGrant ? `Dinas Keuangan (${event.source.toUpperCase()})` : 
+                                isTrade ? `Kementerian Perdagangan (${event.source.toUpperCase()})` :
                                 isMilitary ? `Kementerian Pertahanan (${event.source.toUpperCase()})` :
-                                "Dinas Intelijen Luar Negeri",
+                                `Intelijen (${event.source.toUpperCase()})`,
+                        category: isGrant ? 'finance' : isTrade ? 'trade' : isMilitary ? 'defense' : 'intelligence',
+                        isProposal: isGrant || isTrade || isMilitary,
                         subject: `[DUNIA] ${event.subject}`,
                         content: event.content,
                         time: "HARI INI",
-                        priority: event.priority || 'medium'
+                        priority: (isGrant || isMilitary) ? 'high' : 'medium'
                     });
                 });
             }
