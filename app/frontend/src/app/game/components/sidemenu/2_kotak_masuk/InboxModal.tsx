@@ -128,7 +128,21 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
   };
 
   const filteredMessages = messages
-    .filter(msg => filter === 'all' || msg.category === filter)
+    .filter(msg => {
+      if (filter === 'all') return true;
+      
+      // Sinkronisasi kategori lama (defense) ke tab baru (pact/alliance)
+      if (msg.category === 'defense') {
+        const subj = msg.subject.toLowerCase();
+        if (filter === 'pact' && subj.includes('pakta')) return true;
+        if (filter === 'alliance' && subj.includes('aliansi')) return true;
+      }
+      
+      // Sinkronisasi kategori lama (diplomacy) ke tab baru (embassy)
+      if (msg.category === 'diplomacy' && filter === 'embassy') return true;
+
+      return msg.category === filter;
+    })
     .filter(msg => msg.subject.toLowerCase().includes(searchTerm.toLowerCase()) || msg.source.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
@@ -138,8 +152,8 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
         {/* Header Section - 100% Same Style as Kelistrikan */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-500/10 rounded-xl">
-              <Mail className="h-6 w-6 text-blue-500" />
+            <div className="p-2 bg-purple-500/10 rounded-xl">
+              <Building2 className="h-6 w-6 text-purple-500" />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white tracking-tight italic uppercase">Pusat Komunikasi & Inisatif</h2>
@@ -219,7 +233,15 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
                         <div>
                           <div className="flex items-center gap-3">
                             <span className={`text-[9px] font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded-md ${theme.bg} ${theme.text}`}>
-                              {msg.category || 'General'}
+                              {(() => {
+                                const cat = msg.category?.toLowerCase() || 'general';
+                                const subj = msg.subject.toLowerCase();
+                                if (cat === 'defense' || cat === 'pact') return subj.includes('aliansi') ? 'aliansi' : 'pakta';
+                                if (cat === 'diplomacy' || cat === 'embassy') return 'kedutaan';
+                                if (cat === 'finance') return 'keuangan';
+                                if (cat === 'trade') return 'perdagangan';
+                                return cat;
+                              })()}
                             </span>
                             <span className="text-[10px] text-zinc-500 font-medium">{msg.time}</span>
                             {!msg.read && <div className="h-1.5 w-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>}
