@@ -55,8 +55,8 @@ export function useAIProposalGeneration(
         stability: country.stability || 0.7,
       }));
 
-      // Generate proposals
-      const generated = aiProposalScheduler.updateAndGenerateProposals(
+      // Generate proposals (Now Async)
+      const generated = await aiProposalScheduler.updateAndGenerateProposals(
         countryProfiles,
         votingState,
         currentDate,

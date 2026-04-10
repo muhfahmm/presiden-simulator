@@ -12,6 +12,7 @@ import { VotingProgressGrid } from "./components/VotingProgressGrid";
 import { GlobalVotingState, initializeVotingState } from "./utils/votingSystem";
 import { unCountries } from "./utils/unCountries";
 import { useProposalSubmission } from "./hooks/useProposalSubmission";
+import { useAIProposalGeneration } from "./hooks/useAIProposalGeneration";
 import { getInitialAgreements } from "@/app/database/data/database_mitra_perdagangan/agreementsRegistry";
 import { getInitialEmbassy } from "@/app/database/data/database_kedutaan_besar/embassyRegistry";
 
@@ -144,8 +145,24 @@ export default function PemungutanSuaraTab() {
     nuclear_threats: false
   };
 
+  // AI Proposal Generation Integration
+  const { isProcessing: isGeneratingAI } = useAIProposalGeneration(
+    votingState,
+    allCountries,
+    gameState,
+    { enabled: true }
+  );
+
   return (
     <div className="flex-1 overflow-y-auto p-8 animate-in fade-in duration-300 flex flex-col gap-10 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
+      {/* SECTION 0: AI Generation Status (Optional indicator) */}
+      {isGeneratingAI && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[100] px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 backdrop-blur-md flex items-center gap-3 shadow-xl shadow-cyan-500/10 animate-pulse">
+           <div className="h-2 w-2 rounded-full bg-cyan-500 animate-ping" />
+           <span className="text-[10px] font-black text-cyan-400 uppercase tracking-widest whitespace-nowrap">AI Sedang Menyusun Proposal Geopolitik...</span>
+        </div>
+      )}
+
       {/* SECTION 0: Active Configuration Impact (At the very top) */}
       {selectedItem && (
         <div className="shrink-0 animate-in fade-in slide-in-from-top duration-700">
@@ -232,7 +249,7 @@ export default function PemungutanSuaraTab() {
             onVotingStateUpdate={setVotingState}
             allCountries={allCountries}
             gameState={gameState}
-            enableAIVoting={false}
+            enableAIVoting={true}
           />
         </div>
       )}

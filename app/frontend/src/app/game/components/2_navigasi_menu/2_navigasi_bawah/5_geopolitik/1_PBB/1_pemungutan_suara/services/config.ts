@@ -33,10 +33,23 @@ export function getAIServiceURL(): string {
   return defaultURL;
 }
 
+export interface AIServiceConfig {
+  baseURL: string;
+  timeout: number;
+  retryAttempts: number;
+  endpoints: {
+    health: string;
+    singleVote: string;
+    batchVote: string;
+    generateProposal: string;
+    generateBatchProposals: string;
+  };
+}
+
 /**
  * Configuration object
  */
-export const aiServiceConfig = {
+export const aiServiceConfig: AIServiceConfig = {
   baseURL: getAIServiceURL(),
   timeout: 2000, // 2 seconds
   retryAttempts: 1,
@@ -44,5 +57,7 @@ export const aiServiceConfig = {
     health: '/health',
     singleVote: '/vote/single',
     batchVote: '/vote/batch',
+    generateProposal: '/proposal/generate',
+    generateBatchProposals: '/proposal/generate-batch',
   }
 };

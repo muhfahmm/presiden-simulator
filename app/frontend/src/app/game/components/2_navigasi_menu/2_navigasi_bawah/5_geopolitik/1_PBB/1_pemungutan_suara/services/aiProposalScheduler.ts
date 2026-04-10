@@ -39,12 +39,12 @@ class AIProposalScheduler {
   /**
    * Update scheduler dan generate proposal jika diperlukan
    */
-  updateAndGenerateProposals(
+  async updateAndGenerateProposals(
     allCountries: CountryProfile[],
     votingState: GlobalVotingState,
     currentDate: Date,
     globalTension: number
-  ): GeneratedProposal[] {
+  ): Promise<GeneratedProposal[]> {
     const newProposals: GeneratedProposal[] = [];
 
     // Iterasi setiap negara AI
@@ -61,8 +61,8 @@ class AIProposalScheduler {
           p => p.proposerCountry === country.name
         ).length;
 
-        // Generate proposal
-        const proposal = aiProposalGenerator.generateProposal(
+        // Generate proposal (Now Async)
+        const proposal = await aiProposalGenerator.generateProposal(
           country,
           allCountries,
           globalTension,

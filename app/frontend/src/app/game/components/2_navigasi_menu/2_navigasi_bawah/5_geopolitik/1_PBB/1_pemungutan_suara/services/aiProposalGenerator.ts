@@ -6,6 +6,7 @@
 
 import { CountryProfile, Resolution } from './aiVotingService';
 import { ProposalType } from '../utils/votingSystem';
+import { aiServiceConfig } from './config';
 
 export interface AIProposalGeneratorConfig {
   proposalFrequency: number; // Hari antara proposal (default: 5-10 hari)
@@ -38,20 +39,57 @@ class AIProposalGenerator {
   }
 
   /**
-   * Generate proposal untuk satu negara
+   * Generate proposal untuk satu negara (Asynchronous - via Python API)
    */
-  generateProposal(
+  async generateProposal(
     country: CountryProfile,
     allCountries: CountryProfile[],
     globalTension: number,
     activeProposalsByCountry: number = 0
-  ): GeneratedProposal | null {
+  ): Promise<GeneratedProposal | null> {
     // Cek apakah negara sudah punya terlalu banyak proposal aktif
     if (activeProposalsByCountry >= this.config.maxActiveProposalsPerCountry) {
       return null;
     }
 
-    // Tentukan tipe proposal berdasarkan kondisi negara
+    try {
+      // Coba panggil Python API
+      const response = await fetch(`${aiServiceConfig.baseURL}${aiServiceConfig.endpoints.generateProposal}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          country,
+          all_countries: allCountries,
+          global_tension: globalTension,
+          active_proposals_count: activeProposalsByCountry
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.proposal) {
+          // Map backend response models to frontend models if needed
+          // ProposerCountry -> proposerCountry, etc.
+          return {
+            type: data.proposal.type,
+            proposerCountry: data.proposal.proposer_country,
+            targetCountry: data.proposal.target_country,
+            proposalName: data.proposal.proposal_name,
+            description: data.proposal.description,
+            duration: data.proposal.duration,
+            subItem: data.proposal.sub_item,
+            reasoning: data.proposal.reasoning,
+            confidence: data.proposal.confidence,
+            priority: data.proposal.priority
+          };
+        }
+        return null; // Model returned no proposal
+      }
+    } catch (error) {
+      console.warn('AI Proposal Service Error:', error);
+    }
+
+    // Fallback: Tentukan tipe proposal berdasarkan kondisi negara (Logic Lokal)
     const proposalType = this._selectProposalType(country, globalTension);
     if (!proposalType) return null;
 
