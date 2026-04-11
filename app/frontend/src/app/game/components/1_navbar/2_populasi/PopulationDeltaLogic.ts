@@ -13,7 +13,6 @@ export interface PopulationMetrics {
   naturalDailyDelta: number;
   dailyTaxDelta: number;
   dailyPriceDelta: number;
-  healthScore: number;
   lifeExpectancy: number;
   avgTaxRate: number;
   avgPriceMult: number;
@@ -123,7 +122,7 @@ export function calculateDetailedPopulationMetrics(
 
   const dailyPriceDelta = Math.round(currentPopulation * priceGrowthRate);
 
-  // 4. Simulasi Kesehatan & Harapan Hidup (Dynamic Drift)
+  // 4. Simulasi Harapan Hidup (Monthly Dynamic)
   const rsBesarCount = (countryData.kesehatan?.rumah_sakit_besar || 0) + (buildingDeltas["rumah_sakit_besar"] || 0);
   const rsKecilCount = (countryData.kesehatan?.rumah_sakit_kecil || 0) + (buildingDeltas["rumah_sakit_kecil"] || 0);
   
@@ -133,34 +132,32 @@ export function calculateDetailedPopulationMetrics(
     .reduce((a, [_, count]) => a + count, 0);
   const factoryCount = baseFactories + deltaFactories;
 
-  // Variasi temporal (National Health Pulse)
-  const temporalHealthDrift = Math.sin(diffDays * 0.05) * 2.0;
-  // Dampak ekonomi (Inflasi tinggi = stres akses nutrisi & sanitasi)
-  const economicHealthModifier = (1.1 - avgPriceMult) * 4;
+  // Variasi Bulanan (Monthly Pulse) - Berubah setiap 30 hari
+  const monthIndex = Math.floor(diffDays / 30);
+  const monthlyPulse = Math.sin(monthIndex * 0.5) * 1.5;
+  // Variasi harian sangat halus (Daily Jitter)
+  const dailyJitter = Math.cos(diffDays * 0.1) * 0.2;
 
-  const healthScore = parseFloat(Math.min(100, Math.max(0,
-    (countryData.kesehatan?.indeks_kesehatan || 85) + 
-    (rsBesarCount * 2) + 
-    (rsKecilCount * 0.5) - 
-    (factoryCount * 0.1) + 
-    temporalHealthDrift + 
-    economicHealthModifier
-  )).toFixed(1));
+  // Dampak infrastruktur & ekonomi langsung ke Harapan Hidup
+  const infraImpact = (rsBesarCount * 0.4) + (rsKecilCount * 0.1) - (factoryCount * 0.02);
+  const econImpact = (1.1 - avgPriceMult) * 1.2;
 
-  // Life Expectancy reactive: dipengaruhi secara linear oleh kualitas kesehatan nasional
   const baseLifeExp = countryData.kesehatan?.harapan_hidup || 72;
-  const healthBonus = (healthScore - 75) / 5.0; // Tiap 5 poin di atas/bawah 75 merubah 1 tahun harapan hidup
-  const lifeExpectancy = parseFloat((baseLifeExp + healthBonus).toFixed(1));
+  const lifeExpectancy = parseFloat(Math.min(100, Math.max(0,
+    baseLifeExp + infraImpact + econImpact + monthlyPulse + dailyJitter
+  )).toFixed(1));
 
   // 5. Mesin Kelahiran & Kematian (Natural Dynamics)
   const baseBirthRate = 1.72; // Tahunan 1.72%
   const baseDeathRate = 0.68; // Tahunan 0.68%
-  const healthModifier = (healthScore - 72) / 100;
   
-  // Laju kelahiran diatur secara dinamis oleh kesehatan DAN kapasitas demografi produktif
-  const finalBirthRate = (baseBirthRate + (healthModifier * 0.1)) * reproIndex / 100;
-  // Laju kematian diatur oleh kesehatan DAN proporsi lansia
-  const finalDeathRate = (baseDeathRate - (healthModifier * 0.4)) * mortalityIndex / 100;
+  // Normalisasi lifeExpectancy terhadap standar global (Base ~75)
+  const lifeExpRatio = (lifeExpectancy - 75) / 100;
+  
+  // Laju kelahiran diatur secara dinamis oleh kualitas hidup DAN kapasitas demografi produktif
+  const finalBirthRate = (baseBirthRate + (lifeExpRatio * 0.15)) * reproIndex / 100;
+  // Laju kematian diatur oleh kualitas hidup DAN proporsi lansia
+  const finalDeathRate = (baseDeathRate - (lifeExpRatio * 0.6)) * mortalityIndex / 100;
 
   const dailyBirths = Math.round((currentPopulation * finalBirthRate) / 365);
   const dailyDeaths = Math.round((currentPopulation * finalDeathRate) / 365);
@@ -174,7 +171,6 @@ export function calculateDetailedPopulationMetrics(
     naturalDailyDelta,
     dailyTaxDelta,
     dailyPriceDelta,
-    healthScore,
     lifeExpectancy,
     avgTaxRate,
     avgPriceMult,

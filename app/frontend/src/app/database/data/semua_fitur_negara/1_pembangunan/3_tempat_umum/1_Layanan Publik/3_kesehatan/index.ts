@@ -19,7 +19,8 @@ export const kesehatanRate: Record<string, any> = {
     waktu_pembangunan: 45,
     biaya_pembangunan: 110000000,
     lowongan_kerja: 18000,
-    konsumsi_listrik: 850
+    konsumsi_listrik: 850,
+    efek: "Mengurangi jumlah kematian akibat pandemi dan epidemi sebesar 0.5%"
   },
   "12_rumah_sakit_kecil": {
     key: "12_rumah_sakit_kecil",
@@ -30,7 +31,8 @@ export const kesehatanRate: Record<string, any> = {
     waktu_pembangunan: 30,
     biaya_pembangunan: 45000000,
     lowongan_kerja: 4500,
-    konsumsi_listrik: 120
+    konsumsi_listrik: 120,
+    efek: "Mengurangi jumlah kematian akibat pandemi dan epidemi sebesar 0.3%"
   },
   "13_pusat_diagnostik": {
     key: "13_pusat_diagnostik",
@@ -41,6 +43,7 @@ export const kesehatanRate: Record<string, any> = {
     waktu_pembangunan: 15,
     biaya_pembangunan: 25000000,
     lowongan_kerja: 2500,
-    konsumsi_listrik: 75
+    konsumsi_listrik: 75,
+    efek: "Mengurangi jumlah kematian akibat pandemi dan epidemi sebesar 0.1%"
   },
 };

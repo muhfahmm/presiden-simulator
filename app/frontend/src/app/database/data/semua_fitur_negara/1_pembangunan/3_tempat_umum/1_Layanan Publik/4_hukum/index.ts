@@ -22,7 +22,8 @@ export const hukumRate: Record<string, any> = {
     waktu_pembangunan: 30,
     biaya_pembangunan: 85000000,
     lowongan_kerja: 5500,
-    konsumsi_listrik: 150
+    konsumsi_listrik: 150,
+    efek: "Mengurangi kriminalitas 0.5%"
   },
   "15_legal_aid": {
     key: "15_legal_aid",
@@ -33,6 +34,7 @@ export const hukumRate: Record<string, any> = {
     waktu_pembangunan: 15,
     biaya_pembangunan: 25000000,
     lowongan_kerja: 1200,
-    konsumsi_listrik: 45
+    konsumsi_listrik: 45,
+    efek: "Mengurangi kriminalitas 0.3%"
   },
 };

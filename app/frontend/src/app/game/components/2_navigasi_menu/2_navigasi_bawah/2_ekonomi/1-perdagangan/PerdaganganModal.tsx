@@ -18,6 +18,8 @@ import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inbox
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
 import { countries } from "@/app/database/data/negara/benua/index"
+import { gameStorage } from "@/app/game/gamestorage"
+
 
 import {
   produkIndustriRate,
@@ -154,6 +156,43 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   const [selectedTradePartner, setSelectedTradePartner] = useState<string | null>(null);
   const [tradeType, setTradeType] = useState<"impor" | "ekspor" | "histori" | "berita">("impor");
   const [historiType, setHistoriType] = useState<"impor" | "ekspor">("impor");
+  const [logisticsSpeedup, setLogisticsSpeedup] = useState(0);
+
+  // Logic to calculate Logistics Speedup
+  const calculateLogisticsSpeedup = () => {
+    const sessionS = gameStorage.getSession() as any;
+    const countryNameS = sessionS?.country || "Indonesia";
+    const countryS = countries.find(c => 
+      c.name_id === countryNameS || 
+      c.name_en === countryNameS || 
+      (c as any).id === countryNameS ||
+      (c as any).id === Number(countryNameS)
+    ) || countries[0];
+
+    const deltas = buildingStorage.getData().buildingDeltas || {};
+    
+    const speedupFactors: Record<string, { factor: number, baseKey: string }> = {
+      "6_pelabuhan_laut": { factor: 0.5, baseKey: "pelabuhan" },
+      "7_bandara": { factor: 0.3, baseKey: "bandara" },
+      "8_helipad": { factor: 0.1, baseKey: "helipad" }
+    };
+
+    let totalSpeedup = 0;
+    Object.entries(speedupFactors).forEach(([key, config]) => {
+      const baseCount = (countryS.infrastruktur as any)?.[config.baseKey] || 0;
+      const deltaCount = (deltas[key] || 0) as number;
+      totalSpeedup += (baseCount + deltaCount) * config.factor;
+    });
+
+    setLogisticsSpeedup(Math.min(90, totalSpeedup));
+  };
+
+  useEffect(() => {
+    calculateLogisticsSpeedup();
+    window.addEventListener("building_storage_updated", calculateLogisticsSpeedup);
+    return () => window.removeEventListener("building_storage_updated", calculateLogisticsSpeedup);
+  }, []);
+
 
   // Helper to get formatted name/ID for database lookups
   const getCountryKey = (name: string) => name.toLowerCase().replace(/ /g, "_");
@@ -801,6 +840,39 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                   Berita
                 </button>
               </div>
+
+              {/* Logistics Efficiency Summary Card */}
+              <div className="p-6 rounded-[2rem] bg-zinc-950/40 border border-zinc-800/50 backdrop-blur-md relative overflow-hidden group hover:border-blue-500/30 transition-all duration-700 shadow-2xl">
+                <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                   <Navigation className="h-24 w-24 text-blue-500" />
+                </div>
+                
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+                   <div className="space-y-1">
+                      <h3 className="text-[10px] font-black text-blue-500 uppercase tracking-[0.3em] italic mb-1">Infrastruktur Global</h3>
+                      <h2 className="text-lg font-black text-white uppercase tracking-tight italic flex items-center gap-2">
+                         Efisiensi Logistik Internasional
+                      </h2>
+                      <p className="text-[9px] text-zinc-500 font-bold uppercase tracking-wider max-w-sm leading-relaxed">
+                         Bonus kecepatan pengiriman berdasarkan jumlah Pelabuhan, Bandara, dan Fasilitas Logistik lainnya.
+                      </p>
+                   </div>
+                   
+                   <div className="flex flex-col items-end gap-2 shrink-0">
+                      <div className="flex items-baseline gap-2">
+                         <span className="text-3xl font-black text-blue-400 italic tabular-nums">+{logisticsSpeedup.toFixed(1)}%</span>
+                         <span className="text-[10px] font-bold text-blue-500/50 uppercase">Speedup</span>
+                      </div>
+                      <div className="w-48 h-1.5 bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/50">
+                        <div 
+                          className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 shadow-[0_0_15px_rgba(37,99,235,0.4)] transition-all duration-[1500ms] ease-out"
+                          style={{ width: `${(logisticsSpeedup / 90) * 100}%` }}
+                        />
+                      </div>
+                   </div>
+                </div>
+              </div>
+
 
               {!selectedTradePartner && tradeType !== "histori" && tradeType !== "berita" ? (
                 <div className="flex-1 flex flex-col items-center justify-center space-y-6 animate-in fade-in duration-700">

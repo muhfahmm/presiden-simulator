@@ -594,17 +594,7 @@ function BuildingCard({ item, onBuild, construction }: any) {
   const currentDate = getStoredGameDate().getTime();
   const progress = construction ? calculateConstructionProgress(construction.startDate, construction.endDate, currentDate) : null;
 
-  // 6-month workforce occupancy
-  const diffTime = Math.abs(currentDate - INITIAL_GAME_DATE.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  const sixMonthIndex = Math.floor(diffDays / 180);
-  const nextUpdateMs = INITIAL_GAME_DATE.getTime() + (sixMonthIndex + 1) * 180 * 24 * 60 * 60 * 1000;
-  const nextUpdateDate = new Date(nextUpdateMs);
-  const nextDateStr = `${nextUpdateDate.getDate().toString().padStart(2, '0')}-${(nextUpdateDate.getMonth() + 1).toString().padStart(2, '0')}-${nextUpdateDate.getFullYear()}`;
-  const seed = (sixMonthIndex + (item.label?.length || 0)) % 100;
-  const occupancyPercentage = 0.75 + (seed % 20) / 100;
-  const totalPositions = (item.lowongan_kerja || 0) * (item.count || 0);
-  const filledPositions = Math.floor(totalPositions * occupancyPercentage);
+
 
   return (
     <div className={`group relative flex flex-col p-6 rounded-[32px] border transition-all duration-300 overflow-hidden ${
@@ -643,24 +633,7 @@ function BuildingCard({ item, onBuild, construction }: any) {
 
             <div className="grid gap-2">
 
-              <div className="flex items-center justify-between p-3 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400"><Users size={14} /></div>
-                  <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">Personel</span>
-                </div>
-                <span className="text-[14px] font-black text-blue-400">+{(item.lowongan_kerja || 0).toLocaleString('id-ID')} <span className="text-[9px] text-blue-500/50 italic opacity-80">/ UNIT</span></span>
-              </div>
 
-              <div className="flex items-center justify-between p-3 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-2 bg-cyan-500/10 rounded-lg text-cyan-400"><Briefcase size={14} /></div>
-                  <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">Okupansi</span>
-                </div>
-                <div className="flex flex-col items-end">
-                  <span className="text-[14px] font-black text-cyan-400">{filledPositions.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-400">/ {totalPositions.toLocaleString('id-ID')}</span></span>
-                  <span className="text-[8px] font-black text-cyan-500 uppercase tracking-widest leading-none italic opacity-90">UPDATE: {nextDateStr}</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -697,14 +670,7 @@ function BuildingCard({ item, onBuild, construction }: any) {
           </h4>
 
           <div className="flex flex-col gap-2.5 flex-1">
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-blue-500/10 rounded-lg">
-                <Users size={12} className="text-blue-400" />
-              </div>
-              <span className="text-[12px] font-bold text-blue-400/90 italic">
-                Personel: +{(item.lowongan_kerja || 0).toLocaleString('id-ID')} / unit
-              </span>
-            </div>
+
 
 
             {item.konsumsi_listrik > 0 && (

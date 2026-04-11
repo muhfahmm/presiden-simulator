@@ -17,7 +17,8 @@ export const komersialRate: Record<string, any> = {
     waktu_pembangunan: 50,
     biaya_pembangunan: 65000000,
     lowongan_kerja: 25000,
-    konsumsi_listrik: 650
+    konsumsi_listrik: 650,
+    efek: "Meningkatkan kas negara"
   },
   "24_hotel": {
     key: "24_hotel",
@@ -28,7 +29,8 @@ export const komersialRate: Record<string, any> = {
     waktu_pembangunan: 35,
     biaya_pembangunan: 85000000,
     lowongan_kerja: 8500,
-    konsumsi_listrik: 350
+    konsumsi_listrik: 350,
+    efek: "Meningkatkan kas negara"
   },
   "25_pusat_grosir_tekstil": {
     key: "25_pusat_grosir_tekstil",
@@ -39,6 +41,7 @@ export const komersialRate: Record<string, any> = {
     waktu_pembangunan: 20,
     biaya_pembangunan: 35000000,
     lowongan_kerja: 12000,
-    konsumsi_listrik: 150
+    konsumsi_listrik: 150,
+    efek: "Meningkatkan kas negara"
   },
 };

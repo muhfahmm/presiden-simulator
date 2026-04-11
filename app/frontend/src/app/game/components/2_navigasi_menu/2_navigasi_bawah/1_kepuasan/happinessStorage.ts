@@ -9,6 +9,7 @@ import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_baw
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 import { BUDDHA_SATISFACTION_DAILY_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/6_buddha/1_plus/plus";
 import { KONGHUCU_PRESS_FREEDOM_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/9_konghucu/2_minus/minus";
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 
 export interface HappinessStats {
   value: number; // 0-100
@@ -255,6 +256,41 @@ export const happinessStorage = {
       totalDailyDelta += 0.0005; // 0.05% boost
     }
 
+    // 11. Infrastructure & Logistics Satisfaction Impact
+    const sessionS = gameStorage.getSession() as any;
+    const countryNameS = sessionS?.country || "Indonesia";
+    const countryS = countries.find(c => 
+      c.name_id === countryNameS || 
+      c.name_en === countryNameS || 
+      (c as any).id === countryNameS ||
+      (c as any).id === Number(countryNameS)
+    ) || countries[0];
+
+    
+    const buildingData = buildingStorage.getData();
+    const deltas = buildingData.buildingDeltas || {};
+    
+    const infraSatsFactors: Record<string, { factor: number, baseKey: string }> = {
+      "1_jalur_sepeda": { factor: 0.01, baseKey: "jalur_sepeda" },
+      "2_jalan_tol": { factor: 0.03, baseKey: "jalan_raya" },
+      "3_terminal_bus": { factor: 0.05, baseKey: "terminal_bus" },
+      "4_jalur_kereta": { factor: 0.05, baseKey: "stasiun_kereta_api" },
+      "5_kereta_bawah_tanah": { factor: 0.01, baseKey: "kereta_bawah_tanah" }
+    };
+
+    let infraBonus = 0;
+    Object.entries(infraSatsFactors).forEach(([key, config]) => {
+      const baseCount = (countryS.infrastruktur as any)?.[config.baseKey] || 0;
+      const deltaCount = (deltas[key] || 0) as number;
+      infraBonus += (baseCount + deltaCount) * config.factor;
+    });
+    
+    // Cap infra bonus to prevent infinite satisfaction
+    const cappedInfraBonus = Math.min(2.5, infraBonus); // Max +2.5% per day from infra
+    totalDailyDelta += cappedInfraBonus;
+
+
+
     // Jika sudah di zona merah (< 40), efeknya dilipatduakan
     const isRedZone = stats.value < 40;
     if (isRedZone && totalDailyDelta < 0) totalDailyDelta *= 2;
@@ -272,6 +308,8 @@ export const happinessStorage = {
       reason = `Krisis Publik: Kepuasan merosot tajam ke ${newValue}% karena beban harga & pajak yang tak tertahankan.`;
     } else if (totalDailyDelta < 0) {
       reason = `Tekanan ekonomi (pajak/harga) menekan kepuasan rakyat ke ${newValue}%.`;
+    } else if (infraBonus > 0) {
+      reason = `Infrastruktur yang memadai (transaksi & transportasi) menaikkan kepuasan rakyat menjadi ${newValue}%.`;
     } else {
       reason = `Kebijakan ekonomi yang ringan perlahan memperbaiki kepuasan rakyat menjadi ${newValue}%.`;
     }

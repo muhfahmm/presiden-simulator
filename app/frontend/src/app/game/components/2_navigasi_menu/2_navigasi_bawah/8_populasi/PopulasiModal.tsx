@@ -56,7 +56,6 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
     naturalDailyDelta,
     dailyTaxDelta,
     dailyPriceDelta,
-    healthScore,
     lifeExpectancy,
     taxGrowthRate,
     priceGrowthRate,
@@ -369,31 +368,32 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
 
-              {/* QUALITY OF LIFE Card */}
-              <div className="p-6 rounded-3xl bg-zinc-900 border border-zinc-800/50 shadow-xl group hover:border-rose-500/30 transition-all relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-rose-500/50" />
-                <div className="flex items-start justify-between mb-4">
-                  <div className="p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400">
-                    <Heart className="h-5 w-5" />
+              {/* LIFE EXPECTANCY Card */}
+              <div className="p-10 rounded-[3rem] bg-zinc-900 border border-zinc-800/50 shadow-xl group hover:border-rose-500/30 transition-all relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1.5 h-full bg-rose-500" />
+                <div className="flex items-start justify-between mb-8">
+                  <div className="p-4 rounded-[2rem] bg-rose-500/10 border border-rose-500/20 text-rose-400">
+                    <Heart className="h-8 w-8" />
                   </div>
                   <div className="text-right">
-                    <span className="text-3xl font-black text-white italic tabular-nums">{healthScore.toFixed(1)}</span>
-                    <p className="text-[11px] font-black text-zinc-300 uppercase tracking-widest mt-1">Health Score</p>
+                    <span className="text-5xl font-black text-white italic tabular-nums tracking-tighter transition-all duration-700">{lifeExpectancy.toFixed(1)}</span>
+                    <p className="text-xs font-black text-zinc-500 uppercase tracking-[0.3em] mt-2 italic">Harapan Hidup (THN)</p>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className="p-3 rounded-2xl bg-zinc-950/50 border border-zinc-800">
-                    <p className="text-[11px] font-black text-zinc-300 uppercase tracking-widest mb-1 italic">Harapan Hidup</p>
-                    <p className="text-lg font-black text-rose-400 italic tabular-nums">{lifeExpectancy.toFixed(1)} THN</p>
-                  </div>
-                  <div className="p-3 rounded-2xl bg-zinc-950/50 border border-zinc-800">
-                    <p className="text-[11px] font-black text-zinc-300 uppercase tracking-widest mb-1 italic">Status Medis</p>
-                    <p className="text-lg font-black text-white italic">
-                      {healthScore > 90 ? 'PRIMA' : healthScore > 75 ? 'STABIL' : healthScore > 60 ? 'WASPADA' : 'KRITIS'}
+                
+                <div className="flex items-center justify-between p-5 rounded-3xl bg-zinc-950/50 border border-zinc-800">
+                  <div className="flex flex-col">
+                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 italic">Status Nasional</p>
+                    <p className="text-xl font-black text-white italic tracking-wide">
+                      {lifeExpectancy >= 80 ? 'PRIMA' : lifeExpectancy >= 75 ? 'STABIL' : lifeExpectancy >= 70 ? 'WASPADA' : 'KRITIS'}
                     </p>
                   </div>
+                  <div className={`px-4 py-2 rounded-2xl border transition-all duration-500 ${lifeExpectancy >= 75 ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 'bg-rose-500/10 border-rose-500/20 text-rose-400 shadow-[0_0_15px_rgba(225,29,72,0.1)]'}`}>
+                    <span className="text-[10px] font-black uppercase tracking-widest">
+                      {lifeExpectancy >= 83 ? 'ELITE' : lifeExpectancy >= 75 ? 'HEALTHY' : 'CONCERN'}
+                    </span>
+                  </div>
                 </div>
-                <h4 className="text-[12px] font-black text-zinc-300 uppercase tracking-[0.3em] mt-2">Kualitas Hidup</h4>
               </div>
 
               {/* HUMAN CAPITAL Card */}

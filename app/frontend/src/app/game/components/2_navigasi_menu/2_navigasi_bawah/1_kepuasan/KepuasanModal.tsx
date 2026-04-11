@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import { 
   X, Users, Info, Smile, ShoppingCart, Receipt, CalendarDays, Flame, Activity, 
   Zap, Target, Eye, Building2, Briefcase, GraduationCap, Home, HeartPulse, 
-  Shield, Globe, Coins, Droplets
+  Shield, Globe, Coins, Droplets, Navigation, Truck, Ship, Plane, TrainFront
 } from "lucide-react";
 import { happinessStorage, HappinessStats } from "./happinessStorage";
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
@@ -29,11 +30,14 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
     window.addEventListener("happiness_updated", handleUpdate);
     window.addEventListener("price_updated", handleUpdate);
     window.addEventListener("tax_updated", handleUpdate);
+    window.addEventListener("building_storage_updated", handleUpdate);
     return () => {
       window.removeEventListener("happiness_updated", handleUpdate);
       window.removeEventListener("price_updated", handleUpdate);
       window.removeEventListener("tax_updated", handleUpdate);
+      window.removeEventListener("building_storage_updated", handleUpdate);
     };
+
   }, []);
 
   if (!isOpen) return null;
@@ -66,6 +70,45 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
     return -0.5;
   };
   const dailyPriceDelta = computeDailyPriceDelta();
+  
+  // Hitung Bonus Infrastruktur & Logistik
+  const getInfraStats = () => {
+    const sessionS = gameStorage.getSession() as any;
+    const countryNameS = sessionS?.country || "Indonesia";
+    const countryS = countries.find(c => 
+      c.name_id === countryNameS || 
+      c.name_en === countryNameS || 
+      (c as any).id === countryNameS ||
+      (c as any).id === Number(countryNameS)
+    ) || countries[0];
+
+    const bData = buildingStorage.getData();
+
+    const deltas = bData.buildingDeltas || {};
+    
+    const satisfactionFactors: Record<string, { factor: number, baseKey: string }> = {
+      "1_jalur_sepeda": { factor: 0.01, baseKey: "jalur_sepeda" },
+      "2_jalan_tol": { factor: 0.03, baseKey: "jalan_raya" },
+      "3_terminal_bus": { factor: 0.05, baseKey: "terminal_bus" },
+      "4_jalur_kereta": { factor: 0.05, baseKey: "stasiun_kereta_api" },
+      "5_kereta_bawah_tanah": { factor: 0.01, baseKey: "kereta_bawah_tanah" }
+    };
+
+    let totalSatisfactionImpact = 0;
+    Object.entries(satisfactionFactors).forEach(([key, config]) => {
+      const baseCount = (countryS.infrastruktur as any)?.[config.baseKey] || 0;
+      const deltaCount = (deltas[key] || 0) as number;
+      totalSatisfactionImpact += (baseCount + deltaCount) * config.factor;
+    });
+
+    return { 
+      satisfactionImpact: Math.min(2.5, totalSatisfactionImpact)
+    };
+
+  };
+
+
+  const infraStats = getInfraStats();
 
   const isRedZone = happiness < 40;
   
@@ -120,7 +163,7 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
         </div>
 
         {/* Content */}
-        <div className="p-8 space-y-8">
+        <div className="p-8 space-y-8 flex-1 overflow-y-auto no-scrollbar">
           
           {/* Main Stat Card */}
           <div className="relative p-10 rounded-[2.5rem] bg-zinc-950 border border-zinc-800/50 overflow-hidden group">
@@ -204,6 +247,40 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
               {isRedZone && <div className="text-[8px] font-black text-rose-500 uppercase tracking-wider">Zona Merah ×1.5</div>}
             </div>
           </div>
+
+          {/* Sektor Infrastruktur & Mobilitas */}
+          <div className="p-8 rounded-[2rem] bg-zinc-900/30 border border-zinc-800/50 relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-6 opacity-5">
+               <Navigation className="h-24 w-24 text-cyan-500" />
+            </div>
+            
+            <h3 className="text-sm font-black text-white uppercase tracking-[0.2em] italic mb-6 flex items-center gap-3">
+              <div className="p-1.5 bg-cyan-500/10 rounded-lg text-cyan-500"><TrainFront size={16} /></div>
+              Sektor Infrastruktur & Mobilitas
+            </h3>
+
+            <div className="grid grid-cols-1 relative z-10">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-[10px] font-black text-zinc-500 uppercase tracking-widest">
+                  <Navigation size={12} /> Mobilitas Rakyat (Infrastruktur Darat)
+                </div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-2xl font-black text-emerald-400 italic">+{infraStats.satisfactionImpact.toFixed(2)}</span>
+                  <span className="text-[10px] font-bold text-emerald-500/50 uppercase">Rating / Hari</span>
+                </div>
+                <div className="h-1.5 w-full bg-zinc-800 rounded-full overflow-hidden">
+                   <div 
+                     className="h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-all duration-1000" 
+                     style={{ width: `${(infraStats.satisfactionImpact / 2.5) * 100}%` }}
+                   />
+                </div>
+                <p className="text-[9px] text-zinc-600 font-bold uppercase tracking-tighter leading-snug max-w-sm">
+                  Bonus harian dari Jalur Sepeda, Jalan Raya, Bus, dan Kereta Api.
+                </p>
+              </div>
+            </div>
+          </div>
+
 
 
 

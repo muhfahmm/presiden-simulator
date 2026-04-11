@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Hammer, ChevronLeft, Coins, Calculator, Box, MapPin, Activity, CheckCircle2, AlertTriangle, Clock } from "lucide-react";
+import { Hammer, ChevronLeft, Coins, Calculator, Box, MapPin, Activity, CheckCircle2, AlertTriangle, Clock, TrendingUp } from "lucide-react";
+
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import { gameStorage } from "@/app/game/gamestorage";
+import { countries } from "@/app/database/data/negara/benua/index";
 import { historiImportStorage } from "./HistoriImportStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { tradeStorage } from "../../TradeStorage";
 import { importStockStorage } from "../../ImportStockStorage";
 import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 
 interface ImporEksekusiProps {
   selectedKey: string;
@@ -70,22 +74,65 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
   const totalCost = quantity * basePrice;
   const isBudgetInsufficient = totalCost > budgetData.anggaran;
 
+  const getLogisticsSpeedup = () => {
+    const sessionS = gameStorage.getSession() as any;
+    const countryNameS = sessionS?.country || "Indonesia";
+    const countryS = countries.find(c => 
+      c.name_id === countryNameS || 
+      c.name_en === countryNameS || 
+      (c as any).id === countryNameS ||
+      (c as any).id === Number(countryNameS)
+    ) || countries[0];
+
+    const buildingData = buildingStorage.getData();
+    const deltas = buildingData.buildingDeltas || {};
+    
+    // Factors in percentage speedup per unit
+    const speedupFactors: Record<string, { factor: number, baseKey: string }> = {
+      "6_pelabuhan_laut": { factor: 0.5, baseKey: "pelabuhan" },
+      "7_bandara": { factor: 0.3, baseKey: "bandara" },
+      "8_helipad": { factor: 0.1, baseKey: "helipad" }
+    };
+    
+    let totalSpeedup = 0;
+    Object.entries(speedupFactors).forEach(([key, config]) => {
+      const baseCount = (countryS.infrastruktur as any)?.[config.baseKey] || 0;
+      const deltaCount = (deltas[key] || 0) as number;
+      totalSpeedup += (baseCount + deltaCount) * config.factor;
+    });
+
+    return Math.min(90, totalSpeedup);
+  };
+
   const calculateShippingTime = (partner: string | null) => {
+    const totalSpeedup = getLogisticsSpeedup();
+    // Limit speedup to 90% to avoid instant/negative delivery
+    const speedupMultiplier = 1 - (totalSpeedup / 100);
+
+
+
     if (!partner) return "3-5 Hari";
+    
+    const calculateFinalDays = (min: number, max: number) => {
+        const finalMin = Math.max(1, Math.floor(min * speedupMultiplier));
+        const finalMax = Math.max(1, Math.floor(max * speedupMultiplier));
+        return finalMin === finalMax ? `${finalMin} Hari` : `${finalMin}-${finalMax} Hari`;
+    };
     
     // ASEAN / Close neighbors
     const asean = ["Singapura", "Malaysia", "Thailand", "Filipina", "Brunei", "Vietnam", "Laos", "Kamboja", "Myanmar", "Timor Leste"];
-    if (asean.includes(partner)) return "2-3 Hari";
+    if (asean.includes(partner)) return calculateFinalDays(2, 3);
     
-    if (asiaCountries.some(c => c.name_id === partner || c.name_en === partner)) return "5-7 Hari";
-    if (oceaniaCountries.some(c => c.name_id === partner || c.name_en === partner)) return "7-10 Hari";
-    if (eropaCountries.some(c => c.name_id === partner || c.name_en === partner)) return "14-20 Hari";
-    if (afrikaCountries.some(c => c.name_id === partner || c.name_en === partner)) return "18-25 Hari";
-    if (naCountries.some(c => c.name_id === partner || c.name_en === partner)) return "21-28 Hari";
-    if (saCountries.some(c => c.name_id === partner || c.name_en === partner)) return "25-35 Hari";
+    if (asiaCountries.some(c => c.name_id === partner || c.name_en === partner)) return calculateFinalDays(5, 7);
+    if (oceaniaCountries.some(c => c.name_id === partner || c.name_en === partner)) return calculateFinalDays(7, 10);
+    if (eropaCountries.some(c => c.name_id === partner || c.name_en === partner)) return calculateFinalDays(14, 20);
+    if (afrikaCountries.some(c => c.name_id === partner || c.name_en === partner)) return calculateFinalDays(18, 25);
+    if (naCountries.some(c => c.name_id === partner || c.name_en === partner)) return calculateFinalDays(21, 28);
+    if (saCountries.some(c => c.name_id === partner || c.name_en === partner)) return calculateFinalDays(25, 35);
     
-    return "10-15 Hari"; // Default
+    return calculateFinalDays(10, 15); // Default
   };
+
 
   const handleConfirm = () => {
     if (isBudgetInsufficient) return;
@@ -247,13 +294,30 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
                 />
               </div>
 
-                <div className="p-4 bg-zinc-950/30 rounded-2xl border border-zinc-900 flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2">
-                    <Clock size={14} className="text-blue-500" />
-                    <p className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">Estimasi Waktu Pengiriman</p>
+                <div className="p-4 bg-zinc-950/30 rounded-2xl border border-zinc-900 flex flex-col gap-3 mb-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Clock size={14} className="text-blue-500" />
+                      <p className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">Estimasi Waktu Pengiriman</p>
+                    </div>
+                    <p className="text-xs font-black text-blue-400 italic uppercase">{calculateShippingTime(selectedTradePartner)}</p>
                   </div>
-                  <p className="text-xs font-black text-blue-400 italic uppercase">{calculateShippingTime(selectedTradePartner)}</p>
+                  
+                  {getLogisticsSpeedup() > 0 && (
+                    <div className="flex items-center justify-between pt-2 border-t border-zinc-900">
+                      <div className="flex items-center gap-2">
+                         <div className="p-1 bg-emerald-500/10 rounded-md">
+                           <TrendingUp size={10} className="text-emerald-500" />
+                         </div>
+                         <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Logistics Speedup Bonus</p>
+                      </div>
+                      <span className="text-[10px] font-black text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20 italic">
+                        +{getLogisticsSpeedup().toFixed(1)}% Faster
+                      </span>
+                    </div>
+                  )}
                 </div>
+
 
                 <div className="p-6 bg-zinc-950/50 rounded-3xl border border-zinc-800/80 space-y-1">
                 <p className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">Total Estimasi Nilai</p>

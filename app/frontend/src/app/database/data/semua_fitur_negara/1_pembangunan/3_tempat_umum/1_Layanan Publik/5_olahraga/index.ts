@@ -22,7 +22,8 @@ export const olahragaRate: Record<string, any> = {
     waktu_pembangunan: 7,
     biaya_pembangunan: 12000000,
     lowongan_kerja: 600,
-    konsumsi_listrik: 45
+    konsumsi_listrik: 45,
+    efek: "Meningkatkan kas negara"
   },
   "17_sirkuit_balap": {
     key: "17_sirkuit_balap",
@@ -33,7 +34,8 @@ export const olahragaRate: Record<string, any> = {
     waktu_pembangunan: 40,
     biaya_pembangunan: 95000000,
     lowongan_kerja: 8000,
-    konsumsi_listrik: 350
+    konsumsi_listrik: 350,
+    efek: "Meningkatkan kas negara"
   },
   "18_stadium_int": {
     key: "18_stadium_int",
@@ -44,7 +46,8 @@ export const olahragaRate: Record<string, any> = {
     waktu_pembangunan: 60,
     biaya_pembangunan: 130000000,
     lowongan_kerja: 25000,
-    konsumsi_listrik: 950
+    konsumsi_listrik: 950,
+    efek: "Meningkatkan kas negara"
   },
   "19_gym_center": {
     key: "19_gym_center",
@@ -55,7 +58,8 @@ export const olahragaRate: Record<string, any> = {
     waktu_pembangunan: 15,
     biaya_pembangunan: 25000000,
     lowongan_kerja: 1500,
-    konsumsi_listrik: 85
+    konsumsi_listrik: 85,
+    efek: "Meningkatkan kas negara"
   },
   "20_lapangan_golf": {
     key: "20_lapangan_golf",
@@ -66,7 +70,8 @@ export const olahragaRate: Record<string, any> = {
     waktu_pembangunan: 25,
     biaya_pembangunan: 55000000,
     lowongan_kerja: 3500,
-    konsumsi_listrik: 120
+    konsumsi_listrik: 120,
+    efek: "Meningkatkan kas negara"
   },
   "21_esports_arena": {
     key: "21_esports_arena",
@@ -77,7 +82,8 @@ export const olahragaRate: Record<string, any> = {
     waktu_pembangunan: 30,
     biaya_pembangunan: 75000000,
     lowongan_kerja: 5000,
-    konsumsi_listrik: 450
+    konsumsi_listrik: 450,
+    efek: "Meningkatkan kas negara"
   },
   "22_gokart_circuit": {
     key: "22_gokart_circuit",
@@ -88,6 +94,7 @@ export const olahragaRate: Record<string, any> = {
     waktu_pembangunan: 10,
     biaya_pembangunan: 18000000,
     lowongan_kerja: 1200,
-    konsumsi_listrik: 120
+    konsumsi_listrik: 120,
+    efek: "Meningkatkan kas negara"
   },
 };

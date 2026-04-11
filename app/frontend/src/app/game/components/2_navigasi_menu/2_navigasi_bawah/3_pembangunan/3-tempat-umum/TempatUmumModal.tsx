@@ -761,18 +761,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
   const currentDate = getStoredGameDate().getTime();
   const progress = construction ? calculateConstructionProgress(construction.startDate, construction.endDate, currentDate) : null;
 
-  // 6-month workforce occupancy (deterministic)
-  const diffTime = Math.abs(currentDate - INITIAL_GAME_DATE.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  const sixMonthIndex = Math.floor(diffDays / 180);
-  const nextUpdateMs = INITIAL_GAME_DATE.getTime() + (sixMonthIndex + 1) * 180 * 24 * 60 * 60 * 1000;
-  const nextUpdateDate = new Date(nextUpdateMs);
-  const nextDateStr = `${nextUpdateDate.getDate().toString().padStart(2, '0')}-${(nextUpdateDate.getMonth() + 1).toString().padStart(2, '0')}-${nextUpdateDate.getFullYear()}`;
-  const seed = (sixMonthIndex + (item.label?.length || 0)) % 100;
-  const occupancyPercentage = 0.65 + (seed % 30) / 100;
-  const lowongan = item.lowongan_kerja || 0;
-  const totalVacancies = lowongan * (item.count || 0);
-  const filledVacancies = Math.floor(totalVacancies * occupancyPercentage);
+
 
   return (
     <div className={`bg-zinc-900/40 border ${progress ? 'border-cyan-500/30 bg-cyan-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative overflow-hidden h-full min-h-[380px]`}>
@@ -804,6 +793,15 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
               <h4 className="text-xl font-black text-amber-400 uppercase italic leading-tight tracking-tight">{item.label}</h4>
             </div>
 
+            {item.efek && (
+              <div className="flex flex-col gap-2 p-4 rounded-2xl bg-cyan-500/5 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.1)]">
+                <div className="flex items-center gap-2">
+                  <div className="p-1 px-2 rounded-md bg-cyan-600/20 text-cyan-400 text-[9px] font-black uppercase tracking-widest border border-cyan-500/30">Dampak Strategis</div>
+                </div>
+                <p className="text-sm font-black text-white italic leading-tight leading-relaxed">{item.efek}</p>
+              </div>
+            )}
+
             <div className="grid gap-2">
 
               {item.konsumsi_listrik > 0 && (
@@ -816,34 +814,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
                 </div>
               )}
 
-              {lowongan > 0 && (
-                <>
-                  <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                    <div className="flex items-center gap-2.5">
-                      <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-400">
-                        <Users2 size={12} />
-                      </div>
-                      <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Lowongan</span>
-                    </div>
-                    <span className="text-[14px] font-black text-blue-400">+{lowongan.toLocaleString('id-ID')} <span className="text-[9px] text-blue-500/50 italic opacity-80">/ UNIT</span></span>
-                  </div>
 
-                  <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                    <div className="flex items-center gap-2.5">
-                      <div className="p-1.5 bg-cyan-500/10 rounded-lg text-cyan-500">
-                        <Briefcase size={12} />
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Okupansi Tenaga Kerja</span>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-end">
-                      <span className="text-[14px] font-black text-cyan-400">{filledVacancies.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-400">/ {totalVacancies.toLocaleString('id-ID')}</span></span>
-                      <span className="text-[8px] font-black text-cyan-500 uppercase tracking-widest leading-none italic opacity-90">UPDATE: {nextDateStr}</span>
-                    </div>
-                  </div>
-                </>
-              )}
             </div>
           </div>
 
@@ -929,16 +900,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
             </>
           )}
 
-          {lowongan > 0 && (
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-blue-500/10 rounded-lg">
-                <Users2 size={12} className="text-blue-400" />
-              </div>
-              <span className="text-[12px] font-bold text-blue-400/80">
-                Lowongan: {lowongan.toLocaleString('id-ID')} Jiwa/unit
-              </span>
-            </div>
-          )}
+
 
           {item.capacity > 0 && (
             <div className="flex items-center gap-2.5">

@@ -25,7 +25,8 @@ export const pendidikanRate: Record<string, any> = {
     waktu_pembangunan: 5,
     biaya_pembangunan: 8000000,
     lowongan_kerja: 800,
-    konsumsi_listrik: 15
+    konsumsi_listrik: 15,
+    efek: "Mempercepat waktu penelitian sebesar 0.1%"
   },
   "2_dasar": {
     key: "2_dasar",
@@ -36,7 +37,8 @@ export const pendidikanRate: Record<string, any> = {
     waktu_pembangunan: 7,
     biaya_pembangunan: 12000000,
     lowongan_kerja: 1500,
-    konsumsi_listrik: 25
+    konsumsi_listrik: 25,
+    efek: "Mempercepat waktu penelitian sebesar 0.3%"
   },
   "3_menengah": {
     key: "3_menengah",
@@ -47,7 +49,8 @@ export const pendidikanRate: Record<string, any> = {
     waktu_pembangunan: 10,
     biaya_pembangunan: 18000000,
     lowongan_kerja: 3500,
-    konsumsi_listrik: 45
+    konsumsi_listrik: 45,
+    efek: "Mempercepat waktu penelitian sebesar 0.5%"
   },
   "4_lanjutan": {
     key: "4_lanjutan",
@@ -58,7 +61,8 @@ export const pendidikanRate: Record<string, any> = {
     waktu_pembangunan: 12,
     biaya_pembangunan: 25000000,
     lowongan_kerja: 5500,
-    konsumsi_listrik: 80
+    konsumsi_listrik: 80,
+    efek: "Mempercepat waktu penelitian sebesar 0.7%"
   },
   "5_universitas": {
     key: "5_universitas",
@@ -69,7 +73,8 @@ export const pendidikanRate: Record<string, any> = {
     waktu_pembangunan: 40,
     biaya_pembangunan: 95000000,
     lowongan_kerja: 15000,
-    konsumsi_listrik: 350
+    konsumsi_listrik: 350,
+    efek: "Mempercepat waktu penelitian sebesar 0.9%"
   },
   "6_lembaga_pendidikan": {
     key: "6_lembaga_pendidikan",
@@ -80,7 +85,8 @@ export const pendidikanRate: Record<string, any> = {
     waktu_pembangunan: 15,
     biaya_pembangunan: 40000000,
     lowongan_kerja: 4500,
-    konsumsi_listrik: 150
+    konsumsi_listrik: 150,
+    efek: "Mempercepat waktu penelitian sebesar 0.12%"
   },
   "7_laboratorium": {
     key: "7_laboratorium",
@@ -91,7 +97,8 @@ export const pendidikanRate: Record<string, any> = {
     waktu_pembangunan: 30,
     biaya_pembangunan: 75000000,
     lowongan_kerja: 5500,
-    konsumsi_listrik: 450
+    konsumsi_listrik: 450,
+    efek: "Mempercepat waktu penelitian sebesar 0.15%"
   },
   "8_observatorium": {
     key: "8_observatorium",
@@ -102,7 +109,8 @@ export const pendidikanRate: Record<string, any> = {
     waktu_pembangunan: 25,
     biaya_pembangunan: 60000000,
     lowongan_kerja: 1200,
-    konsumsi_listrik: 220
+    konsumsi_listrik: 220,
+    efek: "Mempercepat waktu penelitian sebesar 0.17%"
   },
   "9_pusat_penelitian": {
     key: "9_pusat_penelitian",
@@ -113,7 +121,8 @@ export const pendidikanRate: Record<string, any> = {
     waktu_pembangunan: 50,
     biaya_pembangunan: 125000000,
     lowongan_kerja: 8500,
-    konsumsi_listrik: 650
+    konsumsi_listrik: 650,
+    efek: "Mempercepat waktu penelitian sebesar 0.19%"
   },
   "10_pusat_pengembangan": {
     key: "10_pusat_pengembangan",
@@ -124,6 +133,7 @@ export const pendidikanRate: Record<string, any> = {
     waktu_pembangunan: 20,
     biaya_pembangunan: 55000000,
     lowongan_kerja: 6000,
-    konsumsi_listrik: 380
+    konsumsi_listrik: 380,
+    efek: "Mempercepat waktu penelitian sebesar 0.21%"
   },
 };
