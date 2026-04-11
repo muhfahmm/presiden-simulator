@@ -28,8 +28,8 @@ export const relationStorage = {
     }
   },
 
-  getRelationScore: (targetCountry: string, baseScore: number, sourceCountry?: string): number => {
-    const data = relationStorage.getRelationData();
+  getRelationScore: (targetCountry: string, baseScore: number, sourceCountry?: string, dataOverride?: Record<string, number>): number => {
+    const data = dataOverride || relationStorage.getRelationData();
     const targetKey = targetCountry.toLowerCase().trim();
     
     // If sourceCountry is provided, use composite key, else default to legacy flat key (for migration/backward compatibility)

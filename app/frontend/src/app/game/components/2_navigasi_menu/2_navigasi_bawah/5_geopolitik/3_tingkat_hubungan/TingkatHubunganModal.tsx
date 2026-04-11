@@ -91,7 +91,7 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
   const [activeContinent, setActiveContinent] = useState<Continent | "Semua">("Semua");
   const [searchQuery, setSearchQuery] = useState("");
   const [isUNSCMember, setIsUNSCMember] = useState(false);
-  const [, setTick] = useState(0); // Force re-render on time/relation updates
+  const [tick, setTick] = useState(0); // Force re-render on time/relation updates
   const [sortOrder, setSortOrder] = useState<'none' | 'desc' | 'asc'>('none');
   const [isGlobalImproveOpen, setIsGlobalImproveOpen] = useState(false);
 
@@ -154,28 +154,59 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
     };
   };
 
-  const filteredRelations = useMemo(() => {
-    const filtered = userRelations.filter(rel => {
-      const normalizedName = rel.name.toLowerCase().replace(/_/g, ' ');
-      const matchesSearch = normalizedName.includes(searchQuery.toLowerCase());
-      const continent = CONTINENT_MAP[normalizedName] || "Lainnya";
-      return matchesSearch && (activeContinent === "Semua" || continent === activeContinent);
+  // Optimized pre-calculation of country data lookup map
+  const centersMap = useMemo(() => {
+    const map = new Map<string, any>();
+    centersData.forEach(c => {
+      if (c.name_id) map.set(c.name_id.toLowerCase().trim(), c);
+      if (c.name_en) map.set(c.name_en.toLowerCase().trim(), c);
     });
+    return map;
+  }, []);
 
+  const augmentedRelationItems = useMemo(() => {
+    const relationData = relationStorage.getRelationData();
+    
+    // First, filter and augment the data
+    const augmented = userRelations
+      .filter(rel => {
+        const normalizedName = rel.name.toLowerCase().replace(/_/g, ' ');
+        const matchesSearch = normalizedName.includes(searchQuery.toLowerCase());
+        const continent = CONTINENT_MAP[normalizedName] || "Lainnya";
+        return matchesSearch && (activeContinent === "Semua" || continent === activeContinent);
+      })
+      .map((rel, idx) => {
+        // Fast lookup using map instead of .find()
+        const targetCountryObj = centersMap.get(rel.name.toLowerCase().trim());
+        const targetK = targetCountryObj?.name_id.toLowerCase().trim() || rel.name.toLowerCase().trim();
+        
+        // Pass pre-fetched relationData to avoid repeated localStorage parsing
+        const liveScore = relationStorage.getRelationScore(targetK, rel.relation, currentCountry, relationData);
+        const status = getRelationStatus(liveScore);
+        
+        return {
+          ...rel,
+          targetK,
+          liveScore,
+          status,
+          targetCountryObj,
+          displayId: rel.id || idx + 1
+        };
+      });
+
+    // Sort the already augmented data
     if (sortOrder !== 'none') {
-      filtered.sort((a: any, b: any) => {
-        const scoreA = relationStorage.getRelationScore(a.name?.toLowerCase().trim(), a.relation, currentCountry);
-        const scoreB = relationStorage.getRelationScore(b.name?.toLowerCase().trim(), b.relation, currentCountry);
-        return sortOrder === 'desc' ? scoreB - scoreA : scoreA - scoreB;
+      augmented.sort((a, b) => {
+        return sortOrder === 'desc' ? b.liveScore - a.liveScore : a.liveScore - b.liveScore;
       });
     }
 
-    return filtered;
-  }, [userRelations, activeContinent, searchQuery, sortOrder]);
+    return augmented;
+  }, [userRelations, activeContinent, searchQuery, sortOrder, currentCountry, isUNSCMember, centersMap, tick]);
   
   const userCountryObj = useMemo(() => {
-    return centersData.find(c => c.name_id === currentCountry || c.name_en === currentCountry);
-  }, [currentCountry]);
+    return centersMap.get(currentCountry.toLowerCase().trim());
+  }, [currentCountry, centersMap]);
 
   if (!isOpen) return null;
 
@@ -253,8 +284,8 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
             </div>
             <div className="flex items-center justify-between px-4">
               <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">
-                {filteredRelations.length > 0 ? (
-                  <>Menampilkan <span className="text-emerald-500">{filteredRelations.length}</span> dari <span className="text-zinc-400">{userRelations.length}</span> entitas</>
+                {augmentedRelationItems.length > 0 ? (
+                  <>Menampilkan <span className="text-emerald-500">{augmentedRelationItems.length}</span> dari <span className="text-zinc-400">{userRelations.length}</span> entitas</>
                 ) : (
                   <span className="text-rose-500/60">Tidak ada hasil ditemukan</span>
                 )}
@@ -326,24 +357,21 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
 
         {/* Content Section - SIMPLE VERTICAL LIST */}
         <div className="flex-1 overflow-y-auto px-8 py-10 no-scrollbar bg-[radial-gradient(circle_at_center,_#0a0a0f_0%,_#050508_100%)]">
-          {filteredRelations.length > 0 ? (
+          {augmentedRelationItems.length > 0 ? (
             <div className="flex flex-col gap-3.5 max-w-6xl mx-auto animate-in fade-in slide-in-from-bottom-10 duration-1000">
-              {filteredRelations.map((rel, idx) => {
-                const targetK = relationStorage.normalizeTargetId(rel.name, centersData);
-                const liveScore = relationStorage.getRelationScore(targetK, rel.relation, currentCountry);
-                const status = getRelationStatus(liveScore);
-                const targetCountryObj = centersData.find(c => c.name_id === rel.name || c.name_en === rel.name);
+              {augmentedRelationItems.map((rel) => {
+                const { liveScore, status, targetCountryObj, displayId } = rel;
                 
                 return (
                   <div
-                    key={rel.id || idx}
+                    key={rel.id || rel.name}
                     className="group bg-zinc-900/10 border border-zinc-800/40 hover:border-emerald-500/30 hover:bg-zinc-900/30 p-4 pl-6 rounded-2xl transition-all duration-300 flex items-center justify-between relative backdrop-blur-sm shadow-sm hover:shadow-[0_0_30px_rgba(16,185,129,0.05)]"
                   >
                     <div className="absolute -left-1 top-1/2 -translate-y-1/2 w-1.5 h-0 group-hover:h-8 bg-emerald-500 rounded-full transition-all duration-500 opacity-0 group-hover:opacity-100" />
                     
                     <div className="flex items-center gap-6">
                       <div className="text-[10px] font-black text-zinc-800 group-hover:text-emerald-500/40 transition-colors w-6 tabular-nums">
-                        {String(rel.id || idx + 1).padStart(3, '0')}
+                        {String(displayId).padStart(3, '0')}
                       </div>
                       
                       <div className="flex items-center gap-4">
@@ -424,7 +452,7 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
             <div className="h-6 w-px bg-zinc-800 hidden md:block"></div>
             <div className="flex items-center gap-3">
               <div className="p-2 bg-zinc-900 rounded-lg"><Users size={16} className="text-zinc-500" /></div>
-              <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest uppercase"> {filteredRelations.length} dari {userRelations.length} Entitas Diplomatik Terintegrasi</span>
+              <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest uppercase"> {augmentedRelationItems.length} dari {userRelations.length} Entitas Diplomatik Terintegrasi</span>
             </div>
           </div>
 
