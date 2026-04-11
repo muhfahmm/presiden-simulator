@@ -374,26 +374,7 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {/* WELL-BEING Card */}
-              <div className="p-6 rounded-3xl bg-zinc-900 border border-zinc-800/50 shadow-xl group hover:border-amber-500/30 transition-all relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-amber-500/50" />
-                <div className="flex items-start justify-between mb-6">
-                  <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400">
-                    <BadgeDollarSign className="h-5 w-5" />
-                  </div>
-                  <div className="text-right">
-                    <span className="text-2xl font-black text-white italic tabular-nums">{livingCostIndex.toFixed(1)}</span>
-                    <p className="text-[8px] font-black text-zinc-500 uppercase tracking-widest mt-1">Skala Indeks</p>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-1">Kesejahteraan</h4>
-                  <p className="text-sm text-zinc-300 font-bold italic mb-4">Indeks biaya hidup aktual</p>
-                  <div className="h-1.5 w-full bg-zinc-950 rounded-full overflow-hidden border border-zinc-800/50">
-                    <div className="h-full bg-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.5)]" style={{ width: `${livingCostIndex}%` }} />
-                  </div>
-                </div>
-              </div>
+
 
               {/* QUALITY OF LIFE Card */}
               <div className="p-6 rounded-3xl bg-zinc-900 border border-zinc-800/50 shadow-xl group hover:border-rose-500/30 transition-all relative overflow-hidden">
@@ -530,93 +511,11 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
             </div>
           </div>
 
-          {/* Section: Economic Impacts Section & Prognosis */}
-          <div className="space-y-8 mt-12 mb-8">
-            <div className="flex items-center gap-5 px-4">
-              <h3 className="text-xs font-black text-zinc-500 uppercase tracking-[0.5em] whitespace-nowrap italic">Analisis Strategis</h3>
-              <div className="h-px flex-1 bg-zinc-800/40" />
-            </div>
 
-            <div className="flex flex-col gap-6">
-              {/* Impacts Vertical Stack */}
-              <div className="flex flex-col gap-6 w-full">
-                <div className="w-full p-8 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-between shadow-xl relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:opacity-[0.04] transition-opacity">
-                    <CalendarDays className="h-24 w-24 -mr-6 -mt-6" />
-                  </div>
-                  <div className="flex items-center gap-6">
-                    <div className={`p-4 rounded-xl bg-white/[0.02] border border-white/5 ${monthlyTaxGrowthPercent >= 0 ? "text-emerald-400" : "text-rose-500"}`}>
-                      <CalendarDays className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h4 className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">Estimasi Dampak Pajak</h4>
-                      <div className="flex items-center gap-3">
-                        <p className={`text-2xl font-black italic tabular-nums ${monthlyTaxGrowthPercent >= 0 ? 'text-emerald-400' : 'text-rose-500'}`}>
-                          {monthlyTaxGrowthPercent >= 0 ? '+' : ''}{monthlyTaxGrowthPercent.toFixed(3)}%
-                        </p>
-                        <span className="text-[10px] text-zinc-700 font-bold uppercase tracking-widest italic">/ Bulan</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-right border-l border-zinc-800 pl-8">
-                    <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-[0.3em] italic mb-0.5">Prediksi Laju</p>
-                    <p className="text-lg font-black text-white italic tabular-nums">{dailyTaxDelta >= 0 ? "+" : ""}{dailyTaxDelta.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-600 uppercase tracking-widest">Jiwa / Hari</span></p>
-                  </div>
-                </div>
-
-                <div className="w-full p-8 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-between shadow-xl relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:opacity-[0.04] transition-opacity">
-                    <ShoppingCart className="h-24 w-24 -mr-6 -mt-6" />
-                  </div>
-                  <div className="flex items-center gap-6">
-                    <div className={`p-4 rounded-xl bg-white/[0.02] border border-white/5 ${monthlyPriceGrowthPercent >= 0 ? "text-emerald-400" : "text-rose-500"}`}>
-                      <ShoppingCart className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h4 className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">Efek Dinamika Harga</h4>
-                      <div className="flex items-center gap-3">
-                        <p className={`text-2xl font-black italic tabular-nums ${monthlyPriceGrowthPercent >= 0 ? 'text-emerald-400' : 'text-rose-500'}`}>
-                          {monthlyPriceGrowthPercent >= 0 ? '+' : ''}{monthlyPriceGrowthPercent.toFixed(3)}%
-                        </p>
-                        <span className="text-[10px] text-zinc-700 font-bold uppercase tracking-widest italic">/ Bulan</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-right border-l border-zinc-800 pl-8">
-                    <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-[0.3em] italic mb-0.5">Prediksi Laju</p>
-                    <p className="text-lg font-black text-white italic tabular-nums">{dailyPriceDelta >= 0 ? "+" : ""}{dailyPriceDelta.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-600 uppercase tracking-widest">Jiwa / Hari</span></p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
 
         </div>
 
-        {/* Footer (Synchronized with Economics pattern) */}
-        <div className="px-10 py-6 bg-zinc-900/30 border-t border-zinc-900 flex items-center justify-between backdrop-blur-3xl relative z-10">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
-              <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Data Real-Time</span>
-            </div>
-            <p className="text-xs text-zinc-500 font-medium italic tracking-tight">Kalkulasi demografi berbasis proyeksi kebijakan fiskal, harga pasar, dan indeks kesejahteraan aktual.</p>
-          </div>
-          <div className="flex items-center gap-8">
-            <div className="flex flex-col items-end">
-              <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">Net Daily Growth</span>
-              <span className={`text-base font-black tracking-tighter italic ${totalDailyDelta >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
-                {totalDailyDelta >= 0 ? '+' : ''}{totalDailyDelta.toLocaleString('id-ID')} Jiwa / Hari
-              </span>
-            </div>
-            <div className="h-10 w-px bg-zinc-800" />
-            <div className="flex flex-col items-end">
-              <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">Social Index Rank</span>
-              <span className="text-base font-black text-blue-400 tracking-tighter italic uppercase">Nasional Terpadu</span>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   );

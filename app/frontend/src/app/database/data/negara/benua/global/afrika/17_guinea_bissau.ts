@@ -32,21 +32,7 @@ const guinea_bissau_geopolitik = {
       "kekuatan_lunak": 28,
       "kekuatan_keras": 30,
       "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
   }
-    ]
   } as const;
 
 export const guinea_bissau: CountryData = {

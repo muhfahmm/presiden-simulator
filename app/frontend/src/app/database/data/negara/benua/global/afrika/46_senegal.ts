@@ -32,21 +32,7 @@ const senegal_geopolitik = {
       "kekuatan_lunak": 34,
       "kekuatan_keras": 5,
       "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
   }
-    ]
   } as const;
 
 export const senegal: CountryData = {

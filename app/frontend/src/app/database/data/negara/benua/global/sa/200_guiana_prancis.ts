@@ -32,21 +32,7 @@ const guiana_prancis_geopolitik = {
       "kekuatan_lunak": 3,
       "kekuatan_keras": 35,
       "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
+    }
   } as const;
 
 export const guiana_prancis: CountryData = {

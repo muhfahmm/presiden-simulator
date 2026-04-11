@@ -8,10 +8,7 @@ export interface SektorGeopolitik {
     kekuatan_keras: number;
     prestise_diplomatik: number;
   };
-  organisasi_internasional: readonly {
-    readonly name: string;
-    readonly role: "Anggota" | "Pemimpin" | "Pengamat";
-  }[];
+
   perjanjian?: readonly {
     mitra: string;
     jenis: "Perdagangan" | "Militer" | "Penelitian" | "Politik";

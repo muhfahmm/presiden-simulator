@@ -32,21 +32,7 @@ const kirgizstan_geopolitik = {
       "kekuatan_lunak": 15,
       "kekuatan_keras": 2,
       "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
+    }
   } as const;
 
 export const kirgizstan: CountryData = {
