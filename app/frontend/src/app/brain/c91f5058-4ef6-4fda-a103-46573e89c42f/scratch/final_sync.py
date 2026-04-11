@@ -1,0 +1,48 @@
+import re
+
+user_items = [
+  "afganistan", "afrika selatan", "albania", "aljazair", "amerika serikat", "andorra", "angola", "antigua dan barbuda", "arab saudi", "argentina",
+  "armenia", "australia", "austria", "azerbaijan", "bahama", "bahrain", "bangladesh", "barbados", "belanda", "belarus",
+  "belgia", "belize", "benin", "bhutan", "bolivia", "bosnia dan hercegovina", "botswana", "brazil", "brunei", "bulgaria",
+  "burkina faso", "burundi", "ceko", "chad", "chile", "china", "costa rica", "denmark", "djibouti", "dominika",
+  "ekuador", "el salvador", "eritrea", "estonia", "eswatini", "ethiopia", "fiji", "filipina", "finlandia", "gabon",
+  "gambia", "georgia", "ghana", "grenada", "guatemala", "guinea", "guinea bissau", "guyana", "haiti", "honduras",
+  "hungaria", "india", "indonesia", "inggris", "irak", "iran", "irlandia", "islandia", "israel", "italia",
+  "jamaika", "jepang", "jerman", "kamboja", "kamerun", "kanada", "kazakhstan", "kenya", "kirgizstan", "kiribati",
+  "kolombia", "komoro", "kongo", "korea selatan", "kosovo", "kuwait", "laos", "latvia", "lebanon", "lesotho",
+  "liberia", "libya", "liechtenstein", "lithuania", "luksemburg", "madagaskar", "makedonia utara", "malawi", "malaysia", "maldives",
+  "mali", "malta", "maroko", "marshall", "mauritania", "mauritius", "meksiko", "mesir", "mikronesia", "moldova",
+  "mongolia", "montenegro", "mozambik", "myanmar", "namibia", "nauru", "nepal", "niger", "nigeria", "nikaragua",
+  "norwegia", "oman", "pakistan", "palau", "panama", "pantai gading", "papua nugini", "paraguay", "peru", "polandia",
+  "portugal", "qatar", "republik afrika tengah", "republik demokratik kongo", "republik dominika", "republik rumania", "republik serbia", "republik sudan", "republik tanzania", "republik timor leste",
+  "republik uganda", "republik zambia", "republik zimbabwe", "rusia", "rwanda", "saint kitts dan nevis", "saint lucia", "saint vincent dan grenadine", "samoa", "san marino",
+  "sao tome dan principe", "selandia baru", "senegal", "seychelles", "sierra leone", "singapura", "siprus", "slovenia", "slowakia", "somalia",
+  "spanyol", "sri lanka", "sudan selatan", "suriah", "suriname", "swedia", "swiss", "tajikistan", "tanjung verde", "thailand",
+  "togo", "tonga", "trinidad dan tobago", "tunisia", "turki", "turkmenistan", "tuvalu", "ukraina", "uni emirat arab", "uruguay",
+  "uzbekistan", "vanuatu", "venezuela", "vietnam", "yaman", "yordania", "yunani"
+]
+
+# De-duplicate to be 100% safe
+unique_items = []
+seen = set()
+for item in user_items:
+    low = item.lower().strip()
+    if low not in seen:
+        unique_items.append(low)
+        seen.add(low)
+
+unique_items.sort()
+
+print(f"UNIQUE COUNT: {len(unique_items)}")
+
+# Write to file
+file_path = r"c:\fhm\em\app\frontend\src\app\database\data\database_organisasi_internasional\1_organisasi_PBB\1_Dana_Moneter_Internasional_(IMF)\members.ts"
+
+content = "export const members = [\n"
+for i, name in enumerate(unique_items):
+    comma = "," if i < len(unique_items) - 1 else ""
+    content += f'  "{name}"{comma}\n'
+content += "];\n"
+
+with open(file_path, 'w', encoding='utf-8') as f:
+    f.write(content)

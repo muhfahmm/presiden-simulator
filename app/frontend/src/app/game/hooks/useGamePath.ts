@@ -60,6 +60,14 @@ export function useGamePath(path: string[]) {
       else if (pbbTab === 'suara_PBB') initialMenu = "Menu:PBB:suara_PBB";
       else initialMenu = "Menu:PBB";
     }
+    else if (subMenu === 'organisasi-internasional') {
+      const detail = path[2];
+      if (detail && detail.startsWith('anggota_')) {
+        initialMenu = `Menu:OrganisasiInternasional:${detail}`;
+      } else {
+        initialMenu = "Menu:OrganisasiInternasional";
+      }
+    }
     else if (subMenu === 'diplomasi') {
       const detail = path[2];
       if (detail) initialMenu = `Menu:Diplomasi:${detail}`;
@@ -207,6 +215,17 @@ export function useGamePath(path: string[]) {
     if (!targetPath && activeMenu.startsWith("Menu:Diplomasi:")) {
       const detail = activeMenu.split(":")[2];
       targetPath = `/game/geopolitik/diplomasi/${detail}`;
+    }
+
+    // Dynamic path handling for Organisasi Internasional details
+    if (!targetPath && activeMenu.startsWith("Menu:OrganisasiInternasional")) {
+      const parts = activeMenu.split(":");
+      const detail = parts[2]; // e.g., anggota_imf
+      if (detail) {
+        targetPath = `/game/geopolitik/organisasi-internasional/${detail}`;
+      } else {
+        targetPath = "/game/geopolitik/organisasi-internasional";
+      }
     }
 
     // Dynamic path handling for Religion details

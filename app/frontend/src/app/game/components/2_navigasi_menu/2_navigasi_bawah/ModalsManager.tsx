@@ -167,8 +167,10 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         onClose={() => setActiveMenu("Geopolitik")}
       />
       <OrgIntlModal
-        isOpen={activeMenu === "Menu:OrganisasiInternasional"}
+        isOpen={activeMenu.startsWith("Menu:OrganisasiInternasional")}
         onClose={() => setActiveMenu("Geopolitik")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
       />
       <TingkatHubunganModal
         isOpen={activeMenu === "Menu:TingkatHubungan"}

@@ -4,6 +4,8 @@ import { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { X, Landmark, Globe, Shield, Coins, Users, Activity, TrendingUp, Info, Award, MapPin, Search, GraduationCap, Laptop, ChefHat, Plane, Anchor, Radio, Cloud, Briefcase, HeartPulse, Scale, SearchSlash, AlertCircle, ChevronRight, Zap, Loader2 } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
+import { OrganizationMembers } from "@/app/database/data/database_organisasi_internasional/index";
+import OrgMembersList from "./OrgMembersList";
 
 
 // Dynamic Imports for UN Organizations
@@ -88,7 +90,17 @@ const ORGANIZATIONS: Organization[] = [
   { id: "oecd", displayId: "16", name: "OECD", desc: "Standarisasi kebijakan ekonomi dan tata kelola negara maju.", focus: "Standar Kebijakan", icon: Scale, color: "text-cyan-700", benefit: "Eco Cert.", impact: "Standar Global", category: "REGIONAL", region: "Maju" }
 ];
 
-export default function OrgIntlModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export default function OrgIntlModal({ 
+  isOpen, 
+  onClose, 
+  activeMenu = "Menu:OrganisasiInternasional", 
+  setActiveMenu 
+}: { 
+  isOpen: boolean; 
+  onClose: () => void;
+  activeMenu?: string;
+  setActiveMenu?: (menu: string) => void;
+}) {
   const [activeTab, setActiveTab] = useState<"UN" | "REGIONAL">("UN");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentCountry, setCurrentCountry] = useState("Indonesia");
@@ -140,28 +152,33 @@ export default function OrgIntlModal({ isOpen, onClose }: { isOpen: boolean; onC
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [viewingMembersOrgId, selectedOrgId, onClose]);
 
-  // Sync URL Path with Modal States
+  // Sync state with activeMenu for dynamic URLs
   useEffect(() => {
-    const basePath = "/game/geopolitik";
-    const organPath = `${basePath}/organisasi-internasional`;
-    const anggotaPath = `${organPath}/anggota`;
-    const detailPath = `${organPath}/detail`;
-    
-    if (isOpen) {
-      if (viewingMembersOrgId) {
-        window.history.pushState({ view: 'anggota' }, "", anggotaPath);
-      } else if (selectedOrgId) {
-        window.history.pushState({ view: 'detail' }, "", detailPath);
-      } else {
-        window.history.pushState({ view: 'organisasi' }, "", organPath);
-      }
+    if (activeMenu?.startsWith("Menu:OrganisasiInternasional:anggota_")) {
+      const orgId = activeMenu.replace("Menu:OrganisasiInternasional:anggota_", "");
+      setViewingMembersOrgId(orgId);
     } else {
-      // Revert to base geopolitik path when modal is completely closed
-      if (window.location.pathname.includes("/organisasi-internasional")) {
-        window.history.pushState({ view: 'geopolitik' }, "", basePath);
-      }
+      setViewingMembersOrgId(null);
     }
-  }, [isOpen, viewingMembersOrgId, selectedOrgId]);
+  }, [activeMenu, isOpen, selectedOrgId]);
+
+  // Handle Close Members
+  const handleCloseMembers = () => {
+    if (setActiveMenu) {
+      setActiveMenu("Menu:OrganisasiInternasional");
+    } else {
+      setViewingMembersOrgId(null);
+    }
+  };
+
+  // Handle View Members
+  const handleViewMembers = (orgId: string) => {
+    if (setActiveMenu) {
+      setActiveMenu(`Menu:OrganisasiInternasional:anggota_${orgId}`);
+    } else {
+      setViewingMembersOrgId(orgId);
+    }
+  };
 
   const SelectedOrgComponent = selectedOrgId ? OrgDetailComponents[selectedOrgId] : null;
   const SelectedMembersComponent = viewingMembersOrgId ? OrgMembersComponents[viewingMembersOrgId] : null;
@@ -182,7 +199,7 @@ export default function OrgIntlModal({ isOpen, onClose }: { isOpen: boolean; onC
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative text-zinc-100">
         
         {/* HEADER SECTION */}
-        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30 sticky top-0 z-[100] backdrop-blur-xl">
+        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30 backdrop-blur-xl shrink-0">
           <div className="flex items-center gap-4">
             <div className="p-3 bg-purple-500/15 rounded-2xl border border-purple-500/20 group hover:scale-105 transition-transform duration-500">
                <Landmark className="h-6 w-6 text-purple-500" />
@@ -200,33 +217,54 @@ export default function OrgIntlModal({ isOpen, onClose }: { isOpen: boolean; onC
         </div>
 
         {/* FILTERS & TABS row */}
-        <div className="px-8 py-5 border-b border-zinc-800/30 bg-zinc-950/40 backdrop-blur-3xl flex flex-col lg:flex-row items-center justify-between sticky top-[81px] z-[90] shadow-xl">
-          <div className="flex items-center gap-2 bg-black/40 p-2 rounded-[24px] border border-zinc-800/40 w-full lg:w-max shadow-inner">
-            <button 
-              onClick={() => setActiveTab("UN")}
-              className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all flex items-center gap-3 cursor-pointer ${activeTab === "UN" 
-                ? "bg-purple-600 text-white shadow-[0_0_25px_rgba(147,51,234,0.3)] scale-105 z-10" 
-                : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/50"}`}
-            >
-              Organisasi UN & Global
-              <span className={`px-2 py-0.5 rounded-md text-[9px] ${activeTab === "UN" ? "bg-white/20 text-white" : "bg-zinc-800 text-zinc-600"}`}>12</span>
-            </button>
-            <button 
-              onClick={() => setActiveTab("REGIONAL")}
-              className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all flex items-center gap-3 cursor-pointer ${activeTab === "REGIONAL" 
-                ? "bg-purple-600 text-white shadow-[0_0_25px_rgba(147,51,234,0.3)] scale-105 z-10" 
-                : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/50"}`}
-            >
-              Organisasi Regional
-              <span className={`px-2 py-0.5 rounded-md text-[9px] ${activeTab === "REGIONAL" ? "bg-white/20 text-white" : "bg-zinc-800 text-zinc-600"}`}>16</span>
-            </button>
+        <div className="px-8 py-5 border-b border-zinc-800/30 bg-zinc-950/40 backdrop-blur-3xl flex flex-col lg:flex-row items-center justify-between shrink-0 shadow-xl">
+          <div className="flex items-center gap-2 w-full lg:w-max min-h-[60px]">
+            {viewingMembersOrgId ? (
+              <div className="flex items-center gap-4 bg-purple-500/10 px-8 py-3 rounded-[24px] border border-purple-500/20 animate-in fade-in slide-in-from-left-4 duration-500 shadow-[0_0_30px_rgba(168,85,247,0.05)]">
+                <div className="p-2.5 bg-purple-500/20 rounded-xl border border-purple-500/30 text-purple-400">
+                  {ORGANIZATIONS.find(o => o.id === viewingMembersOrgId)?.icon ? (
+                    (() => {
+                      const Icon = ORGANIZATIONS.find(o => o.id === viewingMembersOrgId)!.icon;
+                      return <Icon size={18} />;
+                    })()
+                  ) : <Users size={18} />}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black text-purple-500/60 uppercase tracking-[0.2em] leading-none mb-1.5">Profil Organisasi</span>
+                  <h4 className="text-sm font-black text-white uppercase tracking-tight italic">
+                    {ORGANIZATIONS.find(o => o.id === viewingMembersOrgId)?.name || "Detail Anggota"}
+                  </h4>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 bg-black/40 p-2 rounded-[24px] border border-zinc-800/40 w-full lg:w-max shadow-inner">
+                <button 
+                  onClick={() => setActiveTab("UN")}
+                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all flex items-center gap-3 cursor-pointer ${activeTab === "UN" 
+                    ? "bg-purple-600 text-white shadow-[0_0_25px_rgba(147,51,234,0.3)] scale-105 z-10" 
+                    : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/50"}`}
+                >
+                  Organisasi UN & Global
+                  <span className={`px-2 py-0.5 rounded-md text-[9px] ${activeTab === "UN" ? "bg-white/20 text-white" : "bg-zinc-800 text-zinc-600"}`}>12</span>
+                </button>
+                <button 
+                  onClick={() => setActiveTab("REGIONAL")}
+                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all flex items-center gap-3 cursor-pointer ${activeTab === "REGIONAL" 
+                    ? "bg-purple-600 text-white shadow-[0_0_25px_rgba(147,51,234,0.3)] scale-105 z-10" 
+                    : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/50"}`}
+                >
+                  Organisasi Regional
+                  <span className={`px-2 py-0.5 rounded-md text-[9px] ${activeTab === "REGIONAL" ? "bg-white/20 text-white" : "bg-zinc-800 text-zinc-600"}`}>16</span>
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col lg:flex-row items-center gap-4 w-full lg:w-max mt-4 lg:mt-0">
-            <div className="relative w-full lg:w-[520px] group">
-              <div className="absolute inset-y-0 left-0 pl-8 flex items-center pointer-events-none z-10">
-                <div className="p-2.5 bg-purple-500/10 rounded-full border border-purple-500/20 group-focus-within:bg-purple-500/20 group-focus-within:border-purple-500/40 transition-all duration-500">
-                  <Search className="h-5 w-5 text-purple-400 group-focus-within:text-purple-300 transition-all duration-500" />
+            <div className="relative w-full lg:w-[480px] group">
+              <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none z-10">
+                <div className="p-2 bg-purple-500/10 rounded-full border border-purple-500/20 group-focus-within:bg-purple-500/20 group-focus-within:border-purple-500/40 transition-all duration-500">
+                  <Search className="h-4 w-4 text-purple-400 group-focus-within:text-purple-300 transition-all duration-500" />
                 </div>
               </div>
               <input 
@@ -235,29 +273,59 @@ export default function OrgIntlModal({ isOpen, onClose }: { isOpen: boolean; onC
                 placeholder="Cari identitas koalisi..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                style={{ paddingLeft: '100px' }}
-                className="w-full bg-white/[0.03] border border-white/[0.08] rounded-full h-16 pr-8 text-sm font-semibold text-white placeholder:text-zinc-500 outline-none focus:border-purple-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_0_4px_rgba(147,51,234,0.08)] transition-all duration-300 tracking-wide hover:border-white/15 hover:bg-white/[0.04]"
+                style={{ paddingLeft: '72px' }}
+                className="w-full bg-white/[0.03] border border-white/[0.08] rounded-full h-12 pr-6 text-sm font-semibold text-white placeholder:text-zinc-500 outline-none focus:border-purple-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_0_4px_rgba(147,51,234,0.08)] transition-all duration-300 tracking-wide hover:border-white/15 hover:bg-white/[0.04]"
               />
             </div>
 
             {viewingMembersOrgId && (
               <button 
-                onClick={() => setViewingMembersOrgId(null)}
-                className="w-full lg:w-[220px] py-6 px-10 rounded-[32px] bg-gradient-to-r from-rose-600 to-rose-500 border-t border-white/20 hover:from-rose-500 hover:to-rose-400 text-white transition-all cursor-pointer shadow-[0_15px_35px_-10px_rgba(225,29,72,0.5)] flex items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500 hover:scale-105 active:scale-95 group relative overflow-hidden"
+                onClick={handleCloseMembers}
+                className="w-full lg:w-max py-3 px-8 rounded-full bg-gradient-to-r from-rose-600 to-rose-500 border-t border-white/20 hover:from-rose-500 hover:to-rose-400 text-white transition-all cursor-pointer shadow-[0_10px_25px_-5px_rgba(225,29,72,0.4)] flex items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500 hover:scale-105 active:scale-95 group relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="text-[11px] font-black uppercase tracking-[0.2em] relative z-10 shrink-0">Tutup Profil</span>
-                <div className="bg-white/20 p-2 rounded-full relative z-10 group-hover:rotate-90 transition-transform duration-300">
-                  <X size={16} strokeWidth={3} />
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] relative z-10 shrink-0">Tutup Profil</span>
+                <div className="bg-white/20 p-1.5 rounded-full relative z-10 group-hover:rotate-90 transition-transform duration-300">
+                  <X size={14} strokeWidth={3} />
                 </div>
               </button>
             )}
           </div>
         </div>
-
         {/* CONTENT AREA */}
         <div className="flex-1 overflow-y-auto px-8 py-10 no-scrollbar bg-[radial-gradient(circle_at_center,_#0a0a0f_0%,_#050508_100%)]">
-          {filteredOrgs.length > 0 ? (
+          {viewingMembersOrgId ? (
+            <Suspense fallback={
+              <div className="h-full min-h-[400px] flex flex-col items-center justify-center gap-4 animate-in fade-in duration-500">
+                <Loader2 className="h-10 w-10 text-purple-500 animate-spin" />
+                <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Sinkronisasi Database Anggota...</p>
+              </div>
+            }>
+              {SelectedMembersComponent ? (
+                <div className="animate-in slide-in-from-bottom-5 duration-700 pb-20">
+                  <SelectedMembersComponent searchQuery={searchQuery} />
+                </div>
+              ) : viewingMembersOrgId ? (
+                <div className="animate-in slide-in-from-bottom-5 duration-700 pb-20">
+                  <OrgMembersList 
+                    orgId={viewingMembersOrgId} 
+                    orgName={ORGANIZATIONS.find(o => o.id === viewingMembersOrgId)?.name || "Detail Anggota"} 
+                    searchQuery={searchQuery} 
+                  />
+                </div>
+              ) : (
+                <div className="h-full min-h-[400px] flex flex-col items-center justify-center gap-6 text-center">
+                  <div className="p-8 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-800">
+                    <AlertCircle size={60} strokeWidth={1} />
+                  </div>
+                  <div className="space-y-3">
+                    <p className="text-2xl font-black text-zinc-500 uppercase italic tracking-[0.2em]">Registry Offline</p>
+                    <p className="text-[10px] text-zinc-700 font-bold uppercase tracking-widest max-w-lg mx-auto leading-relaxed">Pangkalan data anggota untuk organisasi regional belum terintegrasi.</p>
+                  </div>
+                </div>
+              )}
+            </Suspense>
+          ) : filteredOrgs.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 animate-in fade-in slide-in-from-bottom-5 duration-700">
               {filteredOrgs.map((org) => (
                 <div key={org.id} className="group bg-zinc-900/10 border border-zinc-800/40 hover:border-purple-500/30 hover:bg-zinc-900/30 p-6 rounded-[32px] transition-all duration-500 flex flex-col gap-6 relative backdrop-blur-sm shadow-xl hover:shadow-purple-500/5 overflow-hidden">
@@ -273,36 +341,39 @@ export default function OrgIntlModal({ isOpen, onClose }: { isOpen: boolean; onC
                      </h4>
                   </div>
 
-                  {/* Row 2: Manfaat Strategis */}
-                  <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-4 py-3 flex items-center justify-between group hover:border-rose-500/20 transition-all">
-                     <div className="flex items-center gap-3">
-                        <div className="p-2 bg-rose-500/10 rounded-lg">
-                           <Activity size={14} className="text-rose-500" />
-                        </div>
-                        <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Manfaat</span>
-                     </div>
-                     <div className="text-right">
-                        <span className="text-[11px] font-black text-rose-500 uppercase italic">{org.benefit}</span>
-                     </div>
-                  </div>
-
                   {/* Row 3: Status / Dampak */}
-                  <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-4 py-3 flex items-center justify-between group hover:border-cyan-500/20 transition-all">
-                     <div className="flex items-center gap-3">
-                        <div className="p-2 bg-cyan-500/10 rounded-lg">
-                           <Zap size={14} className="text-cyan-500" />
-                        </div>
-                        <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Dampak</span>
-                     </div>
-                     <div className="text-right">
-                        <span className="text-[11px] font-black text-cyan-500 uppercase italic">{org.impact}</span>
-                     </div>
+                  <div className="flex flex-col gap-2">
+                    <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-4 py-3 flex items-center justify-between group hover:border-cyan-500/20 transition-all">
+                       <div className="flex items-center gap-3">
+                          <div className="p-2 bg-cyan-500/10 rounded-lg">
+                             <Zap size={14} className="text-cyan-500" />
+                          </div>
+                          <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Dampak</span>
+                       </div>
+                       <div className="text-right">
+                          <span className="text-[11px] font-black text-cyan-500 uppercase italic">{org.impact}</span>
+                       </div>
+                    </div>
+
+                    <div className="bg-zinc-950/50 border border-zinc-900/50 rounded-2xl p-4 py-3 flex items-center justify-between group hover:border-purple-500/20 transition-all">
+                       <div className="flex items-center gap-3">
+                          <div className="p-2 bg-purple-500/10 rounded-lg">
+                             <Globe size={14} className="text-purple-500" />
+                          </div>
+                          <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Negara Terdaftar</span>
+                       </div>
+                       <div className="text-right">
+                          <span className="text-[11px] font-black text-purple-400 uppercase italic">
+                            {OrganizationMembers[org.id]?.length || 0} Negara
+                          </span>
+                       </div>
+                    </div>
                   </div>
 
                   {/* ACTION BUTTONS */}
                   <div className="space-y-2 mt-auto">
                     <button 
-                      onClick={() => setViewingMembersOrgId(org.id)}
+                      onClick={() => handleViewMembers(org.id)}
                       className="w-full py-3 px-6 rounded-2xl bg-zinc-950 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 text-[9px] font-black text-zinc-300 uppercase tracking-[0.15em] flex items-center justify-between group/btn transition-all active:scale-[0.98] cursor-pointer"
                     >
                       <span>Lihat Anggota</span>
@@ -400,58 +471,7 @@ export default function OrgIntlModal({ isOpen, onClose }: { isOpen: boolean; onC
         </div>
       )}
 
-      {/* MEMBERS MODAL OVERLAY */}
-      {viewingMembersOrgId && (
-        <div className="absolute inset-0 z-[70] flex items-center justify-center p-4 md:p-10 bg-black/90 backdrop-blur-xl animate-in fade-in duration-300">
-          <div className="w-full max-w-[95vw] bg-zinc-950 border border-zinc-800 rounded-[40px] shadow-[0_0_150px_rgba(0,0,0,1)] relative overflow-hidden animate-in zoom-in-95 duration-500 flex flex-col h-[82vh]">
-            
-            {/* MODAL HEADER */}
-            <div className="px-12 py-8 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30 backdrop-blur-3xl sticky top-0 z-20">
-              <div className="flex items-center gap-5">
-                <div className="p-4 bg-blue-500/15 rounded-2xl border border-blue-500/20 text-blue-500 group-hover:scale-105 transition-transform">
-                  <Users size={24} />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-black text-white italic uppercase tracking-tight">Daftar Anggota Aktif</h3>
-                  <p className="text-[10px] text-zinc-500 font-black uppercase tracking-[0.2em] mt-1.5 opacity-60">Verified Global Membership • International Accord Systems</p>
-                </div>
-              </div>
-              <div></div>
-            </div>
 
-            {/* MODAL CONTENT */}
-            <div className="overflow-y-auto flex-1 no-scrollbar">
-              <Suspense fallback={
-                <div className="h-full flex flex-col items-center justify-center gap-4">
-                  <Loader2 className="h-12 w-12 text-blue-500 animate-spin" />
-                  <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em]">Mengakses Database Anggota...</p>
-                </div>
-              }>
-                {SelectedMembersComponent ? (
-                  <div className="animate-in slide-in-from-bottom-5 duration-700 h-full">
-                    <SelectedMembersComponent />
-                  </div>
-                ) : (
-                  <div className="h-full flex flex-col items-center justify-center gap-6 text-center">
-                    <div className="p-10 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-800 scale-125">
-                      <AlertCircle size={60} strokeWidth={1} />
-                    </div>
-                    <div className="space-y-3">
-                      <p className="text-3xl font-black text-zinc-500 uppercase italic tracking-[0.2em]">Registry Offline</p>
-                      <p className="text-[11px] text-zinc-700 font-bold uppercase tracking-[0.3em] max-w-lg mx-auto leading-relaxed italic opacity-60">Pangkalan data anggota untuk organisasi regional belum terintegrasi ke dalam sistem verifikasi kedaulatan digital global.</p>
-                    </div>
-                  </div>
-                )}
-              </Suspense>
-            </div>
-
-            {/* MODAL FOOTER */}
-            <div className="px-10 py-5 bg-black/40 border-t border-zinc-800/30 flex justify-center">
-              <p className="text-[9px] text-zinc-700 font-black uppercase tracking-[0.5em] opacity-40 italic">Global Diplomatic Transparency Node • United Nations Data Protocol</p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

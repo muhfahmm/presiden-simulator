@@ -2,6 +2,6 @@
 import React from 'react';
 import OrgMembersList from "../../../OrgMembersList";
 
-export default function Members() {
-    return <OrgMembersList orgId="imf" orgName="Dana Moneter Internasional (IMF)" />;
+export default function Members({ searchQuery }: { searchQuery: string }) {
+    return <OrgMembersList orgId="imf" orgName="Dana Moneter Internasional (IMF)" searchQuery={searchQuery} />;
 }

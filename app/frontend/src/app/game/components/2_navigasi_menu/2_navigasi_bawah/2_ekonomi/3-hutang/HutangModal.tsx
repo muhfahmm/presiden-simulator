@@ -12,9 +12,9 @@ export default function HutangModal({ isOpen, onClose }: ModalProps) {
   if (!isOpen) return null;
 
   const debtStats = [
-    { label: "Hutang Luar Negeri", value: "8,500", status: "Critical", color: "text-red-400" },
-    { label: "Bunga Tahunan", value: "540", status: "Steady", color: "text-amber-400" },
-    { label: "Rasio Hutang/PDB", value: "38.2%", status: "Safe Limit", color: "text-green-400" }
+    { label: "Hutang Luar Negeri", value: "0", status: "Healthy", color: "text-green-400" },
+    { label: "Bunga Tahunan", value: "-", status: "-", color: "text-zinc-500" },
+    { label: "Rasio Hutang/PDB", value: "0%", status: "Minimum", color: "text-zinc-500" }
   ];
 
   return (
@@ -76,7 +76,7 @@ export default function HutangModal({ isOpen, onClose }: ModalProps) {
                 <Landmark className="h-4 w-4 text-red-400" /> Pemberi Pinjaman
               </h3>
               <div className="space-y-4">
-                {[
+                {[].length > 0 ? [
                   { name: "Bank Dunia", amount: "1,200" },
                   { name: "IMF", amount: "850" },
                   { name: "Bilateral (Tiongkok/Jepang)", amount: "4,500" }
@@ -85,7 +85,11 @@ export default function HutangModal({ isOpen, onClose }: ModalProps) {
                     <span className="text-xs text-zinc-400 font-medium">{lender.name}</span>
                     <span className="text-xs font-black text-zinc-200">{lender.amount}</span>
                   </div>
-                ))}
+                )) : (
+                  <div className="py-8 flex flex-col items-center justify-center text-center">
+                    <p className="text-[10px] text-zinc-500 font-medium uppercase tracking-widest">Tidak Ada Pinjaman Aktif</p>
+                  </div>
+                )}
               </div>
             </div>
 
