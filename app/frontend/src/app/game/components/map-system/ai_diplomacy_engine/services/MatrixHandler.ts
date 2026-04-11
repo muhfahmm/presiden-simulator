@@ -91,7 +91,13 @@ export const initializeMatrixData = () => {
                     let score = rel.relation !== undefined ? rel.relation : 50;
                     
                     if (targetId === normalizedUser && !isFirstDay) {
-                        score = relationStorage.getRelationScore(sourceId, score);
+                        // Get the stored score for [source] seeing [target (user)]
+                        score = relationStorage.getRelationScore(normalizedUser, score, sourceId);
+                    }
+                    
+                    if (sourceId === normalizedUser && !isFirstDay) {
+                        // Get the stored score for [user] seeing [target]
+                        score = relationStorage.getRelationScore(targetId, score, normalizedUser);
                     }
                     
                     const entry: RelationEntry = {

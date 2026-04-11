@@ -28,18 +28,41 @@ export const relationStorage = {
     }
   },
 
-  getRelationScore: (targetCountry: string, baseScore: number): number => {
+  getRelationScore: (targetCountry: string, baseScore: number, sourceCountry?: string): number => {
     const data = relationStorage.getRelationData();
-    const key = targetCountry.toLowerCase().trim();
-    // Return stored score if exists, else fallback to base score from database
-    return data[key] !== undefined ? data[key] : baseScore;
+    const targetKey = targetCountry.toLowerCase().trim();
+    
+    // If sourceCountry is provided, use composite key, else default to legacy flat key (for migration/backward compatibility)
+    if (sourceCountry) {
+      const sourceKey = sourceCountry.toLowerCase().trim();
+      const compositeKey = `${sourceKey}:${targetKey}`;
+      if (data[compositeKey] !== undefined) return data[compositeKey];
+    }
+    
+    // Fallback to legacy flat key if exists
+    return data[targetKey] !== undefined ? data[targetKey] : baseScore;
   },
 
-  updateRelationScore: (targetCountry: string, delta: number, currentBase: number) => {
+  updateRelationScore: (targetCountry: string, delta: number, currentBase: number, sourceCountry?: string) => {
     if (typeof window === "undefined") return;
     const data = relationStorage.getRelationData();
-    const key = targetCountry.toLowerCase().trim();
-    const currentScore = relationStorage.getRelationScore(key, currentBase);
+    const targetKey = targetCountry.toLowerCase().trim();
+    
+    // Determine the source key (defaulting to current player session if possible)
+    let sourceKey = sourceCountry?.toLowerCase().trim();
+    if (!sourceKey) {
+      const sessionRaw = localStorage.getItem("game_session");
+      if (sessionRaw) {
+        try {
+          sourceKey = JSON.parse(sessionRaw).country?.toLowerCase().trim();
+        } catch(e) {}
+      }
+    }
+    
+    const finalSourceKey = sourceKey || "player"; // Fallback to generic if still unknown
+    const compositeKey = `${finalSourceKey}:${targetKey}`;
+
+    const currentScore = relationStorage.getRelationScore(targetKey, currentBase, finalSourceKey);
     
     // Calculate new score, potentially clamped between 0 and 100
     const newScore = Math.max(0, Math.min(100, currentScore + delta));
@@ -49,20 +72,22 @@ export const relationStorage = {
       const meta = relationStorage.getRelationMetadata(newScore);
       window.dispatchEvent(new CustomEvent("relation_alert", {
         detail: {
-          countryId: key,
+          countryId: targetKey,
           newScore: newScore,
           status: meta.label,
-          color: meta.hex
+          color: meta.hex,
+          sourceId: finalSourceKey
         }
       }));
     }
 
-    data[key] = newScore;
+    // Save in composite format
+    data[compositeKey] = newScore;
     localStorage.setItem(RELATION_STORAGE_KEY, JSON.stringify(data));
     
     // Dispatch event to notify UI components
     window.dispatchEvent(new CustomEvent("relation_status_updated", { 
-      detail: { targetCountry: key, newScore } 
+      detail: { targetCountry: targetKey, sourceCountry: finalSourceKey, newScore } 
     }));
   },
 
@@ -86,12 +111,11 @@ export const relationStorage = {
     targetCountries.forEach(country => {
       const countryId = country.name_id.toLowerCase().trim();
       const baseScore = baseRelationMap.get(countryId) ?? 50;
-      const currentScore = relationStorage.getRelationScore(countryId, baseScore);
+      const currentScore = relationStorage.getRelationScore(countryId, baseScore, normalizedPlayer);
       const newScore = Math.max(0, Math.min(100, currentScore + delta));
       
-      // We don't dispatch 206 alerts at once (too noisy), 
-      // but we update the storage
-      data[countryId] = newScore;
+      const compositeKey = `${normalizedPlayer}:${countryId}`;
+      data[compositeKey] = newScore;
     });
 
     localStorage.setItem(RELATION_STORAGE_KEY, JSON.stringify(data));
@@ -99,7 +123,7 @@ export const relationStorage = {
     // Notify UI that a batch update occurred
     window.dispatchEvent(new Event("relation_storage_updated"));
     window.dispatchEvent(new CustomEvent("relation_status_updated", { 
-      detail: { targetCountry: "all", newScore: 0 } // Generic "all" flag
+      detail: { targetCountry: "all", sourceCountry: normalizedPlayer, newScore: 0 } 
     }));
   },
 

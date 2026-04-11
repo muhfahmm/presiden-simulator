@@ -194,7 +194,7 @@ export default function StrategyModal({
       }
 
       setLiveStats({ anggaran: currentAnggaran, dailyDelta: currentDailyDelta });
-      setRelationScore(relationStorage.getRelationScore(targetK, initialBase));
+      setRelationScore(relationStorage.getRelationScore(targetK, initialBase, userId));
     };
 
     updateStats();

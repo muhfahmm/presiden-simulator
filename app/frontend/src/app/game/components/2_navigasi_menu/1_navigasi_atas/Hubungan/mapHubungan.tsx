@@ -48,7 +48,7 @@ const getRelation = (name: string, userCountry: string) => {
     ? userRelations.find((item: any) => item.name.toLowerCase().trim() === targetId)
     : null;
   const baseScore = relationData ? relationData.relation : 50;
-  const rawScore = relationStorage.getRelationScore(targetId, baseScore);
+  const rawScore = relationStorage.getRelationScore(targetId, baseScore, userId);
   const isUNSCMember = unSecurityCouncilStorage.getData()?.members?.some((m: any) =>
     m.name.toLowerCase() === userCountry.toLowerCase()
   );

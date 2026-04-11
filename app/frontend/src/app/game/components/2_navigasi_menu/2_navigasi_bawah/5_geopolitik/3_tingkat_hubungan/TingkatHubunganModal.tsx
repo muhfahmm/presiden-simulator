@@ -164,8 +164,8 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
 
     if (sortOrder !== 'none') {
       filtered.sort((a: any, b: any) => {
-        const scoreA = relationStorage.getRelationScore(a.name?.toLowerCase().trim(), a.relation);
-        const scoreB = relationStorage.getRelationScore(b.name?.toLowerCase().trim(), b.relation);
+        const scoreA = relationStorage.getRelationScore(a.name?.toLowerCase().trim(), a.relation, currentCountry);
+        const scoreB = relationStorage.getRelationScore(b.name?.toLowerCase().trim(), b.relation, currentCountry);
         return sortOrder === 'desc' ? scoreB - scoreA : scoreA - scoreB;
       });
     }
@@ -330,7 +330,7 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
             <div className="flex flex-col gap-3.5 max-w-6xl mx-auto animate-in fade-in slide-in-from-bottom-10 duration-1000">
               {filteredRelations.map((rel, idx) => {
                 const targetK = relationStorage.normalizeTargetId(rel.name, centersData);
-                const liveScore = relationStorage.getRelationScore(targetK, rel.relation);
+                const liveScore = relationStorage.getRelationScore(targetK, rel.relation, currentCountry);
                 const status = getRelationStatus(liveScore);
                 const targetCountryObj = centersData.find(c => c.name_id === rel.name || c.name_en === rel.name);
                 

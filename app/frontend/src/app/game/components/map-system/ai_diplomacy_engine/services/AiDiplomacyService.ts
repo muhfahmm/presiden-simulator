@@ -55,59 +55,52 @@ export const AiDiplomacyService = {
                 Object.keys(updatedMatrix).forEach(sourceId => {
                     const relations = updatedMatrix[sourceId];
 
-                    // JIKA source adalah USER, update hubungan ke semua negara NPC (Perspektif Pemain)
-                    if (sourceId === normalizedUser) {
-                        Object.keys(relations).forEach(targetId => {
-                            const relFromUser = relations[targetId];
-                            const rawScore = relFromUser.s;
-                            const newScore = Math.round(rawScore * 100) / 100;
+                    // 1. Sinkronisasi SEMUA hubungan antar AI (NPC-to-NPC) dan PLAYER (User-to-NPC / NPC-to-User)
+                    Object.keys(relations).forEach(targetId => {
+                        const relData = relations[targetId];
+                        const rawScore = relData.s;
+                        const newScore = Math.round(rawScore * 100) / 100;
 
-                            if (liveRelationData[targetId] !== newScore) {
-                                liveRelationData[targetId] = newScore;
-                                hasChanges = true;
+                        // Gunakan composite key format di localStorage agar tidak saling tindih
+                        const compositeKey = `${sourceId}:${targetId}`;
+                        
+                        if (liveRelationData[compositeKey] !== newScore) {
+                            liveRelationData[compositeKey] = newScore;
+                            hasChanges = true;
 
-                                // Kirim event agar baris di halaman Geopolitik ter-update
+                            // Jika source atau target adalah player, pancing UI untuk update
+                            if (sourceId === normalizedUser || targetId === normalizedUser) {
                                 window.dispatchEvent(new CustomEvent("relation_status_updated", { 
-                                    detail: { targetCountry: targetId, newScore } 
+                                    detail: { 
+                                        targetCountry: targetId, 
+                                        sourceCountry: sourceId, 
+                                        newScore 
+                                    } 
                                 }));
                             }
-                        });
-                    }
-
-                    // JIKA source adalah NPC, update hubungan MENUJU pemain (Perspektif Lawan)
-                    const relToUser = relations[normalizedUser];
-                    if (relToUser && sourceId !== normalizedUser) {
-                        // a. Update Skor Hubungan (%)
-                        const rawScore = relToUser.s;
-                        const newScore = Math.round(rawScore * 100) / 100;
-                        
-                        if (liveRelationData[sourceId] !== newScore) {
-                            liveRelationData[sourceId] = newScore;
-                            hasChanges = true;
-                            
-                            window.dispatchEvent(new CustomEvent("relation_status_updated", { 
-                                detail: { targetCountry: sourceId, newScore } 
-                            }));
                         }
 
-                        // b. Update Pakta Non-Agresi (p)
-                        if (relToUser.p === 1 && nonAggressionStorage.getStatus(sourceId) !== 'active') {
-                            nonAggressionStorage.updateStatus(sourceId, { status: 'active' });
-                        }
+                        // KHUSUS logika sinkronisasi status (Embassy, Pact, Alliance, Trade) MENUJU PEMAIN
+                        if (targetId === normalizedUser && sourceId !== normalizedUser) {
+                           // b. Update Pakta Non-Agresi (p)
+                           if (relData.p === 1 && nonAggressionStorage.getStatus(sourceId) !== 'active') {
+                               nonAggressionStorage.updateStatus(sourceId, { status: 'active' });
+                           }
 
-                        // c. Update Aliansi Pertahanan (a)
-                        if (relToUser.a === 1 && aliansiStorage.getStatus(sourceId) !== 'active') {
-                            aliansiStorage.updateStatus(sourceId, { status: 'active' });
-                        }
+                           // c. Update Aliansi Pertahanan (a)
+                           if (relData.a === 1 && aliansiStorage.getStatus(sourceId) !== 'active') {
+                               aliansiStorage.updateStatus(sourceId, { status: 'active' });
+                           }
 
-                        // d. Update Kerjasama Dagang (t)
-                        if (relToUser.t === 1) {
-                            const currentTrade = tradeStorage.getTrade(sourceId);
-                            if (!currentTrade || currentTrade.status !== 'active') {
-                                tradeStorage.saveTrade(sourceId, { status: 'active', startDate: new Date().toISOString() });
-                            }
+                           // d. Update Kerjasama Dagang (t)
+                           if (relData.t === 1) {
+                               const currentTrade = tradeStorage.getTrade(sourceId);
+                               if (!currentTrade || currentTrade.status !== 'active') {
+                                   tradeStorage.saveTrade(sourceId, { status: 'active', startDate: new Date().toISOString() });
+                               }
+                           }
                         }
-                    }
+                    });
                 });
 
                 if (hasChanges) {

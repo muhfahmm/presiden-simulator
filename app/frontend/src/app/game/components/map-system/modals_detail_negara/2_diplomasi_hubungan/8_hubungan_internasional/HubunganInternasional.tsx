@@ -81,7 +81,7 @@ export default function HubunganInternasional({ isOpen, onClose, targetCountry }
       const continent = countryEntry ? getContinent(countryEntry.name_id) : "Global";
       
       // Get dynamic score and delta
-      const dynamicScore = relationStorage.getRelationScore(countryId, r.relation);
+      const dynamicScore = relationStorage.getRelationScore(countryId, r.relation, targetKey);
       const delta = relationDeltaStorage.getDelta(countryId);
       const meta = relationStorage.getRelationMetadata(dynamicScore);
       
