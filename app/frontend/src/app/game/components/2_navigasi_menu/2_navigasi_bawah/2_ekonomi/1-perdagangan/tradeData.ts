@@ -63,25 +63,34 @@ export const baseKeyMapping: Record<string, string> = {
   "bakery_factory": "roti"
 };
 
+// DETERMINISTIC SEEDED RANDOM (Consistent across days)
+// Returns a value between -1 and 1
+export const getSeededNoise = (seed: string | number) => {
+  let h = 0;
+  const s = String(seed);
+  for (let i = 0; i < s.length; i++) {
+    h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;
+  }
+  
+  // Deterministic PRNG logic (LCG variant)
+  const x = Math.sin(h) * 10000;
+  return x - Math.floor(x);
+};
+
 // DYNAMIC PRICE GENERATOR
 export const getDynamicPrice = (key: string, type: "buy" | "sell", date: Date) => {
   const baseMap = type === "buy" ? buyPriceMap : sellPriceMap;
   const basePrice = baseMap[key] || 100;
   
-  // Deterministic seed based on key and date
-  let keySeed = 0;
-  for (let i = 0; i < key.length; i++) {
-    keySeed = (keySeed << 5) - keySeed + key.charCodeAt(i);
-    keySeed |= 0;
-  }
-  
-  // Use day-based timestamp to ensure same price for the whole game day
+  // Use day-based seed to ensure same base price for the whole game day
   const dayTimestamp = Math.floor(date.getTime() / (1000 * 60 * 60 * 24));
-  const seed = keySeed + dayTimestamp;
+  const seed = `${key}-${dayTimestamp}`;
   
   // Pseudo-random fluctuation (+/- 15%)
-  const noise = (Math.sin(seed) * 10000) % 1;
+  // We use the seeded noise to get a value between -1 and 1
+  const noise = (getSeededNoise(seed) * 2) - 1;
   const multiplier = 1 + (noise * 0.15);
   
   return Math.round(basePrice * multiplier);
 };
+

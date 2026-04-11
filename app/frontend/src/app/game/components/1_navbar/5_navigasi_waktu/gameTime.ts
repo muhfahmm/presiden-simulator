@@ -23,10 +23,17 @@ export function saveGameDate(date: Date) {
 export function getStoredGameDate(): Date {
   if (typeof window !== "undefined") {
     const stored = localStorage.getItem(DATE_STORAGE_KEY);
-    if (stored) return new Date(Number(stored));
+    if (stored) {
+      const time = Number(stored);
+      if (!isNaN(time) && isFinite(time)) {
+        const d = new Date(time);
+        if (!isNaN(d.getTime())) return d;
+      }
+    }
   }
   return INITIAL_GAME_DATE;
 }
+
 
 export function getGameWeekIndex(date: Date): number {
   const diffTime = Math.abs(date.getTime() - INITIAL_GAME_DATE.getTime());
