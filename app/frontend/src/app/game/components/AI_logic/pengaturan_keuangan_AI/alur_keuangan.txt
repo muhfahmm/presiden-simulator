@@ -1,0 +1,46 @@
+ALUR LOGIKA PENGATURAN KEUANGAN AI (NPC)
+========================================
+
+File ini menjelaskan urutan proses pengambilan keputusan keuangan oleh AI 
+sebelum data dikirimkan ke modul Pembangunan AI.
+
+1. PENGECEKAN STATUS KAS (BUDGET CHECK)
+--------------------------------------
+- AI mengambil data anggaran (anggaran) saat ini.
+- AI menghitung total pendapatan harian (dari pajak, ekspor, dan bantuan).
+- AI menghitung total pengeluaran harian (pemeliharaan, gaji, dan impor).
+
+2. PRIORITAS PENGELUARAN WAJIB
+------------------------------
+Sebelum membangun, AI harus memastikan biaya operasional tertutupi:
+- Alokasi Gaji & Pelayanan Publik: Minimal 30% dari pendapatan harian.
+- Biaya Pemeliharaan Gedung: Harus dibayar penuh agar gedung tidak rusak/tidak aktif.
+- Jika Kas < Biaya Wajib: AI akan membatalkan semua rencana pembangunan.
+
+3. ANALISIS SURPLUS & CADANGAN
+------------------------------
+- Perhitungan Sisa Bersih: (Pendapatan - Pengeluaran Wajib).
+- Dana Darurat: AI akan menyisihkan 10% dari surplus ke tabungan jangka panjang.
+- Anggaran Tersedia untuk Pembangunan: Sisa setelah dikurangi dana darurat.
+
+4. DINAMIKA KEBIJAKAN PAJAK (TAX ADJUSTMENT)
+-------------------------------------------
+- Jika Kas menipis (< 10% dari PDB): AI akan mencoba menaikkan tarif pajak korporasi atau PPN secara bertahap (0.1% - 0.5%).
+- Jika Kas surplus besar (> 50% dari PDB): AI akan menurunkan pajak sedikit demi sedikit untuk meningkatkan kepuasan rakyat.
+
+5. PENYIAPAN DATA UNTUK PEMBANGUNAN AI
+-------------------------------------
+- Setelah angka "Anggaran Tersedia" didapatkan, AI akan mengirimkan angka tersebut ke:
+    * Modul Produksi (Berdasarkan kebutuhan ekonomi)
+    * Modul Produksi Militer (Berdasarkan tingkat ancaman)
+    * Modul Tempat Umum (Berdasarkan tingkat kepuasan rakyat)
+
+6. EKSEKUSI PEMBANGUNAN
+-----------------------
+- Pembangunan AI dijalankan menggunakan anggaran yang sudah dialokasikan.
+- Jika anggaran habis di tengah jalan, pembangunan akan dihentikan sementara.
+
+7. UPDATE STATUS AKHIR
+----------------------
+- Simpan sisa kas setelah pembangunan ke database negara masing-masing.
+- Kirim notifikasi sistem jika ada perubahan signifikan pada keuangan negara NPC.
