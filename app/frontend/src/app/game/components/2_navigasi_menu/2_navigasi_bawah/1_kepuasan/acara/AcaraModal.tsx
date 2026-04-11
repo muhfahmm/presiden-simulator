@@ -82,7 +82,7 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white tracking-tight leading-none">Pusat Manajemen Acara Nasional</h2>
-              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-1">🇮🇩 Indonesia — National Event Management Center</p>
+              <p className="text-xs text-zinc-400 font-medium uppercase tracking-widest mt-1">🇮🇩 Indonesia — National Event Management Center</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -92,7 +92,7 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
                 <Landmark className="h-4 w-4 text-emerald-500 group-hover/budget:text-current" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest leading-none mb-0.5 opacity-60 group-hover/budget:opacity-100 transition-opacity">Kas Negara</span>
+                <span className="text-[10px] font-black text-emerald-400/80 uppercase tracking-widest leading-none mb-0.5 opacity-60 group-hover/budget:opacity-100 transition-opacity">Kas Negara</span>
                 <span className="text-sm font-black text-white tracking-tight italic tabular-nums leading-none">
                   {currentBudget.toLocaleString('id-ID')}
                 </span>
@@ -113,7 +113,7 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
           <div className="w-[320px] border-r border-zinc-900 bg-zinc-950/50 flex flex-col backdrop-blur-sm">
             <div className="p-6 border-b border-zinc-900/80 shrink-0">
               <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">Kategori Acara</h3>
-              <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic mt-1">Filter Berdasarkan Jenis</p>
+              <p className="text-[11px] font-bold text-zinc-400 uppercase tracking-tighter italic mt-1">Filter Berdasarkan Jenis</p>
             </div>
             <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent p-4 space-y-1.5">
               {categories.map((cat) => (
@@ -123,19 +123,21 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
                   className={`w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border ${
                     (selectedCategory === cat || (!selectedCategory && cat === "Semua"))
                       ? 'bg-cyan-600/10 border-cyan-500/40 text-white'
-                      : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'
+                      : 'text-zinc-300 hover:bg-zinc-900/50 border-transparent'
                   }`}
                 >
                   <div className={`p-2 rounded-xl ${
                     (selectedCategory === cat || (!selectedCategory && cat === "Semua"))
                       ? 'bg-cyan-500 text-white'
-                      : 'bg-zinc-900 text-zinc-600'
+                      : 'bg-zinc-900 text-zinc-400'
                   }`}>
                     {cat === "Semua" ? <BarChart3 className="h-4 w-4" /> : getIcon(cat)}
                   </div>
                   <div className="text-left flex-1 min-w-0">
-                    <span className="text-[14px] font-black uppercase tracking-tight block leading-tight truncate">{cat}</span>
-                    <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic">
+                    <span className="text-[14px] font-black uppercase tracking-tight block leading-tight truncate">
+                      {cat}
+                    </span>
+                    <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-tighter italic">
                       {cat === "Semua" ? `${DATA_ACARA.length} Acara` : `${DATA_ACARA.filter(a => a.category === cat).length} Acara`}
                     </span>
                   </div>
@@ -144,23 +146,23 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
               
               <div className="h-px bg-zinc-900 my-3"></div>
               
-              <button className="w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border text-zinc-500 hover:bg-zinc-900/50 border-transparent">
-                <div className="p-2 rounded-xl bg-zinc-900 text-zinc-600">
+              <button className="w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border text-zinc-300 hover:bg-zinc-900/50 border-transparent">
+                <div className="p-2 rounded-xl bg-zinc-900 text-zinc-400">
                   <History className="h-4 w-4" />
                 </div>
                 <div className="text-left flex-1 min-w-0">
                   <span className="text-[14px] font-black uppercase tracking-tight block leading-tight truncate">Riwayat</span>
-                  <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic">{history.length} Event</span>
+                  <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-tighter italic">{history.length} Event</span>
                 </div>
               </button>
 
-              <button className="w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border text-zinc-500 hover:bg-zinc-900/50 border-transparent">
-                <div className="p-2 rounded-xl bg-zinc-900 text-zinc-600">
+              <button className="w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border text-zinc-300 hover:bg-zinc-900/50 border-transparent">
+                <div className="p-2 rounded-xl bg-zinc-900 text-zinc-400">
                   <Calendar className="h-4 w-4" />
                 </div>
                 <div className="text-left flex-1 min-w-0">
                   <span className="text-[14px] font-black uppercase tracking-tight block leading-tight truncate">Kalender</span>
-                  <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic">Planning</span>
+                  <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-tighter italic">Planning</span>
                 </div>
               </button>
             </div>
@@ -283,29 +285,29 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
                     {/* Stats Grid */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       <div className="p-6 rounded-2xl bg-zinc-950/50 border border-zinc-800/50">
-                        <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">Biaya</div>
-                        <div className={`text-3xl font-black ${canAfford && !activeStatus.isActive ? 'text-white' : 'text-rose-500'}`}>
+                        <div className="text-[11px] font-black text-zinc-300 uppercase tracking-widest mb-2">Biaya</div>
+                        <div className={`text-4xl font-black ${canAfford && !activeStatus.isActive ? 'text-white' : 'text-rose-500'}`}>
                           {selectedAcara.cost.toLocaleString()}
                         </div>
                       </div>
                       
                       <div className="p-6 rounded-2xl bg-zinc-950/50 border border-zinc-800/50">
-                        <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">Efek Kepuasan</div>
-                        <div className="text-3xl font-black text-emerald-400">
+                        <div className="text-[11px] font-black text-zinc-300 uppercase tracking-widest mb-2">Efek Kepuasan</div>
+                        <div className="text-4xl font-black text-emerald-400">
                           +{selectedAcara.happinessBoost}%
                         </div>
                       </div>
                       
                       <div className="p-6 rounded-2xl bg-zinc-950/50 border border-zinc-800/50">
-                        <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">Durasi</div>
-                        <div className="text-3xl font-black text-blue-400">
+                        <div className="text-[11px] font-black text-zinc-300 uppercase tracking-widest mb-2">Durasi</div>
+                        <div className="text-4xl font-black text-blue-400">
                           {selectedAcara.durationDays} Hari
                         </div>
                       </div>
                       
                       <div className="p-6 rounded-2xl bg-zinc-950/50 border border-zinc-800/50">
-                        <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2">Berakhir</div>
-                        <div className="text-3xl font-black text-purple-400 tracking-tighter">
+                        <div className="text-[11px] font-black text-zinc-300 uppercase tracking-widest mb-2">Berakhir</div>
+                        <div className="text-4xl font-black text-purple-400 tracking-tighter">
                           {acaraStorage.getEndDate(formatGameDate(gameDate), selectedAcara.durationDays)}
                         </div>
                       </div>

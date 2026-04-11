@@ -145,7 +145,7 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
                   style={{ width: `${happiness}%` }}
                 />
               </div>
-              <div className="flex justify-between text-[10px] font-bold text-zinc-600 uppercase tracking-tighter">
+              <div className="flex justify-between text-[11px] font-black text-zinc-400 uppercase tracking-tighter">
                 <span>Kritis</span>
                 <span>Optimal</span>
               </div>
@@ -158,8 +158,8 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
             {/* Top Row: Pajak Nasional */}
             <div className="p-4 rounded-2xl bg-zinc-950/50 border border-zinc-800/50 flex flex-col items-center text-center space-y-2">
               <CalendarDays className={`h-5 w-5 ${liveImpacts.taxImpact > 0 ? "text-emerald-400" : "text-rose-400"}`} />
-              <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">DAMPAK PAJAK / BULAN</div>
-              <div className={`text-sm font-black ${liveImpacts.taxImpact > 0 ? 'text-emerald-400' : liveImpacts.taxImpact < 0 ? 'text-rose-400' : 'text-white'}`}>
+              <div className="text-[11px] font-black text-zinc-300 uppercase tracking-widest">DAMPAK PAJAK / BULAN</div>
+              <div className={`text-lg font-black ${liveImpacts.taxImpact > 0 ? 'text-emerald-400' : liveImpacts.taxImpact < 0 ? 'text-rose-400' : 'text-white'}`}>
                 {liveImpacts.taxImpact > 0 ? '+' : ''}{(liveImpacts.taxImpact || 0).toFixed(1)}%
               </div>
             </div>
@@ -175,8 +175,8 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
               {!isRedZone || effectiveTaxDailyDelta >= 0 ? (
                 <CalendarDays className={`h-5 w-5 ${effectiveTaxDailyDelta > 0 ? 'text-emerald-400' : effectiveTaxDailyDelta < 0 ? 'text-rose-400' : 'text-zinc-500'}`} />
               ) : null}
-              <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">DAMPAK PAJAK / HARI</div>
-              <div className={`text-sm font-black ${effectiveTaxDailyDelta > 0 ? 'text-emerald-400' : effectiveTaxDailyDelta < 0 ? 'text-rose-400' : 'text-zinc-300'}`}>
+              <div className="text-[11px] font-black text-zinc-300 uppercase tracking-widest">DAMPAK PAJAK / HARI</div>
+              <div className={`text-lg font-black ${effectiveTaxDailyDelta > 0 ? 'text-emerald-400' : effectiveTaxDailyDelta < 0 ? 'text-rose-400' : 'text-zinc-300'}`}>
                 {effectiveTaxDailyDelta > 0 ? '+' : ''}{effectiveTaxDailyDelta.toFixed(1)}
               </div>
               {isRedZone && <div className="text-[8px] font-black text-rose-500 uppercase tracking-wider">Zona Merah ×2</div>}
@@ -185,8 +185,8 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
             {/* Bottom Row: Harga Pokok */}
             <div className="p-4 rounded-2xl bg-zinc-950/50 border border-zinc-800/50 flex flex-col items-center text-center space-y-2">
               <ShoppingCart className={`h-5 w-5 ${liveImpacts.priceImpact > 0 ? "text-emerald-400" : "text-rose-400"}`} />
-              <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">DAMPAK HARGA / BULAN</div>
-              <div className={`text-sm font-black ${liveImpacts.priceImpact > 0 ? 'text-emerald-400' : liveImpacts.priceImpact < 0 ? 'text-rose-400' : 'text-white'}`}>
+              <div className="text-[11px] font-black text-zinc-300 uppercase tracking-widest">DAMPAK HARGA / BULAN</div>
+              <div className={`text-lg font-black ${liveImpacts.priceImpact > 0 ? 'text-emerald-400' : liveImpacts.priceImpact < 0 ? 'text-rose-400' : 'text-white'}`}>
                 {liveImpacts.priceImpact > 0 ? '+' : ''}{(liveImpacts.priceImpact || 0).toFixed(1)}%
               </div>
             </div>
@@ -197,8 +197,8 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
               'bg-zinc-950/50 border-zinc-800/50'
             }`}>
               <ShoppingCart className={`h-5 w-5 ${effectivePriceDailyDelta > 0 ? 'text-emerald-400' : effectivePriceDailyDelta < 0 ? 'text-rose-400' : 'text-zinc-500'}`} />
-              <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">DAMPAK HARGA / HARI</div>
-              <div className={`text-sm font-black ${effectivePriceDailyDelta > 0 ? 'text-emerald-400' : effectivePriceDailyDelta < 0 ? 'text-rose-400' : 'text-zinc-300'}`}>
+              <div className="text-[11px] font-black text-zinc-300 uppercase tracking-widest">DAMPAK HARGA / HARI</div>
+              <div className={`text-lg font-black ${effectivePriceDailyDelta > 0 ? 'text-emerald-400' : effectivePriceDailyDelta < 0 ? 'text-rose-400' : 'text-zinc-300'}`}>
                 {effectivePriceDailyDelta > 0 ? '+' : ''}{effectivePriceDailyDelta.toFixed(2)}
               </div>
               {isRedZone && <div className="text-[8px] font-black text-rose-500 uppercase tracking-wider">Zona Merah ×1.5</div>}

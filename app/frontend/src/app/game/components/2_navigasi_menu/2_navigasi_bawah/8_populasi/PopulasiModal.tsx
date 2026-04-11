@@ -45,6 +45,10 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
   const countryName = session?.country || "Indonesia";
   const country = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
 
+  const currentDateMs = getStoredGameDate().getTime();
+  const diffTime = Math.abs(currentDateMs - INITIAL_GAME_DATE.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
   // Unified calculation using shared logic
   const buildingDeltas = buildingStorage.getBuildingDeltas();
   const {
@@ -57,8 +61,9 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
     taxGrowthRate,
     priceGrowthRate,
     dailyBirths,
-    dailyDeaths
-  } = calculateDetailedPopulationMetrics(country, population, buildingDeltas);
+    dailyDeaths,
+    demographics
+  } = calculateDetailedPopulationMetrics(country, population, buildingDeltas, diffDays);
 
   const monthlyTaxGrowthPercent = taxGrowthRate * 30 * 100;
   const monthlyPriceGrowthPercent = priceGrowthRate * 30 * 100;
@@ -81,9 +86,6 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
   }
 
 
-  const currentDateMs = getStoredGameDate().getTime();
-  const diffTime = Math.abs(currentDateMs - INITIAL_GAME_DATE.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   const sixMonthIndex = Math.floor(diffDays / 180);
 
   const nextUpdateMs = INITIAL_GAME_DATE.getTime() + (sixMonthIndex + 1) * 180 * 24 * 60 * 60 * 1000;
@@ -324,43 +326,34 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3">
-                  {(() => {
-                    const baseBrackets = [
-                      { label: "Anak-Anak", range: "0-14", icon: Baby, percent: 25.2, color: "bg-sky-500", text: "text-sky-400", bg: "bg-sky-500/10" },
-                      { label: "Pemuda", range: "15-24", icon: GraduationCap, percent: 16.8, color: "bg-emerald-500", text: "text-emerald-400", bg: "bg-emerald-500/10" },
-                      { label: "Produktif", range: "25-54", icon: Briefcase, percent: 42.4, color: "bg-indigo-500", text: "text-indigo-400", bg: "bg-indigo-500/10" },
-                      { label: "Pra-Lansia", range: "55-64", icon: Brain, percent: 8.6, color: "bg-amber-500", text: "text-amber-400", bg: "bg-amber-500/10" },
-                      { label: "Lansia", range: "65+", icon: Landmark, percent: 7.0, color: "bg-purple-500", text: "text-purple-400", bg: "bg-purple-500/10" }
-                    ];
+                  {demographics.map((bracket, i) => {
+                    const iconMap: Record<string, any> = {
+                      "Anak-Anak": { icon: Baby, color: "bg-sky-500", text: "text-sky-400", bg: "bg-sky-500/10" },
+                      "Pemuda": { icon: GraduationCap, color: "bg-emerald-500", text: "text-emerald-400", bg: "bg-emerald-500/10" },
+                      "Produktif": { icon: Briefcase, color: "bg-indigo-500", text: "text-indigo-400", bg: "bg-indigo-500/10" },
+                      "Pra-Lansia": { icon: Brain, color: "bg-amber-500", text: "text-amber-400", bg: "bg-amber-500/10" },
+                      "Lansia": { icon: Landmark, color: "bg-purple-500", text: "text-purple-400", bg: "bg-purple-500/10" }
+                    };
+                    const style = iconMap[bracket.label];
+                    const Icon = style.icon;
 
-                    const driftAdjustments = baseBrackets.map((b, i) => {
-                      const drift = Math.sin(diffDays * 0.08 + i) * 0.35;
-                      return { ...b, percent: Math.max(0.1, b.percent + drift) };
-                    });
-
-                    const totalRaw = driftAdjustments.reduce((sum, b) => sum + b.percent, 0);
-                    const normalized = driftAdjustments.map(b => ({
-                      ...b,
-                      percent: parseFloat(((b.percent / totalRaw) * 100).toFixed(1))
-                    }));
-
-                    return normalized.map((bracket, i) => (
+                    return (
                       <div key={i} className={`p-4 rounded-[24px] bg-zinc-950/30 border border-zinc-800 hover:border-zinc-700 transition-all group/b flex flex-col gap-2`}>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <div className={`p-1.5 rounded-lg ${bracket.bg} ${bracket.text} border border-white/5`}>
-                              <bracket.icon size={14} />
+                            <div className={`p-1.5 rounded-lg ${style.bg} ${style.text} border border-white/5`}>
+                              <Icon size={14} />
                             </div>
                             <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest leading-none">{bracket.label}</span>
                           </div>
-                          <span className={`text-sm font-black ${bracket.text} italic tabular-nums`}>{bracket.percent}%</span>
+                          <span className={`text-sm font-black ${style.text} italic tabular-nums`}>{bracket.percent}%</span>
                         </div>
                         <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
-                          <div className={`h-full ${bracket.color} opacity-80`} style={{ width: `${bracket.percent}%` }} />
+                          <div className={`h-full ${style.color} opacity-80`} style={{ width: `${bracket.percent}%` }} />
                         </div>
                       </div>
-                    ));
-                  })()}
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -384,21 +377,23 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
                     <Heart className="h-5 w-5" />
                   </div>
                   <div className="text-right">
-                    <span className="text-2xl font-black text-white italic tabular-nums">{healthScore.toFixed(1)}</span>
-                    <p className="text-[8px] font-black text-zinc-500 uppercase tracking-widest mt-1">Health Score</p>
+                    <span className="text-3xl font-black text-white italic tabular-nums">{healthScore.toFixed(1)}</span>
+                    <p className="text-[11px] font-black text-zinc-300 uppercase tracking-widest mt-1">Health Score</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div className="p-3 rounded-2xl bg-zinc-950/50 border border-zinc-800">
-                    <p className="text-[8px] font-black text-zinc-600 uppercase tracking-widest mb-1 italic">Harapan Hidup</p>
-                    <p className="text-sm font-black text-rose-400 italic tabular-nums">{lifeExpectancy} THN</p>
+                    <p className="text-[11px] font-black text-zinc-300 uppercase tracking-widest mb-1 italic">Harapan Hidup</p>
+                    <p className="text-lg font-black text-rose-400 italic tabular-nums">{lifeExpectancy.toFixed(1)} THN</p>
                   </div>
                   <div className="p-3 rounded-2xl bg-zinc-950/50 border border-zinc-800">
-                    <p className="text-[8px] font-black text-zinc-600 uppercase tracking-widest mb-1 italic">Status Medis</p>
-                    <p className="text-sm font-black text-white italic">{healthScore > 80 ? 'PRIMA' : 'STABIL'}</p>
+                    <p className="text-[11px] font-black text-zinc-300 uppercase tracking-widest mb-1 italic">Status Medis</p>
+                    <p className="text-lg font-black text-white italic">
+                      {healthScore > 90 ? 'PRIMA' : healthScore > 75 ? 'STABIL' : healthScore > 60 ? 'WASPADA' : 'KRITIS'}
+                    </p>
                   </div>
                 </div>
-                <h4 className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.3em] mt-2">Kualitas Hidup</h4>
+                <h4 className="text-[12px] font-black text-zinc-300 uppercase tracking-[0.3em] mt-2">Kualitas Hidup</h4>
               </div>
 
               {/* HUMAN CAPITAL Card */}

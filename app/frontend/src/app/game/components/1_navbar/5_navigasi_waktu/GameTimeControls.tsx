@@ -69,9 +69,12 @@ export default function GameTimeControls() {
       // Daily AI Budget progression
       aiBudgetStorage.updateAll(state.gameDate, currentCountryCode);
 
-      // Daily Population Change (driven by tax policy)
+      // Daily Population Change (driven by tax policy & demographics)
       const currentPopulation = populationStorage.getPopulation();
-      const rawPopulationDelta = calculateDailyPopulationDelta(currentData, currentPopulation);
+      const diffTime = Math.abs(state.gameDate.getTime() - INITIAL_GAME_DATE.getTime());
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      
+      const rawPopulationDelta = calculateDailyPopulationDelta(currentData, currentPopulation, diffDays);
       const populationDelta = Math.round(rawPopulationDelta);
       populationStorage.updatePopulation(populationDelta);
       populationDeltaStorage.setDelta(populationDelta);
