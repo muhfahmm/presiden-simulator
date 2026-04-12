@@ -8,12 +8,12 @@ def calculate_production():
         
         # Metadata rates (MW per unit)
         rates = {
-            "pembangkit_listrik_tenaga_surya": 50,
-            "pembangkit_listrik_tenaga_angin": 150,
-            "pembangkit_listrik_tenaga_air": 500,
-            "pembangkit_listrik_tenaga_uap": 1000,
-            "pembangkit_listrik_tenaga_gas": 1200,
-            "pembangkit_listrik_tenaga_nuklir": 3000
+            "3_pembangkit_listrik_tenaga_surya": 50,
+            "6_pembangkit_listrik_tenaga_angin": 150,
+            "2_pembangkit_listrik_tenaga_air": 500,
+            "4_pembangkit_listrik_tenaga_uap": 1000,
+            "5_pembangkit_listrik_tenaga_gas": 1200,
+            "1_pembangkit_listrik_tenaga_nuklir": 3000
         }
         
         total_mw = 0

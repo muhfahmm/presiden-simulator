@@ -24,7 +24,7 @@ def decide():
                 
                 req = option.get("requirements", {})
                 if stocks.get("5_pabrik_semen", 0) < req.get("beton", 0): return False
-                if stocks.get("12_tambang_bijih_besi", 0) < req.get("baja", 0): return False
+                if stocks.get("4_smelter", 0) < req.get("baja", 0): return False
                 if stocks.get("6_penggergajian_kayu", 0) < req.get("kayu", 0): return False
                 return True
 

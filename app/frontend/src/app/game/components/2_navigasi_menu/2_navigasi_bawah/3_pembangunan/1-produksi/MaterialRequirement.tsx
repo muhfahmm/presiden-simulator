@@ -275,7 +275,7 @@ export const MaterialRequirement: React.FC<Props> = ({ buildingKey, quantity }) 
   const stocks = {
     beton: cumulativeStock["5_pabrik_semen"] || 0,
     kayu: cumulativeStock["6_penggergajian_kayu"] || 0,
-    baja: cumulativeStock["12_tambang_bijih_besi"] || 0,
+    baja: (cumulativeStock["4_smelter"] || 0) + (cumulativeStock["12_tambang_bijih_besi"] || 0),
   };
 
   const materials = [

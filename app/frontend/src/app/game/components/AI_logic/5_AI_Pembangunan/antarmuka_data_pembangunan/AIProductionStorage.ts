@@ -21,7 +21,8 @@ export const aiProductionStorage = {
     return global[countryNameEn]?.stock || {
       "5_pabrik_semen": 0,
       "12_tambang_bijih_besi": 0,
-      "6_penggergajian_kayu": 0
+      "6_penggergajian_kayu": 0,
+      "4_smelter": 0
     };
   },
 

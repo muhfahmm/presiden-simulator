@@ -17,7 +17,7 @@ export class EksekutorPembangunanAI {
     const reqs = getBuildingRequirement(buildingKey);
     const materialReqs = {
       "5_pabrik_semen": reqs.beton || 0,
-      "12_tambang_bijih_besi": reqs.baja || 0,
+      "4_smelter": reqs.baja || 0,
       "6_penggergajian_kayu": reqs.kayu || 0
     };
 

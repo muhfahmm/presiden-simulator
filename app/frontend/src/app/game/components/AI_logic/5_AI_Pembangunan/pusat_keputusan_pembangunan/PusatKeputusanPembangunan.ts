@@ -76,7 +76,7 @@ export class PusatKeputusanPembangunan {
 
     // Priority Heuristic
     const low_beton = (stocks["5_pabrik_semen"] || 0) < 50000;
-    const low_baja = (stocks["12_tambang_bijih_besi"] || 0) < 50000;
+    const low_baja = (stocks["4_smelter"] || 0) < 50000;
     const low_kayu = (stocks["6_penggergajian_kayu"] || 0) < 50000;
 
     if (low_beton || low_kayu) {
