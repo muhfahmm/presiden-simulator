@@ -68,6 +68,14 @@ class TimeStorage {
       speed: this.speed
     };
   }
+
+  public clear() {
+    if (this.timer) clearInterval(this.timer);
+    this.timer = null;
+    this.isPaused = true;
+    this.gameDate = INITIAL_GAME_DATE;
+    this.notify();
+  }
 }
 
 export const timeStorage = new TimeStorage();

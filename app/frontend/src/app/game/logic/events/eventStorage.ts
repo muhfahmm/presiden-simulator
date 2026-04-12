@@ -1,6 +1,7 @@
 export interface ActiveEvent {
   id: string;
   type: 'health' | 'security';
+  severity?: string;
   startTime: number; // timestamp
   remainingDays: number;
   penalty: {
@@ -8,6 +9,7 @@ export interface ActiveEvent {
     securityLevel?: number;
     stabilitiy?: number;
     budget?: number;
+    populationDelta?: number; // Direct daily mortality
   };
 }
 
@@ -49,7 +51,13 @@ export const eventStorage = {
       acc.securityLevel += (e.penalty.securityLevel || 0);
       acc.stability += (e.penalty.stabilitiy || 0);
       acc.budget += (e.penalty.budget || 0);
+      acc.populationDelta += (e.penalty.populationDelta || 0);
       return acc;
-    }, { lifeExpectancy: 0, securityLevel: 0, stability: 0, budget: 0 });
+    }, { lifeExpectancy: 0, securityLevel: 0, stability: 0, budget: 0, populationDelta: 0 });
+  },
+
+  clear: () => {
+    if (typeof window === 'undefined') return;
+    localStorage.removeItem(STORAGE_KEY);
   }
 };

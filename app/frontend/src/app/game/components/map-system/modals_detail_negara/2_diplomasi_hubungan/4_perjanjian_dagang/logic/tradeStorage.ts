@@ -50,5 +50,10 @@ export const tradeStorage = {
     
     // Trigger event for UI reactivity
     window.dispatchEvent(new CustomEvent("trade_status_updated", { detail: { targetCountry, status } }));
+  },
+
+  clear: () => {
+    if (typeof window === 'undefined') return;
+    localStorage.removeItem(STORAGE_KEY);
   }
 };

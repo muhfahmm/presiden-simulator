@@ -512,11 +512,16 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
                     <div className="flex flex-col gap-3">
                       <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest italic leading-none ml-1">Spesifikasi Militer</span>
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Satuan</span>
+                        <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group relative">
+                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Total</span>
                           <span className={`${pbbMultipliers.buildCost > 1 ? 'text-rose-500' : 'text-amber-500'} text-xl font-black tracking-tight transition-colors`}>
-                            {(Math.ceil(confirmBuild.cost * pbbMultipliers.buildCost)).toLocaleString('id-ID')}
+                            {(Math.ceil(confirmBuild.cost * pbbMultipliers.buildCost) * quantity).toLocaleString('id-ID')}
                           </span>
+                          {budgetStorage.getBudget() < (Math.ceil(confirmBuild.cost * pbbMultipliers.buildCost) * quantity) && (
+                            <span className="text-[10px] font-black text-rose-500 uppercase absolute -bottom-2 whitespace-nowrap">
+                              Kurang: {((Math.ceil(confirmBuild.cost * pbbMultipliers.buildCost) * quantity) - budgetStorage.getBudget()).toLocaleString('id-ID')}
+                            </span>
+                          )}
                         </div>
                         <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>

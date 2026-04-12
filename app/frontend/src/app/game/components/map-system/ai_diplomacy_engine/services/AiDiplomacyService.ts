@@ -8,6 +8,7 @@ import { aliansiStorage } from '../../modals_detail_negara/2_diplomasi_hubungan/
 import { embassyStorage } from '../../modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage';
 import { tradeStorage } from '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/TradeStorage';
 import { timeStorage } from '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage';
+import { formatGameDate } from '@/app/game/components/1_navbar/5_navigasi_waktu/gameTime';
 
 /**
  * AiDiplomacyService
@@ -128,7 +129,7 @@ export const AiDiplomacyService = {
                             category: 'global',
                             subject: event.subject,
                             content: event.content,
-                            time: "HARI INI",
+                            time: formatGameDate(timeStorage.getState().gameDate),
                             priority: 'low'
                         });
                     } else {
@@ -148,7 +149,7 @@ export const AiDiplomacyService = {
                             isProposal: isGrant || isTrade || isPact || isAlliance || isEmbassy,
                             subject: isEmbassy ? event.subject : `[DUNIA] ${event.subject}`,
                             content: event.content,
-                            time: "HARI INI",
+                            time: formatGameDate(timeStorage.getState().gameDate),
                             priority: (isGrant || isPact || isAlliance || isEmbassy) ? 'high' : 'medium'
                         });
                     }
@@ -204,7 +205,7 @@ export const AiDiplomacyService = {
                             isProposal: false,
                             subject: event.subject,
                             content: event.content,
-                            time: "BARU SAJA",
+                            time: formatGameDate(timeStorage.getState().gameDate),
                             priority: 'high'
                         });
                     });

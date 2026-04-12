@@ -98,6 +98,51 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
   // 4. SECURITY: Crime Rate & Level
   const crimeRate = Math.max(0, Math.min(100, 100 - securityLevel));
 
+  // 5. SOCIAL CASTE / CLASS CALCULATION
+  const calculateSocialStructure = () => {
+    const gini = (country.hukum as any)?.kesenjangan_sosial || 38.0;
+    const isKapitalisme = currentIdeology === "Kapitalisme";
+    const isKomunisme = currentIdeology === "Komunisme";
+    const effectiveGini = isKapitalisme ? gini * 1.15 : isKomunisme ? gini * 0.75 : gini;
+
+    // Baseline (Approx Gini 38)
+    let elite = 2.0;
+    let upMid = 12.0;
+    let mid = 45.0;
+    let work = 30.0;
+    let poor = 11.0;
+
+    // Gini Impact: Higher Gini = More extreme ends
+    const giniFactor = (effectiveGini - 38) / 100;
+    elite += giniFactor * 15;
+    poor += giniFactor * 40;
+    mid -= giniFactor * 45;
+    upMid -= giniFactor * 10;
+
+    // Welfare (Living Cost) Impact: Lower welfare = More poor
+    const welfareFactor = (60 - livingCostIndex) / 100;
+    poor += welfareFactor * 25;
+    work += welfareFactor * 5;
+    mid -= welfareFactor * 30;
+
+    // Normalize
+    const classes = [
+      { label: "Kaum Elit", percent: Math.max(0.2, elite), color: "bg-amber-500", text: "text-amber-400", bg: "bg-amber-500/10", icon: BadgeDollarSign },
+      { label: "Menengah Atas", percent: Math.max(1, upMid), color: "bg-sky-500", text: "text-sky-400", bg: "bg-sky-500/10", icon: Landmark },
+      { label: "Kelas Menengah", percent: Math.max(5, mid), color: "bg-emerald-500", text: "text-emerald-400", bg: "bg-emerald-500/10", icon: Briefcase },
+      { label: "Kelas Pekerja", percent: Math.max(10, work), color: "bg-zinc-500", text: "text-zinc-400", bg: "bg-zinc-500/10", icon: Gavel },
+      { label: "Masyarakat Miskin", percent: Math.max(1, poor), color: "bg-rose-500", text: "text-rose-400", bg: "bg-rose-500/10", icon: ShieldAlert }
+    ];
+
+    const total = classes.reduce((sum, c) => sum + c.percent, 0);
+    return classes.map(c => ({
+      ...c,
+      percent: parseFloat(((c.percent / total) * 100).toFixed(1))
+    }));
+  };
+
+  const socialClasses = calculateSocialStructure();
+
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8 pointer-events-none">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500 pointer-events-auto">
@@ -200,14 +245,14 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
 
                 <div className="grid grid-cols-2 gap-6 w-full max-w-sm pt-6 border-t border-zinc-800/50">
                   <div className="flex flex-col">
-                    <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest mb-1 italic">Laju Harian</span>
-                    <div className={`flex items-center gap-2 text-xl font-black italic ${totalDailyDelta >= 0 ? "text-emerald-400" : "text-rose-500"}`}>
+                    <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest mb-1 italic">Laju Harian</span>
+                    <div className={`flex items-center gap-2 text-2xl font-black italic ${totalDailyDelta >= 0 ? "text-emerald-400" : "text-rose-500"}`}>
                       {totalDailyDelta >= 0 ? "+" : ""}{totalDailyDelta.toLocaleString('id-ID')}
                     </div>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest mb-1 italic">Estimasi Ekonomi</span>
-                    <div className={`flex items-center gap-1 text-xl font-black italic ${totalMonthlyGrowthPercent >= 0 ? "text-emerald-400" : "text-rose-500"}`}>
+                    <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest mb-1 italic">Estimasi Ekonomi</span>
+                    <div className={`flex items-center gap-1 text-2xl font-black italic ${totalMonthlyGrowthPercent >= 0 ? "text-emerald-400" : "text-rose-500"}`}>
                       {totalMonthlyGrowthPercent >= 0 ? "+" : ""}{totalMonthlyGrowthPercent.toFixed(2)}%
                     </div>
                   </div>
@@ -215,53 +260,96 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
 
                 <div className="flex items-center gap-4 pt-4">
                   <div className="flex flex-col">
-                    <span className="text-[8px] font-black text-zinc-500 uppercase tracking-widest">Median Usia</span>
-                    <span className="text-sm font-black text-indigo-400">~30.2 THN</span>
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Median Usia</span>
+                    <span className="text-base font-black text-indigo-400 transition-all duration-300">~30.2 THN</span>
                   </div>
                   <div className="w-[1px] h-6 bg-zinc-800" />
                   <div className="flex flex-col">
-                    <span className="text-[8px] font-black text-zinc-500 uppercase tracking-widest">Dependency</span>
-                    <span className="text-sm font-black text-white">47.4%</span>
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Dependency</span>
+                    <span className="text-base font-black text-white transition-all duration-300">47.4%</span>
                   </div>
                 </div>
               </div>
 
               {/* Right Side: Detailed Demographics Structure */}
-              <div className="lg:w-[55%] flex flex-col gap-5">
-                <div className="flex items-center justify-between px-1">
-                  <h4 className="text-xs font-black text-zinc-400 uppercase tracking-[0.4em] italic">Struktur Demografi Berdasarkan Usia</h4>
-                  <div className="h-px flex-1 bg-gradient-to-r from-zinc-800 to-transparent mx-4 opacity-50" />
+              <div className="lg:w-[55%] flex flex-col gap-8">
+                {/* Age Structure */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between px-1">
+                    <h4 className="text-xs font-black text-zinc-400 uppercase tracking-[0.4em] italic">Struktur Demografi Berdasarkan Usia</h4>
+                    <div className="h-px flex-1 bg-gradient-to-r from-zinc-800 to-transparent mx-4 opacity-50" />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3">
+                    {demographics.map((bracket, i) => {
+                      const iconMap: Record<string, any> = {
+                        "Anak-Anak": { icon: Baby, color: "bg-sky-500", text: "text-sky-400", bg: "bg-sky-500/10" },
+                        "Pemuda": { icon: GraduationCap, color: "bg-emerald-500", text: "text-emerald-400", bg: "bg-emerald-500/10" },
+                        "Produktif": { icon: Briefcase, color: "bg-indigo-500", text: "text-indigo-400", bg: "bg-indigo-500/10" },
+                        "Pra-Lansia": { icon: Brain, color: "bg-amber-500", text: "text-amber-400", bg: "bg-amber-500/10" },
+                        "Lansia": { icon: Landmark, color: "bg-purple-500", text: "text-purple-400", bg: "bg-purple-500/10" }
+                      };
+                      const style = iconMap[bracket.label];
+                      const Icon = style.icon;
+
+                      return (
+                        <div key={i} className={`p-4 rounded-[24px] bg-zinc-950/30 border border-zinc-800 hover:border-zinc-700 transition-all group/b flex flex-col gap-2`}>
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <div className={`p-1.5 rounded-lg ${style.bg} ${style.text} border border-white/5`}>
+                                <Icon size={14} />
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="text-[13px] font-black text-zinc-300 uppercase tracking-widest leading-none">{bracket.label}</span>
+                                <span className="text-[11px] font-bold text-zinc-400 tracking-tighter tabular-nums mt-1 whitespace-nowrap leading-none">
+                                  {Math.round((bracket.percent / 100) * population).toLocaleString('id-ID')} Jiwa
+                                </span>
+                              </div>
+                            </div>
+                            <span className={`text-base font-black ${style.text} italic tabular-nums`}>{bracket.percent}%</span>
+                          </div>
+                          <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
+                            <div className={`h-full ${style.color} opacity-80`} style={{ width: `${bracket.percent}%` }} />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3">
-                  {demographics.map((bracket, i) => {
-                    const iconMap: Record<string, any> = {
-                      "Anak-Anak": { icon: Baby, color: "bg-sky-500", text: "text-sky-400", bg: "bg-sky-500/10" },
-                      "Pemuda": { icon: GraduationCap, color: "bg-emerald-500", text: "text-emerald-400", bg: "bg-emerald-500/10" },
-                      "Produktif": { icon: Briefcase, color: "bg-indigo-500", text: "text-indigo-400", bg: "bg-indigo-500/10" },
-                      "Pra-Lansia": { icon: Brain, color: "bg-amber-500", text: "text-amber-400", bg: "bg-amber-500/10" },
-                      "Lansia": { icon: Landmark, color: "bg-purple-500", text: "text-purple-400", bg: "bg-purple-500/10" }
-                    };
-                    const style = iconMap[bracket.label];
-                    const Icon = style.icon;
+                {/* Social Caste Structure */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between px-1">
+                    <h4 className="text-xs font-black text-blue-400 uppercase tracking-[0.4em] italic drop-shadow-[0_0_10px_rgba(59,130,246,0.3)]">Struktur Sosial & Kesejahteraan</h4>
+                    <div className="h-px flex-1 bg-gradient-to-r from-blue-500/20 to-transparent mx-4 opacity-50" />
+                  </div>
 
-                    return (
-                      <div key={i} className={`p-4 rounded-[24px] bg-zinc-950/30 border border-zinc-800 hover:border-zinc-700 transition-all group/b flex flex-col gap-2`}>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <div className={`p-1.5 rounded-lg ${style.bg} ${style.text} border border-white/5`}>
-                              <Icon size={14} />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {socialClasses.map((item, i) => {
+                      const Icon = item.icon;
+                      return (
+                        <div key={i} className={`p-4 rounded-[24px] bg-zinc-950/30 border border-zinc-800 hover:border-blue-500/20 transition-all group/b flex flex-col gap-2`}>
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <div className={`p-1.5 rounded-lg ${item.bg} ${item.text} border border-white/5`}>
+                                <Icon size={14} />
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="text-[13px] font-black text-zinc-300 uppercase tracking-widest leading-none">{item.label}</span>
+                                <span className="text-[11px] font-bold text-zinc-400 tracking-tighter tabular-nums mt-1 whitespace-nowrap leading-none">
+                                  {Math.round((item.percent / 100) * population).toLocaleString('id-ID')} Jiwa
+                                </span>
+                              </div>
                             </div>
-                            <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest leading-none">{bracket.label}</span>
+                            <span className={`text-base font-black ${item.text} italic tabular-nums`}>{item.percent}%</span>
                           </div>
-                          <span className={`text-sm font-black ${style.text} italic tabular-nums`}>{bracket.percent}%</span>
+                          <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
+                            <div className={`h-full ${item.color} opacity-80`} style={{ width: `${item.percent}%` }} />
+                          </div>
                         </div>
-                        <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
-                          <div className={`h-full ${style.color} opacity-80`} style={{ width: `${bracket.percent}%` }} />
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>

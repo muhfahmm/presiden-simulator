@@ -521,44 +521,6 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
           {activeTab === 'layanan' ? (
             <div className="space-y-12">
-              {/* National Impact Summary Dashboard */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in fade-in slide-in-from-top-4 duration-1000">
-                <div className="p-6 rounded-[2rem] bg-zinc-900/40 border border-zinc-800/50 backdrop-blur-md relative overflow-hidden group hover:border-emerald-500/30 transition-all duration-700 shadow-xl">
-                  <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-110 transition-transform">
-                    <HeartPulse className="h-20 w-20 text-emerald-500" />
-                  </div>
-                  <div className="relative z-10 flex items-center justify-between">
-                    <div>
-                      <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.3em] italic mb-1">Ketahanan Kesehatan</h4>
-                      <h3 className="text-sm font-black text-white uppercase tracking-tight">Kontribusi Harapan Hidup</h3>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-2xl font-black text-emerald-400 italic tabular-nums">+{healthImpact.formattedYears}</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 h-1.5 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden">
-                    <div className="h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-all duration-[2000ms]" style={{ width: `${healthImpact.coveragePercent}%` }} />
-                  </div>
-                </div>
-
-                <div className="p-6 rounded-[2rem] bg-zinc-900/40 border border-zinc-800/50 backdrop-blur-md relative overflow-hidden group hover:border-blue-500/30 transition-all duration-700 shadow-xl">
-                  <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-110 transition-transform">
-                    <ShieldCheck className="h-20 w-20 text-blue-500" />
-                  </div>
-                  <div className="relative z-10 flex items-center justify-between">
-                    <div>
-                      <h4 className="text-[10px] font-black text-blue-500 uppercase tracking-[0.3em] italic mb-1">Hukum, Pertahanan & Keamanan</h4>
-                      <h3 className="text-sm font-black text-white uppercase tracking-tight">Tingkat Keamanan Nasional</h3>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-2xl font-black text-blue-400 italic tabular-nums">{securityImpact.formattedLevel}</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 h-1.5 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden">
-                    <div className="h-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.3)] transition-all duration-[2000ms]" style={{ width: `${securityImpact.coveragePercent}%` }} />
-                  </div>
-                </div>
-              </div>
 
               {publicGroups.map((group) => (
               <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -659,7 +621,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
                                 item={item}
                                 onBuild={handleBuildRequest}
                                 construction={currentConstruction}
-                                cumulative={0}
+                                cumulative={Math.max(0, population - totalHousingCapacity)}
                                 isShortage={isHousingShortage}
                               />
                             </Fragment>
@@ -699,9 +661,14 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
                     <div className="flex flex-col gap-3">
                       <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest italic leading-none ml-1">Spesifikasi Fasilitas</span>
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Satuan</span>
-                          <span className="text-xl font-black text-amber-500 tracking-tight">{(Number(confirmBuild.cost || confirmBuild.biaya_pembangunan || 0)).toLocaleString('id-ID')}</span>
+                        <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group relative">
+                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Total</span>
+                          <span className="text-xl font-black text-amber-500 tracking-tight">{(Number(confirmBuild.biaya_pembangunan || 0) * quantity).toLocaleString('id-ID')}</span>
+                          {budgetStorage.getBudget() < (Number(confirmBuild.biaya_pembangunan || 0) * quantity) && (
+                            <span className="text-[10px] font-black text-rose-500 uppercase absolute -bottom-2 whitespace-nowrap">
+                              Kurang: {((Number(confirmBuild.biaya_pembangunan || 0) * quantity) - budgetStorage.getBudget()).toLocaleString('id-ID')}
+                            </span>
+                          )}
                         </div>
                         <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>
@@ -984,9 +951,16 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
             </span>
           </div>
           {item.groupId === 'hunian' && isShortage && (
-             <div className="flex items-center gap-1.5 mt-1 animate-in slide-in-from-top-1">
-                <AlertTriangle size={10} className="text-rose-500" />
-                <span className="text-[10px] font-black text-rose-500/80 uppercase italic tracking-tighter">Kapasitas Nasional Kurang</span>
+             <div className="flex flex-col gap-1 mt-1 animate-in slide-in-from-top-1 px-1">
+                <div className="flex items-center gap-1.5">
+                  <AlertTriangle size={12} className="text-rose-500" />
+                  <span className="text-[12px] font-black text-rose-500 uppercase italic tracking-tighter">Kapasitas Nasional Kurang</span>
+                </div>
+                <div className="flex items-center gap-1.5 ml-4">
+                  <span className="text-[11px] font-bold text-rose-400 opacity-90 uppercase tracking-tighter">
+                    Estimasi Kekurangan: <span className="text-white font-black text-[13px]">{Math.ceil(cumulative / (item.capacity || 1)).toLocaleString('id-ID')}</span> Unit
+                  </span>
+                </div>
              </div>
           )}
         </div>

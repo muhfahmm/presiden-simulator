@@ -13,6 +13,7 @@ import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
+import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 export function useGameState(setActiveMenu: (menu: string) => void) {
   const [approval, setApproval] = useState(55);
   const [budget, setBudget] = useState(1240.5); // in Trillion
@@ -52,6 +53,9 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
     window.addEventListener('inbox_updated', updateInboxCount);
 
     const updateBudgetAndDelta = () => {
+      // Don't update UI state if global timer is paused to prevent "ghost" movements
+      if (timeStorage.getState().isPaused) return;
+
       setBudget(budgetStorage.getBudget());
       setStability(stabilityStorage.getStability());
       setPopulation(populationStorage.getPopulation());

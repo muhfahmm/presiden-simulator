@@ -41,18 +41,10 @@ export default function GameTimeControls() {
 
   // Handle daily side effects (Production & Budget)
   useEffect(() => {
+    if (state.isPaused) return;
+
     const session = gameStorage.getSession();
     if (!session) return;
-
-    // Use current game date to check if we've already processed this day
-    const budgetData = budgetStorage.getData();
-    const currentDateStr = state.gameDate.toISOString().split('T')[0]; // compare YYYY-MM-DD
-    const lastProcessedStr = budgetData.lastProcessedDate ? new Date(budgetData.lastProcessedDate).toISOString().split('T')[0] : null;
-
-    if (currentDateStr === lastProcessedStr) {
-      // Already processed this game day
-      return;
-    }
 
     if (session) {
       const currentCountryCode = session.country || "Indonesia";
@@ -61,6 +53,16 @@ export default function GameTimeControls() {
         c.name_en === currentCountryCode ||
         (c.id && c.id === currentCountryCode)
       ) || countries[79] || countries[0];
+
+      // Use current game date to check if we've already processed this day
+      const budgetData = budgetStorage.getData();
+      const currentDateStr = state.gameDate.toISOString().split('T')[0]; // compare YYYY-MM-DD
+      const lastProcessedStr = budgetData.lastProcessedDate ? new Date(budgetData.lastProcessedDate).toISOString().split('T')[0] : null;
+
+      if (currentDateStr === lastProcessedStr) {
+        // Already processed this game day
+        return;
+      }
 
       const buildingData = buildingStorage.getData();
       const dailyDeltas = calculateDailyProductionTotals(currentData, buildingData.buildingDeltas);
@@ -156,7 +158,7 @@ export default function GameTimeControls() {
         securityLevel: metrics.securityLevel
       });
     }
-  }, [state.gameDate]);
+  }, [state.gameDate, state.isPaused]);
 
   return (
     <div className="flex items-center gap-3 px-4 py-2 bg-zinc-900/40 rounded-xl border border-zinc-800/50 shadow-sm backdrop-blur-md">

@@ -26,11 +26,13 @@ export const publicServiceEventEngine = {
         eventStorage.addEvent({
           id: randomScenario.id,
           type: 'health',
+          severity: randomScenario.severity,
           startTime: gameDate.getTime(),
           remainingDays: randomScenario.durationInDays,
           penalty: {
             lifeExpectancy: randomScenario.lifeExpectancyPenalty,
-            budget: randomScenario.dailyBudgetCost
+            budget: randomScenario.dailyBudgetCost,
+            populationDelta: -Math.floor(Math.random() * (randomScenario.mortalityRange.max - randomScenario.mortalityRange.min + 1) + randomScenario.mortalityRange.min)
           }
         });
 
@@ -70,6 +72,7 @@ export const publicServiceEventEngine = {
           eventStorage.addEvent({
             id: scenario.id,
             type: 'security',
+            severity: scenario.severity,
             startTime: gameDate.getTime(),
             remainingDays: scenario.durationInDays,
             penalty: {

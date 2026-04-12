@@ -321,7 +321,9 @@ export const MaterialRequirement: React.FC<Props> = ({ buildingKey, quantity }) 
                         <span className={`text-[11px] font-black tracking-tight ${isLowStock ? "text-rose-500" : "text-white"}`}>
                             {m.currentStock.toLocaleString('id-ID')} <span className="text-[7px] opacity-50">T</span>
                         </span>
-                        <span className="text-[6px] font-bold text-zinc-600 -mt-0.5 uppercase">Gudang</span>
+                        <span className="text-[9px] font-black text-rose-500 uppercase -mt-0.5 tracking-tighter">
+                            {isLowStock ? `KURANG: ${(m.value - m.currentStock).toLocaleString('id-ID')}` : "Gudang"}
+                        </span>
                     </div>
                 </div>
                 

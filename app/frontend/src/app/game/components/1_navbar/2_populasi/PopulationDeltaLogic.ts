@@ -166,6 +166,23 @@ export function calculateDetailedPopulationMetrics(
 
   // 5. Active Event Penalties Integration
   const eventPenalties = eventStorage.getActivePenalties();
+  const activeEvents = eventStorage.getActiveEvents();
+  const healthEvents = activeEvents.filter(e => e.type === 'health');
+
+  // Growth reduction factor (Epidemi/Pandemi logic)
+  let growthReductionFactor = 1.0;
+  if (healthEvents.length > 0) {
+    const hasCatastrophic = healthEvents.some(e => e.severity === 'Catastrophic');
+    const hasHigh = healthEvents.some(e => e.severity === 'High');
+
+    if (hasCatastrophic) {
+      growthReductionFactor = 0.2; // 80% reduction in natural growth rate
+    } else if (hasHigh) {
+      growthReductionFactor = 0.5; // 50% reduction (Epidemi Berat)
+    } else {
+      growthReductionFactor = 0.75; // 25% reduction (Epidemi Ringan/Sedang)
+    }
+  }
 
   const baseLifeExp = countryData.kesehatan?.harapan_hidup || 72;
   const lifeExpectancy = parseFloat(Math.min(100, Math.max(0,
@@ -186,7 +203,9 @@ export function calculateDetailedPopulationMetrics(
 
   const dailyBirths = Math.round((currentPopulation * finalBirthRate) / 365);
   const dailyDeaths = Math.round((currentPopulation * finalDeathRate) / 365);
-  const naturalDailyDelta = dailyBirths - dailyDeaths;
+  
+  // Apply the growth reduction factor (Epidemi/Pandemi impact)
+  const naturalDailyDelta = Math.round((dailyBirths - dailyDeaths) * growthReductionFactor);
 
   // 6. Security Level Simulation (0-100) - BERBASIS CAKUPAN
   const kejaksaanCount = (countryData.hukum?.kejaksaan || 0) + (buildingDeltas["14_kejaksaan_court"] || 0);
@@ -209,8 +228,8 @@ export function calculateDetailedPopulationMetrics(
     baseSecurity + securityBonus + (monthlyPulse * 0.5) - unemploymentPenalty - eventPenalties.securityLevel
   ));
 
-  // 6. Total Akumulasi
-  const totalDailyDelta = naturalDailyDelta + dailyTaxDelta + dailyPriceDelta;
+  // 6. Total Akumulasi (Including direct event mortality)
+  const totalDailyDelta = naturalDailyDelta + dailyTaxDelta + dailyPriceDelta + eventPenalties.populationDelta;
 
   return {
     totalDailyDelta,

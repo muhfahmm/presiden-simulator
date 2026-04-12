@@ -44,6 +44,10 @@ import { religionStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/6
 import { ideologyStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/ideologyStorage";
 import { lawStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/7_kementrian/2_database_undang_undang/lawStorage";
 import { researchStorage } from "./components/sidemenu/3_riset_dan_penelitian/researchStorage";
+import { eventStorage } from "./logic/events/eventStorage";
+import { tradeStorage as diplomaticTradeStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
+import { RELATION_MATRIX_KEY } from "./components/map-system/ai_diplomacy_engine/services/MatrixHandler";
+import { timeStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 
 const STORAGE_KEY = "game_session";
 
@@ -67,6 +71,9 @@ export interface ConstructionItem {
 export const gameStorage = {
   saveSession: (country: string) => {
     if (typeof window === 'undefined') return;
+    
+    // Hard stop timer first to prevent race condition ghost writes
+    timeStorage.clear();
 
     const session: GameSession = {
       country,
@@ -123,6 +130,11 @@ export const gameStorage = {
     ideologyStorage.clear();
     lawStorage.clear();
     researchStorage.clear();
+    eventStorage.clear();
+    diplomaticTradeStorage.clear();
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(RELATION_MATRIX_KEY);
+    }
   },
 
   getSession: (): GameSession | null => {
@@ -161,6 +173,10 @@ export const gameStorage = {
 
   clearSession: () => {
     if (typeof window === 'undefined') return;
+
+    // Hard stop timer first to prevent race condition ghost writes
+    timeStorage.clear();
+    
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem("selectedCountry");
     localStorage.removeItem("em4_game_date");
@@ -211,12 +227,19 @@ export const gameStorage = {
     ideologyStorage.clear();
     lawStorage.clear();
     researchStorage.clear();
+    eventStorage.clear();
+    diplomaticTradeStorage.clear();
+    localStorage.removeItem(RELATION_MATRIX_KEY);
     
     window.location.href = '/database';
   },
 
   resetCurrentSession: () => {
     if (typeof window === 'undefined') return;
+
+    // Hard stop timer first to prevent race condition ghost writes
+    timeStorage.clear();
+    
     const session = gameStorage.getSession();
     if (!session) return;
 
@@ -274,5 +297,8 @@ export const gameStorage = {
     ideologyStorage.clear();
     lawStorage.clear();
     researchStorage.clear();
+    eventStorage.clear();
+    diplomaticTradeStorage.clear();
+    localStorage.removeItem(RELATION_MATRIX_KEY);
   },
 };

@@ -765,8 +765,8 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                     <div className="flex flex-col gap-3">
                       <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest italic leading-none ml-1">Spesifikasi Proyek</span>
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Satuan</span>
+                        <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group relative">
+                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Total</span>
                           <span className="text-xl font-black text-amber-500 tracking-tight">
                             {(() => {
                                const session = gameStorage.getSession() as any;
@@ -777,10 +777,29 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                                
                                let effectiveUnitCost = confirmBuild.cost;
                                if (isKomunisme && isFactory) effectiveUnitCost = Math.ceil(effectiveUnitCost * KOMUNISME_FACTORY_COST_MULTIPLIER);
+                               const totalCost = Number(effectiveUnitCost || 0) * quantity;
                                
-                               return (Number(effectiveUnitCost || 0)).toLocaleString('id-ID');
+                               return totalCost.toLocaleString('id-ID');
                             })()}
                           </span>
+                          {(() => {
+                               const session = gameStorage.getSession() as any;
+                               const currentData = countries.find(c => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
+                               const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
+                               const isKomunisme = currentIdeology === "Komunisme";
+                               const isFactory = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi" || confirmBuild.groupId === "olahan_pangan";
+                               
+                               let effectiveUnitCost = confirmBuild.cost;
+                               if (isKomunisme && isFactory) effectiveUnitCost = Math.ceil(effectiveUnitCost * KOMUNISME_FACTORY_COST_MULTIPLIER);
+                               const totalCost = Number(effectiveUnitCost || 0) * quantity;
+                               const deficit = totalCost - budgetStorage.getBudget();
+                               
+                               return deficit > 0 ? (
+                                 <span className="text-[10px] font-black text-rose-500 uppercase absolute -bottom-2 whitespace-nowrap">
+                                   Kurang: {deficit.toLocaleString('id-ID')}
+                                 </span>
+                               ) : null;
+                             })()}
                         </div>
                         <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>
