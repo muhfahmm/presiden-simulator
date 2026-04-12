@@ -218,10 +218,12 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
   // Standard Database Orders
   const mineralOrder = ["emas", "uranium", "batu_bara", "minyak_bumi", "gas_alam", "garam", "nikel", "litium", "tembaga", "aluminium", "logam_tanah_jarang", "bijih_besi"];
-  const manufakturOrder = ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu"];
-  const olahanPanganOrder = ["air_mineral", "gula", "roti", "pengolahan_daging", "mie_instan"];
+  const manufakturOrder = ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu", "pupuk"];
+  const peternakanOrder = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"];
+  const perikananOrder = ["udang", "ikan", "mutiara"];
+  const agrikulturOrder = ["padi", "gandum", "jagung", "umbi", "kedelai", "kelapa_sawit", "teh", "kopi", "kakao", "tebu", "sayur", "karet", "kapas", "tembakau"];
+  const olahanPanganOrder = ["air_mineral", "gula", "roti", "pengolahan_daging", "mie_instan", "minyak_goreng", "susu", "pakan_ternak", "ikan_kaleng", "kopi_teh"];
   const farmasiOrder = ["farmasi"];
-  const panganOrder = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing", "udang_kerang", "ikan", "padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"];
   const militerOrder = ["pabrik_amunisi"];
 
   // Logic for Minerals
@@ -233,8 +235,11 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
     bijih_besi: "iron_ore_mine"
   };
 
-  const manufakturKeys = ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill"];
-  const olahanPanganFactoryKeys = ["bottled_water_factory", "sugar_factory", "bakery_factory", "meat_processing_factory", "noodle_factory"];
+  const manufakturKeys = ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill", "fertilizer_factory"];
+  const olahanPanganKeys = ["bottled_water_factory", "sugar_factory", "bakery_factory", "meat_processing_factory", "noodle_factory", "oil_factory", "milk_factory", "feed_factory", "canned_fish_factory", "coffee_tea_factory"];
+  const agrikulturKeys = ["1_sawah_padi", "2_ladang_gandum", "3_ladang_jagung", "4_ladang_umbi", "5_ladang_kedelai", "6_perkebunan_sawit", "7_perkebunan_teh", "8_perkebunan_kopi", "9_perkebunan_kakao", "10_perkebunan_tebu", "11_kebun_sayur", "12_perkebunan_karet", "13_perkebunan_kapas", "14_perkebunan_tembakau"];
+  const peternakanKeys = ["1_peternakan_unggas", "2_peternakan_sapi_perah", "3_peternakan_sapi_potong", "4_peternakan_domba_kambing"];
+  const perikananKeys = ["1_tambak_udang", "2_budidaya_ikan_tawar", "3_budidaya_mutiara"];
 
   const minerals = useMemo(() => {
     const data = getContextualData();
@@ -253,7 +258,6 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
   const manufakturItems = useMemo(() => {
     const data = getContextualData();
-
     return manufakturOrder.map(key => {
       const baseVal = (data?.sektor_manufaktur as any)?.[key] ?? 0;
       const factoryKey = manufakturKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
@@ -263,17 +267,15 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
   const olahanPanganItems = useMemo(() => {
     const data = getContextualData();
-
     return olahanPanganOrder.map(key => {
       const baseVal = (data?.sektor_olahan_pangan as any)?.[key] ?? 0;
-      const factoryKey = olahanPanganFactoryKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
+      const factoryKey = olahanPanganKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
       return [key, getManufacturingCount(factoryKey, baseVal, isPlayerContext)];
     }) as [string, number][];
   }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
 
   const farmasiItems = useMemo(() => {
     const data = getContextualData();
-
     return farmasiOrder.map(key => {
       const baseVal = (data?.sektor_farmasi as any)?.[key] ?? 0;
       return [key, getManufacturingCount("pharma_factory", baseVal, isPlayerContext)];
@@ -282,33 +284,30 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
   const peternakanItems = useMemo(() => {
     const data = getContextualData();
-    const keys = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"];
-
-    return keys.map(key => {
+    return peternakanOrder.map(key => {
       const baseVal = (data?.sektor_peternakan as any)?.[key] ?? 0;
-      const delta = isPlayerContext ? ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number) : 0;
+      const factoryKey = peternakanKeys.find(pk => pk.includes(key)) || key;
+      const delta = isPlayerContext ? ((buildingDeltas[factoryKey] || buildingDeltas[key] || 0) as number) : 0;
       return [key, baseVal + delta];
     }) as [string, number][];
   }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
 
   const perikananItems = useMemo(() => {
     const data = getContextualData();
-    const keys = ["udang_kerang", "ikan"];
-
-    return keys.map(key => {
+    return perikananOrder.map(key => {
       const baseVal = (data?.sektor_perikanan as any)?.[key] ?? 0;
-      const delta = isPlayerContext ? ((buildingDeltas[key] || 0) as number) : 0;
+      const factoryKey = perikananKeys.find(pk => pk.includes(key)) || key;
+      const delta = isPlayerContext ? ((buildingDeltas[factoryKey] || buildingDeltas[key] || 0) as number) : 0;
       return [key, baseVal + delta];
     }) as [string, number][];
   }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
 
   const agrikulturItems = useMemo(() => {
     const data = getContextualData();
-    const keys = ["padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"];
-
-    return keys.map(key => {
+    return agrikulturOrder.map(key => {
       const baseVal = (data?.sektor_agrikultur as any)?.[key] ?? 0;
-      const delta = isPlayerContext ? ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number) : 0;
+      const factoryKey = agrikulturKeys.find(ak => ak.includes(key)) || key;
+      const delta = isPlayerContext ? ((buildingDeltas[factoryKey] || buildingDeltas[key] || 0) as number) : 0;
       return [key, baseVal + delta];
     }) as [string, number][];
   }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
@@ -317,7 +316,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
     const data = getContextualData();
     return militerOrder.map(key => {
       const baseVal = (data?.pabrik_militer as any)?.[key] || 0;
-      const delta = isPlayerContext ? ((buildingDeltas[key] || 0) as number) : 0;
+      const delta = isPlayerContext ? ((buildingDeltas[key] || buildingDeltas["pabrik_amunisi"] || 0) as number) : 0;
       return [key, baseVal + delta];
     }) as [string, number][];
   }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
@@ -325,10 +324,22 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   const [selectedKey, setSelectedKey] = useState<string>(minerals[0]?.[0] || 'emas');
   const [showMinerals, setShowMinerals] = useState(true);
   const [showManufaktur, setShowManufaktur] = useState(false);
-  const [showPangan, setShowPangan] = useState(false);
+  const [showPeternakan, setShowPeternakan] = useState(false);
+  const [showAgrikultur, setShowAgrikultur] = useState(false);
+  const [showPerikanan, setShowPerikanan] = useState(false);
   const [showIndustriPengolahan, setShowIndustriPengolahan] = useState(false);
   const [showFarmasi, setShowFarmasi] = useState(false);
   const [showMiliter, setShowMiliter] = useState(false);
+
+  const mineralCount = useMemo(() => minerals.filter(m => m[1] > 0).length, [minerals]);
+  const manufakturCount = useMemo(() => manufakturItems.filter(m => m[1] > 0).length, [manufakturItems]);
+  const peternakanCount = useMemo(() => peternakanItems.filter(m => m[1] > 0).length, [peternakanItems]);
+  const agrikulturCount = useMemo(() => agrikulturItems.filter(m => m[1] > 0).length, [agrikulturItems]);
+  const perikananCount = useMemo(() => perikananItems.filter(m => m[1] > 0).length, [perikananItems]);
+  const pengolahanCount = useMemo(() => olahanPanganItems.filter(m => m[1] > 0).length, [olahanPanganItems]);
+  const farmasiCount = useMemo(() => farmasiItems.filter(m => m[1] > 0).length, [farmasiItems]);
+  const militerCount = useMemo(() => militerItems.filter(m => m[1] > 0).length, [militerItems]);
+
   const [selectedTimeframe, setSelectedTimeframe] = useState<string>("1w");
   const [activeChartTab, setActiveChartTab] = useState<"buy" | "sell">("buy");
   const [executionModalItem, setExecutionModalItem] = useState<{ type: "buy" | "sell" } | null>(null);
@@ -535,30 +546,19 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 <>
                   {/* Minerals */}
                   <div className="border-b border-zinc-900/80">
-                    <div
-                      onClick={() => setShowMinerals(!showMinerals)}
-                      className="p-8 flex items-center justify-between cursor-pointer group"
-                    >
-                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">1. Mineral Kritis</h3>
+                    <div onClick={() => setShowMinerals(!showMinerals)} className="p-8 flex items-center justify-between cursor-pointer group">
+                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">1. Mineral Kritis ({mineralCount})</h3>
                       <button className={`p-1 rounded-lg hover:bg-zinc-900 transition-all ${showMinerals ? 'text-blue-500 bg-blue-500/10' : 'text-zinc-500'}`}><Eye className="h-4 w-4" /></button>
                     </div>
                     <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showMinerals ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       <div className="px-4 pb-8 space-y-2">
                         {minerals.map(([key, val]) => (
-                          <button
-                            key={key}
-                            disabled={val === 0}
-                            onClick={() => setSelectedKey(key)}
-                            className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : 'cursor-pointer ' + (selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent')}`}
-                          >
+                          <button key={key} disabled={val === 0} onClick={() => setSelectedKey(key)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent opacity-50' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                             <div className="flex items-center gap-4">
                               <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
                                 {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key)}
                               </div>
-                              <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key] || key.replace(/_/g, ' ')}
-                                <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                              </span>
+                              <span className="text-[12px] font-black uppercase tracking-tight">{labelsMap[key] || key.replace(/_/g, ' ')} <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span></span>
                             </div>
                           </button>
                         ))}
@@ -568,30 +568,19 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
                   {/* Manufaktur */}
                   <div className="border-b border-zinc-900/80">
-                    <div
-                      onClick={() => setShowManufaktur(!showManufaktur)}
-                      className="p-8 flex items-center justify-between cursor-pointer group"
-                    >
-                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">2. Manufaktur</h3>
+                    <div onClick={() => setShowManufaktur(!showManufaktur)} className="p-8 flex items-center justify-between cursor-pointer group">
+                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">2. Manufaktur ({manufakturCount})</h3>
                       <button className={`p-1 rounded-lg hover:bg-zinc-900 transition-all ${showManufaktur ? 'text-blue-500 bg-blue-500/10' : 'text-zinc-500'}`}><Eye className="h-4 w-4" /></button>
                     </div>
                     <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showManufaktur ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       <div className="px-4 pb-8 space-y-2">
                         {manufakturItems.map(([key, val]) => (
-                          <button
-                            key={key}
-                            disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)}
-                            className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                          >
+                          <button key={key} disabled={val === 0} onClick={() => setSelectedKey(key)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent opacity-50' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                             <div className="flex items-center gap-4">
                               <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
+                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key)}
                               </div>
-                              <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
-                                <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                              </span>
+                              <span className="text-[12px] font-black uppercase tracking-tight">{labelsMap[key] || key.replace(/_/g, ' ')} <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span></span>
                             </div>
                           </button>
                         ))}
@@ -599,68 +588,21 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     </div>
                   </div>
 
-                  {/* Pangan */}
+                  {/* Peternakan */}
                   <div className="border-b border-zinc-900/80">
-                    <div
-                      onClick={() => setShowPangan(!showPangan)}
-                      className="p-8 flex items-center justify-between cursor-pointer group"
-                    >
-                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">3. Produksi Pangan</h3>
-                      <button className={`p-1 rounded-lg hover:bg-zinc-900 transition-all ${showPangan ? 'text-blue-500 bg-blue-500/10' : 'text-zinc-500'}`}><Eye className="h-4 w-4" /></button>
+                    <div onClick={() => setShowPeternakan(!showPeternakan)} className="p-8 flex items-center justify-between cursor-pointer group">
+                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">3. Sektor Peternakan ({peternakanCount})</h3>
+                      <button className={`p-1 rounded-lg hover:bg-zinc-900 transition-all ${showPeternakan ? 'text-blue-500 bg-blue-500/10' : 'text-zinc-500'}`}><Eye className="h-4 w-4" /></button>
                     </div>
-                    <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showPangan ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                      <div className="px-4 pb-8 space-y-4">
+                    <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showPeternakan ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                      <div className="px-4 pb-8 space-y-2">
                         {peternakanItems.map(([key, val]) => (
-                          <button
-                            key={key}
-                            disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)}
-                            className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                          >
+                          <button key={key} disabled={val === 0} onClick={() => setSelectedKey(key)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent opacity-50' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                             <div className="flex items-center gap-4">
                               <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
+                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key)}
                               </div>
-                              <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
-                                <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                              </span>
-                            </div>
-                          </button>
-                        ))}
-                        {perikananItems.map(([key, val]) => (
-                          <button
-                            key={key}
-                            disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)}
-                            className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                          >
-                            <div className="flex items-center gap-4">
-                              <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
-                              </div>
-                              <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
-                                <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                              </span>
-                            </div>
-                          </button>
-                        ))}
-                        {agrikulturItems.map(([key, val]) => (
-                          <button
-                            key={key}
-                            disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)}
-                            className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                          >
-                            <div className="flex items-center gap-4">
-                              <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
-                              </div>
-                              <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
-                                <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                              </span>
+                              <span className="text-[12px] font-black uppercase tracking-tight">{labelsMap[key] || key.replace(/_/g, ' ')} <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span></span>
                             </div>
                           </button>
                         ))}
@@ -668,32 +610,65 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     </div>
                   </div>
 
-                  {/* Industri Pengolahan */}
+                  {/* Agrikultur */}
                   <div className="border-b border-zinc-900/80">
-                    <div
-                      onClick={() => setShowIndustriPengolahan(!showIndustriPengolahan)}
-                      className="p-8 flex items-center justify-between cursor-pointer group"
-                    >
-                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">4. Pengolahan</h3>
+                    <div onClick={() => setShowAgrikultur(!showAgrikultur)} className="p-8 flex items-center justify-between cursor-pointer group">
+                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">4. Sektor Agrikultur ({agrikulturCount})</h3>
+                      <button className={`p-1 rounded-lg hover:bg-zinc-900 transition-all ${showAgrikultur ? 'text-blue-500 bg-blue-500/10' : 'text-zinc-500'}`}><Eye className="h-4 w-4" /></button>
+                    </div>
+                    <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showAgrikultur ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                      <div className="px-4 pb-8 space-y-2">
+                        {agrikulturItems.map(([key, val]) => (
+                          <button key={key} disabled={val === 0} onClick={() => setSelectedKey(key)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent opacity-50' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
+                            <div className="flex items-center gap-4">
+                              <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
+                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key)}
+                              </div>
+                              <span className="text-[12px] font-black uppercase tracking-tight">{labelsMap[key] || key.replace(/_/g, ' ')} <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span></span>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Perikanan */}
+                  <div className="border-b border-zinc-900/80">
+                    <div onClick={() => setShowPerikanan(!showPerikanan)} className="p-8 flex items-center justify-between cursor-pointer group">
+                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">5. Sektor Perikanan ({perikananCount})</h3>
+                      <button className={`p-1 rounded-lg hover:bg-zinc-900 transition-all ${showPerikanan ? 'text-blue-500 bg-blue-500/10' : 'text-zinc-500'}`}><Eye className="h-4 w-4" /></button>
+                    </div>
+                    <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showPerikanan ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                      <div className="px-4 pb-8 space-y-2">
+                        {perikananItems.map(([key, val]) => (
+                          <button key={key} disabled={val === 0} onClick={() => setSelectedKey(key)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent opacity-50' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
+                            <div className="flex items-center gap-4">
+                              <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
+                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key)}
+                              </div>
+                              <span className="text-[12px] font-black uppercase tracking-tight">{labelsMap[key] || key.replace(/_/g, ' ')} <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span></span>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Olahan Pangan */}
+                  <div className="border-b border-zinc-900/80">
+                    <div onClick={() => setShowIndustriPengolahan(!showIndustriPengolahan)} className="p-8 flex items-center justify-between cursor-pointer group">
+                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">6. Sektor Olahan Pangan ({pengolahanCount})</h3>
                       <button className={`p-1 rounded-lg hover:bg-zinc-900 transition-all ${showIndustriPengolahan ? 'text-blue-500 bg-blue-500/10' : 'text-zinc-500'}`}><Eye className="h-4 w-4" /></button>
                     </div>
                     <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showIndustriPengolahan ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       <div className="px-4 pb-8 space-y-2">
                         {olahanPanganItems.map(([key, val]) => (
-                          <button
-                            key={key}
-                            disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)}
-                            className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                          >
+                          <button key={key} disabled={val === 0} onClick={() => setSelectedKey(key)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent opacity-50' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                             <div className="flex items-center gap-4">
                               <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
+                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key)}
                               </div>
-                              <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
-                                <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                              </span>
+                              <span className="text-[12px] font-black uppercase tracking-tight">{labelsMap[key] || key.replace(/_/g, ' ')} <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span></span>
                             </div>
                           </button>
                         ))}
@@ -703,30 +678,19 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
                   {/* Farmasi */}
                   <div className="border-b border-zinc-900/80">
-                    <div
-                      onClick={() => setShowFarmasi(!showFarmasi)}
-                      className="p-8 flex items-center justify-between cursor-pointer group"
-                    >
-                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">5. Medis</h3>
+                    <div onClick={() => setShowFarmasi(!showFarmasi)} className="p-8 flex items-center justify-between cursor-pointer group">
+                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">7. Sektor Farmasi ({farmasiCount})</h3>
                       <button className={`p-1 rounded-lg hover:bg-zinc-900 transition-all ${showFarmasi ? 'text-blue-500 bg-blue-500/10' : 'text-zinc-500'}`}><Eye className="h-4 w-4" /></button>
                     </div>
                     <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showFarmasi ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       <div className="px-4 pb-8 space-y-2">
                         {farmasiItems.map(([key, val]) => (
-                          <button
-                            key={key}
-                            disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)}
-                            className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                          >
+                          <button key={key} disabled={val === 0} onClick={() => setSelectedKey(key)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent opacity-50' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                             <div className="flex items-center gap-4">
                               <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
+                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key)}
                               </div>
-                              <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
-                                <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                              </span>
+                              <span className="text-[12px] font-black uppercase tracking-tight">{labelsMap[key] || key.replace(/_/g, ' ')} <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span></span>
                             </div>
                           </button>
                         ))}
@@ -736,30 +700,19 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
                   {/* Militer */}
                   <div className="border-b border-zinc-900/80">
-                    <div
-                      onClick={() => setShowMiliter(!showMiliter)}
-                      className="p-8 flex items-center justify-between cursor-pointer group"
-                    >
-                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">6. Militer</h3>
+                    <div onClick={() => setShowMiliter(!showMiliter)} className="p-8 flex items-center justify-between cursor-pointer group">
+                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic group-hover:text-blue-400 transition-colors">8. Militer ({militerCount})</h3>
                       <button className={`p-1 rounded-lg hover:bg-zinc-900 transition-all ${showMiliter ? 'text-blue-500 bg-blue-500/10' : 'text-zinc-500'}`}><Eye className="h-4 w-4" /></button>
                     </div>
                     <div className={`overflow-hidden transition-all duration-1000 ease-in-out ${showMiliter ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       <div className="px-4 pb-8 space-y-2">
                         {militerItems.map(([key, val]) => (
-                          <button
-                            key={key}
-                            disabled={val === 0}
-                            onClick={() => setSelectedKey(key as string)}
-                            className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                          >
+                          <button key={key} disabled={val === 0} onClick={() => setSelectedKey(key)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent opacity-50' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                             <div className="flex items-center gap-4">
                               <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
+                                {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key)}
                               </div>
-                              <span className="text-[12px] font-black uppercase tracking-tight">
-                                {labelsMap[key as string] || (key as string).replace(/_/g, ' ')}
-                                <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                              </span>
+                              <span className="text-[12px] font-black uppercase tracking-tight">{labelsMap[key] || key.replace(/_/g, ' ')} <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span></span>
                             </div>
                           </button>
                         ))}

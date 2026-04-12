@@ -8,16 +8,25 @@ export const buyPriceMap: Record<string, number> = {
   "emas": 2580, "uranium": 110, "batu_bara": 150, "minyak_bumi": 95,
   "gas_alam": 300, "garam": 200, "nikel": 20600, "litium": 16200,
   "tembaga": 10600, "aluminium": 2940, "logam_tanah_jarang": 768, "bijih_besi": 132,
-  // Industry & Others
+  // Industry & Manufaktur
   "semikonduktor": 1020, "mobil": 54000, "sepeda_motor": 4200, "smelter": 144000,
-  "semen_beton": 150, "kayu": 102, "air_mineral": 80, "gula": 250,
-  "roti": 180, "farmasi": 65, "pengolahan_daging": 18,
-  mie_instan: 50, ayam_unggas: 750, sapi_perah: 2100, sapi_potong: 3200,
-  domba_kambing: 450, udang_kerang: 150, ikan: 65,
-  padi: 210, gandum_jagung: 150, sayur_umbi: 120, kedelai: 210,
-  kelapa_sawit: 350, kopi_teh_kakao: 950,
+  "semen_beton": 150, "kayu": 102, "pupuk": 110,
+  // Olahan Pangan
+  "air_mineral": 80, "gula": 250, "roti": 180, "pengolahan_daging": 450,
+  "mie_instan": 50, "minyak_goreng": 380, "susu": 280, "pakan_ternak": 120,
+  "ikan_kaleng": 240, "kopi_teh": 260,
+  // Farmasi
+  "farmasi": 650,
+  // Peternakan
+  "ayam_unggas": 750, "sapi_perah": 2100, "sapi_potong": 3200, "domba_kambing": 450,
+  // Perikanan
+  "udang": 150, "ikan": 65, "mutiara": 4500,
+  // Agrikultur
+  "padi": 210, "gandum": 140, "jagung": 120, "umbi": 85, "kedelai": 210,
+  "kelapa_sawit": 350, "teh": 160, "kopi": 220, "kakao": 240, "tebu": 80,
+  "sayur": 95, "karet": 180, "kapas": 140, "tembakau": 190,
   // Military Production
-  pabrik_amunisi: 500
+  "pabrik_amunisi": 500
 };
 
 export const sellPriceMap: Record<string, number> = {
@@ -25,16 +34,25 @@ export const sellPriceMap: Record<string, number> = {
   "emas": 2150, "uranium": 92, "batu_bara": 125, "minyak_bumi": 78,
   "gas_alam": 245, "garam": 150, "nikel": 17200, "litium": 13500,
   "tembaga": 8900, "aluminium": 2450, "logam_tanah_jarang": 640, "bijih_besi": 110,
-  // Industry & Others
+  // Industry & Manufaktur
   "semikonduktor": 850, "mobil": 45000, "sepeda_motor": 3500, "smelter": 120000,
-  "semen_beton": 125, "kayu": 85, "air_mineral": 50, "gula": 180,
-  "roti": 120, "farmasi": 45, "pengolahan_daging": 12,
-  "mie_instan": 35, ayam_unggas: 500, sapi_perah: 1800, sapi_potong: 2500,
-  domba_kambing: 350, udang_kerang: 100, ikan: 45,
-  padi: 140, gandum_jagung: 100, sayur_umbi: 80, kedelai: 150,
-  kelapa_sawit: 250, kopi_teh_kakao: 650,
+  "semen_beton": 125, "kayu": 85, "pupuk": 90,
+  // Olahan Pangan
+  "air_mineral": 50, "gula": 180, "roti": 120, "pengolahan_daging": 380,
+  "mie_instan": 35, "minyak_goreng": 320, "susu": 240, "pakan_ternak": 95,
+  "ikan_kaleng": 200, "kopi_teh": 220,
+  // Farmasi
+  "farmasi": 520,
+  // Peternakan
+  "ayam_unggas": 500, "sapi_perah": 1800, "sapi_potong": 2500, "domba_kambing": 350,
+  // Perikanan
+  "udang": 100, "ikan": 45, "mutiara": 3800,
+  // Agrikultur
+  "padi": 140, "gandum": 110, "jagung": 95, "umbi": 65, "kedelai": 150,
+  "kelapa_sawit": 250, "teh": 125, "kopi": 180, "kakao": 200, "tebu": 60,
+  "sayur": 75, "karet": 145, "kapas": 115, "tembakau": 155,
   // Military Production
-  pabrik_amunisi: 350
+  "pabrik_amunisi": 350
 };
 
 export const labelsMap: Record<string, string> = {
@@ -42,13 +60,16 @@ export const labelsMap: Record<string, string> = {
   garam: "Garam", nikel: "Nikel", litium: "Litium", tembaga: "Tembaga", aluminium: "Aluminium", 
   logam_tanah_jarang: "Rare Earth", bijih_besi: "Bijih Besi",
   semikonduktor: "Semikonduktor", mobil: "Mobil", sepeda_motor: "Sepeda Motor", smelter: "Pengolahan Smelter",
-  semen_beton: "Beton & Semen", kayu: "Kayu", air_mineral: "Air Mineral", gula: "Gula",
-  roti: "Roti", farmasi: "Farmasi", pengolahan_daging: "Pengolahan Daging",
-  mie_instan: "Mie Instan",
+  semen_beton: "Beton & Semen", kayu: "Kayu", pupuk: "Pupuk Pertanian",
+  air_mineral: "Air Mineral", gula: "Gula", roti: "Roti", farmasi: "Farmasi",
+  pengolahan_daging: "Pengolahan Daging", mie_instan: "Mie Instan",
+  minyak_goreng: "Minyak Goreng", susu: "Susu Olahan", pakan_ternak: "Pakan Ternak",
+  ikan_kaleng: "Ikan Kaleng", kopi_teh: "Kopi & Teh Kemasan",
   ayam_unggas: "Ayam/Unggas", sapi_perah: "Sapi Perah", sapi_potong: "Sapi Potong",
-  domba_kambing: "Domba/Kambing", udang_kerang: "Udang/Kerang", ikan: "Ikan",
-  padi: "Padi", gandum_jagung: "Gandum/Jagung", sayur_umbi: "Sayur/Umbi", kedelai: "Kedelai",
-  kelapa_sawit: "Kelapa Sawit", kopi_teh_kakao: "Kopi/Teh/Kakao",
+  domba_kambing: "Domba/Kambing", udang: "Udang", ikan: "Ikan Konsumsi", mutiara: "Mutiara & Kerang",
+  padi: "Padi", gandum: "Gandum", jagung: "Jagung", umbi: "Umbi-umbian", sayur: "Sayur Mayur", kedelai: "Kedelai",
+  kelapa_sawit: "Kelapa Sawit", teh: "Teh", kopi: "Kopi", kakao: "Kakao/Cokelat", tebu: "Tebu",
+  karet: "Karet Alam", kapas: "Kapas", tembakau: "Tembakau",
   pabrik_amunisi: "Amunisi Militer"
 };
 
@@ -64,7 +85,13 @@ export const baseKeyMapping: Record<string, string> = {
   "noodle_factory": "mie_instan",
   "meat_processing_factory": "pengolahan_daging",
   "sawmill": "kayu",
-  "bakery_factory": "roti"
+  "bakery_factory": "roti",
+  "fertilizer_factory": "pupuk",
+  "oil_factory": "minyak_goreng",
+  "milk_factory": "susu",
+  "feed_factory": "pakan_ternak",
+  "canned_fish_factory": "ikan_kaleng",
+  "coffee_tea_factory": "kopi_teh"
 };
 
 // DETERMINISTIC SEEDED RANDOM (Consistent across days)
