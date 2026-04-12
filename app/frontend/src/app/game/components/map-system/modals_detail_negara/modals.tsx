@@ -12,6 +12,9 @@ import ReligionRow from "./1_info_strategis/3_Agama/ReligionRow";
 import IdeologyRow from "./1_info_strategis/4_Ideologi/IdeologyRow";
 import KasNegara from "./1_info_strategis/5_Keuangan/1_KasNegara";
 import PenghasilanHarian from "./1_info_strategis/5_Keuangan/2_PenghasilanHarian";
+import SatisfactionRow from "./1_info_strategis/6_Kepuasan/SatisfactionRow";
+import { aiHappinessStorage } from "./1_info_strategis/6_Kepuasan/AIHappinessStorage";
+import { happinessStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/happinessStorage";
 
 import DiplomacyTab from "./2_diplomasi_hubungan/DiplomacyTab";
 import MilitaryTab from "./3_aksi_militer_dan_intelijen/MilitaryTab";
@@ -107,7 +110,7 @@ export default function StrategyModal({
   isOpen, onClose, targetCountry, userCountry, activeTab, activeSubTab, setActiveMenu, onTabChange 
 }: StrategyModalProps) {
   const [menuTab, setMenuTab] = useState<'info' | 'diplomacy' | 'military' | 'aid'>('info');
-  const [liveStats, setLiveStats] = useState({ anggaran: 0, dailyDelta: 0 });
+  const [liveStats, setLiveStats] = useState({ anggaran: 0, dailyDelta: 0, satisfaction: 55 });
   const [isTemporarilyHidden, setIsTemporarilyHidden] = useState(false);
   const [relationScore, setRelationScore] = useState(50);
   const [baseScore, setBaseScore] = useState(50);
@@ -193,7 +196,7 @@ export default function StrategyModal({
         currentDailyDelta = calculateDailyBudgetDelta(countryEntry as any, {});
       }
 
-      setLiveStats({ anggaran: currentAnggaran, dailyDelta: currentDailyDelta });
+      setLiveStats({ anggaran: currentAnggaran, dailyDelta: currentDailyDelta, satisfaction: isUser ? happinessStorage.getStats().value : aiHappinessStorage.getSatisfaction(countryEntry.name_en) });
       setRelationScore(relationStorage.getRelationScore(targetK, initialBase, userId));
     };
 
@@ -202,11 +205,15 @@ export default function StrategyModal({
     const unsubscribeTime = timeStorage.subscribe(() => updateStats());
     window.addEventListener('budget_storage_updated', updateStats);
     window.addEventListener('ai_budget_updated', updateStats);
+    window.addEventListener('ai_happiness_updated', updateStats);
+    window.addEventListener('happiness_updated', updateStats);
     
     return () => {
       unsubscribeTime();
       window.removeEventListener('budget_storage_updated', updateStats);
       window.removeEventListener('ai_budget_updated', updateStats);
+      window.removeEventListener('ai_happiness_updated', updateStats);
+      window.removeEventListener('happiness_updated', updateStats);
     };
   }, [isOpen, targetId, userId, countryEntry, tick]);
 
@@ -266,6 +273,9 @@ export default function StrategyModal({
                 } />
                 <InfoRow label="Ideologi Negara" value={
                   <IdeologyRow ideology={countryEntry?.ideology} />
+                } />
+                <InfoRow label="Kepuasan Rakyat" value={
+                  <SatisfactionRow value={liveStats.satisfaction} />
                 } />
                 <div className="pt-2 border-t border-zinc-800/40 mt-1 space-y-2.5">
                   <InfoRow label="Kas Negara" value={

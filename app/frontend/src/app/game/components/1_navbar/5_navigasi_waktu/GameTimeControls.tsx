@@ -21,6 +21,7 @@ import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_ba
 import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { nuclearStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/nuclearStorage";
 import { researchStorage } from "@/app/game/components/sidemenu/3_riset_dan_penelitian/researchStorage";
+import { aiHappinessStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { getNationalHealthImpact } from "@/app/game/data/layanan_publik/kesehatan/healthLogic";
 import { publicServiceEventEngine } from "@/app/game/logic/events/publicServiceEventEngine";
 import { calculateDetailedPopulationMetrics } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
@@ -75,6 +76,7 @@ export default function GameTimeControls() {
 
       // Daily AI Budget progression
       aiBudgetStorage.updateAll(state.gameDate, currentCountryCode);
+      aiHappinessStorage.updateAll(state.gameDate, currentCountryCode);
 
       // Daily Population Change (driven by tax policy & demographics)
       const currentPopulation = populationStorage.getPopulation();

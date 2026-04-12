@@ -82,6 +82,17 @@ export const aiBudgetStorage = {
     return calculateDailyBudgetDelta(country, {});
   },
 
+  /**
+   * Update budget for a specific country manually (e.g., for events/military).
+   */
+  updateBudgetManual: (countryNameEn: string, amount: number) => {
+    if (typeof window === 'undefined') return;
+    const data = aiBudgetStorage.initialize();
+    data[countryNameEn] = (data[countryNameEn] || 0) + amount;
+    localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(data));
+    window.dispatchEvent(new Event('ai_budget_updated'));
+  },
+
   clear: () => {
     if (typeof window === 'undefined') return;
     localStorage.removeItem(AI_BUDGET_KEY);

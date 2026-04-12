@@ -10,6 +10,10 @@ import path from "path";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+    
+    // Debug log untuk membantu investigasi
+    console.log("[AI-Global API] Received keys:", Object.keys(body));
+
     const {
       matrix,
       userCountry,
@@ -18,22 +22,32 @@ export async function POST(req: NextRequest) {
       dayTimestamp,
       existingOffers,
       existingRequests,
-      existingContracts
+      existingContracts,
+      scriptPath: requestedScriptPath
     } = body;
 
     if (!matrix) {
-      return NextResponse.json({ error: "Missing relation matrix" }, { status: 400 });
+      console.error("[AI-Global API] Error: Matrix is missing from request body");
+      return NextResponse.json({ error: "Missing relation matrix in request body" }, { status: 400 });
     }
 
-    const brainPath = path.join(
-      process.cwd(), "src", "app", "game", "components",
-      "2_navigasi_menu", "2_navigasi_bawah", "2_ekonomi",
-      "1-perdagangan", "sistem_perdagangan_AI", "brain"
-    );
-
-    const scriptPath = path.join(brainPath, "trade_engine.py");
+    let scriptPath: string;
+    
+    if (requestedScriptPath) {
+      // Jika ada scriptPath khusus (misal untuk Hutang AI)
+      scriptPath = path.normalize(path.join(process.cwd(), "src", requestedScriptPath));
+    } else {
+      // Default ke Perdagangan AI
+      const brainPath = path.join(
+        process.cwd(), "src", "app", "game", "components",
+        "2_navigasi_menu", "2_navigasi_bawah", "2_ekonomi",
+        "1-perdagangan", "sistem_perdagangan_AI", "brain"
+      );
+      scriptPath = path.join(brainPath, "trade_engine.py");
+    }
 
     const result = await new Promise<any>((resolve) => {
+      console.log(`[AI-Global API] Executing Python: ${scriptPath}`);
       const child = spawn("python", [scriptPath]);
       let stdoutData = "";
       let stderrData = "";

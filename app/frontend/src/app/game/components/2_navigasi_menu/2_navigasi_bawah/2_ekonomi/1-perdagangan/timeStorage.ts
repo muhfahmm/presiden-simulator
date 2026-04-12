@@ -3,6 +3,7 @@ import { INITIAL_GAME_DATE, addDays, saveGameDate, getStoredGameDate } from "@/a
 import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { processGlobalAiRelations } from "@/app/game/components/map-system/ai_diplomacy_engine/AiGlobalDiplomacy";
 import { AiTradeService } from "./sistem_perdagangan_AI/services/AiTradeService";
+import { DebtAiService } from "../3-hutang/sistem_hutang_AI/services/DebtAiService";
 
 type TimeListener = (date: Date, isPaused: boolean, speed: number) => void;
 
@@ -31,6 +32,10 @@ class TimeStorage {
       // relationStorage.processDailyDrift(); // Matikan sistem lama agar tidak bentrok dengan AI
       processGlobalAiRelations(); // Gunakan AI Global sebagai satu-satunya sistem diplomasi
       AiTradeService.processDaily(); // Sistem Perdagangan AI (tawaran, kontrak, NPC trade)
+      
+      const dayTimestamp = Math.floor(this.gameDate.getTime() / (1000 * 60 * 60 * 24));
+      DebtAiService.processDailyDebt(dayTimestamp); // Sistem Hutang AI
+      
       this.notify();
     }, 2000 / this.speed);
   }
