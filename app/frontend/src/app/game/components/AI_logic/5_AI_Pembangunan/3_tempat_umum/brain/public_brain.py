@@ -8,12 +8,28 @@ def decide_public_building(data):
     """
     negara = data.get('negara', 'Unknown')
     budget = data.get('budget', 0)
+    stocks = data.get('stocks', {})
     public_options = data.get('options', [])
     metrics = data.get('metrics', {}) # { health_index, education_index, happiness }
 
+    def check_resources(option):
+        # Budget Check
+        if option.get('cost', 0) > budget:
+            return False
+            
+        # Material Check
+        req = option.get("requirements", {})
+        if stocks.get("5_pabrik_semen", 0) < req.get("beton", 0):
+            return False
+        if stocks.get("12_tambang_bijih_besi", 0) < req.get("baja", 0):
+            return False
+        if stocks.get("6_penggergajian_kayu", 0) < req.get("kayu", 0):
+            return False
+        return True
+
     # Criteria: Budget check
-    if budget < 80000:
-        return {"decision": "SKIP", "reason": "Anggaran dialokasikan untuk prioritas ekonomi jangka pendek."}
+    if budget < 50000:
+        return {"decision": "SKIP", "reason": "Anggaran negara sangat rendah, menunda pembangunan publik."}
 
     # Strategy: Fix what is lowest
     happiness = metrics.get('happiness', 55)
@@ -22,21 +38,21 @@ def decide_public_building(data):
 
     # 1. Health Priority
     if health < 50:
-        health_buildings = [o for o in public_options if o['groupId'] == 'kesehatan' and o['cost'] <= budget]
+        health_buildings = [o for o in public_options if o['groupId'] == 'kesehatan' and check_resources(o)]
         if health_buildings:
             chosen = sorted(health_buildings, key=lambda x: x['tarif'], reverse=True)[0]
             return {"decision": "EXECUTE", "building_key": chosen['key'], "reason": "Meningkatkan indeks kesehatan nasional."}
 
     # 2. Education Priority
     if education < 50:
-        edu_buildings = [o for o in public_options if o['groupId'] == 'pendidikan' and o['cost'] <= budget]
+        edu_buildings = [o for o in public_options if o['groupId'] == 'pendidikan' and check_resources(o)]
         if edu_buildings:
             chosen = sorted(edu_buildings, key=lambda x: x['tarif'], reverse=True)[0]
             return {"decision": "EXECUTE", "building_key": chosen['key'], "reason": "Meningkatkan kualitas SDM nasional."}
 
     # 3. Social/Happiness Priority
     if happiness < 60:
-        social_buildings = [o for o in public_options if o['groupId'] in ['hiburan', 'olahraga', 'komersial'] and o['cost'] <= budget]
+        social_buildings = [o for o in public_options if o['groupId'] in ['hiburan', 'olahraga', 'komersial'] and check_resources(o)]
         if social_buildings:
             chosen = sorted(social_buildings, key=lambda x: x['tarif'], reverse=True)[0]
             return {"decision": "EXECUTE", "building_key": chosen['key'], "reason": "Pembangunan fasilitas publik untuk kesejahteraan sosial."}

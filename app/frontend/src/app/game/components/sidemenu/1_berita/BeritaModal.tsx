@@ -25,6 +25,7 @@ export default function BeritaModal({ isOpen, onClose }: BeritaModalProps) {
   const [news, setNews] = React.useState<NewsItem[]>([]);
   const [expandedId, setExpandedId] = React.useState<string | null>(null);
   const [searchTerm, setSearchTerm] = React.useState('');
+  const [activeTab, setActiveTab] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     if (isOpen) {
@@ -38,10 +39,38 @@ export default function BeritaModal({ isOpen, onClose }: BeritaModalProps) {
 
   if (!isOpen) return null;
 
-  const filteredNews = news.filter(item => 
-    item.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    item.content.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredNews = news.filter(item => {
+    const matchesSearch = item.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                         item.content.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesTab = (() => {
+        if (!activeTab || activeTab === 'SEMUA') return true;
+
+        const subjectLower = item.subject.toLowerCase();
+        
+        switch(activeTab) {
+            case 'PEMBANGUNAN': 
+                return item.category === 'construction';
+            case 'KEUANGAN': 
+                return item.category === 'economy' || 
+                       (item.category === 'global' && /(dana|hibah|anggaran|pajak|ekonomi|utang|hutang)/.test(subjectLower));
+            case 'PERDAGANGAN': 
+                return item.category === 'economy' || 
+                       /(dagang|ekspor|impor|tarif|logistik|pasar)/.test(subjectLower);
+            case 'KEDUTAAN': 
+                return (item.category === 'diplomacy' && !/(pakta|perjanjian|aliansi|sekutu)/.test(subjectLower)) || 
+                       /(diplomatik|hubungan|kedutaan|dubes|perwakilan|konsulat)/.test(subjectLower);
+            case 'PAKTA': 
+                return /(pakta|perjanjian|mou|kesepakatan|traktat)/.test(subjectLower);
+            case 'ALIANSI': 
+                return /(aliansi|sekutu|koalisi|blok|pertahanan)/.test(subjectLower);
+            default: 
+                return true;
+        }
+    })();
+
+    return matchesSearch && matchesTab;
+  });
 
   const getCategoryTheme = (category: string) => {
     switch (category) {
@@ -56,6 +85,10 @@ export default function BeritaModal({ isOpen, onClose }: BeritaModalProps) {
       case 'economy': return { 
         bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-400', 
         glow: 'shadow-[0_0_20px_rgba(16,185,129,0.15)]', icon: <TrendingUp size={18} /> 
+      };
+      case 'construction': return { 
+        bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400', 
+        glow: 'shadow-[0_0_20px_rgba(245,158,11,0.15)]', icon: <Zap size={18} /> 
       };
       default: return { 
         bg: 'bg-sky-500/10', border: 'border-sky-500/20', text: 'text-sky-400', 
@@ -115,6 +148,28 @@ export default function BeritaModal({ isOpen, onClose }: BeritaModalProps) {
               className="bg-zinc-950/50 border border-zinc-800 rounded-2xl pl-12 pr-6 py-2.5 text-[11px] font-bold text-white placeholder:text-zinc-700 focus:outline-none focus:border-zinc-700 w-80 transition-all"
             />
           </div>
+        </div>
+
+        {/* Categories Tabs Section */}
+        <div className="px-8 py-4 border-b border-zinc-800/30 bg-zinc-950/30 flex items-center justify-center">
+            <div className="flex items-center bg-zinc-900/50 border border-zinc-800/50 p-1.5 rounded-[20px] gap-1 overflow-x-auto no-scrollbar max-w-full">
+                {['SEMUA', 'PEMBANGUNAN', 'KEUANGAN', 'PERDAGANGAN', 'KEDUTAAN', 'PAKTA', 'ALIANSI'].map((tab) => {
+                    const isActive = (tab === 'SEMUA' && !activeTab) || activeTab === tab;
+                    return (
+                        <button
+                            key={tab}
+                            onClick={() => setActiveTab(tab === 'SEMUA' ? null : tab)}
+                            className={`px-6 py-2 rounded-[15px] text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer whitespace-nowrap ${
+                                isActive 
+                                ? 'bg-zinc-800 text-white shadow-lg' 
+                                : 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/30'
+                            }`}
+                        >
+                            {tab}
+                        </button>
+                    )
+                })}
+            </div>
         </div>
 
         {/* Content Section */}

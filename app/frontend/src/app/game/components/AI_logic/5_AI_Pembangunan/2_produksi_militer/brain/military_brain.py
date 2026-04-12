@@ -8,12 +8,28 @@ def decide_military_building(data):
     """
     negara = data.get('negara', 'Unknown')
     budget = data.get('budget', 0)
+    stocks = data.get('stocks', {})
     military_options = data.get('options', [])
     geopolitics = data.get('geopolitics', {}) # { global_tension: 0-100, military_rank: 1-200 }
 
+    def check_resources(option):
+        # Budget Check
+        if option.get('cost', 0) > budget:
+            return False
+            
+        # Material Check
+        req = option.get("requirements", {})
+        if stocks.get("5_pabrik_semen", 0) < req.get("beton", 0):
+            return False
+        if stocks.get("12_tambang_bijih_besi", 0) < req.get("baja", 0):
+            return False
+        if stocks.get("6_penggergajian_kayu", 0) < req.get("kayu", 0):
+            return False
+        return True
+
     # Criteria: Budget check
-    if budget < 200000:
-        return {"decision": "SKIP", "reason": "Anggaran pertahanan masih diprioritaskan untuk pemeliharaan rutin."}
+    if budget < 100000:
+        return {"decision": "SKIP", "reason": "Anggaran pertahanan sangat minim, menunda ekspansi industri militer."}
 
     # Criteria: Tension check
     # If tension is low and rank is decent, maybe skip and save money.
@@ -25,9 +41,9 @@ def decide_military_building(data):
 
     # Strategy: Prioritize high production arms (Ammo/Base factories)
     # Sort options by production/cost ratio
-    affordable = [o for o in military_options if o['cost'] <= (budget * 0.4)]
+    affordable = [o for o in military_options if check_resources(o)]
     if not affordable:
-        return {"decision": "SKIP", "reason": "Biaya pembangunan pabrik militer melebihi pagu anggaran saat ini."}
+        return {"decision": "SKIP", "reason": "Bahan bangunan atau anggaran gudang belum cukup untuk pabrik militer baru."}
 
     chosen = sorted(affordable, key=lambda x: x['tarif'] / x['cost'], reverse=True)[0]
 

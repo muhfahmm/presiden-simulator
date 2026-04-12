@@ -16,6 +16,9 @@ import { aiTradeOfferStorage, AiTradeOffer } from '../storage/aiTradeOfferStorag
 import { tradeContractStorage, TradeContract } from '../storage/tradeContractStorage';
 import { historiImportStorage } from '../../ekspor_impor/impor/HistoriImportStorage';
 import { historiEksporStorage } from '../../ekspor_impor/ekspor/HistoriEksporStorage';
+import { aiProductionStorage } from '@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage';
+import { aggregateStocksForTrade, TradeToBuildingKeyMap } from '@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionMapping';
+
 import {
     produkIndustriRate,
     mineralKritisRate,
@@ -32,6 +35,10 @@ function collectCountriesData(): Record<string, any> {
     for (const country of countries) {
         const key = (country.name_id || country.name_en || '').toLowerCase().trim();
         if (!key) continue;
+
+        const rawStocks = aiProductionStorage.getStocks(country.name_en || '');
+        const tradedStocks = aggregateStocksForTrade(rawStocks);
+
         data[key] = {
             populasi: (country as any).populasi || 50000000,
             sektor_ekstraksi: (country as any).sektor_ekstraksi || {},
@@ -42,7 +49,8 @@ function collectCountriesData(): Record<string, any> {
             sektor_perikanan: (country as any).sektor_perikanan || {},
             sektor_agrikultur: (country as any).sektor_agrikultur || {},
             pabrik_militer: (country as any).pabrik_militer || {},
-            ekonomi: (country as any).ekonomi || {}
+            ekonomi: (country as any).ekonomi || {},
+            traded_stocks: tradedStocks
         };
     }
     return data;
@@ -216,6 +224,39 @@ export const AiTradeService = {
         const currentBudget = budgetStorage.getBudget();
 
         if (totalCost > currentBudget) return false;
+
+        // --- NPC STOCK DEDUCTION ---
+        // Find which building key to deduct from
+        const buildingKeys = TradeToBuildingKeyMap[offer.commodity];
+        if (buildingKeys && buildingKeys.length > 0) {
+            // Find NPC english name
+            const countryEntry = countries.find(c => c.name_id?.toLowerCase() === offer.country.toLowerCase() || c.name_en?.toLowerCase() === offer.country.toLowerCase());
+            if (countryEntry && countryEntry.name_en) {
+               const npcName = countryEntry.name_en;
+               const currentStocks = aiProductionStorage.getStocks(npcName);
+               let amountToDeduct = offer.amount;
+               const deductionRecord: Record<string, number> = {};
+               
+               for (const bKey of buildingKeys) {
+                   const available = currentStocks[bKey] || 0;
+                   if (available > 0) {
+                       const deduct = Math.min(available, amountToDeduct);
+                       deductionRecord[bKey] = deduct;
+                       amountToDeduct -= deduct;
+                   }
+                   if (amountToDeduct <= 0) break;
+               }
+
+               if (amountToDeduct <= 0) {
+                   aiProductionStorage.deductStocks(npcName, deductionRecord);
+                   console.log(`[Trade] Deducted ${offer.amount} of ${offer.commodity} from ${npcName}`);
+               } else {
+                   console.warn(`[Trade] NPC ${npcName} does not have enough physical stock of ${offer.commodity} to fulfill offer! Proceeding anyway...`);
+                   // In a realistic scenario, we should prevent the trade, but for robust simulation we allow it and just drain what we can
+                   aiProductionStorage.deductStocks(npcName, deductionRecord);
+               }
+            }
+        }
 
         // Kurangi uang user
         budgetStorage.updateBudget(-totalCost);

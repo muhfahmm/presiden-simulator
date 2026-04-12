@@ -91,22 +91,31 @@ def analyze_country(country_data):
     """
     result = {}
     populasi_juta = country_data.get("populasi", 50000000) / 1_000_000
+    traded_stocks = country_data.get("traded_stocks", {})
 
     for key, info in ALL_COMMODITIES.items():
         production = get_country_production(country_data, key)
-        if production <= 0:
-            result[key] = {"status": "deficit", "production": 0, "net": -1}
+        stock_available = traded_stocks.get(key, 0)
+        
+        if production <= 0 and stock_available <= 0:
+            result[key] = {"status": "deficit", "production": 0, "net": -1, "stock": 0}
             continue
 
         # Konsumsi domestik = produksi × rasio konsumsi × faktor populasi
         pop_factor = max(0.5, min(2.0, populasi_juta / 100))
         consumption = production * info["base_consumption"] * pop_factor
 
-        net = production - consumption
+        net_production = production - consumption
+        
+        # True net availability includes warehouse savings.
+        # We distribute warehouse stock over 30 days to measure "daily tradeable surplus"
+        monthly_stock_surplus = stock_available / 30.0
+        total_net = net_production + monthly_stock_surplus
 
-        if net > production * 0.2:
+        # Determine status based on total_net vs production baseline, or massive stock
+        if total_net > (production * 0.2) or total_net > 1000:
             status = "surplus"
-        elif net < -production * 0.1:
+        elif total_net < -(production * 0.1):
             status = "deficit"
         else:
             status = "balanced"
@@ -114,7 +123,8 @@ def analyze_country(country_data):
         result[key] = {
             "status": status,
             "production": production,
-            "net": round(net, 2)
+            "net": round(total_net, 2),
+            "stock": stock_available
         }
 
     return result
@@ -125,11 +135,15 @@ def find_surplus_commodities(country_data, min_production=1):
     analysis = analyze_country(country_data)
     surpluses = []
     for key, info in analysis.items():
-        if info["status"] == "surplus" and info["production"] >= min_production:
+        has_production = info["production"] >= min_production
+        has_massive_stock = info.get("stock", 0) >= 500  # Assume 500 is basic tradeable volume requirement
+        
+        if info["status"] == "surplus" and (has_production or has_massive_stock):
             surpluses.append({
                 "key": key,
                 "label": COMMODITY_LABELS.get(key, key),
                 "production": info["production"],
+                "stock": info.get("stock", 0),
                 "net_surplus": info["net"]
             })
     # Sort by net surplus descending

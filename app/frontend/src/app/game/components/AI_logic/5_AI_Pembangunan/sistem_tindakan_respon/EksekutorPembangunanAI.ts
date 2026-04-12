@@ -22,8 +22,9 @@ export class EksekutorPembangunanAI {
     };
 
     // 2. Check Budget
+    const cost = Number(buildingData.biaya_pembangunan || 0);
     const currentBudget = aiBudgetStorage.getBudget(countryNameEn);
-    if (currentBudget < buildingData.cost) {
+    if (currentBudget < cost) {
       console.warn(`[AI Pembangunan] ${countryNameEn} failed: Insufficient Budget for ${buildingKey}`);
       return false;
     }
@@ -36,10 +37,10 @@ export class EksekutorPembangunanAI {
     }
 
     // 4. Deduct Budget
-    (aiBudgetStorage as any).updateBudgetManual(countryNameEn, -buildingData.cost);
+    (aiBudgetStorage as any).updateBudgetManual(countryNameEn, -cost);
 
     // 5. Add to Construction Queue
-    const buildTime = buildingData.buildTime || 30;
+    const buildTime = buildingData.waktu_pembangunan || 30;
     const endDate = addDays(gameDate, buildTime).getTime();
 
     aiBuildingStorage.addToQueue(countryNameEn, {
@@ -52,12 +53,12 @@ export class EksekutorPembangunanAI {
     });
 
     // 6. News Announcement (only for significant projects)
-    if (buildingData.cost > 50000 || buildingData.groupId === 'kelistrikan') {
+    if (cost > 1000000 || buildingData.groupId === 'kelistrikan') {
       newsStorage.addNews({
         source: countryNameEn,
         subject: `Proyek Strategis: ${buildingData.label}`,
         content: `Pemerintah ${countryNameEn} hari ini resmi memulai pembangunan ${buildingData.label}. Proyek infrastruktur ini merupakan bagian dari rencana pembangunan nasional jangka menengah untuk meningkatkan kapasitas ekonomi.`,
-        category: "global",
+        category: "construction",
         time: formatGameDate(gameDate),
         priority: 'medium'
       });

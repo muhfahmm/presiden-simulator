@@ -30,7 +30,8 @@ export const aiBudgetStorage = {
     // Initial setup from database
     const initialData: AIBudgetData = {};
     countries.forEach(c => {
-      initialData[c.name_en] = Number(c.anggaran) || 0;
+      // Multiply by 1M because db values are in specific units while costs are absolute
+      initialData[c.name_en] = (Number(c.anggaran) || 0) * 1000000;
     });
 
     localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(initialData));

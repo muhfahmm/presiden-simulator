@@ -8,7 +8,7 @@ export interface NewsItem {
   time: string;
   read: boolean;
   priority: 'low' | 'medium' | 'high';
-  category: 'global' | 'diplomacy' | 'conflict' | 'economy';
+  category: 'global' | 'diplomacy' | 'conflict' | 'economy' | 'construction';
   timestamp: number;
 }
 

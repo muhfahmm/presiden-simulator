@@ -19,9 +19,9 @@ export const aiProductionStorage = {
   getStocks: (countryNameEn: string) => {
     const global = aiProductionStorage.initialize();
     return global[countryNameEn]?.stock || {
-      "5_pabrik_semen": 0,
-      "12_tambang_bijih_besi": 0,
-      "6_penggergajian_kayu": 0
+      "5_pabrik_semen": 1000000,
+      "12_tambang_bijih_besi": 1000000,
+      "6_penggergajian_kayu": 1000000
     };
   },
 
@@ -55,8 +55,12 @@ export const aiProductionStorage = {
       newStock[key] -= val;
     }
 
-    if (!global[countryNameEn]) return false;
-    global[countryNameEn].stock = newStock;
+    // Ensure entry exists and update it
+    global[countryNameEn] = {
+      stock: newStock,
+      lastUpdate: new Date().toISOString().split('T')[0]
+    };
+    
     localStorage.setItem(AI_PRODUCTION_KEY, JSON.stringify(global));
     window.dispatchEvent(new Event('ai_production_updated'));
     return true;

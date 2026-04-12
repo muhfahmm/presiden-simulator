@@ -1,23 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { exec } from "child_process";
 import path from "path";
+import fs from "fs";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { negara, budget, stocks, options, metrics, sub_sector } = body;
+    const { country_data } = body;
 
-    // Default to '1_sektor_listrik' if no sub_sector provided, or use the mapping
-    const scriptFile = sub_sector || "1_sektor_listrik";
     const scriptPath = path.join(
       process.cwd(),
-      `src/app/game/components/AI_logic/5_AI_Pembangunan/1_produksi/brain/${scriptFile}.py`
+      "src/app/game/components/AI_logic/5_AI_Pembangunan/pemantauan_nasional/brain/national_scanner.py"
     );
 
     return new Promise((resolve) => {
       const pyProcess = exec(`python "${scriptPath}"`, (error, stdout, stderr) => {
         if (error) {
-          console.error(`[AI Production API] Exec error: ${error.message}`);
+          console.error(`[Scanner API] Exec error: ${error.message}`);
           return resolve(NextResponse.json({ error: error.message }, { status: 500 }));
         }
         try {
@@ -29,7 +28,7 @@ export async function POST(req: NextRequest) {
       });
 
       if (pyProcess.stdin) {
-        pyProcess.stdin.write(JSON.stringify({ negara, budget, stocks, options, metrics }));
+        pyProcess.stdin.write(JSON.stringify({ country_data }));
         pyProcess.stdin.end();
       }
     });
