@@ -32,8 +32,8 @@ def simulate_product_offers(input_data):
     events = []
     offers = []
 
-    # THROTTLING GLOBAL — Peluang 8% per hari ada tawaran produk
-    if random.random() > 0.08:
+    # THROTTLING GLOBAL — Peluang 35% per hari ada tawaran produk
+    if random.random() > 0.35:
         return {"events": [], "offers": []}
 
     # Kumpulkan negara yang punya trade agreement dengan user

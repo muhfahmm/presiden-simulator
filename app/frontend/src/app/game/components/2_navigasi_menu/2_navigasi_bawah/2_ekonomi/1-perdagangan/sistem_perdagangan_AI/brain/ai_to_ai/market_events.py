@@ -127,8 +127,8 @@ def simulate_market_events(input_data):
     events = []
     price_impacts = []
 
-    # THROTTLING — 3% peluang per hari ada event pasar besar
-    if random.random() > 0.03:
+    # THROTTLING — 20% peluang per hari ada event pasar besar
+    if random.random() > 0.20:
         return {"events": [], "priceImpacts": []}
 
     # Pilih 1 event acak

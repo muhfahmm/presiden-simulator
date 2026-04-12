@@ -16,6 +16,7 @@ import { aiTradeOfferStorage, AiTradeOffer } from '../storage/aiTradeOfferStorag
 import { tradeContractStorage, TradeContract } from '../storage/tradeContractStorage';
 import { historiImportStorage } from '../../ekspor_impor/impor/HistoriImportStorage';
 import { historiEksporStorage } from '../../ekspor_impor/ekspor/HistoriEksporStorage';
+import { getInitialAgreements } from '@/app/database/data/database_mitra_perdagangan/agreementsRegistry';
 import { aiProductionStorage } from '@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage';
 import { aggregateStocksForTrade, TradeToBuildingKeyMap } from '@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionMapping';
 
@@ -38,6 +39,7 @@ function collectCountriesData(): Record<string, any> {
 
         const rawStocks = aiProductionStorage.getStocks(country.name_en || '');
         const tradedStocks = aggregateStocksForTrade(rawStocks);
+        const explicitPartners = getInitialAgreements(country.name_en, country.name_id).map((p: any) => p.mitra.toLowerCase());
 
         data[key] = {
             populasi: (country as any).populasi || 50000000,
@@ -50,7 +52,8 @@ function collectCountriesData(): Record<string, any> {
             sektor_agrikultur: (country as any).sektor_agrikultur || {},
             pabrik_militer: (country as any).pabrik_militer || {},
             ekonomi: (country as any).ekonomi || {},
-            traded_stocks: tradedStocks
+            traded_stocks: tradedStocks,
+            trade_partners: explicitPartners
         };
     }
     return data;
@@ -171,7 +174,7 @@ export const AiTradeService = {
                     if (isGlobalNews) {
                         globalNewsStorage.addNews({
                             source: event.source || 'Global Trade Monitor',
-                            category: 'global',
+                            category: event.category || 'economy',
                             subject: event.subject,
                             content: event.content,
                             time: formatGameDate(gameDate),

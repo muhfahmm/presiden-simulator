@@ -21,8 +21,8 @@ def simulate_npc_trades(input_data):
     events = []
     npc_transactions = []
 
-    # THROTTLING — 15% peluang per hari ada berita perdagangan NPC
-    if random.random() > 0.15:
+    # THROTTLING — 50% peluang per hari ada berita perdagangan NPC
+    if random.random() > 0.50:
         return {"events": [], "npcTransactions": []}
 
     # Kumpulkan analisis surplus/deficit semua NPC
@@ -61,25 +61,26 @@ def simulate_npc_trades(input_data):
             if not buyer_data["deficits"]:
                 continue
 
-            # Cek apakah seller punya trade agreement dengan buyer
-            seller_rels = matrix.get(seller_key, {})
-            buyer_rel = None
-            for tk, tv in seller_rels.items():
-                if tk.lower().strip() == buyer_key.lower().strip():
-                    buyer_rel = tv
-                    break
+            # Cek apakah buyer ada di list trade_partners dari seller, atau sebaliknya
+            orig_seller = countries_data.get(seller_key.lower().strip(), countries_data.get(seller_key, {}))
+            orig_buyer = countries_data.get(buyer_key.lower().strip(), countries_data.get(buyer_key, {}))
+            
+            seller_partners = orig_seller.get("trade_partners", [])
+            buyer_partners = orig_buyer.get("trade_partners", [])
 
-            if not buyer_rel:
+            # Karena data ekspor-impor bisa searah maupun dua arah, kalau salah satu menyebut mitra, mereka bisa bertransaksi
+            is_partner = (buyer_key in [p.lower().strip() for p in seller_partners]) or \
+                         (seller_key in [p.lower().strip() for p in buyer_partners])
+                         
+            if not is_partner:
                 continue
-
-            has_trade = buyer_rel.get("t", 0) == 1
-            score = buyer_rel.get("s", 50)
-            if not has_trade or score < 40:
-                continue
+            
+            # Beri skor arbitrer berbasis partner untuk template
+            score = 75
 
             # Match komoditas: seller surplus A, buyer deficit A
-            for surplus in seller_data["surpluses"][:3]:
-                for deficit in buyer_data["deficits"][:3]:
+            for surplus in seller_data["surpluses"]:
+                for deficit in buyer_data["deficits"]:
                     if surplus["key"] == deficit["key"]:
                         potential_deals.append({
                             "seller": seller_key,
