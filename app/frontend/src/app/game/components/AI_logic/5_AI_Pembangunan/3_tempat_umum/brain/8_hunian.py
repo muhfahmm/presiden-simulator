@@ -10,7 +10,15 @@ def decide():
 
         # Logic: If housing index is low, build houses
         if metrics.get("housing_index", 100) < 95:
-            affordable = [o for o in options if o.get("biaya_pembangunan", 0) <= budget]
+            def is_affordable(option):
+                if option.get("biaya_pembangunan", 0) > budget: return False
+                req = option.get("requirements", {})
+                if stocks.get("5_pabrik_semen", 0) < req.get("beton", 0): return False
+                if stocks.get("12_tambang_bijih_besi", 0) < req.get("baja", 0): return False
+                if stocks.get("6_penggergajian_kayu", 0) < req.get("kayu", 0): return False
+                return True
+
+            affordable = [o for o in options if is_affordable(o)]
             if affordable:
                 # Prioritize affordable housing (Subsidi) if index is very low
                 if metrics.get("housing_index") < 80:

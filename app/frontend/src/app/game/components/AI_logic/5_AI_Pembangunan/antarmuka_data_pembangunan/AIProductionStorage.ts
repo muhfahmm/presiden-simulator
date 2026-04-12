@@ -19,9 +19,9 @@ export const aiProductionStorage = {
   getStocks: (countryNameEn: string) => {
     const global = aiProductionStorage.initialize();
     return global[countryNameEn]?.stock || {
-      "5_pabrik_semen": 1000000,
-      "12_tambang_bijih_besi": 1000000,
-      "6_penggergajian_kayu": 1000000
+      "5_pabrik_semen": 0,
+      "12_tambang_bijih_besi": 0,
+      "6_penggergajian_kayu": 0
     };
   },
 

@@ -11,11 +11,20 @@ def decide():
 
         # Basic expansion logic: Expand if affordable and budget is healthy
         if budget > 200000000: # 200M cap
-            chosen = random.choice(options)
-            if chosen.get("biaya_pembangunan", 0) <= budget:
+            def is_affordable(option):
+                if option.get("biaya_pembangunan", 0) > budget: return False
+                req = option.get("requirements", {})
+                if stocks.get("5_pabrik_semen", 0) < req.get("beton", 0): return False
+                if stocks.get("12_tambang_bijih_besi", 0) < req.get("baja", 0): return False
+                if stocks.get("6_penggergajian_kayu", 0) < req.get("kayu", 0): return False
+                return True
+
+            affordable = [o for o in options if is_affordable(o)]
+            if affordable:
+                chosen = random.choice(affordable)
                 return {"decision": "EXECUTE", "building_key": chosen["key"]}
         
-        return {"decision": "SKIP"}
+        return {"decision": "SKIP", "reason": "Insufficient budget or materials"}
     except: return {"decision": "SKIP"}
 
 import random

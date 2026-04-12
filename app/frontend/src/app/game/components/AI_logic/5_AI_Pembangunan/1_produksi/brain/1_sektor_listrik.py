@@ -19,19 +19,13 @@ def decide():
         # Logic: If surplus is low, build power plant
         if metrics.get("power_surplus", 0) < 500:
             def is_affordable(option):
-                # Check Budget
                 if option.get("biaya_pembangunan", 0) > budget:
                     return False
                 
-                # Check Materials
                 req = option.get("requirements", {})
-                if stocks.get("5_pabrik_semen", 0) < req.get("beton", 0):
-                    return False
-                if stocks.get("12_tambang_bijih_besi", 0) < req.get("baja", 0):
-                    return False
-                if stocks.get("6_penggergajian_kayu", 0) < req.get("kayu", 0):
-                    return False
-                
+                if stocks.get("5_pabrik_semen", 0) < req.get("beton", 0): return False
+                if stocks.get("12_tambang_bijih_besi", 0) < req.get("baja", 0): return False
+                if stocks.get("6_penggergajian_kayu", 0) < req.get("kayu", 0): return False
                 return True
 
             affordable = [o for o in electricity_options if is_affordable(o)]
@@ -41,7 +35,7 @@ def decide():
                 chosen = sorted(affordable, key=lambda x: x.get("produksi", 0), reverse=True)[0]
                 return {"decision": "EXECUTE", "building_key": chosen["key"]}
             else:
-                return {"decision": "SKIP", "reason": "Insufficient budget or materials for available power plants"}
+                return {"decision": "SKIP", "reason": "Insufficient budget or warehouse materials (Beton/Baja/Kayu)"}
         
         return {"decision": "SKIP", "reason": "Power surplus is sufficient"}
     except Exception as e:

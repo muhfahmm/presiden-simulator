@@ -75,7 +75,19 @@ export class PusatKeputusanPembangunan {
     let subSector = "1_sektor_listrik";
 
     // Priority Heuristic
-    if (metrics.power_surplus < 500) {
+    const low_beton = (stocks["5_pabrik_semen"] || 0) < 50000;
+    const low_baja = (stocks["12_tambang_bijih_besi"] || 0) < 50000;
+    const low_kayu = (stocks["6_penggergajian_kayu"] || 0) < 50000;
+
+    if (low_beton || low_kayu) {
+        // Force production of building materials
+        category = "1_produksi";
+        subSector = "3_manufaktur";
+    } else if (low_baja) {
+        // Force iron ore mining
+        category = "1_produksi";
+        subSector = "2_sektor_mineral";
+    } else if (metrics.power_surplus < 500) {
         category = "1_produksi";
         subSector = "1_sektor_listrik";
     } else if (metrics.housing_index < 95) {
