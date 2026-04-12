@@ -31,7 +31,7 @@ import { baseKeyMapping } from '../../tradeData';
 /**
  * Mengumpulkan data produksi semua negara untuk dikirim ke Python.
  */
-function collectCountriesData(): Record<string, any> {
+export function collectCountriesData(): Record<string, any> {
     const data: Record<string, any> = {};
     for (const country of countries) {
         const key = (country.name_id || country.name_en || '').toLowerCase().trim();

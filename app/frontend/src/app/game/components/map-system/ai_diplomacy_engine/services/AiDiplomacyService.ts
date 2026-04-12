@@ -26,12 +26,17 @@ export const AiDiplomacyService = {
         const normalizedUser = userCountry.toLowerCase().trim();
         
         try {
+            // Ambil data negara untuk mencocokkan mitra dagang
+            const { collectCountriesData } = await import('@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/sistem_perdagangan_AI/services/AiTradeService');
+            const countriesData = collectCountriesData() || {};
+
             const response = await fetch('/api/game/diplomacy/ai-global/drift', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                     matrix: currentMatrix,
-                    userCountry: userCountry
+                    userCountry: userCountry,
+                    countriesData: countriesData
                 })
             });
 

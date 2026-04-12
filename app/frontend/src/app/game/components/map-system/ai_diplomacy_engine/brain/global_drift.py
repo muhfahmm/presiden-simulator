@@ -15,10 +15,10 @@ def calculate_daily_drift(matrix_data):
     new_matrix = {}
     events = []
 
-    # Peluang harian global (25% peluang hari ini ada kegiatan diplomasi dunia)
-    global_event_chance = 0.25 
+    # Peluang harian global (80% peluang hari ini ada kegiatan diplomasi dunia)
+    global_event_chance = 0.80
     can_generate_event = random.random() < global_event_chance
-    max_events_today = random.randint(1, 4) if can_generate_event else 0
+    max_events_today = random.randint(3, 8) if can_generate_event else 0
     generated_today = 0
 
     source_countries = list(matrix.keys())
@@ -175,8 +175,8 @@ def calculate_daily_drift(matrix_data):
                         })
                     generated_today += 1
 
-                # c. PAKTA PERDAMAIAN (Butuh Kedutaan & Hubungan > 65)
-                elif new_score > 65 and statuses["e"] and not statuses["p"] and random.random() < 0.12:
+                # c. PAKTA PERDAMAIAN (Butuh Kedutaan & Hubungan > 50)
+                elif new_score > 50 and statuses["e"] and not statuses["p"] and random.random() < 0.35:
                     if is_user_target:
                         events.append({
                             "type": "GLOBAL_NEWS",
@@ -225,32 +225,50 @@ def calculate_daily_drift(matrix_data):
                         })
                     generated_today += 1
 
-                # e. KEANGGOTAAN KEDUTAAN (Butuh Hubungan > 55)
-                elif new_score > 55 and not statuses["e"] and random.random() < 0.2:
-                    if is_user_target:
-                        events.append({
-                            "type": "GLOBAL_NEWS",
-                            "source": source, "target": target,
-                            "subject": f"Wacana Diplomatik: {source.capitalize()} Berencana Membuka Kedutaan di {target.capitalize()}",
-                            "content": f"{source.capitalize()} mengutarakan rencana untuk menunjuk duta besar baru dan membuka kantor perwakilan di {target.capitalize()}."
-                        })
-                        events.append({
-                            "type": "USER_EMBASSY_OFFER",
-                            "source": source,
-                            "subject": "Permohonan Pembukaan Kedutaan",
-                            "content": f"Kami ingin meningkatkan level hubungan diplomatik formal melalui pembukaan kantor kedutaan besar."
-                        })
-                    else:
-                        statuses["e"] = 1
-                        boost_score = random.uniform(67.0, 72.0)
-                        if new_score < boost_score: new_score = boost_score
-                        events.append({
-                            "type": "GLOBAL_NEWS",
-                            "source": source, "target": target,
-                            "subject": f"Kedutaan Baru: {source.capitalize()} di {target.capitalize()}",
-                            "content": f"{source.capitalize()} dan {target.capitalize()} telah membuka kedutaan besar secara permanen."
-                        })
-                    generated_today += 1
+                # e. KEANGGOTAAN KEDUTAAN (LOGIKA CERDAS: Prioritaskan Mitra Dagang)
+                elif not statuses["e"]:
+                    countries_data = matrix_data.get("countriesData", {})
+                    # Dapatkan daftar mitra dari negara source dan target
+                    src_data = countries_data.get(source, {})
+                    target_data = countries_data.get(target, {})
+                    
+                    src_partners = [p.lower().strip() for p in src_data.get("trade_partners", [])]
+                    tgt_partners = [p.lower().strip() for p in target_data.get("trade_partners", [])]
+                    
+                    is_trade_partner = (target in src_partners) or (source in tgt_partners)
+                    
+                    # Jika mereka adalah mitra dagang, butuh skor lebih rendah (45) dan peluang sangat tinggi (40%)
+                    # Jika bukan, butuh skor sangat tinggi (65) dan peluang cuma 10%
+                    threshold = 45 if is_trade_partner else 65
+                    chance = 0.40 if is_trade_partner else 0.10
+
+                    if new_score > threshold and random.random() < chance:
+                        if is_user_target:
+                            events.append({
+                                "type": "GLOBAL_NEWS",
+                                "source": source, "target": target,
+                                "subject": f"Wacana Diplomatik: {source.capitalize()} Berencana Membuka Kedutaan di {target.capitalize()}",
+                                "content": f"{source.capitalize()} mengutarakan rencana untuk menunjuk duta besar baru dan membuka kantor perwakilan di {target.capitalize()}."
+                            })
+                            events.append({
+                                "type": "USER_EMBASSY_OFFER",
+                                "source": source,
+                                "subject": "Permohonan Pembukaan Kedutaan",
+                                "content": f"Mengingat urgensi geopolitik dan prospek kerjasama kita, kami ingin segera meresmikan hubungan melalui pembukaan kantor kedutaan besar."
+                            })
+                        else:
+                            statuses["e"] = 1
+                            boost_score = random.uniform(67.0, 72.0)
+                            if new_score < boost_score: new_score = boost_score
+                            
+                            reasoning = "sebagai bentuk komitmen terhadap mitra dagang strategis mereka" if is_trade_partner else "untuk merespon dinamika global yang terus berubah"
+                            events.append({
+                                "type": "GLOBAL_NEWS",
+                                "source": source, "target": target,
+                                "subject": f"Kedutaan Baru: {source.capitalize()} Resmikan Hubungan dengan {target.capitalize()}",
+                                "content": f"{source.capitalize()} dan {target.capitalize()} telah membuka kedutaan besar secara permanen {reasoning}."
+                            })
+                        generated_today += 1
 
                 # f. BERITA KRISIS/TEGANG (Jika tidak ada event positif lain)
                 elif new_score < 25 and score >= 25 and random.random() < 0.3:
