@@ -13,6 +13,8 @@ export interface NewsItem {
 }
 
 const NEWS_STORAGE_KEY = "em2_global_news_v1";
+const DAILY_LIMIT = 10;
+const dailyCounters: Record<string, Record<string, number>> = {};
 
 export const newsStorage = {
   getNews: (): NewsItem[] => {
@@ -55,5 +57,19 @@ export const newsStorage = {
     if (typeof window === "undefined") return;
     localStorage.removeItem(NEWS_STORAGE_KEY);
     window.dispatchEvent(new Event("news_updated"));
+  },
+
+  /**
+   * Cek apakah notifikasi untuk kategori ini masih boleh ditambah hari ini (Limit: 10).
+   */
+  canAddNews: (category: string, dateStr: string): boolean => {
+    if (!dailyCounters[dateStr]) dailyCounters[dateStr] = {};
+    if (!dailyCounters[dateStr][category]) dailyCounters[dateStr][category] = 0;
+
+    if (dailyCounters[dateStr][category] < DAILY_LIMIT) {
+      dailyCounters[dateStr][category]++;
+      return true;
+    }
+    return false;
   }
 };

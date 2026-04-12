@@ -67,6 +67,56 @@ export const aiProductionStorage = {
     return true;
   },
 
+  /**
+   * Bootstrap NPC stocks based on their initial infrastructure.
+   * Prevents deadlock for rich nations at game start.
+   */
+  bootstrapNPCs: (allCountries: any[]) => {
+    if (typeof window === 'undefined') return;
+    const global = aiProductionStorage.initialize();
+    let changed = false;
+
+    allCountries.forEach(country => {
+      const name = country.name_en;
+      const current = global[name]?.stock || {};
+      
+      // If no stock record yet or essential materials are 0
+      const needsBootstrap = !global[name] || 
+        ((current["5_pabrik_semen"] || 0) === 0 && 
+         (current["4_smelter"] || 0) === 0 && 
+         (current["6_penggergajian_kayu"] || 0) === 0);
+
+      if (needsBootstrap) {
+        // Only bootstrap if they have factories in their data profile
+        const hasFactories = country.sektor_manufaktur && (
+          country.sektor_manufaktur.semen_beton > 0 || 
+          country.sektor_manufaktur.smelter > 0 || 
+          country.sektor_manufaktur.kayu > 0
+        );
+
+        if (hasFactories) {
+          global[name] = {
+            stock: {
+              ...current,
+              "5_pabrik_semen": 500000,
+              "4_smelter": 100000,
+              "6_penggergajian_kayu": 250000,
+              "12_tambang_bijih_besi": 1000000
+            },
+            lastUpdate: new Date().toISOString().split('T')[0]
+          };
+          changed = true;
+        }
+      }
+    });
+
+    if (changed) {
+      localStorage.setItem(AI_PRODUCTION_KEY, JSON.stringify(global));
+      window.dispatchEvent(new Event('ai_production_updated'));
+      console.log(`[AI BOOTSTRAP] Seeded materials for established nations.`);
+    }
+  },
+
   clear: () => {
     if (typeof window === 'undefined') return;
     localStorage.removeItem(AI_PRODUCTION_KEY);

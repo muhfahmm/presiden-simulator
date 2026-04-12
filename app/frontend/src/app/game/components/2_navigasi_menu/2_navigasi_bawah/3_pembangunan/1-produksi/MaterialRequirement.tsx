@@ -35,7 +35,7 @@ export const BUILDING_REQUIREMENTS: Record<string, BuildingRequirement> = {
   "8_tambang_litium": { beton: 43500, baja: 51000, kayu: 38500 },
   "9_tambang_tembaga": { beton: 39500, baja: 46000, kayu: 34500 },
   "10_tambang_aluminium": { beton: 37000, baja: 44500, kayu: 32500 },
-  "11_tambang_logam_tanah_jarang": { beton: 68500, baja: 75000, kayu: 49000 },
+  "11_tambang_ltj": { beton: 68500, baja: 75000, kayu: 49000 },
   "12_tambang_bijih_besi": { beton: 34000, baja: 41500, kayu: 29500 },
 
   // --- 3. SEKTOR MANUFAKTUR ---

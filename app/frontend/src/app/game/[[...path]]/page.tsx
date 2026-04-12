@@ -18,6 +18,7 @@ import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import GameNavbar from "@/app/game/components/1_navbar";
 import { initAiDiplomacy } from "../components/map-system/ai_diplomacy_engine/AiGlobalDiplomacy";
+import AILogicCNS from "../components/AI_logic";
 
 import { useGameState } from "../hooks/useGameState";
 import { useGamePath } from "../hooks/useGamePath";
@@ -87,6 +88,9 @@ export default function GamePage() {
 
   return (
     <div className="flex min-h-screen bg-zinc-950 text-white font-sans relative overflow-hidden">
+      {/* AI Simulation Logic CNS - Headless provider */}
+      <AILogicCNS />
+
       {/* Top Header / Status bar - ALWAYS VISIBLE for Page Feel */}
       <GameNavbar
         countryData={countryData}

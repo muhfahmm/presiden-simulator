@@ -12,8 +12,6 @@ export class EksekutorPembangunanAI {
    * Start a construction project for an NPC.
    */
   static async laksanakan(countryNameEn: string, buildingKey: string, buildingData: any, gameDate: Date) {
-    
-    // 1. Calculate Requirements
     const reqs = getBuildingRequirement(buildingKey);
     const materialReqs = {
       "5_pabrik_semen": reqs.beton || 0,
@@ -21,25 +19,57 @@ export class EksekutorPembangunanAI {
       "6_penggergajian_kayu": reqs.kayu || 0
     };
 
-    // 2. Check Budget
-    const cost = Number(buildingData.biaya_pembangunan || 0);
+    // 2. Prices for Virtual Purchase
+    const MATERIAL_PRICES: Record<string, number> = {
+      "5_pabrik_semen": 250,
+      "4_smelter": 5000,
+      "6_penggergajian_kayu": 150
+    };
+
+    // 3. Check physical stocks first
+    const currentStocks = aiProductionStorage.getStocks(countryNameEn);
+    let extraMaterialCost = 0;
+    const missingMaterials: string[] = [];
+
+    Object.entries(materialReqs).forEach(([key, needed]) => {
+      const has = currentStocks[key] || 0;
+      if (has < needed) {
+        const defisit = needed - has;
+        extraMaterialCost += defisit * (MATERIAL_PRICES[key] || 0);
+        missingMaterials.push(`${key}: ${defisit.toLocaleString()}`);
+      }
+    });
+
+    // 4. Calculate Total Financial Requirement
+    const buildingCost = Number(buildingData.biaya_pembangunan || 0);
+    const totalRequiredBudget = buildingCost + extraMaterialCost;
     const currentBudget = aiBudgetStorage.getBudget(countryNameEn);
-    if (currentBudget < cost) {
-      console.warn(`[AI Pembangunan] ${countryNameEn} failed: Insufficient Budget for ${buildingKey}`);
+
+    if (currentBudget < totalRequiredBudget) {
+      console.warn(`[AI Pembangunan] ${countryNameEn} failed: Insufficient Budget (${currentBudget.toLocaleString()} < ${totalRequiredBudget.toLocaleString()})`);
       return false;
     }
 
-    // 3. Check & Deduct Materials
-    const successDeduct = aiProductionStorage.deductStocks(countryNameEn, materialReqs);
-    if (!successDeduct) {
-      console.warn(`[AI Pembangunan] ${countryNameEn} failed: Insufficient Materials for ${buildingKey}`);
-      return false;
+    // 5. Execution: Physical Deduction or Virtual Purchase
+    if (extraMaterialCost === 0) {
+      // We have enough physical stock
+      aiProductionStorage.deductStocks(countryNameEn, materialReqs);
+      (aiBudgetStorage as any).updateBudgetManual(countryNameEn, -buildingCost);
+      console.log(`[AI Pembangunan] ${countryNameEn} used warehouse stocks to build ${buildingData.label}.`);
+    } else {
+      // Virtual Purchase: Use cash to buy missing materials
+      const partialDeduction: Record<string, number> = {};
+      Object.entries(materialReqs).forEach(([key, needed]) => {
+        const has = currentStocks[key] || 0;
+        partialDeduction[key] = Math.min(has, needed);
+      });
+
+      aiProductionStorage.deductStocks(countryNameEn, partialDeduction);
+      (aiBudgetStorage as any).updateBudgetManual(countryNameEn, -totalRequiredBudget);
+      console.log(`[AI Pembangunan] ${countryNameEn} BOUGHT materials for ${extraMaterialCost.toLocaleString()} to build ${buildingData.label}. Missing: ${missingMaterials.join(', ')}`);
     }
 
-    // 4. Deduct Budget
-    (aiBudgetStorage as any).updateBudgetManual(countryNameEn, -cost);
-
-    // 5. Add to Construction Queue
+    // 6. Add to Construction Queue
     const buildTime = buildingData.waktu_pembangunan || 30;
     const endDate = addDays(gameDate, buildTime).getTime();
 
@@ -52,16 +82,21 @@ export class EksekutorPembangunanAI {
       waktu_pembangunan: buildTime
     });
 
-    // 6. News Announcement (only for significant projects)
-    if (cost > 1000000 || buildingData.groupId === 'kelistrikan') {
+    // 7. News Announcement (Limited to 10 per game day to save CPU/UI)
+    const dateKey = formatGameDate(gameDate);
+
+    if (newsStorage.canAddNews('construction', dateKey)) {
       newsStorage.addNews({
         source: countryNameEn,
-        subject: `Proyek Strategis: ${buildingData.label}`,
-        content: `Pemerintah ${countryNameEn} hari ini resmi memulai pembangunan ${buildingData.label}. Proyek infrastruktur ini merupakan bagian dari rencana pembangunan nasional jangka menengah untuk meningkatkan kapasitas ekonomi.`,
+        subject: `Pembangunan: ${buildingData.deskripsi || buildingData.label || buildingKey}`,
+        content: `Pemerintah ${countryNameEn} memulai pembangunan ${buildingData.deskripsi || buildingData.label || buildingKey}. Biaya proyek: ${buildingCost.toLocaleString()}. Sektor: ${buildingData.groupId || 'umum'}.`,
         category: "construction",
-        time: formatGameDate(gameDate),
-        priority: 'medium'
+        time: dateKey,
+        priority: buildingCost > 50000000 ? 'high' : 'medium'
       });
+      console.log(`[AI NEWS] Pembangunan ${countryNameEn} ditayangkan di Berita.`);
+    } else {
+      console.log(`[AI NEWS] Pembangunan ${countryNameEn} diproses secara senyap (Limit harian tercapai).`);
     }
 
     console.log(`[AI Pembangunan] ${countryNameEn} started building ${buildingData.label}. Finishes on: ${formatGameDate(new Date(endDate))}`);

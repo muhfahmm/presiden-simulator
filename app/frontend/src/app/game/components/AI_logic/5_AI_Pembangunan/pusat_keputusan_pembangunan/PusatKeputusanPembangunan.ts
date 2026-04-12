@@ -6,6 +6,7 @@ import { aiBuildingStorage } from "../antarmuka_data_pembangunan/AIBuildingStora
 import { aiProductionStorage } from "../antarmuka_data_pembangunan/AIProductionStorage";
 import { EksekutorPembangunanAI } from "../sistem_tindakan_respon/EksekutorPembangunanAI";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
+import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLogic";
 import { 
     KAPASITAS_LISTRIK_METADATA, 
     mineralKritisRate, 
@@ -20,7 +21,7 @@ import { pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { infrastrukturRate, sosialRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
 import { BUILDING_REQUIREMENTS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/1-produksi/MaterialRequirement";
 
-// Helper to consolidate all building options
+// Consolidate ALL building options with full metadata (costs, requirements, production rate)
 const ALL_OPTIONS: any[] = [
     ...Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, v]: any) => ({ key, ...v, groupId: 'kelistrikan', requirements: BUILDING_REQUIREMENTS[key] || { beton:0, kayu:0, baja:0 } })),
     ...Object.entries(mineralKritisRate).map(([key, v]: any) => ({ key, ...v, groupId: 'ekstraksi', requirements: BUILDING_REQUIREMENTS[key] || { beton:0, kayu:0, baja:0 } })),
@@ -35,118 +36,140 @@ const ALL_OPTIONS: any[] = [
     ...Object.entries(sosialRate).map(([key, v]: any) => ({ key, ...v, groupId: v.groupId || 'sosial', requirements: BUILDING_REQUIREMENTS[key] || { beton:0, kayu:0, baja:0 } })),
 ];
 
+/**
+ * PusatKeputusanPembangunan (Construction Decision Center)
+ * 
+ * Unified AI construction engine that:
+ * 1. Gathers ALL economic data for a country
+ * 2. Sends it to otak_pembangunan.py in ONE call
+ * 3. Executes the decision
+ */
 export class PusatKeputusanPembangunan {
+  private static lastDecisionMap: Map<string, string> = new Map();
+
   /**
-   * Main thinking loop for NPC Construction.
+   * Gather all baseline + delta buildings for an NPC country.
    */
-  static async pikiurkan(countryNameEn: string) {
+  static gatherBuildings(country: any): Record<string, number> {
+    const buildings: Record<string, number> = {};
+
+    // Sektor Listrik
+    if (country.sektor_listrik) {
+      const sl = country.sektor_listrik;
+      if (sl.pembangkit_listrik_tenaga_nuklir) buildings["1_pembangkit_listrik_tenaga_nuklir"] = sl.pembangkit_listrik_tenaga_nuklir;
+      if (sl.pembangkit_listrik_tenaga_air) buildings["2_pembangkit_listrik_tenaga_air"] = sl.pembangkit_listrik_tenaga_air;
+      if (sl.pembangkit_listrik_tenaga_surya) buildings["3_pembangkit_listrik_tenaga_surya"] = sl.pembangkit_listrik_tenaga_surya;
+      if (sl.pembangkit_listrik_tenaga_uap) buildings["4_pembangkit_listrik_tenaga_uap"] = sl.pembangkit_listrik_tenaga_uap;
+      if (sl.pembangkit_listrik_tenaga_gas) buildings["5_pembangkit_listrik_tenaga_gas"] = sl.pembangkit_listrik_tenaga_gas;
+      if (sl.pembangkit_listrik_tenaga_angin) buildings["6_pembangkit_listrik_tenaga_angin"] = sl.pembangkit_listrik_tenaga_angin;
+    }
+
+    // Sektor Manufaktur
+    if (country.sektor_manufaktur) {
+      const sm = country.sektor_manufaktur;
+      if (sm.semen_beton) buildings["5_pabrik_semen"] = sm.semen_beton;
+      if (sm.kayu) buildings["6_penggergajian_kayu"] = sm.kayu;
+      if (sm.smelter) buildings["4_smelter"] = sm.smelter;
+      if (sm.semikonduktor) buildings["1_pabrik_elektronik"] = sm.semikonduktor;
+      if (sm.mobil) buildings["2_pabrik_mobil"] = sm.mobil;
+      if (sm.sepeda_motor) buildings["3_pabrik_motor"] = sm.sepeda_motor;
+      if (sm.pupuk) buildings["7_pabrik_pupuk"] = sm.pupuk;
+    }
+
+    // Sektor Ekstraksi
+    if (country.sektor_ekstraksi) {
+      const se = country.sektor_ekstraksi;
+      if (se.emas) buildings["1_tambang_emas"] = se.emas;
+      if (se.uranium) buildings["2_tambang_uranium"] = se.uranium;
+      if (se.batu_bara) buildings["3_tambang_batu_bara"] = se.batu_bara;
+      if (se.minyak_bumi) buildings["4_sumur_minyak"] = se.minyak_bumi;
+      if (se.gas_alam) buildings["5_sumur_gas"] = se.gas_alam;
+      if (se.garam) buildings["6_tambang_garam"] = se.garam;
+      if (se.nikel) buildings["7_tambang_nikel"] = se.nikel;
+      if (se.litium) buildings["8_tambang_litium"] = se.litium;
+      if (se.tembaga) buildings["9_tambang_tembaga"] = se.tembaga;
+      if (se.aluminium) buildings["10_tambang_aluminium"] = se.aluminium;
+      if (se.logam_tanah_jarang) buildings["11_tambang_ltj"] = se.logam_tanah_jarang;
+      if (se.bijih_besi) buildings["12_tambang_bijih_besi"] = se.bijih_besi;
+    }
+
+    // Generic spread for other sectors
+    const moreSectors = ['sektor_peternakan', 'sektor_agrikultur', 'sektor_perikanan', 'sektor_olahan_pangan', 'sektor_farmasi', 'pabrik_militer'];
+    moreSectors.forEach(s => {
+      const data = (country as any)[s];
+      if (data && typeof data === 'object') {
+        Object.entries(data).forEach(([key, val]) => {
+          buildings[key] = (buildings[key] || 0) + Number(val);
+        });
+      }
+    });
+
+    // Add dynamic deltas from AI building storage
+    const deltas = aiBuildingStorage.getAllBuildingDeltas(country.name_en);
+    Object.entries(deltas).forEach(([key, val]) => {
+      buildings[key] = (buildings[key] || 0) + val;
+    });
+
+    return buildings;
+  }
+
+  /**
+   * Main entry: Think and decide what to build for an NPC country.
+   */
+  static async pikirkan(countryNameEn: string) {
     const session = timeStorage.getState();
     const gameDate = session.gameDate;
+    const dateStr = gameDate.toISOString().split('T')[0];
+
+    // Throttle: One decision per country per game day
+    if (this.lastDecisionMap.get(countryNameEn) === dateStr) return;
+    this.lastDecisionMap.set(countryNameEn, dateStr);
+
     const country = countries.find(c => c.name_en === countryNameEn);
     if (!country) return;
 
+    // 1. Gather economic snapshot
     const budget = aiBudgetStorage.getBudget(countryNameEn);
     const stocks = aiProductionStorage.getStocks(countryNameEn);
     const queue = aiBuildingStorage.getQueue(countryNameEn);
+    const buildings = PusatKeputusanPembangunan.gatherBuildings(country);
 
-    // Don't build if queue is already full (limit to 2 concurrent projects for AI)
-    if (queue.length >= 2) return;
+    // 2. Calculate daily income (same formula as economy page)
+    const dailyIncome = calculateDailyBudgetDelta(country as any, {});
 
-    // STEP 1: SCAN NATIONAL STATUS
-    let scanResult: any = null;
+    // 3. Send everything to Python brain in ONE call
     try {
-        const scanRes = await fetch(`/game/components/AI_logic/5_AI_Pembangunan/routes/pemantauan`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ country_data: country })
-        });
-        scanResult = await scanRes.json();
-    } catch (e) {
-        console.error("[AI Scanner] Error:", e);
-        return;
-    }
+      const response = await fetch('/game/components/AI_logic/5_AI_Pembangunan/routes/keputusan_cerdas', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          negara: countryNameEn,
+          budget,
+          daily_income: dailyIncome,
+          stocks,
+          buildings,
+          options: ALL_OPTIONS,
+          queue_count: queue.length,
+          population: Number(country.jumlah_penduduk) || 0
+        })
+      });
 
-    if (!scanResult || scanResult.error) return;
+      const result = await response.json();
+      
+      // Log for debugging
+      if (result.decision === "EXECUTE") {
+        console.log(`[AI CONSTRUCTION] ${countryNameEn}: ${result.reason} | Cost: ${result.budget_analysis?.building_cost?.toLocaleString()}`);
+      }
 
-    const metrics = scanResult.metrics;
-    
-    // STEP 2: DETERMINE CATEGORY & SUB-SECTOR BASED ON NEEDS
-    let category = "1_produksi";
-    let subSector = "1_sektor_listrik";
-
-    // Priority Heuristic
-    const low_beton = (stocks["5_pabrik_semen"] || 0) < 50000;
-    const low_baja = (stocks["4_smelter"] || 0) < 50000;
-    const low_kayu = (stocks["6_penggergajian_kayu"] || 0) < 50000;
-
-    if (low_beton || low_kayu) {
-        // Force production of building materials
-        category = "1_produksi";
-        subSector = "3_manufaktur";
-    } else if (low_baja) {
-        // Force iron ore mining
-        category = "1_produksi";
-        subSector = "2_sektor_mineral";
-    } else if (metrics.power_surplus < 500) {
-        category = "1_produksi";
-        subSector = "1_sektor_listrik";
-    } else if (metrics.housing_index < 95) {
-        category = "3_tempat_umum";
-        subSector = "8_hunian";
-    } else if (metrics.health_index < 80) {
-        category = "3_tempat_umum";
-        subSector = "3_kesehatan";
-    } else {
-        // Diversify growth if basic needs are met
-        const rand = Math.random();
-        if (rand < 0.3) {
-            category = "1_produksi";
-            const sectors = ["2_sektor_mineral", "3_manufaktur", "4_sektor_peternakan", "5_sektor_agrikultur", "6_sektor_perikanan", "7_sektor_olahan_pangan", "8_sektor_farmasi"];
-            subSector = sectors[Math.floor(Math.random() * sectors.length)];
-        } else if (rand < 0.6) {
-            category = "3_tempat_umum";
-            const sectors = ["1_infrastruktur", "2_pendidikan", "4_hukum", "5_olahraga", "6_komersial", "7_hiburan"];
-            subSector = sectors[Math.floor(Math.random() * sectors.length)];
-        } else {
-            category = "2_produksi_militer";
-            subSector = "1_pabrik_militer";
+      if (result.decision === "EXECUTE" && result.building_key) {
+        const chosen = ALL_OPTIONS.find(o => o.key === result.building_key);
+        if (chosen) {
+          await EksekutorPembangunanAI.laksanakan(countryNameEn, result.building_key, chosen, gameDate);
         }
-    }
-
-    const fetchUrl = `/game/components/AI_logic/5_AI_Pembangunan/routes/${category}`;
-    
-    // Filter options for the specific category
-    const options = ALL_OPTIONS.filter(o => {
-        if (category === "1_produksi") return !['militer', 'infrastruktur', 'pendidikan', 'kesehatan', 'hukum', 'olahraga', 'hiburan', 'komersial', 'hunian'].includes(o.groupId);
-        if (category === "2_produksi_militer") return o.groupId === "militer";
-        if (category === "3_tempat_umum") return ['infrastruktur', 'pendidikan', 'kesehatan', 'hukum', 'olahraga', 'hiburan', 'komersial', 'hunian'].includes(o.groupId);
-        return false;
-    });
-
-    try {
-        const response = await fetch(fetchUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                negara: countryNameEn,
-                budget,
-                stocks,
-                options,
-                metrics,
-                sub_sector: subSector
-            })
-        });
-
-        const result = await response.json();
-
-        if (result.decision === "EXECUTE") {
-            const chosen = ALL_OPTIONS.find(o => o.key === result.building_key);
-            if (chosen) {
-                await EksekutorPembangunanAI.laksanakan(countryNameEn, result.building_key, chosen, gameDate);
-            }
-        }
+      }
     } catch (err) {
-        console.error(`[AI Construction] Decision error for ${countryNameEn}:`, err);
+      // Silent fail — don't block other NPCs
+      console.error(`[AI Construction] Error for ${countryNameEn}:`, err);
     }
   }
 }

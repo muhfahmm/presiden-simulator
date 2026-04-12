@@ -129,14 +129,17 @@ export const AiDiplomacyService = {
                     const isEmbassy = type === 'USER_EMBASSY_OFFER' || type === 'USER_EMBASSY_ACCEPTED' || type === 'USER_EMBASSY_REJECTED';
                     
                     if (isGlobalNews) {
-                        newsStorage.addNews({
-                            source: event.source || "Intelijen",
-                            category: 'global',
-                            subject: event.subject,
-                            content: event.content,
-                            time: formatGameDate(timeStorage.getState().gameDate),
-                            priority: 'low'
-                        });
+                        const dateStr = formatGameDate(timeStorage.getState().gameDate);
+                        if (newsStorage.canAddNews('global', dateStr)) {
+                            newsStorage.addNews({
+                                source: event.source || "Intelijen",
+                                category: 'global',
+                                subject: event.subject,
+                                content: event.content,
+                                time: dateStr,
+                                priority: 'low'
+                            });
+                        }
                     } else {
                         const safeSource = (event.source || "Negara").toUpperCase();
                         inboxStorage.addMessage({

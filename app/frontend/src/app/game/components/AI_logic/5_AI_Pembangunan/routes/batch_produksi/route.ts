@@ -1,0 +1,54 @@
+import { NextResponse } from 'next/server';
+import { exec } from 'child_process';
+import path from 'path';
+
+export async function POST(request: Request) {
+  try {
+    const { countries } = await request.json();
+
+    if (!countries || !Array.isArray(countries)) {
+       return NextResponse.json({ status: 'error', message: 'Invalid countries data' }, { status: 400 });
+    }
+
+    const scriptPath = path.join(
+      process.cwd(),
+      'src/app/game/components/AI_logic/5_AI_Pembangunan/sistem_tindakan_respon/pusat_produksi_batch.py'
+    );
+
+    return new Promise((resolve) => {
+      const pythonProcess = exec(
+        `python "${scriptPath}"`,
+        (error, stdout, stderr) => {
+          if (error) {
+            console.error(`Error executing batch python: ${error}`);
+            resolve(
+              NextResponse.json(
+                { status: 'error', message: stderr || error.message },
+                { status: 500 }
+              )
+            );
+            return;
+          }
+
+          try {
+            const results = JSON.parse(stdout);
+            resolve(NextResponse.json(results));
+          } catch (parseError) {
+            resolve(
+              NextResponse.json(
+                { status: 'error', message: 'Failed to parse batch python output' },
+                { status: 500 }
+              )
+            );
+          }
+        }
+      );
+
+      // Send batch input to python
+      pythonProcess.stdin?.write(JSON.stringify({ countries }));
+      pythonProcess.stdin?.end();
+    });
+  } catch (error: any) {
+    return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
+  }
+}

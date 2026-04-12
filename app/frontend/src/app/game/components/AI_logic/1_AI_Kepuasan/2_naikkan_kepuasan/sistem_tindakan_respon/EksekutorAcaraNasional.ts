@@ -37,14 +37,17 @@ export class EksekutorAcaraNasional {
     aiPublicEventStorage.saveExecution(countryNameEn, eventId, formatGameDate(gameDate));
 
     // 4. Publish to Global News (Berita)
-    newsStorage.addNews({
-      source: countryNameEn,
-      subject: `Penyelenggaraan ${acara.name}`,
-      content: `Pemerintah ${countryNameEn} resmi membuka ${acara.name} hari ini. Acara ini diharapkan dapat meningkatkan kesejahteraan dan kebahagiaan warga negara tersebut secara signifikan.`,
-      category: "global",
-      time: formatGameDate(gameDate),
-      priority: acara.happinessBoost > 15 ? 'high' : 'medium'
-    });
+    const dateStr = formatGameDate(gameDate);
+    if (newsStorage.canAddNews('global', dateStr)) {
+      newsStorage.addNews({
+        source: countryNameEn,
+        subject: `Penyelenggaraan ${acara.name}`,
+        content: `Pemerintah ${countryNameEn} resmi membuka ${acara.name} hari ini. Acara ini diharapkan dapat meningkatkan kesejahteraan dan kebahagiaan warga negara tersebut secara signifikan.`,
+        category: "global",
+        time: dateStr,
+        priority: acara.happinessBoost > 15 ? 'high' : 'medium'
+      });
+    }
 
     console.log(`[AI Event] ${countryNameEn} successfully executed ${acara.name}. Happiness boost: +${acara.happinessBoost}%`);
     return true;

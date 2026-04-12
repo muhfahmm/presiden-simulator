@@ -170,16 +170,19 @@ export const AiTradeService = {
             if (Array.isArray(data.events)) {
                 data.events.forEach((event: any) => {
                     const isGlobalNews = event.type === 'GLOBAL_NEWS';
+                    const dateStr = formatGameDate(gameDate);
 
                     if (isGlobalNews) {
-                        globalNewsStorage.addNews({
-                            source: event.source || 'Global Trade Monitor',
-                            category: event.category || 'economy',
-                            subject: event.subject,
-                            content: event.content,
-                            time: formatGameDate(gameDate),
-                            priority: event.priority || 'low'
-                        });
+                        if (globalNewsStorage.canAddNews(event.category || 'economy', dateStr)) {
+                            globalNewsStorage.addNews({
+                                source: event.source || 'Global Trade Monitor',
+                                category: event.category || 'economy',
+                                subject: event.subject,
+                                content: event.content,
+                                time: dateStr,
+                                priority: event.priority || 'low'
+                            });
+                        }
                     } else {
                         // Tawaran/request ke user → masuk Inbox
                         const safeSource = (event.source || 'Negara').toUpperCase();
