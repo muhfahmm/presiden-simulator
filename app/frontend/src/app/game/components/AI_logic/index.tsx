@@ -5,6 +5,7 @@ import { DashboardInternalNPC } from "./1_AI_Kepuasan/1_statistik_kepuasan/antar
 import { EvaluasiSentimenPublik } from "./1_AI_Kepuasan/1_statistik_kepuasan/pusat_pemrosesan_kognitif/EvaluasiSentimenPublik";
 import { ModulPenyesuaianPajak } from "./1_AI_Kepuasan/1_statistik_kepuasan/sistem_tindakan_respon/ModulPenyesuaianPajak";
 import { PusatKeputusanAcara } from "./1_AI_Kepuasan/2_naikkan_kepuasan/pusat_keputusan_acara/PusatKeputusanAcara";
+import { PusatKeputusanPembangunan } from "./5_AI_Pembangunan/pusat_keputusan_pembangunan/PusatKeputusanPembangunan";
 import { aiHappinessStorage } from "../map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
@@ -47,6 +48,7 @@ export default function AILogicCNS() {
 
       selectedNPCs.forEach(async (npc) => {
         await PusatKeputusanAcara.pikiurkan(npc.name_en);
+        await PusatKeputusanPembangunan.pikiurkan(npc.name_en);
       });
     };
 

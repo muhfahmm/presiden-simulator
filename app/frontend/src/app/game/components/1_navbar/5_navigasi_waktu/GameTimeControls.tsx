@@ -25,6 +25,9 @@ import { aiHappinessStorage } from "@/app/game/components/map-system/modals_deta
 import { getNationalHealthImpact } from "@/app/game/data/layanan_publik/kesehatan/healthLogic";
 import { publicServiceEventEngine } from "@/app/game/logic/events/publicServiceEventEngine";
 import { calculateDetailedPopulationMetrics } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
+import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
+import { aiProductionStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
+import { calculateDailyProductionTotals as calculateAIProduction } from "@/app/game/data/production/productionLogic";
 
 // import { diplomacyStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/diplomacyStorage";
 
@@ -130,6 +133,28 @@ export default function GameTimeControls() {
 
       // Update Industry Research Progress
       researchStorage.updateProgress(state.gameDate);
+
+      // --- AI Construction & Production Progression (Global NPCs) ---
+      countries.forEach((country: any) => {
+        if (country.name_en === currentCountryCode) return; // Skip player's country
+
+        // 1. Daily Material Production for NPCs
+        const aiDeltas = aiBuildingStorage.getAllBuildingDeltas(country.name_en);
+        const dayProd = calculateAIProduction(country, aiDeltas);
+        aiProductionStorage.updateStocks(country.name_en, dayProd, state.gameDate);
+
+        // 2. Construction Queue Progression
+        const aiQueue = aiBuildingStorage.getQueue(country.name_en);
+        const nowTime = state.gameDate.getTime();
+        const itemsToFinish = aiQueue.filter(item => item && nowTime >= item.endDate);
+
+        if (itemsToFinish.length > 0) {
+          itemsToFinish.forEach(item => {
+            aiBuildingStorage.incrementBuildingCount(country.name_en, item.buildingKey);
+            aiBuildingStorage.removeFromQueue(country.name_en, item.id);
+          });
+        }
+      });
 
 
       // --- Diplomacy & Construction Progression ---
