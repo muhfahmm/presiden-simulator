@@ -370,15 +370,37 @@ export default function IndustrialResearchDetail({ onBack }: IndustrialResearchD
                 <div className="bg-zinc-900/40 p-5 rounded-2xl border border-zinc-800/50">
                   <p className="text-[9px] text-zinc-500 font-bold uppercase tracking-widest mb-1">Durasi Riset</p>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <Clock size={16} className="text-amber-500" />
-                        <span className="text-sm font-black text-white">{selectedNode.time}</span>
+                    <div className="flex items-center gap-3">
+                        <Clock size={24} className="text-amber-500" />
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-3xl font-black text-white tracking-tighter">
+                            {Math.ceil(parseInt(selectedNode.time) / researchStorage.getResearchSpeedMultiplier())}
+                          </span>
+                          <span className="text-sm font-bold text-zinc-500 uppercase tracking-widest">Hari</span>
+                          
+                          {researchStorage.getResearchSpeedMultiplier() > 1 && (
+                            <span className="ml-3 text-xs font-bold text-emerald-500/80 line-through bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
+                              {selectedNode.time}
+                            </span>
+                          )}
+                        </div>
                     </div>
+
+
                     {selectedNode.status === 'researching' && (
+                      <div className="flex items-center gap-4">
                         <span className="text-[10px] font-black text-amber-500 uppercase">
                             {researchStorage.getProgress(selectedNode.id, timeStorage.getState().gameDate)?.remainingDays} Hari Lagi
                         </span>
+                        <div className="flex items-center gap-2 border-l border-zinc-800 pl-4">
+                            <Workflow size={14} className="text-cyan-500" />
+                            <span className="text-sm font-black text-cyan-500">
+                                x{researchStorage.getProgress(selectedNode.id, timeStorage.getState().gameDate)?.multiplier?.toFixed(2)} Speed
+                            </span>
+                        </div>
+                      </div>
                     )}
+
                   </div>
 
                 </div>

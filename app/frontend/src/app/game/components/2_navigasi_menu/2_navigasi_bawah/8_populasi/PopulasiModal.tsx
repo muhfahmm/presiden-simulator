@@ -61,6 +61,7 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
     priceGrowthRate,
     dailyBirths,
     dailyDeaths,
+    securityLevel,
     demographics
   } = calculateDetailedPopulationMetrics(country, population, buildingDeltas, diffDays);
 
@@ -93,101 +94,9 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
 
   const totalMonthlyGrowthPercent = ((totalDailyDelta * 30) / population) * 100;
 
-  // 3. HUMAN CAPITAL: National Workforce Stats
-  const calculateWorkforce = () => {
-    let totalVacanciesCount = 0;
-    let totalEmployedCount = 0;
 
-    const currentDateMs = getStoredGameDate().getTime();
-    const diffTime = Math.abs(currentDateMs - INITIAL_GAME_DATE.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    const sixMonthIndex = Math.floor(diffDays / 180);
-
-    const processSectorData = (metadata: any, sectorData: any) => {
-      if (!sectorData) return;
-      Object.entries(metadata).forEach(([key, val]: [string, any]) => {
-        const dataKey = val.dataKey || key;
-        const count = (sectorData[dataKey] || 0) + (buildingDeltas[key] || 0);
-        const perUnitVacancies = val.lowongan_kerja || 0;
-
-        const sectorTotalVacancies = count * perUnitVacancies;
-        // Standardized occupancy (Seeded by val.label || key for 100% sync with Produksi Hub)
-        const seed = (sixMonthIndex + (val.label || key).length) % 100;
-        const occupancyPercentage = 0.65 + (seed % 30) / 100;
-        const sectorFilledVacancies = Math.floor(sectorTotalVacancies * occupancyPercentage);
-
-        totalVacanciesCount += sectorTotalVacancies;
-        totalEmployedCount += sectorFilledVacancies;
-      });
-    };
-
-    const processNestedSectorData = (metadata: any, nestedSectorData: any) => {
-      if (!nestedSectorData) return;
-      
-      const flattenData = (obj: any): any => {
-        let res: any = {};
-        for (const [key, val] of Object.entries(obj)) {
-          if (typeof val === 'object' && val !== null) {
-            res = { ...res, ...flattenData(val) };
-          } else {
-            res[key] = val;
-          }
-        }
-        return res;
-      };
-
-      const flatData = flattenData(nestedSectorData);
-      processSectorData(metadata, flatData);
-    };
-
-    // Calculate all industrial & social sectors
-    processSectorData(KAPASITAS_LISTRIK_METADATA, country.sektor_listrik);
-    processSectorData(mineralKritisRate, country.sektor_ekstraksi);
-    processSectorData(produkIndustriRate, country.sektor_manufaktur);
-    processSectorData(produksiMiliter, country.armada_militer);
-    processSectorData(infrastrukturRate, country.infrastruktur);
-    processNestedSectorData(sosialRate, country.armada_kepolisian);
-
-    // Calculate all food/agri sub-sectors
-    Object.entries(komoditasPanganRate).forEach(([key, val]: [string, any]) => {
-      const dataKey = val.dataKey;
-      let sectorData = null;
-      if ((country.sektor_peternakan as any)?.[dataKey] !== undefined) sectorData = country.sektor_peternakan;
-      else if ((country.sektor_agrikultur as any)?.[dataKey] !== undefined) sectorData = country.sektor_agrikultur;
-      else if ((country.sektor_perikanan as any)?.[dataKey] !== undefined) sectorData = country.sektor_perikanan;
-      else if ((country.sektor_olahan_pangan as any)?.[dataKey] !== undefined) sectorData = country.sektor_olahan_pangan;
-
-      if (sectorData) {
-        const count = ((sectorData as any)[dataKey] || 0) + (buildingDeltas[key] || 0);
-        const perUnitVacancies = val.lowongan_kerja || 0;
-        const sectorTotalVacancies = count * perUnitVacancies;
-
-        const seed = (sixMonthIndex + (val.label || key).length) % 100;
-        const occupancyPercentage = 0.65 + (seed % 30) / 100;
-        totalVacanciesCount += sectorTotalVacancies;
-        totalEmployedCount += Math.floor(sectorTotalVacancies * occupancyPercentage);
-      }
-    });
-
-    const { ideologyStorage } = require("../6_sosial_budaya/2_ideologi/ideologyStorage");
-    const currentIdeology = ideologyStorage.getCurrentIdeology(country.ideology);
-    const isKomunisme = currentIdeology === "Komunisme";
-
-    return {
-      totalVacancies: totalVacanciesCount,
-      totalEmployed: totalEmployedCount,
-      // Base unemployment rate is now more responsive to expanded sector coverage
-      // Communism always has 0% unemployment
-      unemploymentRate: isKomunisme ? 0 : Math.max(1.8, 100 - (91.5 + (totalEmployedCount / population * 100)))
-    };
-  };
-
-  const { totalVacancies, totalEmployed, unemploymentRate } = calculateWorkforce();
-
-  // 4. SECURITY: Crime Rate
-  const policeStations = (country.armada_kepolisian?.armada_polisi?.kantor_polisi || 36) + (buildingDeltas["kantor_polisi"] || 0);
-  const securityIndex = (country.hukum?.indeks_keamanan || 78) + (policeStations * 0.8) - (unemploymentRate * 0.5);
-  const crimeRate = Math.max(0, Math.min(100, 100 - securityIndex));
+  // 4. SECURITY: Crime Rate & Level
+  const crimeRate = Math.max(0, Math.min(100, 100 - securityLevel));
 
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8 pointer-events-none">
@@ -396,86 +305,34 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
                 </div>
               </div>
 
-              {/* HUMAN CAPITAL Card */}
-              <div className="p-6 rounded-3xl bg-zinc-900 border border-zinc-800/50 shadow-xl group hover:border-blue-500/30 transition-all relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-blue-500/50" />
-                <div className="flex items-start justify-between mb-4">
-                  <div className="p-3 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                    <GraduationCap className="h-5 w-5" />
+              {/* SECURITY Card (NEW LARGE) */}
+              <div className="p-10 rounded-[3rem] bg-zinc-900 border border-zinc-800/50 shadow-xl group hover:border-blue-500/30 transition-all relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-500" />
+                <div className="flex items-start justify-between mb-8">
+                  <div className="p-4 rounded-[2rem] bg-blue-500/10 border border-blue-500/20 text-blue-400">
+                    <ShieldAlert className="h-8 w-8" />
                   </div>
                   <div className="text-right">
-                    <span className={`text-2xl font-black italic tabular-nums ${unemploymentRate > 15 ? 'text-rose-400' : 'text-emerald-400'}`}>{unemploymentRate.toFixed(1)}%</span>
-                    <p className="text-[8px] font-black text-zinc-500 uppercase tracking-widest mt-1">Pengangguran</p>
+                    <span className="text-5xl font-black text-white italic tabular-nums tracking-tighter transition-all duration-700">{securityLevel.toFixed(1)}</span>
+                    <p className="text-xs font-black text-zinc-500 uppercase tracking-[0.3em] mt-2 italic">Tingkat Keamanan (/100)</p>
                   </div>
                 </div>
-
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className="p-3 rounded-2xl bg-zinc-950/50 border border-zinc-800">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Briefcase size={10} className="text-zinc-500" />
-                      <p className="text-[8px] font-black text-zinc-600 uppercase tracking-widest italic">Total Lowongan</p>
-                    </div>
-                    <p className="text-sm font-black text-white italic tabular-nums">{totalVacancies.toLocaleString('id-ID')}</p>
+                
+                <div className="flex items-center justify-between p-5 rounded-3xl bg-zinc-950/50 border border-zinc-800">
+                  <div className="flex flex-col">
+                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 italic">Status Keamanan</p>
+                    <p className="text-xl font-black text-white italic tracking-wide">
+                      {securityLevel >= 80 ? 'AMAN' : securityLevel >= 70 ? 'STABIL' : securityLevel >= 60 ? 'WASPADA' : 'RAWAN'}
+                    </p>
                   </div>
-                  <div className="p-3 rounded-2xl bg-zinc-950/50 border border-zinc-800">
-                    <p className="text-[8px] font-black text-zinc-600 uppercase tracking-widest mb-1 italic">Tenaga Kerja Terisi</p>
-                    <p className="text-sm font-black text-blue-400 italic tabular-nums">{totalEmployed.toLocaleString('id-ID')}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between mb-4 p-3 rounded-2xl bg-zinc-950/50 border border-zinc-800 overflow-hidden relative">
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 bg-indigo-500/10 rounded-lg text-indigo-400">
-                      <Clock size={12} />
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">Sinkronisasi Berkala</span>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs font-black text-indigo-400 italic tabular-nums tracking-tighter shadow-[0_0_10px_rgba(129,140,248,0.2)]">Update: {nextDateStr}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none block mb-1 italic">Next Update</span>
-                    <span className="text-[8px] font-black text-zinc-600 uppercase tracking-tighter">Deterministic Cycle</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <h4 className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.3em]">Kapasitas Lapangan Kerja</h4>
-                    <span className="text-[9px] font-bold text-blue-400 italic">{((totalEmployed / totalVacancies) * 100).toFixed(1)}%</span>
-                  </div>
-                  <div className="h-2 w-full bg-zinc-950 rounded-lg overflow-hidden border border-zinc-800/50 p-0.5">
-                    <div className={`h-full rounded-md transition-all bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.4)]`} style={{ width: `${Math.min(100, (totalEmployed / totalVacancies) * 100)}%` }} />
+                  <div className={`px-4 py-2 rounded-2xl border transition-all duration-500 ${securityLevel >= 75 ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 'bg-amber-500/10 border-amber-500/20 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.1)]'}`}>
+                    <span className="text-[10px] font-black uppercase tracking-widest">
+                      {securityLevel >= 85 ? 'SECURE' : securityLevel >= 70 ? 'STABLE' : 'RISKY'}
+                    </span>
                   </div>
                 </div>
               </div>
 
-
-              {/* SECURITY Card */}
-              <div className="p-6 rounded-3xl bg-zinc-900 border border-zinc-800/50 shadow-xl group hover:border-purple-500/30 transition-all relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-purple-500/50" />
-                <div className="flex items-start justify-between mb-6">
-                  <div className="p-3 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
-                    <ShieldAlert className="h-5 w-5" />
-                  </div>
-                  <div className="text-right">
-                    <span className={`text-2xl font-black italic tabular-nums ${crimeRate > 20 ? 'text-amber-400' : 'text-emerald-400'}`}>{crimeRate.toFixed(1)}%</span>
-                    <p className="text-[8px] font-black text-zinc-500 uppercase tracking-widest mt-1">Crime Rate</p>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-1">Status Keamanan</h4>
-                    <p className="text-sm text-white font-black italic tracking-wide">{crimeRate < 10 ? 'AMAN TERKENDALI' : 'DALAM PANTAUAN'}</p>
-                  </div>
-                  <div className={`flex items-center gap-2 px-3 py-1 rounded-full border ${crimeRate < 10 ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-amber-500/10 border-amber-500/20 text-amber-400'}`}>
-                    <div className={`h-1.5 w-1.5 rounded-full animate-pulse ${crimeRate < 10 ? 'bg-emerald-400' : 'bg-amber-400'}`} />
-                    <span className="text-[7px] font-black uppercase tracking-widest">{crimeRate < 10 ? 'SAFE' : 'RISK'}</span>
-                  </div>
-                </div>
-              </div>
 
               {/* SOCIAL INEQUALITY Card */}
               <div className="p-6 rounded-3xl bg-zinc-900 border border-zinc-800/50 shadow-xl group hover:border-orange-500/30 transition-all relative overflow-hidden">

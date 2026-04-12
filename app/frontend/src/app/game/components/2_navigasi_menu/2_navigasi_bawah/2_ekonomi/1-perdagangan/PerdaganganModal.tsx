@@ -10,7 +10,7 @@ import { AddTradePartnerModal } from "./mitra_dagang_internasional/AddTradePartn
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index"
 
 import { tradeStorage } from "./TradeStorage"
-import { buyPriceMap, sellPriceMap, labelsMap, baseKeyMapping, getDynamicPrice } from "./tradeData"
+import { buyPriceMap, sellPriceMap, labelsMap, baseKeyMapping, getDynamicPrice, getNationalLogisticsMultiplier } from "./tradeData"
 import { TradePriceChart } from "./TradePriceChart"
 import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime"
 import { getInitialAgreements } from "@/app/database/data/database_mitra_perdagangan/agreementsRegistry"
@@ -160,31 +160,8 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
   // Logic to calculate Logistics Speedup
   const calculateLogisticsSpeedup = () => {
-    const sessionS = gameStorage.getSession() as any;
-    const countryNameS = sessionS?.country || "Indonesia";
-    const countryS = countries.find(c => 
-      c.name_id === countryNameS || 
-      c.name_en === countryNameS || 
-      (c as any).id === countryNameS ||
-      (c as any).id === Number(countryNameS)
-    ) || countries[0];
-
-    const deltas = buildingStorage.getData().buildingDeltas || {};
-    
-    const speedupFactors: Record<string, { factor: number, baseKey: string }> = {
-      "6_pelabuhan_laut": { factor: 0.5, baseKey: "pelabuhan" },
-      "7_bandara": { factor: 0.3, baseKey: "bandara" },
-      "8_helipad": { factor: 0.1, baseKey: "helipad" }
-    };
-
-    let totalSpeedup = 0;
-    Object.entries(speedupFactors).forEach(([key, config]) => {
-      const baseCount = (countryS.infrastruktur as any)?.[config.baseKey] || 0;
-      const deltaCount = (deltas[key] || 0) as number;
-      totalSpeedup += (baseCount + deltaCount) * config.factor;
-    });
-
-    setLogisticsSpeedup(Math.min(90, totalSpeedup));
+    const multipliers = getNationalLogisticsMultiplier();
+    setLogisticsSpeedup(multipliers.shippingSpeedup);
   };
 
   useEffect(() => {

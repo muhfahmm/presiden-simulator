@@ -21,6 +21,9 @@ import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_ba
 import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { nuclearStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/nuclearStorage";
 import { researchStorage } from "@/app/game/components/sidemenu/3_riset_dan_penelitian/researchStorage";
+import { getNationalHealthImpact } from "@/app/game/data/layanan_publik/kesehatan/healthLogic";
+import { publicServiceEventEngine } from "@/app/game/logic/events/publicServiceEventEngine";
+import { calculateDetailedPopulationMetrics } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
 
 // import { diplomacyStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/diplomacyStorage";
 
@@ -144,6 +147,14 @@ export default function GameTimeControls() {
       if (state.gameDate.getMonth() === 6 && state.gameDate.getDate() === 1) { // 6 = July
         unSecurityCouncilStorage.promoteElectedMembers(state.gameDate.getFullYear());
       }
+
+      // --- Public Service Events Engine (Random Health & Monthly Security) ---
+      const healthImpact = getNationalHealthImpact().lifeExpectancyBonus;
+      const metrics = calculateDetailedPopulationMetrics(currentData, currentPopulation, buildingData.buildingDeltas, diffDays);
+      publicServiceEventEngine.processDailyEvents(state.gameDate, {
+        healthImpact,
+        securityLevel: metrics.securityLevel
+      });
     }
   }, [state.gameDate]);
 

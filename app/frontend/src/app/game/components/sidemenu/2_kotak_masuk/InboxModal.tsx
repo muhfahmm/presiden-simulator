@@ -17,9 +17,12 @@ import {
   Shield,
   Filter,
   Search,
-  Building2
+  Building2,
+  Heart
 } from 'lucide-react';
 import { inboxStorage, InboxItem } from './inboxStorage';
+import { getNationalHealthImpact } from '@/app/game/data/layanan_publik/kesehatan/healthLogic';
+import { getNationalSecurityImpact } from '@/app/game/data/layanan_publik/keamanan/securityLogic';
 import EmbassyRequiredModal from '../../map-system/ai_diplomacy_engine/components/EmbassyRequiredModal';
 import { getGlobalRelationMatrix } from '../../map-system/ai_diplomacy_engine/services/MatrixHandler';
 import { AiDiplomacyService } from '../../map-system/ai_diplomacy_engine/services/AiDiplomacyService';
@@ -145,6 +148,63 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
     })
     .filter(msg => msg.subject.toLowerCase().includes(searchTerm.toLowerCase()) || msg.source.toLowerCase().includes(searchTerm.toLowerCase()));
 
+  const renderNationalLiveStats = (msg: InboxItem) => {
+    const src = msg.source.toLowerCase();
+    const sub = msg.subject.toLowerCase();
+    const con = msg.content.toLowerCase();
+
+    // Check for Health-related keywords
+    const isHealth = src.includes('kesehatan') || sub.includes('kesehatan') || con.includes('medis') || con.includes('pandemi');
+    // Check for Security-related keywords
+    const isSecurity = src.includes('keamanan') || src.includes('pertahanan') || src.includes('hukum') || sub.includes('keamanan') || sub.includes('militer');
+
+    if (isHealth) {
+        const impact = getNationalHealthImpact();
+        return (
+            <div className="mt-6 p-4 bg-emerald-500/5 rounded-2xl border border-emerald-500/20 animate-in fade-in duration-700">
+                <div className="flex items-center gap-3">
+                    <div className="p-2 bg-emerald-500/10 rounded-lg">
+                        <Heart className="h-4 w-4 text-emerald-400" />
+                    </div>
+                    <div className="flex-1">
+                        <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Kontribusi Harapan Hidup Nasional</p>
+                        <div className="flex items-center gap-2 mt-1">
+                            <div className="h-1.5 flex-1 bg-zinc-800/50 rounded-full overflow-hidden">
+                                <div className="h-full bg-emerald-500 animate-pulse" style={{ width: `${impact.coveragePercent}%` }} />
+                            </div>
+                            <span className="text-[11px] font-black text-emerald-400 italic tabular-nums">+{impact.formattedYears}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (isSecurity) {
+        const impact = getNationalSecurityImpact();
+        return (
+            <div className="mt-6 p-4 bg-blue-500/5 rounded-2xl border border-blue-500/20 animate-in fade-in duration-700">
+                <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-500/10 rounded-lg">
+                        <Shield className="h-4 w-4 text-blue-400" />
+                    </div>
+                    <div className="flex-1">
+                        <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Tingkat Keamanan Nasional</p>
+                        <div className="flex items-center gap-2 mt-1">
+                            <div className="h-1.5 flex-1 bg-zinc-800/50 rounded-full overflow-hidden">
+                                <div className="h-full bg-blue-500 animate-pulse" style={{ width: `${impact.coveragePercent}%` }} />
+                            </div>
+                            <span className="text-[11px] font-black text-blue-400 italic tabular-nums">{impact.formattedLevel}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return null;
+  };
+
   return (
     <div className="absolute inset-0 bg-black/85 z-[110] flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8 no-scrollbar">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative">
@@ -268,6 +328,9 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
                             {msg.content}
                           </p>
 
+                          {/* National Stats Bar Correlation */}
+                          {renderNationalLiveStats(msg)}
+
                           {/* Action Section for Proposals */}
                           {msg.isProposal && (
                             <div className="mt-8 flex items-center gap-4 pt-6 border-t border-zinc-900">
@@ -287,13 +350,17 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
                             </div>
                           )}
 
-                          {/* Relationship Hint */}
-                          <div className="mt-6 flex items-center justify-between gap-4 p-4 bg-zinc-900/30 rounded-2xl border border-zinc-800/30">
-                            {(() => {
+                          {/* Relationship Hint - ONLY show for international/diplomatic categories */}
+                          {(() => {
                                 const countryMatch = msg.source.match(/\(([^)]+)\)/);
                                 const targetCountryRaw = countryMatch ? countryMatch[1].trim() : "";
                                 const userCountryRaw = localStorage.getItem('selected_country') || "Indonesia";
                                 
+                                // Only show for international categories or proposals
+                                const internationalCategories = ['trade', 'pact', 'alliance', 'embassy', 'intelligence'];
+                                if (!internationalCategories.includes(msg.category || '') && !msg.isProposal) return null;
+                                if (!targetCountryRaw) return null;
+
                                 const matrix = getGlobalRelationMatrix();
                                 const countryKey = Object.keys(matrix).find(k => k.toLowerCase() === targetCountryRaw.toLowerCase()) || targetCountryRaw.toLowerCase();
                                 const npcRelations = matrix[countryKey] || {};
@@ -304,33 +371,34 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
                                 const score = relData?.s || 50;
                                 
                                 return (
-                                    <div className="flex items-center gap-3 w-full">
-                                        <div className="p-2 bg-blue-500/10 rounded-lg">
-                                            <Info className="h-4 w-4 text-blue-400" />
-                                        </div>
-                                        <div className="flex-1">
-                                            <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Informasi Hubungan Bilateral</p>
-                                            <div className="flex items-center gap-2 mt-0.5">
-                                                <div className="h-1.5 flex-1 bg-zinc-800 rounded-full overflow-hidden">
-                                                    <div className="h-full bg-blue-500 animate-pulse" style={{ width: `${score}%` }} />
-                                                </div>
-                                                <span className="text-[11px] font-black text-white">{score.toFixed(1)} Pts</span>
+                                    <div className="mt-6 flex items-center justify-between gap-4 p-4 bg-zinc-900/30 rounded-2xl border border-zinc-800/30">
+                                        <div className="flex items-center gap-3 w-full">
+                                            <div className="p-2 bg-blue-500/10 rounded-lg">
+                                                <Info className="h-4 w-4 text-blue-400" />
                                             </div>
-                                        </div>
-                                        <div className="text-right">
-                                            <p className="text-[9px] text-zinc-500 font-bold uppercase tracking-tighter">Status Saat Ini</p>
-                                            <p className="text-[11px] font-black text-blue-400 uppercase italic">
-                                                {score >= 75 ? "Sangat Baik" : score >= 50 ? "Baik" : "Netral"} / {
-                                                    relData?.a === 1 ? "Aliansi" :
-                                                    relData?.p === 1 ? "Pakta" : 
-                                                    isEmbassyActive ? "Kedubes" : "Umum"
-                                                }
-                                            </p>
+                                            <div className="flex-1">
+                                                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Informasi Hubungan Bilateral</p>
+                                                <div className="flex items-center gap-2 mt-0.5">
+                                                    <div className="h-1.5 flex-1 bg-zinc-800 rounded-full overflow-hidden">
+                                                        <div className="h-full bg-blue-500 animate-pulse" style={{ width: `${score}%` }} />
+                                                    </div>
+                                                    <span className="text-[11px] font-black text-white">{score.toFixed(1)} Pts</span>
+                                                </div>
+                                            </div>
+                                            <div className="text-right">
+                                                <p className="text-[9px] text-zinc-500 font-bold uppercase tracking-tighter">Status Saat Ini</p>
+                                                <p className="text-[11px] font-black text-blue-400 uppercase italic">
+                                                    {score >= 75 ? "Sangat Baik" : score >= 50 ? "Baik" : "Netral"} / {
+                                                        relData?.a === 1 ? "Aliansi" :
+                                                        relData?.p === 1 ? "Pakta" : 
+                                                        isEmbassyActive ? "Kedubes" : "Umum"
+                                                    }
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 );
                             })()}
-                          </div>
                         </div>
                       </div>
                     )}

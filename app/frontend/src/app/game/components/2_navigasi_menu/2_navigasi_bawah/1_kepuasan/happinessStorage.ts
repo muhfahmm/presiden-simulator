@@ -271,11 +271,17 @@ export const happinessStorage = {
     const deltas = buildingData.buildingDeltas || {};
     
     const infraSatsFactors: Record<string, { factor: number, baseKey: string }> = {
-      "1_jalur_sepeda": { factor: 0.01, baseKey: "jalur_sepeda" },
-      "2_jalan_tol": { factor: 0.03, baseKey: "jalan_raya" },
-      "3_terminal_bus": { factor: 0.05, baseKey: "terminal_bus" },
-      "4_jalur_kereta": { factor: 0.05, baseKey: "stasiun_kereta_api" },
-      "5_kereta_bawah_tanah": { factor: 0.01, baseKey: "kereta_bawah_tanah" }
+      // 1. Darat
+      "1_jalur_sepeda": { factor: 0.0005, baseKey: "jalur_sepeda" },
+      "2_jalan_tol": { factor: 0.0008, baseKey: "jalan_raya" },
+      "3_terminal_bus": { factor: 0.001, baseKey: "terminal_bus" },
+      // 2. Kereta
+      "4_jalur_kereta": { factor: 0.0012, baseKey: "stasiun_kereta_api" },
+      "5_kereta_bawah_tanah": { factor: 0.0015, baseKey: "kereta_bawah_tanah" },
+      // 3. Maritim & Udara
+      "6_pelabuhan_laut": { factor: 0.0018, baseKey: "pelabuhan" },
+      "7_bandara": { factor: 0.002, baseKey: "bandara" },
+      "8_helipad": { factor: 0.0005, baseKey: "helipad" }
     };
 
     let infraBonus = 0;
@@ -286,8 +292,9 @@ export const happinessStorage = {
     });
     
     // Cap infra bonus to prevent infinite satisfaction
-    const cappedInfraBonus = Math.min(2.5, infraBonus); // Max +2.5% per day from infra
+    const cappedInfraBonus = Math.min(2.5, infraBonus); // Max +2.5% per day total from all infra
     totalDailyDelta += cappedInfraBonus;
+
 
 
 
@@ -327,6 +334,47 @@ export const happinessStorage = {
     } else if (newValue <= 10) {
       window.dispatchEvent(new CustomEvent('happiness_critical'));
     }
+  },
+
+  getInfraDetailedBreakdown: () => {
+    const sessionS = gameStorage.getSession() as any;
+    const countryNameS = sessionS?.country || "Indonesia";
+    const countryS = countries.find(c => 
+      c.name_id === countryNameS || 
+      c.name_en === countryNameS || 
+      (c as any).id === countryNameS ||
+      (c as any).id === Number(countryNameS)
+    ) || countries[0];
+
+    const deltas = buildingStorage.getData().buildingDeltas || {};
+    
+    const breakdown = {
+      darat: { label: "Infrastruktur Darat & Logistik", value: 0, items: ["1_jalur_sepeda", "2_jalan_tol", "3_terminal_bus"] },
+      kereta: { label: "Sistem Perkeretaapian Nasional", value: 0, items: ["4_jalur_kereta", "5_kereta_bawah_tanah"] },
+      maritim_udara: { label: "Hub Maritim & Dirgantara", value: 0, items: ["6_pelabuhan_laut", "7_bandara", "8_helipad"] }
+    };
+
+    const factors: Record<string, { factor: number, baseKey: string }> = {
+      "1_jalur_sepeda": { factor: 0.0005, baseKey: "jalur_sepeda" },
+      "2_jalan_tol": { factor: 0.0008, baseKey: "jalan_raya" },
+      "3_terminal_bus": { factor: 0.001, baseKey: "terminal_bus" },
+      "4_jalur_kereta": { factor: 0.0012, baseKey: "stasiun_kereta_api" },
+      "5_kereta_bawah_tanah": { factor: 0.0015, baseKey: "kereta_bawah_tanah" },
+      "6_pelabuhan_laut": { factor: 0.0018, baseKey: "pelabuhan" },
+      "7_bandara": { factor: 0.002, baseKey: "bandara" },
+      "8_helipad": { factor: 0.0005, baseKey: "helipad" }
+    };
+
+    Object.entries(breakdown).forEach(([sector, config]) => {
+      config.items.forEach(key => {
+        const factorConfig = factors[key];
+        const baseCount = (countryS.infrastruktur as any)?.[factorConfig.baseKey] || 0;
+        const deltaCount = (deltas[key] || 0) as number;
+        breakdown[sector as keyof typeof breakdown].value += (baseCount + deltaCount) * factorConfig.factor;
+      });
+    });
+
+    return breakdown;
   }
 };
 

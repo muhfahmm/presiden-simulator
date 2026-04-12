@@ -1,3 +1,7 @@
+import { gameStorage } from "@/app/game/gamestorage";
+import { countries } from "@/app/database/data/negara/benua/index";
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
+
 // SEPARATE PRICE MAPS (1-1,000,000 scale - Integers only)
 export const buyPriceMap: Record<string, number> = {
   // Minerals
@@ -94,3 +98,50 @@ export const getDynamicPrice = (key: string, type: "buy" | "sell", date: Date) =
   return Math.round(basePrice * multiplier);
 };
 
+// DYNAMIC VOLUMES AND DISCOUNTS BASED ON INFRASTRUCTURE
+export const getNationalLogisticsMultiplier = () => {
+  const sessionS = gameStorage.getSession() as any;
+  const countryNameS = sessionS?.country || "Indonesia";
+  const countryS = countries.find(c => 
+    c.name_id === countryNameS || 
+    c.name_en === countryNameS || 
+    (c as any).id === countryNameS ||
+    (c as any).id === Number(countryNameS)
+  ) || countries[0];
+
+  const buildingData = buildingStorage.getData();
+  const deltas = buildingData.buildingDeltas || {};
+  
+  // 1. Shipping Speedup (%) Factors (Per Unit)
+  const speedupFactors: Record<string, { factor: number, baseKey: string }> = {
+    "6_pelabuhan_laut": { factor: 1.5, baseKey: "pelabuhan" },   
+    "7_bandara": { factor: 1.0, baseKey: "bandara" },          
+    "8_helipad": { factor: 0.5, baseKey: "helipad" }           
+  };
+
+  // 2. Import Cost Discount (%) Factors (Per Unit)
+  const discountFactors: Record<string, { factor: number, baseKey: string }> = {
+    "2_jalan_tol": { factor: 0.005, baseKey: "jalan_raya" },       
+    "4_jalur_kereta": { factor: 0.008, baseKey: "stasiun_kereta_api" }, 
+    "6_pelabuhan_laut": { factor: 0.015, baseKey: "pelabuhan" }    
+  };
+
+  let totalSpeedup = 0;
+  Object.entries(speedupFactors).forEach(([key, config]) => {
+    const baseCount = (countryS.infrastruktur as any)?.[config.baseKey] || 0;
+    const deltaCount = (deltas[key] || 0) as number;
+    totalSpeedup += (baseCount + deltaCount) * config.factor;
+  });
+
+  let totalDiscount = 0;
+  Object.entries(discountFactors).forEach(([key, config]) => {
+    const baseCount = (countryS.infrastruktur as any)?.[config.baseKey] || 0;
+    const deltaCount = (deltas[key] || 0) as number;
+    totalDiscount += (baseCount + deltaCount) * config.factor;
+  });
+
+  return {
+    shippingSpeedup: Math.min(90, totalSpeedup), // Capped at 90%
+    importDiscount: Math.min(0.5, totalDiscount) // Capped at 50% discount
+  };
+};

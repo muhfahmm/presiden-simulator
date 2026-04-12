@@ -1,6 +1,7 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
+import { eventStorage } from "@/app/game/logic/events/eventStorage";
 
 export interface AgeBracket {
   label: string;
@@ -20,8 +21,19 @@ export interface PopulationMetrics {
   priceGrowthRate: number;
   dailyBirths: number;
   dailyDeaths: number;
+  securityLevel: number;
   demographics: AgeBracket[];
 }
+
+// --- STANDAR RASIO CAKUPAN IDEAL (Per 1.000.000 Penduduk) ---
+const IDEAL_RATIO = {
+  RS_BESAR: 2,          // 1 RS Besar per 500rb jiwa
+  RS_KECIL: 12,         // 1 RS Kecil per ~80rb jiwa
+  RS_DIAGNOSTIK: 6,     // 1 Pusat Diagnostik per ~160rb jiwa
+  KEJAKSAAN: 1,         // 1 Kejaksaan per 1jt jiwa
+  BANTUAN_HUKUM: 2,     // 1 Legal Aid per 500rb jiwa
+  KANTOR_POLISI: 20,    // 1 Kantor Polisi per 50rb jiwa
+};
 
 /**
  * Menghitung struktur demografi usia global dengan drift sinusoidal berdasarkan waktu game.
@@ -122,29 +134,42 @@ export function calculateDetailedPopulationMetrics(
 
   const dailyPriceDelta = Math.round(currentPopulation * priceGrowthRate);
 
-  // 4. Simulasi Harapan Hidup (Monthly Dynamic)
-  const rsBesarCount = (countryData.kesehatan?.rumah_sakit_besar || 0) + (buildingDeltas["rumah_sakit_besar"] || 0);
-  const rsKecilCount = (countryData.kesehatan?.rumah_sakit_kecil || 0) + (buildingDeltas["rumah_sakit_kecil"] || 0);
+  // 4. Simulasi Harapan Hidup (Monthly Dynamic) - BERBASIS CAKUPAN
+  const rsBesarCount = (countryData.kesehatan?.rumah_sakit_besar || 0) + (buildingDeltas["11_rumah_sakit_besar"] || 0);
+  const rsKecilCount = (countryData.kesehatan?.rumah_sakit_kecil || 0) + (buildingDeltas["12_rumah_sakit_kecil"] || 0);
+  const diagnostikCount = (countryData.kesehatan?.pusat_diagnostik || 0) + (buildingDeltas["13_pusat_diagnostik"] || 0);
   
   const baseFactories = Object.values(countryData.sektor_manufaktur || {}).reduce((a: number, b: any) => a + (typeof b === 'number' ? b : 0), 0);
   const deltaFactories = Object.entries(buildingDeltas)
-    .filter(([key]) => key.includes("pabrik"))
+    .filter(([key]) => key.includes("pabrik") || key.includes("manufaktur"))
     .reduce((a, [_, count]) => a + count, 0);
   const factoryCount = baseFactories + deltaFactories;
 
-  // Variasi Bulanan (Monthly Pulse) - Berubah setiap 30 hari
+  // Variasi Bulanan & Harian
   const monthIndex = Math.floor(diffDays / 30);
   const monthlyPulse = Math.sin(monthIndex * 0.5) * 1.5;
-  // Variasi harian sangat halus (Daily Jitter)
   const dailyJitter = Math.cos(diffDays * 0.1) * 0.2;
 
-  // Dampak infrastruktur & ekonomi langsung ke Harapan Hidup
-  const infraImpact = (rsBesarCount * 0.4) + (rsKecilCount * 0.1) - (factoryCount * 0.02);
-  const econImpact = (1.1 - avgPriceMult) * 1.2;
+  // Dampak infrastruktur & ekonomi langsung ke Harapan Hidup (BERBASIS CAKUPAN)
+  const popInMillions = Math.max(1, currentPopulation / 1000000);
+  
+  // Hitung persentase cakupan (0.0 - 1.2)
+  const rsBesarCoverage = Math.min(1.2, rsBesarCount / (popInMillions * IDEAL_RATIO.RS_BESAR));
+  const rsKecilCoverage = Math.min(1.2, rsKecilCount / (popInMillions * IDEAL_RATIO.RS_KECIL));
+  const diagnostikCoverage = Math.min(1.2, diagnostikCount / (popInMillions * IDEAL_RATIO.RS_DIAGNOSTIK));
+  
+  // Harapan Hidup Bonus (Max +15 tahun dari infrastruktur sempurna)
+  // Factory penalty scaled by population density (factories per million people)
+  const factoryPenalty = (factoryCount / popInMillions) * 0.08;
+  const infraImpact = (rsBesarCoverage * 7) + (rsKecilCoverage * 5) + (diagnostikCoverage * 3) - factoryPenalty;
+  const econImpact = (1.1 - avgPriceMult) * 1.5;
+
+  // 5. Active Event Penalties Integration
+  const eventPenalties = eventStorage.getActivePenalties();
 
   const baseLifeExp = countryData.kesehatan?.harapan_hidup || 72;
   const lifeExpectancy = parseFloat(Math.min(100, Math.max(0,
-    baseLifeExp + infraImpact + econImpact + monthlyPulse + dailyJitter
+    baseLifeExp + infraImpact + econImpact + monthlyPulse + dailyJitter - eventPenalties.lifeExpectancy
   )).toFixed(1));
 
   // 5. Mesin Kelahiran & Kematian (Natural Dynamics)
@@ -163,6 +188,27 @@ export function calculateDetailedPopulationMetrics(
   const dailyDeaths = Math.round((currentPopulation * finalDeathRate) / 365);
   const naturalDailyDelta = dailyBirths - dailyDeaths;
 
+  // 6. Security Level Simulation (0-100) - BERBASIS CAKUPAN
+  const kejaksaanCount = (countryData.hukum?.kejaksaan || 0) + (buildingDeltas["14_kejaksaan_court"] || 0);
+  const legalAidCount = (countryData.hukum?.pusat_bantuan_hukum || 0) + (buildingDeltas["15_legal_aid"] || 0);
+  const policeCount = (countryData.armada_kepolisian?.armada_polisi?.kantor_polisi || 0) + (buildingDeltas["4_kantor_polisi"] || 0);
+  const baseSecurity = countryData.hukum?.indeks_keamanan || 70;
+  
+  // Hitung persentase cakupan keamanan
+  const policeCoverage = Math.min(1.2, policeCount / (popInMillions * IDEAL_RATIO.KANTOR_POLISI));
+  const lawCoverage = Math.min(1.2, (kejaksaanCount + legalAidCount) / (popInMillions * (IDEAL_RATIO.KEJAKSAAN + IDEAL_RATIO.BANTUAN_HUKUM)));
+
+  // Dynamic Unemployment Penalty
+  const jobsProportion = (factoryCount * 500) / (currentPopulation || 1); 
+  const unemploymentPenalty = Math.max(0, (0.15 - jobsProportion) * 100); 
+
+  // Security Bonus (Max +30 poin dari cakupan ideal)
+  const securityBonus = (policeCoverage * 20) + (lawCoverage * 10);
+
+  const securityLevel = Math.min(100, Math.max(0, 
+    baseSecurity + securityBonus + (monthlyPulse * 0.5) - unemploymentPenalty - eventPenalties.securityLevel
+  ));
+
   // 6. Total Akumulasi
   const totalDailyDelta = naturalDailyDelta + dailyTaxDelta + dailyPriceDelta;
 
@@ -178,6 +224,7 @@ export function calculateDetailedPopulationMetrics(
     priceGrowthRate,
     dailyBirths,
     dailyDeaths,
+    securityLevel,
     demographics
   };
 }

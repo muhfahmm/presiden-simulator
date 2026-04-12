@@ -17,6 +17,8 @@ import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
 import { getBuildingRequirement, MaterialRequirement } from "../1-produksi/MaterialRequirement";
 import { REVENUE_RATES, getTempatUmumRevenueBreakdown } from "./logic/TempatUmumRevenueLogic";
+import { getNationalHealthImpact } from "@/app/game/data/layanan_publik/kesehatan/healthLogic";
+import { getNationalSecurityImpact } from "@/app/game/data/layanan_publik/keamanan/securityLogic";
 // import HunianPemukiman from "./HunianPemukiman";
 
 interface ModalProps {
@@ -118,6 +120,9 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
     hunian: { ...currentData.hunian || {} },
   };
 
+  const healthImpact = getNationalHealthImpact();
+  const securityImpact = getNationalSecurityImpact();
+
   Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
     if (typeof deltaValue !== 'number' || deltaValue === 0) return;
 
@@ -214,16 +219,19 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
       icon: Ship,
       color: "text-cyan-400",
       items: [
-        { ...infrastrukturRate["1_jalur_sepeda"], key: "1_jalur_sepeda", groupId: "infra_darat", label: "Jalur Sepeda", icon: Bike, desc: "Logistik", tarif: 1, unit: "Unit", cost: infrastrukturRate["1_jalur_sepeda"].biaya_pembangunan, buildTime: infrastrukturRate["1_jalur_sepeda"].waktu_pembangunan, count: (currentData.infrastruktur?.jalur_sepeda || 0) + ((buildingDeltas["1_jalur_sepeda"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_sepeda },
-        { ...infrastrukturRate["2_jalan_tol"], key: "2_jalan_tol", groupId: "infra_darat", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", tarif: 1, unit: "Unit", cost: infrastrukturRate["2_jalan_tol"].biaya_pembangunan, buildTime: infrastrukturRate["2_jalan_tol"].waktu_pembangunan, count: (currentData.infrastruktur?.jalan_raya || 0) + ((buildingDeltas["2_jalan_tol"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalan_raya },
-        { ...infrastrukturRate["3_terminal_bus"], key: "3_terminal_bus", groupId: "infra_darat", label: "Terminal Bus", icon: Bus, desc: "Transportasi", tarif: 1, unit: "Unit", cost: infrastrukturRate["3_terminal_bus"].biaya_pembangunan, buildTime: infrastrukturRate["3_terminal_bus"].waktu_pembangunan, count: (currentData.infrastruktur?.terminal_bus || 0) + ((buildingDeltas["3_terminal_bus"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.terminal_bus },
+        { ...infrastrukturRate["1_jalur_sepeda"], key: "1_jalur_sepeda", groupId: "infra_darat", label: "Jalur Sepeda", icon: Bike, desc: "Logistik", efek: "+0.05% Kepuasan Rakyat & +0.01% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["1_jalur_sepeda"].biaya_pembangunan, buildTime: infrastrukturRate["1_jalur_sepeda"].waktu_pembangunan, count: (currentData.infrastruktur?.jalur_sepeda || 0) + ((buildingDeltas["1_jalur_sepeda"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_sepeda },
+        { ...infrastrukturRate["2_jalan_tol"], key: "2_jalan_tol", groupId: "infra_darat", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", efek: "+0.08% Kepuasan Rakyat & +0.02% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["2_jalan_tol"].biaya_pembangunan, buildTime: infrastrukturRate["2_jalan_tol"].waktu_pembangunan, count: (currentData.infrastruktur?.jalan_raya || 0) + ((buildingDeltas["2_jalan_tol"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalan_raya },
+        { ...infrastrukturRate["3_terminal_bus"], key: "3_terminal_bus", groupId: "infra_darat", label: "Terminal Bus", icon: Bus, desc: "Transportasi", efek: "+0.10% Kepuasan Rakyat & +0.05% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["3_terminal_bus"].biaya_pembangunan, buildTime: infrastrukturRate["3_terminal_bus"].waktu_pembangunan, count: (currentData.infrastruktur?.terminal_bus || 0) + ((buildingDeltas["3_terminal_bus"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.terminal_bus },
+
         
-        { ...infrastrukturRate["4_jalur_kereta"], key: "4_jalur_kereta", groupId: "perkeretaapian", label: "Stasiun Kereta Api", icon: TrainFront, desc: "Logistik", tarif: 1, unit: "Unit", cost: infrastrukturRate["4_jalur_kereta"].biaya_pembangunan, buildTime: infrastrukturRate["4_jalur_kereta"].waktu_pembangunan, count: (currentData.infrastruktur?.stasiun_kereta_api || 0) + ((buildingDeltas["4_jalur_kereta"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.stasiun_kereta_api },
-        { ...infrastrukturRate["5_kereta_bawah_tanah"], key: "5_kereta_bawah_tanah", groupId: "perkeretaapian", label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transportasi", tarif: 1, unit: "Unit", cost: infrastrukturRate["5_kereta_bawah_tanah"].biaya_pembangunan, buildTime: infrastrukturRate["5_kereta_bawah_tanah"].waktu_pembangunan, count: (currentData.infrastruktur?.kereta_bawah_tanah || 0) + ((buildingDeltas["5_kereta_bawah_tanah"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.kereta_bawah_tanah },
+        { ...infrastrukturRate["4_jalur_kereta"], key: "4_jalur_kereta", groupId: "perkeretaapian", label: "Stasiun Kereta Api", icon: TrainFront, desc: "Logistik", efek: "+0.12% Kepuasan Rakyat & +0.10% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["4_jalur_kereta"].biaya_pembangunan, buildTime: infrastrukturRate["4_jalur_kereta"].waktu_pembangunan, count: (currentData.infrastruktur?.stasiun_kereta_api || 0) + ((buildingDeltas["4_jalur_kereta"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.stasiun_kereta_api },
+        { ...infrastrukturRate["5_kereta_bawah_tanah"], key: "5_kereta_bawah_tanah", groupId: "perkeretaapian", label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transportasi", efek: "+0.15% Kepuasan Rakyat & +0.15% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["5_kereta_bawah_tanah"].biaya_pembangunan, buildTime: infrastrukturRate["5_kereta_bawah_tanah"].waktu_pembangunan, count: (currentData.infrastruktur?.kereta_bawah_tanah || 0) + ((buildingDeltas["5_kereta_bawah_tanah"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.kereta_bawah_tanah },
+
         
-        { ...infrastrukturRate["6_pelabuhan_laut"], key: "6_pelabuhan_laut", groupId: "maritim_udara", label: "Pelabuhan", icon: Ship, desc: "Maritim", tarif: 1, unit: "Unit", cost: infrastrukturRate["6_pelabuhan_laut"].biaya_pembangunan, buildTime: infrastrukturRate["6_pelabuhan_laut"].waktu_pembangunan, count: (currentData.infrastruktur?.pelabuhan || 0) + ((buildingDeltas["6_pelabuhan_laut"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.pelabuhan },
-        { ...infrastrukturRate["7_bandara"], key: "7_bandara", groupId: "maritim_udara", label: "Bandara", icon: Plane, desc: "Udara", tarif: 1, unit: "Unit", cost: infrastrukturRate["7_bandara"].biaya_pembangunan, buildTime: infrastrukturRate["7_bandara"].waktu_pembangunan, count: (currentData.infrastruktur?.bandara || 0) + ((buildingDeltas["7_bandara"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bandara },
-        { ...infrastrukturRate["8_helipad"], key: "8_helipad", groupId: "maritim_udara", label: "Helipad", icon: Plane, desc: "Udara", tarif: 1, unit: "Unit", cost: infrastrukturRate["8_helipad"].biaya_pembangunan, buildTime: infrastrukturRate["8_helipad"].waktu_pembangunan, count: (currentData.infrastruktur?.helipad || 0) + ((buildingDeltas["8_helipad"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.helipad },
+        { ...infrastrukturRate["6_pelabuhan_laut"], key: "6_pelabuhan_laut", groupId: "maritim_udara", label: "Pelabuhan", icon: Ship, desc: "Maritim", efek: "+0.18% Kepuasan Rakyat & +0.20% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["6_pelabuhan_laut"].biaya_pembangunan, buildTime: infrastrukturRate["6_pelabuhan_laut"].waktu_pembangunan, count: (currentData.infrastruktur?.pelabuhan || 0) + ((buildingDeltas["6_pelabuhan_laut"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.pelabuhan },
+        { ...infrastrukturRate["7_bandara"], key: "7_bandara", groupId: "maritim_udara", label: "Bandara", icon: Plane, desc: "Udara", efek: "+0.20% Kepuasan Rakyat & +0.30% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["7_bandara"].biaya_pembangunan, buildTime: infrastrukturRate["7_bandara"].waktu_pembangunan, count: (currentData.infrastruktur?.bandara || 0) + ((buildingDeltas["7_bandara"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bandara },
+        { ...infrastrukturRate["8_helipad"], key: "8_helipad", groupId: "maritim_udara", label: "Helipad", icon: Plane, desc: "Udara", efek: "+0.05% Kepuasan Rakyat & +0.10% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["8_helipad"].biaya_pembangunan, buildTime: infrastrukturRate["8_helipad"].waktu_pembangunan, count: (currentData.infrastruktur?.helipad || 0) + ((buildingDeltas["8_helipad"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.helipad },
+
       ]
     },
     {
@@ -232,16 +240,17 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
       icon: GraduationCap,
       color: "text-indigo-400",
       items: [
-        { ...sosialRate["1_prasekolah"], key: "1_prasekolah", groupId: "pendidikan", label: "Prasekolah (PAUD)", icon: Building2, desc: "Pendidikan", tarif: 1, cost: sosialRate["1_prasekolah"].biaya_pembangunan, buildTime: sosialRate["1_prasekolah"].waktu_pembangunan, count: (currentData.pendidikan?.prasekolah || 0) + ((buildingDeltas["1_prasekolah"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.prasekolah },
-        { ...sosialRate["2_dasar"], key: "2_dasar", groupId: "pendidikan", label: "Pendidikan Dasar", icon: School, desc: "Pendidikan", tarif: 1, cost: sosialRate["2_dasar"].biaya_pembangunan, buildTime: sosialRate["2_dasar"].waktu_pembangunan, count: (currentData.pendidikan?.dasar || 0) + ((buildingDeltas["2_dasar"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.dasar },
-        { ...sosialRate["3_menengah"], key: "3_menengah", groupId: "pendidikan", label: "Sekolah Menengah", icon: Library, desc: "Pendidikan", tarif: 1, cost: sosialRate["3_menengah"].biaya_pembangunan, buildTime: sosialRate["3_menengah"].waktu_pembangunan, count: (currentData.pendidikan?.menengah || 0) + ((buildingDeltas["3_menengah"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.menengah },
-        { ...sosialRate["4_lanjutan"], key: "4_lanjutan", groupId: "pendidikan", label: "Sekolah Lanjutan", icon: GraduationCap, desc: "Pendidikan", tarif: 1, cost: sosialRate["4_lanjutan"].biaya_pembangunan, buildTime: sosialRate["4_lanjutan"].waktu_pembangunan, count: (currentData.pendidikan?.lanjutan || 0) + ((buildingDeltas["4_lanjutan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.lanjutan },
-        { ...sosialRate["5_universitas"], key: "5_universitas", groupId: "pendidikan", label: "Universitas", icon: Landmark, desc: "Pendidikan Tinggi", tarif: 1, cost: sosialRate["5_universitas"].biaya_pembangunan, buildTime: sosialRate["5_universitas"].waktu_pembangunan, count: (currentData.pendidikan?.universitas || 0) + ((buildingDeltas["5_universitas"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.universitas },
-        { ...sosialRate["6_lembaga_pendidikan"], key: "6_lembaga_pendidikan", groupId: "pendidikan", label: "Lembaga Pendidikan", icon: Briefcase, desc: "Vokasional", tarif: 1, cost: sosialRate["6_lembaga_pendidikan"].biaya_pembangunan, buildTime: sosialRate["6_lembaga_pendidikan"].waktu_pembangunan, count: (currentData.pendidikan?.lembaga_pendidikan || 0) + ((buildingDeltas["6_lembaga_pendidikan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.lembaga_pendidikan },
-        { ...sosialRate["7_laboratorium"], key: "7_laboratorium", groupId: "pendidikan", label: "Laboratorium", icon: Microscope, desc: "Riset", tarif: 1, cost: sosialRate["7_laboratorium"].biaya_pembangunan, buildTime: sosialRate["7_laboratorium"].waktu_pembangunan, count: (currentData.pendidikan?.laboratorium || 0) + ((buildingDeltas["7_laboratorium"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.laboratorium },
-        { ...sosialRate["8_observatorium"], key: "8_observatorium", groupId: "pendidikan", label: "Observatorium", icon: Eye, desc: "Astronomi", tarif: 1, cost: sosialRate["8_observatorium"].biaya_pembangunan, buildTime: sosialRate["8_observatorium"].waktu_pembangunan, count: (currentData.pendidikan?.observatorium || 0) + ((buildingDeltas["8_observatorium"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.observatorium },
-        { ...sosialRate["9_pusat_penelitian"], key: "9_pusat_penelitian", groupId: "pendidikan", label: "Pusat Penelitian", icon: Search, desc: "Riset Strategis", tarif: 1, cost: sosialRate["9_pusat_penelitian"].biaya_pembangunan, buildTime: sosialRate["9_pusat_penelitian"].waktu_pembangunan, count: (currentData.pendidikan?.pusat_penelitian || 0) + ((buildingDeltas["9_pusat_penelitian"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.pusat_penelitian },
-        { ...sosialRate["10_pusat_pengembangan"], key: "10_pusat_pengembangan", groupId: "pendidikan", label: "Pusat Pengembangan", icon: Lightbulb, desc: "Inovasi", tarif: 1, cost: sosialRate["10_pusat_pengembangan"].biaya_pembangunan, buildTime: sosialRate["10_pusat_pengembangan"].waktu_pembangunan, count: (currentData.pendidikan?.pusat_pengembangan || 0) + ((buildingDeltas["10_pusat_pengembangan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.pusat_pengembangan },
+        { ...sosialRate["1_prasekolah"], key: "1_prasekolah", groupId: "pendidikan", label: "Prasekolah (PAUD)", icon: Building2, desc: "Pendidikan", efek: "+0.01% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["1_prasekolah"].biaya_pembangunan, buildTime: sosialRate["1_prasekolah"].waktu_pembangunan, count: (currentData.pendidikan?.prasekolah || 0) + ((buildingDeltas["1_prasekolah"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.prasekolah },
+        { ...sosialRate["2_dasar"], key: "2_dasar", groupId: "pendidikan", label: "Pendidikan Dasar", icon: School, desc: "Pendidikan", efek: "+0.03% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["2_dasar"].biaya_pembangunan, buildTime: sosialRate["2_dasar"].waktu_pembangunan, count: (currentData.pendidikan?.dasar || 0) + ((buildingDeltas["2_dasar"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.dasar },
+        { ...sosialRate["3_menengah"], key: "3_menengah", groupId: "pendidikan", label: "Sekolah Menengah", icon: Library, desc: "Pendidikan", efek: "+0.05% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["3_menengah"].biaya_pembangunan, buildTime: sosialRate["3_menengah"].waktu_pembangunan, count: (currentData.pendidikan?.menengah || 0) + ((buildingDeltas["3_menengah"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.menengah },
+        { ...sosialRate["4_lanjutan"], key: "4_lanjutan", groupId: "pendidikan", label: "Sekolah Lanjutan", icon: GraduationCap, desc: "Pendidikan", efek: "+0.07% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["4_lanjutan"].biaya_pembangunan, buildTime: sosialRate["4_lanjutan"].waktu_pembangunan, count: (currentData.pendidikan?.lanjutan || 0) + ((buildingDeltas["4_lanjutan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.lanjutan },
+        { ...sosialRate["5_universitas"], key: "5_universitas", groupId: "pendidikan", label: "Universitas", icon: Landmark, desc: "Pendidikan Tinggi", efek: "+0.09% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["5_universitas"].biaya_pembangunan, buildTime: sosialRate["5_universitas"].waktu_pembangunan, count: (currentData.pendidikan?.universitas || 0) + ((buildingDeltas["5_universitas"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.universitas },
+        { ...sosialRate["6_lembaga_pendidikan"], key: "6_lembaga_pendidikan", groupId: "pendidikan", label: "Lembaga Pendidikan", icon: Briefcase, desc: "Vokasional", efek: "+0.12% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["6_lembaga_pendidikan"].biaya_pembangunan, buildTime: sosialRate["6_lembaga_pendidikan"].waktu_pembangunan, count: (currentData.pendidikan?.lembaga_pendidikan || 0) + ((buildingDeltas["6_lembaga_pendidikan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.lembaga_pendidikan },
+        { ...sosialRate["7_laboratorium"], key: "7_laboratorium", groupId: "pendidikan", label: "Laboratorium", icon: Microscope, desc: "Riset", efek: "+0.15% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["7_laboratorium"].biaya_pembangunan, buildTime: sosialRate["7_laboratorium"].waktu_pembangunan, count: (currentData.pendidikan?.laboratorium || 0) + ((buildingDeltas["7_laboratorium"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.laboratorium },
+        { ...sosialRate["8_observatorium"], key: "8_observatorium", groupId: "pendidikan", label: "Observatorium", icon: Eye, desc: "Astronomi", efek: "+0.17% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["8_observatorium"].biaya_pembangunan, buildTime: sosialRate["8_observatorium"].waktu_pembangunan, count: (currentData.pendidikan?.observatorium || 0) + ((buildingDeltas["8_observatorium"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.observatorium },
+        { ...sosialRate["9_pusat_penelitian"], key: "9_pusat_penelitian", groupId: "pendidikan", label: "Pusat Penelitian", icon: Search, desc: "Riset Strategis", efek: "+0.19% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["9_pusat_penelitian"].biaya_pembangunan, buildTime: sosialRate["9_pusat_penelitian"].waktu_pembangunan, count: (currentData.pendidikan?.pusat_penelitian || 0) + ((buildingDeltas["9_pusat_penelitian"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.pusat_penelitian },
+        { ...sosialRate["10_pusat_pengembangan"], key: "10_pusat_pengembangan", groupId: "pendidikan", label: "Pusat Pengembangan", icon: Lightbulb, desc: "Inovasi", efek: "+0.21% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["10_pusat_pengembangan"].biaya_pembangunan, buildTime: sosialRate["10_pusat_pengembangan"].waktu_pembangunan, count: (currentData.pendidikan?.pusat_pengembangan || 0) + ((buildingDeltas["10_pusat_pengembangan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.pusat_pengembangan },
+
       ]
     },
     {
@@ -512,7 +521,46 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
           {activeTab === 'layanan' ? (
             <div className="space-y-12">
-            {publicGroups.map((group) => (
+              {/* National Impact Summary Dashboard */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in fade-in slide-in-from-top-4 duration-1000">
+                <div className="p-6 rounded-[2rem] bg-zinc-900/40 border border-zinc-800/50 backdrop-blur-md relative overflow-hidden group hover:border-emerald-500/30 transition-all duration-700 shadow-xl">
+                  <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-110 transition-transform">
+                    <HeartPulse className="h-20 w-20 text-emerald-500" />
+                  </div>
+                  <div className="relative z-10 flex items-center justify-between">
+                    <div>
+                      <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.3em] italic mb-1">Ketahanan Kesehatan</h4>
+                      <h3 className="text-sm font-black text-white uppercase tracking-tight">Kontribusi Harapan Hidup</h3>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-2xl font-black text-emerald-400 italic tabular-nums">+{healthImpact.formattedYears}</span>
+                    </div>
+                  </div>
+                  <div className="mt-4 h-1.5 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden">
+                    <div className="h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-all duration-[2000ms]" style={{ width: `${healthImpact.coveragePercent}%` }} />
+                  </div>
+                </div>
+
+                <div className="p-6 rounded-[2rem] bg-zinc-900/40 border border-zinc-800/50 backdrop-blur-md relative overflow-hidden group hover:border-blue-500/30 transition-all duration-700 shadow-xl">
+                  <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-110 transition-transform">
+                    <ShieldCheck className="h-20 w-20 text-blue-500" />
+                  </div>
+                  <div className="relative z-10 flex items-center justify-between">
+                    <div>
+                      <h4 className="text-[10px] font-black text-blue-500 uppercase tracking-[0.3em] italic mb-1">Hukum, Pertahanan & Keamanan</h4>
+                      <h3 className="text-sm font-black text-white uppercase tracking-tight">Tingkat Keamanan Nasional</h3>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-2xl font-black text-blue-400 italic tabular-nums">{securityImpact.formattedLevel}</span>
+                    </div>
+                  </div>
+                  <div className="mt-4 h-1.5 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden">
+                    <div className="h-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.3)] transition-all duration-[2000ms]" style={{ width: `${securityImpact.coveragePercent}%` }} />
+                  </div>
+                </div>
+              </div>
+
+              {publicGroups.map((group) => (
               <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
                 <div className="flex items-center gap-3 mb-5 px-1">
                   <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>

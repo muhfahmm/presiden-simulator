@@ -9,6 +9,7 @@ import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
+import { getNationalLogisticsMultiplier } from "../../tradeData";
 
 interface EksporEksekusiProps {
   selectedKey: string;
@@ -123,64 +124,39 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
 
   const totalValue = quantity * basePrice;
 
-  const getLogisticsSpeedup = () => {
-    const sessionS = gameStorage.getSession() as any;
-    const countryNameS = sessionS?.country || "Indonesia";
-    const countryS = countries.find(c => 
-      c.name_id === countryNameS || 
-      c.name_en === countryNameS || 
-      (c as any).id === countryNameS ||
-      (c as any).id === Number(countryNameS)
-    ) || countries[0];
-
-    const buildingData = buildingStorage.getData();
-    const deltas = buildingData.buildingDeltas || {};
-    
-    // Factors in percentage speedup per unit
-    const speedupFactors: Record<string, { factor: number, baseKey: string }> = {
-      "6_pelabuhan_laut": { factor: 0.5, baseKey: "pelabuhan" },
-      "7_bandara": { factor: 0.3, baseKey: "bandara" },
-      "8_helipad": { factor: 0.1, baseKey: "helipad" }
-    };
-    
-    let totalSpeedup = 0;
-    Object.entries(speedupFactors).forEach(([key, config]) => {
-      const baseCount = (countryS.infrastruktur as any)?.[config.baseKey] || 0;
-      const deltaCount = (deltas[key] || 0) as number;
-      totalSpeedup += (baseCount + deltaCount) * config.factor;
-    });
-
-    return Math.min(90, totalSpeedup);
-  };
+  const logisticsMultiplier = getNationalLogisticsMultiplier();
 
   const calculateShippingTime = (partner: string | null) => {
-    const totalSpeedup = getLogisticsSpeedup();
-    // Limit speedup to 90% to avoid instant/negative delivery
+    const totalSpeedup = logisticsMultiplier.shippingSpeedup;
     const speedupMultiplier = 1 - (totalSpeedup / 100);
 
-
-
-    if (!partner) return "3-5 Hari";
+    if (!partner) return { base: "3-5 Hari", final: "3-5 Hari" };
     
-    const calculateFinalDays = (min: number, max: number) => {
-        const finalMin = Math.max(1, Math.floor(min * speedupMultiplier));
-        const finalMax = Math.max(1, Math.floor(max * speedupMultiplier));
-        return finalMin === finalMax ? `${finalMin} Hari` : `${finalMin}-${finalMax} Hari`;
+    const calculateDays = (min: number, max: number, multiplier: number) => {
+        const fMin = Math.max(1, Math.floor(min * multiplier));
+        const fMax = Math.max(1, Math.floor(max * multiplier));
+        return fMin === fMax ? `${fMin} Hari` : `${fMin}-${fMax} Hari`;
     };
     
-    // ASEAN / Close neighbors
+    // Determine base and final
+    let baseRange = [10, 15];
     const asean = ["Singapura", "Malaysia", "Thailand", "Filipina", "Brunei", "Vietnam", "Laos", "Kamboja", "Myanmar", "Timor Leste"];
-    if (asean.includes(partner)) return calculateFinalDays(2, 3);
     
-    if (asiaCountries.some(c => c.name_id === partner || c.name_en === partner)) return calculateFinalDays(5, 7);
-    if (oceaniaCountries.some(c => c.name_id === partner || c.name_en === partner)) return calculateFinalDays(7, 10);
-    if (eropaCountries.some(c => c.name_id === partner || c.name_en === partner)) return calculateFinalDays(14, 20);
-    if (afrikaCountries.some(c => c.name_id === partner || c.name_en === partner)) return calculateFinalDays(18, 25);
-    if (naCountries.some(c => c.name_id === partner || c.name_en === partner)) return calculateFinalDays(21, 28);
-    if (saCountries.some(c => c.name_id === partner || c.name_en === partner)) return calculateFinalDays(25, 35);
+    if (asean.includes(partner)) baseRange = [2, 3];
+    else if (asiaCountries.some(c => c.name_id === partner || c.name_en === partner)) baseRange = [5, 7];
+    else if (oceaniaCountries.some(c => c.name_id === partner || c.name_en === partner)) baseRange = [7, 10];
+    else if (eropaCountries.some(c => c.name_id === partner || c.name_en === partner)) baseRange = [14, 20];
+    else if (afrikaCountries.some(c => c.name_id === partner || c.name_en === partner)) baseRange = [18, 25];
+    else if (naCountries.some(c => c.name_id === partner || c.name_en === partner)) baseRange = [21, 28];
+    else if (saCountries.some(c => c.name_id === partner || c.name_en === partner)) baseRange = [25, 35];
     
-    return calculateFinalDays(10, 15); // Default
+    return {
+      base: calculateDays(baseRange[0], baseRange[1], 1),
+      final: calculateDays(baseRange[0], baseRange[1], speedupMultiplier)
+    };
   };
+
+  const shipTimeData = calculateShippingTime(selectedTradePartner);
 
 
   const handleConfirm = () => {
@@ -189,7 +165,7 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
     // REDUCE DOMESTIC STOCK
     budgetStorage.updateCumulativeProduction({ [stockKey]: -quantity });
     
-    const shippingTime = calculateShippingTime(selectedTradePartner);
+    const shipTimeData = calculateShippingTime(selectedTradePartner);
 
     // Log to history
     historiEksporStorage.saveExport({
@@ -200,7 +176,7 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
       pricePerUnit: basePrice,
       totalPrice: totalValue,
       partner: selectedTradePartner || "Unknown Partner",
-      shippingTime: shippingTime
+      shippingTime: shipTimeData.final
     });
 
     // Add to Inbox
@@ -210,7 +186,7 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
       subject: `Ekspor ${selectedName} ke ${selectedTradePartner || "Mitra"} Berhasil`,
       priority: 'medium',
       time: `${String(gameDate.getDate()).padStart(2, '0')}-${String(gameDate.getMonth() + 1).padStart(2, '0')}-${gameDate.getFullYear()}`,
-      content: `Transaksi ekspor ${quantity.toLocaleString('id-ID')} ${getUnit(selectedKey)} ${selectedName} telah berhasil diselesaikan.\n\nDetail:\n- Pendapatan: +${totalValue.toLocaleString('id-ID')}\n- Mitra Dagang: ${selectedTradePartner || "Mitra Internasional"}\n- Estimasi Pengiriman: ${shippingTime}`
+      content: `Transaksi ekspor ${quantity.toLocaleString('id-ID')} ${getUnit(selectedKey)} ${selectedName} telah berhasil diselesaikan.\n\nDetail:\n- Pendapatan: +${totalValue.toLocaleString('id-ID')}\n- Mitra Dagang: ${selectedTradePartner || "Mitra Internasional"}\n- Estimasi Pengiriman: ${shipTimeData.final}`
     });
 
     // Add animated transaction line to the map
@@ -222,7 +198,7 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
             commodity: selectedName,
             amount: quantity,
             unit: getUnit(selectedKey),
-            totalDays: parseInt(shippingTime.split("-")[1]?.split(" ")[0] || shippingTime.split(" ")[0]) || 10
+            totalDays: parseInt(shipTimeData.final.split("-")[1]?.split(" ")[0] || shipTimeData.final.split(" ")[0]) || 10
         });
     }
 
@@ -347,10 +323,13 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
                       <Clock size={14} className="text-green-500" />
                       <p className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">Estimasi Pengiriman</p>
                     </div>
-                    <p className="text-xs font-black text-green-400 italic uppercase">{calculateShippingTime(selectedTradePartner)}</p>
+                    <div className="flex items-center gap-3">
+                      <p className="text-xs font-black text-zinc-500 line-through decoration-red-500/50 uppercase">{shipTimeData.base}</p>
+                      <p className="text-xs font-black text-green-400 italic uppercase">{shipTimeData.final}</p>
+                    </div>
                   </div>
 
-                  {getLogisticsSpeedup() > 0 && (
+                  {logisticsMultiplier.shippingSpeedup > 0 && (
                     <div className="flex items-center justify-between pt-2 border-t border-zinc-900">
                       <div className="flex items-center gap-2">
                          <div className="p-1 bg-emerald-500/10 rounded-md">
@@ -359,7 +338,7 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
                          <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Logistik Ekspor Strategis</p>
                       </div>
                       <span className="text-[10px] font-black text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20 italic">
-                        +{getLogisticsSpeedup().toFixed(1)}% Speedup
+                        +{logisticsMultiplier.shippingSpeedup.toFixed(1)}% Speedup
                       </span>
                     </div>
                   )}

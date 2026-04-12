@@ -72,43 +72,7 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
   const dailyPriceDelta = computeDailyPriceDelta();
   
   // Hitung Bonus Infrastruktur & Logistik
-  const getInfraStats = () => {
-    const sessionS = gameStorage.getSession() as any;
-    const countryNameS = sessionS?.country || "Indonesia";
-    const countryS = countries.find(c => 
-      c.name_id === countryNameS || 
-      c.name_en === countryNameS || 
-      (c as any).id === countryNameS ||
-      (c as any).id === Number(countryNameS)
-    ) || countries[0];
-
-    const bData = buildingStorage.getData();
-
-    const deltas = bData.buildingDeltas || {};
-    
-    const satisfactionFactors: Record<string, { factor: number, baseKey: string }> = {
-      "1_jalur_sepeda": { factor: 0.01, baseKey: "jalur_sepeda" },
-      "2_jalan_tol": { factor: 0.03, baseKey: "jalan_raya" },
-      "3_terminal_bus": { factor: 0.05, baseKey: "terminal_bus" },
-      "4_jalur_kereta": { factor: 0.05, baseKey: "stasiun_kereta_api" },
-      "5_kereta_bawah_tanah": { factor: 0.01, baseKey: "kereta_bawah_tanah" }
-    };
-
-    let totalSatisfactionImpact = 0;
-    Object.entries(satisfactionFactors).forEach(([key, config]) => {
-      const baseCount = (countryS.infrastruktur as any)?.[config.baseKey] || 0;
-      const deltaCount = (deltas[key] || 0) as number;
-      totalSatisfactionImpact += (baseCount + deltaCount) * config.factor;
-    });
-
-    return { 
-      satisfactionImpact: Math.min(2.5, totalSatisfactionImpact)
-    };
-
-  };
-
-
-  const infraStats = getInfraStats();
+  const infraBreakdown = happinessStorage.getInfraDetailedBreakdown();
 
   const isRedZone = happiness < 40;
   
@@ -254,35 +218,68 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
                <Navigation className="h-24 w-24 text-cyan-500" />
             </div>
             
-            <h3 className="text-sm font-black text-white uppercase tracking-[0.2em] italic mb-6 flex items-center gap-3">
+            <h3 className="text-sm font-black text-white uppercase tracking-[0.2em] italic mb-8 flex items-center gap-3">
               <div className="p-1.5 bg-cyan-500/10 rounded-lg text-cyan-500"><TrainFront size={16} /></div>
-              Sektor Infrastruktur & Mobilitas
+              Sektor Infrastruktur & Mobilitas Nasional
             </h3>
 
-            <div className="grid grid-cols-1 relative z-10">
-              <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+              {/* Darat */}
+              <div className="space-y-4">
                 <div className="flex items-center gap-2 text-[10px] font-black text-zinc-500 uppercase tracking-widest">
-                  <Navigation size={12} /> Mobilitas Rakyat (Infrastruktur Darat)
+                  <Truck size={12} /> {infraBreakdown.darat.label}
                 </div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-2xl font-black text-emerald-400 italic">+{infraStats.satisfactionImpact.toFixed(2)}</span>
-                  <span className="text-[10px] font-bold text-emerald-500/50 uppercase">Rating / Hari</span>
+                  <span className="text-2xl font-black text-emerald-400 italic">+{infraBreakdown.darat.value.toFixed(3)}</span>
+                  <span className="text-[9px] font-bold text-emerald-500/50 uppercase">Rating / Hari</span>
                 </div>
                 <div className="h-1.5 w-full bg-zinc-800 rounded-full overflow-hidden">
                    <div 
                      className="h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-all duration-1000" 
-                     style={{ width: `${(infraStats.satisfactionImpact / 2.5) * 100}%` }}
+                     style={{ width: `${Math.min(100, (infraBreakdown.darat.value / 1.0) * 100)}%` }}
                    />
                 </div>
-                <p className="text-[9px] text-zinc-600 font-bold uppercase tracking-tighter leading-snug max-w-sm">
-                  Bonus harian dari Jalur Sepeda, Jalan Raya, Bus, dan Kereta Api.
-                </p>
+              </div>
+
+              {/* Kereta */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-[10px] font-black text-zinc-500 uppercase tracking-widest">
+                  <TrainFront size={12} /> {infraBreakdown.kereta.label}
+                </div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-2xl font-black text-emerald-400 italic">+{infraBreakdown.kereta.value.toFixed(3)}</span>
+                  <span className="text-[9px] font-bold text-emerald-500/50 uppercase">Rating / Hari</span>
+                </div>
+                <div className="h-1.5 w-full bg-zinc-800 rounded-full overflow-hidden">
+                   <div 
+                     className="h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-all duration-1000" 
+                     style={{ width: `${Math.min(100, (infraBreakdown.kereta.value / 1.0) * 100)}%` }}
+                   />
+                </div>
+              </div>
+
+              {/* Maritim & Udara */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-[10px] font-black text-zinc-500 uppercase tracking-widest">
+                  <Plane size={12} /> {infraBreakdown.maritim_udara.label}
+                </div>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-2xl font-black text-emerald-400 italic">+{infraBreakdown.maritim_udara.value.toFixed(3)}</span>
+                  <span className="text-[9px] font-bold text-emerald-500/50 uppercase">Rating / Hari</span>
+                </div>
+                <div className="h-1.5 w-full bg-zinc-800 rounded-full overflow-hidden">
+                   <div 
+                     className="h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-all duration-1000" 
+                     style={{ width: `${Math.min(100, (infraBreakdown.maritim_udara.value / 1.5) * 100)}%` }}
+                   />
+                </div>
               </div>
             </div>
+            
+            <p className="mt-8 text-[9px] text-zinc-600 font-bold uppercase tracking-widest leading-snug border-t border-zinc-800/50 pt-4">
+              Analisis: Bonus kepuasan dihitung berdasarkan ketersediaan Jalur Sepeda, Tol, Bus, Kereta Api, Pelabuhan, dan Bandara secara nasional.
+            </p>
           </div>
-
-
-
 
           <div className="flex items-start gap-4 p-5 bg-cyan-500/5 rounded-2xl border border-cyan-500/20 shadow-inner">
             <Info className="h-5 w-5 text-cyan-500 shrink-0 mt-0.5" />
