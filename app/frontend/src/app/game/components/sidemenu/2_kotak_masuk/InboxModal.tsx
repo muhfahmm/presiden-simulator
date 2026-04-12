@@ -151,7 +151,7 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
   const renderNationalLiveStats = (msg: InboxItem) => {
     const src = msg.source.toLowerCase();
     const sub = msg.subject.toLowerCase();
-    const con = msg.content.toLowerCase();
+    const con = (msg.content || '').toLowerCase();
 
     // Check for Health-related keywords
     const isHealth = src.includes('kesehatan') || sub.includes('kesehatan') || con.includes('medis') || con.includes('pandemi');
