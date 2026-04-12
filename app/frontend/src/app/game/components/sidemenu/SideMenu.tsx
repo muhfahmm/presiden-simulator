@@ -1,6 +1,6 @@
 "use client"
 
-import { Newspaper, Mail } from "lucide-react";
+import { Newspaper, Mail, Microscope } from "lucide-react";
 
 interface SideMenuProps {
   activeMenu: string;
@@ -30,7 +30,7 @@ export default function SideMenu({ activeMenu, setActiveMenu, unreadCount }: Sid
       {/* Separator Line */}
       <div className="w-8 h-px bg-white/5 my-1"></div>
 
-      {/* 2. Inbox / Communication Button (Bottom) */}
+      {/* 2. Inbox / Communication Button */}
       <button
         onClick={() => setActiveMenu("Menu:Inbox")}
         className={`relative group flex flex-col items-center justify-center w-16 h-24 rounded-2xl transition-all cursor-pointer overflow-hidden ${activeMenu === "Menu:Inbox" ? 'bg-blue-500/20 shadow-[inset_0_0_20px_rgba(59,130,246,0.2)]' : 'hover:bg-white/5'}`}
@@ -56,6 +56,25 @@ export default function SideMenu({ activeMenu, setActiveMenu, unreadCount }: Sid
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-blue-500 rounded-r-full shadow-[0_0_10px_rgba(59,130,246,1)]"></div>
         )}
       </button>
+
+      {/* Separator Line */}
+      <div className="w-8 h-px bg-white/5 my-1"></div>
+
+      {/* 3. Research / Riset Button (Bottom) */}
+      <button
+        onClick={() => setActiveMenu("Menu:Riset")}
+        className={`relative group flex flex-col items-center justify-center w-16 h-24 rounded-2xl transition-all cursor-pointer overflow-hidden ${activeMenu === "Menu:Riset" ? 'bg-purple-500/20 shadow-[inset_0_0_20px_rgba(168,85,247,0.2)]' : 'hover:bg-white/5'}`}
+      >
+        <Microscope className={`h-6 w-6 ${activeMenu === "Menu:Riset" ? 'text-purple-400 scale-110' : 'text-zinc-400'} group-hover:text-purple-400 group-hover:scale-110 transition-all`} />
+        <span className={`text-[10px] font-black uppercase tracking-[0.1em] mt-2 ${activeMenu === "Menu:Riset" ? 'text-purple-400' : 'text-zinc-300'} group-hover:text-purple-400 transition-colors`}>Riset</span>
+        <span className="text-[7px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">Sains</span>
+
+        {/* Active Indicator */}
+        {activeMenu === "Menu:Riset" && (
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-purple-500 rounded-r-full shadow-[0_0_10px_rgba(168,85,247,1)]"></div>
+        )}
+      </button>
     </div>
   );
 }
+

@@ -20,6 +20,8 @@ import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { nuclearStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/nuclearStorage";
+import { researchStorage } from "@/app/game/components/sidemenu/3_riset_dan_penelitian/researchStorage";
+
 // import { diplomacyStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/diplomacyStorage";
 
 export default function GameTimeControls() {
@@ -118,6 +120,9 @@ export default function GameTimeControls() {
       
       // Update Nuclear Program Progress
       nuclearStorage.updateProgress(state.gameDate);
+
+      // Update Industry Research Progress
+      researchStorage.updateProgress(state.gameDate);
 
 
       // --- Diplomacy & Construction Progression ---

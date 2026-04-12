@@ -87,8 +87,17 @@ export function useGamePath(path: string[]) {
     initialMenu = "Menu:Inbox";
   } else if (category === 'kependudukan') {
     initialMenu = "Dashboard:Populasi";
+  } else if (category === 'riset') {
+    if (subMenu) {
+      // Map 'produksi industri' URL to 'Produksi_Industri' state
+      const detail = decodeURIComponent(subMenu).replace(/ /g, '_');
+      initialMenu = `Menu:Riset:${detail}`;
+    } else {
+      initialMenu = "Menu:Riset";
+    }
 
   } else if (category === 'agama') {
+
     const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
     
     if (subMenu && subMenu.endsWith("_effects")) {
@@ -172,7 +181,9 @@ export function useGamePath(path: string[]) {
       "Dashboard:Kementerian": "/game/kementrian/kementrian-dashboard",
       "Menu:Berita": "/game/berita",
       "Menu:Inbox": "/game/inbox",
+      "Menu:Riset": "/game/riset",
       "Kepuasan": "/game/kepuasan",
+
       "Dashboard:Kepuasan": "/game/kepuasan/statistik_kepuasan",
       "Action:NaikkanKepuasan": "/game/kepuasan/naikkan",
       "Dashboard:Populasi": "/game/kependudukan",
@@ -249,6 +260,15 @@ export function useGamePath(path: string[]) {
         targetPath += `/${effectType.toLowerCase()}`;
       }
     }
+    
+    // Dynamic path handling for Riset details
+    if (!targetPath && activeMenu.startsWith("Menu:Riset:")) {
+      const parts = activeMenu.split(":");
+      const detail = parts[2];
+      // Keep underscore for clean URLs as requested
+      targetPath = `/game/riset/${detail}`;
+    }
+
     
     // Dynamic path handling for Country Modals
     if (!targetPath && activeMenu.startsWith("CountryModal:")) {
