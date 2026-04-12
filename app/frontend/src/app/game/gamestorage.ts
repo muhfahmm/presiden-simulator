@@ -48,6 +48,8 @@ import { eventStorage } from "./logic/events/eventStorage";
 import { tradeStorage as diplomaticTradeStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
 import { RELATION_MATRIX_KEY } from "./components/map-system/ai_diplomacy_engine/services/MatrixHandler";
 import { timeStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
+import { aiTradeOfferStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/sistem_perdagangan_AI/storage/aiTradeOfferStorage";
+import { tradeContractStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/sistem_perdagangan_AI/storage/tradeContractStorage";
 
 const STORAGE_KEY = "game_session";
 
@@ -132,6 +134,8 @@ export const gameStorage = {
     researchStorage.clear();
     eventStorage.clear();
     diplomaticTradeStorage.clear();
+    aiTradeOfferStorage.clear();
+    tradeContractStorage.clear();
     if (typeof window !== 'undefined') {
       localStorage.removeItem(RELATION_MATRIX_KEY);
     }
@@ -229,6 +233,8 @@ export const gameStorage = {
     researchStorage.clear();
     eventStorage.clear();
     diplomaticTradeStorage.clear();
+    aiTradeOfferStorage.clear();
+    tradeContractStorage.clear();
     localStorage.removeItem(RELATION_MATRIX_KEY);
     
     window.location.href = '/database';
@@ -299,6 +305,8 @@ export const gameStorage = {
     researchStorage.clear();
     eventStorage.clear();
     diplomaticTradeStorage.clear();
+    aiTradeOfferStorage.clear();
+    tradeContractStorage.clear();
     localStorage.removeItem(RELATION_MATRIX_KEY);
   },
 };

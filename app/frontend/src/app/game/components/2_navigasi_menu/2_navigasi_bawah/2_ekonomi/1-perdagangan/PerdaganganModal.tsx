@@ -4,7 +4,7 @@ import {
   Cpu, Car, Bike, Construction, TreePine, Droplet, Cookie, Croissant, Pill, FlaskConical, Beef, Soup,
   Bird, Milk, Leaf, Shell, Fish, Sprout, Utensils, Apple, Bean, Layers, Mountain, Gem, Waves, Flame,
   Battery, Droplets, Box, Pickaxe, Radio, Coffee, Carrot, Eye, ChevronRight, Plus,
-  Target, Shield, Sword, Navigation, Ban, History as HistoryIcon, Newspaper, ChevronLeft
+  Target, Shield, Sword, Navigation, Ban, History as HistoryIcon, Newspaper, ChevronLeft, Sparkles
 } from "lucide-react"
 import { AddTradePartnerModal } from "./mitra_dagang_internasional/AddTradePartnerModal"
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index"
@@ -34,6 +34,9 @@ import { ImporEksekusi } from "./ekspor_impor/impor/ImporEksekusi";
 import { HistoriEkspor } from "./ekspor_impor/ekspor/HistoriEkspor";
 import { HistoriImport } from "./ekspor_impor/impor/HistoriImport";
 import BeritaHalaman from "./berita/BeritaHalaman";
+import AiTradeOffersPanel from "./sistem_perdagangan_AI/components/AiTradeOffersPanel";
+import { aiTradeOfferStorage } from "./sistem_perdagangan_AI/storage/aiTradeOfferStorage";
+import { tradeContractStorage } from "./sistem_perdagangan_AI/storage/tradeContractStorage";
 
 interface ModalProps {
   isOpen: boolean;
@@ -154,7 +157,12 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   }, []);
 
   const [selectedTradePartner, setSelectedTradePartner] = useState<string | null>(null);
-  const [tradeType, setTradeType] = useState<"impor" | "ekspor" | "histori" | "berita">("impor");
+  const [tradeType, setTradeType] = useState<"impor" | "ekspor" | "histori" | "berita" | "tawaran_ai">("impor");
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   const [historiType, setHistoriType] = useState<"impor" | "ekspor">("impor");
   const [logisticsSpeedup, setLogisticsSpeedup] = useState(0);
 
@@ -816,6 +824,22 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                   <Newspaper size={14} />
                   Berita
                 </button>
+
+                <button
+                  onClick={() => setTradeType("tawaran_ai")}
+                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 flex items-center gap-2 cursor-pointer relative ${tradeType === "tawaran_ai"
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-[0_0_30px_rgba(99,102,241,0.3)] hover:shadow-[0_0_40px_rgba(99,102,241,0.5)]"
+                      : "text-zinc-500 hover:text-zinc-300"
+                    }`}
+                >
+                  <Sparkles size={14} />
+                  Tawaran
+                  {isMounted && (aiTradeOfferStorage.getPendingCount() + tradeContractStorage.getPendingCount()) > 0 && (
+                    <span className="absolute -top-1 -right-1 px-1.5 py-0.5 text-[8px] font-black bg-red-500 text-white rounded-full min-w-[18px] text-center animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+                      {aiTradeOfferStorage.getPendingCount() + tradeContractStorage.getPendingCount()}
+                    </span>
+                  )}
+                </button>
               </div>
 
               {/* Logistics Efficiency Summary Card */}
@@ -893,6 +917,8 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     selectedTradePartner={selectedTradePartner}
                     getStoredGameDate={getStoredGameDate}
                   />
+                ) : tradeType === "tawaran_ai" ? (
+                  <AiTradeOffersPanel />
                 ) : tradeType === "berita" ? (
                   <BeritaHalaman />
                 ) : tradeType === "histori" ? (
