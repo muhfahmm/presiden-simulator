@@ -53,6 +53,16 @@ PRODUCTION_RATES = {
     "6_pembangkit_listrik_tenaga_angin": 150,
 }
 
+# ============================================================
+# HOUSING CAPACITIES
+# Used to calculate social stability needs
+# ============================================================
+HOUSING_CAPACITIES = {
+    "10_apartemen": 6000,
+    "9_rumah_subsidi": 5,
+    "11_mansion": 10
+}
+
 # Material keys for checking stocks
 BETON_KEY = "5_pabrik_semen"
 BAJA_KEY = "4_smelter"
@@ -86,6 +96,14 @@ def calculate_power_balance(buildings, population):
         if key not in power_rates:
             demand += count * 20
     return supply, demand
+
+
+def calculate_housing_capacity(buildings):
+    """Calculate total housing capacity from current buildings."""
+    total = 0
+    for key, cap in HOUSING_CAPACITIES.items():
+        total += buildings.get(key, 0) * cap
+    return total
 
 
 # Material Prices (Used for AI to 'buy' materials if stock is zero)
@@ -233,13 +251,58 @@ def decide(data):
         }
         
     # ── PRIORITY 0: SOCIAL STABILITY (Root Cause Fix) ──────
-    # If the root cause is housing, prioritize it above everything else
-    if root_cause == "housing":
-        residential_options = [item for item in affordable_candidates if item[0].get("key") in ["10_apartemen", "9_rumah_subsidi"]]
-        if residential_options:
-            # Pick the one with highest capacity per cost
-            chosen_item = max(residential_options, key=lambda x: (6000 if x[0]['key'] == "10_apartemen" else 5) / x[1])
-            return _execute(chosen_item[0], chosen_item[1], f"SOCIAL CRISIS: Diagnosa menunjukkan krisis hunian. Membangun {chosen_item[0]['key']} untuk meredam keresahan rakyat.", budget, spendable_budget)
+    # Mature Housing Calculation: 
+    # 1. Calculate deficit
+    cur_capacity = calculate_housing_capacity(buildings)
+    housing_deficit = max(0, population - cur_capacity)
+    homeless_rate = (housing_deficit / population) if population > 0 else 0
+    
+    # 2. Decision Logic
+    if root_cause == "housing" or homeless_rate > 0.05: # Emergency if >5% homeless
+        # Get ALL housing options (even those we can't afford yet, to compare efficiency)
+        all_res_options = [o for o in options if o.get("key") in HOUSING_CAPACITIES]
+        if all_res_options:
+            # Find the "Gold Standard" (most efficient building overall, usually Apartemen)
+            gold_candidates = [o for o in all_res_options if o.get("biaya_pembangunan", 0) > 0]
+            if gold_candidates:
+                gold_standard = max(gold_candidates, key=lambda o: HOUSING_CAPACITIES[o['key']] / o.get("biaya_pembangunan", 1))
+                
+                # Now check what we can actually afford
+                affordable_res = [item for item in affordable_candidates if item[0].get("key") in HOUSING_CAPACITIES]
+                
+                if affordable_res:
+                    # Pick the best affordable one
+                    best_affordable = max(affordable_res, key=lambda x: HOUSING_CAPACITIES[x[0]['key']] / x[1])
+                    
+                    # MATURE CALCULATION: If the best affordable is MUCH worse than the Gold Standard,
+                    # and we have a massive deficit, we should just WAIT and save money.
+                    is_huge_deficit = housing_deficit > 1000
+                    efficiency_gap = (HOUSING_CAPACITIES[gold_standard['key']] / gold_standard['biaya_pembangunan']) / \
+                                     (HOUSING_CAPACITIES[best_affordable[0]['key']] / best_affordable[1])
+                    
+                    if is_huge_deficit and efficiency_gap > 10 and best_affordable[0]['key'] != gold_standard['key']:
+                        # It's better to wait for the efficient building
+                        return {
+                            "decision": "SKIP",
+                            "reason": f"KALKULASI MATANG: Menabung untuk {gold_standard['key']} karena jauh lebih efisien untuk defisit {housing_deficit:,.0f} jiwa. Dana: {budget:,.0f}, butuh: {gold_standard['biaya_pembangunan']:,.0f}.",
+                            "budget_analysis": {"budget": budget, "target": gold_standard['biaya_pembangunan']}
+                        }
+        
+                    # Mature Financial Check:
+                    # Only build if we can afford it AND maintain a 2-day operational buffer
+                    fiscal_buffer = daily_income * 2
+                    if budget > (best_affordable[1] + fiscal_buffer):
+                        severity = "DARURAT" if homeless_rate > 0.15 else "SERIUS"
+                        return _execute(best_affordable[0], best_affordable[1], 
+                                        f"STABILITAS SOSIAL ({severity}): Defisit hunian {housing_deficit:,.0f} jiwa ({homeless_rate:.1%}). "
+                                        f"Membangun {best_affordable[0]['key']} (Efisiensi: {HOUSING_CAPACITIES[best_affordable[0]['key']]} jiwa).", 
+                                        budget, spendable_budget)
+                    else:
+                        return {
+                            "decision": "SKIP",
+                            "reason": f"KRISIS SOSIAL: Butuh hunian ({homeless_rate:.1%}), tapi dana tidak cukup untuk kalkulasi matang (butuh {best_affordable[1] + fiscal_buffer:,.0f}).",
+                            "budget_analysis": {"budget": budget, "required_with_buffer": best_affordable[1] + fiscal_buffer}
+                        }
 
 
     # ── PRIORITY 1: MATERIAL SURVIVAL ──────────────────────

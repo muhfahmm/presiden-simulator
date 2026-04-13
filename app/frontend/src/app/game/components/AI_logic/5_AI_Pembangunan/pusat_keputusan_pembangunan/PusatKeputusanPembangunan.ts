@@ -149,6 +149,8 @@ export class PusatKeputusanPembangunan {
 
       const result = await response.json();
       
+      if (!result || !result.decision) return;
+
       // Log for debugging
       if (result.decision === "EXECUTE") {
         console.log(`[AI CONSTRUCTION] ${countryNameEn}: ${result.reason} | Cost: ${result.budget_analysis?.building_cost?.toLocaleString()}`);
