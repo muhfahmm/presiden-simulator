@@ -1,4 +1,5 @@
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
+import { aiPopulationStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaStorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
@@ -23,14 +24,15 @@ export class AiPembangunanService {
         this.isAnalyzing = true;
 
         try {
-            const population = populationStorage.getPopulation();
-            const budget = budgetStorage.getBudget();
-            const populationGrowth = populationDeltaStorage.getDelta();
-            const cumulativeStock = budgetStorage.getCumulativeProduction();
-            
             const session = gameStorage.getSession();
             const countryName = session?.country || "Indonesia";
             const country = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
+            const isUser = session?.country === country.name_id || session?.country === country.name_en;
+
+            const population = isUser ? populationStorage.getPopulation() : aiPopulationStorage.getPopulation(country.name_en);
+            const populationGrowth = isUser ? populationDeltaStorage.getDelta() : 0; // AI pop growth simulation inside Python brain has a simplified delta for now
+            const budget = budgetStorage.getBudget();
+            const cumulativeStock = budgetStorage.getCumulativeProduction();
             
             const buildingDeltas = buildingStorage.getBuildingDeltas();
             const housing_data = {

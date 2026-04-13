@@ -2,6 +2,7 @@
 
 import { countries } from "@/app/database/data/negara/benua/index";
 import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { aiPopulationStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { aiBuildingStorage } from "../antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "../antarmuka_data_pembangunan/AIProductionStorage";
 import { aiRootCauseStorage } from "../../../map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/socialDiagnosisStorage";
@@ -130,6 +131,12 @@ export class PusatKeputusanPembangunan {
       total_expenses: breakdown.totalAnnualExpense / 365
     };
 
+    const rawPop = country.jumlah_penduduk ?? (country as any).populasi ?? 0;
+    const basePop = typeof rawPop === 'string' 
+      ? parseInt(rawPop.replace(/\./g, '')) 
+      : (typeof rawPop === 'number' ? rawPop : 0);
+    const currentAiPop = aiPopulationStorage.getPopulation(country.name_en) || basePop;
+
     // 3. Send everything to Python brain in ONE call
     try {
       const response = await fetch('/game/components/AI_logic/5_AI_Pembangunan/routes/keputusan_cerdas', {
@@ -139,14 +146,14 @@ export class PusatKeputusanPembangunan {
           negara: countryNameEn,
           budget,
           daily_income: dailyIncome,
-          income_breakdown: economic_intelligence, // New field for precision
+          income_breakdown: economic_intelligence,
           stocks,
           buildings,
           options: ALL_OPTIONS,
           queue_count: queue.length,
-          population: Number(country.jumlah_penduduk) || 0,
+          population: currentAiPop,
           root_cause: socialDiagnosis.root_cause,
-          happiness: aiHappinessStorage.getSatisfaction(countryNameEn) // Pass numerical score
+          happiness: aiHappinessStorage.getSatisfaction(countryNameEn)
         })
       });
 

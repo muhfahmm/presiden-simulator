@@ -1,4 +1,5 @@
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
+import { aiPopulationStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaStorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { happinessStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/happinessStorage";
@@ -23,21 +24,22 @@ export class AiHunianService {
     this.isAnalyzing = true;
 
     try {
-      const population = populationStorage.getPopulation();
-      const budget = budgetStorage.getBudget();
-      const happiness = happinessStorage.getStats().value;
       const gameDate = getStoredGameDate();
-      const populationGrowth = populationDeltaStorage.getDelta();
-      
       const session = gameStorage.getSession();
       const countryName = session?.country || "Indonesia";
-      const countryData = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
+      const country = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
+      const isUser = session?.country === country.name_id || session?.country === country.name_en;
+
+      const population = isUser ? populationStorage.getPopulation() : aiPopulationStorage.getPopulation(country.name_en);
+      const budget = budgetStorage.getBudget();
+      const happiness = happinessStorage.getStats().value;
+      const populationGrowth = isUser ? populationDeltaStorage.getDelta() : 0;
       
       const buildingDeltas = buildingStorage.getBuildingDeltas();
       const housing_data = {
-        rumah_subsidi: (countryData.hunian?.rumah_subsidi || 0) + (buildingDeltas["9_rumah_subsidi"] || 0),
-        apartemen: (countryData.hunian?.apartemen || 0) + (buildingDeltas["10_apartemen"] || 0),
-        mansion: (countryData.hunian?.mansion || 0) + (buildingDeltas["11_mansion"] || 0),
+        rumah_subsidi: (country.hunian?.rumah_subsidi || 0) + (buildingDeltas["9_rumah_subsidi"] || 0),
+        apartemen: (country.hunian?.apartemen || 0) + (buildingDeltas["10_apartemen"] || 0),
+        mansion: (country.hunian?.mansion || 0) + (buildingDeltas["11_mansion"] || 0),
       };
 
       // Check if ANY event is currently active or on cooldown

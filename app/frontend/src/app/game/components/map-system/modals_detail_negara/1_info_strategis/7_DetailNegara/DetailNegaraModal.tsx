@@ -4,12 +4,13 @@ import React, { useState, useEffect } from "react";
 import { 
   X, Activity, Zap, Pickaxe, Factory, Beef, Wheat, Pill, Utensils, 
   Shield, Swords, Eye, Search, Home, GraduationCap, HeartPulse, 
-  Scale, Siren, Landmark, Info, Briefcase, Users2, Cloud, Target,
+  Scale, Siren, Landmark, Info, Briefcase, Users2, Users, Cloud, Target,
   Mountain, Gem, Waves, Battery, Box, Cpu, TreePine, Droplets, Flame, Radio, Hammer,
   Clapperboard, Building2, Archive, TrendingUp, ShieldAlert, TrendingDown
 } from "lucide-react";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
+import { aiPopulationStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
 import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
@@ -33,12 +34,14 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
   const [refreshKey, setRefreshKey] = useState(0);
   
   // Real-time population tracking
-  const rawPop = (countries.find(c => c.name_id.toLowerCase() === targetCountry.toLowerCase() || c.name_en.toLowerCase() === targetCountry.toLowerCase()) as any)?.jumlah_penduduk ?? 0;
+  const countryEntryRaw = countries.find(c => c.name_id.toLowerCase() === targetCountry.toLowerCase() || c.name_en.toLowerCase() === targetCountry.toLowerCase());
+  const rawPop = (countryEntryRaw as any)?.jumlah_penduduk ?? 0;
   const basePop = typeof rawPop === 'string' 
     ? parseInt(rawPop.replace(/\./g, '')) 
     : (typeof rawPop === 'number' ? rawPop : 0);
     
-  const [population, setPopulation] = useState(isUser ? populationStorage.getPopulation() : basePop);
+  const initPop = isUser ? populationStorage.getPopulation() : (countryEntryRaw ? aiPopulationStorage.getPopulation(countryEntryRaw.name_en) : basePop);
+  const [population, setPopulation] = useState(initPop);
 
   // Reactivity: Refresh when construction state changes
   useEffect(() => {
@@ -55,14 +58,23 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
         setPopulation(e.detail.population);
       }
     };
+    
+    const handleAiPopUpdate = () => {
+      if (!isUser && countryEntryRaw) {
+         setPopulation(aiPopulationStorage.getPopulation(countryEntryRaw.name_en) || basePop);
+      }
+    };
+    
     window.addEventListener('population_updated', handlePopUpdate);
+    window.addEventListener('ai_population_updated', handleAiPopUpdate);
     
     return () => {
       window.removeEventListener('building_storage_updated', handleUpdate);
       window.removeEventListener('ai_building_updated', handleUpdate);
       window.removeEventListener('population_updated', handlePopUpdate);
+      window.removeEventListener('ai_population_updated', handleAiPopUpdate);
     };
-  }, [isUser]);
+  }, [isUser, targetCountry, countryEntryRaw?.name_en, basePop]);
 
   if (!isOpen) return null;
 
@@ -346,17 +358,41 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 
                 const { housingCapacity: totalNationalHousingCapacity, societalPenalty } = breakdown.details;
                 
-                const rawPop = (countryEntry as any).jumlah_penduduk ?? (countryEntry as any).populasi ?? 0;
-                const basePop = typeof rawPop === 'string' 
-                  ? parseInt(rawPop.replace(/\./g, '')) 
-                  : (typeof rawPop === 'number' ? rawPop : 0);
-
-                const population = isUser ? populationStorage.getPopulation() : basePop;
+                const derivedPopulation = isUser ? populationStorage.getPopulation() : (aiPopulationStorage.getPopulation(countryEntry.name_en) || basePop);
+                const surplus = totalNationalHousingCapacity - derivedPopulation;
 
                 return (
                   <>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 px-1">
+                      <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
+                        <div>
+                          <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Total Kebutuhan Rumah</p>
+                          <p className="text-xl font-black text-rose-400">{derivedPopulation.toLocaleString('id-ID')} <span className="text-xs text-rose-500/50">Jiwa</span></p>
+                        </div>
+                        <div className="p-3 bg-rose-500/10 rounded-xl"><Users size={20} className="text-rose-500" /></div>
+                      </div>
+                      
+                      <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
+                        <div>
+                          <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Total Kapasitas Tersedia</p>
+                          <p className="text-xl font-black text-emerald-400">{totalNationalHousingCapacity.toLocaleString('id-ID')} <span className="text-xs text-emerald-500/50">Jiwa</span></p>
+                        </div>
+                        <div className="p-3 bg-emerald-500/10 rounded-xl"><Home size={20} className="text-emerald-500" /></div>
+                      </div>
+
+                      <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
+                        <div>
+                          <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Neraca Hunian (Surplus)</p>
+                          <p className={`text-xl font-black ${surplus >= 0 ? 'text-cyan-400' : 'text-red-400'}`}>{surplus > 0 ? '+' : ''}{surplus.toLocaleString('id-ID')} <span className="text-xs opacity-50">Jiwa</span></p>
+                        </div>
+                        <div className={`p-3 rounded-xl ${surplus >= 0 ? 'bg-cyan-500/10' : 'bg-red-500/10'}`}>
+                          <Activity size={20} className={surplus >= 0 ? 'text-cyan-500' : 'text-red-500'} />
+                        </div>
+                      </div>
+                    </div>
+
                     {[
-                      { 
+                      {  
                         title: "1. Hunian Rumah Menengah & Subsidi", 
                         id: "rumah_subsidi",
                         icon: Home, 

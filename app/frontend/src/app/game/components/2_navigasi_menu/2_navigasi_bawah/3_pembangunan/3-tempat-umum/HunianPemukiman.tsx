@@ -3,6 +3,8 @@ import { useState } from "react";
 import { hunianRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
+import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 
 export default function HunianPemukiman() {
   const [activeInfo, setActiveInfo] = useState<string | null>(null);
@@ -17,6 +19,16 @@ export default function HunianPemukiman() {
   
   const hunianData = countryData?.hunian || { rumah_subsidi: 0, apartemen: 0, mansion: 0 };
 
+  const population = populationStorage.getPopulation();
+  const deltas = buildingStorage.getData().buildingDeltas || {};
+
+  const totalSubsidi = (hunianData.rumah_subsidi || 0) + (deltas['rumah_subsidi'] || 0);
+  const totalApartemen = (hunianData.apartemen || 0) + (deltas['apartemen'] || 0);
+  const totalMansion = (hunianData.mansion || 0) + (deltas['mansion'] || 0);
+
+  const totalCapacity = (totalSubsidi * 5) + (totalApartemen * 6000) + (totalMansion * 10);
+  const surplus = totalCapacity - population;
+
   const prototypeHouses = [
     {
       id: "rumah_subsidi",
@@ -29,7 +41,7 @@ export default function HunianPemukiman() {
       konsumsi_listrik: hunianRate.rumah_subsidi.konsumsi_listrik,
       kapasitas: hunianRate.rumah_subsidi.kapasitas.toLocaleString('id-ID'),
       time: hunianRate.rumah_subsidi.waktu_pembangunan,
-      count: hunianData.rumah_subsidi || 0,
+      count: totalSubsidi,
     },
     {
       id: "apartemen",
@@ -42,7 +54,7 @@ export default function HunianPemukiman() {
       konsumsi_listrik: hunianRate.apartemen.konsumsi_listrik,
       kapasitas: hunianRate.apartemen.kapasitas.toLocaleString('id-ID'),
       time: hunianRate.apartemen.waktu_pembangunan,
-      count: hunianData.apartemen || 0,
+      count: totalApartemen,
     },
     {
       id: "mansion",
@@ -55,7 +67,7 @@ export default function HunianPemukiman() {
       konsumsi_listrik: hunianRate.mansion.konsumsi_listrik,
       kapasitas: hunianRate.mansion.kapasitas.toLocaleString('id-ID'),
       time: hunianRate.mansion.waktu_pembangunan,
-      count: hunianData.mansion || 0,
+      count: totalMansion,
     },
   ];
 
@@ -65,6 +77,34 @@ export default function HunianPemukiman() {
         <div className="p-1.5 bg-cyan-500/10 rounded-lg"><Home size={16} className="text-cyan-500" /></div>
         <h3 className="text-lg font-black text-white uppercase italic tracking-widest">Katalog Hunian Nasional (Prototype)</h3>
         <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 px-1">
+        <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
+          <div>
+            <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Total Kebutuhan Rumah</p>
+            <p className="text-xl font-black text-rose-400">{population.toLocaleString('id-ID')} <span className="text-xs text-rose-500/50">Jiwa</span></p>
+          </div>
+          <div className="p-3 bg-rose-500/10 rounded-xl"><Users size={20} className="text-rose-500" /></div>
+        </div>
+        
+        <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
+          <div>
+            <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Total Kapasitas Tersedia</p>
+            <p className="text-xl font-black text-emerald-400">{totalCapacity.toLocaleString('id-ID')} <span className="text-xs text-emerald-500/50">Jiwa</span></p>
+          </div>
+          <div className="p-3 bg-emerald-500/10 rounded-xl"><Home size={20} className="text-emerald-500" /></div>
+        </div>
+
+        <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
+          <div>
+            <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Neraca Hunian (Surplus)</p>
+            <p className={`text-xl font-black ${surplus >= 0 ? 'text-cyan-400' : 'text-red-400'}`}>{surplus > 0 ? '+' : ''}{surplus.toLocaleString('id-ID')} <span className="text-xs opacity-50">Jiwa</span></p>
+          </div>
+          <div className={`p-3 rounded-xl ${surplus >= 0 ? 'bg-cyan-500/10' : 'bg-red-500/10'}`}>
+            <Activity size={20} className={surplus >= 0 ? 'text-cyan-500' : 'text-red-500'} />
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">

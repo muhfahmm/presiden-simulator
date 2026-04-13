@@ -610,6 +610,34 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
           </div>
           ) : (
             <div className="space-y-12">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-1 mb-8">
+                <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
+                  <div>
+                    <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Total Kebutuhan Rumah</p>
+                    <p className="text-xl font-black text-rose-400">{population.toLocaleString('id-ID')} <span className="text-xs text-rose-500/50">Jiwa</span></p>
+                  </div>
+                  <div className="p-3 bg-rose-500/10 rounded-xl"><Users size={20} className="text-rose-500" /></div>
+                </div>
+                
+                <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
+                  <div>
+                    <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Total Kapasitas Tersedia</p>
+                    <p className="text-xl font-black text-emerald-400">{totalHousingCapacity.toLocaleString('id-ID')} <span className="text-xs text-emerald-500/50">Jiwa</span></p>
+                  </div>
+                  <div className="p-3 bg-emerald-500/10 rounded-xl"><Home size={20} className="text-emerald-500" /></div>
+                </div>
+
+                <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
+                  <div>
+                    <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Neraca Hunian (Surplus)</p>
+                    <p className={`text-xl font-black ${totalHousingCapacity - population >= 0 ? 'text-cyan-400' : 'text-red-400'}`}>{(totalHousingCapacity - population) > 0 ? '+' : ''}{(totalHousingCapacity - population).toLocaleString('id-ID')} <span className="text-xs opacity-50">Jiwa</span></p>
+                  </div>
+                  <div className={`p-3 rounded-xl ${totalHousingCapacity - population >= 0 ? 'bg-cyan-500/10' : 'bg-red-500/10'}`}>
+                    <Activity size={20} className={totalHousingCapacity - population >= 0 ? 'text-cyan-500' : 'text-red-500'} />
+                  </div>
+                </div>
+              </div>
+
               {hunianGroups.map((group) => (
                 <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
                   <div className="flex items-center gap-3 mb-5 px-1">

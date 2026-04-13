@@ -1,4 +1,6 @@
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
+import { aiPopulationStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
+import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { gameStorage } from "@/app/game/gamestorage";
@@ -39,12 +41,13 @@ export class SocialCareService {
      * Main calculation for homelessness and social impact
      */
     static calculateAndStore(): SocialImpactStats {
-        const population = populationStorage.getPopulation();
-        const buildingDeltas = buildingStorage.getBuildingDeltas();
-        
         const session = gameStorage.getSession();
         const countryName = session?.country || "Indonesia";
         const country = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
+        const isUser = session?.country === country.name_id || session?.country === country.name_en;
+
+        const population = isUser ? populationStorage.getPopulation() : aiPopulationStorage.getPopulation(country.name_en);
+        const buildingDeltas = buildingStorage.getBuildingDeltas();
 
         // Capacity calculation constants
         const totalCapacity = 
