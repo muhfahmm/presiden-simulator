@@ -33,7 +33,7 @@ export const komandoPertahananRate = {
     deskripsi: "Pusat Komando Strategis Nasional",
 
     waktu_pembangunan: 90,
-    biaya_pembangunan: 1200000,
+    biaya_pembangunan: 900000, // Reduced from 1.2M
     lowongan_kerja: 15000,
     konsumsi_listrik: 850
   },
@@ -44,7 +44,7 @@ export const komandoPertahananRate = {
     deskripsi: "Bunker Komando Pertahanan Nasional",
 
     waktu_pembangunan: 120,
-    biaya_pembangunan: 850000,
+    biaya_pembangunan: 637500, // Reduced from 850k
     lowongan_kerja: 8000,
     konsumsi_listrik: 450
   },
@@ -55,7 +55,7 @@ export const komandoPertahananRate = {
     deskripsi: "Pusat Komando Operasi Wilayah",
 
     waktu_pembangunan: 60,
-    biaya_pembangunan: 450000,
+    biaya_pembangunan: 337500, // Reduced from 450k
     lowongan_kerja: 12000,
     konsumsi_listrik: 350
   }

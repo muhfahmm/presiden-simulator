@@ -6,8 +6,8 @@ export interface HunianData {
 
 export const hunianRate = {
   rumah_subsidi: {
-    biaya_pembangunan: 35000000,
-    waktu_pembangunan: 7,
+    biaya_pembangunan: 500000, // Reduced by 50% (orig. 35M)
+    waktu_pembangunan: 4,
 
     konsumsi_listrik: 45,
     kapasitas: 5,
@@ -15,8 +15,8 @@ export const hunianRate = {
     deskripsi: "Hunian Terpadu Masyarakat Terjangkau"
   },
   apartemen: {
-    biaya_pembangunan: 85000000,
-    waktu_pembangunan: 14,
+    biaya_pembangunan: 2500000, // Reduced by 50% (orig. 85M)
+    waktu_pembangunan: 7,
 
     konsumsi_listrik: 350,
     kapasitas: 6000,
@@ -24,8 +24,8 @@ export const hunianRate = {
     deskripsi: "Hunian Vertikal Kepadatan Tinggi"
   },
   mansion: {
-    biaya_pembangunan: 125000000,
-    waktu_pembangunan: 21,
+    biaya_pembangunan: 5000000, // Reduced by 50% (orig. 125M)
+    waktu_pembangunan: 14,
 
     konsumsi_listrik: 400,
     kapasitas: 10,

@@ -14,7 +14,7 @@ export const hiburanRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Kompleks Bioskop Nasional",
     waktu_pembangunan: 120,
-    biaya_pembangunan: 35000000,
+    biaya_pembangunan: 26250000, // Reduced from 35M
     lowongan_kerja: 2500,
     konsumsi_listrik: 120,
     efek: "Meningkatkan kas negara"
@@ -26,7 +26,7 @@ export const hiburanRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Gedung Teater & Seni Pertunjukan Nasional",
     waktu_pembangunan: 150,
-    biaya_pembangunan: 65000000,
+    biaya_pembangunan: 48750000, // Reduced from 65M
     lowongan_kerja: 3500,
     konsumsi_listrik: 150,
     efek: "Meningkatkan kas negara"

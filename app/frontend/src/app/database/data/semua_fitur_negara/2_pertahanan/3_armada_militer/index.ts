@@ -9,7 +9,7 @@ export const armadaMiliterRate = {
     groupId: "darat",
     label: "Barak Militer",
     deskripsi: "Kompleks Hunian & Pelatihan Tentara",
-    biaya_pembangunan: 35000000,
+    biaya_pembangunan: 26250000,
     waktu_pembangunan: 15,
     lowongan_kerja: 8000,
     konsumsi_listrik: 650,
@@ -20,7 +20,7 @@ export const armadaMiliterRate = {
     groupId: "darat",
     label: "Main Battle Tank (MBT)",
     deskripsi: "Divisi Kavaleri Berat",
-    biaya_pembangunan: 85000000,
+    biaya_pembangunan: 63750000,
     waktu_pembangunan: 30,
     lowongan_kerja: 15000,
     konsumsi_bahan_bakar: 19000
@@ -31,7 +31,7 @@ export const armadaMiliterRate = {
     groupId: "darat",
     label: "APC / IFV",
     deskripsi: "Transportasi Taktis & Mekanis",
-    biaya_pembangunan: 35000000,
+    biaya_pembangunan: 26250000,
     waktu_pembangunan: 15,
     lowongan_kerja: 10000,
     konsumsi_bahan_bakar: 8000
@@ -42,7 +42,7 @@ export const armadaMiliterRate = {
     groupId: "darat",
     label: "Artileri Berat",
     deskripsi: "Sistem Pukulan Jarak Jauh",
-    biaya_pembangunan: 65000000,
+    biaya_pembangunan: 48750000,
     waktu_pembangunan: 45,
     lowongan_kerja: 8500,
     konsumsi_bahan_bakar: 6000
@@ -53,7 +53,7 @@ export const armadaMiliterRate = {
     groupId: "darat",
     label: "MLRS Rocket System",
     deskripsi: "Sistem Roket Multi-Laras",
-    biaya_pembangunan: 95000000,
+    biaya_pembangunan: 71250000,
     waktu_pembangunan: 60,
     lowongan_kerja: 5000,
     konsumsi_bahan_bakar: 10000
@@ -64,7 +64,7 @@ export const armadaMiliterRate = {
     groupId: "darat",
     label: "Mobile SAM System",
     deskripsi: "Pertahanan Udara Jarak Menengah",
-    biaya_pembangunan: 125000000,
+    biaya_pembangunan: 93750000,
     waktu_pembangunan: 60,
     lowongan_kerja: 6000,
     konsumsi_bahan_bakar: 15000
@@ -75,7 +75,7 @@ export const armadaMiliterRate = {
     groupId: "darat",
     label: "Kendaraan Taktis",
     deskripsi: "Unit Patroli & Serbu Cepat",
-    biaya_pembangunan: 15000000,
+    biaya_pembangunan: 11250000,
     waktu_pembangunan: 10,
     lowongan_kerja: 2500,
     konsumsi_bahan_bakar: 12000
@@ -88,7 +88,7 @@ export const armadaMiliterRate = {
     groupId: "laut",
     label: "Kapal Induk Konvensional",
     deskripsi: "Pangkalan Udara Maritim Terapung",
-    biaya_pembangunan: 1500000000,
+    biaya_pembangunan: 1125000000,
     waktu_pembangunan: 360,
     lowongan_kerja: 35000,
     konsumsi_bahan_bakar: 12000000
@@ -99,7 +99,7 @@ export const armadaMiliterRate = {
     groupId: "laut",
     label: "Kapal Induk Nuklir",
     deskripsi: "Supremasi Maritim Global",
-    biaya_pembangunan: 2500000000,
+    biaya_pembangunan: 1875000000,
     waktu_pembangunan: 480,
     lowongan_kerja: 45000,
     konsumsi_uranium: 5
@@ -110,7 +110,7 @@ export const armadaMiliterRate = {
     groupId: "laut",
     label: "Kapal Destroyer",
     deskripsi: "Perusak Pertahanan Maritim",
-    biaya_pembangunan: 450000000,
+    biaya_pembangunan: 337500000,
     waktu_pembangunan: 180,
     lowongan_kerja: 18000,
     konsumsi_bahan_bakar: 15000000
@@ -121,7 +121,7 @@ export const armadaMiliterRate = {
     groupId: "laut",
     label: "Kapal Korvet",
     deskripsi: "Kapal Kawal Terintegrasi",
-    biaya_pembangunan: 180000000,
+    biaya_pembangunan: 135000000,
     waktu_pembangunan: 90,
     lowongan_kerja: 8500,
     konsumsi_bahan_bakar: 8000000
@@ -132,7 +132,7 @@ export const armadaMiliterRate = {
     groupId: "laut",
     label: "Kapal Selam Nuklir",
     deskripsi: "Siluman Bawah Laut Nasional",
-    biaya_pembangunan: 750000000,
+    biaya_pembangunan: 562500000,
     waktu_pembangunan: 240,
     lowongan_kerja: 6500,
     konsumsi_uranium: 2
@@ -143,7 +143,7 @@ export const armadaMiliterRate = {
     groupId: "laut",
     label: "Kapal Selam Reguler",
     deskripsi: "Patroli Bawah Laut",
-    biaya_pembangunan: 250000000,
+    biaya_pembangunan: 187500000,
     waktu_pembangunan: 120,
     lowongan_kerja: 4500,
     konsumsi_bahan_bakar: 4000000
@@ -154,7 +154,7 @@ export const armadaMiliterRate = {
     groupId: "laut",
     label: "Kapal Ranjau",
     deskripsi: "Penyapu & Penanam Ranjau",
-    biaya_pembangunan: 85000000,
+    biaya_pembangunan: 63750000,
     waktu_pembangunan: 60,
     lowongan_kerja: 2500,
     konsumsi_bahan_bakar: 3000000
@@ -165,7 +165,7 @@ export const armadaMiliterRate = {
     groupId: "laut",
     label: "Kapal Logistik Maritim",
     deskripsi: "Suplai & Perbekalan Armada",
-    biaya_pembangunan: 120000000,
+    biaya_pembangunan: 90000000,
     waktu_pembangunan: 90,
     lowongan_kerja: 4500,
     konsumsi_bahan_bakar: 6000000
@@ -178,7 +178,7 @@ export const armadaMiliterRate = {
     groupId: "udara",
     label: "Jet Tempur Stealth",
     deskripsi: "Supremasi Udara Generasi-5",
-    biaya_pembangunan: 150000000,
+    biaya_pembangunan: 112500000,
     waktu_pembangunan: 120,
     lowongan_kerja: 12000,
     konsumsi_bahan_bakar: 12000000
@@ -189,7 +189,7 @@ export const armadaMiliterRate = {
     groupId: "udara",
     label: "Jet Interceptor",
     deskripsi: "Pertahanan Udara Cepat",
-    biaya_pembangunan: 85000000,
+    biaya_pembangunan: 63750000,
     waktu_pembangunan: 90,
     lowongan_kerja: 8500,
     konsumsi_bahan_bakar: 10000000
@@ -200,7 +200,7 @@ export const armadaMiliterRate = {
     groupId: "udara",
     label: "Pesawat Pengebom Strategis",
     deskripsi: "Pukulan Udara Jarak Jauh",
-    biaya_pembangunan: 250000000,
+    biaya_pembangunan: 187500000,
     waktu_pembangunan: 180,
     lowongan_kerja: 15000,
     konsumsi_bahan_bakar: 20000000
@@ -211,7 +211,7 @@ export const armadaMiliterRate = {
     groupId: "udara",
     label: "Helikopter Serang",
     deskripsi: "Bantuan Tembakan Udara Dekat",
-    biaya_pembangunan: 55000000,
+    biaya_pembangunan: 41250000,
     waktu_pembangunan: 45,
     lowongan_kerja: 5500,
     konsumsi_bahan_bakar: 5000000
@@ -222,7 +222,7 @@ export const armadaMiliterRate = {
     groupId: "udara",
     label: "Pesawat Intai Strategis (AWACS)",
     deskripsi: "Komando & Pengamatan Udara",
-    biaya_pembangunan: 95000000,
+    biaya_pembangunan: 71250000,
     waktu_pembangunan: 90,
     lowongan_kerja: 4500,
     konsumsi_bahan_bakar: 4000000
@@ -233,7 +233,7 @@ export const armadaMiliterRate = {
     groupId: "udara",
     label: "Drone Intai UAV",
     deskripsi: "Pengamatan Tanpa Awak",
-    biaya_pembangunan: 15000000,
+    biaya_pembangunan: 11250000,
     waktu_pembangunan: 30,
     lowongan_kerja: 1200,
     konsumsi_bahan_bakar: 500000
@@ -244,7 +244,7 @@ export const armadaMiliterRate = {
     groupId: "udara",
     label: "Drone Kamikaze",
     deskripsi: "Amunisi Cerdas Presisi",
-    biaya_pembangunan: 5000000,
+    biaya_pembangunan: 3750000,
     waktu_pembangunan: 7,
     lowongan_kerja: 500,
     konsumsi_bahan_bakar: 200000
@@ -254,7 +254,7 @@ export const armadaMiliterRate = {
     dataKey: "pesawat_angkut",
     groupId: "udara",
     label: "Pesawat Angkut Berat",
-    biaya_pembangunan: 75000000,
+    biaya_pembangunan: 56250000,
     waktu_pembangunan: 60,
     lowongan_kerja: 6500,
     konsumsi_bahan_bakar: 8000000
@@ -295,27 +295,27 @@ export interface SektorArmadaMiliter {
 
 export const armadaMiliterList = [
   // 2. Armada Tempur (Armada)
-  { key: "barak", category: "Armada", label: "Barak Militer", deskripsi: "Hunian Tentara", biaya_pembangunan: 35000000, waktu_pembangunan: 15, biaya_pemeliharaan: 15 },
-  { key: "tank", category: "Armada", label: "Main Battle Tank", deskripsi: "Kavaleri Darat", biaya_pembangunan: 85000000, waktu_pembangunan: 30, biaya_pemeliharaan: 10 },
-  { key: "apc", category: "Armada", label: "APC / IFV", deskripsi: "Transportasi Taktis", biaya_pembangunan: 35000000, waktu_pembangunan: 15, biaya_pemeliharaan: 4 },
-  { key: "artileri", category: "Armada", label: "Artileri Berat", deskripsi: "Pukulan Jarak Jauh", biaya_pembangunan: 65000000, waktu_pembangunan: 45, biaya_pemeliharaan: 8 },
-  { key: "rocket", category: "Armada", label: "MLRS Rocket", deskripsi: "Sistem Roket", biaya_pembangunan: 95000000, waktu_pembangunan: 60, biaya_pemeliharaan: 12 },
-  { key: "sam", category: "Armada", label: "Mobile SAM", deskripsi: "Hulu Ledak", biaya_pembangunan: 125000000, waktu_pembangunan: 60, biaya_pemeliharaan: 15 },
-  { key: "tactical", category: "Armada", label: "Kendaraan Taktis", deskripsi: "Patroli Tempur", biaya_pembangunan: 15000000, waktu_pembangunan: 10, biaya_pemeliharaan: 2 },
-  { key: "carrier", category: "Armada", label: "Kapal Induk Konvensional", deskripsi: "Pangkalan Apung", biaya_pembangunan: 1500000000, waktu_pembangunan: 360, biaya_pemeliharaan: 200 },
-  { key: "nuclear_carrier", category: "Armada", label: "Kapal Induk Nuklir", deskripsi: "Pangkalan Udara Terapung", biaya_pembangunan: 2500000000, waktu_pembangunan: 480, biaya_pemeliharaan: 400 },
-  { key: "destroyer", category: "Armada", label: "Kapal Destroyer", deskripsi: "Perusak Maritim", biaya_pembangunan: 450000000, waktu_pembangunan: 180, biaya_pemeliharaan: 100 },
-  { key: "corvette", category: "Armada", label: "Kapal Korvet", deskripsi: "Kapal Kawal", biaya_pembangunan: 180000000, waktu_pembangunan: 90, biaya_pemeliharaan: 45 },
-  { key: "submarine", category: "Armada", label: "Kapal Selam Nuklir", deskripsi: "Siluman Bawah Air", biaya_pembangunan: 750000000, waktu_pembangunan: 240, biaya_pemeliharaan: 150 },
-  { key: "reg_sub", category: "Armada", label: "Kapal Selam Reguler", deskripsi: "Selam Reguler", biaya_pembangunan: 250000000, waktu_pembangunan: 120, biaya_pemeliharaan: 60 },
-  { key: "mine_ship", category: "Armada", label: "Kapal Ranjau", deskripsi: "Penyapu Ranjau", biaya_pembangunan: 85000000, waktu_pembangunan: 60, biaya_pemeliharaan: 15 },
-  { key: "logistics", category: "Armada", label: "Kapal Logistik", deskripsi: "Suplai Maritim", biaya_pembangunan: 120000000, waktu_pembangunan: 90, biaya_pemeliharaan: 25 },
-  { key: "stealth_jet", category: "Armada", label: "Jet Stealth", deskripsi: "Supremasi Udara", biaya_pembangunan: 150000000, waktu_pembangunan: 120, biaya_pemeliharaan: 120 },
-  { key: "interceptor", category: "Armada", label: "Jet Interceptor", deskripsi: "Satu Pencegat", biaya_pembangunan: 85000000, waktu_pembangunan: 90, biaya_pemeliharaan: 55 },
-  { key: "bomber", category: "Armada", label: "Pesawat Pengebom", deskripsi: "Serangan Udara", biaya_pembangunan: 250000000, waktu_pembangunan: 180, biaya_pemeliharaan: 180 },
-  { key: "heli_attack", category: "Armada", label: "Heli Serang", deskripsi: "Bantuan Udara", biaya_pembangunan: 55000000, waktu_pembangunan: 45, biaya_pemeliharaan: 25 },
-  { key: "recon_plane", category: "Armada", label: "Pesawat Intai", deskripsi: "Intelijen Udara", biaya_pembangunan: 95000000, waktu_pembangunan: 90, biaya_pemeliharaan: 20 },
-  { key: "uav", category: "Armada", label: "Drone UAV", deskripsi: "Intai Tanpa Awak", biaya_pembangunan: 15000000, waktu_pembangunan: 30, biaya_pemeliharaan: 5 },
-  { key: "kamikaze", category: "Armada", label: "Drone Kamikaze", deskripsi: "Serangan Bunuh Diri", biaya_pembangunan: 5000000, waktu_pembangunan: 7, biaya_pemeliharaan: 1 },
-  { key: "transport", category: "Armada", label: "Pesawat Angkut", deskripsi: "Logistik Udara", biaya_pembangunan: 75000000, waktu_pembangunan: 60, biaya_pemeliharaan: 15 }
+  { key: "barak", category: "Armada", label: "Barak Militer", deskripsi: "Hunian Tentara", biaya_pembangunan: 26250000, waktu_pembangunan: 15, biaya_pemeliharaan: 15 },
+  { key: "tank", category: "Armada", label: "Main Battle Tank", deskripsi: "Kavaleri Darat", biaya_pembangunan: 63750000, waktu_pembangunan: 30, biaya_pemeliharaan: 10 },
+  { key: "apc", category: "Armada", label: "APC / IFV", deskripsi: "Transportasi Taktis", biaya_pembangunan: 26250000, waktu_pembangunan: 15, biaya_pemeliharaan: 4 },
+  { key: "artileri", category: "Armada", label: "Artileri Berat", deskripsi: "Pukulan Jarak Jauh", biaya_pembangunan: 48750000, waktu_pembangunan: 45, biaya_pemeliharaan: 8 },
+  { key: "rocket", category: "Armada", label: "MLRS Rocket", deskripsi: "Sistem Roket", biaya_pembangunan: 71250000, waktu_pembangunan: 60, biaya_pemeliharaan: 12 },
+  { key: "sam", category: "Armada", label: "Mobile SAM", deskripsi: "Hulu Ledak", biaya_pembangunan: 93750000, waktu_pembangunan: 60, biaya_pemeliharaan: 15 },
+  { key: "tactical", category: "Armada", label: "Kendaraan Taktis", deskripsi: "Patroli Tempur", biaya_pembangunan: 11250000, waktu_pembangunan: 10, biaya_pemeliharaan: 2 },
+  { key: "carrier", category: "Armada", label: "Kapal Induk Konvensional", deskripsi: "Pangkalan Apung", biaya_pembangunan: 1125000000, waktu_pembangunan: 360, biaya_pemeliharaan: 200 },
+  { key: "nuclear_carrier", category: "Armada", label: "Kapal Induk Nuklir", deskripsi: "Pangkalan Udara Terapung", biaya_pembangunan: 1875000000, waktu_pembangunan: 480, biaya_pemeliharaan: 400 },
+  { key: "destroyer", category: "Armada", label: "Kapal Destroyer", deskripsi: "Perusak Maritim", biaya_pembangunan: 337500000, waktu_pembangunan: 180, biaya_pemeliharaan: 100 },
+  { key: "corvette", category: "Armada", label: "Kapal Korvet", deskripsi: "Kapal Kawal", biaya_pembangunan: 135000000, waktu_pembangunan: 90, biaya_pemeliharaan: 45 },
+  { key: "submarine", category: "Armada", label: "Kapal Selam Nuklir", deskripsi: "Siluman Bawah Air", biaya_pembangunan: 562500000, waktu_pembangunan: 240, biaya_pemeliharaan: 150 },
+  { key: "reg_sub", category: "Armada", label: "Kapal Selam Reguler", deskripsi: "Selam Reguler", biaya_pembangunan: 187500000, waktu_pembangunan: 120, biaya_pemeliharaan: 60 },
+  { key: "mine_ship", category: "Armada", label: "Kapal Ranjau", deskripsi: "Penyapu Ranjau", biaya_pembangunan: 63750000, waktu_pembangunan: 60, biaya_pemeliharaan: 15 },
+  { key: "logistics", category: "Armada", label: "Kapal Logistik", deskripsi: "Suplai Maritim", biaya_pembangunan: 90000000, waktu_pembangunan: 90, biaya_pemeliharaan: 25 },
+  { key: "stealth_jet", category: "Armada", label: "Jet Stealth", deskripsi: "Supremasi Udara", biaya_pembangunan: 112500000, waktu_pembangunan: 120, biaya_pemeliharaan: 120 },
+  { key: "interceptor", category: "Armada", label: "Jet Interceptor", deskripsi: "Satu Pencegat", biaya_pembangunan: 63750000, waktu_pembangunan: 90, biaya_pemeliharaan: 55 },
+  { key: "bomber", category: "Armada", label: "Pesawat Pengebom", deskripsi: "Serangan Udara", biaya_pembangunan: 187500000, waktu_pembangunan: 180, biaya_pemeliharaan: 180 },
+  { key: "heli_attack", category: "Armada", label: "Heli Serang", deskripsi: "Bantuan Udara", biaya_pembangunan: 41250000, waktu_pembangunan: 45, biaya_pemeliharaan: 25 },
+  { key: "recon_plane", category: "Armada", label: "Pesawat Intai", deskripsi: "Intelijen Udara", biaya_pembangunan: 71250000, waktu_pembangunan: 90, biaya_pemeliharaan: 20 },
+  { key: "uav", category: "Armada", label: "Drone UAV", deskripsi: "Intai Tanpa Awak", biaya_pembangunan: 11250000, waktu_pembangunan: 30, biaya_pemeliharaan: 5 },
+  { key: "kamikaze", category: "Armada", label: "Drone Kamikaze", deskripsi: "Serangan Bunuh Diri", biaya_pembangunan: 3750000, waktu_pembangunan: 7, biaya_pemeliharaan: 1 },
+  { key: "transport", category: "Armada", label: "Pesawat Angkut", deskripsi: "Logistik Udara", biaya_pembangunan: 56250000, waktu_pembangunan: 60, biaya_pemeliharaan: 15 }
 ];

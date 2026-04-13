@@ -58,9 +58,9 @@ PRODUCTION_RATES = {
 # Used to calculate social stability needs
 # ============================================================
 HOUSING_CAPACITIES = {
-    "10_apartemen": 6000,
-    "9_rumah_subsidi": 5,
-    "11_mansion": 10
+    "apartemen": 6000,
+    "rumah_subsidi": 5,
+    "mansion": 10
 }
 
 # Material keys for checking stocks
@@ -176,6 +176,7 @@ def decide(data):
     queue_count = data.get("queue_count", 0)
     population = data.get("population", 0)
     root_cause = data.get("root_cause", "none")
+    happiness = data.get("happiness", 100)
 
     # ── BUDGET ALLOCATION ──────────────────────────────────
     # Reserve 7 days of income as safety buffer (REDUCED from 30 to be more aggressive)
@@ -258,51 +259,74 @@ def decide(data):
     homeless_rate = (housing_deficit / population) if population > 0 else 0
     
     # 2. Decision Logic
-    if root_cause == "housing" or homeless_rate > 0.05: # Emergency if >5% homeless
-        # Get ALL housing options (even those we can't afford yet, to compare efficiency)
+    # ── PHASE 1: BOILING POINT (Happiness <= 30% or Massive Homelessness) ──
+    if happiness <= 30 or homeless_rate > 0.15:
+        all_res = [o for o in options if o.get("key") in HOUSING_CAPACITIES]
+        if all_res:
+            # Strictly use LARGE CAPACITY buildings (Apartemen) to kill the crisis fast
+            large_cap_building = max(all_res, key=lambda o: HOUSING_CAPACITIES[o['key']])
+            candidate = next((item for item in affordable_candidates if item[0]['key'] == large_cap_building['key']), None)
+            
+            if candidate:
+                budget_buffer = daily_income * 1 # Aggressive buffer during emergency
+                if budget > (candidate[1] + budget_buffer):
+                    return _execute(candidate[0], candidate[1], 
+                                    f"TITIK DIDIH ({happiness:.0f}%): Keadaan darurat sosial. Membangun {candidate[0]['key']} kapasitas besar secepat mungkin.", 
+                                    budget, spendable_budget)
+            elif budget < large_cap_building.get("biaya_pembangunan", 0) + (daily_income * 2):
+                return {
+                    "decision": "SKIP",
+                    "reason": f"TITIK DIDIH ({happiness:.0f}%): Menabung darurat untuk {large_cap_building['key']} demi menyelamatkan stabilitas negara.",
+                    "budget_analysis": {"budget": budget, "target": large_cap_building.get("biaya_pembangunan")}
+                }
+
+    # ── PHASE 2: PROACTIVE / CRISIS (Happiness <= 50% or Homeless > 5%) ──
+    if root_cause == "housing" or homeless_rate > 0.05 or happiness <= 50:
         all_res_options = [o for o in options if o.get("key") in HOUSING_CAPACITIES]
         if all_res_options:
-            # Find the "Gold Standard" (most efficient building overall, usually Apartemen)
-            gold_candidates = [o for o in all_res_options if o.get("biaya_pembangunan", 0) > 0]
-            if gold_candidates:
-                gold_standard = max(gold_candidates, key=lambda o: HOUSING_CAPACITIES[o['key']] / o.get("biaya_pembangunan", 1))
+            gold_standard = max(all_res_options, key=lambda o: HOUSING_CAPACITIES[o['key']] / o.get("biaya_pembangunan", 1))
+            affordable_res = [item for item in affordable_candidates if item[0].get("key") in HOUSING_CAPACITIES]
+            
+            if affordable_res:
+                best_affordable = max(affordable_res, key=lambda x: HOUSING_CAPACITIES[x[0]['key']] / x[1])
                 
-                # Now check what we can actually afford
-                affordable_res = [item for item in affordable_candidates if item[0].get("key") in HOUSING_CAPACITIES]
-                
-                if affordable_res:
-                    # Pick the best affordable one
-                    best_affordable = max(affordable_res, key=lambda x: HOUSING_CAPACITIES[x[0]['key']] / x[1])
-                    
-                    # MATURE CALCULATION: If the best affordable is MUCH worse than the Gold Standard,
-                    # and we have a massive deficit, we should just WAIT and save money.
-                    is_huge_deficit = housing_deficit > 1000
+                # Efficiency Maturity Check
+                if housing_deficit > 1000 and best_affordable[0]['key'] != gold_standard['key']:
                     efficiency_gap = (HOUSING_CAPACITIES[gold_standard['key']] / gold_standard['biaya_pembangunan']) / \
                                      (HOUSING_CAPACITIES[best_affordable[0]['key']] / best_affordable[1])
-                    
-                    if is_huge_deficit and efficiency_gap > 10 and best_affordable[0]['key'] != gold_standard['key']:
-                        # It's better to wait for the efficient building
+                    if efficiency_gap > 10:
                         return {
                             "decision": "SKIP",
-                            "reason": f"KALKULASI MATANG: Menabung untuk {gold_standard['key']} karena jauh lebih efisien untuk defisit {housing_deficit:,.0f} jiwa. Dana: {budget:,.0f}, butuh: {gold_standard['biaya_pembangunan']:,.0f}.",
+                            "reason": f"PROAKTIF: Menabung untuk {gold_standard['key']} (lebih efisien) demi mencegah krisis kepuasan ({happiness:.0f}%).",
                             "budget_analysis": {"budget": budget, "target": gold_standard['biaya_pembangunan']}
                         }
-        
-                    # Mature Financial Check:
-                    # Only build if we can afford it AND maintain a 2-day operational buffer
-                    fiscal_buffer = daily_income * 2
-                    if budget > (best_affordable[1] + fiscal_buffer):
-                        severity = "DARURAT" if homeless_rate > 0.15 else "SERIUS"
-                        return _execute(best_affordable[0], best_affordable[1], 
-                                        f"STABILITAS SOSIAL ({severity}): Defisit hunian {housing_deficit:,.0f} jiwa ({homeless_rate:.1%}). "
-                                        f"Membangun {best_affordable[0]['key']} (Efisiensi: {HOUSING_CAPACITIES[best_affordable[0]['key']]} jiwa).", 
-                                        budget, spendable_budget)
-                    else:
-                        return {
-                            "decision": "SKIP",
-                            "reason": f"KRISIS SOSIAL: Butuh hunian ({homeless_rate:.1%}), tapi dana tidak cukup untuk kalkulasi matang (butuh {best_affordable[1] + fiscal_buffer:,.0f}).",
-                            "budget_analysis": {"budget": budget, "required_with_buffer": best_affordable[1] + fiscal_buffer}
-                        }
+
+                budget_buffer = daily_income * 2
+                if budget > (best_affordable[1] + budget_buffer):
+                    reason_prefix = "SIGAP & TANGGAP" if happiness > 30 else "KRISIS SOSIAL"
+                    return _execute(best_affordable[0], best_affordable[1], 
+                                    f"{reason_prefix}: Mencegah penurunan kepuasan ({happiness:.0f}%). Membangun {best_affordable[0]['key']}.", 
+                                    budget, spendable_budget)
+
+    # ── PHASE 3: STABILIZATION ROTATION (Happiness > 50% and Low Homeless) ──
+    # If there is still a small deficit, pick RANDOMLY between housing types for demographic balance
+    if 0 < homeless_rate <= 0.05:
+        affordable_res = [item for item in affordable_candidates if item[0].get("key") in HOUSING_CAPACITIES]
+        if affordable_res:
+             # Mature Buffer
+             fiscal_buffer = daily_income * 4 # Be very safe when not in crisis
+             can_afford_extra = [item for item in affordable_res if budget > (item[1] + fiscal_buffer)]
+             
+             if can_afford_extra:
+                 # Rotate: Weighted selection based on current presence
+                 # AI prefers building what it has FEWER of to create balance
+                 housing_counts = {k: buildings.get(k, 0) for k in HOUSING_CAPACITIES}
+                 # Weight is Inversion of count (more weight if fewer exist)
+                 chosen_item = min(can_afford_extra, key=lambda x: housing_counts.get(x[0]['key'], 0))
+                 
+                 return _execute(chosen_item[0], chosen_item[1], 
+                                 f"ROTASI RESIDENSIAL: Stabilitas terjaga ({happiness:.0f}%). Menyeimbangkan komposisi hunian dengan {chosen_item[0]['key']}.", 
+                                 budget, spendable_budget)
 
 
     # ── PRIORITY 1: MATERIAL SURVIVAL ──────────────────────

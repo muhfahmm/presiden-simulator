@@ -9,7 +9,7 @@ export const peternakanRate = {
     produksi: 150000,
     satuan: "EKOR",
     waktu_pembangunan: 7,
-    biaya_pembangunan: 12000000,
+    biaya_pembangunan: 9000000, // Reduced from 12M
     lowongan_kerja: 1500,
     konsumsi_listrik: 15
   },
@@ -20,7 +20,7 @@ export const peternakanRate = {
     produksi: 75000,
     satuan: "LITER",
     waktu_pembangunan: 15,
-    biaya_pembangunan: 28000000,
+    biaya_pembangunan: 21000000, // Reduced from 28M
     lowongan_kerja: 2500,
     konsumsi_listrik: 25
   },
@@ -31,7 +31,7 @@ export const peternakanRate = {
     produksi: 12000,
     satuan: "EKOR",
     waktu_pembangunan: 20,
-    biaya_pembangunan: 35000000,
+    biaya_pembangunan: 26250000, // Reduced from 35M
     lowongan_kerja: 2800,
     konsumsi_listrik: 20
   },
@@ -42,7 +42,7 @@ export const peternakanRate = {
     produksi: 18000,
     satuan: "EKOR",
     waktu_pembangunan: 10,
-    biaya_pembangunan: 18000000,
+    biaya_pembangunan: 13500000, // Reduced from 18M
     lowongan_kerja: 1800,
     konsumsi_listrik: 18
   }

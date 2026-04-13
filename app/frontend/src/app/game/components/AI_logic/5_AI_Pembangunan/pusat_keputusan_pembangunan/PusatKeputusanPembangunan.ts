@@ -5,6 +5,7 @@ import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_
 import { aiBuildingStorage } from "../antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "../antarmuka_data_pembangunan/AIProductionStorage";
 import { aiRootCauseStorage } from "../../../map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/socialDiagnosisStorage";
+import { aiHappinessStorage } from "../../../map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { EksekutorPembangunanAI } from "../sistem_tindakan_respon/EksekutorPembangunanAI";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
@@ -19,7 +20,7 @@ import {
     farmasiRate
 } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi";
 import { pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer";
-import { infrastrukturRate, sosialRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
+import { infrastrukturRate, sosialRate, hunianRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
 import { BUILDING_REQUIREMENTS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/1-produksi/MaterialRequirement";
 
 // Consolidate ALL building options with full metadata (costs, requirements, production rate)
@@ -35,6 +36,7 @@ const ALL_OPTIONS: any[] = [
     ...Object.entries(pabrikMiliterRate).map(([key, v]: any) => ({ key, ...v, groupId: 'militer', requirements: BUILDING_REQUIREMENTS[key] || { beton:0, kayu:0, baja:0 } })),
     ...Object.entries(infrastrukturRate).map(([key, v]: any) => ({ key, ...v, groupId: 'infrastruktur', requirements: BUILDING_REQUIREMENTS[key] || { beton:0, kayu:0, baja:0 } })),
     ...Object.entries(sosialRate).map(([key, v]: any) => ({ key, ...v, groupId: v.groupId || 'sosial', requirements: BUILDING_REQUIREMENTS[key] || { beton:0, kayu:0, baja:0 } })),
+    ...Object.entries(hunianRate).map(([key, v]: any) => ({ key, ...v, groupId: 'hunian', requirements: BUILDING_REQUIREMENTS[key] || { beton:0, kayu:0, baja:0 } })),
 ];
 
 /**
@@ -143,7 +145,8 @@ export class PusatKeputusanPembangunan {
           options: ALL_OPTIONS,
           queue_count: queue.length,
           population: Number(country.jumlah_penduduk) || 0,
-          root_cause: socialDiagnosis.root_cause
+          root_cause: socialDiagnosis.root_cause,
+          happiness: aiHappinessStorage.getSatisfaction(countryNameEn) // Pass numerical score
         })
       });
 

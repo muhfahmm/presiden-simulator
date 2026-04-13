@@ -9,7 +9,7 @@ export const perikananRate = {
     produksi: 75000,
     satuan: "KG",
     waktu_pembangunan: 15,
-    biaya_pembangunan: 32000000,
+    biaya_pembangunan: 24000000, // Reduced from 32M
     lowongan_kerja: 3500,
     konsumsi_listrik: 25
   },
@@ -20,7 +20,7 @@ export const perikananRate = {
     produksi: 120000,
     satuan: "KG",
     waktu_pembangunan: 10,
-    biaya_pembangunan: 20000000,
+    biaya_pembangunan: 15000000, // Reduced from 20M
     lowongan_kerja: 4500,
     konsumsi_listrik: 18
   },
@@ -31,7 +31,7 @@ export const perikananRate = {
     produksi: 15000,
     satuan: "GRAM",
     waktu_pembangunan: 30,
-    biaya_pembangunan: 55000000,
+    biaya_pembangunan: 41250000, // Reduced from 55M
     lowongan_kerja: 2500,
     konsumsi_listrik: 45
   }

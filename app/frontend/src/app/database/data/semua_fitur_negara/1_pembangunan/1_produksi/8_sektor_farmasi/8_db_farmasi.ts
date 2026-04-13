@@ -9,7 +9,7 @@ export const farmasiRate = {
     produksi: 45000,
     satuan: "BOX",
     waktu_pembangunan: 50,
-    biaya_pembangunan: 125000000,
+    biaya_pembangunan: 93750000, // Reduced from 125M
     lowongan_kerja: 12000,
     konsumsi_listrik: 250
   }

@@ -9,7 +9,7 @@ export const manufakturRate = {
     produksi: 150,
     satuan: "UNIT",
     waktu_pembangunan: 360,
-    biaya_pembangunan: 150000000,
+    biaya_pembangunan: 112500000, // Reduced from 150M
     lowongan_kerja: 15000,
     konsumsi_listrik: 650
   },
@@ -20,7 +20,7 @@ export const manufakturRate = {
     produksi: 5500,
     satuan: "UNIT",
     waktu_pembangunan: 240,
-    biaya_pembangunan: 85000000,
+    biaya_pembangunan: 63750000, // Reduced from 85M
     lowongan_kerja: 35000,
     konsumsi_listrik: 420
   },
@@ -31,7 +31,7 @@ export const manufakturRate = {
     produksi: 18000,
     satuan: "UNIT",
     waktu_pembangunan: 120,
-    biaya_pembangunan: 45000000,
+    biaya_pembangunan: 33750000, // Reduced from 45M
     lowongan_kerja: 22000,
     konsumsi_listrik: 280
   },
@@ -42,7 +42,7 @@ export const manufakturRate = {
     produksi: 35000,
     satuan: "TON",
     waktu_pembangunan: 180,
-    biaya_pembangunan: 95000000,
+    biaya_pembangunan: 71250000, // Reduced from 95M
     lowongan_kerja: 12000,
     konsumsi_listrik: 950
   },
@@ -53,7 +53,7 @@ export const manufakturRate = {
     produksi: 95000,
     satuan: "TON",
     waktu_pembangunan: 90,
-    biaya_pembangunan: 35000000,
+    biaya_pembangunan: 26250000, // Reduced from 35M
     lowongan_kerja: 8000,
     konsumsi_listrik: 580
   },
@@ -64,7 +64,7 @@ export const manufakturRate = {
     produksi: 32000,
     satuan: "M3",
     waktu_pembangunan: 60,
-    biaya_pembangunan: 18000000,
+    biaya_pembangunan: 13500000, // Reduced from 18M
     lowongan_kerja: 5000,
     konsumsi_listrik: 150
   },
@@ -75,7 +75,7 @@ export const manufakturRate = {
     produksi: 42000,
     satuan: "TON",
     waktu_pembangunan: 90,
-    biaya_pembangunan: 25000000,
+    biaya_pembangunan: 18750000, // Reduced from 25M
     lowongan_kerja: 7000,
     konsumsi_listrik: 320
   }

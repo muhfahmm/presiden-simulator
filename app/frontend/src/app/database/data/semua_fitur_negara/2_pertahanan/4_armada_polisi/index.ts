@@ -26,7 +26,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "markas_besar_polri",
     label: "Markas Besar Polisi Nasional",
     deskripsi: "Pusat Komando & Pengendali Keamanan Nasional",
-    biaya_pembangunan: 125000000,
+    biaya_pembangunan: 93750000, // Reduced from 125M
     waktu_pembangunan: 90,
 
     lowongan_kerja: 45000,
@@ -38,7 +38,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "akademi_kepolisian",
     label: "Akademi Kepolisian Nasional",
     deskripsi: "Pusat Pendidikan & Pelatihan Perwira",
-    biaya_pembangunan: 45000000,
+    biaya_pembangunan: 33750000, // Reduced from 45M
     waktu_pembangunan: 60,
 
     lowongan_kerja: 8500,
@@ -50,7 +50,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "pusat_forensik",
     label: "Pusat Lab Forensik Nasional",
     deskripsi: "Identifikasi Digital & Fisik Terpadu",
-    biaya_pembangunan: 35000000,
+    biaya_pembangunan: 26250000, // Reduced from 35M
     waktu_pembangunan: 60,
 
     lowongan_kerja: 2500,
@@ -64,7 +64,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "kantor_polisi",
     label: "Kantor Polisi Resor (Polres)",
     deskripsi: "Pusat Komando Keamanan Wilayah",
-    biaya_pembangunan: 25000000,
+    biaya_pembangunan: 18750000, // Reduced from 25M
     waktu_pembangunan: 30,
 
     lowongan_kerja: 5500,
@@ -76,7 +76,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "pos_polisi",
     label: "Unit Pelayanan Polsek",
     deskripsi: "Pelayanan Keamanan Masyarakat Terpadu",
-    biaya_pembangunan: 10000000,
+    biaya_pembangunan: 7500000, // Reduced from 10M
     waktu_pembangunan: 30,
 
     lowongan_kerja: 1200,
@@ -88,7 +88,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "network_cctv",
     label: "Jaringan Surveillance Kota",
     deskripsi: "Sistem Pengawasan CCTV Terintegrasi",
-    biaya_pembangunan: 15000000,
+    biaya_pembangunan: 11250000, // Reduced from 15M
     waktu_pembangunan: 5,
 
     lowongan_kerja: 800,
@@ -102,7 +102,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "armada_mobil_polisi",
     label: "Armada Mobil Patroli",
     deskripsi: "Unit Reaksi Cepat & Logistik Polisi",
-    biaya_pembangunan: 5000000,
+    biaya_pembangunan: 3750000, // Reduced from 5M
     waktu_pembangunan: 15,
 
     lowongan_kerja: 500,
@@ -114,7 +114,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "mobil_patroli_interceptor",
     label: "Mobil Patroli Interceptor",
     deskripsi: "Unit Pengejaran & Patroli Jalan Raya",
-    biaya_pembangunan: 3000000,
+    biaya_pembangunan: 2250000, // Reduced from 3M
     waktu_pembangunan: 15,
 
     lowongan_kerja: 200,
@@ -126,7 +126,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "unit_roda_dua",
     label: "Unit Patroli Roda Dua",
     deskripsi: "Patroli Gesit & Respon Cepat Kota",
-    biaya_pembangunan: 1500000,
+    biaya_pembangunan: 1125000, // Reduced from 1.5M
     waktu_pembangunan: 7,
 
     lowongan_kerja: 100,
@@ -138,7 +138,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "helikopter_polisi",
     label: "Helikopter Patroli Polisi",
     deskripsi: "Pengawasan & Respon Taktis Udara",
-    biaya_pembangunan: 45000000,
+    biaya_pembangunan: 33750000, // Reduced from 45M
     waktu_pembangunan: 90,
 
     lowongan_kerja: 1500,
@@ -152,7 +152,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "unit_k9",
     label: "Unit K-9 Nasional",
     deskripsi: "Pasukan Pelacak & K-9 Taktis",
-    biaya_pembangunan: 3000000,
+    biaya_pembangunan: 2250000, // Reduced from 3M
     waktu_pembangunan: 7,
 
     lowongan_kerja: 800,
@@ -164,7 +164,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "pasukan_swat",
     label: "Pasukan Taktis Khusus (Brimob)",
     deskripsi: "Unit Anti-Teror & Respon Taktis Tinggi",
-    biaya_pembangunan: 35000000,
+    biaya_pembangunan: 26250000, // Reduced from 35M
     waktu_pembangunan: 60,
 
     lowongan_kerja: 8500,
@@ -176,7 +176,7 @@ export const armadaPolisiRate: Record<string, any> = {
     dataKey: "samapta",
     label: "Pasukan Samapta & Pengamanan",
     deskripsi: "Pemeliharaan Ketertiban & Anti Huru-Hara",
-    biaya_pembangunan: 20000000,
+    biaya_pembangunan: 15000000, // Reduced from 20M
     waktu_pembangunan: 30,
 
     lowongan_kerja: 12000,
