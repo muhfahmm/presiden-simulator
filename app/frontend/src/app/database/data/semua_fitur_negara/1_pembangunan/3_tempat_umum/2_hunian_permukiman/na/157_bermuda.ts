@@ -1,7 +1,7 @@
 import { HunianData } from "..";
 
 export const bermuda_hunian: HunianData = {
-  rumah_subsidi: 1,
-  apartemen: 0,
-  mansion: 0,
+  rumah_subsidi: 863,
+  apartemen: 12,
+  mansion: 431,
 };

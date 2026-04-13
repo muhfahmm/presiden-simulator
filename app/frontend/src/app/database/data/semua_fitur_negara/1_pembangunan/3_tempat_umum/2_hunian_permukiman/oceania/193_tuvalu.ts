@@ -1,7 +1,7 @@
 import { HunianData } from "..";
 
 export const tuvalu_hunian: HunianData = {
-  rumah_subsidi: 0,
-  apartemen: 0,
-  mansion: 0,
+  rumah_subsidi: 155,
+  apartemen: 2,
+  mansion: 77,
 };

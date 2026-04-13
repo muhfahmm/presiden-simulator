@@ -1,7 +1,7 @@
 import { HunianData } from "..";
 
 export const costa_rica_hunian: HunianData = {
-  rumah_subsidi: 99,
-  apartemen: 19,
-  mansion: 1,
+  rumah_subsidi: 67492,
+  apartemen: 1012,
+  mansion: 33746,
 };

@@ -1,7 +1,7 @@
 import { HunianData } from "..";
 
 export const latvia_hunian: HunianData = {
-  rumah_subsidi: 38,
-  apartemen: 7,
-  mansion: 0,
+  rumah_subsidi: 26016,
+  apartemen: 390,
+  mansion: 13008,
 };

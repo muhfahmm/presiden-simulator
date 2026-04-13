@@ -1,7 +1,7 @@
 import { HunianData } from "..";
 
 export const yordania_hunian: HunianData = {
-  rumah_subsidi: 199,
-  apartemen: 39,
-  mansion: 3,
+  rumah_subsidi: 134406,
+  apartemen: 2016,
+  mansion: 67203,
 };

@@ -1,7 +1,7 @@
 import { HunianData } from "..";
 
 export const selandia_baru_hunian: HunianData = {
-  rumah_subsidi: 96,
-  apartemen: 19,
-  mansion: 1,
+  rumah_subsidi: 65353,
+  apartemen: 980,
+  mansion: 32676,
 };

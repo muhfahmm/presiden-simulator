@@ -1,7 +1,7 @@
 import { HunianData } from "..";
 
 export const kanada_hunian: HunianData = {
-  rumah_subsidi: 741,
-  apartemen: 148,
-  mansion: 14,
+  rumah_subsidi: 500279,
+  apartemen: 7504,
+  mansion: 250139,
 };

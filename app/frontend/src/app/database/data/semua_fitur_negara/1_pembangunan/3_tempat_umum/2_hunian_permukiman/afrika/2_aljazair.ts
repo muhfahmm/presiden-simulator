@@ -1,7 +1,7 @@
 import { HunianData } from "..";
 
 export const aljazair_hunian: HunianData = {
-  rumah_subsidi: 844,
-  apartemen: 168,
-  mansion: 16,
+  rumah_subsidi: 570083,
+  apartemen: 8551,
+  mansion: 285041,
 };
