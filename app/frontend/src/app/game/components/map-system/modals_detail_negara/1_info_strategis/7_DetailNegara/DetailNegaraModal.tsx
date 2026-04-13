@@ -5,7 +5,8 @@ import {
   X, Activity, Zap, Pickaxe, Factory, Beef, Wheat, Pill, Utensils, 
   Shield, Swords, Eye, Search, Home, GraduationCap, HeartPulse, 
   Scale, Siren, Landmark, Info, Briefcase, Users2, Cloud, Target,
-  Mountain, Gem, Waves, Battery, Box, Cpu, TreePine, Droplets, Flame, Radio, Hammer
+  Mountain, Gem, Waves, Battery, Box, Cpu, TreePine, Droplets, Flame, Radio, Hammer,
+  Clapperboard, Building2, Archive
 } from "lucide-react";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
@@ -19,10 +20,28 @@ interface DetailNegaraModalProps {
   onClose: () => void;
   targetCountry: string;
   isUser: boolean;
+  activeSector?: string;
+  setActiveMenu: (menu: string) => void;
 }
 
-export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUser }: DetailNegaraModalProps) {
-  const [activeSector, setActiveSector] = useState<string>("produksi");
+export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUser, activeSector, setActiveMenu }: DetailNegaraModalProps) {
+  const currentSector = activeSector || "produksi";
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  // Reactivity: Refresh when construction state changes
+  useEffect(() => {
+    const handleUpdate = () => {
+      setRefreshKey(prev => prev + 1);
+    };
+
+    window.addEventListener('building_storage_updated', handleUpdate);
+    window.addEventListener('ai_building_updated', handleUpdate);
+    
+    return () => {
+      window.removeEventListener('building_storage_updated', handleUpdate);
+      window.removeEventListener('ai_building_updated', handleUpdate);
+    };
+  }, []);
 
   if (!isOpen) return null;
 
@@ -43,11 +62,16 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
     ? budgetStorage.getCumulativeProduction()
     : aiProductionStorage.getStocks(countryEntry.name_en);
 
+  // Get Construction Queue
+  const constructionQueue = isUser
+    ? buildingStorage.getQueue()
+    : aiBuildingStorage.getQueue(countryEntry.name_en);
+
   const sectors = [
     { id: "produksi", label: "Produksi", icon: Factory },
     { id: "militer", label: "Militer", icon: Shield },
-    { id: "fasilitas", label: "Layanan Publik", icon: Landmark },
-    { id: "hunian", label: "Hunian & Sosial", icon: Home },
+    { id: "layanan_publik", label: "Layanan Publik", icon: Landmark },
+    { id: "hunian_sosial", label: "Hunian & Sosial", icon: Home },
   ];
 
   return (
@@ -82,9 +106,9 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
           {sectors.map((s) => (
             <button
               key={s.id}
-              onClick={() => setActiveSector(s.id)}
+              onClick={() => setActiveMenu(`CountryModal:${countryEntry.name_id.toLowerCase()}:info_strategis:detail_lengkap:${s.id}`)}
               className={`flex items-center gap-2.5 px-6 py-3 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all cursor-pointer ${
-                activeSector === s.id 
+                currentSector === s.id 
                   ? "bg-amber-500 text-black shadow-[0_0_20px_rgba(245,158,11,0.2)]" 
                   : "bg-zinc-900/50 text-zinc-500 hover:text-zinc-200 border border-zinc-800/50"
               }`}
@@ -97,110 +121,174 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
 
         {/* Content Area */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/30">
-          {activeSector === "produksi" && (
+          {currentSector === "produksi" && (
             <div className="space-y-10">
               <ProductionSection 
-                title="Sektor Energi" 
+                title="1. Sektor Energi" 
                 items={countryEntry.sektor_listrik} 
                 buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="listrik"
               />
               <ProductionSection 
-                title="Sektor Ekstraksi & Mineral" 
+                title="2. Sektor Mineral Kritis" 
                 items={countryEntry.sektor_ekstraksi} 
                 buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="ekstraksi"
               />
               <ProductionSection 
-                title="Sektor Manufaktur" 
+                title="3. Sektor Manufaktur" 
                 items={countryEntry.sektor_manufaktur} 
                 buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="manufaktur"
               />
               <ProductionSection 
-                title="Sektor Pangan" 
-                items={{...countryEntry.sektor_agrikultur, ...countryEntry.sektor_peternakan, ...countryEntry.sektor_perikanan, ...countryEntry.sektor_olahan_pangan}} 
+                title="4. Sektor Peternakan" 
+                items={countryEntry.sektor_peternakan} 
                 buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
+                stocks={stocks}
+                type="peternakan"
+              />
+              <ProductionSection 
+                title="5. Sektor Agrikultur" 
+                items={countryEntry.sektor_agrikultur} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
+                stocks={stocks}
+                type="agrikultur"
+              />
+              <ProductionSection 
+                title="6. Sektor Perikanan" 
+                items={countryEntry.sektor_perikanan} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
+                stocks={stocks}
+                type="perikanan"
+              />
+              <ProductionSection 
+                title="7. Sektor Olahan Pangan" 
+                items={countryEntry.sektor_olahan_pangan} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="pangan"
               />
-            </div>
-          )}
-
-          {activeSector === "militer" && (
-            <div className="space-y-10">
-              <SimpleGridSection 
-                title="Armada Militer" 
-                data={countryEntry.armada_militer} 
-                icon={Swords}
-                color="text-red-500"
-              />
-              <SimpleGridSection 
-                title="Sektor Pertahanan & Strategis" 
-                data={countryEntry.sektor_pertahanan} 
-                icon={Shield}
-                color="text-amber-500"
-              />
-              <SimpleGridSection 
-                title="Pabrik Militer" 
-                data={countryEntry.pabrik_militer} 
-                icon={Factory}
-                color="text-blue-500"
+              <ProductionSection 
+                title="8. Sektor Farmasi" 
+                items={countryEntry.sektor_farmasi} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
+                stocks={stocks}
+                type="farmasi"
               />
             </div>
           )}
 
-          {activeSector === "fasilitas" && (
+          {currentSector === "militer" && (
+            <div className="space-y-10">
+              <ProductionSection 
+                title="1. Pabrik Militer Nasional" 
+                items={countryEntry.pabrik_militer} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
+                stocks={stocks}
+                type="militer"
+              />
+            </div>
+          )}
+
+          {currentSector === "layanan_publik" && (
             <div className="space-y-10">
               <SimpleGridSection 
-                title="Pendidikan" 
+                title="1. Sektor Infrastruktur & Logistik" 
+                data={countryEntry.infrastruktur} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
+                icon={Activity}
+                color="text-emerald-500"
+              />
+              <SimpleGridSection 
+                title="2. Sektor Pendidikan & Riset" 
                 data={countryEntry.pendidikan} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
                 icon={GraduationCap}
-                color="text-cyan-500"
+                color="text-indigo-500"
               />
               <SimpleGridSection 
-                title="Kesehatan" 
+                title="3. Sektor Layanan Kesehatan" 
                 data={countryEntry.kesehatan} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
                 icon={HeartPulse}
                 color="text-rose-500"
               />
               <SimpleGridSection 
-                title="Hukum & Keamanan" 
+                title="4. Sektor Hukum & Keamanan" 
                 data={countryEntry.hukum} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
                 icon={Scale}
-                color="text-indigo-500"
+                color="text-cyan-500"
               />
               <SimpleGridSection 
-                title="Infrastruktur Umum" 
-                data={countryEntry.infrastruktur} 
-                icon={Activity}
-                color="text-emerald-500"
-              />
-            </div>
-          )}
-
-          {activeSector === "hunian" && (
-            <div className="space-y-10">
-              <SimpleGridSection 
-                title="Sektor Hunian" 
-                data={countryEntry.hunian} 
-                icon={Home}
-                color="text-amber-600"
-              />
-              <SimpleGridSection 
-                title="Olahraga & Rekreasi" 
+                title="5. Sektor Olahraga & Rekreasi" 
                 data={countryEntry.sektor_olahraga} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
                 icon={Target}
                 color="text-lime-500"
               />
               <SimpleGridSection 
-                title="Komersial" 
+                title="6. Sektor Komersial & Retail" 
                 data={countryEntry.sektor_komersial} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
                 icon={Briefcase}
-                color="text-zinc-400"
+                color="text-amber-500"
+              />
+              <SimpleGridSection 
+                title="7. Sektor Hiburan & Seni" 
+                data={countryEntry.sektor_hiburan} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
+                icon={Clapperboard}
+                color="text-purple-500"
+              />
+            </div>
+          )}
+
+          {currentSector === "hunian_sosial" && (
+            <div className="space-y-10">
+              <SimpleGridSection 
+                title="1. Sektor Hunian Rakyat (Subsidi)" 
+                data={countryEntry.hunian?.rumah_subsidi !== undefined ? { rumah_subsidi: countryEntry.hunian.rumah_subsidi } : {}} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
+                icon={Home}
+                color="text-emerald-600"
+              />
+              <SimpleGridSection 
+                title="2. Sektor Hunian Vertikal (Apartemen)" 
+                data={countryEntry.hunian?.apartemen !== undefined ? { apartemen: countryEntry.hunian.apartemen } : {}} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
+                icon={Building2}
+                color="text-cyan-600"
+              />
+              <SimpleGridSection 
+                title="3. Sektor Hunian Mewah (Mansion)" 
+                data={countryEntry.hunian?.mansion !== undefined ? { mansion: countryEntry.hunian.mansion } : {}} 
+                buildingDeltas={buildingDeltas}
+                constructionQueue={constructionQueue}
+                icon={Landmark}
+                color="text-amber-600"
               />
             </div>
           )}
@@ -210,7 +298,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
   );
 }
 
-function ProductionSection({ title, items, buildingDeltas, stocks, type }: any) {
+function ProductionSection({ title, items, buildingDeltas, constructionQueue, stocks, type }: any) {
   if (!items) return null;
 
   return (
@@ -218,10 +306,14 @@ function ProductionSection({ title, items, buildingDeltas, stocks, type }: any) 
       <h3 className="text-lg font-black text-white uppercase tracking-widest italic mb-4 flex items-center gap-3">
         <div className="w-1.5 h-6 bg-amber-500 rounded-full" />
         {title}
+        <span className="text-amber-500 ml-2 font-black lowercase italic text-[10px] tracking-normal bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
+          ({Object.keys(items || {}).length} Jenis)
+        </span>
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {Object.entries(items).map(([key, baseline]: [string, any]) => {
-          const delta = buildingDeltas[key] || 0;
+          // Normalisasi delta: cari key langsung atau yang berawalan angka_ (misal 3_plts)
+          const delta = buildingDeltas[key] || Object.entries(buildingDeltas).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1] || 0;
           const total = Number(baseline || 0) + Number(delta);
           if (total <= 0 && baseline === undefined) return null;
 
@@ -230,7 +322,7 @@ function ProductionSection({ title, items, buildingDeltas, stocks, type }: any) 
           return (
             <div key={key} className="bg-zinc-900/40 border border-zinc-800/60 p-4 rounded-2xl flex flex-col gap-3 group hover:border-amber-500/30 transition-all">
               <div className="flex justify-between items-start">
-                <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter truncate max-w-[150px]">
+                <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter leading-tight pr-4">
                   {key.replace(/_/g, " ")}
                 </span>
                 <div className="p-1.5 bg-zinc-950 rounded-lg border border-zinc-800">
@@ -238,9 +330,28 @@ function ProductionSection({ title, items, buildingDeltas, stocks, type }: any) 
                 </div>
               </div>
               <div className="flex flex-col gap-0.5">
-                <span className="text-xl font-black text-white tracking-tighter">
-                  {total.toLocaleString('id-ID')}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xl font-black text-white tracking-tighter">
+                    {(() => {
+                      const inProgress = constructionQueue?.filter((q: any) => {
+                        const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
+                        return q.buildingKey === key || normalizedQKey === key;
+                      }).length || 0;
+                      return (total + inProgress).toLocaleString('id-ID');
+                    })()}
+                  </span>
+                  {(() => {
+                    const inProgress = constructionQueue?.filter((q: any) => {
+                      const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
+                      return q.buildingKey === key || normalizedQKey === key;
+                    }).length || 0;
+                    return inProgress > 0 ? (
+                      <span className="text-[10px] font-black text-amber-500 animate-pulse whitespace-nowrap">
+                        +{inProgress} PEMBANGUNAN
+                      </span>
+                    ) : null;
+                  })()}
+                </div>
                 <span className="text-[9px] font-bold text-zinc-500 uppercase">Kapasitas Produksi</span>
               </div>
               {stocks[key] !== undefined && (
@@ -259,7 +370,7 @@ function ProductionSection({ title, items, buildingDeltas, stocks, type }: any) 
   );
 }
 
-function SimpleGridSection({ title, data, icon: Icon, color }: any) {
+function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, icon: Icon, color }: any) {
   if (!data) return null;
 
   return (
@@ -267,15 +378,21 @@ function SimpleGridSection({ title, data, icon: Icon, color }: any) {
       <h3 className="text-lg font-black text-white uppercase tracking-widest italic mb-4 flex items-center gap-3">
         <div className={`w-1.5 h-6 ${color.replace('text-', 'bg-')} rounded-full`} />
         {title}
+        <span className={`${color} ml-2 font-black lowercase italic text-[10px] tracking-normal ${color.replace('text-', 'bg-')}/10 px-2 py-0.5 rounded-full border ${color.replace('text-', 'border-')}/20`}>
+          ({Object.keys(data || {}).length} Jenis)
+        </span>
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {Object.entries(data).map(([key, val]: [string, any]) => {
-          if (typeof val !== 'number' && typeof val !== 'string') return null;
+          const delta = buildingDeltas[key] || Object.entries(buildingDeltas).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1] || 0;
+          const total = (typeof val === 'number' ? val : Number(val?.toString().replace(/\./g, '') || 0)) + Number(delta);
+          
+          if (total <= 0 && val === undefined) return null;
           
           return (
             <div key={key} className={`bg-zinc-900/40 border border-zinc-800/60 p-4 rounded-2xl flex flex-col gap-3 group hover:border-zinc-500/30 transition-all`}>
               <div className="flex justify-between items-start">
-                <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter truncate max-w-[150px]">
+                <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter leading-tight pr-4">
                   {key.replace(/_/g, " ")}
                 </span>
                 <div className="p-1.5 bg-zinc-950 rounded-lg border border-zinc-800">
@@ -283,9 +400,28 @@ function SimpleGridSection({ title, data, icon: Icon, color }: any) {
                 </div>
               </div>
               <div className="flex flex-col gap-0.5">
-                <span className={`text-xl font-black text-white tracking-tighter`}>
-                  {typeof val === 'number' ? val.toLocaleString('id-ID') : val}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className={`text-xl font-black text-white tracking-tighter`}>
+                    {(() => {
+                      const inProgress = constructionQueue?.filter((q: any) => {
+                        const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
+                        return q.buildingKey === key || normalizedQKey === key;
+                      }).length || 0;
+                      return (total + inProgress).toLocaleString('id-ID');
+                    })()}
+                  </span>
+                  {(() => {
+                    const inProgress = constructionQueue?.filter((q: any) => {
+                      const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
+                      return q.buildingKey === key || normalizedQKey === key;
+                    }).length || 0;
+                    return inProgress > 0 ? (
+                      <span className={`text-[10px] font-black ${color} animate-pulse whitespace-nowrap`}>
+                        +{inProgress} PEMBANGUNAN
+                      </span>
+                    ) : null;
+                  })()}
+                </div>
                 <span className="text-[9px] font-bold text-zinc-500 uppercase">Level / Jumlah</span>
               </div>
             </div>
@@ -309,6 +445,7 @@ function getProductionIcon(key: string) {
   if (key.includes("besi") || key.includes("baja")) return <Hammer size={iconSize} className="text-zinc-400" />;
   if (key.includes("pangan") || key.includes("roti") || key.includes("mie")) return <Utensils size={iconSize} className="text-orange-400" />;
   if (key.includes("obat") || key.includes("farmasi")) return <Pill size={iconSize} className="text-rose-400" />;
+  if (key.includes("amunisi")) return <Archive size={iconSize} className="text-cyan-500" />;
   
   return <Pickaxe size={iconSize} className="text-amber-500" />;
 }

@@ -8,6 +8,7 @@ import { PusatKeputusanAcara } from "./1_AI_Kepuasan/2_naikkan_kepuasan/pusat_ke
 import { PusatKeputusanPembangunan } from "./5_AI_Pembangunan/pusat_keputusan_pembangunan/PusatKeputusanPembangunan";
 import { produksiNegaraAI } from "./5_AI_Pembangunan/sistem_tindakan_respon/ProduksiNegaraAI";
 import { aiBudgetStorage } from "../map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { EksekutorPembangunanAI } from "./5_AI_Pembangunan/sistem_tindakan_respon/EksekutorPembangunanAI";
 import { aiProductionStorage } from "./5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
@@ -61,6 +62,9 @@ export default function AILogicCNS() {
           
           batchIndexRef.current = 0;
           lastDateRef.current = currentDateStr;
+
+          // Check for completed construction projects globally
+          EksekutorPembangunanAI.checkCompletion(currentDate);
         }
 
         // ═══════════════════════════════════════════════

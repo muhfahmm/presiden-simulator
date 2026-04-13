@@ -6,12 +6,13 @@ import { aiProductionStorage } from "../antarmuka_data_pembangunan/AIProductionS
 import { getBuildingRequirement } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/1-produksi/MaterialRequirement";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
 import { addDays, formatGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import { countries } from "@/app/database/data/negara/benua/index";
 
 export class EksekutorPembangunanAI {
   /**
    * Start a construction project for an NPC.
    */
-  static async laksanakan(countryNameEn: string, buildingKey: string, buildingData: any, gameDate: Date) {
+  static async laksanakan(countryNameEn: string, buildingKey: string, buildingData: any, gameDate: Date, currentCount: number) {
     const reqs = getBuildingRequirement(buildingKey);
     const materialReqs = {
       "5_pabrik_semen": reqs.beton || 0,
@@ -86,20 +87,58 @@ export class EksekutorPembangunanAI {
     const dateKey = formatGameDate(gameDate);
 
     if (newsStorage.canAddNews('construction', dateKey)) {
+      const displayLabel = buildingData.deskripsi || buildingData.label || buildingKey;
+      const displaySector = (buildingData.groupId || 'umum').replace(/_/g, " ");
+
+      // Ambil nama dalam Bahasa Indonesia
+      const countryInfo = countries.find(c => c.name_en === countryNameEn);
+      const countryNameId = countryInfo?.name_id || countryNameEn;
+      
       newsStorage.addNews({
-        source: countryNameEn,
-        subject: `Pembangunan: ${buildingData.deskripsi || buildingData.label || buildingKey}`,
-        content: `Pemerintah ${countryNameEn} memulai pembangunan ${buildingData.deskripsi || buildingData.label || buildingKey}. Biaya proyek: ${buildingCost.toLocaleString()}. Sektor: ${buildingData.groupId || 'umum'}.`,
+        source: countryNameId,
+        subject: `Pembangunan: ${displayLabel}`,
+        content: `Pemerintah ${countryNameId} memulai pembangunan ${displayLabel}. Biaya proyek: ${buildingCost.toLocaleString()}. Sektor: ${displaySector}. Kapasitas akan bertambah dari ${currentCount} menjadi ${currentCount + 1} setelah selesai.`,
         category: "construction",
         time: dateKey,
         priority: buildingCost > 50000000 ? 'high' : 'medium'
       });
-      console.log(`[AI NEWS] Pembangunan ${countryNameEn} ditayangkan di Berita.`);
+      console.log(`[AI NEWS] Pembangunan ${countryNameEn} ditayangkan di Berita. Sektor: ${displaySector}`);
     } else {
       console.log(`[AI NEWS] Pembangunan ${countryNameEn} diproses secara senyap (Limit harian tercapai).`);
     }
 
     console.log(`[AI Pembangunan] ${countryNameEn} started building ${buildingData.label}. Finishes on: ${formatGameDate(new Date(endDate))}`);
     return true;
+  }
+
+  /**
+   * Background checker: Finalize completed AI construction projects.
+   */
+  static checkCompletion(gameDate: Date) {
+    const now = gameDate.getTime();
+    
+    countries.forEach(country => {
+      const countryName = country.name_en;
+      const queue = aiBuildingStorage.getQueue(countryName);
+      
+      if (queue.length === 0) return;
+
+      const completed = queue.filter(item => item.endDate <= now);
+      
+      if (completed.length > 0) {
+        completed.forEach(project => {
+          console.log(`[AI CONSTRUCTION DONE] ${countryName} completed ${project.label} (${project.buildingKey})`);
+          
+          // Increment building count in storage
+          aiBuildingStorage.incrementBuildingCount(countryName, project.buildingKey);
+          
+          // Remove from queue
+          aiBuildingStorage.removeFromQueue(countryName, project.id);
+        });
+
+        // Small notification log for AI activity (silent in news unless requested)
+        console.log(`[AI CONSTRUCTION] ${countryName} finalized ${completed.length} project(s).`);
+      }
+    });
   }
 }

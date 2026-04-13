@@ -28,13 +28,17 @@ export const aiBuildingStorage = {
 
   getData: (countryNameEn: string) => {
     const global = aiBuildingStorage.initialize();
-    return global[countryNameEn] || { buildingDeltas: {}, constructionQueue: [] };
+    // Cari key secara case-insensitive
+    const realKey = Object.keys(global).find(k => k.toLowerCase() === countryNameEn.toLowerCase());
+    return (realKey ? global[realKey] : null) || { buildingDeltas: {}, constructionQueue: [] };
   },
 
   saveCountryData: (countryNameEn: string, buildingDeltas: Record<string, number>, constructionQueue: AIConstructionItem[]) => {
     if (typeof window === 'undefined') return;
     const global = aiBuildingStorage.initialize();
-    global[countryNameEn] = { buildingDeltas, constructionQueue };
+    // Gunakan key yang sudah ada jika ada (untuk mempertahankan kapitalisasi asli jika diinginkan)
+    const realKey = Object.keys(global).find(k => k.toLowerCase() === countryNameEn.toLowerCase()) || countryNameEn;
+    global[realKey] = { buildingDeltas, constructionQueue };
     localStorage.setItem(AI_BUILDING_KEY, JSON.stringify(global));
     window.dispatchEvent(new Event('ai_building_updated'));
   },

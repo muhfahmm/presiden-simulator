@@ -53,58 +53,34 @@ export class PusatKeputusanPembangunan {
   static gatherBuildings(country: any): Record<string, number> {
     const buildings: Record<string, number> = {};
 
-    // Sektor Listrik
-    if (country.sektor_listrik) {
-      const sl = country.sektor_listrik;
-      if (sl.pembangkit_listrik_tenaga_nuklir) buildings["1_pembangkit_listrik_tenaga_nuklir"] = sl.pembangkit_listrik_tenaga_nuklir;
-      if (sl.pembangkit_listrik_tenaga_air) buildings["2_pembangkit_listrik_tenaga_air"] = sl.pembangkit_listrik_tenaga_air;
-      if (sl.pembangkit_listrik_tenaga_surya) buildings["3_pembangkit_listrik_tenaga_surya"] = sl.pembangkit_listrik_tenaga_surya;
-      if (sl.pembangkit_listrik_tenaga_uap) buildings["4_pembangkit_listrik_tenaga_uap"] = sl.pembangkit_listrik_tenaga_uap;
-      if (sl.pembangkit_listrik_tenaga_gas) buildings["5_pembangkit_listrik_tenaga_gas"] = sl.pembangkit_listrik_tenaga_gas;
-      if (sl.pembangkit_listrik_tenaga_angin) buildings["6_pembangkit_listrik_tenaga_angin"] = sl.pembangkit_listrik_tenaga_angin;
-    }
+    // 1. Kumpulkan semua nilai dari semua sektor ke dalam satu flat map untuk pencarian cepat
+    const allSectors = [
+      'sektor_listrik', 'sektor_manufaktur', 'sektor_ekstraksi', 
+      'sektor_peternakan', 'sektor_agrikultur', 'sektor_perikanan', 
+      'sektor_olahan_pangan', 'sektor_farmasi', 'pabrik_militer',
+      'infrastruktur', 'pendidikan', 'kesehatan', 'hukum', 
+      'sektor_olahraga', 'hunian', 'sektor_komersial'
+    ];
 
-    // Sektor Manufaktur
-    if (country.sektor_manufaktur) {
-      const sm = country.sektor_manufaktur;
-      if (sm.semen_beton) buildings["5_pabrik_semen"] = sm.semen_beton;
-      if (sm.kayu) buildings["6_penggergajian_kayu"] = sm.kayu;
-      if (sm.smelter) buildings["4_smelter"] = sm.smelter;
-      if (sm.semikonduktor) buildings["1_pabrik_elektronik"] = sm.semikonduktor;
-      if (sm.mobil) buildings["2_pabrik_mobil"] = sm.mobil;
-      if (sm.sepeda_motor) buildings["3_pabrik_motor"] = sm.sepeda_motor;
-      if (sm.pupuk) buildings["7_pabrik_pupuk"] = sm.pupuk;
-    }
-
-    // Sektor Ekstraksi
-    if (country.sektor_ekstraksi) {
-      const se = country.sektor_ekstraksi;
-      if (se.emas) buildings["1_tambang_emas"] = se.emas;
-      if (se.uranium) buildings["2_tambang_uranium"] = se.uranium;
-      if (se.batu_bara) buildings["3_tambang_batu_bara"] = se.batu_bara;
-      if (se.minyak_bumi) buildings["4_sumur_minyak"] = se.minyak_bumi;
-      if (se.gas_alam) buildings["5_sumur_gas"] = se.gas_alam;
-      if (se.garam) buildings["6_tambang_garam"] = se.garam;
-      if (se.nikel) buildings["7_tambang_nikel"] = se.nikel;
-      if (se.litium) buildings["8_tambang_litium"] = se.litium;
-      if (se.tembaga) buildings["9_tambang_tembaga"] = se.tembaga;
-      if (se.aluminium) buildings["10_tambang_aluminium"] = se.aluminium;
-      if (se.logam_tanah_jarang) buildings["11_tambang_ltj"] = se.logam_tanah_jarang;
-      if (se.bijih_besi) buildings["12_tambang_bijih_besi"] = se.bijih_besi;
-    }
-
-    // Generic spread for other sectors
-    const moreSectors = ['sektor_peternakan', 'sektor_agrikultur', 'sektor_perikanan', 'sektor_olahan_pangan', 'sektor_farmasi', 'pabrik_militer'];
-    moreSectors.forEach(s => {
-      const data = (country as any)[s];
-      if (data && typeof data === 'object') {
-        Object.entries(data).forEach(([key, val]) => {
-          buildings[key] = (buildings[key] || 0) + Number(val);
+    const baselineData: Record<string, number> = {};
+    allSectors.forEach(sectorKey => {
+      const sectorObj = (country as any)[sectorKey];
+      if (sectorObj && typeof sectorObj === 'object') {
+        Object.entries(sectorObj).forEach(([dataKey, val]) => {
+          baselineData[dataKey] = Number(val || 0);
         });
       }
     });
 
-    // Add dynamic deltas from AI building storage
+    // 2. Petakan Baseline ke Metadata Key (misal: 'plts' -> '3_pembangkit_listrik_tenaga_surya')
+    ALL_OPTIONS.forEach(opt => {
+      const baseline = baselineData[opt.dataKey] || baselineData[opt.key] || 0;
+      if (baseline > 0) {
+        buildings[opt.key] = baseline;
+      }
+    });
+
+    // 3. Tambahkan Delta (pembangunan yang sudah selesai oleh AI sebelumnya)
     const deltas = aiBuildingStorage.getAllBuildingDeltas(country.name_en);
     Object.entries(deltas).forEach(([key, val]) => {
       buildings[key] = (buildings[key] || 0) + val;
@@ -164,7 +140,8 @@ export class PusatKeputusanPembangunan {
       if (result.decision === "EXECUTE" && result.building_key) {
         const chosen = ALL_OPTIONS.find(o => o.key === result.building_key);
         if (chosen) {
-          await EksekutorPembangunanAI.laksanakan(countryNameEn, result.building_key, chosen, gameDate);
+          const currentCount = buildings[result.building_key] || 0;
+          await EksekutorPembangunanAI.laksanakan(countryNameEn, result.building_key, chosen, gameDate, currentCount);
         }
       }
     } catch (err) {

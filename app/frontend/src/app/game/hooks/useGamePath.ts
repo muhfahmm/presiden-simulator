@@ -12,8 +12,15 @@ export function useGamePath(path: string[]) {
   if (countryByPath) {
     const tab = subMenu || "info_strategis";
     const subTab = path[2];
-    if (subTab) initialMenu = `CountryModal:${countryByPath.name_id}:${tab}:${subTab}`;
-    else initialMenu = `CountryModal:${countryByPath.name_id}:${tab}`;
+    const sector = path[3];
+    
+    if (subTab === "detail_lengkap") {
+      initialMenu = `CountryModal:${countryByPath.name_id}:${tab}:${subTab}:${sector || "produksi"}`;
+    } else if (subTab) {
+      initialMenu = `CountryModal:${countryByPath.name_id}:${tab}:${subTab}`;
+    } else {
+      initialMenu = `CountryModal:${countryByPath.name_id}:${tab}`;
+    }
   } else if (category === 'ekonomi') {
     if (subMenu === 'perdagangan') {
       const detail = path[2];
@@ -276,9 +283,11 @@ export function useGamePath(path: string[]) {
       const countryId = parts[1];
       const tab = parts[2] || "info_strategis";
       const subTab = parts[3];
+      const sector = parts[4];
       // URL Slug: Replace spaces with underscores
       targetPath = `/game/${countryId.replace(/ /g, '_')}/${tab}`;
       if (subTab) targetPath += `/${subTab}`;
+      if (sector) targetPath += `/${sector}`;
     }
 
 

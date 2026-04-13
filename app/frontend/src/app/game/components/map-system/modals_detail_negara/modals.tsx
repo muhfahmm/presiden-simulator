@@ -66,6 +66,7 @@ interface StrategyModalProps {
   userCountry: string;
   activeTab?: string;
   activeSubTab?: string;
+  activeSector?: string;
   setActiveMenu: (menu: string) => void;
   onTabChange?: (tab: 'info' | 'diplomacy' | 'military' | 'aid') => void;
 }
@@ -108,7 +109,7 @@ const geoJsonToIndo: { [key: string]: string } = {
 
 
 export default function StrategyModal({ 
-  isOpen, onClose, targetCountry, userCountry, activeTab, activeSubTab, setActiveMenu, onTabChange 
+  isOpen, onClose, targetCountry, userCountry, activeTab, activeSubTab, activeSector, setActiveMenu, onTabChange 
 }: StrategyModalProps) {
   const [menuTab, setMenuTab] = useState<'info' | 'diplomacy' | 'military' | 'aid'>('info');
   const [liveStats, setLiveStats] = useState({ anggaran: 0, dailyDelta: 0, satisfaction: 55 });
@@ -519,6 +520,8 @@ export default function StrategyModal({
         }}
         targetCountry={targetCountry || ""}
         isUser={targetId === userId}
+        activeSector={activeSector}
+        setActiveMenu={setActiveMenu}
       />
     </>
   );
