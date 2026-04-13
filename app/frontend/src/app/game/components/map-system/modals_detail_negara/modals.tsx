@@ -33,6 +33,7 @@ import DukungKedaulatanModal from "./4_bantuan_dan_kerjasama/4_dukung_kedaulatan
 import MintaBantuanModal from "./4_bantuan_dan_kerjasama/5_minta_bantuan/MintaBantuanModal";
 import TanamkanIdeologiModal from "./4_bantuan_dan_kerjasama/6_tanamkan_ideologi/TanamkanIdeologiModal";
 import { tradeStorage } from "./2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
+import DetailNegaraModal from "./1_info_strategis/7_DetailNegara/DetailNegaraModal";
 
 import { COUNTRY_REGIONS, getRegion } from "./2_diplomasi_hubungan/1_kedutaan/logic/regions";
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
@@ -299,6 +300,23 @@ export default function StrategyModal({
                   <div className="bg-gradient-to-r from-green-500 to-emerald-500 h-full shadow-[0_0_10px_rgba(16,185,129,0.3)]" style={{ width: '40%' }} />
                 </div>
               </div>
+              
+              {/* Tombol Detail Lengkap */}
+              <div className="pt-2">
+                <button 
+                  onClick={() => {
+                    if (countryEntry) {
+                      setActiveMenu(`CountryModal:${countryEntry.name_id.toLowerCase()}:info_strategis:detail_lengkap`);
+                    }
+                  }}
+                  className="w-full py-4 bg-zinc-800/50 hover:bg-amber-500/10 border border-zinc-700 hover:border-amber-500/30 rounded-2xl flex items-center justify-center gap-3 group transition-all cursor-pointer"
+                >
+                  <div className="p-2 bg-amber-500/10 rounded-lg group-hover:bg-amber-500 group-hover:text-black transition-all">
+                    <TrendingUp className="h-4 w-4 text-amber-500 group-hover:text-inherit" />
+                  </div>
+                  <span className="text-xs font-black uppercase tracking-widest text-zinc-300 group-hover:text-amber-500 transition-colors">Lihat Detail Lengkap Negara</span>
+                </button>
+              </div>
             </div>
           )}
 
@@ -491,6 +509,17 @@ export default function StrategyModal({
           }}
         />
       )}
+
+      <DetailNegaraModal 
+        isOpen={activeSubTab === 'detail_lengkap'}
+        onClose={() => {
+          if (countryEntry) {
+            setActiveMenu(`CountryModal:${countryEntry.name_id.toLowerCase()}:info_strategis`);
+          }
+        }}
+        targetCountry={targetCountry || ""}
+        isUser={targetId === userId}
+      />
     </>
   );
 }
