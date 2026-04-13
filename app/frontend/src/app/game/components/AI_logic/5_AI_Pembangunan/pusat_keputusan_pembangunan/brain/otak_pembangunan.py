@@ -159,20 +159,32 @@ def decide(data):
     population = data.get("population", 0)
 
     # ── BUDGET ALLOCATION ──────────────────────────────────
-    # Reserve 30 days of income as safety buffer
-    safety_reserve = max(daily_income * 30, 0)
+    # Reserve 7 days of income as safety buffer (REDUCED from 30 to be more aggressive)
+    safety_reserve = max(daily_income * 7, 0)
     spendable_budget = budget - safety_reserve
+
+    # ECONOMIC INTELLIGENCE (Categorical Analysis)
+    breakdown = data.get("income_breakdown", {})
+    fiscal = breakdown.get("domestic_fiscal", 0)
+    trade = breakdown.get("trade_logistics", 0)
+    services = breakdown.get("service_commercial", 0)
+    total_exp = breakdown.get("total_expenses", 0)
 
     # If budget is negative or too low, skip
     if spendable_budget <= 0:
         return {
             "decision": "SKIP",
-            "reason": f"Budget terlalu rendah. Kas: {budget:,.0f}, Cadangan: {safety_reserve:,.0f}",
+            "reason": f"Budget terlalu rendah. Kas: {budget:,.0f}, Cadangan (7hari): {safety_reserve:,.0f}",
             "budget_analysis": {
                 "budget": budget,
                 "daily_income": daily_income,
                 "safety_reserve": safety_reserve,
-                "spendable": spendable_budget
+                "spendable": spendable_budget,
+                "workflow": {
+                    "fiscal": fiscal,
+                    "trade": trade,
+                    "services": services
+                }
             }
         }
 
@@ -211,9 +223,11 @@ def decide(data):
             "budget_analysis": {
                 "budget": budget,
                 "spendable": spendable_budget,
-                "beton_stock": beton_stock,
-                "baja_stock": baja_stock,
-                "kayu_stock": kayu_stock
+                "workflow": {
+                    "fiscal": fiscal,
+                    "trade": trade,
+                    "services": services
+                }
             }
         }
 
@@ -245,13 +259,20 @@ def decide(data):
             chosen_item = min(energy_options, key=lambda x: x[1])
             return _execute(chosen_item[0], chosen_item[1], f"ENERGY: Surplus listrik rendah ({power_surplus:.0f} MW), perlu pembangkit.", budget, spendable_budget)
 
-    # ── PRIORITY 3: SMART GROWTH ───────────────────────────
-    # Only diversify if we have a comfortable budget (> 3x cheapest option cost)
+    # ── PRIORITY 3: SMART GROWTH (Economic Strategy) ───────
+    # If Services income is low relative to Fiscal, prioritize Services to diversify
+    if services < fiscal * 0.1: # If services is less than 10% of fiscal revenue
+        service_candidates = [item for item in affordable_candidates if item[0].get("groupId") in ["sosial", "infrastruktur", "komersial", "hiburan"]]
+        if service_candidates:
+             chosen_s, chosen_scost = random.choice(service_candidates)
+             return _execute(chosen_s, chosen_scost, f"STRATEGY: Diversifikasi pendapatan jasa (Layanan Publik/Komersial) karena porsi saat ini rendah.", budget, spendable_budget)
+
+    # Multiplier checkout (Reduced from 2.0x to 1.1x to encourage spending)
     cheapest_total_cost = min(item[1] for item in affordable_candidates)
-    if spendable_budget < cheapest_total_cost * 2: # Reduced multiplier to encourage earlier spending
+    if spendable_budget < cheapest_total_cost * 1.1: 
         return {
             "decision": "SKIP",
-            "reason": f"Menabung dulu. Dana: {spendable_budget:,.0f}, butuh minimal: {cheapest_total_cost * 2:,.0f}",
+            "reason": f"Menabung dulu (Batas 1.1x). Dana: {spendable_budget:,.0f}, butuh minimal: {cheapest_total_cost * 1.1:,.0f}",
             "budget_analysis": {"budget": budget, "spendable": spendable_budget}
         }
 

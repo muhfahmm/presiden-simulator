@@ -6,13 +6,15 @@ import {
   Shield, Swords, Eye, Search, Home, GraduationCap, HeartPulse, 
   Scale, Siren, Landmark, Info, Briefcase, Users2, Cloud, Target,
   Mountain, Gem, Waves, Battery, Box, Cpu, TreePine, Droplets, Flame, Radio, Hammer,
-  Clapperboard, Building2, Archive
+  Clapperboard, Building2, Archive, TrendingUp
 } from "lucide-react";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
+import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
+import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLogic";
 import { GameSession, gameStorage } from "@/app/game/gamestorage";
 
 interface DetailNegaraModalProps {
@@ -79,17 +81,57 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] flex flex-col shadow-[0_0_100px_rgba(245,158,11,0.1)] overflow-hidden relative animate-in zoom-in-95 duration-500">
         {/* Header */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-amber-500/10 rounded-2xl border border-amber-500/20">
-              <Activity className="h-6 w-6 text-amber-500" />
+          <div className="flex items-center gap-12">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-amber-500/10 rounded-2xl border border-amber-500/20">
+                <Activity className="h-6 w-6 text-amber-500" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-black text-white uppercase tracking-tight italic">
+                  Detail Lengkap: {targetCountry}
+                </h2>
+                <div className="flex items-center gap-2 mt-0.5">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                  <p className="text-[10px] text-zinc-500 font-black uppercase tracking-widest">
+                    Real-time Strategic Hub
+                  </p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h2 className="text-2xl font-black text-white uppercase tracking-tight italic">
-                Detail Lengkap: {targetCountry}
-              </h2>
-              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">
-                Overview Aset & Kapasitas Nasional
-              </p>
+
+            {/* Financial Quick Stats (NPC or User) */}
+            <div className="hidden xl:flex items-center gap-8 pl-8 border-l border-zinc-800/50">
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Kas Negara</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-black text-amber-500 italic">
+                    {(() => {
+                      const budget = isUser 
+                        ? budgetStorage.getBudget() 
+                        : aiBudgetStorage.getBudget(countryEntry.name_en);
+                      return budget.toLocaleString('id-ID');
+                    })()}
+                  </span>
+                  <div className="p-1 px-1.5 rounded-md bg-amber-500/10 border border-amber-500/20">
+                    <span className="text-[9px] font-black text-amber-500 italic">EM</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Penghasilan Harian</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-black text-emerald-500 italic">
+                    +{(() => {
+                      const delta = calculateDailyBudgetDelta(countryEntry as any, buildingDeltas);
+                      return delta.toLocaleString('id-ID');
+                    })()}
+                  </span>
+                  <div className="p-1 px-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                    <TrendingUp size={10} className="text-emerald-500" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <button 

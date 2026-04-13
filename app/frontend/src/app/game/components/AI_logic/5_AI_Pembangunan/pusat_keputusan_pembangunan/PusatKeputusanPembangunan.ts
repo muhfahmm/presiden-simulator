@@ -6,7 +6,7 @@ import { aiBuildingStorage } from "../antarmuka_data_pembangunan/AIBuildingStora
 import { aiProductionStorage } from "../antarmuka_data_pembangunan/AIProductionStorage";
 import { EksekutorPembangunanAI } from "../sistem_tindakan_respon/EksekutorPembangunanAI";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
-import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLogic";
+import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
 import { 
     KAPASITAS_LISTRIK_METADATA, 
     mineralKritisRate, 
@@ -109,9 +109,20 @@ export class PusatKeputusanPembangunan {
     const stocks = aiProductionStorage.getStocks(countryNameEn);
     const queue = aiBuildingStorage.getQueue(countryNameEn);
     const buildings = PusatKeputusanPembangunan.gatherBuildings(country);
+    const deltasForBreakdown = aiBuildingStorage.getAllBuildingDeltas(countryNameEn);
 
-    // 2. Calculate daily income (same formula as economy page)
-    const dailyIncome = calculateDailyBudgetDelta(country as any, {});
+    // 2. Calculate daily income BREAKDOWN (precisely as requested)
+    const breakdown = calculateBudgetBreakdown(country as any, deltasForBreakdown);
+    const dailyIncome = breakdown.dailyDelta;
+
+    // Categorize for Python brain
+    const economic_intelligence = {
+      domestic_fiscal: Object.values(breakdown.revenues.domestic).reduce((a, b) => a + b, 0) / 365,
+      trade_logistics: Object.values(breakdown.revenues.trade).reduce((a, b) => a + b, 0) / 365,
+      service_commercial: (breakdown.revenues.other["sektor_jasa"] || 0) / 365,
+      resource_income: Object.values(breakdown.revenues.resources).reduce((a, b) => a + b, 0) / 365,
+      total_expenses: breakdown.totalAnnualExpense / 365
+    };
 
     // 3. Send everything to Python brain in ONE call
     try {
@@ -122,6 +133,7 @@ export class PusatKeputusanPembangunan {
           negara: countryNameEn,
           budget,
           daily_income: dailyIncome,
+          income_breakdown: economic_intelligence, // New field for precision
           stocks,
           buildings,
           options: ALL_OPTIONS,
