@@ -13,8 +13,13 @@ export interface NewsItem {
 }
 
 const NEWS_STORAGE_KEY = "em2_global_news_v1";
+const NEWS_WEEK_KEY = "em2_news_week_id";
 const DAILY_LIMIT = 10;
+const WEEKLY_AI_LIMIT = 10; // User request: Max 10 AI news per week (excluding construction)
+const MAX_TOTAL_NEWS = 10; // User request: "hanya memunculkan 10 berita saja"
+
 const dailyCounters: Record<string, Record<string, number>> = {};
+let weeklyCounters: Record<string, number> = {}; // weekId -> count
 
 export const newsStorage = {
   getNews: (): NewsItem[] => {
@@ -39,8 +44,8 @@ export const newsStorage = {
       timestamp: Date.now()
     };
     
-    // Keep only last 50 news items
-    const updated = [newItem, ...current].slice(0, 50);
+    // Strict Limit: Only keep the latest 10 news items
+    const updated = [newItem, ...current].slice(0, MAX_TOTAL_NEWS);
     localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(updated));
     window.dispatchEvent(new Event("news_updated"));
   },
@@ -68,6 +73,35 @@ export const newsStorage = {
 
     if (dailyCounters[dateStr][category] < DAILY_LIMIT) {
       dailyCounters[dateStr][category]++;
+      return true;
+    }
+    return false;
+  },
+
+  /**
+   * Limit AI News to 10 per week (excluding construction).
+   * Also handles "Weekly Update" (Clears news if week changes).
+   */
+  canAddWeekly: (category: string, gameDate: Date): boolean => {
+    const weekId = `W${Math.floor(gameDate.getTime() / (7 * 24 * 60 * 60 * 1000))}`;
+    
+    // Check for Weekly Rotation
+    const lastWeekId = localStorage.getItem(NEWS_WEEK_KEY);
+    if (lastWeekId && lastWeekId !== weekId) {
+      // User request: "jika sudah seminggu maka akan terupdate" -> clear news
+      newsStorage.clear();
+      // Reset counters for the new week
+      weeklyCounters = {};
+      console.log(`[News Storage] Weekly update detected (${lastWeekId} -> ${weekId}). Clearing list.`);
+    }
+    localStorage.setItem(NEWS_WEEK_KEY, weekId);
+
+    if (category === 'construction') return true; // Pembangunan dikecualikan
+
+    if (!weeklyCounters[weekId]) weeklyCounters[weekId] = 0;
+
+    if (weeklyCounters[weekId] < WEEKLY_AI_LIMIT) {
+      weeklyCounters[weekId]++;
       return true;
     }
     return false;

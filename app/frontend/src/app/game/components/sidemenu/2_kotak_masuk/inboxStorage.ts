@@ -87,5 +87,28 @@ export const inboxStorage = {
     
     localStorage.setItem(key, JSON.stringify(updated));
     window.dispatchEvent(new Event('inbox_updated'));
+  },
+
+  /**
+   * Weekly Quota check for AI Inbox.
+   * Limit: 2 per week per specific category.
+   */
+  canAddWeekly: (category: string, gameDate: Date): boolean => {
+    const WEEKLY_LIMIT = 2;
+    const weekId = `IW${Math.floor(gameDate.getTime() / (7 * 24 * 60 * 60 * 1000))}`;
+    
+    // Use an internal memory counter (resets on reload, which is fine for UI fluff)
+    // For persistence, we would need to save this in localStorage too.
+    if (!(window as any)._inboxWeeklyCounters) (window as any)._inboxWeeklyCounters = {};
+    const counters = (window as any)._inboxWeeklyCounters;
+    
+    if (!counters[weekId]) counters[weekId] = {};
+    if (!counters[weekId][category]) counters[weekId][category] = 0;
+
+    if (counters[weekId][category] < WEEKLY_LIMIT) {
+      counters[weekId][category]++;
+      return true;
+    }
+    return false;
   }
 };

@@ -15,13 +15,16 @@ import { formatGameDate } from '@/app/game/components/1_navbar/5_navigasi_waktu/
  * Jembatan antara Frontend (TS) dan Otak AI (Python).
  */
 export const AiDiplomacyService = {
+    _isProcessing: false, // Internal lock to prevent overlap
+
     /**
      * Menjalankan simulasi harian masal untuk seluruh dunia.
      */
     async runDailyDrift(userCountry: string = "Indonesia") {
-        // CEK 1: Jangan jalan jika game sedang PAUSE
-        if (timeStorage.getState().isPaused) return;
+        // CEK 1: Jangan jalan jika game sedang PAUSE atau sedang proses lain
+        if (timeStorage.getState().isPaused || this._isProcessing) return;
 
+        this._isProcessing = true;
         const currentMatrix = getGlobalRelationMatrix();
         const normalizedUser = userCountry.toLowerCase().trim();
         
@@ -118,6 +121,7 @@ export const AiDiplomacyService = {
             }
 
             // 2. Berikan Notifikasi Event Global
+            const gameDate = timeStorage.getState().gameDate;
             if (Array.isArray(data.events)) {
                 data.events.forEach((event: any) => {
                     const type = event.type || "";
@@ -129,8 +133,9 @@ export const AiDiplomacyService = {
                     const isEmbassy = type === 'USER_EMBASSY_OFFER' || type === 'USER_EMBASSY_ACCEPTED' || type === 'USER_EMBASSY_REJECTED';
                     
                     if (isGlobalNews) {
-                        const dateStr = formatGameDate(timeStorage.getState().gameDate);
-                        if (newsStorage.canAddNews('global', dateStr)) {
+                        const dateStr = formatGameDate(gameDate);
+                        // Check Weekly Limit: Max 10 AI news per week
+                        if (newsStorage.canAddWeekly('ai_global', gameDate) && newsStorage.canAddNews('global', dateStr)) {
                             newsStorage.addNews({
                                 source: event.source || "Intelijen",
                                 category: 'global',
@@ -141,25 +146,30 @@ export const AiDiplomacyService = {
                             });
                         }
                     } else {
-                        const safeSource = (event.source || "Negara").toUpperCase();
-                        inboxStorage.addMessage({
-                            source: isGrant ? `Dinas Keuangan (${safeSource})` : 
-                                    isTrade ? `Kementerian Perdagangan (${safeSource})` :
-                                    isPact ? `Kementerian Pertahanan (${safeSource})` :
-                                    isAlliance ? `Markas Besar Aliansi (${safeSource})` :
-                                    isEmbassy ? `Kementerian Luar Negeri (${safeSource})` :
-                                    `Intelijen (${safeSource})`,
-                            category: isGrant ? 'finance' : 
-                                      isTrade ? 'trade' : 
-                                      isPact ? 'pact' :
-                                      isAlliance ? 'alliance' : 
-                                      isEmbassy ? 'embassy' : 'intelligence',
-                            isProposal: isGrant || isTrade || isPact || isAlliance || isEmbassy,
-                            subject: isEmbassy ? event.subject : `[DUNIA] ${event.subject}`,
-                            content: event.content,
-                            time: formatGameDate(timeStorage.getState().gameDate),
-                            priority: (isGrant || isPact || isAlliance || isEmbassy) ? 'high' : 'medium'
-                        });
+                        // Check Weekly Limit: Max 2 per category per week
+                        const category = isGrant ? 'finance' : 
+                                         isTrade ? 'trade' : 
+                                         isPact ? 'pact' :
+                                         isAlliance ? 'alliance' : 
+                                         isEmbassy ? 'embassy' : 'intelligence';
+
+                        if (inboxStorage.canAddWeekly(category, gameDate)) {
+                            const safeSource = (event.source || "Negara").toUpperCase();
+                            inboxStorage.addMessage({
+                                source: isGrant ? `Dinas Keuangan (${safeSource})` : 
+                                        isTrade ? `Kementerian Perdagangan (${safeSource})` :
+                                        isPact ? `Kementerian Pertahanan (${safeSource})` :
+                                        isAlliance ? `Markas Besar Aliansi (${safeSource})` :
+                                        isEmbassy ? `Kementerian Luar Negeri (${safeSource})` :
+                                        `Intelijen (${safeSource})`,
+                                category: category,
+                                isProposal: isGrant || isTrade || isPact || isAlliance || isEmbassy,
+                                subject: isEmbassy ? event.subject : `[DUNIA] ${event.subject}`,
+                                content: event.content,
+                                time: formatGameDate(gameDate),
+                                priority: (isGrant || isPact || isAlliance || isEmbassy) ? 'high' : 'medium'
+                            });
+                        }
                     }
                 });
             }
@@ -170,6 +180,8 @@ export const AiDiplomacyService = {
             }
         } catch (error) {
             console.error("Critical Failure in AI Diplomacy Service:", error);
+        } finally {
+            this._isProcessing = false;
         }
     },
 

@@ -92,14 +92,18 @@ export const happinessStorage = {
 
     happinessStorage.saveStats(updatedStats);
 
-    // Send Inbox Message (Official Report)
-    inboxStorage.addMessage({
-      source: "Sekretariat Negara",
-      subject: "Laporan Bulanan: Indeks Kepuasan Rakyat",
-      content: `Laporan bulanan menunjukkan indeks kepuasan berada di level ${newValue}%. ${newReasoning}`,
-      time: formatGameDate(currentDate),
-      priority: trend === "down" ? "high" : "medium"
-    });
+    happinessStorage.saveStats(updatedStats);
+ 
+    // Send Inbox Message (Official Report) - ONLY IF BELOW 25% (User request)
+    if (newValue <= 25) {
+      inboxStorage.addMessage({
+        source: "Sekretariat Negara",
+        subject: "PERINGATAN KRITIS: Indeks Kepuasan Rakyat",
+        content: `PERINGATAN! Laporan menunjukkan indeks kepuasan rakyat telah mencapai titik kritis di level ${newValue}%. ${newReasoning}`,
+        time: formatGameDate(currentDate),
+        priority: "high"
+      });
+    }
 
     // Check for Critical and Game Over states
     if (newValue === 0) {
@@ -158,14 +162,18 @@ export const happinessStorage = {
     
     happinessStorage.saveStats(updatedStats);
     
-    // Notify via Inbox
-    inboxStorage.addMessage({
-      source: "Sekretariat Negara",
-      subject: "Update Kepuasan Rakyat",
-      content: reason,
-      time: formatGameDate(new Date()), // Should ideally use current game date
-      priority: amount > 5 ? "high" : "medium"
-    });
+    happinessStorage.saveStats(updatedStats);
+    
+    // Notify via Inbox - ONLY IF BELOW 25% (User request)
+    if (newValue <= 25) {
+      inboxStorage.addMessage({
+        source: "Sekretariat Negara",
+        subject: "Update Kepuasan Rakyat (KRITIS)",
+        content: reason,
+        time: formatGameDate(new Date()),
+        priority: "high"
+      });
+    }
   },
 
   /**

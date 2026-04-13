@@ -28,12 +28,20 @@ class TimeStorage {
     this.timer = setInterval(() => {
       this.gameDate = addDays(this.gameDate, 1);
       saveGameDate(this.gameDate);
-      // diplomacyStorage.updateProgress(this.gameDate);
-      // relationStorage.processDailyDrift(); // Matikan sistem lama agar tidak bentrok dengan AI
-      processGlobalAiRelations(); // Gunakan AI Global sebagai satu-satunya sistem diplomasi
-      AiTradeService.processDaily(); // Sistem Perdagangan AI (tawaran, kontrak, NPC trade)
       
       const dayTimestamp = Math.floor(this.gameDate.getTime() / (1000 * 60 * 60 * 24));
+
+      // PERFORMANCE OPTIMIZATION: Stagger heavy simulation ticks
+      // Diplomacy: Every 7 days
+      if (dayTimestamp % 7 === 0) {
+        processGlobalAiRelations(); 
+      }
+
+      // Trade: Every 3 days
+      if (dayTimestamp % 3 === 0) {
+        AiTradeService.processDaily();
+      }
+      
       DebtAiService.processDailyDebt(dayTimestamp); // Sistem Hutang AI
       
       this.notify();

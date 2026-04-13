@@ -14,6 +14,7 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 import { getStoredGameDate } from "../1_navbar/5_navigasi_waktu/gameTime";
+import { calculatePopulationHappiness } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan";
 
 /**
  * AI Logic CNS (Central Nervous System)
@@ -25,7 +26,7 @@ import { getStoredGameDate } from "../1_navbar/5_navigasi_waktu/gameTime";
  * - Satisfaction Cycle: Evaluates happiness for the user's country
  */
 
-const BATCH_SIZE = 70; // NPCs processed per tick for construction
+const BATCH_SIZE = 10; // NPCs processed per tick for construction (Reduced for performance)
 
 export default function AILogicCNS() {
   const lastDateRef = useRef<string>("");
@@ -75,13 +76,13 @@ export default function AILogicCNS() {
         const endIdx = Math.min(startIdx + BATCH_SIZE, npcCountries.length);
         const batch = npcCountries.slice(startIdx, endIdx);
         
-        await Promise.all(
-          batch.map(async (npc) => {
-            try {
-              await PusatKeputusanPembangunan.pikirkan(npc.name_en);
-            } catch (e) { /* Silent */ }
-          })
-        );
+        // OPTIMIZATION: Process batch sequentially instead of Promise.all
+        // This spreads the CPU load from spawning Python processes over time
+        for (const npc of batch) {
+          try {
+            await PusatKeputusanPembangunan.pikirkan(npc.name_en);
+          } catch (e) { /* Silent */ }
+        }
 
         batchIndexRef.current = endIdx >= npcCountries.length ? 0 : endIdx;
 
@@ -90,27 +91,31 @@ export default function AILogicCNS() {
         // ═══════════════════════════════════════════════
         const dashboard = new DashboardInternalNPC();
         const kognisi = new EvaluasiSentimenPublik(dashboard);
+        const satisfactionStats = (calculatePopulationHappiness() as any).global || 55;
 
         try {
-          const analisis = await kognisi.evaluasi(session.country);
-          if (analisis.recommendations?.length > 0) {
-            ModulPenyesuaianPajak.eksekusiSaran(analisis.recommendations);
+          if (satisfactionStats <= 25) {
+            const analisis = await kognisi.evaluasi(session.country);
+            if (analisis.recommendations?.length > 0) {
+              ModulPenyesuaianPajak.eksekusiSaran(analisis.recommendations);
+            }
           }
         } catch (err) { /* Silent */ }
 
         // Event subset
         const eventNPCs = [...npcCountries].sort(() => 0.5 - Math.random()).slice(0, 3);
-        eventNPCs.forEach(async (npc) => {
+        for (const npc of eventNPCs) {
           try {
             await PusatKeputusanAcara.pikiurkan(npc.name_en);
           } catch (e) { /* Silent */ }
-        });
+        }
       } finally {
         isProcessing.current = false;
       }
     };
 
-    const interval = setInterval(runAILogic, 2000);
+    // PERFORMANCE: Increased interval from 2s to 6s to allow UI to breathe
+    const interval = setInterval(runAILogic, 6000);
     return () => clearInterval(interval);
   }, []);
 

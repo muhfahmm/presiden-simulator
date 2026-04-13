@@ -99,12 +99,16 @@ function getCommodityUnit(key: string): string {
 }
 
 export const AiTradeService = {
+    _isProcessing: false, // Internal lock to prevent overlap
+
     /**
      * Proses perdagangan AI harian. Dipanggil setiap hari game.
      */
     async processDaily() {
-        // Jangan jalankan jika game sedang PAUSE
-        if (timeStorage.getState().isPaused) return;
+        // Jangan jalankan jika game sedang PAUSE atau sedang proses lain
+        if (timeStorage.getState().isPaused || this._isProcessing) return;
+
+        this._isProcessing = true;
 
         const session = gameStorage.getSession();
         const userCountry = session?.country || 'Indonesia';
@@ -173,7 +177,8 @@ export const AiTradeService = {
                     const dateStr = formatGameDate(gameDate);
 
                     if (isGlobalNews) {
-                        if (globalNewsStorage.canAddNews(event.category || 'economy', dateStr)) {
+                        // Check Weekly Global AI News Limit (10 per week)
+                        if (globalNewsStorage.canAddWeekly('ai_global', gameDate) && globalNewsStorage.canAddNews(event.category || 'economy', dateStr)) {
                             globalNewsStorage.addNews({
                                 source: event.source || 'Global Trade Monitor',
                                 category: event.category || 'economy',
@@ -184,17 +189,20 @@ export const AiTradeService = {
                             });
                         }
                     } else {
-                        // Tawaran/request ke user → masuk Inbox
-                        const safeSource = (event.source || 'Negara').toUpperCase();
-                        inboxStorage.addMessage({
-                            source: `Kementerian Perdagangan (${safeSource})`,
-                            category: 'trade',
-                            isProposal: true,
-                            subject: event.subject,
-                            content: event.content,
-                            time: formatGameDate(gameDate),
-                            priority: event.priority || 'medium'
-                        });
+                        // Check Weekly Inbox Limit (2 per week for trade category)
+                        if (inboxStorage.canAddWeekly('trade', gameDate)) {
+                            // Tawaran/request ke user → masuk Inbox
+                            const safeSource = (event.source || 'Negara').toUpperCase();
+                            inboxStorage.addMessage({
+                                source: `Kementerian Perdagangan (${safeSource})`,
+                                category: 'trade',
+                                isProposal: true,
+                                subject: event.subject,
+                                content: event.content,
+                                time: formatGameDate(gameDate),
+                                priority: event.priority || 'medium'
+                            });
+                        }
                     }
                 });
             }
@@ -214,6 +222,8 @@ export const AiTradeService = {
 
         } catch (error) {
             console.error('AI Trade Service failed:', error);
+        } finally {
+            this._isProcessing = false;
         }
     },
 
