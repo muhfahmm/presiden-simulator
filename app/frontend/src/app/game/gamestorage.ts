@@ -50,6 +50,10 @@ import { RELATION_MATRIX_KEY } from "./components/map-system/ai_diplomacy_engine
 import { timeStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { aiTradeOfferStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/sistem_perdagangan_AI/storage/aiTradeOfferStorage";
 import { tradeContractStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/sistem_perdagangan_AI/storage/tradeContractStorage";
+import { aiHappinessStorage } from "./components/map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
+import { aiBuildingStorage } from "./components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
+import { aiProductionStorage } from "./components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
+
 
 const STORAGE_KEY = "game_session";
 
@@ -120,6 +124,9 @@ export const gameStorage = {
     stabilityStorage.clear();
     nuclearStorage.clear();
     aiBudgetStorage.clear();
+    aiHappinessStorage.clear();
+    aiBuildingStorage.clear();
+    aiProductionStorage.clear();
     importStockStorage.clear();
     historiImportStorage.clearHistory();
     historiEksporStorage.clearHistory();
@@ -219,6 +226,9 @@ export const gameStorage = {
     stabilityStorage.clear();
     nuclearStorage.clear();
     aiBudgetStorage.clear();
+    aiHappinessStorage.clear();
+    aiBuildingStorage.clear();
+    aiProductionStorage.clear();
     importStockStorage.clear();
     historiImportStorage.clearHistory();
     historiEksporStorage.clearHistory();
@@ -291,6 +301,9 @@ export const gameStorage = {
     stabilityStorage.clear();
     nuclearStorage.clear();
     aiBudgetStorage.clear();
+    aiHappinessStorage.clear();
+    aiBuildingStorage.clear();
+    aiProductionStorage.clear();
     importStockStorage.clear();
     historiImportStorage.clearHistory();
     historiEksporStorage.clearHistory();

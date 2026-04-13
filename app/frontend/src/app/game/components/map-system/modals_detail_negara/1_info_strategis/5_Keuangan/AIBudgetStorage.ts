@@ -13,42 +13,65 @@ export interface AIBudgetData {
 
 export const aiBudgetStorage = {
   /**
-   * Initialize all country budgets from the database if not already stored.
+   * Get all budgets, initializing from database if empty.
    */
-  initialize: (): AIBudgetData => {
+  getAll: (): AIBudgetData => {
     if (typeof window === 'undefined') return {};
     
     const stored = localStorage.getItem(AI_BUDGET_KEY);
-    if (stored) {
+    if (stored && stored !== 'undefined' && stored !== 'null') {
       try {
-        return JSON.parse(stored);
+        const parsed = JSON.parse(stored);
+        if (Object.keys(parsed).length > 0) return parsed;
       } catch (e) {
         console.error("Failed to parse AI budgets", e);
       }
     }
 
-    // Initial setup from database
+    // Fallback to defaults
+    return aiBudgetStorage.resetToDefault();
+  },
+
+  /**
+   * Reset all AI budgets to their database default values.
+   */
+  resetToDefault: (): AIBudgetData => {
+    if (typeof window === 'undefined') return {};
+    
     const initialData: AIBudgetData = {};
     countries.forEach(c => {
-      // Multiply by 1M because db values are in specific units while costs are absolute
-      initialData[c.name_en] = (Number(c.anggaran) || 0) * 1000000;
+      // Ensure we pull from the correct property and handle string/number
+      const rawValue = typeof c.anggaran === 'string' 
+        ? Number(c.anggaran.replace(/\./g, '')) 
+        : Number(c.anggaran);
+      
+      // ALIGNMENT FIX: Use raw value from database to match player budget scale
+      initialData[c.name_en] = (rawValue || 0);
     });
 
     localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(initialData));
+    localStorage.removeItem(LAST_PROCESSED_KEY); // Also reset processing date
     return initialData;
+  },
+
+  /**
+   * Initialize (legacy wrapper for getAll).
+   */
+  initialize: (): AIBudgetData => {
+    return aiBudgetStorage.getAll();
   },
 
   /**
    * Get the current budget for a specific country.
    */
   getBudget: (countryNameEn: string): number => {
-    const data = aiBudgetStorage.initialize();
+    const data = aiBudgetStorage.getAll();
     return data[countryNameEn] || 0;
   },
 
   /**
    * Update all AI budgets based on their daily income.
-   * Should be called once per game day.
+   * Prevents overwriting with stale data during game reset.
    */
   updateAll: (gameDate: Date, userCountryEn: string) => {
     if (typeof window === 'undefined') return;
@@ -56,39 +79,44 @@ export const aiBudgetStorage = {
     const dateStr = gameDate.toISOString().split('T')[0];
     const lastProcessed = localStorage.getItem(LAST_PROCESSED_KEY);
     
-    if (lastProcessed === dateStr) return; // Already processed today
+    if (lastProcessed === dateStr) return; 
 
-    const data = aiBudgetStorage.initialize();
-    
+    // Use getAll() which ensures we have valid data
+    const data = aiBudgetStorage.getAll();
+    let hasChanged = false;
+
     countries.forEach(c => {
-      // Don't update the user's country here (handled by budgetStorage)
-      if (c.name_en === userCountryEn) return;
+      // Robust user check: check both ID and English Name
+      if (c.name_en === userCountryEn || c.name_id === userCountryEn) return;
 
       const dailyIncome = aiBudgetStorage.calculateDailyIncome(c);
-      data[c.name_en] = (data[c.name_en] || 0) + dailyIncome;
+      if (dailyIncome !== 0) {
+        data[c.name_en] = (data[c.name_en] || 0) + dailyIncome;
+        hasChanged = true;
+      }
     });
 
-    localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(data));
-    localStorage.setItem(LAST_PROCESSED_KEY, dateStr);
-    
-    // Dispatch event for UI updates (like StrategyModal)
-    window.dispatchEvent(new Event('ai_budget_updated'));
+    if (hasChanged) {
+      localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(data));
+      localStorage.setItem(LAST_PROCESSED_KEY, dateStr);
+      window.dispatchEvent(new Event('ai_budget_updated'));
+    }
   },
 
   /**
-   * Calculate daily tax income for a country (same logic as database page).
+   * Calculate daily tax income for a country.
    */
   calculateDailyIncome: (country: any): number => {
-    // We use empty building deltas for AI to represent their baseline state
+    // scale delta to match the budget units (already in millions/raw units in DB)
     return calculateDailyBudgetDelta(country, {});
   },
 
   /**
-   * Update budget for a specific country manually (e.g., for events/military).
+   * Update budget for a specific country manually.
    */
   updateBudgetManual: (countryNameEn: string, amount: number) => {
     if (typeof window === 'undefined') return;
-    const data = aiBudgetStorage.initialize();
+    const data = aiBudgetStorage.getAll();
     data[countryNameEn] = (data[countryNameEn] || 0) + amount;
     localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(data));
     window.dispatchEvent(new Event('ai_budget_updated'));
@@ -96,7 +124,8 @@ export const aiBudgetStorage = {
 
   clear: () => {
     if (typeof window === 'undefined') return;
-    localStorage.removeItem(AI_BUDGET_KEY);
-    localStorage.removeItem(LAST_PROCESSED_KEY);
+    aiBudgetStorage.resetToDefault();
+    // Explicitly dispatch to notify any listeners
+    window.dispatchEvent(new Event('ai_budget_updated'));
   }
 };

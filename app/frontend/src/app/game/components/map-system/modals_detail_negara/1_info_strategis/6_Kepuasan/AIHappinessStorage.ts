@@ -1,8 +1,6 @@
 "use client"
 
 import { countries } from "@/app/database/data/negara/benua/index";
-import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
-import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 
 const AI_HAPPINESS_KEY = "em4_ai_happiness";
 const LAST_PROCESSED_HAPPINESS_KEY = "em4_ai_last_happiness_update";
@@ -13,41 +11,58 @@ export interface AIHappinessData {
 
 export const aiHappinessStorage = {
   /**
-   * Initialize all country happiness levels with 55% if not already stored.
+   * Get all happiness data, initializing if empty.
    */
-  initialize: (): AIHappinessData => {
+  getAll: (): AIHappinessData => {
     if (typeof window === 'undefined') return {};
     
     const stored = localStorage.getItem(AI_HAPPINESS_KEY);
-    if (stored) {
+    if (stored && stored !== 'undefined' && stored !== 'null') {
       try {
-        return JSON.parse(stored);
+        const parsed = JSON.parse(stored);
+        if (Object.keys(parsed).length > 0) return parsed;
       } catch (e) {
         console.error("Failed to parse AI happiness", e);
       }
     }
 
-    // Initial setup with default 55%
+    // Default to 55%
+    return aiHappinessStorage.resetToDefault();
+  },
+
+  /**
+   * Reset all AI happiness levels to default (55%).
+   */
+  resetToDefault: (): AIHappinessData => {
+    if (typeof window === 'undefined') return {};
+    
     const initialData: AIHappinessData = {};
     countries.forEach(c => {
       initialData[c.name_en] = 55.0;
     });
 
     localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(initialData));
+    localStorage.removeItem(LAST_PROCESSED_HAPPINESS_KEY);
     return initialData;
+  },
+
+  /**
+   * Initialize (legacy wrapper).
+   */
+  initialize: (): AIHappinessData => {
+    return aiHappinessStorage.getAll();
   },
 
   /**
    * Get current happiness for a specific country.
    */
   getSatisfaction: (countryNameEn: string): number => {
-    const data = aiHappinessStorage.initialize();
+    const data = aiHappinessStorage.getAll();
     return data[countryNameEn] !== undefined ? data[countryNameEn] : 55.0;
   },
 
   /**
-   * Update all AI happiness scores based on taxes, prices, and infrastructure.
-   * PERFORMANCE OPTIMIZED: Uses Batch Processing (1 API call for all countries).
+   * Update all AI happiness scores.
    */
   updateAll: async (gameDate: Date, userCountryEn: string) => {
     if (typeof window === 'undefined') return;
@@ -57,25 +72,24 @@ export const aiHappinessStorage = {
     if (lastProcessed === dateStr) return;
 
     const { KolektorDataNasional } = require("@/app/game/components/AI_logic/1_AI_Kepuasan/1_statistik_kepuasan/perangkat_observasi/KolektorDataNasional");
-    const data = aiHappinessStorage.initialize();
+    const data = aiHappinessStorage.getAll();
 
-    // 1. Collect data for all AI countries in a single batch
     const batchPackets: any[] = [];
     countries.forEach(c => {
-      if (c.name_en === userCountryEn) return;
+      if (c.name_en === userCountryEn || c.name_id === userCountryEn) return;
 
-      const context = KolektorDataNasional.kumpulkanData(c.name_en);
+      const currentVal = data[c.name_en] || 55.0;
+      const context = KolektorDataNasional.kumpulkanData(c.name_en, currentVal);
       if (context) {
-        // Ensure we use the latest stored happiness value for the next calculation
-        context.statistik.indeks_kepuasan = data[c.name_en] || 55.0;
         batchPackets.push(context);
       }
     });
 
+    console.log(`[AI Happiness] Processing update for ${batchPackets.length} AI nations. Game Date: ${dateStr}`);
+
     if (batchPackets.length === 0) return;
 
     try {
-      // 2. Single API Call for the entire global AI state
       const response = await fetch("/game/components/AI_logic/1_AI_Kepuasan/routes/1_statistik_kepuasan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -84,7 +98,6 @@ export const aiHappinessStorage = {
 
       const results = await response.json();
 
-      // 3. Process all results and update storage
       if (results && !results.error) {
         Object.entries(results).forEach(([name, result]: [string, any]) => {
           if (result && result.new_value !== undefined) {
@@ -95,7 +108,6 @@ export const aiHappinessStorage = {
         localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(data));
         localStorage.setItem(LAST_PROCESSED_HAPPINESS_KEY, dateStr);
         window.dispatchEvent(new Event('ai_happiness_updated'));
-        console.log(`[AI Happiness] Global Batch update complete for ${batchPackets.length} countries.`);
       }
     } catch (err) {
       console.error("[AI Happiness] Global Batch update failed:", err);
@@ -107,7 +119,7 @@ export const aiHappinessStorage = {
    */
   updateSatisfaction: (countryNameEn: string, newValue: number) => {
     if (typeof window === 'undefined') return;
-    const data = aiHappinessStorage.initialize();
+    const data = aiHappinessStorage.getAll();
     data[countryNameEn] = Math.max(0, Math.min(100, newValue));
     localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(data));
     window.dispatchEvent(new Event('ai_happiness_updated'));
@@ -115,7 +127,7 @@ export const aiHappinessStorage = {
 
   clear: () => {
     if (typeof window === 'undefined') return;
-    localStorage.removeItem(AI_HAPPINESS_KEY);
-    localStorage.removeItem(LAST_PROCESSED_HAPPINESS_KEY);
+    aiHappinessStorage.resetToDefault();
+    window.dispatchEvent(new Event('ai_happiness_updated'));
   }
 };

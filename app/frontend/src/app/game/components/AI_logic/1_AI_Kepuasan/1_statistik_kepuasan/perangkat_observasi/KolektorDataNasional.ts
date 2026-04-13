@@ -18,25 +18,31 @@ export class KolektorDataNasional {
    * Mengambil paket data lengkap untuk dianalisis oleh NPC (Komprehensif)
    * @param countryName Nama negara yang sedang diobservasi
    */
-  static kumpulkanData(countryName: string) {
+  static kumpulkanData(countryName: string, currentHappiness: number = 55.0) {
     const country = countries.find(c => c.name_id === countryName || c.name_en === countryName);
     if (!country) return null;
 
-    // 1. Data Kebahagiaan saat ini
-    const stats = happinessStorage.getStats();
+    // 1. Data Kebahagiaan saat ini (Passed from caller storage)
+    const statsValue = currentHappiness;
 
-    // 2. Hitung Rata-rata Pajak Domestik
-    const taxData = taxStorage.getTaxes(country.name_en) || country.pajak;
+    // 2. Hitung Rata-rata Pajak Domestik - Fallback to country defaults if not in taxStorage
+    const storedTaxes = taxStorage.getTaxes(country.name_en);
+    const taxData = storedTaxes || country.pajak;
+    
     const domesticKeys = ["ppn", "korporasi", "pendapatan_nasional", "lingkungan", "lainnya"];
-    const avgTaxRate = domesticKeys.reduce((sum, key) => sum + ((taxData as any)[key]?.tarif || 0), 0) / domesticKeys.length;
+    const avgTaxRate = domesticKeys.reduce((sum, key) => {
+      const field = (taxData as any)[key];
+      // Some countries use 'tarif' in the nested object, some might just be values
+      const rate = typeof field === 'object' ? (field?.tarif || 0) : (field || 0);
+      return sum + rate;
+    }, 0) / domesticKeys.length;
     
     // 3. Hitung Rata-rata Harga Pasar (Multiplier)
     const priceData = priceStorage.getData(country);
     const priceKeys = Object.keys(BASE_PRICES) as Array<keyof typeof BASE_PRICES>;
-    const avgPriceMult = priceKeys.reduce((acc, k) => acc + (priceData[k] / BASE_PRICES[k]), 0) / priceKeys.length;
+    const avgPriceMult = priceKeys.reduce((acc, k) => acc + (priceData[k] / (BASE_PRICES[k] || 1)), 0) / priceKeys.length;
     
     // 4. Data Infrastruktur
-    // Kita asumsikan NPC menggunakan baseline dari database + deltas jika ada
     const infrastructure = {
       jalur_sepeda: country.infrastruktur?.jalur_sepeda || 0,
       jalan_tol: country.infrastruktur?.jalan_raya || 0,
@@ -50,18 +56,18 @@ export class KolektorDataNasional {
 
     return {
       timestamp: Date.now(),
-      negara: countryName,
+      negara: country.name_en, // Normalize to EN for storage consistency
       religion: country.religion,
       ideology: country.ideology,
       avg_tax_rate: avgTaxRate,
       avg_price_multiplier: avgPriceMult,
       infrastructure: infrastructure,
       statistik: {
-        indeks_kepuasan: stats.value,
-        tren: stats.trend,
-        alasan_sistem: stats.reasoning,
-        dampak_pajak: stats.taxImpact || 0,
-        dampak_harga: stats.priceImpact || 0
+        indeks_kepuasan: statsValue,
+        tren: "Flat",
+        alasan_sistem: "Analisis NPC Baseline",
+        dampak_pajak: 0,
+        dampak_harga: 0
       }
     };
   }
