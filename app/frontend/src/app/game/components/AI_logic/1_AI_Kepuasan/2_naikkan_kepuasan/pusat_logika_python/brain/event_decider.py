@@ -11,6 +11,7 @@ def decider_event_npc(data):
     happiness = data.get('happiness', 55.0)
     events = data.get('events', [])
     history = data.get('history', [])
+    root_cause = data.get('root_cause', 'none')
 
     # 1. Criteria: Don't host events if happiness is already high (> 90%)
     if happiness > 90.0:
@@ -43,6 +44,12 @@ def decider_event_npc(data):
         # Sort by happinessBoost descending
         chosen = sorted(affordable_events, key=lambda x: x['happinessBoost'], reverse=True)[0]
         return {"decision": "EXECUTE", "event_id": chosen['id'], "reason": "Status KRISIS: Memilih acara dengan dampak kepuasan terbesar."}
+    
+    # NEW: Priority for Root Cause Mitigation (Warning Zone)
+    if root_cause != "none" and happiness < 60.0:
+        # Be more aggressive if there is a known cause pulling satisfaction down
+        chosen = sorted(affordable_events, key=lambda x: x['happinessBoost'], reverse=True)[0]
+        return {"decision": "EXECUTE", "event_id": chosen['id'], "reason": f"MITIGASI KRISIS: Menyelenggarakan acara untuk meredam dampak negatif dari {root_cause}."}
     
     # If in STABLE zone, prioritize most cost-effective (Boost / Cost ratio)
     # Factor: multiplier 1M to make the ratio readable

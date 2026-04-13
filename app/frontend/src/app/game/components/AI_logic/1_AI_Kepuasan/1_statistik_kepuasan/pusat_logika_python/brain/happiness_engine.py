@@ -106,9 +106,33 @@ def calculate_detailed_happiness(data):
 
     new_value = round(max(1.0, min(100.0, current_value + total_daily_delta)), 2)
 
+    # 8. Root Cause Analysis (Diagnostic for AI Brain)
+    root_cause = "none"
+    suggested_action = "none"
+    
+    if total_daily_delta < 0:
+        # Find the most negative contributor
+        impacts = {
+            "housing": housing_penalty,
+            "tax": tax_delta,
+            "price": price_delta
+        }
+        # Get key with minimum value (most negative)
+        root_cause = min(impacts, key=impacts.get)
+        
+        # Mapping root cause to actions
+        action_map = {
+            "housing": "BUILD_RESIDENTIAL",
+            "tax": "LOWER_TAXES",
+            "price": "SUBSIDIZE_MARKET"
+        }
+        suggested_action = action_map.get(root_cause, "none")
+
     return {
         "new_value": new_value,
         "delta": round(total_daily_delta, 4),
+        "root_cause": root_cause,
+        "suggested_action": suggested_action,
         "breakdown": {
             "tax": tax_delta,
             "price": price_delta,

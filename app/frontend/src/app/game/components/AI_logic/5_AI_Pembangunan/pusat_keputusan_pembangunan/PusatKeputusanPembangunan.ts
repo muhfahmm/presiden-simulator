@@ -4,6 +4,7 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { aiBuildingStorage } from "../antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "../antarmuka_data_pembangunan/AIProductionStorage";
+import { aiRootCauseStorage } from "../../../map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/socialDiagnosisStorage";
 import { EksekutorPembangunanAI } from "../sistem_tindakan_respon/EksekutorPembangunanAI";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
@@ -114,6 +115,9 @@ export class PusatKeputusanPembangunan {
     // 2. Calculate daily income BREAKDOWN (precisely as requested)
     const breakdown = calculateBudgetBreakdown(country as any, deltasForBreakdown);
     const dailyIncome = breakdown.dailyDelta;
+    
+    // 2.5 Get Social Stressors
+    const socialDiagnosis = aiRootCauseStorage.getLatest(countryNameEn);
 
     // Categorize for Python brain
     const economic_intelligence = {
@@ -138,7 +142,8 @@ export class PusatKeputusanPembangunan {
           buildings,
           options: ALL_OPTIONS,
           queue_count: queue.length,
-          population: Number(country.jumlah_penduduk) || 0
+          population: Number(country.jumlah_penduduk) || 0,
+          root_cause: socialDiagnosis.root_cause
         })
       });
 

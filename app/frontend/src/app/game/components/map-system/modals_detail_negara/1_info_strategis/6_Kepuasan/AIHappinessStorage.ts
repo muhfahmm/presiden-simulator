@@ -5,6 +5,8 @@ import { countries } from "@/app/database/data/negara/benua/index";
 const AI_HAPPINESS_KEY = "em4_ai_happiness";
 const LAST_PROCESSED_HAPPINESS_KEY = "em4_ai_last_happiness_update";
 
+import { aiRootCauseStorage } from "./socialDiagnosisStorage";
+
 export interface AIHappinessData {
   [countryNameEn: string]: number;
 }
@@ -102,6 +104,11 @@ export const aiHappinessStorage = {
         Object.entries(results).forEach(([name, result]: [string, any]) => {
           if (result && result.new_value !== undefined) {
             data[name] = result.new_value;
+            
+            // Save Root Cause Diagnosis
+            if (result.root_cause) {
+                aiRootCauseStorage.saveDiagnosis(name, result.root_cause, result.suggested_action || "none");
+            }
           }
         });
 

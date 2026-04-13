@@ -157,6 +157,7 @@ def decide(data):
     options = data.get("options", [])
     queue_count = data.get("queue_count", 0)
     population = data.get("population", 0)
+    root_cause = data.get("root_cause", "none")
 
     # ── BUDGET ALLOCATION ──────────────────────────────────
     # Reserve 7 days of income as safety buffer (REDUCED from 30 to be more aggressive)
@@ -230,6 +231,16 @@ def decide(data):
                 }
             }
         }
+        
+    # ── PRIORITY 0: SOCIAL STABILITY (Root Cause Fix) ──────
+    # If the root cause is housing, prioritize it above everything else
+    if root_cause == "housing":
+        residential_options = [item for item in affordable_candidates if item[0].get("key") in ["10_apartemen", "9_rumah_subsidi"]]
+        if residential_options:
+            # Pick the one with highest capacity per cost
+            chosen_item = max(residential_options, key=lambda x: (6000 if x[0]['key'] == "10_apartemen" else 5) / x[1])
+            return _execute(chosen_item[0], chosen_item[1], f"SOCIAL CRISIS: Diagnosa menunjukkan krisis hunian. Membangun {chosen_item[0]['key']} untuk meredam keresahan rakyat.", budget, spendable_budget)
+
 
     # ── PRIORITY 1: MATERIAL SURVIVAL ──────────────────────
     # Build material factories if BOTH stock AND production are low

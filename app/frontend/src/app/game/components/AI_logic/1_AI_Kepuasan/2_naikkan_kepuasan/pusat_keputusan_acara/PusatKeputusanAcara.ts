@@ -4,6 +4,7 @@ import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_
 import { aiHappinessStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { DATA_ACARA } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/acara/acaraStorage";
 import { aiPublicEventStorage } from "../antarmuka_data_acara/AIPublicEventStorage";
+import { aiRootCauseStorage } from "../../../../map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/socialDiagnosisStorage";
 import { EksekutorAcaraNasional } from "../sistem_tindakan_respon/EksekutorAcaraNasional";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 
@@ -16,6 +17,7 @@ export class PusatKeputusanAcara {
     const budget = aiBudgetStorage.getBudget(countryNameEn);
     const happiness = aiHappinessStorage.getSatisfaction(countryNameEn);
     const history = aiPublicEventStorage.getCountryHistory(countryNameEn);
+    const socialDiagnosis = aiRootCauseStorage.getLatest(countryNameEn);
 
     // Filter out events that are currently on cooldown
     const availableEvents = DATA_ACARA.filter(acara => {
@@ -31,7 +33,8 @@ export class PusatKeputusanAcara {
       budget: budget,
       happiness: happiness,
       events: availableEvents,
-      history: history
+      history: history,
+      root_cause: socialDiagnosis.root_cause
     };
 
     try {
