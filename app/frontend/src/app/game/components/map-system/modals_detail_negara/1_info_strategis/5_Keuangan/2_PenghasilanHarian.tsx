@@ -20,7 +20,7 @@ export default function PenghasilanHarian({ dailyDelta, countryName }: Penghasil
     <div className={`flex items-center gap-1.5 font-black italic transition-colors duration-500 ${statusColor}`}>
       {isPositive ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
       <span className="drop-shadow-sm">
-        {isPositive ? '+' : ''}{Math.round(dailyDelta * (multipliers.tax || 1)).toLocaleString('id-ID')}
+        {isPositive ? '+' : ''}{Math.round(dailyDelta).toLocaleString('id-ID')}
       </span>
       {multipliers.impactLevel !== 'clear' && (
         <span className="text-[10px] font-black animate-pulse ml-1 opacity-90 uppercase tracking-tighter">

@@ -6,16 +6,18 @@ import {
   Shield, Swords, Eye, Search, Home, GraduationCap, HeartPulse, 
   Scale, Siren, Landmark, Info, Briefcase, Users2, Cloud, Target,
   Mountain, Gem, Waves, Battery, Box, Cpu, TreePine, Droplets, Flame, Radio, Hammer,
-  Clapperboard, Building2, Archive, TrendingUp
+  Clapperboard, Building2, Archive, TrendingUp, ShieldAlert, TrendingDown
 } from "lucide-react";
 import { countries } from "@/app/database/data/negara/benua/index";
+import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
 import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
-import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLogic";
+import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
 import { GameSession, gameStorage } from "@/app/game/gamestorage";
+import { hunianRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
 
 interface DetailNegaraModalProps {
   isOpen: boolean;
@@ -29,6 +31,14 @@ interface DetailNegaraModalProps {
 export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUser, activeSector, setActiveMenu }: DetailNegaraModalProps) {
   const currentSector = activeSector || "produksi";
   const [refreshKey, setRefreshKey] = useState(0);
+  
+  // Real-time population tracking
+  const rawPop = (countries.find(c => c.name_id.toLowerCase() === targetCountry.toLowerCase() || c.name_en.toLowerCase() === targetCountry.toLowerCase()) as any)?.jumlah_penduduk ?? 0;
+  const basePop = typeof rawPop === 'string' 
+    ? parseInt(rawPop.replace(/\./g, '')) 
+    : (typeof rawPop === 'number' ? rawPop : 0);
+    
+  const [population, setPopulation] = useState(isUser ? populationStorage.getPopulation() : basePop);
 
   // Reactivity: Refresh when construction state changes
   useEffect(() => {
@@ -39,11 +49,20 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
     window.addEventListener('building_storage_updated', handleUpdate);
     window.addEventListener('ai_building_updated', handleUpdate);
     
+    // Add population listener
+    const handlePopUpdate = (e: any) => {
+      if (isUser) {
+        setPopulation(e.detail.population);
+      }
+    };
+    window.addEventListener('population_updated', handlePopUpdate);
+    
     return () => {
       window.removeEventListener('building_storage_updated', handleUpdate);
       window.removeEventListener('ai_building_updated', handleUpdate);
+      window.removeEventListener('population_updated', handlePopUpdate);
     };
-  }, []);
+  }, [isUser]);
 
   if (!isOpen) return null;
 
@@ -109,7 +128,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                       const budget = isUser 
                         ? budgetStorage.getBudget() 
                         : aiBudgetStorage.getBudget(countryEntry.name_en);
-                      return budget.toLocaleString('id-ID');
+                      return Math.floor(budget).toLocaleString('id-ID');
                     })()}
                   </span>
                   <div className="p-1 px-1.5 rounded-md bg-amber-500/10 border border-amber-500/20">
@@ -120,17 +139,29 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
 
               <div className="flex flex-col">
                 <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Penghasilan Harian</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg font-black text-emerald-500 italic">
-                    +{(() => {
-                      const delta = calculateDailyBudgetDelta(countryEntry as any, buildingDeltas);
-                      return delta.toLocaleString('id-ID');
-                    })()}
-                  </span>
-                  <div className="p-1 px-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/20">
-                    <TrendingUp size={10} className="text-emerald-500" />
-                  </div>
-                </div>
+                {(() => {
+                  const delta = calculateDailyBudgetDelta(countryEntry as any, buildingDeltas);
+                  const isPositive = delta >= 0;
+                  const absDelta = Math.abs(Math.round(delta));
+                  const colorClass = isPositive ? "text-emerald-500" : "text-rose-500";
+                  const bgClass = isPositive ? "bg-emerald-500/10" : "bg-rose-500/10";
+                  const borderClass = isPositive ? "border-emerald-500/20" : "border-rose-500/20";
+                  
+                  return (
+                    <div className="flex items-center gap-2">
+                      <span className={`text-lg font-black ${colorClass} italic`}>
+                        {isPositive ? '+' : '-'}{absDelta.toLocaleString('id-ID')}
+                      </span>
+                      <div className={`p-1 px-1.5 rounded-md ${bgClass} border ${borderClass}`}>
+                        {isPositive ? (
+                          <TrendingUp size={10} className={colorClass} />
+                        ) : (
+                          <TrendingDown size={10} className={colorClass} />
+                        )}
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           </div>
@@ -307,31 +338,137 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
           )}
 
           {currentSector === "hunian_sosial" && (
-            <div className="space-y-10">
-              <SimpleGridSection 
-                title="1. Sektor Hunian Rakyat (Subsidi)" 
-                data={countryEntry.hunian?.rumah_subsidi !== undefined ? { rumah_subsidi: countryEntry.hunian.rumah_subsidi } : {}} 
-                buildingDeltas={buildingDeltas}
-                constructionQueue={constructionQueue}
-                icon={Home}
-                color="text-emerald-600"
-              />
-              <SimpleGridSection 
-                title="2. Sektor Hunian Vertikal (Apartemen)" 
-                data={countryEntry.hunian?.apartemen !== undefined ? { apartemen: countryEntry.hunian.apartemen } : {}} 
-                buildingDeltas={buildingDeltas}
-                constructionQueue={constructionQueue}
-                icon={Building2}
-                color="text-cyan-600"
-              />
-              <SimpleGridSection 
-                title="3. Sektor Hunian Mewah (Mansion)" 
-                data={countryEntry.hunian?.mansion !== undefined ? { mansion: countryEntry.hunian.mansion } : {}} 
-                buildingDeltas={buildingDeltas}
-                constructionQueue={constructionQueue}
-                icon={Landmark}
-                color="text-amber-600"
-              />
+            <div className="space-y-12">
+              {(() => {
+                // Centralized Budget & Housing Logic
+                const breakdown = calculateBudgetBreakdown(countryEntry as any, buildingDeltas);
+                if (!breakdown || !breakdown.details) return null;
+                
+                const { housingCapacity: totalNationalHousingCapacity, societalPenalty } = breakdown.details;
+                
+                const rawPop = (countryEntry as any).jumlah_penduduk ?? (countryEntry as any).populasi ?? 0;
+                const basePop = typeof rawPop === 'string' 
+                  ? parseInt(rawPop.replace(/\./g, '')) 
+                  : (typeof rawPop === 'number' ? rawPop : 0);
+
+                const population = isUser ? populationStorage.getPopulation() : basePop;
+
+                return (
+                  <>
+                    {[
+                      { 
+                        title: "1. Hunian Rumah Menengah & Subsidi", 
+                        id: "rumah_subsidi",
+                        icon: Home, 
+                        color: "text-emerald-500",
+                        description: "Hunian Terpadu Masyarakat Terjangkau",
+                        capacity: 5
+                      },
+                      { 
+                        title: "2. Apartemen Modern & High-Rise", 
+                        id: "apartemen",
+                        icon: Building2, 
+                        color: "text-sky-500",
+                        description: "Hunian Vertikal Kepadatan Tinggi",
+                        capacity: 6000
+                      },
+                      { 
+                        title: "3. Kompleks Mansion Mewah", 
+                        id: "mansion",
+                        icon: Landmark, 
+                        color: "text-amber-500",
+                        description: "Hunian Eksklusif Kelas Atas",
+                        capacity: 10
+                      }
+                    ].map((house) => {
+                      const unitsBaseline = (countryEntry.hunian as any)?.[house.id] || 0;
+                      const unitsDelta = buildingDeltas[house.id] || Object.entries(buildingDeltas).find(([k]) => k.replace(/^\d+_/, '') === house.id)?.[1] || 0;
+                      const totalUnits = Number(unitsBaseline) + Number(unitsDelta);
+                      const totalDayaTampung = totalUnits * house.capacity;
+                      const isNationalShortage = totalNationalHousingCapacity < population;
+
+                      return (
+                        <div key={house.id} className="bg-zinc-900/30 border border-zinc-800/50 rounded-[2.5rem] p-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center hover:border-zinc-700/50 transition-all duration-500 group relative overflow-hidden mb-12 last:mb-0">
+                          {/* Unit Count */}
+                          <div className="lg:col-span-3 flex flex-col items-center justify-center border-r border-zinc-800/50 pr-8">
+                            <div className="p-5 bg-zinc-950 rounded-[2rem] border border-zinc-800 mb-6 group-hover:scale-110 transition-transform duration-500 shadow-xl">
+                              <house.icon size={48} className={house.color} />
+                            </div>
+                            <div className="flex flex-col items-center">
+                              <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Kuantitas Unit</span>
+                              <span className="text-5xl font-black text-white tracking-tighter tabular-nums drop-shadow-2xl">
+                                {totalUnits.toLocaleString('id-ID')}
+                              </span>
+                            </div>
+                            <p className="text-[10px] text-zinc-500 font-bold uppercase mt-2 tracking-widest">Level / Jumlah Aktif</p>
+                          </div>
+
+                          {/* Capacity Analysis */}
+                          <div className="lg:col-span-5 space-y-6">
+                            <div className="flex flex-col gap-1">
+                                <span className={`text-[10px] font-black uppercase tracking-widest ${house.color}`}>Total Daya Tampung Jiwa</span>
+                                <div className="flex items-baseline gap-3">
+                                    <span className="text-4xl font-black text-white tracking-tight">
+                                        {totalDayaTampung.toLocaleString('id-ID')}
+                                    </span>
+                                    <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Kapasitas Maksimal</span>
+                                </div>
+                            </div>
+                            
+                            <div className="w-full h-2 bg-zinc-950 rounded-full overflow-hidden border border-zinc-800">
+                                <div 
+                                    className={`h-full ${house.color.replace('text-', 'bg-')} transition-all duration-1000 shadow-[0_0_10px_rgba(0,0,0,0.5)]`}
+                                    style={{ width: `${Math.min(100, (totalDayaTampung / (population || 1)) * 100)}%` }}
+                                />
+                            </div>
+                            
+                            <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
+                                <span className="text-zinc-500">Rasio vs Populasi</span>
+                                <span className={house.color}>{((totalDayaTampung / (population || 1)) * 100).toFixed(1)}% Terpenuhi</span>
+                            </div>
+                          </div>
+
+                          {/* Description & Action */}
+                          <div className="lg:col-span-4 bg-zinc-950/50 p-6 rounded-3xl border border-zinc-800/50 flex flex-col justify-between h-full min-h-[200px]">
+                            <p className="text-xs text-zinc-400 italic leading-relaxed mb-4">
+                              "{house.description}"
+                            </p>
+                            
+                            <div className="flex flex-col gap-3 mt-auto">
+                               <div className="flex items-center gap-2">
+                                  <div className={`w-2 h-2 rounded-full ${isNationalShortage ? 'bg-rose-500 animate-pulse' : 'bg-emerald-500'}`} />
+                                  <span className={`text-[10px] font-black uppercase tracking-widest ${isNationalShortage ? 'text-rose-500' : 'text-emerald-500'}`}>
+                                    {isNationalShortage ? '❗ KAPASITAS NASIONAL KURANG' : 'Kapasitas Stabil'}
+                                  </span>
+                               </div>
+                               {isNationalShortage && (
+                                  <div className="pl-4 space-y-3">
+                                     <p className="text-[9px] font-black text-rose-500/80 uppercase tracking-tighter">
+                                         ESTIMASI KEKURANGAN: <span className="text-white">{(Math.ceil(Math.max(0, population - totalNationalHousingCapacity) / house.capacity)).toLocaleString('id-ID')}</span> UNIT
+                                     </p>
+                                     <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 flex flex-col gap-1">
+                                        <span className="text-[8px] font-black text-rose-400 uppercase tracking-widest">Kerugian Ekonomi Harian</span>
+                                        <span className="text-base font-black text-rose-500 italic">
+                                           -{Math.round(societalPenalty).toLocaleString('id-ID')} EM
+                                        </span>
+                                     </div>
+                                  </div>
+                               )}
+                            </div>
+                          </div>
+
+                          {/* Building Label Header */}
+                          <div className="absolute top-4 left-10">
+                            <span className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">
+                              {house.title}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </>
+                );
+              })()}
             </div>
           )}
         </div>

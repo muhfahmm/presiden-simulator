@@ -3,6 +3,7 @@ import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_baw
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { gameStorage } from "@/app/game/gamestorage";
+import { aiBuildingStorage } from "../../../5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 
 /**
  * KolektorDataNasional - Perangkat Observasi AI
@@ -50,8 +51,21 @@ export class KolektorDataNasional {
       jalur_kereta: country.infrastruktur?.stasiun_kereta_api || 0,
       kereta_bawah_tanah: country.infrastruktur?.kereta_bawah_tanah || 0,
       pelabuhan_laut: country.infrastruktur?.pelabuhan || 0,
-      bandara: country.infrastruktur?.bandara || 0,
-      helipad: country.infrastruktur?.helipad || 0
+    };
+    const bandara = country.infrastruktur?.bandara || 0;
+    const helipad = country.infrastruktur?.helipad || 0;
+
+    // 5. Data Populasi & Hunian
+    const rawPop = (country as any).jumlah_penduduk ?? (country as any).populasi ?? 0;
+    const population = typeof rawPop === 'string' 
+      ? (parseInt(rawPop.replace(/\./g, '')) || 0)
+      : (typeof rawPop === 'number' ? rawPop : 0);
+
+    const aiDeltas = aiBuildingStorage.getAllBuildingDeltas(country.name_en);
+    const housing = {
+      rumah_subsidi: (Number(country.hunian?.rumah_subsidi) || 0) + (aiDeltas["9_rumah_subsidi"] || 0),
+      apartemen: (Number(country.hunian?.apartemen) || 0) + (aiDeltas["10_apartemen"] || 0),
+      mansion: (Number(country.hunian?.mansion) || 0) + (aiDeltas["11_mansion"] || 0),
     };
 
     return {
@@ -61,7 +75,9 @@ export class KolektorDataNasional {
       ideology: country.ideology,
       avg_tax_rate: avgTaxRate,
       avg_price_multiplier: avgPriceMult,
-      infrastructure: infrastructure,
+      population: population,
+      housing: housing,
+      infrastructure: { ...infrastructure, bandara, helipad },
       statistik: {
         indeks_kepuasan: statsValue,
         tren: "Flat",

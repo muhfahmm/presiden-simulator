@@ -1,9 +1,12 @@
-import { Home, Building2, Landmark, Users, Coins, Zap, Clock, Info, Hammer, Flame, Activity, Loader2 } from "lucide-react";
+import { Home, Building2, Landmark, Users, Coins, Zap, Clock, Info, Hammer, Flame, Activity, Loader2, X } from "lucide-react";
+import { useState } from "react";
 import { hunianRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 
 export default function HunianPemukiman() {
+  const [activeInfo, setActiveInfo] = useState<string | null>(null);
+
   const session = gameStorage.getSession();
   const currentCountryCode = session?.country || "Indonesia";
   const countryData = countries.find((c: any) =>
@@ -24,7 +27,7 @@ export default function HunianPemukiman() {
       color: "text-cyan-500",
       price: hunianRate.rumah_subsidi.biaya_pembangunan.toLocaleString('id-ID'),
       konsumsi_listrik: hunianRate.rumah_subsidi.konsumsi_listrik,
-      capacity: hunianRate.rumah_subsidi.kapasitas.toLocaleString('id-ID'),
+      kapasitas: hunianRate.rumah_subsidi.kapasitas.toLocaleString('id-ID'),
       time: hunianRate.rumah_subsidi.waktu_pembangunan,
       count: hunianData.rumah_subsidi || 0,
     },
@@ -37,7 +40,7 @@ export default function HunianPemukiman() {
       color: "text-cyan-500",
       price: hunianRate.apartemen.biaya_pembangunan.toLocaleString('id-ID'),
       konsumsi_listrik: hunianRate.apartemen.konsumsi_listrik,
-      capacity: hunianRate.apartemen.kapasitas.toLocaleString('id-ID'),
+      kapasitas: hunianRate.apartemen.kapasitas.toLocaleString('id-ID'),
       time: hunianRate.apartemen.waktu_pembangunan,
       count: hunianData.apartemen || 0,
     },
@@ -50,7 +53,7 @@ export default function HunianPemukiman() {
       color: "text-cyan-500",
       price: hunianRate.mansion.biaya_pembangunan.toLocaleString('id-ID'),
       konsumsi_listrik: hunianRate.mansion.konsumsi_listrik,
-      capacity: hunianRate.mansion.kapasitas.toLocaleString('id-ID'),
+      kapasitas: hunianRate.mansion.kapasitas.toLocaleString('id-ID'),
       time: hunianRate.mansion.waktu_pembangunan,
       count: hunianData.mansion || 0,
     },
@@ -74,7 +77,14 @@ export default function HunianPemukiman() {
                 <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform">
                   <item.icon className={`h-5 w-5 ${item.color} shadow-[0_0_10px_rgba(6,182,212,0.3)]`} />
                 </div>
-                <button className="p-2.5 rounded-xl border bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30 transition-all cursor-pointer">
+                <button 
+                  onClick={() => setActiveInfo(activeInfo === item.id ? null : item.id)}
+                  className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
+                    activeInfo === item.id 
+                      ? 'bg-cyan-500 border-cyan-400 text-white shadow-[0_0_15px_rgba(6,182,212,0.4)]' 
+                      : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'
+                  }`}
+                >
                   <Info size={16} />
                 </button>
               </div>
@@ -119,7 +129,7 @@ export default function HunianPemukiman() {
                     <Users size={12} className="text-blue-400" />
                   </div>
                   <span className="text-[12px] font-bold text-blue-400/80">
-                    Kapasitas: {item.capacity} Jiwa/unit
+                    Kapasitas: {item.kapasitas} Jiwa/unit
                   </span>
                 </div>
 
@@ -154,6 +164,70 @@ export default function HunianPemukiman() {
                   BANGUN
                </button>
             </div>
+
+            {/* Detailed Info Overlay */}
+            {activeInfo === item.id && (
+              <div className="absolute inset-0 bg-zinc-950/98 backdrop-blur-xl z-50 p-8 flex flex-col animate-in fade-in zoom-in duration-300 border border-zinc-800 rounded-2xl">
+                {/* Header */}
+                <div className="flex justify-between items-start mb-10">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-cyan-500/10 rounded-2xl border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
+                      <Info size={24} className="text-cyan-400" />
+                    </div>
+                    <div>
+                      <h5 className="text-xl font-black text-white uppercase tracking-tighter italic leading-none">Detail Fasilitas</h5>
+                      <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] mt-1 block">Spesifikasi & Biaya</span>
+                    </div>
+                  </div>
+                  <button onClick={() => setActiveInfo(null)} className="p-2 hover:bg-zinc-800 rounded-xl text-zinc-500 transition-colors cursor-pointer group">
+                    <X size={20} className="group-hover:rotate-90 transition-transform" />
+                  </button>
+                </div>
+
+                {/* Building Name Focus */}
+                <div className="bg-zinc-900/50 border border-zinc-800/80 rounded-[32px] p-8 mb-8 text-center relative overflow-hidden group/name">
+                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover/name:opacity-100 transition-opacity" />
+                  <span className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.4em] mb-3 block">Nama Bangunan</span>
+                  <h4 className="text-3xl font-black text-amber-400 uppercase italic tracking-tighter leading-tight drop-shadow-[0_2px_10px_rgba(251,191,36,0.3)]">
+                    {item.title}
+                  </h4>
+                </div>
+
+                {/* Specs Rows */}
+                <div className="space-y-4 flex-1">
+                  {/* Energy Row */}
+                  <div className="bg-zinc-900/30 border border-zinc-800/40 rounded-3xl p-5 flex items-center justify-between group/row hover:border-pink-500/30 transition-all">
+                    <div className="flex items-center gap-4">
+                       <div className="p-3 bg-pink-500/10 rounded-2xl border border-pink-500/20">
+                          <Zap size={18} className="text-pink-500" />
+                       </div>
+                       <span className="text-xs font-black text-zinc-400 uppercase tracking-widest">Beban Energi</span>
+                    </div>
+                    <span className="text-xl font-black text-pink-500 tracking-tight tabular-nums">{item.konsumsi_listrik} MW</span>
+                  </div>
+
+                  {/* Capacity Row */}
+                  <div className="bg-zinc-900/30 border border-zinc-800/40 rounded-3xl p-5 flex items-center justify-between group/row hover:border-cyan-500/30 transition-all">
+                    <div className="flex items-center gap-4">
+                       <div className="p-3 bg-cyan-500/10 rounded-2xl border border-cyan-500/20">
+                          <Users size={18} className="text-cyan-500" />
+                       </div>
+                       <span className="text-xs font-black text-zinc-400 uppercase tracking-widest">Kapasitas Hunian</span>
+                    </div>
+                    <span className="text-xl font-black text-cyan-400 tracking-tight tabular-nums">{item.kapasitas} Jiwa</span>
+                  </div>
+
+                </div>
+
+                {/* Back Button */}
+                <button 
+                  onClick={() => setActiveInfo(null)}
+                  className="mt-10 w-full py-5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 text-xs font-black uppercase tracking-[0.4em] rounded-[24px] transition-all hover:scale-[0.98] active:scale-95 shadow-xl"
+                >
+                  KEMBALI
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>

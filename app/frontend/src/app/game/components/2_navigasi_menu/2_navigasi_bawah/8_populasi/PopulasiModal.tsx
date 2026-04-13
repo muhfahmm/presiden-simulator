@@ -12,6 +12,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate, produksiMiliter, infrastrukturRate, sosialRate } from "@/app/database/data/semua_fitur_negara";
 import { KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/semua_fitur_negara"
+import { SocialCareService } from "../../../AI_logic/2_AI_Populasi/3_kesejahteraan_sosial/SocialCareService";
 
 
 
@@ -104,13 +105,16 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
     const isKapitalisme = currentIdeology === "Kapitalisme";
     const isKomunisme = currentIdeology === "Komunisme";
     const effectiveGini = isKapitalisme ? gini * 1.15 : isKomunisme ? gini * 0.75 : gini;
+    
+    // AI Social Impact Adjustment
+    const povertyMultiplier = SocialCareService.getPovertyMultiplier();
 
     // Baseline (Approx Gini 38)
     let elite = 2.0;
     let upMid = 12.0;
     let mid = 45.0;
     let work = 30.0;
-    let poor = 11.0;
+    let poor = 11.0 * povertyMultiplier;
 
     // Gini Impact: Higher Gini = More extreme ends
     const giniFactor = (effectiveGini - 38) / 100;
@@ -206,13 +210,13 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
             </div>
 
             <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
-              <div className={`p-3 rounded-xl ${livingCostIndex >= 60 ? 'bg-emerald-500/10' : 'bg-amber-500/10'}`}>
-                <BadgeDollarSign className={`h-6 w-6 ${livingCostIndex >= 60 ? 'text-emerald-500' : 'text-amber-500'}`} />
+              <div className={`p-3 rounded-xl ${SocialCareService.getSocialStats().homelessCount === 0 ? 'bg-emerald-500/10' : 'bg-rose-500/10'}`}>
+                <ShieldAlert className={`h-6 w-6 ${SocialCareService.getSocialStats().homelessCount === 0 ? 'text-emerald-500' : 'text-rose-500'}`} />
               </div>
               <div>
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Indeks Kesejahteraan</p>
-                <p className={`text-xl font-black leading-tight ${livingCostIndex >= 60 ? 'text-emerald-500' : 'text-amber-400'}`}>
-                  {livingCostIndex.toFixed(1)} <span className="text-[10px] text-zinc-500">/ 100</span>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Tunawisma (Homeless)</p>
+                <p className={`text-xl font-black leading-tight ${SocialCareService.getSocialStats().homelessCount === 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
+                  {SocialCareService.getSocialStats().homelessCount.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">JIWA</span>
                 </p>
               </div>
             </div>

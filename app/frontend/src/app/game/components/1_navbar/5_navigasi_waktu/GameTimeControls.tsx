@@ -28,6 +28,10 @@ import { calculateDetailedPopulationMetrics } from "@/app/game/components/1_navb
 import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
 import { calculateDailyProductionTotals as calculateAIProduction } from "@/app/game/data/production/productionLogic";
+import { AiHunianService } from "@/app/game/components/AI_logic/2_AI_Populasi/2_kebutuhan_hunian/AiHunianService";
+import { AiPembangunanService } from "@/app/game/components/AI_logic/2_AI_Populasi/2_kebutuhan_hunian/AiPembangunanService";
+import { SocialCareService } from "@/app/game/components/AI_logic/2_AI_Populasi/3_kesejahteraan_sosial/SocialCareService";
+import { AiPopulasiService } from "@/app/game/components/AI_logic/2_AI_Populasi/1_statistik_populasi/AiPopulasiService";
 
 // import { diplomacyStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/diplomacyStorage";
 
@@ -184,6 +188,12 @@ export default function GameTimeControls() {
         healthImpact,
         securityLevel: metrics.securityLevel
       });
+
+      // --- AI Population, Housing & Social Analysis ---
+      AiPembangunanService.runBuildAnalysis();
+      SocialCareService.calculateAndStore();
+      AiHunianService.runDailyAnalysis();
+      // AiPopulasiService.analyzePopulation(...) // Can be added if needed, but Hunian is priority now
     }
   }, [state.gameDate, state.isPaused]);
 

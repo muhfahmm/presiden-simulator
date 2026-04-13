@@ -12,6 +12,7 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import { infrastrukturRate, sosialRate, hunianRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
 import { mineralKritisRate, manufakturRate, peternakanRate, agrikulturRate, perikananRate, olahanPanganRate, farmasiRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi";
 import { pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer";
+import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
@@ -38,6 +39,15 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
   const [missingMaterialsData, setMissingMaterialsData] = useState<any[]>([]);
   const [requiredAmount, setRequiredAmount] = useState(0);
   const [activeTab, setActiveTab] = useState<'layanan' | 'hunian'>('layanan');
+  const [population, setPopulation] = useState(() => populationStorage.getPopulation());
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setPopulation(populationStorage.getPopulation());
+    };
+    window.addEventListener("population_updated", handleUpdate);
+    return () => window.removeEventListener("population_updated", handleUpdate);
+  }, []);
 
   const toggleSector = (id: string) => {
     setCollapsedSectors(prev => {
@@ -201,16 +211,16 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
   const surplus = adjustedTotalPasokan - adjustedTotalBeban;
 
   // --- HOUSING CAPACITY CALCULATION ---
-  const totalHousingCapacity = (currentDataWithDeltas.hunian?.rumah_subsidi || 0) * (hunianRate.rumah_subsidi.kapasitas || 4) +
-                               (currentDataWithDeltas.hunian?.apartemen || 0) * (hunianRate.apartemen.kapasitas || 50) +
-                               (currentDataWithDeltas.hunian?.mansion || 0) * (hunianRate.mansion.kapasitas || 10);
-  const population = Number(currentData.jumlah_penduduk || 0);
+  const totalHousingCapacity = (currentDataWithDeltas.hunian?.rumah_subsidi || 0) * (hunianRate.rumah_subsidi.kapasitas) +
+                               (currentDataWithDeltas.hunian?.apartemen || 0) * (hunianRate.apartemen.kapasitas) +
+                               (currentDataWithDeltas.hunian?.mansion || 0) * (hunianRate.mansion.kapasitas);
+                               
   const isHousingShortage = totalHousingCapacity < population;
   
   // Tiered Demand Calculation (70% Subsidi, 25% Apartemen, 5% Mansion)
-  const demandSubsidi = population > 0 ? Math.min(100, Math.max(0, (1 - ((currentDataWithDeltas.hunian?.rumah_subsidi || 0) * (hunianRate.rumah_subsidi.kapasitas || 4)) / (population * 0.7))) * 100) : 0;
-  const demandApartemen = population > 0 ? Math.min(100, Math.max(0, (1 - ((currentDataWithDeltas.hunian?.apartemen || 0) * (hunianRate.apartemen.kapasitas || 50)) / (population * 0.25))) * 100) : 0;
-  const demandMansion = population > 0 ? Math.min(100, Math.max(0, (1 - ((currentDataWithDeltas.hunian?.mansion || 0) * (hunianRate.mansion.kapasitas || 10)) / (population * 0.05))) * 100) : 0;
+  const demandSubsidi = population > 0 ? Math.min(100, Math.max(0, (1 - ((currentDataWithDeltas.hunian?.rumah_subsidi || 0) * (hunianRate.rumah_subsidi.kapasitas)) / (population * 0.7))) * 100) : 0;
+  const demandApartemen = population > 0 ? Math.min(100, Math.max(0, (1 - ((currentDataWithDeltas.hunian?.apartemen || 0) * (hunianRate.apartemen.kapasitas)) / (population * 0.25))) * 100) : 0;
+  const demandMansion = population > 0 ? Math.min(100, Math.max(0, (1 - ((currentDataWithDeltas.hunian?.mansion || 0) * (hunianRate.mansion.kapasitas)) / (population * 0.05))) * 100) : 0;
 
   const publicGroups = [
     {
@@ -819,13 +829,25 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
 
             <div className="grid gap-2">
 
+              {/* Energy Row */}
               {item.konsumsi_listrik > 0 && (
-                <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-500"><Zap size={12} /></div>
-                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
+                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-pink-500/30 transition-all group/row">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-pink-500/10 rounded-xl text-pink-500 border border-pink-500/20 group-hover/row:scale-110 transition-transform"><Zap size={14} /></div>
+                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                   </div>
-                  <span className="text-[14px] font-black text-rose-500">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
+                  <span className="text-[15px] font-black text-pink-500 tabular-nums">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
+                </div>
+              )}
+
+              {/* Capacity Row (Only for Housing or relevant sectors) */}
+              {item.kapasitas > 0 && (
+                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-cyan-500/30 transition-all group/row">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-cyan-500/10 rounded-xl text-cyan-500 border border-cyan-500/20 group-hover/row:scale-110 transition-transform"><Users size={14} /></div>
+                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Kapasitas Hunian</span>
+                  </div>
+                  <span className="text-[15px] font-black text-cyan-400 tabular-nums">{item.kapasitas?.toLocaleString('id-ID')} Jiwa</span>
                 </div>
               )}
 
@@ -917,13 +939,13 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
 
 
 
-          {item.capacity > 0 && (
+          {item.kapasitas > 0 && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-indigo-500/10 rounded-lg">
                 <Users2 size={12} className="text-indigo-400" />
               </div>
               <span className="text-[12px] font-bold text-indigo-400/80">
-                Kapasitas: {item.capacity.toLocaleString('id-ID')} Jiwa/unit
+                Kapasitas: {item.kapasitas.toLocaleString('id-ID')} Jiwa/unit
               </span>
             </div>
           )}
@@ -958,7 +980,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
                 </div>
                 <div className="flex items-center gap-1.5 ml-4">
                   <span className="text-[11px] font-bold text-rose-400 opacity-90 uppercase tracking-tighter">
-                    Estimasi Kekurangan: <span className="text-white font-black text-[13px]">{Math.ceil(cumulative / (item.capacity || 1)).toLocaleString('id-ID')}</span> Unit
+                    Estimasi Kekurangan: <span className="text-white font-black text-[13px]">{Math.ceil(cumulative / (item.kapasitas || 1)).toLocaleString('id-ID')}</span> Unit
                   </span>
                 </div>
              </div>

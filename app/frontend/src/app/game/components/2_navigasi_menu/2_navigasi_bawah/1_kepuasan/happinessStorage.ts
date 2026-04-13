@@ -10,6 +10,7 @@ import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { BUDDHA_SATISFACTION_DAILY_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/6_buddha/1_plus/plus";
 import { KONGHUCU_PRESS_FREEDOM_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/9_konghucu/2_minus/minus";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
+import { AiHunianService } from "../../../AI_logic/2_AI_Populasi/2_kebutuhan_hunian/AiHunianService";
 
 export interface HappinessStats {
   value: number; // 0-100
@@ -306,6 +307,10 @@ export const happinessStorage = {
 
 
 
+    // 12. AI Housing Deficit Impact
+    const housingPenalty = AiHunianService.getHousingPenalty();
+    totalDailyDelta += housingPenalty;
+
     // Jika sudah di zona merah (< 40), efeknya dilipatduakan
     const isRedZone = stats.value < 40;
     if (isRedZone && totalDailyDelta < 0) totalDailyDelta *= 2;
@@ -323,6 +328,8 @@ export const happinessStorage = {
       reason = `Krisis Publik: Kepuasan merosot tajam ke ${newValue}% karena beban harga & pajak yang tak tertahankan.`;
     } else if (totalDailyDelta < 0) {
       reason = `Tekanan ekonomi (pajak/harga) menekan kepuasan rakyat ke ${newValue}%.`;
+    } else if (housingPenalty < -0.1) {
+      reason = `Kekurangan hunian nasional menekan tingkat kepuasan rakyat ke ${newValue}%.`;
     } else if (infraBonus > 0) {
       reason = `Infrastruktur yang memadai (transaksi & transportasi) menaikkan kepuasan rakyat menjadi ${newValue}%.`;
     } else {

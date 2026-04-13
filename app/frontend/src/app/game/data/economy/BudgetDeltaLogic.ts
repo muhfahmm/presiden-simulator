@@ -19,6 +19,10 @@ import { ATEISME_MANUFACTURING_BONUS, ATEISME_AGRICULTURE_BONUS } from "@/app/ga
 import { KONGHUCU_TAX_EFFICIENCY_BONUS, KONGHUCU_MANUFACTURING_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/9_konghucu/1_plus/plus";
 import { TAOISME_HEAVY_INDUSTRY_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/10_taoisme/2_minus/minus"
 import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic"
+import { hunianRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/index";
+import { happinessStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/happinessStorage";
+import { aiHappinessStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
+import { gameStorage } from "@/app/game/gamestorage";
 
 /**
  * Calculates the total daily maintenance cost.
@@ -65,6 +69,11 @@ export interface BudgetBreakdown {
     priceMultiplier: number;
     subsidiLevel: number;
     salaryMultiplier: number;
+    housingCapacity: number;
+    homelessRate: number;
+    societalPenalty: number;
+    happinessImpact: number;
+    satisfaction: number;
   }
 }
 
@@ -244,17 +253,12 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
 
   const totalAnnualRevenue = adjustedDomestic + adjustedTrade + adjustedResources + adjustedOther;
 
-  // 2. Expenses
+  // 2. Expenses & Penalties
   const expData = expenseStorage.getData(countryData.name_en, countryData);
-  
-  // Maintenance (Semua pemeliharaan infrastruktur dan operasional militer kini nol)
   const maintenanceExpense = 0;
-  
-  // Military (Khusus operasional/pabrik jika diperlukan tambahan, saat ini sudah masuk maintenance)
   const militaryExpense = 0; 
 
-
-  // Price Subsidies
+  // Price Subsidies Logic
   const priceData = priceStorage.getData();
   const avgPriceMultiplier = (
     (priceData.harga_beras / 15000) + (priceData.harga_daging_sapi / 120000) + (priceData.harga_ayam / 40000) +
@@ -264,21 +268,63 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   ) / 11;
   const priceSubsidyExpense = Math.max(0, (1.0 - avgPriceMultiplier) * 1500);
 
-  const totalAnnualExpense = maintenanceExpense + militaryExpense + (expData.debtInterestPaid || 0) + priceSubsidyExpense;
-  const netAnnualSurplus = totalAnnualRevenue - totalAnnualExpense;
+  // --- SYNC HUB: HOUSING & HAPPINESS PENALTY ---
+  // 3. Housing Capacity Impact
+  const getUnits = (id: string) => {
+    const baseline = (countryData.hunian as any)?.[id] || 0;
+    const delta = buildingDeltas[id] || Object.entries(buildingDeltas).find(([k]) => k.replace(/^\d+_/, '') === id)?.[1] || 0;
+    return Number(baseline) + Number(delta);
+  };
+
+  const housingCapacity = 
+    (getUnits("rumah_subsidi") * hunianRate.rumah_subsidi.kapasitas) + 
+    (getUnits("apartemen") * hunianRate.apartemen.kapasitas) + 
+    (getUnits("mansion") * hunianRate.mansion.kapasitas);
+
+  const rawPop = (countryData as any).jumlah_penduduk ?? (countryData as any).populasi ?? 0;
+  const population = typeof rawPop === 'string' 
+    ? (parseInt(rawPop.replace(/\./g, '')) || 0)
+    : (typeof rawPop === 'number' ? rawPop : 0);
+
+  const homelessRate = Math.max(0, Math.min(1.0, (population - housingCapacity) / (population || 1)));
+  const societalPenaltyAnnual = totalAnnualRevenue * (homelessRate * 0.25); // Cap penalty at 25% of total revenue if 100% homeless
+
+  // 4. Satisfaction (Happiness) Impact (Player vs AI)
+  let currentSatisfaction = 55;
+  if (typeof window !== 'undefined') {
+    const session = gameStorage.getSession();
+    const isPlayer = session?.country === countryData.name_en || session?.country === (countryData as any).name_id;
+    if (isPlayer) {
+      currentSatisfaction = happinessStorage.getStats().value;
+    } else {
+      currentSatisfaction = aiHappinessStorage.getSatisfaction(countryData.name_en);
+    }
+  }
+
+  const happinessMultiplier = 0.4 + (0.6 * (currentSatisfaction / 100)); // 0.4 - 1.0 range
+  const finalAnnualRevenue = totalAnnualRevenue * happinessMultiplier;
+
+  const annualMaintenance = maintenanceExpense * 365;
+  const annualMilitary = militaryExpense * 365;
+  const annualDebtInterest = expData.debtInterestPaid || 0;
+  const annualPriceSubsidy = priceSubsidyExpense * 365;
+  const annualSocietalPenalty = societalPenaltyAnnual;
+
+  const totalAnnualExpense = annualMaintenance + annualMilitary + annualDebtInterest + annualPriceSubsidy + annualSocietalPenalty;
+  const netAnnualSurplus = finalAnnualRevenue - totalAnnualExpense;
   const dailyDelta = netAnnualSurplus / 365;
 
   return {
-    totalAnnualRevenue,
+    totalAnnualRevenue: finalAnnualRevenue,
     totalAnnualExpense,
     netAnnualSurplus,
     dailyDelta,
-    dailyTaxRevenue: totalAnnualRevenue / 365,
+    dailyTaxRevenue: finalAnnualRevenue / 365,
     revenues,
     expenses: {
       maintenance: maintenanceExpense,
       military: militaryExpense,
-      debtInterest: expData.debtInterestPaid || 0,
+      debtInterest: annualDebtInterest,
       priceSubsidies: priceSubsidyExpense,
       subsidies: 0,
       salaries: 0
@@ -286,7 +332,12 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
     details: {
       priceMultiplier: avgPriceMultiplier,
       subsidiLevel: 0,
-      salaryMultiplier: 0
+      salaryMultiplier: 0,
+      housingCapacity,
+      homelessRate,
+      societalPenalty: annualSocietalPenalty / 365,
+      happinessImpact: happinessMultiplier,
+      satisfaction: currentSatisfaction
     }
   };
 }

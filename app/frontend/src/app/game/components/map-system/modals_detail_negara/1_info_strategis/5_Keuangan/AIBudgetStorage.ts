@@ -2,6 +2,7 @@
 
 import { countries } from "@/app/database/data/negara/benua/index";
 import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLogic";
+import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 
 
 const AI_BUDGET_KEY = "em4_ai_budgets";
@@ -108,7 +109,8 @@ export const aiBudgetStorage = {
    */
   calculateDailyIncome: (country: any): number => {
     // scale delta to match the budget units (already in millions/raw units in DB)
-    return calculateDailyBudgetDelta(country, {});
+    const deltas = aiBuildingStorage.getAllBuildingDeltas(country.name_en);
+    return calculateDailyBudgetDelta(country, deltas);
   },
 
   /**

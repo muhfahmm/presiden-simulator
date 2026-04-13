@@ -13,8 +13,13 @@ import IdeologyRow from "./1_info_strategis/4_Ideologi/IdeologyRow";
 import KasNegara from "./1_info_strategis/5_Keuangan/1_KasNegara";
 import PenghasilanHarian from "./1_info_strategis/5_Keuangan/2_PenghasilanHarian";
 import SatisfactionRow from "./1_info_strategis/6_Kepuasan/SatisfactionRow";
+import PopulasiRow from "./1_info_strategis/7_DetailNegara/PopulasiRow";
 import { aiHappinessStorage } from "./1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { happinessStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/happinessStorage";
+import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
+import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaStorage";
+import { calculateDetailedPopulationMetrics } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
+import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 
 import DiplomacyTab from "./2_diplomasi_hubungan/DiplomacyTab";
 import MilitaryTab from "./3_aksi_militer_dan_intelijen/MilitaryTab";
@@ -112,7 +117,13 @@ export default function StrategyModal({
   isOpen, onClose, targetCountry, userCountry, activeTab, activeSubTab, activeSector, setActiveMenu, onTabChange 
 }: StrategyModalProps) {
   const [menuTab, setMenuTab] = useState<'info' | 'diplomacy' | 'military' | 'aid'>('info');
-  const [liveStats, setLiveStats] = useState({ anggaran: 0, dailyDelta: 0, satisfaction: 55 });
+  const [liveStats, setLiveStats] = useState({ 
+    anggaran: 0, 
+    dailyDelta: 0, 
+    satisfaction: 55, 
+    popTotal: 0, 
+    popDelta: 0 
+  });
   const [isTemporarilyHidden, setIsTemporarilyHidden] = useState(false);
   const [relationScore, setRelationScore] = useState(50);
   const [baseScore, setBaseScore] = useState(50);
@@ -166,9 +177,13 @@ export default function StrategyModal({
     const handleUpdate = () => setTick(t => t + 1);
     window.addEventListener("relation_storage_updated", handleUpdate);
     window.addEventListener("relation_status_updated", handleUpdate);
+    window.addEventListener("ai_building_updated", handleUpdate);
+    window.addEventListener("building_storage_updated", handleUpdate);
     return () => {
       window.removeEventListener("relation_storage_updated", handleUpdate);
       window.removeEventListener("relation_status_updated", handleUpdate);
+      window.removeEventListener("ai_building_updated", handleUpdate);
+      window.removeEventListener("building_storage_updated", handleUpdate);
     };
   }, []);
 
@@ -189,16 +204,41 @@ export default function StrategyModal({
       let currentAnggaran = 0;
       let currentDailyDelta = 0;
 
+
+      let popTotal = 0;
+      let popDelta = 0;
+
       if (isUser) {
         currentAnggaran = budgetStorage.getBudget();
         currentDailyDelta = calculateDailyBudgetDelta(countryEntry as any, buildingStorage.getBuildingDeltas());
+        popTotal = populationStorage.getPopulation();
+        popDelta = populationDeltaStorage.getDelta();
       } else {
         currentAnggaran = aiBudgetStorage.getBudget(countryEntry.name_en);
-        // For AI, we use empty building deltas as a baseline for comparison
-        currentDailyDelta = calculateDailyBudgetDelta(countryEntry as any, {});
+        
+        // NPC Building Deltas Logic
+        const aiDeltas = aiBuildingStorage.getAllBuildingDeltas(countryEntry.name_en);
+        currentDailyDelta = calculateDailyBudgetDelta(countryEntry as any, aiDeltas);
+        
+        // NPC Population Logic
+        // Robust Extraction of Population Baseline
+        const rawPop = (countryEntry as any).jumlah_penduduk ?? (countryEntry as any).populasi ?? 0;
+        const basePop = typeof rawPop === 'string' 
+          ? parseInt(rawPop.replace(/\./g, '')) 
+          : (typeof rawPop === 'number' ? rawPop : 0);
+          
+        const popMetrics = calculateDetailedPopulationMetrics(countryEntry as any, basePop, aiDeltas);
+        popTotal = basePop;
+        popDelta = popMetrics.totalDailyDelta;
       }
 
-      setLiveStats({ anggaran: currentAnggaran, dailyDelta: currentDailyDelta, satisfaction: isUser ? happinessStorage.getStats().value : aiHappinessStorage.getSatisfaction(countryEntry.name_en) });
+      setLiveStats({ 
+        anggaran: currentAnggaran, 
+        dailyDelta: currentDailyDelta, 
+        satisfaction: isUser ? happinessStorage.getStats().value : aiHappinessStorage.getSatisfaction(countryEntry.name_en),
+        popTotal,
+        popDelta
+      });
       setRelationScore(relationStorage.getRelationScore(targetK, initialBase, userId));
     };
 
@@ -209,6 +249,8 @@ export default function StrategyModal({
     window.addEventListener('ai_budget_updated', updateStats);
     window.addEventListener('ai_happiness_updated', updateStats);
     window.addEventListener('happiness_updated', updateStats);
+    window.addEventListener('ai_building_updated', updateStats);
+    window.addEventListener('building_storage_updated', updateStats);
     
     return () => {
       unsubscribeTime();
@@ -216,6 +258,8 @@ export default function StrategyModal({
       window.removeEventListener('ai_budget_updated', updateStats);
       window.removeEventListener('ai_happiness_updated', updateStats);
       window.removeEventListener('happiness_updated', updateStats);
+      window.removeEventListener('ai_building_updated', updateStats);
+      window.removeEventListener('building_storage_updated', updateStats);
     };
   }, [isOpen, targetId, userId, countryEntry, tick]);
 
@@ -280,6 +324,9 @@ export default function StrategyModal({
                   <SatisfactionRow value={liveStats.satisfaction} />
                 } />
                 <div className="pt-2 border-t border-zinc-800/40 mt-1 space-y-2.5">
+                  <InfoRow label="Populasi Nasional" value={
+                    <PopulasiRow total={liveStats.popTotal} delta={liveStats.popDelta} />
+                  } />
                   <InfoRow label="Kas Negara" value={
                     <KasNegara anggaran={liveStats.anggaran} />
                   } />

@@ -1,5 +1,6 @@
 import sys
 import json
+import math
 
 # Constants mirrored from TypeScript logic
 BUDDHA_BONUS = 0.2
@@ -71,8 +72,31 @@ def calculate_detailed_happiness(data):
     # Cap infra bonus to 2.5% per day
     infra_bonus = min(2.5, infra_bonus)
 
-    # 6. Final Daily Delta
-    total_daily_delta = tax_delta + price_delta + religion_delta + ideology_delta + infra_bonus
+    # 6. Housing Penalty (Societal Deficit)
+    housing_data = data.get('housing', {})
+    population = data.get('population', 0)
+    
+    # Capacities (Matched with hunianRate)
+    CAP_SUBSIDI = 5
+    CAP_APARTEMEN = 6000
+    CAP_MANSION = 10
+    
+    total_housing_cap = (
+        (housing_data.get('rumah_subsidi', 0) * CAP_SUBSIDI) +
+        (housing_data.get('apartemen', 0) * CAP_APARTEMEN) +
+        (housing_data.get('mansion', 0) * CAP_MANSION)
+    )
+    
+    deficit = max(0, population - total_housing_cap)
+    homeless_percent = (deficit / population * 100) if population > 0 else 0
+    
+    housing_penalty = 0
+    if homeless_percent > 0:
+        # Logarithmic scaling to prevent instant drop to 0, but significant at high percentages
+        housing_penalty = -(math.log10(homeless_percent + 1) / math.log10(101)) * 3.5
+
+    # 7. Final Daily Delta
+    total_daily_delta = tax_delta + price_delta + religion_delta + ideology_delta + infra_bonus + housing_penalty
 
     # 7. Red Zone Multiplier (Satisfaction < 40%)
     is_red_zone = current_value < 40
@@ -91,6 +115,8 @@ def calculate_detailed_happiness(data):
             "religion": religion_delta,
             "ideology": ideology_delta,
             "infrastructure": round(infra_bonus, 4),
+            "housing": round(housing_penalty, 4),
+            "homeless_rate": round(homeless_percent, 2),
             "infra_details": infra_breakdown
         },
         "status": "CRITICAL" if new_value < 40 else "STABLE",

@@ -10,7 +10,7 @@ export const hunianRate = {
     waktu_pembangunan: 7,
 
     konsumsi_listrik: 45,
-    kapasitas: 450,
+    kapasitas: 5,
     label: "Perumahan Subsidi Rakyat",
     deskripsi: "Hunian Terpadu Masyarakat Terjangkau"
   },
@@ -19,7 +19,7 @@ export const hunianRate = {
     waktu_pembangunan: 14,
 
     konsumsi_listrik: 350,
-    kapasitas: 5500,
+    kapasitas: 6000,
     label: "Apartemen Modern & High-Rise",
     deskripsi: "Hunian Vertikal Kepadatan Tinggi"
   },
@@ -28,7 +28,7 @@ export const hunianRate = {
     waktu_pembangunan: 21,
 
     konsumsi_listrik: 400,
-    kapasitas: 50,
+    kapasitas: 10,
     label: "Kompleks Mansion Mewah",
     deskripsi: "Hunian Eksklusif Kelas Atas"
   }
