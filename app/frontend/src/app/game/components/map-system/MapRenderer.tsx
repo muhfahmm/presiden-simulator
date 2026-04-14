@@ -1,6 +1,4 @@
-"use client"
-
-import { useState } from "react";
+import { memo } from "react";
 import { useRouter } from "next/navigation";
 import GameMapCanvas from "./mainGameMap";
 import TradeMapCanvas from "../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/jalur_perdagangan/1_map/TradeMapCanvas";
@@ -16,7 +14,7 @@ interface MapRendererProps {
   onSelectSDA: (data: any) => void;
 }
 
-export default function MapRenderer({
+const MapRenderer = memo(function MapRenderer({
   mapMode,
   userCountry,
   targetCountry,
@@ -25,7 +23,6 @@ export default function MapRenderer({
   onSelectSDA
 }: MapRendererProps) {
   const router = useRouter();
-
 
   return (
     <>
@@ -69,4 +66,12 @@ export default function MapRenderer({
       </div>
     </>
   );
-}
+}, (prev, next) => {
+  // Hanya re-render jika variabel kunci berubah
+  return prev.mapMode === next.mapMode && 
+         prev.userCountry === next.userCountry && 
+         prev.targetCountry === next.targetCountry &&
+         prev.geoData === next.geoData;
+});
+
+export default MapRenderer;

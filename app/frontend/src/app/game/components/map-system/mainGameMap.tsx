@@ -5,7 +5,6 @@ import { countries as centersData } from "@/app/database/data/negara/benua/index
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index";
 import { relationStorage } from "./modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { unSecurityCouncilStorage } from "../2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
-import { timeStorage } from "../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 
 interface GameMapCanvasProps {
 
@@ -122,18 +121,68 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
   const [tick, setTick] = useState(0);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
-  const requestRef = useRef<number>(null);
-  const lastTimeRef = useRef<number>(Date.now());
+  const staticCacheRef = useRef<HTMLCanvasElement | null>(null);
+  const needsCacheUpdate = useRef(true);
 
   const mapWidth = 6000;
   const mapHeight = 2400;
   
   const project = (lon: number, lat: number) => ({ x: ((lon + 180) / 360) * mapWidth, y: ((90 - lat) / 180) * mapHeight });
 
+  // 1. STATIC LAYER CACHING (The expensive part)
+  const drawStaticCache = () => {
+    if (!geoData || paths.length === 0) return;
+    
+    if (!staticCacheRef.current) {
+      staticCacheRef.current = document.createElement("canvas");
+      staticCacheRef.current.width = mapWidth;
+      staticCacheRef.current.height = mapHeight;
+    }
+    
+    const cacheCtx = staticCacheRef.current.getContext("2d", { alpha: false });
+    if (!cacheCtx) return;
+
+    // Draw Background
+    const bgGradient = cacheCtx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
+    bgGradient.addColorStop(0, "#121d31"); 
+    bgGradient.addColorStop(1, "#070b13"); 
+    cacheCtx.fillStyle = bgGradient; 
+    cacheCtx.fillRect(0, 0, mapWidth, mapHeight);
+
+    // Draw all non-selected countries
+    cacheCtx.lineWidth = 1;
+    paths.forEach((item: any) => {
+      const isSpecial = item.name === userCountry || geoJsonToIndo[item.name] === userCountry || 
+                        item.name === targetCountry || geoJsonToIndo[item.name] === targetCountry;
+      
+      // We skip drawing the player/target on the STATIC cache so we can draw them with GLOW on the dynamic layer
+      if (isSpecial) return;
+
+      cacheCtx.fillStyle = getContinentColor(item.name, item.id);
+      cacheCtx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+      cacheCtx.fill(item.path); 
+      cacheCtx.stroke(item.path);
+    });
+
+    // Draw maritime labels to cache
+    maritimeLabels.forEach(label => {
+      const { x, y } = project(label.lon, label.lat);
+      cacheCtx.font = `italic ${label.size}px 'Inter', sans-serif`; 
+      cacheCtx.fillStyle = label.color;
+      cacheCtx.textAlign = "center"; 
+      cacheCtx.textBaseline = "middle";
+      if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) cacheCtx.fillText(label.name, x, y);
+    });
+
+    needsCacheUpdate.current = false;
+    console.log("[MAP CACHE] Static world layer generated.");
+  };
+
   useEffect(() => {
     const handleUpdate = () => {
       if (debounceTimerRef.current) return;
       debounceTimerRef.current = setTimeout(() => {
+        needsCacheUpdate.current = true; // Invalidate cache on relation update
         setTick(t => t + 1);
         debounceTimerRef.current = null;
       }, 150);
@@ -148,23 +197,12 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
     };
   }, []);
 
-  // Animation loop for units
-  useEffect(() => {
-    const animate = () => {
-      const { isPaused } = timeStorage.getState();
-      
-      if (!isPaused) {
-        // Mission progress logic removed
-      }
-      
-      requestRef.current = requestAnimationFrame(animate);
-    };
-    requestRef.current = requestAnimationFrame(animate);
-    return () => { if (requestRef.current) cancelAnimationFrame(requestRef.current); };
-  }, []);
+  // Animation loop REMOVED — was burning CPU doing nothing (empty rAF callback 60x/sec)
+  // All rendering is now driven by the useEffect below which only fires on actual data changes.
 
   const paths = useMemo(() => {
     if (!geoData) return [];
+    needsCacheUpdate.current = true; // GeoData change = New Cache
     return geoData.features.map((feature: any) => {
       const path = new Path2D();
       const drawCoords = (coords: any) => coords.forEach((poly: any) => poly.forEach((c: any, i: number) => {
@@ -183,64 +221,51 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
     const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
-    ctx.clearRect(0, 0, mapWidth, mapHeight);
-    
-    // 1. ORIGINAL BACKGROUND
-    const bgGradient = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
-    bgGradient.addColorStop(0, "#121d31"); 
-    bgGradient.addColorStop(1, "#070b13"); 
-    ctx.fillStyle = bgGradient; 
-    ctx.fillRect(0, 0, mapWidth, mapHeight);
+    // 1. Ensure Cache is Ready
+    if (needsCacheUpdate.current || !staticCacheRef.current) {
+      drawStaticCache();
+    }
 
+    // 2. DRAW BASE (FROM CACHE) - Super Fast!
+    ctx.drawImage(staticCacheRef.current!, 0, 0);
+
+    // 3. DRAW DYNAMIC HIGHLIGHTS (Player & Target)
     paths.forEach((item: any) => {
       const isPlayer = item.name === userCountry || geoJsonToIndo[item.name] === userCountry;
       const isTarget = item.name === targetCountry || geoJsonToIndo[item.name] === targetCountry;
-      let fillColor = getContinentColor(item.name, item.id);
-      let strokeColor = "rgba(245, 245, 220, 0.25)";
-      let isHigh = isPlayer || isTarget;
       
-      ctx.lineWidth = 1;
+      if (!isPlayer && !isTarget) return;
+
+      let fillColor = "";
+      let strokeColor = "";
       
-      if (isHigh) {
-        if (isPlayer) { 
-          fillColor = "rgba(34, 197, 94, 0.35)"; 
-          strokeColor = "#4ade80"; 
-          ctx.lineWidth = 4; 
-          ctx.shadowColor = "#4ade80"; 
-          ctx.shadowBlur = 15; 
-        }
-        else { 
-          const rel = getRelation(item.name, userCountry);
-          const meta = relationStorage.getRelationMetadata(rel);
-          
-          fillColor = `${meta.hex}44`; 
-          strokeColor = meta.hex; 
-          ctx.lineWidth = 4; 
-          ctx.shadowColor = meta.hex; 
-          ctx.shadowBlur = 15;
-        }
-      } else {
-        strokeColor = "rgba(255, 255, 255, 0.1)";
+      if (isPlayer) { 
+        fillColor = "rgba(34, 197, 94, 0.4)"; 
+        strokeColor = "#4ade80"; 
+        ctx.lineWidth = 5; 
+        ctx.shadowColor = "#4ade80"; 
+        ctx.shadowBlur = 20; 
+      } else { 
+        const rel = getRelation(item.name, userCountry);
+        const meta = relationStorage.getRelationMetadata(rel);
+        fillColor = `${meta.hex}55`; 
+        strokeColor = meta.hex; 
+        ctx.lineWidth = 5; 
+        ctx.shadowColor = meta.hex; 
+        ctx.shadowBlur = 20;
       }
 
       ctx.fillStyle = fillColor; 
       ctx.strokeStyle = strokeColor; 
       ctx.fill(item.path); 
       ctx.stroke(item.path);
-      ctx.shadowBlur = 0;
+      ctx.shadowBlur = 0; // Clear expensive shadows immediately after use
     });
 
-    maritimeLabels.forEach(label => {
-      const { x, y } = project(label.lon, label.lat);
-      ctx.font = `italic ${label.size}px 'Inter', sans-serif`; ctx.fillStyle = label.color;
-      ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) ctx.fillText(label.name, x, y);
-    });
-
+    // 4. DRAW LABELS & DOTS (Top Layer)
     const labelGrid: { x: number, y: number }[] = [];
     const sortedCenters = [...centersData].sort((a, b) => {
       if (a.name_en === targetCountry || a.name_id === userCountry) return 1;
-      if (b.name_en === targetCountry || b.name_id === userCountry) return -1;
       return 0;
     });
 
@@ -250,25 +275,39 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
       const isTarget = center.name_en === targetCountry || center.name_id === targetCountry;
 
       ctx.beginPath();
-      if (isPlayer) { ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fillStyle = "#22d3ee"; ctx.shadowColor = "#22d3ee"; ctx.shadowBlur = 15; }
-      else if (isTarget) {
+      if (isPlayer) { 
+        ctx.arc(x, y, 7, 0, Math.PI * 2); 
+        ctx.fillStyle = "#22d3ee"; 
+        ctx.shadowColor = "#22d3ee"; 
+        ctx.shadowBlur = 15; 
+      } else if (isTarget) {
         const rel = getRelation(center.name_en, userCountry);
-        ctx.arc(x, y, 6, 0, Math.PI * 2);
         const meta = relationStorage.getRelationMetadata(rel);
-        ctx.fillStyle = meta.hex; ctx.shadowColor = meta.hex; ctx.shadowBlur = 15;
+        ctx.arc(x, y, 7, 0, Math.PI * 2);
+        ctx.fillStyle = meta.hex; 
+        ctx.shadowColor = meta.hex; 
+        ctx.shadowBlur = 15;
       } else { 
-        ctx.arc(x, y, 2.5, 0, Math.PI * 2); ctx.fillStyle = "rgba(148, 163, 184, 0.3)"; ctx.shadowBlur = 0;
+        ctx.arc(x, y, 3, 0, Math.PI * 2); 
+        ctx.fillStyle = "rgba(148, 163, 184, 0.4)"; 
+        ctx.shadowBlur = 0;
       }
-      ctx.fill(); ctx.shadowBlur = 0;
+      ctx.fill(); 
+      ctx.shadowBlur = 0;
 
       if (isPlayer || isTarget) {
-        ctx.font = "48px sans-serif"; ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 10;
-        ctx.fillText(center.flag, x, y - 90); ctx.shadowBlur = 0;
+        ctx.font = "bold 52px sans-serif"; 
+        ctx.shadowColor = "black"; 
+        ctx.shadowBlur = 10;
+        ctx.fillText(center.flag, x, y - 95); 
+        ctx.shadowBlur = 0;
       } else {
-        const isTooCrowded = labelGrid.some(pos => Math.abs(pos.x - x) < 120 && Math.abs(pos.y - y) < 60);
+        const isTooCrowded = labelGrid.some(pos => Math.abs(pos.x - x) < 140 && Math.abs(pos.y - y) < 80);
         if (!isTooCrowded) {
-          ctx.font = "14px 'Inter', sans-serif"; ctx.fillStyle = "rgba(148, 163, 184, 0.35)";
-          ctx.fillText(center.flag, x, y - 18); labelGrid.push({ x, y });
+          ctx.font = "16px 'Inter', sans-serif"; 
+          ctx.fillStyle = "rgba(148, 163, 184, 0.4)";
+          ctx.fillText(center.flag, x, y - 22); 
+          labelGrid.push({ x, y });
         }
       }
     });

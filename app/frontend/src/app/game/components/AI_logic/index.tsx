@@ -114,9 +114,10 @@ export default function AILogicCNS() {
       }
     };
 
-    // PERFORMANCE: Increased interval from 2s to 6s to allow UI to breathe
-    const interval = setInterval(runAILogic, 1000);
-    return () => clearInterval(interval);
+    // PERFORMANCE: DISABLED BROWSER-SIDE SIMULATION
+    // The Go Backend is now the master orchestrator.
+    // const interval = setInterval(runAILogic, 15000); 
+    // return () => clearInterval(interval);
   }, []);
 
   return null; // Headless component

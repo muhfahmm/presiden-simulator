@@ -24,6 +24,26 @@ let weeklyCounters: Record<string, number> = {}; // weekId -> count
 export const newsStorage = {
   getNews: (): NewsItem[] => {
     if (typeof window === "undefined") return [];
+    
+    // Background sync from Go Server
+    fetch("http://localhost:8080/api/berita")
+      .then(res => res.json())
+      .then(serverNews => {
+        if (Array.isArray(serverNews) && serverNews.length > 0) {
+          const current = localStorage.getItem(NEWS_STORAGE_KEY);
+          const currentParsed = current ? JSON.parse(current) : [];
+          
+          // Merge logic: Add server news if not already present
+          const newItems = serverNews.filter(sn => !currentParsed.some((cn: any) => cn.id === sn.id));
+          if (newItems.length > 0) {
+            const updated = [...newItems, ...currentParsed].slice(0, MAX_TOTAL_NEWS);
+            localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(updated));
+            window.dispatchEvent(new Event("news_updated"));
+          }
+        }
+      })
+      .catch(() => { /* Server might be offline, fallback to local */ });
+
     const stored = localStorage.getItem(NEWS_STORAGE_KEY);
     if (!stored) return [];
     try {
@@ -36,7 +56,9 @@ export const newsStorage = {
 
   addNews: (news: Omit<NewsItem, "id" | "read" | "timestamp">) => {
     if (typeof window === "undefined") return;
-    const current = newsStorage.getNews();
+    const current = localStorage.getItem(NEWS_STORAGE_KEY);
+    const currentParsed = current ? JSON.parse(current) : [];
+    
     const newItem: NewsItem = {
       ...news,
       id: Math.random().toString(36).substr(2, 9),
@@ -44,8 +66,7 @@ export const newsStorage = {
       timestamp: Date.now()
     };
     
-    // Strict Limit: Only keep the latest 10 news items
-    const updated = [newItem, ...current].slice(0, MAX_TOTAL_NEWS);
+    const updated = [newItem, ...currentParsed].slice(0, MAX_TOTAL_NEWS);
     localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(updated));
     window.dispatchEvent(new Event("news_updated"));
   },
