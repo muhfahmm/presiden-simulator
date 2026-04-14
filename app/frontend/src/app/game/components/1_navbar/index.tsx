@@ -113,8 +113,12 @@ export default function GameNavbar({
           <button
             onClick={() => {
               if (confirm("Apakah Anda yakin ingin RESET PROGRES? Seluruh data (Uang, Stok, Bangunan, Kepuasan) akan dihapus tetapi Anda tetap bermain sebagai negara ini.")) {
-                gameStorage.resetCurrentSession();
-                window.location.reload();
+                // Tell Go Server to Reset
+                fetch("http://localhost:8081/api/game/reset", { method: "POST" })
+                  .finally(() => {
+                    gameStorage.resetCurrentSession();
+                    window.location.reload();
+                  });
               }
             }}
             className="ml-4 p-2 rounded-lg bg-zinc-800/50 hover:bg-cyan-500/20 text-zinc-400 hover:text-cyan-400 transition-all border border-zinc-700/50 group"

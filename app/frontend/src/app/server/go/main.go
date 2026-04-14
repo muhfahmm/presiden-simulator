@@ -184,6 +184,7 @@ func main() {
 	http.HandleFunc("/api/berita", handleBerita)
 	http.HandleFunc("/api/inbox", handleInbox)
 	http.HandleFunc("/api/health", handleHealth)
+	http.HandleFunc("/api/game/reset", handleReset)
 
 	fmt.Println("═══════════════════════════════════════════════")
 	fmt.Println("[GO] Server-Authoritative Simulation Engine v2")
@@ -634,6 +635,35 @@ func handleControl(w http.ResponseWriter, r *http.Request) {
 	// Immediately broadcast the control state change
 	broadcastSSE(snapshot)
 
+	fmt.Fprintf(w, `{"ok": true}`)
+}
+
+// ═══════════════════════════════════════════════════════════
+// RESET ENDPOINT (Clears server state for new game)
+// ═══════════════════════════════════════════════════════════
+
+func handleReset(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	if r.Method == "OPTIONS" {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
+	state.mu.Lock()
+	state.IsPaused = true
+	state.GameDate = time.Date(2026, 1, 1, 0, 0, 0, 0, time.UTC).Format("2006-01-02")
+	state.DayCounter = 0
+	state.News = []NewsItem{}
+	state.Inbox = []InboxItem{}
+	state.Player = PlayerState{Initialized: false}
+	lastBroadcastNewsLen = 0
+	state.mu.Unlock()
+
+	fmt.Println("[GO] Global State RESET triggered by UI")
 	fmt.Fprintf(w, `{"ok": true}`)
 }
 
