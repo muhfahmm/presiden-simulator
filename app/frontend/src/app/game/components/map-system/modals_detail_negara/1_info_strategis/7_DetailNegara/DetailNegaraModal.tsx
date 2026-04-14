@@ -21,6 +21,8 @@ import { GameSession, gameStorage } from "@/app/game/gamestorage";
 import { hunianRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
 import { aiThinkingStorage } from "@/app/game/components/AI_logic/global_event/aiThinkingStorage";
 import { Brain } from "lucide-react";
+import BuildingInfoModal from "./BuildingInfoModal";
+import { getBuildingInfo, BuildingInfo } from "./BuildingInfoData";
 
 interface DetailNegaraModalProps {
   isOpen: boolean;
@@ -34,6 +36,24 @@ interface DetailNegaraModalProps {
 export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUser, activeSector, setActiveMenu }: DetailNegaraModalProps) {
   const currentSector = activeSector || "produksi";
   const [refreshKey, setRefreshKey] = useState(0);
+  const [selectedBuildingInfo, setSelectedBuildingInfo] = useState<BuildingInfo | null>(null);
+
+  const handleIconClick = (key: string, customLabel?: string) => {
+    const info = getBuildingInfo(key);
+    if (info) {
+      setSelectedBuildingInfo(info);
+    } else {
+      // Fallback for types not in registry yet
+      setSelectedBuildingInfo({
+        id: key,
+        label: customLabel || key.replace(/_/g, ' '),
+        capacity: "Data tidak tersedia",
+        description: "Informasi detail untuk bangunan ini sedang dalam tahap pembaharuan sistem strategi.",
+        icon: null,
+        color: "text-zinc-500"
+      });
+    }
+  };
   
   // Real-time population tracking
   const countryEntryRaw = countries.find(c => c.name_id.toLowerCase() === targetCountry.toLowerCase() || c.name_en.toLowerCase() === targetCountry.toLowerCase());
@@ -436,7 +456,11 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                         <div key={house.id} className="bg-zinc-900/30 border border-zinc-800/50 rounded-[2.5rem] p-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center hover:border-zinc-700/50 transition-all duration-500 group relative overflow-hidden mb-12 last:mb-0">
                           {/* Unit Count */}
                           <div className="lg:col-span-3 flex flex-col items-center justify-center border-r border-zinc-800/50 pr-8">
-                            <div className="p-5 bg-zinc-950 rounded-[2rem] border border-zinc-800 mb-6 group-hover:scale-110 transition-transform duration-500 shadow-xl">
+                            <div 
+                              className="p-5 bg-zinc-950 rounded-[2rem] border border-zinc-800 mb-6 group-hover:scale-110 transition-transform duration-500 shadow-xl cursor-pointer hover:border-amber-500/50"
+                              onClick={() => handleIconClick(house.id, house.title)}
+                              title="Klik untuk info detail"
+                            >
                               <house.icon size={48} className={house.color} />
                             </div>
                             <div className="flex flex-col items-center">
@@ -570,6 +594,15 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
           )}
         </div>
       </div>
+
+      {/* Building Info Modal Overlay */}
+      {selectedBuildingInfo && (
+        <BuildingInfoModal 
+          isOpen={!!selectedBuildingInfo}
+          onClose={() => setSelectedBuildingInfo(null)}
+          info={selectedBuildingInfo}
+        />
+      )}
     </div>
   );
 }
@@ -601,7 +634,11 @@ function ProductionSection({ title, items, buildingDeltas, constructionQueue, st
                 <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter leading-tight pr-4">
                   {key.replace(/_/g, " ")}
                 </span>
-                <div className="p-1.5 bg-zinc-950 rounded-lg border border-zinc-800">
+                <div 
+                  className="p-1.5 bg-zinc-950 rounded-lg border border-zinc-800 cursor-pointer hover:border-amber-500/50 transition-colors"
+                  onClick={() => handleIconClick(key)}
+                  title="Klik untuk info detail"
+                >
                   {getProductionIcon(key)}
                 </div>
               </div>
@@ -671,7 +708,11 @@ function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, ico
                 <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter leading-tight pr-4">
                   {key.replace(/_/g, " ")}
                 </span>
-                <div className="p-1.5 bg-zinc-950 rounded-lg border border-zinc-800">
+                <div 
+                  className="p-1.5 bg-zinc-950 rounded-lg border border-zinc-800 cursor-pointer hover:border-amber-500/50 transition-colors"
+                  onClick={() => handleIconClick(key)}
+                  title="Klik untuk info detail"
+                >
                   <Icon size={14} className={color} />
                 </div>
               </div>
