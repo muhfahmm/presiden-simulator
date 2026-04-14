@@ -237,6 +237,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="listrik"
+                handleIconClick={handleIconClick}
               />
               <ProductionSection 
                 title="2. Sektor Mineral Kritis" 
@@ -245,6 +246,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="ekstraksi"
+                handleIconClick={handleIconClick}
               />
               <ProductionSection 
                 title="3. Sektor Manufaktur" 
@@ -253,6 +255,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="manufaktur"
+                handleIconClick={handleIconClick}
               />
               <ProductionSection 
                 title="4. Sektor Peternakan" 
@@ -261,6 +264,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="peternakan"
+                handleIconClick={handleIconClick}
               />
               <ProductionSection 
                 title="5. Sektor Agrikultur" 
@@ -269,6 +273,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="agrikultur"
+                handleIconClick={handleIconClick}
               />
               <ProductionSection 
                 title="6. Sektor Perikanan" 
@@ -277,6 +282,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="perikanan"
+                handleIconClick={handleIconClick}
               />
               <ProductionSection 
                 title="7. Sektor Olahan Pangan" 
@@ -285,6 +291,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="pangan"
+                handleIconClick={handleIconClick}
               />
               <ProductionSection 
                 title="8. Sektor Farmasi" 
@@ -293,6 +300,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="farmasi"
+                handleIconClick={handleIconClick}
               />
             </div>
           )}
@@ -306,6 +314,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="militer"
+                handleIconClick={handleIconClick}
               />
             </div>
           )}
@@ -319,6 +328,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 icon={Activity}
                 color="text-emerald-500"
+                handleIconClick={handleIconClick}
               />
               <SimpleGridSection 
                 title="2. Sektor Pendidikan & Riset" 
@@ -327,6 +337,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 icon={GraduationCap}
                 color="text-indigo-500"
+                handleIconClick={handleIconClick}
               />
               <SimpleGridSection 
                 title="3. Sektor Layanan Kesehatan" 
@@ -335,6 +346,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 icon={HeartPulse}
                 color="text-rose-500"
+                handleIconClick={handleIconClick}
               />
               <SimpleGridSection 
                 title="4. Sektor Hukum & Keamanan" 
@@ -343,6 +355,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 icon={Scale}
                 color="text-cyan-500"
+                handleIconClick={handleIconClick}
               />
               <SimpleGridSection 
                 title="5. Sektor Olahraga & Rekreasi" 
@@ -351,6 +364,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 icon={Target}
                 color="text-lime-500"
+                handleIconClick={handleIconClick}
               />
               <SimpleGridSection 
                 title="6. Sektor Komersial & Retail" 
@@ -359,6 +373,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 icon={Briefcase}
                 color="text-amber-500"
+                handleIconClick={handleIconClick}
               />
               <SimpleGridSection 
                 title="7. Sektor Hiburan & Seni" 
@@ -367,6 +382,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 constructionQueue={constructionQueue}
                 icon={Clapperboard}
                 color="text-purple-500"
+                handleIconClick={handleIconClick}
               />
             </div>
           )}
@@ -607,7 +623,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
   );
 }
 
-function ProductionSection({ title, items, buildingDeltas, constructionQueue, stocks, type }: any) {
+function ProductionSection({ title, items, buildingDeltas, constructionQueue, stocks, type, handleIconClick }: any) {
   if (!items) return null;
 
   return (
@@ -683,7 +699,7 @@ function ProductionSection({ title, items, buildingDeltas, constructionQueue, st
   );
 }
 
-function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, icon: Icon, color }: any) {
+function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, icon: Icon, color, handleIconClick }: any) {
   if (!data) return null;
 
   return (
