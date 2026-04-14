@@ -26,7 +26,7 @@ import { calculatePopulationHappiness } from "@/app/game/components/2_navigasi_m
  * - Satisfaction Cycle: Evaluates happiness for the user's country
  */
 
-const BATCH_SIZE = 10; // NPCs processed per tick for construction (Reduced for performance)
+const BATCH_SIZE = 20; // NPCs processed per tick for construction (Faster rotation)
 
 export default function AILogicCNS() {
   const lastDateRef = useRef<string>("");

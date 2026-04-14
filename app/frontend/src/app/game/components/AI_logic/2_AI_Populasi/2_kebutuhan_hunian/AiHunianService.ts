@@ -9,6 +9,7 @@ import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
 import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import { aiThinkingStorage } from "../../global_event/aiThinkingStorage";
 
 const STORAGE_KEY_PENALTY = "em4_ai_housing_penalty_data";
 const STORAGE_KEY_LAST_NEWS = "em4_ai_last_rebellion_news_date";
@@ -89,6 +90,11 @@ export class AiHunianService {
           homeless_percent: result.housing?.homeless_percent || 0,
           lastUpdated: gameDate.getTime()
       };
+      
+      // Save AI Critical Thinking messages for display
+      if (result.critical_thinking && result.critical_thinking.length > 0) {
+          aiThinkingStorage.saveReason(country.name_en, result.critical_thinking.join(" | "));
+      }
       
       if (typeof window !== "undefined") {
           localStorage.setItem(STORAGE_KEY_PENALTY, JSON.stringify(penaltyData));

@@ -19,6 +19,8 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
 import { GameSession, gameStorage } from "@/app/game/gamestorage";
 import { hunianRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
+import { aiThinkingStorage } from "@/app/game/components/AI_logic/global_event/aiThinkingStorage";
+import { Brain } from "lucide-react";
 
 interface DetailNegaraModalProps {
   isOpen: boolean;
@@ -382,11 +384,13 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
 
                       <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
                         <div>
-                          <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Neraca Hunian (Surplus)</p>
-                          <p className={`text-xl font-black ${surplus >= 0 ? 'text-cyan-400' : 'text-red-400'}`}>{surplus > 0 ? '+' : ''}{surplus.toLocaleString('id-ID')} <span className="text-xs opacity-50">Jiwa</span></p>
+                          <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Rasio Keterisian (Occupancy)</p>
+                          <p className={`text-xl font-black ${surplus < 0 ? 'text-red-400 animate-pulse' : (derivedPopulation / (totalNationalHousingCapacity || 1) > 0.8 ? 'text-amber-400' : 'text-emerald-400')}`}>
+                            {totalNationalHousingCapacity > 0 ? ((derivedPopulation / totalNationalHousingCapacity) * 100).toFixed(1) : (derivedPopulation > 0 ? '∞' : '0')}% <span className="text-xs opacity-50">{surplus < 0 ? 'OVERLOAD' : 'TERISI'}</span>
+                          </p>
                         </div>
-                        <div className={`p-3 rounded-xl ${surplus >= 0 ? 'bg-cyan-500/10' : 'bg-red-500/10'}`}>
-                          <Activity size={20} className={surplus >= 0 ? 'text-cyan-500' : 'text-red-500'} />
+                        <div className={`p-3 rounded-xl ${surplus < 0 ? 'bg-red-500/10' : 'bg-emerald-500/10'}`}>
+                          <Activity size={20} className={surplus < 0 ? 'text-red-500' : 'text-emerald-500'} />
                         </div>
                       </div>
                     </div>
@@ -420,6 +424,11 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                       const unitsBaseline = (countryEntry.hunian as any)?.[house.id] || 0;
                       const unitsDelta = buildingDeltas[house.id] || Object.entries(buildingDeltas).find(([k]) => k.replace(/^\d+_/, '') === house.id)?.[1] || 0;
                       const totalUnits = Number(unitsBaseline) + Number(unitsDelta);
+                      const inProgress = constructionQueue?.filter((q: any) => {
+                        const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
+                        return q.buildingKey === house.id || normalizedQKey === house.id;
+                      }).reduce((acc: number, curr: any) => acc + (curr.quantity || 1), 0) || 0;
+
                       const totalDayaTampung = totalUnits * house.capacity;
                       const isNationalShortage = totalNationalHousingCapacity < population;
 
@@ -432,9 +441,16 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                             </div>
                             <div className="flex flex-col items-center">
                               <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Kuantitas Unit</span>
-                              <span className="text-5xl font-black text-white tracking-tighter tabular-nums drop-shadow-2xl">
-                                {totalUnits.toLocaleString('id-ID')}
-                              </span>
+                              <div className="flex items-center gap-3">
+                                <span className="text-5xl font-black text-white tracking-tighter tabular-nums drop-shadow-2xl">
+                                  {totalUnits.toLocaleString('id-ID')}
+                                </span>
+                                {inProgress > 0 && (
+                                  <span className={`text-2xl font-black ${house.color} animate-pulse drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]`}>
+                                    +{inProgress.toLocaleString('id-ID')}
+                                  </span>
+                                )}
+                              </div>
                             </div>
                             <p className="text-[10px] text-zinc-500 font-bold uppercase mt-2 tracking-widest">Level / Jumlah Aktif</p>
                           </div>
@@ -447,20 +463,27 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                                     <span className="text-4xl font-black text-white tracking-tight">
                                         {totalDayaTampung.toLocaleString('id-ID')}
                                     </span>
+                                    {inProgress > 0 && (
+                                        <span className={`text-xl font-black ${house.color} animate-pulse`}>
+                                            +{(inProgress * house.capacity).toLocaleString('id-ID')}
+                                        </span>
+                                    )}
                                     <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Kapasitas Maksimal</span>
                                 </div>
                             </div>
                             
                             <div className="w-full h-2 bg-zinc-950 rounded-full overflow-hidden border border-zinc-800">
                                 <div 
-                                    className={`h-full ${house.color.replace('text-', 'bg-')} transition-all duration-1000 shadow-[0_0_10px_rgba(0,0,0,0.5)]`}
-                                    style={{ width: `${Math.min(100, (totalDayaTampung / (population || 1)) * 100)}%` }}
+                                    className={`h-full ${((population / (totalDayaTampung || 1)) > 1) ? 'bg-red-500 animate-pulse' : (((population / (totalDayaTampung || 1)) > 0.8) ? 'bg-amber-500' : house.color.replace('text-', 'bg-'))} transition-all duration-1000 shadow-[0_0_10px_rgba(0,0,0,0.5)]`}
+                                    style={{ width: `${Math.min(100, (population / (totalDayaTampung || 1)) * 100)}%` }}
                                 />
                             </div>
                             
                             <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
-                                <span className="text-zinc-500">Rasio vs Populasi</span>
-                                <span className={house.color}>{((totalDayaTampung / (population || 1)) * 100).toFixed(1)}% Terpenuhi</span>
+                                <span className="text-zinc-500">Tingkat Keterisian</span>
+                                <span className={((population / (totalDayaTampung || 1)) > 1) ? 'text-red-500 animate-pulse' : (((population / (totalDayaTampung || 1)) > 0.8) ? 'text-amber-500' : house.color)}>
+                                    {totalDayaTampung > 0 ? ((population / (totalDayaTampung)) * 100).toFixed(1) : (population > 0 ? '100+' : '0')}% {((population / (totalDayaTampung || 1)) > 1) ? 'VULNERABLE / OVERLOAD' : 'Terpakai'}
+                                </span>
                             </div>
                           </div>
 
@@ -502,6 +525,44 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                         </div>
                       );
                     })}
+                    
+                    {/* AI Critical Thinking Section */}
+                    {(() => {
+                      const thinking = aiThinkingStorage.getLatest(countryEntry.name_en);
+                      if (!thinking) return null;
+                      
+                      return (
+                        <div className="mt-8 p-8 bg-amber-500/5 border border-amber-500/20 rounded-[2.5rem] relative overflow-hidden group animate-in slide-in-from-bottom-4 duration-700">
+                          {/* Decorative Background Elements */}
+                          <div className="absolute -right-10 -bottom-10 opacity-5 group-hover:scale-110 transition-transform duration-1000">
+                            <Brain size={250} className="text-amber-500" />
+                          </div>
+                          <div className="absolute top-0 left-0 w-2 h-full bg-amber-500/30" />
+                          
+                          <div className="relative z-10 flex items-start gap-6">
+                            <div className="p-4 bg-amber-500/10 rounded-2xl border border-amber-500/20 shadow-[0_0_20px_rgba(245,158,11,0.1)]">
+                              <Brain size={32} className="text-amber-500 animate-pulse" />
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-3 mb-2">
+                                <h4 className="text-sm font-black text-amber-500 uppercase tracking-[0.2em] italic">AI Strategic Brain</h4>
+                                <div className="h-px flex-1 bg-amber-500/20" />
+                                <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest bg-zinc-950 p-1 px-2 rounded-md border border-zinc-800">
+                                  Last Decision: {new Date(thinking.lastUpdated).toLocaleTimeString()}
+                                </span>
+                              </div>
+                              <p className="text-xl font-bold text-zinc-300 leading-relaxed tracking-tight italic">
+                                "{thinking.reason}"
+                              </p>
+                              <div className="mt-4 flex items-center gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                                <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Autonomous Thinking Process Active</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })()}
                   </>
                 );
               })()}
@@ -551,7 +612,7 @@ function ProductionSection({ title, items, buildingDeltas, constructionQueue, st
                       const inProgress = constructionQueue?.filter((q: any) => {
                         const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
                         return q.buildingKey === key || normalizedQKey === key;
-                      }).length || 0;
+                      }).reduce((acc: number, curr: any) => acc + (Number(curr.quantity) || 1), 0) || 0;
                       return (total + inProgress).toLocaleString('id-ID');
                     })()}
                   </span>
@@ -562,7 +623,7 @@ function ProductionSection({ title, items, buildingDeltas, constructionQueue, st
                     }).length || 0;
                     return inProgress > 0 ? (
                       <span className="text-[10px] font-black text-amber-500 animate-pulse whitespace-nowrap">
-                        +{inProgress} PEMBANGUNAN
+                        +{inProgress.toLocaleString('id-ID')} PEMBANGUNAN
                       </span>
                     ) : null;
                   })()}
@@ -621,20 +682,20 @@ function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, ico
                       const inProgress = constructionQueue?.filter((q: any) => {
                         const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
                         return q.buildingKey === key || normalizedQKey === key;
-                      }).length || 0;
+                      }).reduce((acc: number, curr: any) => acc + (Number(curr.quantity) || 1), 0) || 0;
                       return (total + inProgress).toLocaleString('id-ID');
                     })()}
                   </span>
                   {(() => {
-                    const inProgress = constructionQueue?.filter((q: any) => {
-                      const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
-                      return q.buildingKey === key || normalizedQKey === key;
-                    }).length || 0;
-                    return inProgress > 0 ? (
-                      <span className={`text-[10px] font-black ${color} animate-pulse whitespace-nowrap`}>
-                        +{inProgress} PEMBANGUNAN
-                      </span>
-                    ) : null;
+                      const inProgress = constructionQueue?.filter((q: any) => {
+                        const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
+                        return q.buildingKey === key || normalizedQKey === key;
+                      }).reduce((acc: number, curr: any) => acc + (Number(curr.quantity) || 1), 0) || 0;
+                      return inProgress > 0 ? (
+                        <span className={`text-[10px] font-black ${color} animate-pulse whitespace-nowrap`}>
+                          +{inProgress.toLocaleString('id-ID')} PEMBANGUNAN
+                        </span>
+                      ) : null;
                   })()}
                 </div>
                 <span className="text-[9px] font-bold text-zinc-500 uppercase">Level / Jumlah</span>

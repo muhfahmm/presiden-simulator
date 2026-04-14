@@ -9,6 +9,7 @@ import { aiRootCauseStorage } from "../../../map-system/modals_detail_negara/1_i
 import { aiHappinessStorage } from "../../../map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { EksekutorPembangunanAI } from "../sistem_tindakan_respon/EksekutorPembangunanAI";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
+import { aiThinkingStorage } from "../../global_event/aiThinkingStorage";
 import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
 import { 
     KAPASITAS_LISTRIK_METADATA, 
@@ -161,6 +162,11 @@ export class PusatKeputusanPembangunan {
       
       if (!result || !result.decision) return;
 
+      // Save AI reasoning for display in the UI
+      if (result.reason) {
+          aiThinkingStorage.saveReason(countryNameEn, result.reason);
+      }
+
       // Log for debugging
       if (result.decision === "EXECUTE") {
         console.log(`[AI CONSTRUCTION] ${countryNameEn}: ${result.reason} | Cost: ${result.budget_analysis?.building_cost?.toLocaleString()}`);
@@ -170,7 +176,7 @@ export class PusatKeputusanPembangunan {
         const chosen = ALL_OPTIONS.find(o => o.key === result.building_key);
         if (chosen) {
           const currentCount = buildings[result.building_key] || 0;
-          await EksekutorPembangunanAI.laksanakan(countryNameEn, result.building_key, chosen, gameDate, currentCount);
+          await EksekutorPembangunanAI.laksanakan(countryNameEn, result.building_key, chosen, gameDate, currentCount, result.quantity || 1);
         }
       }
     } catch (err) {

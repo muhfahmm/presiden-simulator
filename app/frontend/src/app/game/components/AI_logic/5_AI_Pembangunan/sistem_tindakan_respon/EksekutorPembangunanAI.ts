@@ -12,12 +12,12 @@ export class EksekutorPembangunanAI {
   /**
    * Start a construction project for an NPC.
    */
-  static async laksanakan(countryNameEn: string, buildingKey: string, buildingData: any, gameDate: Date, currentCount: number) {
+  static async laksanakan(countryNameEn: string, buildingKey: string, buildingData: any, gameDate: Date, currentCount: number, quantity: number = 1) {
     const reqs = getBuildingRequirement(buildingKey);
     const materialReqs = {
-      "5_pabrik_semen": reqs.beton || 0,
-      "4_smelter": reqs.baja || 0,
-      "6_penggergajian_kayu": reqs.kayu || 0
+      "5_pabrik_semen": (reqs.beton || 0) * quantity,
+      "4_smelter": (reqs.baja || 0) * quantity,
+      "6_penggergajian_kayu": (reqs.kayu || 0) * quantity
     };
 
     // 2. Prices for Virtual Purchase
@@ -42,7 +42,7 @@ export class EksekutorPembangunanAI {
     });
 
     // 4. Calculate Total Financial Requirement
-    const buildingCost = Number(buildingData.biaya_pembangunan || 0);
+    const buildingCost = Number(buildingData.biaya_pembangunan || 0) * quantity;
     const totalRequiredBudget = buildingCost + extraMaterialCost;
     const currentBudget = aiBudgetStorage.getBudget(countryNameEn);
 
@@ -80,7 +80,8 @@ export class EksekutorPembangunanAI {
       sector: buildingData.groupId,
       startDate: gameDate.getTime(),
       endDate: endDate,
-      waktu_pembangunan: buildTime
+      waktu_pembangunan: buildTime,
+      quantity: quantity
     });
 
     // 7. News Announcement (Limited to 10 per game day to save CPU/UI)
@@ -96,8 +97,8 @@ export class EksekutorPembangunanAI {
       
       newsStorage.addNews({
         source: countryNameId,
-        subject: `Pembangunan: ${displayLabel}`,
-        content: `Pemerintah ${countryNameId} memulai pembangunan ${displayLabel}. Biaya proyek: ${buildingCost.toLocaleString()}. Sektor: ${displaySector}. Kapasitas akan bertambah dari ${currentCount} menjadi ${currentCount + 1} setelah selesai.`,
+        subject: `Pembangunan: ${displayLabel} (${quantity} Unit)`,
+        content: `Pemerintah ${countryNameId} memulai pembangunan ${quantity} unit ${displayLabel}. Total estimasi biaya: ${totalRequiredBudget.toLocaleString()} EM. Sektor: ${displaySector}.`,
         category: "construction",
         time: dateKey,
         priority: buildingCost > 50000000 ? 'high' : 'medium'
@@ -126,17 +127,9 @@ export class EksekutorPembangunanAI {
       const completed = queue.filter(item => item.endDate <= now);
       
       if (completed.length > 0) {
-        completed.forEach(project => {
-          console.log(`[AI CONSTRUCTION DONE] ${countryName} completed ${project.label} (${project.buildingKey})`);
-          
-          // Increment building count in storage
-          aiBuildingStorage.incrementBuildingCount(countryName, project.buildingKey);
-          
-          // Remove from queue
-          aiBuildingStorage.removeFromQueue(countryName, project.id);
-        });
-
-        // Small notification log for AI activity (silent in news unless requested)
+        // Collect and finalize all completed projects atomically
+        aiBuildingStorage.completeProjects(countryName, completed);
+        
         console.log(`[AI CONSTRUCTION] ${countryName} finalized ${completed.length} project(s).`);
       }
     });

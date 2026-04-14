@@ -10,6 +10,7 @@ export interface AIConstructionItem {
   startDate: number;
   endDate: number;
   waktu_pembangunan: number;
+  quantity: number;
 }
 
 export interface AIBuildingData {
@@ -68,10 +69,32 @@ export const aiBuildingStorage = {
     aiBuildingStorage.saveCountryData(countryNameEn, data.buildingDeltas, data.constructionQueue);
   },
 
-  incrementBuildingCount: (countryNameEn: string, buildingKey: string) => {
+  incrementBuildingCount: (countryNameEn: string, buildingKey: string, quantity: number = 1) => {
     const data = aiBuildingStorage.getData(countryNameEn);
-    const current = data.buildingDeltas[buildingKey] || 0;
-    data.buildingDeltas[buildingKey] = current + 1;
+    const current = Number(data.buildingDeltas[buildingKey] || 0);
+    data.buildingDeltas[buildingKey] = current + Number(quantity);
+    aiBuildingStorage.saveCountryData(countryNameEn, data.buildingDeltas, data.constructionQueue);
+  },
+
+  /**
+   * Complete multiple projects atomically to prevent race conditions.
+   */
+  completeProjects: (countryNameEn: string, projects: AIConstructionItem[]) => {
+    const data = aiBuildingStorage.getData(countryNameEn);
+    const projectIds = projects.map(p => p.id);
+
+    projects.forEach(project => {
+      const buildingKey = project.buildingKey;
+      const quantity = Number(project.quantity || 1);
+      const current = Number(data.buildingDeltas[buildingKey] || 0);
+      data.buildingDeltas[buildingKey] = current + quantity;
+      
+      console.log(`[AI STORAGE] Completing ${quantity}x ${buildingKey} for ${countryNameEn}. New Delta: ${data.buildingDeltas[buildingKey]}`);
+    });
+
+    // Filter out completed IDs
+    data.constructionQueue = data.constructionQueue.filter(item => !projectIds.includes(item.id));
+    
     aiBuildingStorage.saveCountryData(countryNameEn, data.buildingDeltas, data.constructionQueue);
   },
 

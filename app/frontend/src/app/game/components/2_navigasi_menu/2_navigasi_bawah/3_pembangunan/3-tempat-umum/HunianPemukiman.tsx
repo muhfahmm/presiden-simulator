@@ -5,6 +5,8 @@ import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
+import { aiThinkingStorage } from "@/app/game/components/AI_logic/global_event/aiThinkingStorage";
+import { Brain } from "lucide-react";
 
 export default function HunianPemukiman() {
   const [activeInfo, setActiveInfo] = useState<string | null>(null);
@@ -98,11 +100,13 @@ export default function HunianPemukiman() {
 
         <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
           <div>
-            <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Neraca Hunian (Surplus)</p>
-            <p className={`text-xl font-black ${surplus >= 0 ? 'text-cyan-400' : 'text-red-400'}`}>{surplus > 0 ? '+' : ''}{surplus.toLocaleString('id-ID')} <span className="text-xs opacity-50">Jiwa</span></p>
+            <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Rasio Keterisian Nasional</p>
+            <p className={`text-xl font-black ${surplus < 0 ? 'text-red-400 animate-pulse' : (population / (totalCapacity || 1) > 0.8 ? 'text-amber-400' : 'text-emerald-400')}`}>
+              {totalCapacity > 0 ? ((population / totalCapacity) * 100).toFixed(1) : (population > 0 ? '∞' : '0')}% <span className="text-xs opacity-50">{surplus < 0 ? 'OVERLOAD' : 'TERISI'}</span>
+            </p>
           </div>
-          <div className={`p-3 rounded-xl ${surplus >= 0 ? 'bg-cyan-500/10' : 'bg-red-500/10'}`}>
-            <Activity size={20} className={surplus >= 0 ? 'text-cyan-500' : 'text-red-500'} />
+          <div className={`p-3 rounded-xl ${surplus < 0 ? 'bg-red-500/10' : 'bg-emerald-500/10'}`}>
+            <Activity size={20} className={surplus < 0 ? 'text-red-500' : 'text-emerald-500'} />
           </div>
         </div>
       </div>
@@ -132,8 +136,16 @@ export default function HunianPemukiman() {
                 <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
                   {item.category}
                 </div>
-                <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
+                <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)] flex items-center gap-1.5">
                   Terbangun: {item.count.toLocaleString('id-ID')} Unit
+                  {(() => {
+                    const queue = buildingStorage.getQueue();
+                    const inProgress = queue
+                      .filter(q => q.buildingKey === item.id)
+                      .reduce((acc, curr: any) => acc + (curr.quantity || 1), 0);
+                    if (inProgress > 0) return <span className="text-white animate-pulse">+{inProgress.toLocaleString('id-ID')}</span>;
+                    return null;
+                  })()}
                 </div>
               </div>
             </div>
@@ -271,6 +283,44 @@ export default function HunianPemukiman() {
           </div>
         ))}
       </div>
+      
+      {/* AI Critical Thinking Section */}
+      {(() => {
+        const thinking = aiThinkingStorage.getLatest(currentCountryCode);
+        if (!thinking) return null;
+        
+        return (
+          <div className="mt-8 p-8 bg-amber-500/5 border border-amber-500/20 rounded-[2.5rem] relative overflow-hidden group animate-in slide-in-from-bottom-4 duration-700 mx-1">
+            {/* Decorative Background Elements */}
+            <div className="absolute -right-10 -bottom-10 opacity-5 group-hover:scale-110 transition-transform duration-1000">
+              <Brain size={250} className="text-amber-500" />
+            </div>
+            <div className="absolute top-0 left-0 w-2 h-full bg-amber-500/30" />
+            
+            <div className="relative z-10 flex items-start gap-6">
+              <div className="p-4 bg-amber-500/10 rounded-2xl border border-amber-500/20 shadow-[0_0_20px_rgba(245,158,11,0.1)]">
+                <Brain size={28} className="text-amber-500 animate-pulse" />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <h4 className="text-[10px] font-black text-amber-500 uppercase tracking-[0.2em] italic">AI Strategic Brain</h4>
+                  <div className="h-px flex-1 bg-amber-500/20" />
+                  <span className="text-[8px] font-black text-zinc-500 uppercase tracking-widest bg-zinc-950 p-1 px-2 rounded-md border border-zinc-800">
+                    Last Analysis: {new Date(thinking.lastUpdated).toLocaleTimeString()}
+                  </span>
+                </div>
+                <p className="text-lg font-bold text-zinc-300 leading-relaxed tracking-tight italic">
+                  "{thinking.reason}"
+                </p>
+                <div className="mt-4 flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Autonomous Advice Engine Active</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* Development Notice */}
       <div className="mt-8 p-6 border border-zinc-800/50 rounded-[32px] bg-zinc-900/20 backdrop-blur-sm flex items-center justify-center gap-4">
