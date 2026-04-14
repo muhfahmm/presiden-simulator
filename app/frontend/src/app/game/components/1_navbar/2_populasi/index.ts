@@ -100,6 +100,13 @@ export const populationStorage = {
     return data.population;
   },
 
+  // Server-authoritative: set population directly from Go Server
+  setPopulationDirect: (value: number) => {
+    const data = populationStorage.getData();
+    data.population = Math.max(0, value);
+    populationStorage.saveData(data);
+  },
+
   clear: () => {
     if (typeof window === 'undefined') return;
     localStorage.removeItem(POPULATION_STORAGE_KEY);

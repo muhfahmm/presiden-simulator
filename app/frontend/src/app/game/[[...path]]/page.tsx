@@ -18,7 +18,8 @@ import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import GameNavbar from "@/app/game/components/1_navbar";
 import { initAiDiplomacy } from "../components/map-system/ai_diplomacy_engine/AiGlobalDiplomacy";
-import AILogicCNS from "../components/AI_logic";
+import { newsStorage } from "../components/sidemenu/1_berita/newsStorage";
+// import AILogicCNS from "../components/AI_logic"; // REMOVED: All AI logic migrated to Go Server
 
 import { useGameState } from "../hooks/useGameState";
 import { useGamePath } from "../hooks/useGamePath";
@@ -43,6 +44,11 @@ export default function GamePage() {
 
   useEffect(() => {
     initAiDiplomacy();
+    // Connect to Go Server SSE stream for real-time news & state sync
+    newsStorage.connectSSE();
+    return () => {
+      newsStorage.disconnectSSE();
+    };
   }, []);
 
   // Sync Modal with activeMenu (URL)
@@ -88,8 +94,8 @@ export default function GamePage() {
 
   return (
     <div className="flex min-h-screen bg-zinc-950 text-white font-sans relative overflow-hidden">
-      {/* AI Simulation Logic CNS - Headless provider */}
-      <AILogicCNS />
+      {/* AI Simulation Logic CNS — DISABLED: Migrated to Go Server */}
+      {/* <AILogicCNS /> */}
 
       {/* Top Header / Status bar - ALWAYS VISIBLE for Page Feel */}
       <GameNavbar

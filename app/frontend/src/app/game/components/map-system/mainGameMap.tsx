@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index";
 import { relationStorage } from "./modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
@@ -35,6 +35,7 @@ const geoJsonToIndo: { [key: string]: string } = {
   "United Kingdom": "inggris"
 };
 
+// Pre-compute relation for highlighted countries only (called max 2x per render, not 207x)
 const getRelation = (name: string, userCountry: string) => {
   if (name === userCountry) return 100;
   const userEntry = centersData.find(c => c.name_id === userCountry || c.name_en === userCountry);
@@ -50,16 +51,6 @@ const getRelation = (name: string, userCountry: string) => {
     m.name.toLowerCase() === userCountry.toLowerCase()
   );
   return relationStorage.calculateFinalScore(rawScore, !!isUNSCMember);
-};
-
-const checkCountryHasSea = (name: string): boolean => {
-  const target = centersData.find(c => 
-    c.name_id.toLowerCase() === name.toLowerCase() || 
-    c.name_en.toLowerCase() === name.toLowerCase()
-  );
-  if (!target || !target.armada_militer?.laut) return false;
-  // Check if any naval asset has a count > 0
-  return Object.values(target.armada_militer.laut).some(count => (count as number) > 0);
 };
 
 const maritimeLabels = [
@@ -123,14 +114,43 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
   const staticCacheRef = useRef<HTMLCanvasElement | null>(null);
   const needsCacheUpdate = useRef(true);
+  const lastHoverRef = useRef(false); // Prevent redundant setIsHovering calls
 
   const mapWidth = 6000;
   const mapHeight = 2400;
   
-  const project = (lon: number, lat: number) => ({ x: ((lon + 180) / 360) * mapWidth, y: ((90 - lat) / 180) * mapHeight });
+  const project = useCallback((lon: number, lat: number) => ({ 
+    x: ((lon + 180) / 360) * mapWidth, 
+    y: ((90 - lat) / 180) * mapHeight 
+  }), []);
 
-  // 1. STATIC LAYER CACHING (The expensive part)
-  const drawStaticCache = () => {
+  // Pre-compute pixel positions for all countries (ONCE, not per mouse-move)
+  const centerPixels = useMemo(() => {
+    return centersData.map((c: any) => ({
+      ...c,
+      px: ((c.lon + 180) / 360) * mapWidth,
+      py: ((90 - c.lat) / 180) * mapHeight
+    }));
+  }, []);
+
+  // Path2D memoization (only recomputed when geoData changes)
+  const paths = useMemo(() => {
+    if (!geoData) return [];
+    needsCacheUpdate.current = true;
+    return geoData.features.map((feature: any) => {
+      const path = new Path2D();
+      const drawCoords = (coords: any) => coords.forEach((poly: any) => poly.forEach((c: any, i: number) => {
+        const { x, y } = project(c[0], c[1]);
+        if (i === 0) path.moveTo(x, y); else path.lineTo(x, y);
+      }));
+      if (feature.geometry.type === "Polygon") drawCoords(feature.geometry.coordinates);
+      else if (feature.geometry.type === "MultiPolygon") feature.geometry.coordinates.forEach((p: any) => drawCoords(p));
+      return { name: feature.properties.name, path, id: feature.id };
+    });
+  }, [geoData, project]);
+
+  // 1. STATIC LAYER CACHING (The expensive part - drawn ONCE)
+  const drawStaticCache = useCallback(() => {
     if (!geoData || paths.length === 0) return;
     
     if (!staticCacheRef.current) {
@@ -149,13 +169,11 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
     cacheCtx.fillStyle = bgGradient; 
     cacheCtx.fillRect(0, 0, mapWidth, mapHeight);
 
-    // Draw all non-selected countries
+    // Draw ALL non-special countries to cache
     cacheCtx.lineWidth = 1;
     paths.forEach((item: any) => {
       const isSpecial = item.name === userCountry || geoJsonToIndo[item.name] === userCountry || 
                         item.name === targetCountry || geoJsonToIndo[item.name] === targetCountry;
-      
-      // We skip drawing the player/target on the STATIC cache so we can draw them with GLOW on the dynamic layer
       if (isSpecial) return;
 
       cacheCtx.fillStyle = getContinentColor(item.name, item.id);
@@ -164,7 +182,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
       cacheCtx.stroke(item.path);
     });
 
-    // Draw maritime labels to cache
+    // Draw maritime labels to cache (NEVER changes)
     maritimeLabels.forEach(label => {
       const { x, y } = project(label.lon, label.lat);
       cacheCtx.font = `italic ${label.size}px 'Inter', sans-serif`; 
@@ -174,18 +192,43 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
       if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) cacheCtx.fillText(label.name, x, y);
     });
 
-    needsCacheUpdate.current = false;
-    console.log("[MAP CACHE] Static world layer generated.");
-  };
+    // Also bake NON-special dots and labels into the static cache
+    const labelGrid: { x: number, y: number }[] = [];
+    centerPixels.forEach((center: any) => {
+      const isPlayer = center.name_en === userCountry || center.name_id === userCountry;
+      const isTarget = center.name_en === targetCountry || center.name_id === targetCountry;
+      if (isPlayer || isTarget) return; // Skip — dynamic layer handles these
 
+      // Static dots (no shadow, no glow)
+      cacheCtx.beginPath();
+      cacheCtx.arc(center.px, center.py, 3, 0, Math.PI * 2); 
+      cacheCtx.fillStyle = "rgba(148, 163, 184, 0.4)"; 
+      cacheCtx.fill();
+
+      // Static flag labels (collision-tested)
+      const isTooCrowded = labelGrid.some(pos => Math.abs(pos.x - center.px) < 140 && Math.abs(pos.y - center.py) < 80);
+      if (!isTooCrowded) {
+        cacheCtx.font = "16px 'Inter', sans-serif"; 
+        cacheCtx.fillStyle = "rgba(148, 163, 184, 0.4)";
+        cacheCtx.textAlign = "center";
+        cacheCtx.textBaseline = "middle";
+        cacheCtx.fillText(center.flag, center.px, center.py - 22); 
+        labelGrid.push({ x: center.px, y: center.py });
+      }
+    });
+
+    needsCacheUpdate.current = false;
+  }, [geoData, paths, userCountry, targetCountry, centerPixels, project]);
+
+  // Relation event listener (debounced)
   useEffect(() => {
     const handleUpdate = () => {
       if (debounceTimerRef.current) return;
       debounceTimerRef.current = setTimeout(() => {
-        needsCacheUpdate.current = true; // Invalidate cache on relation update
+        needsCacheUpdate.current = true;
         setTick(t => t + 1);
         debounceTimerRef.current = null;
-      }, 150);
+      }, 250); // Increased from 150 to 250ms — relation changes are rare
     };
     window.addEventListener("relation_storage_updated", handleUpdate);
     window.addEventListener("relation_status_updated", handleUpdate);
@@ -197,24 +240,9 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
     };
   }, []);
 
-  // Animation loop REMOVED — was burning CPU doing nothing (empty rAF callback 60x/sec)
-  // All rendering is now driven by the useEffect below which only fires on actual data changes.
-
-  const paths = useMemo(() => {
-    if (!geoData) return [];
-    needsCacheUpdate.current = true; // GeoData change = New Cache
-    return geoData.features.map((feature: any) => {
-      const path = new Path2D();
-      const drawCoords = (coords: any) => coords.forEach((poly: any) => poly.forEach((c: any, i: number) => {
-        const { x, y } = project(c[0], c[1]);
-        if (i === 0) path.moveTo(x, y); else path.lineTo(x, y);
-      }));
-      if (feature.geometry.type === "Polygon") drawCoords(feature.geometry.coordinates);
-      else if (feature.geometry.type === "MultiPolygon") feature.geometry.coordinates.forEach((p: any) => drawCoords(p));
-      return { name: feature.properties.name, path, id: feature.id };
-    });
-  }, [geoData]);
-
+  // ═══════════════════════════════════════════════════════
+  // MAIN RENDER — Only draws cache + 2 dynamic highlights
+  // ═══════════════════════════════════════════════════════
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !geoData || paths.length === 0) return;
@@ -226,95 +254,119 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
       drawStaticCache();
     }
 
-    // 2. DRAW BASE (FROM CACHE) - Super Fast!
-    ctx.drawImage(staticCacheRef.current!, 0, 0);
+    // 2. DRAW BASE (FROM CACHE) — 1 drawImage call instead of 207 fill+stroke calls
+    if (staticCacheRef.current) {
+      ctx.drawImage(staticCacheRef.current, 0, 0);
+    }
 
-    // 3. DRAW DYNAMIC HIGHLIGHTS (Player & Target)
+    // 3. DRAW DYNAMIC HIGHLIGHTS (Player & Target ONLY — max 2 countries)
     paths.forEach((item: any) => {
       const isPlayer = item.name === userCountry || geoJsonToIndo[item.name] === userCountry;
       const isTarget = item.name === targetCountry || geoJsonToIndo[item.name] === targetCountry;
-      
       if (!isPlayer && !isTarget) return;
 
-      let fillColor = "";
-      let strokeColor = "";
-      
       if (isPlayer) { 
-        fillColor = "rgba(34, 197, 94, 0.4)"; 
-        strokeColor = "#4ade80"; 
+        ctx.fillStyle = "rgba(34, 197, 94, 0.4)"; 
+        ctx.strokeStyle = "#4ade80"; 
         ctx.lineWidth = 5; 
         ctx.shadowColor = "#4ade80"; 
         ctx.shadowBlur = 20; 
       } else { 
         const rel = getRelation(item.name, userCountry);
         const meta = relationStorage.getRelationMetadata(rel);
-        fillColor = `${meta.hex}55`; 
-        strokeColor = meta.hex; 
+        ctx.fillStyle = `${meta.hex}55`; 
+        ctx.strokeStyle = meta.hex; 
         ctx.lineWidth = 5; 
         ctx.shadowColor = meta.hex; 
         ctx.shadowBlur = 20;
       }
 
-      ctx.fillStyle = fillColor; 
-      ctx.strokeStyle = strokeColor; 
       ctx.fill(item.path); 
       ctx.stroke(item.path);
-      ctx.shadowBlur = 0; // Clear expensive shadows immediately after use
+      ctx.shadowBlur = 0;
     });
 
-    // 4. DRAW LABELS & DOTS (Top Layer)
-    const labelGrid: { x: number, y: number }[] = [];
-    const sortedCenters = [...centersData].sort((a, b) => {
-      if (a.name_en === targetCountry || a.name_id === userCountry) return 1;
-      return 0;
-    });
-
-    sortedCenters.forEach((center: any) => {
-      const { x, y } = project(center.lon, center.lat);
+    // 4. DRAW PLAYER & TARGET DOTS + FLAGS (only 2 items, not 207)
+    centerPixels.forEach((center: any) => {
       const isPlayer = center.name_en === userCountry || center.name_id === userCountry;
       const isTarget = center.name_en === targetCountry || center.name_id === targetCountry;
+      if (!isPlayer && !isTarget) return;
 
       ctx.beginPath();
       if (isPlayer) { 
-        ctx.arc(x, y, 7, 0, Math.PI * 2); 
+        ctx.arc(center.px, center.py, 7, 0, Math.PI * 2); 
         ctx.fillStyle = "#22d3ee"; 
         ctx.shadowColor = "#22d3ee"; 
         ctx.shadowBlur = 15; 
-      } else if (isTarget) {
+      } else {
         const rel = getRelation(center.name_en, userCountry);
         const meta = relationStorage.getRelationMetadata(rel);
-        ctx.arc(x, y, 7, 0, Math.PI * 2);
+        ctx.arc(center.px, center.py, 7, 0, Math.PI * 2);
         ctx.fillStyle = meta.hex; 
         ctx.shadowColor = meta.hex; 
         ctx.shadowBlur = 15;
-      } else { 
-        ctx.arc(x, y, 3, 0, Math.PI * 2); 
-        ctx.fillStyle = "rgba(148, 163, 184, 0.4)"; 
-        ctx.shadowBlur = 0;
       }
       ctx.fill(); 
       ctx.shadowBlur = 0;
 
-      if (isPlayer || isTarget) {
-        ctx.font = "bold 52px sans-serif"; 
-        ctx.shadowColor = "black"; 
-        ctx.shadowBlur = 10;
-        ctx.fillText(center.flag, x, y - 95); 
-        ctx.shadowBlur = 0;
-      } else {
-        const isTooCrowded = labelGrid.some(pos => Math.abs(pos.x - x) < 140 && Math.abs(pos.y - y) < 80);
-        if (!isTooCrowded) {
-          ctx.font = "16px 'Inter', sans-serif"; 
-          ctx.fillStyle = "rgba(148, 163, 184, 0.4)";
-          ctx.fillText(center.flag, x, y - 22); 
-          labelGrid.push({ x, y });
-        }
-      }
+      // Flag label
+      ctx.font = "bold 52px sans-serif"; 
+      ctx.shadowColor = "black"; 
+      ctx.shadowBlur = 10;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(center.flag, center.px, center.py - 95); 
+      ctx.shadowBlur = 0;
     });
 
-  }, [geoData, paths, userCountry, targetCountry, tick]);
+  }, [geoData, paths, userCountry, targetCountry, tick, centerPixels, drawStaticCache]);
 
-  const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
+  // ═══════════════════════════════════════════════════════
+  // MOUSE HANDLERS — Throttled & Optimized
+  // ═══════════════════════════════════════════════════════
+  const defaultCursor = useMemo(() => 
+    `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`
+  , []);
+
+  // Throttled mouse move — no longer calls setIsHovering 60x/sec
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    const canvas = canvasRef.current; if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
+    const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
+    
+    // Use pre-computed pixel positions (no projection math per event)
+    const hovering = centerPixels.some((c: any) => {
+      const dx = clickX - c.px, dy = clickY - c.py;
+      return (dx * dx + dy * dy) < 3600; // 60^2 = 3600 (avoid sqrt)
+    });
+
+    // Only update state if changed (prevents 60 re-renders/sec)
+    if (hovering !== lastHoverRef.current) {
+      lastHoverRef.current = hovering;
+      setIsHovering(hovering);
+    }
+  }, [centerPixels]);
+
+  const handleClick = useCallback((e: React.MouseEvent) => {
+    if (!active) return;
+    if (mouseDownPosRef.current) {
+      if (Math.hypot(e.clientX - mouseDownPosRef.current.x, e.clientY - mouseDownPosRef.current.y) > 15) return;
+    }
+    const canvas = canvasRef.current; if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
+    const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
+    
+    let closest: any = null; let minDist = 10000; // 100^2
+    centerPixels.forEach((c: any) => {
+      const dx = clickX - c.px, dy = clickY - c.py;
+      const distSq = dx * dx + dy * dy;
+      if (distSq < minDist) { minDist = distSq; closest = c; }
+    });
+
+    if (closest && minDist < 10000) onSelect(closest.name_en);
+  }, [active, onSelect, centerPixels]);
 
   return (
     <div className="relative w-full h-full overflow-hidden bg-[#0a0f1d] group">
@@ -327,36 +379,9 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
           cursor: isHovering ? "pointer" : defaultCursor, 
           pointerEvents: active ? "auto" : "none"
         }}
-
-      onMouseMove={(e) => {
-        const canvas = canvasRef.current; if (!canvas) return;
-        const rect = canvas.getBoundingClientRect();
-        const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
-        const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-        setIsHovering(centersData.some((c: any) => {
-          const { x, y } = project(c.lon, c.lat);
-          return Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2) < 60;
-        }));
-      }}
-      onMouseDown={(e) => mouseDownPosRef.current = { x: e.clientX, y: e.clientY }}
-      onClick={(e) => {
-        if (!active) return;
-        if (mouseDownPosRef.current) {
-          if (Math.hypot(e.clientX - mouseDownPosRef.current.x, e.clientY - mouseDownPosRef.current.y) > 15) return;
-        }
-        const canvas = canvasRef.current; if (!canvas) return;
-        const rect = canvas.getBoundingClientRect();
-        const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
-        const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-        let closest: any = null; let minDist = 100;
-        centersData.forEach((c: any) => {
-          const { x, y } = project(c.lon, c.lat);
-          const dist = Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2);
-          if (dist < minDist) { minDist = dist; closest = c; }
-        });
-
-        if (closest) onSelect(closest.name_en);
-      }}
+        onMouseMove={handleMouseMove}
+        onMouseDown={(e) => mouseDownPosRef.current = { x: e.clientX, y: e.clientY }}
+        onClick={handleClick}
       />
     </div>
   );

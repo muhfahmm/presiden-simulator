@@ -95,6 +95,13 @@ export const budgetStorage = {
     return data.anggaran;
   },
 
+  // Server-authoritative: set budget directly from Go Server
+  setBudgetDirect: (value: number) => {
+    const data = budgetStorage.getData();
+    data.anggaran = value;
+    budgetStorage.saveData(data);
+  },
+
   getCumulativeProduction: (): Record<string, number> => {
     return budgetStorage.getData().cumulativeProduction;
   },

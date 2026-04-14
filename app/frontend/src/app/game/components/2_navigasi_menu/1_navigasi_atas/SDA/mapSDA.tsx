@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { Layers, Mountain, Gem, Waves, Flame, Battery, Droplets, Box, Cpu, Pickaxe, Radio } from "lucide-react";
 
@@ -121,166 +121,147 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
+  const staticCacheRef = useRef<HTMLCanvasElement | null>(null);
+  const needsCacheUpdate = useRef(true);
 
   const mapWidth = 6000;
   const mapHeight = 2400;
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || !geoData) return;
+  const project = (lon: number, lat: number) => ({
+    x: ((lon + 180) / 360) * mapWidth,
+    y: ((90 - lat) / 180) * mapHeight
+  });
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+  // Pre-compute Path2D objects (expensive, only on geoData change)
+  const paths = useMemo(() => {
+    if (!geoData) return [];
+    needsCacheUpdate.current = true;
+    return geoData.features.map((feature: any) => {
+      const path = new Path2D();
+      const drawCoords = (coords: any) => coords.forEach((poly: any) => poly.forEach((c: any, i: number) => {
+        const { x, y } = project(c[0], c[1]);
+        if (i === 0) path.moveTo(x, y); else path.lineTo(x, y);
+      }));
+      if (feature.geometry.type === "Polygon") drawCoords(feature.geometry.coordinates);
+      else if (feature.geometry.type === "MultiPolygon") feature.geometry.coordinates.forEach((p: any) => drawCoords(p));
+      return { name: feature.properties.name, path, id: feature.id };
+    });
+  }, [geoData]);
 
-    ctx.clearRect(0, 0, mapWidth, mapHeight);
+  // Offscreen cache for static world layer
+  const drawStaticCache = () => {
+    if (!geoData || paths.length === 0) return;
+    if (!staticCacheRef.current) {
+      staticCacheRef.current = document.createElement("canvas");
+      staticCacheRef.current.width = mapWidth;
+      staticCacheRef.current.height = mapHeight;
+    }
+    const cacheCtx = staticCacheRef.current.getContext("2d", { alpha: false });
+    if (!cacheCtx) return;
 
-    // 1. BACKGROUND
-    const bgGradient = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
+    // Background
+    const bgGradient = cacheCtx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
     bgGradient.addColorStop(0, "#121d31");
     bgGradient.addColorStop(1, "#070b13");
-    ctx.fillStyle = bgGradient;
-    ctx.fillRect(0, 0, mapWidth, mapHeight);
+    cacheCtx.fillStyle = bgGradient;
+    cacheCtx.fillRect(0, 0, mapWidth, mapHeight);
 
-    const project = (lon: number, lat: number) => {
-      const x = ((lon + 180) / 360) * mapWidth;
-      const y = ((90 - lat) / 180) * mapHeight;
-      return { x, y };
-    };
-
-    // 2. DRAW COUNTRIES
-    geoData.features.forEach((feature: any) => {
-      const name = feature.properties.name;
-      const isPlayer = name === userCountry;
-      const isTarget = name === targetCountry;
-
-      ctx.beginPath();
-
-      const drawCoords = (coordinates: any) => {
-        coordinates.forEach((polyline: any) => {
-          polyline.forEach((coord: any, cIdx: number) => {
-            const { x, y } = project(coord[0], coord[1]);
-            if (cIdx === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-          });
-        });
-      };
-
-      if (feature.geometry.type === "Polygon") {
-        drawCoords(feature.geometry.coordinates);
-      } else if (feature.geometry.type === "MultiPolygon") {
-        feature.geometry.coordinates.forEach((polygon: any) => drawCoords(polygon));
-      }
-
-      ctx.closePath();
-
-      // SDA Mode style:
-      let fillColor = "rgba(71, 85, 105, 0.4)";
-      let strokeColor = "rgba(255, 255, 255, 0.1)";
-      let isHighlighted = isPlayer || isTarget;
-
-      if (isHighlighted) {
-        if (isPlayer) {
-          fillColor = "rgba(34, 197, 94, 0.3)";
-          strokeColor = "#4ade80";
-          ctx.lineWidth = 2;
-        } else if (isTarget) {
-          const rel = getRelation(name, userCountry);
-          if (rel >= 70) {
-            fillColor = "rgba(34, 197, 94, 0.4)"; // Green
-            strokeColor = "#4ade80";
-          } else if (rel >= 41) {
-            fillColor = "rgba(234, 179, 8, 0.4)"; // Yellow
-            strokeColor = "#fbbf24";
-          } else {
-            fillColor = "rgba(239, 68, 68, 0.4)"; // Red
-            strokeColor = "#f87171";
-          }
-          ctx.lineWidth = 2;
-        }
-      } else {
-        ctx.lineWidth = 1;
-      }
-
-      ctx.fillStyle = fillColor;
-      ctx.strokeStyle = strokeColor;
-      ctx.fill();
-      ctx.stroke();
-      ctx.shadowBlur = 0;
+    // Draw non-highlighted countries
+    cacheCtx.lineWidth = 1;
+    paths.forEach((item: any) => {
+      const isSpecial = item.name === userCountry || geoJsonToIndo[item.name] === userCountry ||
+                        item.name === targetCountry || geoJsonToIndo[item.name] === targetCountry;
+      if (isSpecial) return;
+      cacheCtx.fillStyle = "rgba(71, 85, 105, 0.4)";
+      cacheCtx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+      cacheCtx.fill(item.path);
+      cacheCtx.stroke(item.path);
     });
 
-    // 3. DRAW MARKERS & LABELS
+    // Maritime labels
+    maritimeLabels.forEach(label => {
+      const { x, y } = project(label.lon, label.lat);
+      cacheCtx.font = `italic ${label.size}px 'Inter', sans-serif`;
+      cacheCtx.fillStyle = label.color;
+      cacheCtx.textAlign = "center";
+      cacheCtx.textBaseline = "middle";
+      if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) cacheCtx.fillText(label.name, x, y);
+    });
+
+    needsCacheUpdate.current = false;
+  };
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || !geoData || paths.length === 0) return;
+    const ctx = canvas.getContext("2d", { alpha: false });
+    if (!ctx) return;
+
+    // 1. Ensure cache
+    if (needsCacheUpdate.current || !staticCacheRef.current) drawStaticCache();
+
+    // 2. Draw cached base
+    ctx.drawImage(staticCacheRef.current!, 0, 0);
+
+    // 3. Dynamic highlights (player + target only)
+    paths.forEach((item: any) => {
+      const isPlayer = item.name === userCountry || geoJsonToIndo[item.name] === userCountry;
+      const isTarget = item.name === targetCountry || geoJsonToIndo[item.name] === targetCountry;
+      if (!isPlayer && !isTarget) return;
+
+      if (isPlayer) {
+        ctx.fillStyle = "rgba(34, 197, 94, 0.3)";
+        ctx.strokeStyle = "#4ade80";
+        ctx.lineWidth = 3;
+      } else {
+        const rel = getRelation(item.name, userCountry);
+        if (rel >= 70) { ctx.fillStyle = "rgba(34, 197, 94, 0.4)"; ctx.strokeStyle = "#4ade80"; }
+        else if (rel >= 41) { ctx.fillStyle = "rgba(234, 179, 8, 0.4)"; ctx.strokeStyle = "#fbbf24"; }
+        else { ctx.fillStyle = "rgba(239, 68, 68, 0.4)"; ctx.strokeStyle = "#f87171"; }
+        ctx.lineWidth = 3;
+      }
+      ctx.fill(item.path);
+      ctx.stroke(item.path);
+    });
+
+    // 4. Labels & dots
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-
     const labelGrid: { x: number, y: number }[] = [];
-    const minLabelDist = 120;
 
-    const sortedCenters = [...centersData].sort((a, b) => {
-      if (a.name_en === targetCountry) return 1;
-      if (b.name_en === targetCountry) return -1;
-      if (a.name_en === userCountry) return 1;
-      if (b.name_en === userCountry) return -1;
-      return 0;
-    });
-
-    sortedCenters.forEach((center: any) => {
+    centersData.forEach((center: any) => {
       const { x, y } = project(center.lon, center.lat);
       const isPlayer = center.name_en === userCountry;
       const isTarget = center.name_en === targetCountry;
 
-      // Dot marker
       ctx.beginPath();
       if (isPlayer) {
-        ctx.arc(x, y, 6, 0, Math.PI * 2);
-        ctx.fillStyle = "#22d3ee";
-        ctx.shadowColor = "#22d3ee";
-        ctx.shadowBlur = 15;
+        ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fillStyle = "#22d3ee"; 
+        ctx.shadowColor = "#22d3ee"; ctx.shadowBlur = 15;
       } else if (isTarget) {
         const rel = getRelation(center.name_en, userCountry);
         ctx.arc(x, y, 6, 0, Math.PI * 2);
-        if (rel >= 70) ctx.fillStyle = "#22c55e";
-        else if (rel >= 41) ctx.fillStyle = "#eab308";
-        else ctx.fillStyle = "#ef4444";
-        ctx.shadowColor = ctx.fillStyle as string;
-        ctx.shadowBlur = 15;
+        ctx.fillStyle = rel >= 70 ? "#22c55e" : rel >= 41 ? "#eab308" : "#ef4444";
+        ctx.shadowColor = ctx.fillStyle as string; ctx.shadowBlur = 15;
       } else {
-        ctx.arc(x, y, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(148, 163, 184, 0.5)";
-      }
-      ctx.fill();
-      ctx.shadowBlur = 0;
-
-      // Maritime Labels
-      maritimeLabels.forEach(label => {
-        const { x, y } = project(label.lon, label.lat);
-        ctx.font = `italic ${label.size}px 'Inter', sans-serif`;
-        ctx.fillStyle = label.color;
-        if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) {
-          ctx.fillText(label.name, x, y);
-        }
-      });
-
-      // Text Labels
-      if (isPlayer || isTarget) {
-        ctx.font = "48px sans-serif";
-        ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 10;
-        ctx.fillText(center.flag, x, y - 90);
+        ctx.arc(x, y, 2.5, 0, Math.PI * 2); ctx.fillStyle = "rgba(148, 163, 184, 0.5)";
         ctx.shadowBlur = 0;
-      } else {
-        const isTooCrowded = labelGrid.some(pos =>
-          Math.abs(pos.x - x) < minLabelDist && Math.abs(pos.y - y) < minLabelDist / 2
-        );
+      }
+      ctx.fill(); ctx.shadowBlur = 0;
 
+      if (isPlayer || isTarget) {
+        ctx.font = "48px sans-serif"; ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 10;
+        ctx.fillText(center.flag, x, y - 90); ctx.shadowBlur = 0;
+      } else {
+        const isTooCrowded = labelGrid.some(pos => Math.abs(pos.x - x) < 120 && Math.abs(pos.y - y) < 60);
         if (!isTooCrowded) {
-          ctx.font = "14px 'Inter', sans-serif";
-          ctx.fillStyle = "rgba(148, 163, 184, 0.35)";
-          ctx.fillText(center.flag, x, y - 18);
-          labelGrid.push({ x, y });
+          ctx.font = "14px 'Inter', sans-serif"; ctx.fillStyle = "rgba(148, 163, 184, 0.35)";
+          ctx.fillText(center.flag, x, y - 18); labelGrid.push({ x, y });
         }
       }
     });
 
-  }, [geoData, userCountry, targetCountry, centersData]);
+  }, [geoData, paths, userCountry, targetCountry]);
 
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
   const hoverCursor = "pointer";

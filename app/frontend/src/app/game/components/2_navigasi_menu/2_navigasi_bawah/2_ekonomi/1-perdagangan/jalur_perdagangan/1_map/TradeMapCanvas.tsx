@@ -178,48 +178,81 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
     return map;
   }, []);
 
-  // --- 1. STATIC LAYER (Map + Lines) ---
+  const staticCacheRef = useRef<HTMLCanvasElement | null>(null);
+  const needsCacheUpdate = useRef(true);
+
+  // --- 1. STATIC LAYER CACHE (Countries + Maritime) ---
+  const drawStaticCache = () => {
+    if (!geoData || paths.length === 0) return;
+    if (!staticCacheRef.current) {
+      staticCacheRef.current = document.createElement("canvas");
+      staticCacheRef.current.width = mapWidth;
+      staticCacheRef.current.height = mapHeight;
+    }
+    const cacheCtx = staticCacheRef.current.getContext("2d", { alpha: false });
+    if (!cacheCtx) return;
+
+    // Ocean
+    cacheCtx.fillStyle = "#070b13"; cacheCtx.fillRect(0, 0, mapWidth, mapHeight);
+
+    // Countries (non-highlighted)
+    paths.forEach((item: any) => {
+      const name = item.name;
+      const targetUser = { "United States": "United States of America" }[userCountry] || userCountry;
+      const targetHover = targetCountry ? ({ "United States": "United States of America" }[targetCountry] || targetCountry) : null;
+      const isPlayer = name === targetUser, isTarget = name === targetHover;
+      if (isPlayer || isTarget) return; // Skip — draw these dynamically
+
+      const isPartner = tradePartners.has(name.toLowerCase().trim()) || tradePartners.has((fullGeoToIndoMap[name] || name).toLowerCase().trim());
+      let fill = getContinentColor(name, item.id), stroke = "rgba(245, 245, 220, 0.15)";
+      if (isPartner) { fill = "rgba(6, 182, 212, 0.4)"; stroke = "rgba(6, 182, 212, 0.6)"; }
+      cacheCtx.fillStyle = fill; cacheCtx.strokeStyle = stroke; cacheCtx.fill(item.path); cacheCtx.stroke(item.path);
+    });
+
+    // Maritime
+    maritimeLabels.forEach(label => {
+      const { x, y } = projectMap(label.lon, label.lat);
+      cacheCtx.font = `italic ${label.size}px 'Inter', sans-serif`; cacheCtx.fillStyle = label.color;
+      cacheCtx.textAlign = "center"; cacheCtx.textBaseline = "middle";
+      cacheCtx.fillText(label.name, x, y);
+    });
+
+    // Hubs
+    internationalHubs.forEach(h => {
+      const { x, y } = projectMap(h.lon, h.lat);
+      cacheCtx.beginPath(); cacheCtx.arc(x, y, 4, 0, 7); cacheCtx.fillStyle = h.fill || "#ffffff"; cacheCtx.fill();
+    });
+
+    needsCacheUpdate.current = false;
+  };
+
   useEffect(() => {
     const canvas = bgCanvasRef.current;
     if (!canvas || !geoData || paths.length === 0) return;
     const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
-    // Ocean
-    ctx.fillStyle = "#070b13"; ctx.fillRect(0, 0, mapWidth, mapHeight);
+    // 1. Ensure cache
+    if (needsCacheUpdate.current || !staticCacheRef.current) drawStaticCache();
 
-    // Countries
+    // 2. Draw cached base
+    ctx.drawImage(staticCacheRef.current!, 0, 0);
+
+    // 3. Dynamic highlights (player + target countries)
     paths.forEach((item: any) => {
       const name = item.name;
       const targetUser = { "United States": "United States of America" }[userCountry] || userCountry;
       const targetHover = targetCountry ? ({ "United States": "United States of America" }[targetCountry] || targetCountry) : null;
       const isPlayer = name === targetUser, isTarget = name === targetHover;
-      const isPartner = tradePartners.has(name.toLowerCase().trim()) || tradePartners.has((fullGeoToIndoMap[name] || name).toLowerCase().trim());
+      if (!isPlayer && !isTarget) return;
 
-      let fill = getContinentColor(name, item.id), stroke = "rgba(245, 245, 220, 0.15)";
-      if (isPartner && !isPlayer && !isTarget) { fill = "rgba(6, 182, 212, 0.4)"; stroke = "rgba(6, 182, 212, 0.6)"; }
-      if (isPlayer || isTarget) {
-        fill = isPlayer ? "rgba(34, 197, 94, 0.3)" : "rgba(251, 191, 36, 0.3)";
-        stroke = isPlayer ? "#4ade80" : "#fbbf24";
-      }
-      ctx.fillStyle = fill; ctx.strokeStyle = stroke; ctx.fill(item.path); ctx.stroke(item.path);
+      const fill = isPlayer ? "rgba(34, 197, 94, 0.3)" : "rgba(251, 191, 36, 0.3)";
+      const stroke = isPlayer ? "#4ade80" : "#fbbf24";
+      ctx.fillStyle = fill; ctx.strokeStyle = stroke; ctx.lineWidth = 3;
+      ctx.fill(item.path); ctx.stroke(item.path);
     });
 
-    // Maritime
-    maritimeLabels.forEach(label => {
-      const { x, y } = projectMap(label.lon, label.lat);
-      ctx.font = `italic ${label.size}px 'Inter', sans-serif`; ctx.fillStyle = label.color;
-      ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      ctx.fillText(label.name, x, y);
-    });
-
-    // Hubs
-    internationalHubs.forEach(h => {
-      const { x, y } = projectMap(h.lon, h.lat);
-      ctx.beginPath(); ctx.arc(x, y, 4, 0, 7); ctx.fillStyle = h.fill || "#ffffff"; ctx.fill();
-    });
-
-    // Static Routes
+    // 4. Trade Routes (dynamic, changes with transactions)
     activeTransactions.forEach(tx => {
       if (!activeRoutesCacheRef.current[tx.id]) {
         const sHub = getHubForCountry(tx.source), dHub = getHubForCountry(tx.dest);

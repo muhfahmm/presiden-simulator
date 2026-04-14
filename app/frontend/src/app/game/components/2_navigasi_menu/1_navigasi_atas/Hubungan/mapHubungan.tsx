@@ -5,7 +5,6 @@ import { countries as centersData } from "@/app/database/data/negara/benua/index
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
 import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
-import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 
 interface MapHubunganProps {
   userCountry: string;
@@ -101,8 +100,8 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
   const [tick, setTick] = useState(0);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
-  const requestRef = useRef<number>(null);
-  const lastTimeRef = useRef<number>(Date.now());
+  const staticCacheRef = useRef<HTMLCanvasElement | null>(null);
+  const needsCacheUpdate = useRef(true);
 
   const mapWidth = 6000;
   const mapHeight = 2400;
@@ -112,9 +111,10 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
     const handleUpdate = () => {
       if (debounceTimerRef.current) return;
       debounceTimerRef.current = setTimeout(() => {
+        needsCacheUpdate.current = true;
         setTick(t => t + 1);
         debounceTimerRef.current = null;
-      }, 200); // 5 updates per second is plenty for the relationship map
+      }, 200);
     };
     window.addEventListener("relation_storage_updated", handleUpdate);
     window.addEventListener("relation_status_updated", handleUpdate);
@@ -126,27 +126,9 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
     };
   }, []);
 
-  // Animation loop for units
-  useEffect(() => {
-    const animate = () => {
-      const now = Date.now();
-      const dt = now - lastTimeRef.current;
-      lastTimeRef.current = now;
-
-      const { isPaused, speed } = timeStorage.getState();
-
-      if (!isPaused) {
-        // Mission progress logic removed
-      }
-
-      requestRef.current = requestAnimationFrame(animate);
-    };
-    requestRef.current = requestAnimationFrame(animate);
-    return () => { if (requestRef.current) cancelAnimationFrame(requestRef.current); };
-  }, []);
-
   const paths = useMemo(() => {
     if (!geoData) return [];
+    needsCacheUpdate.current = true;
     return geoData.features.map((feature: any) => {
       const path = new Path2D();
       const drawCoords = (coords: any) => coords.forEach((poly: any) => poly.forEach((c: any, i: number) => {
@@ -159,33 +141,48 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
     });
   }, [geoData]);
 
+  const drawStaticCache = () => {
+    if (!geoData || paths.length === 0) return;
+    if (!staticCacheRef.current) {
+      staticCacheRef.current = document.createElement("canvas");
+      staticCacheRef.current.width = mapWidth;
+      staticCacheRef.current.height = mapHeight;
+    }
+    const cacheCtx = staticCacheRef.current.getContext("2d", { alpha: false });
+    if (!cacheCtx) return;
+
+    const bgGradient = cacheCtx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
+    bgGradient.addColorStop(0, "#121d31"); bgGradient.addColorStop(1, "#070b13");
+    cacheCtx.fillStyle = bgGradient; cacheCtx.fillRect(0, 0, mapWidth, mapHeight);
+
+    paths.forEach((item: any) => {
+      const relation = getRelation(item.name, userCountry);
+      const meta = relationStorage.getRelationMetadata(relation);
+      cacheCtx.lineWidth = 1;
+      cacheCtx.fillStyle = `${meta.hex}99`;
+      cacheCtx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+      cacheCtx.fill(item.path);
+      cacheCtx.stroke(item.path);
+    });
+
+    maritimeLabels.forEach(label => {
+      const { x, y } = project(label.lon, label.lat);
+      cacheCtx.font = `italic ${label.size}px 'Inter', sans-serif`; cacheCtx.fillStyle = label.color;
+      cacheCtx.textAlign = "center"; cacheCtx.textBaseline = "middle";
+      if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) cacheCtx.fillText(label.name, x, y);
+    });
+
+    needsCacheUpdate.current = false;
+  };
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !geoData || paths.length === 0) return;
     const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
-    ctx.clearRect(0, 0, mapWidth, mapHeight);
-    const bgGradient = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
-    bgGradient.addColorStop(0, "#121d31"); bgGradient.addColorStop(1, "#070b13");
-    ctx.fillStyle = bgGradient; ctx.fillRect(0, 0, mapWidth, mapHeight);
-
-    paths.forEach((item: any) => {
-      const relation = getRelation(item.name, userCountry);
-      const meta = relationStorage.getRelationMetadata(relation);
-      ctx.lineWidth = 1;
-      ctx.fillStyle = `${meta.hex}99`;
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
-      ctx.fill(item.path);
-      ctx.stroke(item.path);
-    });
-
-    maritimeLabels.forEach(label => {
-      const { x, y } = project(label.lon, label.lat);
-      ctx.font = `italic ${label.size}px 'Inter', sans-serif`; ctx.fillStyle = label.color;
-      ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) ctx.fillText(label.name, x, y);
-    });
+    if (needsCacheUpdate.current || !staticCacheRef.current) drawStaticCache();
+    ctx.drawImage(staticCacheRef.current!, 0, 0);
 
     const sortedCenters = [...centersData].sort((a, b) => {
       if (a.name_en === targetCountry || a.name_id === userCountry) return 1;
@@ -205,7 +202,8 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
       } else {
         const relation = getRelation(center.name_en, userCountry);
         const meta = relationStorage.getRelationMetadata(relation);
-        ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fillStyle = meta.hex; ctx.shadowColor = meta.hex; ctx.shadowBlur = 10;
+        ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fillStyle = meta.hex;
+        ctx.shadowBlur = 0;
       }
       ctx.fill(); ctx.shadowBlur = 0;
     });

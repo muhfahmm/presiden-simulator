@@ -62,6 +62,14 @@ export const stabilityStorage = {
     localStorage.removeItem(STABILITY_STORAGE_KEY);
   },
 
+  // Server-authoritative: set stability directly from Go Server
+  setStabilityDirect: (value: number) => {
+    stabilityStorage.saveData({
+      stability: Math.max(0, Math.min(100, value)),
+      lastUpdated: Date.now()
+    });
+  },
+
   /**
    * Mengintegrasikan efek Ideologi ke Stabilitas Nasional.
    * Dipanggil secara periodik (misal mingguan) dari GameTimeControls.

@@ -16,33 +16,18 @@ const NEWS_STORAGE_KEY = "em2_global_news_v1";
 const NEWS_WEEK_KEY = "em2_news_week_id";
 const DAILY_LIMIT = 10;
 const WEEKLY_AI_LIMIT = 10; // User request: Max 10 AI news per week (excluding construction)
-const MAX_TOTAL_NEWS = 10; // User request: "hanya memunculkan 10 berita saja"
+const MAX_TOTAL_NEWS = 50; // Increased to accommodate construction + economy + diplomacy
 
 const dailyCounters: Record<string, Record<string, number>> = {};
 let weeklyCounters: Record<string, number> = {}; // weekId -> count
 
+// SSE connection reference
+let sseSource: EventSource | null = null;
+let sseRetryTimeout: NodeJS.Timeout | null = null;
+
 export const newsStorage = {
   getNews: (): NewsItem[] => {
     if (typeof window === "undefined") return [];
-    
-    // Background sync from Go Server
-    fetch("http://localhost:8080/api/berita")
-      .then(res => res.json())
-      .then(serverNews => {
-        if (Array.isArray(serverNews) && serverNews.length > 0) {
-          const current = localStorage.getItem(NEWS_STORAGE_KEY);
-          const currentParsed = current ? JSON.parse(current) : [];
-          
-          // Merge logic: Add server news if not already present
-          const newItems = serverNews.filter(sn => !currentParsed.some((cn: any) => cn.id === sn.id));
-          if (newItems.length > 0) {
-            const updated = [...newItems, ...currentParsed].slice(0, MAX_TOTAL_NEWS);
-            localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(updated));
-            window.dispatchEvent(new Event("news_updated"));
-          }
-        }
-      })
-      .catch(() => { /* Server might be offline, fallback to local */ });
 
     const stored = localStorage.getItem(NEWS_STORAGE_KEY);
     if (!stored) return [];
@@ -51,6 +36,104 @@ export const newsStorage = {
     } catch (e) {
       console.error("Failed to parse news storage", e);
       return [];
+    }
+  },
+
+  /**
+   * Sync news from Go Server SSE stream.
+   * This replaces the old fetch-inside-getNews pattern.
+   */
+  syncFromServer: (serverNews: any[]) => {
+    if (typeof window === "undefined" || !Array.isArray(serverNews)) return;
+
+    // Map server news to our format
+    const mapped: NewsItem[] = serverNews.map((sn: any) => ({
+      id: sn.id || `sv-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
+      source: sn.source || "Server",
+      subject: sn.subject || "",
+      content: sn.content || "",
+      time: sn.time || new Date(sn.timestamp).toLocaleDateString("id-ID"),
+      read: sn.read || false,
+      priority: sn.priority || "low",
+      category: sn.category || "global",
+      timestamp: sn.timestamp || Date.now(),
+    }));
+
+    // Get current local news (non-server items only)
+    const current = newsStorage.getNews();
+    const localOnly = current.filter(cn => !cn.id.startsWith("sv-"));
+
+    // Merge: server news first, then local news
+    const merged = [...mapped, ...localOnly]
+      .sort((a, b) => b.timestamp - a.timestamp)
+      .slice(0, MAX_TOTAL_NEWS);
+
+    localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(merged));
+    window.dispatchEvent(new Event("news_updated"));
+  },
+
+  /**
+   * Start listening to the Go Server SSE stream.
+   * Call this ONCE when the game page mounts.
+   */
+  connectSSE: () => {
+    if (typeof window === "undefined") return;
+    if (sseSource) return; // Already connected
+
+    const connect = () => {
+      try {
+        sseSource = new EventSource("http://localhost:8081/api/game/sync");
+
+        sseSource.onmessage = (event) => {
+          try {
+            const data = JSON.parse(event.data);
+            
+            // Sync news from server
+            if (data.news && Array.isArray(data.news)) {
+              newsStorage.syncFromServer(data.news);
+            }
+
+            // Dispatch game state update event (for date, pause state, etc.)
+            window.dispatchEvent(new CustomEvent("game_state_sync", { detail: data }));
+          } catch (e) {
+            // Silent parse error
+          }
+        };
+
+        sseSource.onerror = () => {
+          console.warn("[SSE] Connection lost. Retrying in 3s...");
+          sseSource?.close();
+          sseSource = null;
+          
+          // Retry connection
+          if (sseRetryTimeout) clearTimeout(sseRetryTimeout);
+          sseRetryTimeout = setTimeout(connect, 3000);
+        };
+
+        sseSource.onopen = () => {
+          console.log("[SSE] Connected to Go Server sync stream.");
+        };
+      } catch (e) {
+        console.warn("[SSE] Failed to connect. Retrying in 3s...");
+        if (sseRetryTimeout) clearTimeout(sseRetryTimeout);
+        sseRetryTimeout = setTimeout(connect, 3000);
+      }
+    };
+
+    connect();
+  },
+
+  /**
+   * Disconnect SSE stream (call on unmount).
+   */
+  disconnectSSE: () => {
+    if (sseSource) {
+      sseSource.close();
+      sseSource = null;
+    }
+    if (sseRetryTimeout) {
+      clearTimeout(sseRetryTimeout);
+      sseRetryTimeout = null;
     }
   },
 
