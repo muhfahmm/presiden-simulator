@@ -101,6 +101,9 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
     // SSE LISTENER: Consume player state from Go Server
     // Updates on EVERY game day tick from the server
     // ═══════════════════════════════════════════════════════
+    let lastStorageSync = 0;
+    const STORAGE_THROTTLE_MS = 500; // Only write localStorage every 500ms
+
     const handleServerSync = (e: Event) => {
       const data = (e as CustomEvent).detail;
       if (!data?.player?.initialized) return;
@@ -108,20 +111,24 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
       serverConnected.current = true;
       const p = data.player;
       
-      // Update React state (for navbar display)
+      // Update React state immediately (for smooth UI)
       setBudget(p.budget);
       setBudgetDelta(p.dailyIncome);
       setPopulation(Math.round(p.population));
       setPopulationDelta(Math.round(p.populationDelta));
-      setHappiness({ global: p.happiness });
-      setStability(p.stability);
+      setHappiness({ global: Math.round(p.happiness * 10) / 10 });
+      setStability(Math.round(p.stability * 10) / 10);
 
-      // Sync back to localStorage (so other components can read)
-      budgetStorage.setBudgetDirect(p.budget);
-      budgetDeltaStorage.setDelta(p.dailyIncome);
-      populationStorage.setPopulationDirect(Math.round(p.population));
-      populationDeltaStorage.setDelta(Math.round(p.populationDelta));
-      stabilityStorage.setStabilityDirect(p.stability);
+      // Throttle localStorage writes to prevent QuotaExceededError
+      const now = Date.now();
+      if (now - lastStorageSync > STORAGE_THROTTLE_MS) {
+        lastStorageSync = now;
+        budgetStorage.setBudgetDirect(p.budget);
+        budgetDeltaStorage.setDelta(p.dailyIncome);
+        populationStorage.setPopulationDirect(Math.round(p.population));
+        populationDeltaStorage.setDelta(Math.round(p.populationDelta));
+        stabilityStorage.setStabilityDirect(p.stability);
+      }
     };
     window.addEventListener('game_state_sync', handleServerSync);
 

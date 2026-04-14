@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"math"
 	"math/rand"
 	"net/http"
 	"os/exec"
@@ -242,7 +243,13 @@ func simulationEngine() {
 		}
 
 		// Broadcast state to all SSE clients
-		snapshot := createSnapshot()
+		// Use lightweight snapshot unless news changed
+		var snapshot []byte
+		if len(state.News) != lastBroadcastNewsLen {
+			snapshot = createSnapshot() // Full payload with news
+		} else {
+			snapshot = createPlayerSnapshot() // Lightweight: player stats only
+		}
 		state.mu.Unlock()
 
 		broadcastSSE(snapshot)
@@ -258,8 +265,8 @@ func processPlayerDay(date time.Time) {
 		return // Wait until frontend sends initial state
 	}
 
-	// 1. Budget: Add daily income
-	state.Player.Budget += state.Player.DailyIncome
+	// 1. Budget: Add daily income (rounded to integer)
+	state.Player.Budget = math.Round(state.Player.Budget + state.Player.DailyIncome)
 
 	// 2. Population: Grow based on population size (realistic growth rate)
 	// Base growth rate: ~0.003% per day ≈ ~1.1% per year
@@ -270,8 +277,8 @@ func processPlayerDay(date time.Time) {
 	if popGrowth < 0 {
 		popGrowth = 0
 	}
-	state.Player.PopulationDelta = popGrowth
-	state.Player.Population += popGrowth
+	state.Player.PopulationDelta = math.Round(popGrowth)
+	state.Player.Population = math.Round(state.Player.Population + popGrowth)
 
 	// 3. Happiness: Weekly decay (every 7 days)
 	if state.DayCounter%7 == 0 {
@@ -283,6 +290,8 @@ func processPlayerDay(date time.Time) {
 		if state.Player.Happiness > 100 {
 			state.Player.Happiness = 100
 		}
+		// Round to 1 decimal
+		state.Player.Happiness = math.Round(state.Player.Happiness*10) / 10
 	}
 
 	// 4. Stability: Small weekly fluctuation
@@ -295,6 +304,8 @@ func processPlayerDay(date time.Time) {
 		if state.Player.Stability > 100 {
 			state.Player.Stability = 100
 		}
+		// Round to 1 decimal
+		state.Player.Stability = math.Round(state.Player.Stability*10) / 10
 	}
 }
 
@@ -486,10 +497,12 @@ type SyncPayload struct {
 	IsPaused   bool        `json:"isPaused"`
 	Speed      int         `json:"speed"`
 	DayCounter int         `json:"dayCounter"`
-	News       []NewsItem  `json:"news"`
-	Inbox      []InboxItem `json:"inbox"`
+	News       []NewsItem  `json:"news,omitempty"`
+	Inbox      []InboxItem `json:"inbox,omitempty"`
 	Player     PlayerState `json:"player"`
 }
+
+var lastBroadcastNewsLen int = 0
 
 func createSnapshot() []byte {
 	payload := SyncPayload{
@@ -499,6 +512,20 @@ func createSnapshot() []byte {
 		DayCounter: state.DayCounter,
 		News:       state.News,
 		Inbox:      state.Inbox,
+		Player:     state.Player,
+	}
+	lastBroadcastNewsLen = len(state.News)
+	data, _ := json.Marshal(payload)
+	return data
+}
+
+// Lightweight snapshot — player stats only, no news (saves bandwidth)
+func createPlayerSnapshot() []byte {
+	payload := SyncPayload{
+		GameDate:   state.GameDate,
+		IsPaused:   state.IsPaused,
+		Speed:      state.Speed,
+		DayCounter: state.DayCounter,
 		Player:     state.Player,
 	}
 	data, _ := json.Marshal(payload)

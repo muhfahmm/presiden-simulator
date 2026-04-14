@@ -1,9 +1,13 @@
 import { INITIAL_GAME_DATE, addDays, saveGameDate, getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
-// import { diplomacyStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/diplomacyStorage";
-import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
-import { processGlobalAiRelations } from "@/app/game/components/map-system/ai_diplomacy_engine/AiGlobalDiplomacy";
-import { AiTradeService } from "./sistem_perdagangan_AI/services/AiTradeService";
-import { DebtAiService } from "../3-hutang/sistem_hutang_AI/services/DebtAiService";
+
+// ══════════════════════════════════════════════════════════════
+// MIGRATED TO GO SERVER:
+// - processGlobalAiRelations → Go server handles NPC diplomacy
+// - AiTradeService.processDaily → Go server handles NPC trade
+// - DebtAiService.processDailyDebt → Go server handles NPC debt
+// These were removed to eliminate QuotaExceededError from
+// massive localStorage writes (relation matrices, trade offers)
+// ══════════════════════════════════════════════════════════════
 
 type TimeListener = (date: Date, isPaused: boolean, speed: number) => void;
 
@@ -29,21 +33,15 @@ class TimeStorage {
       this.gameDate = addDays(this.gameDate, 1);
       saveGameDate(this.gameDate);
       
-      const dayTimestamp = Math.floor(this.gameDate.getTime() / (1000 * 60 * 60 * 24));
+      // ══════════════════════════════════════════════
+      // All NPC AI processing has been removed.
+      // The Go Server now handles:
+      // - AI Diplomacy (relation matrix)
+      // - AI Trade (offers/contracts)
+      // - AI Debt (lending/borrowing)
+      // - AI Construction (building projects)
+      // ══════════════════════════════════════════════
 
-      // PERFORMANCE OPTIMIZATION: Stagger heavy simulation ticks
-      // Diplomacy: Every 7 days
-      if (dayTimestamp % 7 === 0) {
-        processGlobalAiRelations(); 
-      }
-
-      // Trade: Every 3 days
-      if (dayTimestamp % 3 === 0) {
-        AiTradeService.processDaily();
-      }
-      
-      DebtAiService.processDailyDebt(dayTimestamp); // Sistem Hutang AI
-      
       this.notify();
     }, 2000 / this.speed);
   }

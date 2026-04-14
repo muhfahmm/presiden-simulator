@@ -23,6 +23,7 @@ let weeklyCounters: Record<string, number> = {}; // weekId -> count
 
 // SSE connection reference
 let sseSource: EventSource | null = null;
+let lastNewsCount = 0;
 let sseRetryTimeout: NodeJS.Timeout | null = null;
 
 export const newsStorage = {
@@ -68,7 +69,13 @@ export const newsStorage = {
       .sort((a, b) => b.timestamp - a.timestamp)
       .slice(0, MAX_TOTAL_NEWS);
 
-    localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(merged));
+    try {
+      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(merged));
+    } catch (e) {
+      // Quota exceeded — trim and retry
+      const trimmed = merged.slice(0, 10);
+      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
+    }
     window.dispatchEvent(new Event("news_updated"));
   },
 
@@ -88,13 +95,17 @@ export const newsStorage = {
           try {
             const data = JSON.parse(event.data);
             
-            // Sync news from server
-            if (data.news && Array.isArray(data.news)) {
-              newsStorage.syncFromServer(data.news);
-            }
-
-            // Dispatch game state update event (for date, pause state, etc.)
+            // ALWAYS dispatch player state immediately (lightweight)
             window.dispatchEvent(new CustomEvent("game_state_sync", { detail: data }));
+
+            // Sync news less frequently (only when news count changes)
+            if (data.news && Array.isArray(data.news)) {
+              const currentCount = data.news.length;
+              if (currentCount !== lastNewsCount) {
+                lastNewsCount = currentCount;
+                newsStorage.syncFromServer(data.news);
+              }
+            }
           } catch (e) {
             // Silent parse error
           }
@@ -150,7 +161,13 @@ export const newsStorage = {
     };
     
     const updated = [newItem, ...currentParsed].slice(0, MAX_TOTAL_NEWS);
-    localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(updated));
+    try {
+      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(updated));
+    } catch (e) {
+      // Quota exceeded — clear old data and retry
+      const trimmed = updated.slice(0, 10);
+      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
+    }
     window.dispatchEvent(new Event("news_updated"));
   },
 
