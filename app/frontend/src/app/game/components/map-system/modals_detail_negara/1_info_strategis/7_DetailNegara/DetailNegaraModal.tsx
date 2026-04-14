@@ -122,6 +122,11 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
     ? buildingStorage.getQueue()
     : aiBuildingStorage.getQueue(countryEntry.name_en);
 
+  // DEBUG: Track construction data for Malaysia
+  if (countryEntry.name_en === "Malaysia") {
+    console.log(`[AI UI DEBUG] Malaysia Data:`, { buildingDeltas, queueLength: constructionQueue.length });
+  }
+
   const sectors = [
     { id: "produksi", label: "Produksi", icon: Factory },
     { id: "militer", label: "Militer", icon: Shield },

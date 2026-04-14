@@ -125,6 +125,21 @@ def decide(data):
     queue_count = data.get("queue_count", 0)
     population = data.get("population", 0)
     happiness = data.get("happiness", 100)
+    game_date_str = data.get("game_date", "2026-01-01")
+
+    # ── TIME CONTEXT ──────────────────────────────────────
+    # Determine if we are in the "Start-up / Week 1" phase
+    # Format usually YYYY-MM-DD
+    day = 1
+    month = 1
+    try:
+        parts = game_date_str.split('-')
+        month = int(parts[1])
+        day = int(parts[2])
+    except: pass
+    
+    # Startup phase is the first 2 weeks of the game (Jan 2026)
+    is_startup_phase = (month == 1 and day <= 14)
 
     # ── CAPACITY ANALYSIS ──────────────────────────────────
     total_cap, sector_caps = calculate_housing_capacity(buildings)
@@ -143,36 +158,39 @@ def decide(data):
             "coverage": coverage_ratio
         }
 
-    # Is ANY specific sector critically low? (< 50% of its target share)
-    critical_sectors = [k for k, v in sector_deficits.items() if v["coverage"] < 0.5]
+    # Is ANY specific sector critically low? 
+    # Normal: < 50%
+    # Startup Phase: < 98% (Aggressive build to prevent backlog)
+    crisis_threshold = 0.98 if is_startup_phase else 0.5
+    critical_sectors = [k for k, v in sector_deficits.items() if v["coverage"] < crisis_threshold]
     is_sector_crisis = len(critical_sectors) > 0
 
     # ── BUDGET ALLOCATION ──────────────────────────────────
-    # If in Crisis (Total or Sectoral), reduce safety buffer
-    if is_historically_overloaded or is_sector_crisis or happiness < 40:
-        safety_reserve = max(daily_income * 2, 0)
+    # If in Crisis or Startup, reduce safety buffer to allow growth
+    if is_historically_overloaded or is_sector_crisis or happiness < 40 or is_startup_phase:
+        safety_reserve = max(daily_income * 1, 0)
     else:
         safety_reserve = max(daily_income * 7, 0)
     
-    safety_reserve = min(safety_reserve, budget * 0.2)
+    safety_reserve = min(safety_reserve, budget * 0.15)
     spendable_budget = budget - safety_reserve
 
     if spendable_budget <= 0:
-        return {"decision": "SKIP", "reason": "Budget terlalu rendah."}
+        return {"decision": "SKIP", "reason": f"Budget terlalu rendah ({budget:,.0f} RM)."}
 
-    # Queue Limit
-    queue_limit = 5 if (is_historically_overloaded or is_sector_crisis) else 2
+    # Queue Limit - More aggressive in startup
+    queue_limit = 5 if (is_historically_overloaded or is_sector_crisis or is_startup_phase) else 2
     if queue_count >= queue_limit:
         return {"decision": "SKIP", "reason": f"Antrian penuh ({queue_count}/{queue_limit})."}
 
     # Filter Affordable
     affordable_candidates = []
     for o in options:
-        is_aff, total_cost = is_affordable(o, spendable_budget, stocks)
-        if is_aff: affordable_candidates.append((o, total_cost))
+        is_aff, total_cost_per_unit = is_affordable(o, spendable_budget, stocks)
+        if is_aff: affordable_candidates.append((o, total_cost_per_unit))
 
     if not affordable_candidates:
-        return {"decision": "SKIP", "reason": "Tidak ada yang terjangkau."}
+        return {"decision": "SKIP", "reason": f"Tidak mampu beli material (Budget: {spendable_budget:,.0f} RM)."}
 
     # ── PRIORITY 0: HOUSING SECTOR CRISIS (The Fix) ─────────
     if is_sector_crisis or is_historically_overloaded:
@@ -189,15 +207,16 @@ def decide(data):
             
             # Batching logic
             max_batch = 50
-            needed_batch = int(deficit_in_units * 0.1) # Try to solve 10% of deficit
             affordable_batch = int(spendable_budget / candidate[1])
             
-            final_batch = random.randint(min(5, affordable_batch), min(max_batch, max(5, affordable_batch)))
-            final_batch = max(1, final_batch)
+            # ENSURE we never try to build more than we can afford (FIXED)
+            suggested_batch = random.randint(min(5, affordable_batch), min(max_batch, max(5, affordable_batch)))
+            final_batch = min(suggested_batch, affordable_batch)
+            final_batch = max(1, final_batch) # Must build at least 1 if affordable
             
             total_cost = candidate[1] * final_batch
             return _execute(candidate[0], total_cost, 
-                            f"PRIORITAS SEKTORAL: Hunian {label} sangat kurang (Hanya {worst_sector[1]['coverage']*100:.1f}% dari target). Membangun {final_batch}x unit.", 
+                            f"PRIORITAS HUNIAN: {label} (Cakupan: {worst_sector[1]['coverage']*100:.1f}%). Membangun {final_batch} unit. (Mampu: {affordable_batch}, Biaya: {total_cost:,.0f} RM).", 
                             budget, spendable_budget, quantity=final_batch)
 
     # ── PRIORITY 1: MATERIAL SURVIVAL ──────────────────────

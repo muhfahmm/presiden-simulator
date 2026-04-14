@@ -138,41 +138,57 @@ export class PusatKeputusanPembangunan {
       : (typeof rawPop === 'number' ? rawPop : 0);
     const currentAiPop = aiPopulationStorage.getPopulation(country.name_en) || basePop;
 
-    // 3. Send everything to Python brain in ONE call
+    const MATERIAL_PRICES: Record<string, number> = {
+      "5_pabrik_semen": 250,
+      "4_smelter": 5000,
+      "6_penggergajian_kayu": 150
+    };
+
+    const getHousingCost = (key: string) => {
+      const opt = ALL_OPTIONS.find(o => o.key === key);
+      if (!opt) return 999999999;
+      const buildCost = Number(opt.biaya_pembangunan || 0);
+      const req = BUILDING_REQUIREMENTS[key] || { beton: 0, baja: 0, kayu: 0 };
+      
+      const extraMat = 
+          (Math.max(0, (req.beton || 0) - (stocks["5_pabrik_semen"] || 0)) * MATERIAL_PRICES["5_pabrik_semen"]) +
+          (Math.max(0, (req.baja || 0) - (stocks["4_smelter"] || 0)) * MATERIAL_PRICES["4_smelter"]) +
+          (Math.max(0, (req.kayu || 0) - (stocks["6_penggergajian_kayu"] || 0)) * MATERIAL_PRICES["6_penggergajian_kayu"]);
+      
+      return buildCost + extraMat;
+    };
+
+    // 3. Send flattened data to C++ brain for high-speed processing
     try {
+      const flatPayload = {
+        negara: countryNameEn,
+        budget,
+        pop: currentAiPop,
+        q: queue.length,
+        date: dateStr,
+        income: dailyIncome,
+        r_sub: buildings["rumah_subsidi"] || 0,
+        apart: buildings["apartemen"] || 0,
+        mans: buildings["mansion"] || 0,
+        cost_sub: getHousingCost("rumah_subsidi"),
+        cost_apart: getHousingCost("apartemen"),
+        cost_mans: getHousingCost("mansion")
+      };
+
       const response = await fetch('/game/components/AI_logic/5_AI_Pembangunan/routes/keputusan_cerdas', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          negara: countryNameEn,
-          budget,
-          daily_income: dailyIncome,
-          income_breakdown: economic_intelligence,
-          stocks,
-          buildings,
-          options: ALL_OPTIONS,
-          queue_count: queue.length,
-          population: currentAiPop,
-          root_cause: socialDiagnosis.root_cause,
-          happiness: aiHappinessStorage.getSatisfaction(countryNameEn)
-        })
+        body: JSON.stringify(flatPayload)
       });
 
       const result = await response.json();
       
-      if (!result || !result.decision) return;
-
-      // Save AI reasoning for display in the UI
-      if (result.reason) {
-          aiThinkingStorage.saveReason(countryNameEn, result.reason);
-      }
+      if (!result || result.decision !== "EXECUTE") return;
 
       // Log for debugging
-      if (result.decision === "EXECUTE") {
-        console.log(`[AI CONSTRUCTION] ${countryNameEn}: ${result.reason} | Cost: ${result.budget_analysis?.building_cost?.toLocaleString()}`);
-      }
+      console.log(`[AI C++] ${countryNameEn}: ${result.reason} | Qty: ${result.quantity}`);
 
-      if (result.decision === "EXECUTE" && result.building_key) {
+      if (result.building_key) {
         const chosen = ALL_OPTIONS.find(o => o.key === result.building_key);
         if (chosen) {
           const currentCount = buildings[result.building_key] || 0;
@@ -180,7 +196,6 @@ export class PusatKeputusanPembangunan {
         }
       }
     } catch (err) {
-      // Silent fail — don't block other NPCs
       console.error(`[AI Construction] Error for ${countryNameEn}:`, err);
     }
   }

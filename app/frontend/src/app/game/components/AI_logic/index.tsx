@@ -26,7 +26,7 @@ import { calculatePopulationHappiness } from "@/app/game/components/2_navigasi_m
  * - Satisfaction Cycle: Evaluates happiness for the user's country
  */
 
-const BATCH_SIZE = 20; // NPCs processed per tick for construction (Faster rotation)
+const BATCH_SIZE = 1; // Process 1 NPC per second for continuous rotation
 
 export default function AILogicCNS() {
   const lastDateRef = useRef<string>("");
@@ -61,7 +61,7 @@ export default function AILogicCNS() {
           await produksiNegaraAI.jalankanSiklusHarian(currentDate);
           aiBudgetStorage.updateAll(currentDate, session.country);
           
-          batchIndexRef.current = 0;
+          
           lastDateRef.current = currentDateStr;
 
           // Check for completed construction projects globally
@@ -115,7 +115,7 @@ export default function AILogicCNS() {
     };
 
     // PERFORMANCE: Increased interval from 2s to 6s to allow UI to breathe
-    const interval = setInterval(runAILogic, 6000);
+    const interval = setInterval(runAILogic, 1000);
     return () => clearInterval(interval);
   }, []);
 
