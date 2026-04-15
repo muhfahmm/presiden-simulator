@@ -130,6 +130,10 @@ export default function BeritaModal({ isOpen, onClose, setActiveMenu }: BeritaMo
       { keys: ["paud", "prasekolah", "usia dini"], sector: "layanan_publik", card: "prasekolah", slug: "pendidikan_anak_usia_dini" },
       { keys: ["pendidikan tinggi", "sma", "smk", "sekolah atas", "pendidikan lanjutan"], sector: "layanan_publik", card: "lanjutan", slug: "pendidikan_lanjutan" },
       { keys: ["universitas", "kampus", "perguruan tinggi"], sector: "layanan_publik", card: "universitas", slug: "universitas" },
+      { keys: ["observatorium", "astronomi", "antariksa"], sector: "layanan_publik", card: "8_observatorium", slug: "observatorium" },
+      { keys: ["laboratorium", "sains", "lab medik"], sector: "layanan_publik", card: "7_laboratorium", slug: "laboratorium" },
+      { keys: ["penelitian", "pusat riset", "riset strategis"], sector: "layanan_publik", card: "9_pusat_penelitian", slug: "pusat_penelitian" },
+      { keys: ["pusat inovasi", "teknologi", "pusat pengembangan"], sector: "layanan_publik", card: "10_pusat_pengembangan", slug: "pusat_pengembangan" },
       
       // Detailed Sports & Leisure
       { keys: ["e-sports", "esports", "arena e-sports"], sector: "layanan_publik", card: "esports", slug: "esports" },

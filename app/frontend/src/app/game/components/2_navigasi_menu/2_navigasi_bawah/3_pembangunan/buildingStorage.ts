@@ -1,10 +1,12 @@
 import { gameStorage, GameSession, ConstructionItem } from "@/app/game/gamestorage";
+import { formatGameDate, getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
 const BUILDING_STORAGE_KEY = "em4_building_data";
 
 export interface BuildingData {
   constructionQueue: ConstructionItem[];
   buildingDeltas: Record<string, number>;
+  completionDates: Record<string, string>; // { buildingKey: dateString }
 }
 
 export const buildingStorage = {
@@ -13,7 +15,7 @@ export const buildingStorage = {
   },
   // Get all building data, with migration fallback
   getData: (): BuildingData => {
-    if (typeof window === 'undefined') return { constructionQueue: [], buildingDeltas: {} };
+    if (typeof window === 'undefined') return { constructionQueue: [], buildingDeltas: {}, completionDates: {} };
     
     const stored = localStorage.getItem(BUILDING_STORAGE_KEY);
     if (stored) {
@@ -21,29 +23,15 @@ export const buildingStorage = {
         const parsed = JSON.parse(stored);
         return {
           constructionQueue: Array.isArray(parsed.constructionQueue) ? parsed.constructionQueue : [],
-          buildingDeltas: parsed.buildingDeltas || {}
+          buildingDeltas: parsed.buildingDeltas || {},
+          completionDates: parsed.completionDates || {}
         };
       } catch (e) {
         console.error("Failed to parse building storage", e);
       }
     }
 
-    // MIGRATION FALLBACK: Try to get from gameStorage if new storage is empty
-    const session = gameStorage.getSession() as any;
-    if (session) {
-      const migratedData: BuildingData = {
-        constructionQueue: session.constructionQueue || [],
-        buildingDeltas: session.buildingDeltas || {}
-      };
-      
-      // Save it to the new key immediately if there's data to migrate
-      if (migratedData.constructionQueue.length > 0 || Object.keys(migratedData.buildingDeltas).length > 0) {
-        buildingStorage.saveData(migratedData);
-      }
-      return migratedData;
-    }
-
-    return { constructionQueue: [], buildingDeltas: {} };
+    return { constructionQueue: [], buildingDeltas: {}, completionDates: {} };
   },
 
   saveData: (data: BuildingData) => {
@@ -80,10 +68,21 @@ export const buildingStorage = {
     return buildingStorage.getData().buildingDeltas;
   },
 
+  getCompletionDates: (): Record<string, string> => {
+    return buildingStorage.getData().completionDates;
+  },
+
   incrementBuildingCount: (buildingKey: string) => {
     const data = buildingStorage.getData();
     const current = data.buildingDeltas[buildingKey] || 0;
     data.buildingDeltas[buildingKey] = (typeof current === 'number' ? current : 0) + 1;
+    
+    // Record completion date for transient indicators (standardized format)
+    if (typeof window !== 'undefined') {
+      const currentDateStr = formatGameDate(getStoredGameDate());
+      data.completionDates[buildingKey] = currentDateStr;
+    }
+
     buildingStorage.saveData(data);
   }
 };

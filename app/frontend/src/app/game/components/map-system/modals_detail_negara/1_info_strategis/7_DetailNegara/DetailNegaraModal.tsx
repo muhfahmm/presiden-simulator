@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import { 
-  X, Activity, Zap, Pickaxe, Factory, Beef, Wheat, Pill, Utensils, 
-  Shield, Swords, Eye, Search, Home, GraduationCap, HeartPulse, 
-  Scale, Siren, Landmark, Info, Briefcase, Users2, Users, Cloud, Target,
-  Mountain, Gem, Waves, Battery, Box, Cpu, TreePine, Droplets, Flame, Radio, Hammer,
-  Clapperboard, Building2, Archive, TrendingUp, ShieldAlert, TrendingDown,
-  Crosshair, Radar, Ship, Car, Settings
+  Scale, Activity, Shield, Car, Settings, Users, Home, Building2, Landmark, 
+  GraduationCap, HeartPulse, Target, Briefcase, Clapperboard, Ship, Radar, 
+  Eye, Pickaxe, Radio, Zap, Droplets, Gem, Mountain, TreePine, Factory, 
+  Hammer, Utensils, Pill, Archive, X, Beef, Wheat, ShieldAlert, TrendingUp, 
+  TrendingDown, Crosshair
 } from "lucide-react";
+import { formatGameDate, getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { 
   KAPASITAS_LISTRIK_METADATA,
@@ -202,6 +202,10 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
     ? buildingStorage.getBuildingDeltas()
     : aiBuildingStorage.getAllBuildingDeltas(countryEntry.name_en);
 
+  const buildingCompletionDates = isUser
+    ? buildingStorage.getCompletionDates()
+    : aiBuildingStorage.getCompletionDates(countryEntry.name_en);
+
   // Get Stocks (Production)
   const stocks = isUser
     ? budgetStorage.getCumulativeProduction()
@@ -220,6 +224,9 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
   // Defense construction data (AI-driven)
   const defenseDeltas = aiDefenseStorage.getAllDefenseDeltas(countryEntry.name_en);
   const defenseQueue = aiDefenseStorage.getQueue(countryEntry.name_en);
+  const defenseCompletionDates = aiDefenseStorage.getCompletionDates(countryEntry.name_en);
+
+  const currentGameDate = typeof window !== 'undefined' ? formatGameDate(getStoredGameDate()) : null;
 
   const sectors = [
     { id: "produksi", label: "Produksi", icon: Factory },
@@ -337,11 +344,13 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 title="1. Sektor Energi" 
                 items={countryEntry.sektor_listrik} 
                 buildingDeltas={buildingDeltas}
+                completionDates={buildingCompletionDates}
                 constructionQueue={constructionQueue}
                 stocks={stocks}
                 type="listrik"
                 handleIconClick={handleIconClick}
                 highlitCard={highlitCard}
+                currentGameDate={currentGameDate}
               />
               <ProductionSection 
                 title="2. Sektor Mineral Kritis" 
@@ -352,6 +361,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 type="ekstraksi"
                 handleIconClick={handleIconClick}
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
               <ProductionSection 
                 title="3. Sektor Manufaktur" 
@@ -362,6 +373,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 type="manufaktur"
                 handleIconClick={handleIconClick}
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
               <ProductionSection 
                 title="4. Sektor Peternakan" 
@@ -372,6 +385,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 type="peternakan"
                 handleIconClick={handleIconClick}
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
               <ProductionSection 
                 title="5. Sektor Agrikultur" 
@@ -382,6 +397,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 type="agrikultur"
                 handleIconClick={handleIconClick}
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
               <ProductionSection 
                 title="6. Sektor Perikanan" 
@@ -392,6 +409,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 type="perikanan"
                 handleIconClick={handleIconClick}
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
               <ProductionSection 
                 title="7. Sektor Olahan Pangan" 
@@ -402,6 +421,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 type="pangan"
                 handleIconClick={handleIconClick}
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
               <ProductionSection 
                 title="8. Sektor Farmasi" 
@@ -412,6 +433,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 type="farmasi"
                 handleIconClick={handleIconClick}
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
             </div>
           )}
@@ -427,6 +450,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 type="militer"
                 handleIconClick={handleIconClick}
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
             </div>
           )}
@@ -443,6 +468,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 handleIconClick={handleIconClick}
                 type="infrastruktur"
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
               <SimpleGridSection 
                 title="2. Sektor Pendidikan & Riset" 
@@ -454,6 +481,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 handleIconClick={handleIconClick}
                 type="sosial"
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
               <SimpleGridSection 
                 title="3. Sektor Layanan Kesehatan" 
@@ -465,6 +494,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 handleIconClick={handleIconClick}
                 type="sosial"
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
               <SimpleGridSection 
                 title="4. Sektor Hukum & Keamanan" 
@@ -476,6 +507,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 handleIconClick={handleIconClick}
                 type="sosial"
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
               <SimpleGridSection 
                 title="5. Sektor Olahraga & Rekreasi" 
@@ -487,6 +520,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 handleIconClick={handleIconClick}
                 type="sosial"
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
               <SimpleGridSection 
                 title="6. Sektor Komersial & Retail" 
@@ -498,6 +533,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 handleIconClick={handleIconClick}
                 type="sosial"
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
               <SimpleGridSection 
                 title="7. Sektor Hiburan & Seni" 
@@ -509,6 +546,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 handleIconClick={handleIconClick}
                 type="sosial"
                 highlitCard={highlitCard}
+                completionDates={buildingCompletionDates}
+                currentGameDate={currentGameDate}
               />
             </div>
           )}
@@ -520,12 +559,14 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 title="1. Sistem Intelijen Strategis"
                 data={countryEntry.intelijen}
                 buildingDeltas={{...buildingDeltas, ...defenseDeltas}}
+                completionDates={{...buildingCompletionDates, ...defenseCompletionDates}}
                 constructionQueue={[...(constructionQueue || []), ...defenseQueue]}
                 icon={Eye}
                 color="text-violet-500"
                 handleIconClick={handleIconClick}
                 type="intelijen"
                 highlitCard={highlitCard}
+                currentGameDate={currentGameDate}
               />
               {/* Militer Strategis / Komando */}
               {(countryEntry as any).militer_strategis && (
@@ -561,6 +602,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                         {Object.entries((countryEntry as any).militer_strategis.operasi_strategis).map(([key, val]: any) => {
                           const elementId = `ops_${key}`;
                           const isHighlit = elementId === highlitCard || key === highlitCard;
+                          const deltaVal = defenseDeltas[key] || 0;
+                          const displayVal = (typeof val === 'number' ? val : Number(val)) + deltaVal;
                           return (
                             <div 
                               id={elementId}
@@ -575,7 +618,12 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                                 <div className="absolute inset-0 rounded-xl border-2 border-amber-500 animate-pulse pointer-events-none" />
                               )}
                               <p className="text-[9px] font-black tracking-widest text-zinc-500 uppercase mb-1">{key.replace(/_/g, ' ')}</p>
-                              <p className="text-lg font-black text-white">{val}</p>
+                              <div className="flex items-center gap-2">
+                                <p className="text-lg font-black text-white">{displayVal}</p>
+                                {deltaVal > 0 && defenseCompletionDates[key] === currentGameDate && (
+                                  <span className="text-[10px] font-black text-emerald-500">+{deltaVal}</span>
+                                )}
+                              </div>
                             </div>
                           );
                         })}
@@ -624,7 +672,12 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl">
                               <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Jumlah Barak</p>
-                              <p className="text-3xl font-black text-white">{(armada.barak || 0) + (defenseDeltas["1_barak"] || 0)}</p>
+                              <div className="flex items-baseline gap-2">
+                                <p className="text-3xl font-black text-white">{(armada.barak || 0) + (defenseDeltas["1_barak"] || 0)}</p>
+                                {defenseDeltas["1_barak"] > 0 && defenseCompletionDates["1_barak"] === currentGameDate && (
+                                  <p className="text-sm font-black text-emerald-500">+{defenseDeltas["1_barak"]}</p>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -638,12 +691,14 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                         title={branch.label}
                         data={branch.data}
                         buildingDeltas={{...buildingDeltas, ...defenseDeltas}}
+                        completionDates={{...buildingCompletionDates, ...defenseCompletionDates}}
                         constructionQueue={[...(constructionQueue || []), ...defenseQueue]}
                         icon={branch.icon}
                         color={branch.color}
                         handleIconClick={handleIconClick}
                         type={`armada_${branch.key}`}
                         highlitCard={highlitCard}
+                        currentGameDate={currentGameDate}
                       />
                     ))}
                   </>
@@ -659,12 +714,14 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 title="1. Armada Kepolisian Nasional"
                 data={(countryEntry as any).armada_kepolisian?.armada_polisi || (countryEntry as any).armada_kepolisian}
                 buildingDeltas={{...buildingDeltas, ...defenseDeltas}}
+                completionDates={{...buildingCompletionDates, ...defenseCompletionDates}}
                 constructionQueue={[...(constructionQueue || []), ...defenseQueue]}
                 icon={Car}
                 color="text-blue-500"
                 handleIconClick={handleIconClick}
                 type="polisi"
                 highlitCard={highlitCard}
+                currentGameDate={currentGameDate}
               />
             </div>
           )}
@@ -676,12 +733,14 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 title="1. Infrastruktur Pertahanan Nasional"
                 data={(countryEntry as any).sektor_pertahanan}
                 buildingDeltas={{...buildingDeltas, ...defenseDeltas}}
+                completionDates={{...buildingCompletionDates, ...defenseCompletionDates}}
                 constructionQueue={[...(constructionQueue || []), ...defenseQueue]}
                 icon={Settings}
                 color="text-teal-500"
                 handleIconClick={handleIconClick}
                 type="pertahanan"
                 highlitCard={highlitCard}
+                currentGameDate={currentGameDate}
               />
             </div>
           )}
@@ -798,6 +857,17 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                                 <span className="text-5xl font-black text-white tracking-tighter tabular-nums drop-shadow-2xl">
                                   {totalUnits.toLocaleString('id-ID')}
                                 </span>
+                                {(() => {
+                                  const compDate = buildingCompletionDates[house.id] || Object.entries(buildingCompletionDates).find(([k]) => k.replace(/^\d+_/, '') === house.id)?.[1];
+                                  if (unitsDelta > 0 && compDate === currentGameDate) {
+                                    return (
+                                      <span className="text-2xl font-black text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-xl border border-emerald-500/20">
+                                        +{unitsDelta.toLocaleString('id-ID')}
+                                      </span>
+                                    );
+                                  }
+                                  return null;
+                                })()}
                                 {inProgress > 0 && (
                                   <span className={`text-2xl font-black ${house.color} animate-pulse drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]`}>
                                     +{inProgress.toLocaleString('id-ID')}
@@ -936,7 +1006,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
   );
 }
 
-function ProductionSection({ title, items, buildingDeltas, constructionQueue, stocks, type, handleIconClick, highlitCard }: any) {
+function ProductionSection({ title, items, buildingDeltas, completionDates = {}, constructionQueue, stocks, type, handleIconClick, highlitCard, currentGameDate }: any) {
   if (!items) return null;
 
   const getLabel = (key: string, type: string) => {
@@ -1095,6 +1165,17 @@ function ProductionSection({ title, items, buildingDeltas, constructionQueue, st
                     })()}
                   </span>
                   {(() => {
+                    const compDate = completionDates[key] || Object.entries(completionDates).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1];
+                    if (delta > 0 && compDate === currentGameDate) {
+                      return (
+                        <span className="text-[10px] font-black text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded-md border border-emerald-500/20">
+                          +{delta.toLocaleString('id-ID')}
+                        </span>
+                      );
+                    }
+                    return null;
+                  })()}
+                  {(() => {
                     const inProgress = constructionQueue?.filter((q: any) => {
                       const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
                       return q.buildingKey === key || normalizedQKey === key;
@@ -1124,7 +1205,7 @@ function ProductionSection({ title, items, buildingDeltas, constructionQueue, st
   );
 }
 
-function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, icon: Icon, color, handleIconClick, type, highlitCard }: any) {
+function SimpleGridSection({ title, data, buildingDeltas, completionDates = {}, constructionQueue, icon: Icon, color, handleIconClick, type, highlitCard, currentGameDate }: any) {
   if (!data) return null;
 
   const getLabel = (key: string, type: string) => {
@@ -1267,6 +1348,17 @@ function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, ico
                       return (total + inProgress).toLocaleString('id-ID');
                     })()}
                   </span>
+                  {(() => {
+                    const compDate = completionDates[key] || Object.entries(completionDates).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1];
+                    if (delta > 0 && compDate === currentGameDate) {
+                      return (
+                        <span className="text-[10px] font-black text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded-md border border-emerald-500/20">
+                          +{delta.toLocaleString('id-ID')}
+                        </span>
+                      );
+                    }
+                    return null;
+                  })()}
                   {(() => {
                       const inProgress = constructionQueue?.filter((q: any) => {
                         const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
