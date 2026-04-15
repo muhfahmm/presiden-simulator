@@ -35,8 +35,34 @@ export function getStoredGameDate(): Date {
 }
 
 
+
 export function getGameWeekIndex(date: Date): number {
   const diffTime = Math.abs(date.getTime() - INITIAL_GAME_DATE.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   return Math.floor(diffDays / 7);
+}
+
+/**
+ * Parses a date string in "DD-MM-YYYY" format back into a Date object.
+ */
+export function parseFormattedDate(dateStr: string): Date {
+  const [d, m, y] = dateStr.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+
+/**
+ * Checks if a stored completion date string is within the last 7 days 
+ * compared to the current game date.
+ */
+export function isWithin7Days(compDateStr: string | null | undefined, currentGameDate: Date): boolean {
+  if (!compDateStr) return false;
+  try {
+    const compDate = parseFormattedDate(compDateStr);
+    const diffTime = currentGameDate.getTime() - compDate.getTime();
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+    // Allow indicators to show for 7 full days (0 to 6.99...)
+    return diffDays >= 0 && diffDays < 7;
+  } catch (e) {
+    return false;
+  }
 }

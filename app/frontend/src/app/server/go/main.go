@@ -91,6 +91,10 @@ var (
 	
 	globalNPCStates = make(map[string]*NPCNationState)
 	lastProcessedMonth time.Month = 0
+
+	// Track NPC building levels globaly: Nation -> BuildingKey -> CurrentLevel
+	npcBuildingLevels = make(map[string]map[string]int)
+	muLevels          sync.Mutex
 )
 
 // ═══════════════════════════════════════════════════════════
@@ -137,6 +141,8 @@ var npcNations = []string{
 
 // Building types loaded from TypeScript database
 type BuildingType struct {
+	Key      string
+	DataKey  string
 	Name     string
 	Sector   string
 	SectorID string
@@ -157,15 +163,23 @@ func parseTypeScriptBuildings(content []byte, defaultSector string) []BuildingTy
 	// and extract name, biaya, and waktu within that block.
 	
 	// Find all potential building blocks: "key": { ... } or key: { ... }
-	blockPattern := regexp.MustCompile(`(?s)(?:"?[\w_]+"?):\s*\{([^}]*)\}`)
+	blockPattern := regexp.MustCompile(`(?s)(?:"?([\w_]+)"?):\s*\{([^}]*)\}`)
 	matches := blockPattern.FindAllStringSubmatch(contentStr, -1)
 	
 	for _, match := range matches {
-		if len(match) < 2 {
+		if len(match) < 3 {
 			continue
 		}
-		block := match[1]
+		key := match[1]
+		block := match[2]
 		
+		// Extract dataKey
+		dataKey := key
+		dataKeyMatch := regexp.MustCompile(`dataKey:\s*"([^"]+)"`).FindStringSubmatch(block)
+		if len(dataKeyMatch) >= 2 {
+			dataKey = dataKeyMatch[1]
+		}
+
 		// Extract Name (prioritize label, then deskripsi)
 		name := ""
 		labelMatch := regexp.MustCompile(`label:\s*"([^"]+)"`).FindStringSubmatch(block)
@@ -198,10 +212,12 @@ func parseTypeScriptBuildings(content []byte, defaultSector string) []BuildingTy
 		// Only add if we found at least one of cost or time (usually both should be there)
 		if biaya > 0 || waktu > 0 {
 			buildings = append(buildings, BuildingType{
-				Name:   name,
-				Sector: defaultSector,
-				Biaya:  biaya,
-				Waktu:  waktu,
+				Key:     key,
+				DataKey: dataKey,
+				Name:    name,
+				Sector:  defaultSector,
+				Biaya:   biaya,
+				Waktu:   waktu,
 			})
 		}
 	}
@@ -518,14 +534,38 @@ func processNPCDay(date time.Time) {
 		nation := npcNations[nationIdx]
 		building := buildingTypes[rng.Intn(len(buildingTypes))]
 
+		// Level Tracking & Transition Logic
+		muLevels.Lock()
+		if npcBuildingLevels[nation] == nil {
+			npcBuildingLevels[nation] = make(map[string]int)
+		}
+		
+		// If level is unknown (0), give it a reasonable random starting baseline (0-10)
+		// unless it's Palau helipad which the user specifically noted as 4
+		levelKey := building.DataKey
+		currentLevel, exists := npcBuildingLevels[nation][levelKey]
+		if !exists {
+			if nation == "Palau" && (levelKey == "helipad" || levelKey == "helikopter_polisi") {
+				currentLevel = 4
+			} else {
+				currentLevel = rng.Intn(10)
+			}
+		}
+		
+		nextLevel := currentLevel + 1
+		npcBuildingLevels[nation][building.Key] = nextLevel
+		muLevels.Unlock()
+
+		transitionText := fmt.Sprintf("(%d ke %d)", currentLevel, nextLevel)
+
 		// Generate construction news with actual price from JSON database
 		subject := fmt.Sprintf("%s Inisiasi Proyek Konstruksi %s", nation, building.Name)
 		content := fmt.Sprintf(
-			"Pemerintah %s hari ini mengumumkan inisiasi proyek konstruksi %s di sektor %s. "+
+			"Pemerintah %s hari ini mengumumkan inisiasi proyek konstruksi %s %s di sektor %s. "+
 				"Proyek tersebut membutuhkan biaya investasi sebesar %s dengan estimasi waktu pengerjaan %d hari. "+
 				"Kebijakan ini diambil oleh otoritas %s sebagai langkah strategis untuk memperkuat "+
 				"kapasitas %s nasional di masa mendatang.",
-			nation, building.Name, building.Sector,
+			nation, building.Name, transitionText, building.Sector,
 			formatCurrency(building.Biaya), building.Waktu,
 			nation, getSectorDesc(building.Sector),
 		)

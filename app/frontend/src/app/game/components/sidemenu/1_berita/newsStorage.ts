@@ -1,4 +1,7 @@
-"use client"
+
+import { detectConstructionDetails } from "./buildingLookupUtility";
+import { aiBuildingStorage } from "../../AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
+import { aiDefenseStorage } from "../../AI_logic/6_AI_pertahanan/antarmuka_data_pertahanan/AIDefenseStorage";
 
 export interface NewsItem {
   id: string;
@@ -14,6 +17,7 @@ export interface NewsItem {
 
 const NEWS_STORAGE_KEY = "em2_global_news_v1";
 const NEWS_WEEK_KEY = "em2_news_week_id";
+const NEWS_EFFECTS_KEY = "em4_news_effects_processed";
 const DAILY_LIMIT = 10;
 const WEEKLY_AI_LIMIT = 10; // User request: Max 10 AI news per week (excluding construction)
 const MAX_TOTAL_NEWS = 50; // Increased to accommodate construction + economy + diplomacy
@@ -89,6 +93,8 @@ export const newsStorage = {
 
     try {
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(merged));
+      // Trigger side-effects for AI construction
+      newsStorage.processConstructionEffects(merged);
     } catch (e) {
       // Quota exceeded — trim and retry
       const trimmed = merged.slice(0, 10);
@@ -188,6 +194,8 @@ export const newsStorage = {
     const updated = [newItem, ...currentParsed].slice(0, MAX_TOTAL_NEWS);
     try {
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(updated));
+      // Trigger side-effects for AI construction
+      newsStorage.processConstructionEffects(updated);
     } catch (e) {
       // Quota exceeded — clear old data and retry
       const trimmed = updated.slice(0, 10);
@@ -251,5 +259,48 @@ export const newsStorage = {
       return true;
     }
     return false;
+  },
+
+  /**
+   * Process instant construction for AI countries.
+   * This bypasses the construction timer for NPCs when news is announced.
+   */
+  processConstructionEffects: (newsItems: NewsItem[]) => {
+    if (typeof window === "undefined") return;
+
+    const storedProcessed = localStorage.getItem(NEWS_EFFECTS_KEY);
+    const processedIds: Set<string> = new Set(storedProcessed ? JSON.parse(storedProcessed) : []);
+    let changed = false;
+
+    newsItems.forEach(item => {
+      if (item.category === 'construction' && !processedIds.has(item.id)) {
+        const { country, building, isAI } = detectConstructionDetails(item.subject, item.content, item.source);
+        
+        if (isAI && country && building) {
+          const countryKey = country.name_en;
+          
+          // Apply effect based on sector
+          if (building.sectorPath.includes('armada_militer') || 
+              building.sectorPath.includes('armada_kepolisian') || 
+              building.sectorPath.includes('sektor_pertahanan') ||
+              building.sectorPath.includes('intelijen') ||
+              building.sectorPath.includes('militer_strategis') ||
+              building.sectorPath.includes('pabrik_militer')) {
+            aiDefenseStorage.incrementDefenseCount(countryKey, building.dataKey, 1);
+            console.log(`[AI EFFECT] Instant Defense for ${countryKey}: ${building.dataKey}`);
+          } else {
+            aiBuildingStorage.incrementBuildingCount(countryKey, building.dataKey, 1);
+            console.log(`[AI EFFECT] Instant Building for ${countryKey}: ${building.dataKey}`);
+          }
+
+          processedIds.add(item.id);
+          changed = true;
+        }
+      }
+    });
+
+    if (changed) {
+      localStorage.setItem(NEWS_EFFECTS_KEY, JSON.stringify(Array.from(processedIds).slice(-200))); // Keep last 200
+    }
   }
 };

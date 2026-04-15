@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { 
   X, 
@@ -16,6 +16,11 @@ import {
   Calendar
 } from 'lucide-react';
 import { newsStorage, NewsItem } from './newsStorage';
+import { 
+  BUILDING_NAME_LOOKUP, 
+  resolveNestedValue, 
+  detectConstructionDetails 
+} from './buildingLookupUtility';
 import { countries } from '@/app/database/data/negara/benua/index';
 
 interface BeritaModalProps {
@@ -41,7 +46,7 @@ export default function BeritaModal({ isOpen, onClose, setActiveMenu }: BeritaMo
     return () => window.removeEventListener('news_updated', handleUpdate);
   }, [isOpen]);
 
-  if (!isOpen) return null;
+
 
   const filteredNews = news.filter(item => {
     const matchesSearch = item.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -100,6 +105,37 @@ export default function BeritaModal({ isOpen, onClose, setActiveMenu }: BeritaMo
       };
     }
   };
+
+  // ══════════════════════════════════════════════════════════
+  // DATABASE-ACCURATE News Enrichment:
+  // Detects country + building from news text, looks up actual count from database,
+  // and injects "(X ke X+1)" transition text.
+  // ══════════════════════════════════════════════════════════
+  const enrichNewsItem = (item: NewsItem): NewsItem => {
+    if (item.category !== 'construction') return item;
+
+    const { country, building } = detectConstructionDetails(item.subject, item.content, item.source);
+    if (!country || !building) return item;
+
+    // Resolve accurate count
+    const baseline = resolveNestedValue(country, building.sectorPath);
+    const target = baseline + 1;
+    const transitionText = `(${baseline} ke ${target})`;
+
+    // Strip old and inject new
+    const cleanSubject = item.subject.replace(/\s?\(\d+ ke \d+\)/g, '');
+    const cleanContent = item.content.replace(/\s?\(\d+ ke \d+\)/g, '');
+
+    return {
+      ...item,
+      subject: cleanSubject,
+      content: cleanContent.replace(
+        /proyek konstruksi ([\w\s\-\/()&]+?)(\s+di sektor|\.|$|\s)/i,
+        `proyek konstruksi $1 ${transitionText}$2`
+      ).trim()
+    };
+  };
+
 
   const detectNavigationTargets = (item: NewsItem) => {
     const textToSearch = (item.source + " " + item.subject + " " + item.content).toLowerCase();
@@ -334,6 +370,8 @@ export default function BeritaModal({ isOpen, onClose, setActiveMenu }: BeritaMo
     }
   };
 
+  if (!isOpen) return null;
+
   return (
     <div className="absolute inset-0 bg-black/85 z-[110] flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8 no-scrollbar">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative">
@@ -419,7 +457,8 @@ export default function BeritaModal({ isOpen, onClose, setActiveMenu }: BeritaMo
               </div>
             ) : (
               // Final deduplication gate to ensure no duplicate keys ever reach the renderer
-              Array.from(new Map(filteredNews.map(item => [item.id, item])).values()).map((item) => {
+              Array.from(new Map(filteredNews.map(item => [item.id, item])).values()).map((rawItem) => {
+                const item = enrichNewsItem(rawItem);
                 const theme = getCategoryTheme(item.category);
                 const isExpanded = expandedId === item.id;
 

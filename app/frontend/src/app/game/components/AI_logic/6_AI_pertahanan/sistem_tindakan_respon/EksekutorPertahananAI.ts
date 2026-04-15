@@ -121,12 +121,18 @@ export class EksekutorPertahananAI {
         priority = "low";
       }
 
+      // Determine transition text (baseline to final)
+      const defenseData = aiDefenseStorage.getData(countryNameEn);
+      const startCount = Number(defenseData.defenseDeltas[buildingKey] || 0);
+      const endCount = startCount + quantity;
+      const transitionText = `(${startCount} ke ${endCount})`;
+
       // Generate detailed, realistic news content
       const newsTemplates = [
         {
           subject: `${countryNameId} Perkuat ${displaySector}: ${displayLabel}`,
           content:
-            `Kementerian Pertahanan ${countryNameId} mengumumkan pengadaan ${quantity} unit ${displayLabel} ` +
+            `Kementerian Pertahanan ${countryNameId} mengumumnkan pengadaan ${quantity} unit ${displayLabel} ${transitionText} ` +
             `untuk memperkuat kapasitas ${displaySector.toLowerCase()}. ` +
             `Total anggaran yang dialokasikan mencapai ${formattedCost} EM ` +
             `(${formattedUnitCost} EM per unit). ` +
@@ -134,9 +140,9 @@ export class EksekutorPertahananAI {
             `Langkah ini merupakan bagian dari strategi modernisasi pertahanan nasional.`,
         },
         {
-          subject: `Modernisasi Militer ${countryNameId}: ${quantity} Unit ${displayLabel}`,
+          subject: `Modernisasi Militer ${countryNameId}: ${displayLabel}`,
           content:
-            `Pemerintah ${countryNameId} hari ini memulai proyek pengadaan ${quantity} unit ${displayLabel} ` +
+            `Pemerintah ${countryNameId} hari ini memulai proyek pengadaan ${quantity} unit ${displayLabel} ${transitionText} ` +
             `di sektor ${displaySector.toLowerCase()} dengan investasi sebesar ${formattedCost} EM. ` +
             `Program ini ditargetkan rampung dalam ${buildTime} hari kerja. ` +
             `Para analis menilai kebijakan ini sebagai respons terhadap dinamika keamanan regional.`,
@@ -145,7 +151,7 @@ export class EksekutorPertahananAI {
           subject: `${countryNameId} Alokasikan ${formattedCost} EM untuk ${displayLabel}`,
           content:
             `Dalam upaya memperkuat postur pertahanan nasional, ${countryNameId} menggelontorkan ` +
-            `anggaran ${formattedCost} EM untuk pengadaan ${quantity} unit ${displayLabel}. ` +
+            `anggaran ${formattedCost} EM untuk pengadaan ${quantity} unit ${displayLabel} ${transitionText}. ` +
             `Sektor ${displaySector.toLowerCase()} menjadi prioritas dalam rencana strategis jangka menengah ` +
             `pemerintah ${countryNameId}. Estimasi waktu penyelesaian: ${buildTime} hari.`,
         },

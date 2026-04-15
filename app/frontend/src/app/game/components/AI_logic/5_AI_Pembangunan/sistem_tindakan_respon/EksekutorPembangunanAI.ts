@@ -95,10 +95,14 @@ export class EksekutorPembangunanAI {
       const countryInfo = countries.find(c => c.name_en === countryNameEn);
       const countryNameId = countryInfo?.name_id || countryNameEn;
       
+      const startCount = currentCount || 0;
+      const endCount = startCount + quantity;
+      const transitionText = `(${startCount} ke ${endCount})`;
+
       newsStorage.addNews({
         source: countryNameId,
-        subject: `Pembangunan: ${displayLabel} (${quantity} Unit)`,
-        content: `Pemerintah ${countryNameId} memulai pembangunan ${quantity} unit ${displayLabel}. Total estimasi biaya: ${totalRequiredBudget.toLocaleString()} EM. Sektor: ${displaySector}.`,
+        subject: `Pembangunan: ${displayLabel} ${transitionText}`,
+        content: `Pemerintah ${countryNameId} memulai pembangunan ${quantity} unit ${displayLabel} ${transitionText}. Total estimasi biaya: ${totalRequiredBudget.toLocaleString()} EM. Sektor: ${displaySector}.`,
         category: "construction",
         time: dateKey,
         priority: buildingCost > 50000000 ? 'high' : 'medium'

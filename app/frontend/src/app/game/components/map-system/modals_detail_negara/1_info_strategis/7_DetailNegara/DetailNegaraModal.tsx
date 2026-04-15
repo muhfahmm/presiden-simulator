@@ -8,7 +8,7 @@ import {
   Hammer, Utensils, Pill, Archive, X, Beef, Wheat, ShieldAlert, TrendingUp, 
   TrendingDown, Crosshair
 } from "lucide-react";
-import { formatGameDate, getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import { formatGameDate, getStoredGameDate, isWithin7Days } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { 
   KAPASITAS_LISTRIK_METADATA,
@@ -226,7 +226,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
   const defenseQueue = aiDefenseStorage.getQueue(countryEntry.name_en);
   const defenseCompletionDates = aiDefenseStorage.getCompletionDates(countryEntry.name_en);
 
-  const currentGameDate = typeof window !== 'undefined' ? formatGameDate(getStoredGameDate()) : null;
+  const currentGameDate = typeof window !== 'undefined' ? getStoredGameDate() : new Date();
 
   const sectors = [
     { id: "produksi", label: "Produksi", icon: Factory },
@@ -618,12 +618,27 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                                 <div className="absolute inset-0 rounded-xl border-2 border-amber-500 animate-pulse pointer-events-none" />
                               )}
                               <p className="text-[9px] font-black tracking-widest text-zinc-500 uppercase mb-1">{key.replace(/_/g, ' ')}</p>
-                              <div className="flex items-center gap-2">
-                                <p className="text-lg font-black text-white">{displayVal}</p>
-                                {deltaVal > 0 && defenseCompletionDates[key] === currentGameDate && (
-                                  <span className="text-[10px] font-black text-emerald-500">+{deltaVal}</span>
-                                )}
-                              </div>
+                                <div className="flex items-center gap-1.5 lowercase italic">
+                                  {(() => {
+                                    const inProgress = defenseQueue?.filter((q: any) => q.buildingKey === key).reduce((acc: number, curr: any) => acc + (Number(curr.quantity) || 1), 0) || 0;
+                                    const hasRecentDelta = deltaVal > 0 && isWithin7Days(defenseCompletionDates[key], currentGameDate);
+                                    const isBuilding = inProgress > 0;
+                                    
+                                    if (hasRecentDelta || isBuilding) {
+                                      return (
+                                        <>
+                                          <span className="text-sm font-bold text-zinc-500/70">{Number(val || 0).toLocaleString('id-ID')}</span>
+                                          <span className="text-[8px] font-black text-zinc-600">ke</span>
+                                          <p className="text-lg font-black text-white">{displayVal + inProgress}</p>
+                                        </>
+                                      );
+                                    }
+                                    return <p className="text-lg font-black text-white">{displayVal}</p>;
+                                  })()}
+                                  {deltaVal > 0 && isWithin7Days(defenseCompletionDates[key], currentGameDate) && (
+                                    <span className="text-[10px] font-black text-emerald-500">+{deltaVal}</span>
+                                  )}
+                                </div>
                             </div>
                           );
                         })}
@@ -672,9 +687,26 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl">
                               <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Jumlah Barak</p>
-                              <div className="flex items-baseline gap-2">
-                                <p className="text-3xl font-black text-white">{(armada.barak || 0) + (defenseDeltas["1_barak"] || 0)}</p>
-                                {defenseDeltas["1_barak"] > 0 && defenseCompletionDates["1_barak"] === currentGameDate && (
+                              <div className="flex items-baseline gap-2 lowercase italic">
+                                {(() => {
+                                  const barakKey = "1_barak";
+                                  const inProgress = defenseQueue?.filter((q: any) => q.buildingKey === barakKey).reduce((acc: number, curr: any) => acc + (Number(curr.quantity) || 1), 0) || 0;
+                                  const hasRecentDelta = defenseDeltas[barakKey] > 0 && isWithin7Days(defenseCompletionDates[barakKey], currentGameDate);
+                                  const isBuilding = inProgress > 0;
+                                  const currentTotal = (armada.barak || 0) + (defenseDeltas[barakKey] || 0);
+                                  
+                                  if (hasRecentDelta || isBuilding) {
+                                    return (
+                                      <>
+                                        <span className="text-xl font-bold text-zinc-500/70">{Number(armada.barak || 0).toLocaleString('id-ID')}</span>
+                                        <span className="text-xs font-black text-zinc-600">ke</span>
+                                        <p className="text-3xl font-black text-white">{currentTotal + inProgress}</p>
+                                      </>
+                                    );
+                                  }
+                                  return <p className="text-3xl font-black text-white">{currentTotal}</p>;
+                                })()}
+                                {defenseDeltas["1_barak"] > 0 && isWithin7Days(defenseCompletionDates["1_barak"], currentGameDate) && (
                                   <p className="text-sm font-black text-emerald-500">+{defenseDeltas["1_barak"]}</p>
                                 )}
                               </div>
@@ -855,11 +887,26 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                               <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Kuantitas Unit</span>
                               <div className="flex items-center gap-3">
                                 <span className="text-5xl font-black text-white tracking-tighter tabular-nums drop-shadow-2xl">
-                                  {totalUnits.toLocaleString('id-ID')}
+                                  {(() => {
+                                    const compDate = buildingCompletionDates[house.id] || Object.entries(buildingCompletionDates).find(([k]) => k.replace(/^\d+_/, '') === house.id)?.[1];
+                                    const hasRecentDelta = unitsDelta > 0 && isWithin7Days(compDate, currentGameDate);
+                                    const isBuilding = !!constructionQueue?.find((q: any) => q.buildingKey === house.id || q.buildingKey.replace(/^\d+_/, '') === house.id);
+                                    
+                                    if (hasRecentDelta || isBuilding) {
+                                      return (
+                                        <div className="flex items-center gap-2">
+                                          <span className="text-2xl text-zinc-500/70 font-bold">{Number(unitsBaseline).toLocaleString('id-ID')}</span>
+                                          <span className="text-xs text-zinc-600 font-black uppercase italic">ke</span>
+                                          <span>{totalUnits.toLocaleString('id-ID')}</span>
+                                        </div>
+                                      );
+                                    }
+                                    return totalUnits.toLocaleString('id-ID');
+                                  })()}
                                 </span>
                                 {(() => {
                                   const compDate = buildingCompletionDates[house.id] || Object.entries(buildingCompletionDates).find(([k]) => k.replace(/^\d+_/, '') === house.id)?.[1];
-                                  if (unitsDelta > 0 && compDate === currentGameDate) {
+                                  if (unitsDelta > 0 && isWithin7Days(compDate, currentGameDate)) {
                                     return (
                                       <span className="text-2xl font-black text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-xl border border-emerald-500/20">
                                         +{unitsDelta.toLocaleString('id-ID')}
@@ -1161,12 +1208,27 @@ function ProductionSection({ title, items, buildingDeltas, completionDates = {},
                         const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
                         return q.buildingKey === key || normalizedQKey === key;
                       }).reduce((acc: number, curr: any) => acc + (Number(curr.quantity) || 1), 0) || 0;
+                      
+                      const compDate = completionDates[key] || Object.entries(completionDates).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1];
+                      const hasRecentDelta = delta > 0 && isWithin7Days(compDate, currentGameDate);
+                      const isBuilding = inProgress > 0;
+                      
+                      if (hasRecentDelta || isBuilding) {
+                        return (
+                          <div className="flex items-center gap-1.5 lowercase italic">
+                            <span className="text-sm font-bold text-zinc-500/70">{Number(baseline || 0).toLocaleString('id-ID')}</span>
+                            <span className="text-[8px] font-black text-zinc-600">ke</span>
+                            <span className="text-xl font-black text-white">{(total + inProgress).toLocaleString('id-ID')}</span>
+                          </div>
+                        );
+                      }
+                      
                       return (total + inProgress).toLocaleString('id-ID');
                     })()}
                   </span>
                   {(() => {
                     const compDate = completionDates[key] || Object.entries(completionDates).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1];
-                    if (delta > 0 && compDate === currentGameDate) {
+                    if (delta > 0 && isWithin7Days(compDate, currentGameDate)) {
                       return (
                         <span className="text-[10px] font-black text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded-md border border-emerald-500/20">
                           +{delta.toLocaleString('id-ID')}
@@ -1345,12 +1407,27 @@ function SimpleGridSection({ title, data, buildingDeltas, completionDates = {}, 
                         const normalizedQKey = q.buildingKey.replace(/^\d+_/, '');
                         return q.buildingKey === key || normalizedQKey === key;
                       }).reduce((acc: number, curr: any) => acc + (Number(curr.quantity) || 1), 0) || 0;
+                      
+                      const compDate = completionDates[key] || Object.entries(completionDates).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1];
+                      const hasRecentDelta = delta > 0 && isWithin7Days(compDate, currentGameDate);
+                      const isBuilding = inProgress > 0;
+                      
+                      if (hasRecentDelta || isBuilding) {
+                        return (
+                          <div className="flex items-center gap-1.5 lowercase italic">
+                            <span className="text-sm font-bold text-zinc-500/70">{Number(val || 0).toLocaleString('id-ID')}</span>
+                            <span className="text-[8px] font-black text-zinc-600">ke</span>
+                            <span className="text-xl font-black text-white">{(total + inProgress).toLocaleString('id-ID')}</span>
+                          </div>
+                        );
+                      }
+                      
                       return (total + inProgress).toLocaleString('id-ID');
                     })()}
                   </span>
                   {(() => {
                     const compDate = completionDates[key] || Object.entries(completionDates).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1];
-                    if (delta > 0 && compDate === currentGameDate) {
+                    if (delta > 0 && isWithin7Days(compDate, currentGameDate)) {
                       return (
                         <span className="text-[10px] font-black text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded-md border border-emerald-500/20">
                           +{delta.toLocaleString('id-ID')}
