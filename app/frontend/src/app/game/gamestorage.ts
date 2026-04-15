@@ -438,11 +438,20 @@ export const gameStorage = {
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
 
-    // SECTION 3: PHASE 3 - WRITE ATOMIC RESET DATA
-    console.log(`[RESET] PHASE 3: Preparing and writing atomic reset data...`);
+    // SECTION 3: RE-INITIALIZE AI STORAGES WITH DEFAULTS
+    console.log(`[RESET] PHASE 2b: Re-initializing AI storages with database defaults...`);
+    
+    // Explicitly reset AI budgets to database defaults
+    aiBudgetStorage.resetToDefault();
+    aiPopulationStorage.resetToDefault();
+    console.log(`[RESET]   ✓ AI budgets and populations reinitialized to defaults`);
+
+    // SECTION 4: PHASE 4 - WRITE ATOMIC RESET DATA
+    console.log(`[RESET] PHASE 4: Preparing and writing atomic reset data...`);
     
     const resetData = {
       "selectedCountry": countryName,
+      "em4_fresh_session": "true", // Flag to force default values on first view
       "em4_population_data": JSON.stringify({
         population: defaultPopulation,
         lastUpdated: Date.now()
