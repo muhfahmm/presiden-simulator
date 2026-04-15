@@ -132,6 +132,49 @@ export const aiHappinessStorage = {
     window.dispatchEvent(new Event('ai_happiness_updated'));
   },
 
+  /**
+   * Lightweight daily happiness decay for all AI nations.
+   * Called by useAIGameSync on every game day.
+   * Uses small random fluctuation to simulate realistic happiness drift.
+   */
+  dailyDecay: (dateStr: string, userCountryEn: string) => {
+    if (typeof window === 'undefined') return;
+
+    const lastProcessed = localStorage.getItem(LAST_PROCESSED_HAPPINESS_KEY);
+    if (lastProcessed === dateStr) return;
+
+    const data = aiHappinessStorage.getAll();
+    let hasChanged = false;
+
+    // Simple seeded random from dateStr for deterministic results per day
+    const seed = dateStr.split('-').reduce((a, b) => a + parseInt(b), 0);
+
+    Object.keys(data).forEach((name, idx) => {
+      // Skip user country
+      if (name === userCountryEn) return;
+
+      const current = data[name] || 55.0;
+
+      // Small daily fluctuation: -0.15% to +0.05% (slight decay bias)
+      // This creates ~1-3% decay per month, matching the Go server's player decay rate
+      const noise = Math.sin(seed * 0.1 + idx * 0.7) * 0.1;
+      const decay = -0.05 + noise; // ranges from -0.15 to +0.05
+
+      let newVal = current + decay;
+      newVal = Math.max(15, Math.min(95, newVal)); // clamp
+      newVal = Math.round(newVal * 10) / 10; // 1 decimal
+
+      data[name] = newVal;
+      hasChanged = true;
+    });
+
+    if (hasChanged) {
+      localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(data));
+      localStorage.setItem(LAST_PROCESSED_HAPPINESS_KEY, dateStr);
+      window.dispatchEvent(new Event('ai_happiness_updated'));
+    }
+  },
+
   clear: () => {
     if (typeof window === 'undefined') return;
     aiHappinessStorage.resetToDefault();

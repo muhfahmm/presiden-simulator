@@ -42,7 +42,53 @@ export const stabilityStorage = {
 
   saveData: (data: StabilityData) => {
     if (typeof window === 'undefined') return;
-    localStorage.setItem(STABILITY_STORAGE_KEY, JSON.stringify({ ...data, lastUpdated: Date.now() }));
+    const value = JSON.stringify({ ...data, lastUpdated: Date.now() });
+    
+    try {
+      localStorage.setItem(STABILITY_STORAGE_KEY, value);
+    } catch (e) {
+      console.warn("Stability storage full, attempting global cleanup", e);
+      // Forced cleanup: trim large history keys to make room for critical status data
+      try {
+        // 1. Trim Inbox to 10
+        let cleaned = false;
+        const inbox = localStorage.getItem("em4_inbox_data");
+        if (inbox) {
+          try {
+            const parsed = JSON.parse(inbox);
+            if (Array.isArray(parsed) && parsed.length > 10) {
+              localStorage.setItem("em4_inbox_data", JSON.stringify(parsed.slice(0, 10)));
+              cleaned = true;
+            }
+          } catch {}
+        }
+        
+        // 2. Trim News to 5
+        const news = localStorage.getItem("em2_global_news_v1");
+        if (news) {
+          try {
+            const parsed = JSON.parse(news);
+            if (Array.isArray(parsed) && parsed.length > 5) {
+              localStorage.setItem("em2_global_news_v1", JSON.stringify(parsed.slice(0, 5)));
+              cleaned = true;
+            }
+          } catch {}
+        }
+
+        // Retry saving stability
+        localStorage.setItem(STABILITY_STORAGE_KEY, value);
+      } catch (e2) {
+        console.warn("Global cleanup attempt failed, trying aggressive cleanup", e2);
+        try {
+          // More aggressive cleanup: clear news entirely
+          localStorage.removeItem("em2_global_news_v1");
+          localStorage.setItem(STABILITY_STORAGE_KEY, value);
+        } catch (e3) {
+          console.error("Critical: Failed to save stability even after aggressive cleanup", e3);
+        }
+      }
+    }
+    
     window.dispatchEvent(new Event('stability_updated'));
   },
 

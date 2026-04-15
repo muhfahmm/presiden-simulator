@@ -111,14 +111,35 @@ export default function GameNavbar({
           <GameTimeControls />
 
           <button
-            onClick={() => {
+            onClick={async () => {
               if (confirm("Apakah Anda yakin ingin RESET PROGRES? Seluruh data (Uang, Stok, Bangunan, Kepuasan) akan dihapus tetapi Anda tetap bermain sebagai negara ini.")) {
-                // Tell Go Server to Reset
-                fetch("http://localhost:8081/api/game/reset", { method: "POST" })
-                  .finally(() => {
-                    gameStorage.resetCurrentSession();
-                    window.location.reload();
-                  });
+                (async () => {
+                  try {
+                    console.log("═══════════════════════════════════════");
+                    console.log("[RESET] STARTING COMPLETE RESET SEQUENCE");
+                    console.log("═══════════════════════════════════════");
+                    
+                    // The backend reset and aggressive wipe is now entirely handled by gameStorage
+                    console.log("[RESET] Awaiting nuclear localStorage wipe and server reset...");
+                    await gameStorage.resetCurrentSessionToDefaults();
+                    console.log("[RESET] ✓ WIPE COMPLETE");
+
+                    // Small pause to ensure IO catches up
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    
+                    console.log("═══════════════════════════════════════");
+                    console.log("[RESET] RESET SEQUENCE COMPLETE");
+                    console.log("[RESET] Performing hard page refresh with cache bust...");
+                    console.log("═══════════════════════════════════════");
+                    
+                    // Hard reload with cache bust parameter
+                    const cacheUuid = Date.now() + "_" + Math.random().toString(36).substring(2, 9);
+                    window.location.href = window.location.origin + "/game?cb=" + cacheUuid;
+                  } catch (e) {
+                    console.error("[RESET] CRITICAL ERROR:", e);
+                    alert(`Reset failed with error: ${(e as Error).message}. Please try again.`);
+                  }
+                })();
               }
             }}
             className="ml-4 p-2 rounded-lg bg-zinc-800/50 hover:bg-cyan-500/20 text-zinc-400 hover:text-cyan-400 transition-all border border-zinc-700/50 group"

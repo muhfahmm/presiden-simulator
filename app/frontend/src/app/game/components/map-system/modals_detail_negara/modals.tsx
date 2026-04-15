@@ -20,6 +20,7 @@ import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaStorage";
 import { calculateDetailedPopulationMetrics } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
 import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
+import { aiPopulationStorage } from "./1_info_strategis/2_Populasi/AIPopulationStorage";
 
 import DiplomacyTab from "./2_diplomasi_hubungan/DiplomacyTab";
 import MilitaryTab from "./3_aksi_militer_dan_intelijen/MilitaryTab";
@@ -220,15 +221,10 @@ export default function StrategyModal({
         const aiDeltas = aiBuildingStorage.getAllBuildingDeltas(countryEntry.name_en);
         currentDailyDelta = calculateDailyBudgetDelta(countryEntry as any, aiDeltas);
         
-        // NPC Population Logic
-        // Robust Extraction of Population Baseline
-        const rawPop = (countryEntry as any).jumlah_penduduk ?? (countryEntry as any).populasi ?? 0;
-        const basePop = typeof rawPop === 'string' 
-          ? parseInt(rawPop.replace(/\./g, '')) 
-          : (typeof rawPop === 'number' ? rawPop : 0);
-          
-        const popMetrics = calculateDetailedPopulationMetrics(countryEntry as any, basePop, aiDeltas);
-        popTotal = basePop;
+        // NPC Population — Read from AIPopulationStorage (accumulates daily)
+        const aiPop = aiPopulationStorage.getPopulation(countryEntry.name_en);
+        const popMetrics = calculateDetailedPopulationMetrics(countryEntry as any, aiPop, aiDeltas);
+        popTotal = aiPop;
         popDelta = popMetrics.totalDailyDelta;
       }
 
@@ -251,6 +247,7 @@ export default function StrategyModal({
     window.addEventListener('happiness_updated', updateStats);
     window.addEventListener('ai_building_updated', updateStats);
     window.addEventListener('building_storage_updated', updateStats);
+    window.addEventListener('ai_population_updated', updateStats);
     
     return () => {
       unsubscribeTime();
@@ -260,6 +257,7 @@ export default function StrategyModal({
       window.removeEventListener('happiness_updated', updateStats);
       window.removeEventListener('ai_building_updated', updateStats);
       window.removeEventListener('building_storage_updated', updateStats);
+      window.removeEventListener('ai_population_updated', updateStats);
     };
   }, [isOpen, targetId, userId, countryEntry, tick]);
 

@@ -24,6 +24,7 @@ import { newsStorage } from "../components/sidemenu/1_berita/newsStorage";
 import { useGameState } from "../hooks/useGameState";
 import { useGamePath } from "../hooks/useGamePath";
 import { useMapData } from "../hooks/useMapData";
+import { useAIGameSync } from "../hooks/useAIGameSync";
 
 export default function GamePage() {
   const params = useParams();
@@ -40,6 +41,9 @@ export default function GamePage() {
     mapMode, setMapMode, containerRef, geoData, isCentered, setIsCentered,
     isMenuOpen, setIsMenuOpen
   } = useMapData();
+
+  // Sync AI nation stats (Budget, Population, Happiness) with game time
+  useAIGameSync();
 
 
   useEffect(() => {

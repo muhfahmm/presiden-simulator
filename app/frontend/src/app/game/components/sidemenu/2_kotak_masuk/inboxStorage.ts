@@ -13,6 +13,8 @@ export interface InboxItem {
   content?: string;
 }
 
+const MAX_INBOX_MESSAGES = 50;
+
 export const inboxStorage = {
   clear: () => {
     if (typeof window !== "undefined") localStorage.removeItem("em4_inbox_data");
@@ -46,7 +48,28 @@ export const inboxStorage = {
     
     // Insert at the beginning so newest is first
     messages.unshift(newMessage);
-    localStorage.setItem(key, JSON.stringify(messages));
+    
+    // Limit total messages to prevent QuotaExceededError
+    const limitedMessages = messages.slice(0, MAX_INBOX_MESSAGES);
+    
+    try {
+      localStorage.setItem(key, JSON.stringify(limitedMessages));
+    } catch (e) {
+      console.warn("Inbox storage full, attempting emergency trim", e);
+      try {
+        // First attempt: keep only latest 20
+        localStorage.setItem(key, JSON.stringify(limitedMessages.slice(0, 20)));
+      } catch (e2) {
+        console.warn("Emergency trim to 20 failed, attempting aggressive cleanup", e2);
+        try {
+          // Second attempt: clear entire inbox and save new message only
+          localStorage.removeItem(key);
+          localStorage.setItem(key, JSON.stringify([newMessage]));
+        } catch (e3) {
+          console.error("Critical: Failed to save inbox - storage completely full", e3);
+        }
+      }
+    }
     
     // Dispatch custom events to notify components
     window.dispatchEvent(new Event('inbox_updated'));
@@ -69,8 +92,12 @@ export const inboxStorage = {
     });
     
     if (changed) {
-      localStorage.setItem(key, JSON.stringify(updated));
-      window.dispatchEvent(new Event('inbox_updated'));
+      try {
+        localStorage.setItem(key, JSON.stringify(updated));
+        window.dispatchEvent(new Event('inbox_updated'));
+      } catch (e) {
+        console.error("Failed to update inbox read status", e);
+      }
     }
   },
   
@@ -85,8 +112,12 @@ export const inboxStorage = {
     const messages = inboxStorage.getMessages();
     const updated = messages.filter(m => m.id !== id);
     
-    localStorage.setItem(key, JSON.stringify(updated));
-    window.dispatchEvent(new Event('inbox_updated'));
+    try {
+      localStorage.setItem(key, JSON.stringify(updated));
+      window.dispatchEvent(new Event('inbox_updated'));
+    } catch (e) {
+      console.error("Failed to delete inbox message", e);
+    }
   },
 
   /**

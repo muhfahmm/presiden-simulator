@@ -661,10 +661,13 @@ func handleReset(w http.ResponseWriter, r *http.Request) {
 	state.Inbox = []InboxItem{}
 	state.Player = PlayerState{Initialized: false}
 	lastBroadcastNewsLen = 0
+	// Immediate broadcast to all clients that we reset
+	snapshot := createSnapshot()
 	state.mu.Unlock()
+	broadcastSSE(snapshot)
 
-	fmt.Println("[GO] Global State RESET triggered by UI")
-	fmt.Fprintf(w, `{"ok": true}`)
+	fmt.Println("[GO] Global State RESET triggered by UI. Clock reset to 01-01-2026.")
+	fmt.Fprintf(w, `{"ok": true, "message": "Backend reset successful"}`)
 }
 
 // ═══════════════════════════════════════════════════════════

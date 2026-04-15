@@ -50,13 +50,14 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
       setShowWelcome(false);
     }
 
-    // Calculate dailyIncome from buildings (used by server)
+    // Calculate dailyIncome from buildings and taxes (used by server for daily budget updates)
     const currentCountry = countries.find(c => c.name_id === countryName || c.name_en === countryName);
     let dailyIncome = 0;
     if (currentCountry) {
       const buildingData = buildingStorage.getData();
       const breakdown = calculateBudgetBreakdown(currentCountry, buildingData.buildingDeltas);
-      dailyIncome = breakdown.dailyTaxRevenue;
+      dailyIncome = breakdown.dailyDelta; // Use Delta (Net) instead of just Tax Revenue
+      console.log(`[INIT] Calculating daily income for ${countryName}: ${dailyIncome.toFixed(2)} (Tax: ${breakdown.dailyTaxRevenue.toFixed(2)})`);
     }
 
     // Send initial state to Go Server (server will SKIP if already initialized)
