@@ -3,10 +3,12 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"math"
 	"math/rand"
 	"net/http"
 	"os/exec"
+	"regexp"
 	"sync"
 	"time"
 )
@@ -121,46 +123,170 @@ var npcNations = []string{
 	"Zambia", "Zimbabwe", "Inggris", "Taiwan",
 }
 
-// Building types that NPC nations can construct
+// Building types loaded from TypeScript database
 type BuildingType struct {
 	Name     string
 	Sector   string
-	Cost     string
-	Duration string
+	SectorID string
+	Biaya    int64
+	Waktu    int
 }
 
-var buildingTypes = []BuildingType{
-	// Produksi & Industri
-	{Name: "Kawasan Industri", Sector: "Produksi", Cost: "2.5T", Duration: "180 hari"},
-	{Name: "Pabrik Elektronik", Sector: "Produksi", Cost: "1.8T", Duration: "120 hari"},
-	{Name: "Pabrik Otomotif", Sector: "Produksi", Cost: "3.2T", Duration: "240 hari"},
-	{Name: "Pabrik Semikonduktor", Sector: "Produksi", Cost: "5.0T", Duration: "360 hari"},
-	{Name: "Pabrik Tekstil", Sector: "Produksi", Cost: "0.8T", Duration: "90 hari"},
-	{Name: "Kilang Minyak", Sector: "Produksi", Cost: "4.5T", Duration: "300 hari"},
-	{Name: "Pabrik Baja", Sector: "Produksi", Cost: "2.0T", Duration: "150 hari"},
-	{Name: "Pabrik Farmasi", Sector: "Produksi", Cost: "1.5T", Duration: "120 hari"},
+var (
+	buildingTypes []BuildingType
+)
 
-	// Militer
-	{Name: "Pangkalan Udara", Sector: "Militer", Cost: "6.0T", Duration: "365 hari"},
-	{Name: "Pangkalan Angkatan Laut", Sector: "Militer", Cost: "8.0T", Duration: "480 hari"},
-	{Name: "Pusat Pelatihan Militer", Sector: "Militer", Cost: "1.2T", Duration: "90 hari"},
-	{Name: "Pabrik Senjata", Sector: "Militer", Cost: "3.5T", Duration: "200 hari"},
-	{Name: "Sistem Pertahanan Rudal", Sector: "Militer", Cost: "10.0T", Duration: "540 hari"},
-	{Name: "Barak Militer", Sector: "Militer", Cost: "0.5T", Duration: "60 hari"},
+// parseTypeScriptBuildings parses a TypeScript file to extract building data
+func parseTypeScriptBuildings(content []byte, defaultSector string) []BuildingType {
+	var buildings []BuildingType
+	contentStr := string(content)
+	
+	// Better approach: find each building block ending with },
+	// and extract name, biaya, and waktu within that block.
+	
+	// Find all potential building blocks: "key": { ... } or key: { ... }
+	blockPattern := regexp.MustCompile(`(?s)(?:"?[\w_]+"?):\s*\{([^}]*)\}`)
+	matches := blockPattern.FindAllStringSubmatch(contentStr, -1)
+	
+	for _, match := range matches {
+		if len(match) < 2 {
+			continue
+		}
+		block := match[1]
+		
+		// Extract Name (prioritize label, then deskripsi)
+		name := ""
+		labelMatch := regexp.MustCompile(`label:\s*"([^"]+)"`).FindStringSubmatch(block)
+		descMatch := regexp.MustCompile(`deskripsi:\s*"([^"]+)"`).FindStringSubmatch(block)
+		
+		if len(labelMatch) >= 2 {
+			name = labelMatch[1]
+		} else if len(descMatch) >= 2 {
+			name = descMatch[1]
+		}
+		
+		if name == "" {
+			continue // Skip if no name found
+		}
+		
+		// Extract Biaya
+		var biaya int64 = 0
+		biayaMatch := regexp.MustCompile(`biaya_pembangunan:\s*(\d+)`).FindStringSubmatch(block)
+		if len(biayaMatch) >= 2 {
+			fmt.Sscanf(biayaMatch[1], "%d", &biaya)
+		}
+		
+		// Extract Waktu
+		waktu := 0
+		waktuMatch := regexp.MustCompile(`waktu_pembangunan:\s*(\d+)`).FindStringSubmatch(block)
+		if len(waktuMatch) >= 2 {
+			fmt.Sscanf(waktuMatch[1], "%d", &waktu)
+		}
+		
+		// Only add if we found at least one of cost or time (usually both should be there)
+		if biaya > 0 || waktu > 0 {
+			buildings = append(buildings, BuildingType{
+				Name:   name,
+				Sector: defaultSector,
+				Biaya:  biaya,
+				Waktu:  waktu,
+			})
+		}
+	}
+	
+	return buildings
+}
 
-	// Layanan Publik
-	{Name: "Rumah Sakit Modern", Sector: "Layanan Publik", Cost: "1.0T", Duration: "120 hari"},
-	{Name: "Universitas Riset", Sector: "Layanan Publik", Cost: "2.0T", Duration: "180 hari"},
-	{Name: "Pusat Riset Nasional", Sector: "Layanan Publik", Cost: "3.0T", Duration: "240 hari"},
-	{Name: "Bandara Internasional", Sector: "Layanan Publik", Cost: "7.0T", Duration: "480 hari"},
-	{Name: "Pelabuhan Kontainer", Sector: "Layanan Publik", Cost: "4.0T", Duration: "300 hari"},
-	{Name: "Pembangkit Listrik Tenaga Surya", Sector: "Layanan Publik", Cost: "1.5T", Duration: "150 hari"},
-	{Name: "Pembangkit Listrik Tenaga Nuklir", Sector: "Layanan Publik", Cost: "12.0T", Duration: "720 hari"},
-	{Name: "Jaringan Kereta Cepat", Sector: "Layanan Publik", Cost: "15.0T", Duration: "900 hari"},
-	{Name: "Kompleks Perumahan Rakyat", Sector: "Layanan Publik", Cost: "0.8T", Duration: "90 hari"},
-	{Name: "Stadion Olahraga Nasional", Sector: "Layanan Publik", Cost: "1.2T", Duration: "120 hari"},
-	{Name: "Pusat Data Nasional", Sector: "Layanan Publik", Cost: "2.5T", Duration: "180 hari"},
-	{Name: "Bendungan Hidroelektrik", Sector: "Layanan Publik", Cost: "5.0T", Duration: "360 hari"},
+// loadBuildingsFromTypeScript reads building data from TypeScript database files
+func loadBuildingsFromTypeScript() error {
+	buildingTypes = []BuildingType{}
+	
+	// Use absolute path to ensure files are found regardless of where the binary is run
+	basePath := "c:/fhm/em/app/frontend/src/app/database/data/semua_fitur_negara/"
+	
+	fmt.Printf("[GO] Loading buildings from absolute path: %s\n", basePath)
+	
+	// Define all the database files to load with their sectors
+	dbFiles := []struct {
+		path    string
+		sector  string
+		sectorID string
+	}{
+		// Produksi - Listrik Nasional
+		{basePath + "1_pembangunan/1_produksi/1_sektor_listrik_nasional/1_db_listrik.ts", "Listrik Nasional", "produksi-1"},
+		// Produksi - Mineral Kritis  
+		{basePath + "1_pembangunan/1_produksi/2_sektor_mineral_kritis/2_db_ekstraksi.ts", "Mineral Kritis", "produksi-2"},
+		// Produksi - Manufaktur
+		{basePath + "1_pembangunan/1_produksi/3_manufaktur/3_db_manufaktur.ts", "Manufaktur", "produksi-3"},
+		// Produksi - Peternakan, Agrikultur, Perikanan, Olahan Pangan, Farmasi
+		{basePath + "1_pembangunan/1_produksi/4_sektor_peternakan/4_db_peternakan.ts", "Peternakan", "produksi-4"},
+		{basePath + "1_pembangunan/1_produksi/5_sektor_agrikultur/5_db_agrikultur.ts", "Agrikultur", "produksi-5"},
+		{basePath + "1_pembangunan/1_produksi/6_sektor_perikanan/6_db_perikanan.ts", "Perikanan", "produksi-6"},
+		{basePath + "1_pembangunan/1_produksi/7_sektor_olahan_pangan/7_db_olahan_pangan.ts", "Olahan Pangan", "produksi-7"},
+		{basePath + "1_pembangunan/1_produksi/8_sektor_farmasi/8_db_farmasi.ts", "Farmasi", "produksi-8"},
+		
+		// Tempat Umum - Infrastruktur, Pendidikan, Kesehatan, Hukum, Olahraga, Komersial, Hiburan
+		{basePath + "1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/index.ts", "Infrastruktur", "umum-1"},
+		{basePath + "1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/index.ts", "Pendidikan", "umum-2"},
+		{basePath + "1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/index.ts", "Kesehatan", "umum-3"},
+		{basePath + "1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/index.ts", "Hukum", "umum-4"},
+		{basePath + "1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/index.ts", "Olahraga", "umum-5"},
+		{basePath + "1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/index.ts", "Komersial", "umum-6"},
+		{basePath + "1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/index.ts", "Hiburan", "umum-7"},
+		
+		// Hunian Permukiman
+		{basePath + "1_pembangunan/3_tempat_umum/2_hunian_permukiman/index.ts", "Hunian", "umum-8"},
+	}
+	
+	// Load each file
+	loadedCount := 0
+	for _, dbFile := range dbFiles {
+		data, err := ioutil.ReadFile(dbFile.path)
+		if err != nil {
+			fmt.Printf("[GO] Warning: Could not load %s: %v\n", dbFile.path, err)
+			continue
+		}
+		
+		buildings := parseTypeScriptBuildings(data, dbFile.sector)
+		for i := range buildings {
+			buildings[i].SectorID = dbFile.sectorID
+			buildingTypes = append(buildingTypes, buildings[i])
+		}
+		loadedCount += len(buildings)
+		fmt.Printf("[GO] Loaded %d buildings from %s\n", len(buildings), dbFile.path)
+	}
+	
+	// Load Pertahanan sectors
+	pertahananFiles := []struct {
+		path   string
+		sector string
+		id     string
+	}{
+		{basePath + "2_pertahanan/1_intelijen/index.ts", "Intelijen", "militer-1"},
+		{basePath + "2_pertahanan/2_produksi_militer/index.ts", "Produksi Militer", "militer-2"},
+		{basePath + "2_pertahanan/4_armada_polisi/index.ts", "Armada Polisi", "militer-3"},
+		{basePath + "2_pertahanan/5_manajemen_pertahanan/index.ts", "Manajemen Pertahanan", "militer-4"},
+		{basePath + "2_pertahanan/3_armada_militer/index.ts", "Armada Militer", "armada-1"},
+	}
+	
+	for _, pf := range pertahananFiles {
+		data, err := ioutil.ReadFile(pf.path)
+		if err != nil {
+			fmt.Printf("[GO] Warning: Could not load %s: %v\n", pf.path, err)
+			continue
+		}
+		
+		buildings := parseTypeScriptBuildings(data, pf.sector)
+		for i := range buildings {
+			buildings[i].SectorID = pf.id
+			buildingTypes = append(buildingTypes, buildings[i])
+		}
+		loadedCount += len(buildings)
+		fmt.Printf("[GO] Loaded %d buildings from %s\n", len(buildings), pf.path)
+	}
+	
+	fmt.Printf("[GO] Total buildings loaded: %d\n", len(buildingTypes))
+	return nil
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -168,6 +294,12 @@ var buildingTypes = []BuildingType{
 // ═══════════════════════════════════════════════════════════
 
 func main() {
+	// Load building database from TypeScript files (direct from frontend database)
+	if err := loadBuildingsFromTypeScript(); err != nil {
+		fmt.Printf("[GO] Warning: Could not load buildings from TypeScript DB: %v\n", err)
+		fmt.Println("[GO] Server will start but building data may be empty")
+	}
+	
 	// 1. Start the Global Ticker (Simulation Engine)
 	go simulationEngine()
 
@@ -333,6 +465,11 @@ func processNPCDay(date time.Time) {
 		shuffled[i], shuffled[j] = shuffled[j], shuffled[i]
 	})
 
+	// Skip construction news if no building data available
+	if len(buildingTypes) == 0 {
+		return
+	}
+
 	constructionNewsToday := 0
 	maxConstructionPerDay := 3 // Cap to prevent news flood
 
@@ -341,16 +478,16 @@ func processNPCDay(date time.Time) {
 		nation := npcNations[nationIdx]
 		building := buildingTypes[rng.Intn(len(buildingTypes))]
 
-		// Generate construction news
-		subject := fmt.Sprintf("%s Memulai Pembangunan %s", nation, building.Name)
+		// Generate construction news with actual price from JSON database
+		subject := fmt.Sprintf("%s Inisiasi Proyek Konstruksi %s", nation, building.Name)
 		content := fmt.Sprintf(
-			"Pemerintah %s resmi mengumumkan dimulainya proyek pembangunan %s di sektor %s. "+
-				"Proyek ini diperkirakan memakan biaya %s dengan estimasi waktu pengerjaan %s. "+
-				"Langkah ini merupakan bagian dari strategi pembangunan nasional %s untuk memperkuat "+
-				"kapasitas %s negara di tahun %d.",
+			"Pemerintah %s hari ini mengumumkan inisiasi proyek konstruksi %s di sektor %s. "+
+				"Proyek tersebut membutuhkan biaya investasi sebesar %s dengan estimasi waktu pengerjaan %d hari. "+
+				"Kebijakan ini diambil oleh otoritas %s sebagai langkah strategis untuk memperkuat "+
+				"kapasitas %s nasional di masa mendatang.",
 			nation, building.Name, building.Sector,
-			building.Cost, building.Duration,
-			nation, getSectorDesc(building.Sector), date.Year(),
+			formatCurrency(building.Biaya), building.Waktu,
+			nation, getSectorDesc(building.Sector),
 		)
 
 		addNewsItem(
@@ -415,15 +552,79 @@ func processNPCDay(date time.Time) {
 
 func getSectorDesc(sector string) string {
 	switch sector {
-	case "Produksi":
-		return "industri dan produksi"
-	case "Militer":
-		return "pertahanan dan keamanan"
-	case "Layanan Publik":
-		return "infrastruktur publik"
+	// Produksi sectors
+	case "Listrik Nasional":
+		return "sektor energi nasional"
+	case "Mineral Kritis":
+		return "sektor pertambangan strategis"
+	case "Manufaktur":
+		return "industri manufaktur"
+	case "Peternakan":
+		return "sektor peternakan"
+	case "Agrikultur":
+		return "sektor pertanian"
+	case "Perikanan":
+		return "sektor perikanan"
+	case "Olahan Pangan":
+		return "industri pengolahan pangan"
+	case "Farmasi":
+		return "industri farmasi"
+	
+	// Tempat Umum sectors
+	case "Infrastruktur":
+		return "infrastruktur dan transportasi"
+	case "Pendidikan":
+		return "sektor pendidikan"
+	case "Kesehatan":
+		return "sektor kesehatan"
+	case "Hukum":
+		return "sistem peradilan dan hukum"
+	case "Olahraga":
+		return "fasilitas olahraga"
+	case "Komersial":
+		return "sektor komersial"
+	case "Hiburan":
+		return "fasilitas rekreasi"
+	
+	// Pertahanan sectors
+	case "Intelijen":
+		return "sistem intelijen nasional"
+	case "Produksi Militer":
+		return "industri pertahanan"
+	case "Komando Polisi", "Pendidikan Polisi", "Polisi Wilayah", "Armada Polisi", "Surveillance":
+		return "keamanan internal"
+	case "Manajemen Pertahanan":
+		return "sistem pertahanan nasional"
+	
+	// Armada Militer
+	case "Armada Darat":
+		return "kekuatan darat"
+	case "Armada Laut":
+		return "kekuatan maritim"
+	case "Armada Udara":
+		return "kekuatan udara"
+	
 	default:
-		return "pembangunan"
+		return "pembangunan nasional"
 	}
+}
+
+// formatCurrency returns the raw number with dots as thousand separators (e.g., 1.000.000)
+func formatCurrency(amount int64) string {
+	s := fmt.Sprintf("%d", amount)
+	n := len(s)
+	if n <= 3 {
+		return s
+	}
+
+	var result []byte
+	for i, c := range s {
+		if i > 0 && (n-i)%3 == 0 {
+			result = append(result, '.')
+		}
+		result = append(result, byte(c))
+	}
+	return string(result)
 }
 
 func invokePolyglotWorkers(dateStr string) {

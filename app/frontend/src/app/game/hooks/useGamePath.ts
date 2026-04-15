@@ -88,8 +88,14 @@ export function useGamePath(path: string[]) {
     if (subMenu === 'dashboard') initialMenu = "Dashboard:Kepuasan";
     else if (subMenu === 'naikkan') initialMenu = "Action:NaikkanKepuasan";
     else initialMenu = "Kepuasan";
-  } else if (category === 'berita') {
+  } else if (category === 'berita_internasional') {
     initialMenu = "Menu:Berita";
+  } else if (category === 'berita') {
+    // Legacy redirect to new URL
+    initialMenu = "Menu:Berita";
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, '', "/game/berita_internasional");
+    }
   } else if (category === 'inbox') {
     initialMenu = "Menu:Inbox";
   } else if (category === 'kependudukan') {
@@ -186,7 +192,7 @@ export function useGamePath(path: string[]) {
       "Geopolitik": "/game/geopolitik",
       "Kementerian": "/game/kementrian",
       "Dashboard:Kementerian": "/game/kementrian/kementrian-dashboard",
-      "Menu:Berita": "/game/berita",
+      "Menu:Berita": "/game/berita_internasional",
       "Menu:Inbox": "/game/inbox",
       "Menu:Riset": "/game/riset",
       "Kepuasan": "/game/kepuasan",

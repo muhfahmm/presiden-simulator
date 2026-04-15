@@ -6,7 +6,7 @@ export interface HunianData {
 
 export const hunianRate = {
   rumah_subsidi: {
-    biaya_pembangunan: 500000, // Reduced by 50% (orig. 35M)
+    biaya_pembangunan: 500000, 
     waktu_pembangunan: 4,
 
     konsumsi_listrik: 45,
