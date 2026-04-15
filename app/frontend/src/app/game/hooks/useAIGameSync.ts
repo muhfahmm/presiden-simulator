@@ -6,6 +6,10 @@ import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_
 import { aiPopulationStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { aiHappinessStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 
+import { countries } from "@/app/database/data/negara/benua/index";
+import { EksekutorPertahananAI } from "../components/AI_logic/6_AI_pertahanan/sistem_tindakan_respon/EksekutorPertahananAI";
+import { PusatKeputusanPertahanan } from "../components/AI_logic/6_AI_pertahanan/pusat_keputusan_pertahanan/PusatKeputusanPertahanan";
+
 /**
  * useAIGameSync — Orchestrator untuk sinkronisasi stats AI dengan game time.
  * 
@@ -14,18 +18,18 @@ import { aiHappinessStorage } from "@/app/game/components/map-system/modals_deta
  *   - AI Budget (Kas Negara) → aiBudgetStorage.updateAll()
  *   - AI Population (Populasi) → aiPopulationStorage.updateAll()
  *   - AI Happiness (Kepuasan) → aiHappinessStorage.dailyDecay()
- * 
- * Masing-masing storage sudah punya built-in dedup (lastProcessedDate),
- * jadi tidak akan double-process hari yang sama.
+ *   - AI Defense → Check completion & thinking process
  */
 export function useAIGameSync() {
   const lastProcessedDateRef = useRef<string>("");
+  const batchIndexRef = useRef<number>(0);
+  const BATCH_SIZE = 3; // Process 3 NPCs per game day for defense thinking
 
   useEffect(() => {
     const session = gameStorage.getSession();
     const userCountry = session?.country || "Indonesia";
 
-    const handleSync = (e: Event) => {
+    const handleSync = async (e: Event) => {
       const data = (e as CustomEvent).detail;
       if (!data?.gameDate) return;
 
@@ -58,6 +62,30 @@ export function useAIGameSync() {
       try {
         aiHappinessStorage.dailyDecay(dateStr, userCountry);
       } catch (e) { /* silent */ }
+
+      // 4. AI Defense Logic
+      try {
+        // A. Check for completed defense projects
+        EksekutorPertahananAI.checkCompletion(gameDate);
+
+        // B. Process a batch of NPCs for defense thinking
+        const npcCountries = countries.filter(c => c.name_en !== userCountry);
+        const startIdx = batchIndexRef.current;
+        const endIdx = Math.min(startIdx + BATCH_SIZE, npcCountries.length);
+        const batch = npcCountries.slice(startIdx, endIdx);
+
+        for (const npc of batch) {
+          // Fire and forget thinking process so it doesn't block the next day sync
+          PusatKeputusanPertahanan.pikirkan(npc.name_en).catch(err => 
+            console.error(`[AI Defense] Thinking error for ${npc.name_en}:`, err)
+          );
+        }
+
+        // Update rotation index
+        batchIndexRef.current = endIdx >= npcCountries.length ? 0 : endIdx;
+      } catch (e) {
+        console.error("[useAIGameSync] Defense AI Cycle Error:", e);
+      }
     };
 
     window.addEventListener("game_state_sync", handleSync);

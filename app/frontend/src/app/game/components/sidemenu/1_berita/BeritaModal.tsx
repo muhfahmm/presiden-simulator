@@ -244,20 +244,58 @@ export default function BeritaModal({ isOpen, onClose, setActiveMenu }: BeritaMo
       { keys: ["kayu", "pabrik kayu"], sector: "produksi", card: "kayu", slug: "pabrik_kayu" },
       { keys: ["pupuk", "pabrik pupuk"], sector: "produksi", card: "pupuk", slug: "pabrik_pupuk" },
 
-      // Defense AI (New Modules)
-      { keys: ["barak militer", "konstruksi barak"], sector: "armada_militer", card: "barak", slug: "barak" },
-      { keys: ["intelijen", "radar", "siber", "mata-mata"], sector: "intelijen", card: "intelijen", slug: "intelijen" },
-      { keys: ["pabrik militer", "produksi senjata", "amunisi", "pabrik amunisi"], sector: "militer", card: "pabrik_amunisi", slug: "pabrik_amunisi" },
-      { keys: ["armada darat", "tank", "apc", "artileri"], sector: "armada_militer", card: "darat", slug: "darat" },
-      { keys: ["armada laut", "kapal", "selam", "destroyer"], sector: "armada_militer", card: "laut", slug: "laut" },
-      { keys: ["armada udara", "jet", "pesawat", "drone", "helikopter"], sector: "armada_militer", card: "udara", slug: "udara" },
-      { keys: ["polisi", "keamanan dalam negeri", "patroli"], sector: "armada_polisi", card: "armada_polisi", slug: "armada_polisi" },
-      { keys: ["manajemen pertahanan", "pilar pertahanan", "logistik militer"], sector: "manajemen_pertahanan", card: "manajemen_pertahanan", slug: "manajemen_pertahanan" },
-      
-      // Operasi Strategis
-      { keys: ["operasi siber", "pertahanan siber"], sector: "intelijen", card: "operasi_siber", slug: "operasi_siber" },
-      { keys: ["satelit", "spy satellite"], sector: "intelijen", card: "sistem_satelit", slug: "sistem_satelit" },
-      { keys: ["radar nasional", "early warning", "radar"], sector: "intelijen", card: "jaringan_radar", slug: "jaringan_radar" },
+      // --- INTELIJEN ---
+      { keys: ["intelijen strategis", "analisis intelijen"], sector: "intelijen", card: "intelijen", slug: "intelijen" },
+      { keys: ["operasi siber", "hacker", "peretasan", "keamanan siber", "digital warfare"], sector: "intelijen", card: "operasi_siber", slug: "operasi_siber" },
+      { keys: ["satelit intelijen", "satelit mata-mata", "citra satelit", "spy satellite"], sector: "intelijen", card: "sistem_satelit", slug: "sistem_satelit" },
+      { keys: ["jaringan radar", "early warning", "radar nasional", "deteksi udara"], sector: "intelijen", card: "jaringan_radar", slug: "jaringan_radar" },
+
+      // --- ARMADA MILITER: DARAT ---
+      { keys: ["barak militer", "konstruksi barak", "asrama tentara"], sector: "armada_militer", card: "barak", slug: "barak" },
+      { keys: ["tank tempur", "mbt", "main battle tank", "panzer"], sector: "armada_militer", card: "tank_tempur_utama", slug: "tank_tempur_utama" },
+      { keys: ["apc", "ifv", "anoa", "panser angkut"], sector: "armada_militer", card: "apc_ifv", slug: "apc_ifv" },
+      { keys: ["artileri berat", "meriam", "howitzer"], sector: "armada_militer", card: "artileri_berat", slug: "artileri_berat" },
+      { keys: ["roket", "mlrs", "peluncur roket"], sector: "armada_militer", card: "sistem_peluncur_roket", slug: "sistem_peluncur_roket" },
+      { keys: ["sam system", "rudal darat-ke-udara", "pertahanan udara mobile"], sector: "armada_militer", card: "pertahanan_udara_mobile", slug: "pertahanan_udara_mobile" },
+      { keys: ["kendaraan taktis", "jeep militer", "humvee"], sector: "armada_militer", card: "kendaraan_taktis", slug: "kendaraan_taktis" },
+
+      // --- ARMADA MILITER: LAUT ---
+      { keys: ["kapal induk", "aircraft carrier"], sector: "armada_militer", card: "kapal_induk", slug: "kapal_induk" },
+      { keys: ["kapal induk nuklir"], sector: "armada_militer", card: "kapal_induk_nuklir", slug: "kapal_induk_nuklir" },
+      { keys: ["destroyer", "kapal perusak"], sector: "armada_militer", card: "kapal_destroyer", slug: "kapal_destroyer" },
+      { keys: ["korvet", "kapal korvet"], sector: "armada_militer", card: "kapal_korvet", slug: "kapal_korvet" },
+      { keys: ["kapal selam nuklir"], sector: "armada_militer", card: "kapal_selam_nuklir", slug: "kapal_selam_nuklir" },
+      { keys: ["kapal selam reguler", "diesel submarine"], sector: "armada_militer", card: "kapal_selam_regular", slug: "kapal_selam_regular" },
+      { keys: ["penyapu ranjau", "mine sweeper"], sector: "armada_militer", card: "kapal_ranjau", slug: "kapal_ranjau" },
+      { keys: ["kapal logistik", "tanker laut"], sector: "armada_militer", card: "kapal_logistik", slug: "kapal_logistik" },
+
+      // --- ARMADA MILITER: UDARA ---
+      { keys: ["jet tempur siluman", "stealth fighter", "f-35", "su-57", "j-20"], sector: "armada_militer", card: "jet_tempur_siluman", slug: "jet_tempur_siluman" },
+      { keys: ["jet pencegat", "interceptor", "f-15", "su-30"], sector: "armada_militer", card: "jet_tempur_interceptor", slug: "jet_tempur_interceptor" },
+      { keys: ["pembom strategis", "bomber", "b-2", "tu-160"], sector: "armada_militer", card: "pesawat_pengebom", slug: "pesawat_pengebom" },
+      { keys: ["helikopter serang", "apache", "mi-28"], sector: "armada_militer", card: "helikopter_serang", slug: "helikopter_serang" },
+      { keys: ["pesawat intai", "awacs"], sector: "armada_militer", card: "pesawat_pengintai", slug: "pesawat_pengintai" },
+      { keys: ["drone intai", "uav", "predator"], sector: "armada_militer", card: "drone_intai_uav", slug: "drone_intai_uav" },
+      { keys: ["drone kamikaze", "loitering munition"], sector: "armada_militer", card: "drone_kamikaze", slug: "drone_kamikaze" },
+      { keys: ["pesawat angkut", "hercules"], sector: "armada_militer", card: "pesawat_angkut", slug: "pesawat_angkut" },
+
+      // --- ARMADA POLISI ---
+      { keys: ["mabes polri", "markas besar polisi"], sector: "armada_polisi", card: "markas_besar_polri", slug: "markas_besar_polri" },
+      { keys: ["akademi kepolisian", "akpol"], sector: "armada_polisi", card: "akademi_kepolisian", slug: "akademi_kepolisian" },
+      { keys: ["lab forensik", "identifikasi"], sector: "armada_polisi", card: "pusat_forensik", slug: "pusat_forensik" },
+      { keys: ["cctv kota", "surveillance city"], sector: "armada_polisi", card: "network_cctv", slug: "network_cctv" },
+      { keys: ["mobil polisi", "patroli polisi"], sector: "armada_polisi", card: "armada_mobil_polisi", slug: "armada_mobil_polisi" },
+      { keys: ["pasukan swat", "brimob", "anti teror"], sector: "armada_polisi", card: "pasukan_swat", slug: "pasukan_swat" },
+      { keys: ["samapta", "anti huru-hara"], sector: "armada_polisi", card: "samapta", slug: "samapta" },
+
+      // --- MANAJEMEN PERTAHANAN ---
+      { keys: ["penjara", "lapas", "lembaga pemasyarakatan"], sector: "manajemen_pertahanan", card: "penjara", slug: "penjara" },
+      { keys: ["gudang senjata", "armory"], sector: "manajemen_pertahanan", card: "gudang_senjata", slug: "gudang_senjata" },
+      { keys: ["hangar tank", "garasi militer"], sector: "manajemen_pertahanan", card: "hangar_tank", slug: "hangar_tank" },
+      { keys: ["pangkalan udara", "airbase"], sector: "manajemen_pertahanan", card: "pangkalan_udara", slug: "pangkalan_udara" },
+      { keys: ["pangkalan laut", "naval base"], sector: "manajemen_pertahanan", card: "pangkalan_laut", slug: "pangkalan_laut" },
+      { keys: ["program luar angkasa", "antariksa"], sector: "manajemen_pertahanan", card: "program_luar_angkasa", slug: "program_luar_angkasa" },
+      { keys: ["pertahanan siber nasional"], sector: "manajemen_pertahanan", card: "pertahanan_siber", slug: "pertahanan_siber" },
     ];
 
     let cardSlug = "";

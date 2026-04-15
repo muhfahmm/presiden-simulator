@@ -1227,14 +1227,7 @@ function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, ico
             (cleanKey === 'mall' && highlitCard === 'pusat_belanja') ||
             (cleanKey === 'teater' && (highlitCard === 'gedung_teater' || highlitCard === 'gedung_konser')) ||
             (cleanKey === 'kejaksaan_court' && (highlitCard === 'pengadilan_tinggi' || highlitCard === 'fasilitas_koreksi')) ||
-            (cleanKey === 'legal_aid' && highlitCard === 'pusat_bantuan_hukum') ||
-            (cleanKey === 'cyber_defense' && highlitCard === 'operasi_siber') ||
-            (cleanKey === 'satelit_spy' && highlitCard === 'satelit_mata_mata') ||
-            (cleanKey === 'pabrik_amunisi' && highlitCard === 'produksi_amunisi_militer') ||
-            (cleanKey === 'darat' && highlitCard === 'pasukan_darat') ||
-            (cleanKey === 'laut' && highlitCard === 'pasukan_laut') ||
-            (cleanKey === 'udara' && highlitCard === 'pasukan_udara') ||
-            (cleanKey === 'armada_polisi' && highlitCard === 'kepolisian_nasional');
+            (cleanKey === 'legal_aid' && highlitCard === 'pusat_bantuan_hukum');
           
           if (total <= 0 && val === undefined) return null;
           
