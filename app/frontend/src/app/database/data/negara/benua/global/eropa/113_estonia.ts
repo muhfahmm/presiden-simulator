@@ -1,3 +1,5 @@
+import { estonia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/113_estonia";
+import { estonia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/113_estonia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { estonia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/113_estonia";
 
@@ -57,6 +59,8 @@ export const estonia: CountryData = {
   "kesehatan": estonia_kesehatan,
   "hukum": estonia_hukum,
   "sektor_olahraga": estonia_olahraga,
+  "sektor_komersial": estonia_komersial,
+  "sektor_hiburan": estonia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

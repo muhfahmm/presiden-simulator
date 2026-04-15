@@ -1,3 +1,5 @@
+import { tajikistan_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/95_tajikistan";
+import { tajikistan_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/95_tajikistan";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { tajikistan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/95_tajikistan";
 
@@ -57,6 +59,8 @@ export const tajikistan: CountryData = {
   "kesehatan": tajikistan_kesehatan,
   "hukum": tajikistan_hukum,
   "sektor_olahraga": tajikistan_olahraga,
+  "sektor_komersial": tajikistan_komersial,
+  "sektor_hiburan": tajikistan_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

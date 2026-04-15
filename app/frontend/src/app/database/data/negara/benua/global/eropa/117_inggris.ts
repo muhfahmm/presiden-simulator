@@ -1,3 +1,5 @@
+import { inggris_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/117_inggris";
+import { inggris_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/117_inggris";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { inggris_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/117_inggris";
 
@@ -57,6 +59,8 @@ export const inggris: CountryData = {
   "kesehatan": inggris_kesehatan,
   "hukum": inggris_hukum,
   "sektor_olahraga": inggris_olahraga,
+  "sektor_komersial": inggris_komersial,
+  "sektor_hiburan": inggris_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

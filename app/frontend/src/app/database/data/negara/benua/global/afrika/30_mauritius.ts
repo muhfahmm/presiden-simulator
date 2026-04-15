@@ -1,3 +1,5 @@
+import { mauritius_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/30_mauritius";
+import { mauritius_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/30_mauritius";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { mauritius_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/30_mauritius";
 
@@ -57,6 +59,8 @@ export const mauritius: CountryData = {
   "kesehatan": mauritius_kesehatan,
   "hukum": mauritius_hukum,
   "sektor_olahraga": mauritius_olahraga,
+  "sektor_komersial": mauritius_komersial,
+  "sektor_hiburan": mauritius_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

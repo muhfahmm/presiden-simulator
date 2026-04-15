@@ -1,3 +1,5 @@
+import { kepulauan_faroe_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/122_kepulauan_faroe";
+import { kepulauan_faroe_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/122_kepulauan_faroe";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { kepulauan_faroe_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/122_kepulauan_faroe";
 
@@ -57,6 +59,8 @@ export const kepulauan_faroe: CountryData = {
   "kesehatan": kepulauan_faroe_kesehatan,
   "hukum": kepulauan_faroe_hukum,
   "sektor_olahraga": kepulauan_faroe_olahraga,
+  "sektor_komersial": kepulauan_faroe_komersial,
+  "sektor_hiburan": kepulauan_faroe_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

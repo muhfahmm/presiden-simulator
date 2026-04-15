@@ -1,3 +1,5 @@
+import { suriname_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/sa/205_suriname";
+import { suriname_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/sa/205_suriname";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { suriname_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/205_suriname";
 
@@ -57,6 +59,8 @@ export const suriname: CountryData = {
   "kesehatan": suriname_kesehatan,
   "hukum": suriname_hukum,
   "sektor_olahraga": suriname_olahraga,
+  "sektor_komersial": suriname_komersial,
+  "sektor_hiburan": suriname_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

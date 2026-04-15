@@ -1,3 +1,5 @@
+import { korea_utara_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/76_korea_utara";
+import { korea_utara_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/76_korea_utara";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { korea_utara_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/76_korea_utara";
 
@@ -57,6 +59,8 @@ export const korea_utara: CountryData = {
   "kesehatan": korea_utara_kesehatan,
   "hukum": korea_utara_hukum,
   "sektor_olahraga": korea_utara_olahraga,
+  "sektor_komersial": korea_utara_komersial,
+  "sektor_hiburan": korea_utara_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

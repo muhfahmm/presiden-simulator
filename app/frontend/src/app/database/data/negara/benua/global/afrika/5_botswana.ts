@@ -1,3 +1,5 @@
+import { botswana_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/5_botswana";
+import { botswana_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/5_botswana";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { botswana_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/5_botswana";
 
@@ -57,6 +59,8 @@ export const botswana: CountryData = {
   "kesehatan": botswana_kesehatan,
   "hukum": botswana_hukum,
   "sektor_olahraga": botswana_olahraga,
+  "sektor_komersial": botswana_komersial,
+  "sektor_hiburan": botswana_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

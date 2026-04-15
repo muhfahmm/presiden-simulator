@@ -1,3 +1,5 @@
+import { thailand_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/96_thailand";
+import { thailand_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/96_thailand";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { thailand_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/96_thailand";
 
@@ -57,6 +59,8 @@ export const thailand: CountryData = {
   "kesehatan": thailand_kesehatan,
   "hukum": thailand_hukum,
   "sektor_olahraga": thailand_olahraga,
+  "sektor_komersial": thailand_komersial,
+  "sektor_hiburan": thailand_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

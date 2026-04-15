@@ -1,3 +1,5 @@
+import { andorra_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/104_andorra";
+import { andorra_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/104_andorra";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { andorra_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/104_andorra";
 
@@ -57,6 +59,8 @@ export const andorra: CountryData = {
   "kesehatan": andorra_kesehatan,
   "hukum": andorra_hukum,
   "sektor_olahraga": andorra_olahraga,
+  "sektor_komersial": andorra_komersial,
+  "sektor_hiburan": andorra_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { vietnam_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/100_vietnam";
+import { vietnam_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/100_vietnam";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { vietnam_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/100_vietnam";
 
@@ -57,6 +59,8 @@ export const vietnam: CountryData = {
   "kesehatan": vietnam_kesehatan,
   "hukum": vietnam_hukum,
   "sektor_olahraga": vietnam_olahraga,
+  "sektor_komersial": vietnam_komersial,
+  "sektor_hiburan": vietnam_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

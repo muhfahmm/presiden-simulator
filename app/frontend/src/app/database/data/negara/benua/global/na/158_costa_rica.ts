@@ -1,3 +1,5 @@
+import { costa_rica_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/158_costa_rica";
+import { costa_rica_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/158_costa_rica";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { costa_rica_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/158_costa_rica";
 
@@ -57,6 +59,8 @@ export const costa_rica: CountryData = {
   "kesehatan": costa_rica_kesehatan,
   "hukum": costa_rica_hukum,
   "sektor_olahraga": costa_rica_olahraga,
+  "sektor_komersial": costa_rica_komersial,
+  "sektor_hiburan": costa_rica_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { lebanon_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/79_lebanon";
+import { lebanon_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/79_lebanon";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { lebanon_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/79_lebanon";
 
@@ -57,6 +59,8 @@ export const lebanon: CountryData = {
   "kesehatan": lebanon_kesehatan,
   "hukum": lebanon_hukum,
   "sektor_olahraga": lebanon_olahraga,
+  "sektor_komersial": lebanon_komersial,
+  "sektor_hiburan": lebanon_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

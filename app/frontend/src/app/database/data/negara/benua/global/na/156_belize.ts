@@ -1,3 +1,5 @@
+import { belize_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/156_belize";
+import { belize_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/156_belize";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { belize_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/156_belize";
 
@@ -57,6 +59,8 @@ export const belize: CountryData = {
   "kesehatan": belize_kesehatan,
   "hukum": belize_hukum,
   "sektor_olahraga": belize_olahraga,
+  "sektor_komersial": belize_komersial,
+  "sektor_hiburan": belize_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

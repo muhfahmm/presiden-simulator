@@ -1,3 +1,5 @@
+import { tonga_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/192_tonga";
+import { tonga_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/192_tonga";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { tonga_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/192_tonga";
 
@@ -57,6 +59,8 @@ export const tonga: CountryData = {
   "kesehatan": tonga_kesehatan,
   "hukum": tonga_hukum,
   "sektor_olahraga": tonga_olahraga,
+  "sektor_komersial": tonga_komersial,
+  "sektor_hiburan": tonga_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

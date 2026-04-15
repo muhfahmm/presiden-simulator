@@ -1,3 +1,5 @@
+import { nauru_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/185_nauru";
+import { nauru_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/185_nauru";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { nauru_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/185_nauru";
 
@@ -57,6 +59,8 @@ export const nauru: CountryData = {
   "kesehatan": nauru_kesehatan,
   "hukum": nauru_hukum,
   "sektor_olahraga": nauru_olahraga,
+  "sektor_komersial": nauru_komersial,
+  "sektor_hiburan": nauru_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

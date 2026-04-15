@@ -1,3 +1,5 @@
+import { bermuda_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/157_bermuda";
+import { bermuda_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/157_bermuda";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { bermuda_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/157_bermuda";
 
@@ -57,6 +59,8 @@ export const bermuda: CountryData = {
   "kesehatan": bermuda_kesehatan,
   "hukum": bermuda_hukum,
   "sektor_olahraga": bermuda_olahraga,
+  "sektor_komersial": bermuda_komersial,
+  "sektor_hiburan": bermuda_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

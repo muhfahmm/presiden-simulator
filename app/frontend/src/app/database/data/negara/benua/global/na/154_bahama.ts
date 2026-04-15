@@ -1,3 +1,5 @@
+import { bahama_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/154_bahama";
+import { bahama_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/154_bahama";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { bahama_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/154_bahama";
 
@@ -57,6 +59,8 @@ export const bahama: CountryData = {
   "kesehatan": bahama_kesehatan,
   "hukum": bahama_hukum,
   "sektor_olahraga": bahama_olahraga,
+  "sektor_komersial": bahama_komersial,
+  "sektor_hiburan": bahama_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

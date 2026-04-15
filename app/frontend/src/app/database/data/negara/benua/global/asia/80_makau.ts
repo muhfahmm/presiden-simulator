@@ -1,3 +1,5 @@
+import { makau_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/80_makau";
+import { makau_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/80_makau";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { makau_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/80_makau";
 
@@ -57,6 +59,8 @@ export const makau: CountryData = {
   "kesehatan": makau_kesehatan,
   "hukum": makau_hukum,
   "sektor_olahraga": makau_olahraga,
+  "sektor_komersial": makau_komersial,
+  "sektor_hiburan": makau_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

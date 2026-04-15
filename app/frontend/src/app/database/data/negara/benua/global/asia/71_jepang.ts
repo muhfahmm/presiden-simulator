@@ -1,3 +1,5 @@
+import { jepang_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/71_jepang";
+import { jepang_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/71_jepang";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { jepang_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/71_jepang";
 
@@ -57,6 +59,8 @@ export const jepang: CountryData = {
   "kesehatan": jepang_kesehatan,
   "hukum": jepang_hukum,
   "sektor_olahraga": jepang_olahraga,
+  "sektor_komersial": jepang_komersial,
+  "sektor_hiburan": jepang_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

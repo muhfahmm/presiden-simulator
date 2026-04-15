@@ -1,3 +1,5 @@
+import { liberia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/23_liberia";
+import { liberia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/23_liberia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { liberia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/23_liberia";
 
@@ -57,6 +59,8 @@ export const liberia: CountryData = {
   "kesehatan": liberia_kesehatan,
   "hukum": liberia_hukum,
   "sektor_olahraga": liberia_olahraga,
+  "sektor_komersial": liberia_komersial,
+  "sektor_hiburan": liberia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

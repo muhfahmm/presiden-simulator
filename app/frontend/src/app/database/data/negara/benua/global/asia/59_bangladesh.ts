@@ -1,3 +1,5 @@
+import { bangladesh_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/59_bangladesh";
+import { bangladesh_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/59_bangladesh";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { bangladesh_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/59_bangladesh";
 
@@ -57,6 +59,8 @@ export const bangladesh: CountryData = {
   "kesehatan": bangladesh_kesehatan,
   "hukum": bangladesh_hukum,
   "sektor_olahraga": bangladesh_olahraga,
+  "sektor_komersial": bangladesh_komersial,
+  "sektor_hiburan": bangladesh_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

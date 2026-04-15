@@ -1,3 +1,5 @@
+import { saint_vincent_dan_grenadine_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/177_saint_vincent_dan_grenadine";
+import { saint_vincent_dan_grenadine_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/177_saint_vincent_dan_grenadine";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { saint_vincent_dan_grenadine_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/177_saint_vincent_dan_grenadine";
 
@@ -57,6 +59,8 @@ export const saint_vincent_dan_grenadine: CountryData = {
   "kesehatan": saint_vincent_dan_grenadine_kesehatan,
   "hukum": saint_vincent_dan_grenadine_hukum,
   "sektor_olahraga": saint_vincent_dan_grenadine_olahraga,
+  "sektor_komersial": saint_vincent_dan_grenadine_komersial,
+  "sektor_hiburan": saint_vincent_dan_grenadine_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

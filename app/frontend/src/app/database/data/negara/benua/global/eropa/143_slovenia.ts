@@ -1,3 +1,5 @@
+import { slovenia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/143_slovenia";
+import { slovenia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/143_slovenia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { slovenia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/143_slovenia";
 
@@ -57,6 +59,8 @@ export const slovenia: CountryData = {
   "kesehatan": slovenia_kesehatan,
   "hukum": slovenia_hukum,
   "sektor_olahraga": slovenia_olahraga,
+  "sektor_komersial": slovenia_komersial,
+  "sektor_hiburan": slovenia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { meksiko_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/170_meksiko";
+import { meksiko_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/170_meksiko";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { meksiko_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/170_meksiko";
 
@@ -57,6 +59,8 @@ export const meksiko: CountryData = {
   "kesehatan": meksiko_kesehatan,
   "hukum": meksiko_hukum,
   "sektor_olahraga": meksiko_olahraga,
+  "sektor_komersial": meksiko_komersial,
+  "sektor_hiburan": meksiko_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

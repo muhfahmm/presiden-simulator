@@ -1,3 +1,5 @@
+import { rwanda_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/44_rwanda";
+import { rwanda_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/44_rwanda";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { rwanda_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/44_rwanda";
 
@@ -57,6 +59,8 @@ export const rwanda: CountryData = {
   "kesehatan": rwanda_kesehatan,
   "hukum": rwanda_hukum,
   "sektor_olahraga": rwanda_olahraga,
+  "sektor_komersial": rwanda_komersial,
+  "sektor_hiburan": rwanda_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

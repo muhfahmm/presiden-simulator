@@ -1,3 +1,5 @@
+import { taiwan_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/94_taiwan";
+import { taiwan_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/94_taiwan";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { taiwan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/94_taiwan";
 
@@ -57,6 +59,8 @@ export const taiwan: CountryData = {
   "kesehatan": taiwan_kesehatan,
   "hukum": taiwan_hukum,
   "sektor_olahraga": taiwan_olahraga,
+  "sektor_komersial": taiwan_komersial,
+  "sektor_hiburan": taiwan_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

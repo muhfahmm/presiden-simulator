@@ -1,3 +1,5 @@
+import { tanjung_verde_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/51_tanjung_verde";
+import { tanjung_verde_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/51_tanjung_verde";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { tanjung_verde_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/51_tanjung_verde";
 
@@ -57,6 +59,8 @@ export const tanjung_verde: CountryData = {
   "kesehatan": tanjung_verde_kesehatan,
   "hukum": tanjung_verde_hukum,
   "sektor_olahraga": tanjung_verde_olahraga,
+  "sektor_komersial": tanjung_verde_komersial,
+  "sektor_hiburan": tanjung_verde_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { kiribati_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/182_kiribati";
+import { kiribati_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/182_kiribati";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { kiribati_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/182_kiribati";
 
@@ -57,6 +59,8 @@ export const kiribati: CountryData = {
   "kesehatan": kiribati_kesehatan,
   "hukum": kiribati_hukum,
   "sektor_olahraga": kiribati_olahraga,
+  "sektor_komersial": kiribati_komersial,
+  "sektor_hiburan": kiribati_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

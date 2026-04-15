@@ -1,3 +1,5 @@
+import { singapura_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/91_singapura";
+import { singapura_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/91_singapura";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { singapura_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/91_singapura";
 
@@ -57,6 +59,8 @@ export const singapura: CountryData = {
   "kesehatan": singapura_kesehatan,
   "hukum": singapura_hukum,
   "sektor_olahraga": singapura_olahraga,
+  "sektor_komersial": singapura_komersial,
+  "sektor_hiburan": singapura_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

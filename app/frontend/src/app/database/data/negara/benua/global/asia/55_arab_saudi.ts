@@ -1,3 +1,5 @@
+import { arab_saudi_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/55_arab_saudi";
+import { arab_saudi_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/55_arab_saudi";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { arab_saudi_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/55_arab_saudi";
 
@@ -57,6 +59,8 @@ export const arab_saudi: CountryData = {
   "kesehatan": arab_saudi_kesehatan,
   "hukum": arab_saudi_hukum,
   "sektor_olahraga": arab_saudi_olahraga,
+  "sektor_komersial": arab_saudi_komersial,
+  "sektor_hiburan": arab_saudi_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

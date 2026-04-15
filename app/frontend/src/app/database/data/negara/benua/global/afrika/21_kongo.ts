@@ -1,3 +1,5 @@
+import { kongo_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/21_kongo";
+import { kongo_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/21_kongo";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { kongo_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/21_kongo";
 
@@ -57,6 +59,8 @@ export const kongo: CountryData = {
   "kesehatan": kongo_kesehatan,
   "hukum": kongo_hukum,
   "sektor_olahraga": kongo_olahraga,
+  "sektor_komersial": kongo_komersial,
+  "sektor_hiburan": kongo_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

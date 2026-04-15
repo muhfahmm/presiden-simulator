@@ -1,3 +1,5 @@
+import { malta_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/130_malta";
+import { malta_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/130_malta";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { malta_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/130_malta";
 
@@ -57,6 +59,8 @@ export const malta: CountryData = {
   "kesehatan": malta_kesehatan,
   "hukum": malta_hukum,
   "sektor_olahraga": malta_olahraga,
+  "sektor_komersial": malta_komersial,
+  "sektor_hiburan": malta_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

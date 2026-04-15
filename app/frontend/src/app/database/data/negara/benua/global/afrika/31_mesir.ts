@@ -1,3 +1,5 @@
+import { mesir_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/31_mesir";
+import { mesir_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/31_mesir";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { mesir_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/31_mesir";
 
@@ -57,6 +59,8 @@ export const mesir: CountryData = {
   "kesehatan": mesir_kesehatan,
   "hukum": mesir_hukum,
   "sektor_olahraga": mesir_olahraga,
+  "sektor_komersial": mesir_komersial,
+  "sektor_hiburan": mesir_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

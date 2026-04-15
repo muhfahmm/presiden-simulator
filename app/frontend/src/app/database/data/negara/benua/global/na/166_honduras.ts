@@ -1,3 +1,5 @@
+import { honduras_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/166_honduras";
+import { honduras_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/166_honduras";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { honduras_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/166_honduras";
 
@@ -57,6 +59,8 @@ export const honduras: CountryData = {
   "kesehatan": honduras_kesehatan,
   "hukum": honduras_hukum,
   "sektor_olahraga": honduras_olahraga,
+  "sektor_komersial": honduras_komersial,
+  "sektor_hiburan": honduras_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

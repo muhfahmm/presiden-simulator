@@ -1,3 +1,5 @@
+import { grenada_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/163_grenada";
+import { grenada_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/163_grenada";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { grenada_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/163_grenada";
 
@@ -57,6 +59,8 @@ export const grenada: CountryData = {
   "kesehatan": grenada_kesehatan,
   "hukum": grenada_hukum,
   "sektor_olahraga": grenada_olahraga,
+  "sektor_komersial": grenada_komersial,
+  "sektor_hiburan": grenada_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

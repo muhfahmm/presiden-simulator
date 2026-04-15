@@ -1,3 +1,5 @@
+import { curacao_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/159_curacao";
+import { curacao_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/159_curacao";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { curacao_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/159_curacao";
 
@@ -57,6 +59,8 @@ export const curacao: CountryData = {
   "kesehatan": curacao_kesehatan,
   "hukum": curacao_hukum,
   "sektor_olahraga": curacao_olahraga,
+  "sektor_komersial": curacao_komersial,
+  "sektor_hiburan": curacao_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

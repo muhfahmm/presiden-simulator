@@ -1,3 +1,5 @@
+import { vanuatu_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/194_vanuatu";
+import { vanuatu_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/194_vanuatu";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { vanuatu_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/194_vanuatu";
 
@@ -57,6 +59,8 @@ export const vanuatu: CountryData = {
   "kesehatan": vanuatu_kesehatan,
   "hukum": vanuatu_hukum,
   "sektor_olahraga": vanuatu_olahraga,
+  "sektor_komersial": vanuatu_komersial,
+  "sektor_hiburan": vanuatu_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { maldives_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/82_maldives";
+import { maldives_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/82_maldives";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { maldives_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/82_maldives";
 
@@ -57,6 +59,8 @@ export const maldives: CountryData = {
   "kesehatan": maldives_kesehatan,
   "hukum": maldives_hukum,
   "sektor_olahraga": maldives_olahraga,
+  "sektor_komersial": maldives_komersial,
+  "sektor_hiburan": maldives_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

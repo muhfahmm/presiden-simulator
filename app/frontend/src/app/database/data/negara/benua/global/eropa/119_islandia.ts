@@ -1,3 +1,5 @@
+import { islandia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/119_islandia";
+import { islandia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/119_islandia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { islandia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/119_islandia";
 
@@ -57,6 +59,8 @@ export const islandia: CountryData = {
   "kesehatan": islandia_kesehatan,
   "hukum": islandia_hukum,
   "sektor_olahraga": islandia_olahraga,
+  "sektor_komersial": islandia_komersial,
+  "sektor_hiburan": islandia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

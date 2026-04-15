@@ -1,3 +1,5 @@
+import { luksemburg_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/128_luksemburg";
+import { luksemburg_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/128_luksemburg";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { luksemburg_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/128_luksemburg";
 
@@ -57,6 +59,8 @@ export const luksemburg: CountryData = {
   "kesehatan": luksemburg_kesehatan,
   "hukum": luksemburg_hukum,
   "sektor_olahraga": luksemburg_olahraga,
+  "sektor_komersial": luksemburg_komersial,
+  "sektor_hiburan": luksemburg_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { benin_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/4_benin";
+import { benin_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/4_benin";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { benin_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/4_benin";
 
@@ -57,6 +59,8 @@ export const benin: CountryData = {
   "kesehatan": benin_kesehatan,
   "hukum": benin_hukum,
   "sektor_olahraga": benin_olahraga,
+  "sektor_komersial": benin_komersial,
+  "sektor_hiburan": benin_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

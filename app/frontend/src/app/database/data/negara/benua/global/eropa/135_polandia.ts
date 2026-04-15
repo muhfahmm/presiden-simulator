@@ -1,3 +1,5 @@
+import { polandia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/135_polandia";
+import { polandia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/135_polandia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { polandia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/135_polandia";
 
@@ -57,6 +59,8 @@ export const polandia: CountryData = {
   "kesehatan": polandia_kesehatan,
   "hukum": polandia_hukum,
   "sektor_olahraga": polandia_olahraga,
+  "sektor_komersial": polandia_komersial,
+  "sektor_hiburan": polandia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

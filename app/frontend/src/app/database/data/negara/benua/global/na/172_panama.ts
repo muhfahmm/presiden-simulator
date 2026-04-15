@@ -1,3 +1,5 @@
+import { panama_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/172_panama";
+import { panama_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/172_panama";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { panama_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/172_panama";
 
@@ -57,6 +59,8 @@ export const panama: CountryData = {
   "kesehatan": panama_kesehatan,
   "hukum": panama_hukum,
   "sektor_olahraga": panama_olahraga,
+  "sektor_komersial": panama_komersial,
+  "sektor_hiburan": panama_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

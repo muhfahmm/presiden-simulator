@@ -1,3 +1,5 @@
+import { burundi_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/7_burundi";
+import { burundi_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/7_burundi";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { burundi_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/7_burundi";
 
@@ -57,6 +59,8 @@ export const burundi: CountryData = {
   "kesehatan": burundi_kesehatan,
   "hukum": burundi_hukum,
   "sektor_olahraga": burundi_olahraga,
+  "sektor_komersial": burundi_komersial,
+  "sektor_hiburan": burundi_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

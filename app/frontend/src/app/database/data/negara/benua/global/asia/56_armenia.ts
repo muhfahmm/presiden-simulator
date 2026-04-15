@@ -1,3 +1,5 @@
+import { armenia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/56_armenia";
+import { armenia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/56_armenia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { armenia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/56_armenia";
 
@@ -57,6 +59,8 @@ export const armenia: CountryData = {
   "kesehatan": armenia_kesehatan,
   "hukum": armenia_hukum,
   "sektor_olahraga": armenia_olahraga,
+  "sektor_komersial": armenia_komersial,
+  "sektor_hiburan": armenia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

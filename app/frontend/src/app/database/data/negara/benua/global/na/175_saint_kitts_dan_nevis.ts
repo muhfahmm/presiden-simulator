@@ -1,3 +1,5 @@
+import { saint_kitts_dan_nevis_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/175_saint_kitts_dan_nevis";
+import { saint_kitts_dan_nevis_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/175_saint_kitts_dan_nevis";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { saint_kitts_dan_nevis_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/175_saint_kitts_dan_nevis";
 
@@ -57,6 +59,8 @@ export const saint_kitts_dan_nevis: CountryData = {
   "kesehatan": saint_kitts_dan_nevis_kesehatan,
   "hukum": saint_kitts_dan_nevis_hukum,
   "sektor_olahraga": saint_kitts_dan_nevis_olahraga,
+  "sektor_komersial": saint_kitts_dan_nevis_komersial,
+  "sektor_hiburan": saint_kitts_dan_nevis_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

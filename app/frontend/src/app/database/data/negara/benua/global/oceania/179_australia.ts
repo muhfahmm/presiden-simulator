@@ -1,3 +1,5 @@
+import { australia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/179_australia";
+import { australia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/179_australia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { australia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/179_australia";
 
@@ -57,6 +59,8 @@ export const australia: CountryData = {
   "kesehatan": australia_kesehatan,
   "hukum": australia_hukum,
   "sektor_olahraga": australia_olahraga,
+  "sektor_komersial": australia_komersial,
+  "sektor_hiburan": australia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

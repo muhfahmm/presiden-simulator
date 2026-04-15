@@ -1,3 +1,5 @@
+import { kamboja_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/72_kamboja";
+import { kamboja_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/72_kamboja";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { kamboja_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/72_kamboja";
 
@@ -57,6 +59,8 @@ export const kamboja: CountryData = {
   "kesehatan": kamboja_kesehatan,
   "hukum": kamboja_hukum,
   "sektor_olahraga": kamboja_olahraga,
+  "sektor_komersial": kamboja_komersial,
+  "sektor_hiburan": kamboja_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

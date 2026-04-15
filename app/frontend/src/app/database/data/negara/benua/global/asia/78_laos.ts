@@ -1,3 +1,5 @@
+import { laos_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/78_laos";
+import { laos_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/78_laos";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { laos_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/78_laos";
 
@@ -57,6 +59,8 @@ export const laos: CountryData = {
   "kesehatan": laos_kesehatan,
   "hukum": laos_hukum,
   "sektor_olahraga": laos_olahraga,
+  "sektor_komersial": laos_komersial,
+  "sektor_hiburan": laos_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

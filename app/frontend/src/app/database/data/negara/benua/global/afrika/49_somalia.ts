@@ -1,3 +1,5 @@
+import { somalia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/49_somalia";
+import { somalia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/49_somalia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { somalia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/49_somalia";
 
@@ -57,6 +59,8 @@ export const somalia: CountryData = {
   "kesehatan": somalia_kesehatan,
   "hukum": somalia_hukum,
   "sektor_olahraga": somalia_olahraga,
+  "sektor_komersial": somalia_komersial,
+  "sektor_hiburan": somalia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

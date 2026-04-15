@@ -1,3 +1,5 @@
+import { jamaika_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/167_jamaika";
+import { jamaika_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/167_jamaika";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { jamaika_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/167_jamaika";
 
@@ -57,6 +59,8 @@ export const jamaika: CountryData = {
   "kesehatan": jamaika_kesehatan,
   "hukum": jamaika_hukum,
   "sektor_olahraga": jamaika_olahraga,
+  "sektor_komersial": jamaika_komersial,
+  "sektor_hiburan": jamaika_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

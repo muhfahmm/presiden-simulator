@@ -1,3 +1,5 @@
+import { mozambik_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/32_mozambik";
+import { mozambik_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/32_mozambik";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { mozambik_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/32_mozambik";
 
@@ -57,6 +59,8 @@ export const mozambik: CountryData = {
   "kesehatan": mozambik_kesehatan,
   "hukum": mozambik_hukum,
   "sektor_olahraga": mozambik_olahraga,
+  "sektor_komersial": mozambik_komersial,
+  "sektor_hiburan": mozambik_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

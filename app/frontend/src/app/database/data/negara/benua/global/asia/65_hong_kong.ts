@@ -1,3 +1,5 @@
+import { hong_kong_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/65_hong_kong";
+import { hong_kong_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/65_hong_kong";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { hong_kong_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/65_hong_kong";
 
@@ -57,6 +59,8 @@ export const hong_kong: CountryData = {
   "kesehatan": hong_kong_kesehatan,
   "hukum": hong_kong_hukum,
   "sektor_olahraga": hong_kong_olahraga,
+  "sektor_komersial": hong_kong_komersial,
+  "sektor_hiburan": hong_kong_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

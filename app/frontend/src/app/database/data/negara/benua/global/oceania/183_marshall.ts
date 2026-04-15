@@ -1,3 +1,5 @@
+import { marshall_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/183_marshall";
+import { marshall_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/183_marshall";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { marshall_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/183_marshall";
 
@@ -57,6 +59,8 @@ export const marshall: CountryData = {
   "kesehatan": marshall_kesehatan,
   "hukum": marshall_hukum,
   "sektor_olahraga": marshall_olahraga,
+  "sektor_komersial": marshall_komersial,
+  "sektor_hiburan": marshall_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

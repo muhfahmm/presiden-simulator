@@ -1,3 +1,5 @@
+import { eritrea_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/10_eritrea";
+import { eritrea_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/10_eritrea";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { eritrea_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/10_eritrea";
 
@@ -57,6 +59,8 @@ export const eritrea: CountryData = {
   "kesehatan": eritrea_kesehatan,
   "hukum": eritrea_hukum,
   "sektor_olahraga": eritrea_olahraga,
+  "sektor_komersial": eritrea_komersial,
+  "sektor_hiburan": eritrea_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

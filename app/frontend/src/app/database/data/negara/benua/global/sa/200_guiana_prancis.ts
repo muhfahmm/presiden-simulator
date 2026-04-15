@@ -1,3 +1,5 @@
+import { guiana_prancis_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/sa/200_guiana_prancis";
+import { guiana_prancis_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/sa/200_guiana_prancis";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { guiana_prancis_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/200_guiana_prancis";
 
@@ -57,6 +59,8 @@ export const guiana_prancis: CountryData = {
   "kesehatan": guiana_prancis_kesehatan,
   "hukum": guiana_prancis_hukum,
   "sektor_olahraga": guiana_prancis_olahraga,
+  "sektor_komersial": guiana_prancis_komersial,
+  "sektor_hiburan": guiana_prancis_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

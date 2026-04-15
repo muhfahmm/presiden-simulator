@@ -1,3 +1,5 @@
+import { republik_rumania_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/138_republik_rumania";
+import { republik_rumania_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/138_republik_rumania";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { republik_rumania_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/138_republik_rumania";
 
@@ -57,6 +59,8 @@ export const republik_rumania: CountryData = {
   "kesehatan": republik_rumania_kesehatan,
   "hukum": republik_rumania_hukum,
   "sektor_olahraga": republik_rumania_olahraga,
+  "sektor_komersial": republik_rumania_komersial,
+  "sektor_hiburan": republik_rumania_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

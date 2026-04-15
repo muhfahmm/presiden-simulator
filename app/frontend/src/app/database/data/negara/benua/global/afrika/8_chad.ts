@@ -1,3 +1,5 @@
+import { chad_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/8_chad";
+import { chad_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/8_chad";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { chad_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/8_chad";
 
@@ -57,6 +59,8 @@ export const chad: CountryData = {
   "kesehatan": chad_kesehatan,
   "hukum": chad_hukum,
   "sektor_olahraga": chad_olahraga,
+  "sektor_komersial": chad_komersial,
+  "sektor_hiburan": chad_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

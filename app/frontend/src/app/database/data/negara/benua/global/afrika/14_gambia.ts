@@ -1,3 +1,5 @@
+import { gambia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/14_gambia";
+import { gambia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/14_gambia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { gambia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/14_gambia";
 
@@ -57,6 +59,8 @@ export const gambia: CountryData = {
   "kesehatan": gambia_kesehatan,
   "hukum": gambia_hukum,
   "sektor_olahraga": gambia_olahraga,
+  "sektor_komersial": gambia_komersial,
+  "sektor_hiburan": gambia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

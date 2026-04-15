@@ -1,3 +1,5 @@
+import { india_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/66_india";
+import { india_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/66_india";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { india_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/66_india";
 
@@ -57,6 +59,8 @@ export const india: CountryData = {
   "kesehatan": india_kesehatan,
   "hukum": india_hukum,
   "sektor_olahraga": india_olahraga,
+  "sektor_komersial": india_komersial,
+  "sektor_hiburan": india_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

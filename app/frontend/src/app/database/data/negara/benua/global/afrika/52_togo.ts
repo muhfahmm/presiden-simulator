@@ -1,3 +1,5 @@
+import { togo_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/52_togo";
+import { togo_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/52_togo";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { togo_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/52_togo";
 
@@ -57,6 +59,8 @@ export const togo: CountryData = {
   "kesehatan": togo_kesehatan,
   "hukum": togo_hukum,
   "sektor_olahraga": togo_olahraga,
+  "sektor_komersial": togo_komersial,
+  "sektor_hiburan": togo_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

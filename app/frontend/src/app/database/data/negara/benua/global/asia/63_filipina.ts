@@ -1,3 +1,5 @@
+import { filipina_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/63_filipina";
+import { filipina_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/63_filipina";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { filipina_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/63_filipina";
 
@@ -57,6 +59,8 @@ export const filipina: CountryData = {
   "kesehatan": filipina_kesehatan,
   "hukum": filipina_hukum,
   "sektor_olahraga": filipina_olahraga,
+  "sektor_komersial": filipina_komersial,
+  "sektor_hiburan": filipina_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

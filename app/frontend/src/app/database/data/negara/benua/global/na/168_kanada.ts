@@ -1,3 +1,5 @@
+import { kanada_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/168_kanada";
+import { kanada_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/168_kanada";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { kanada_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/168_kanada";
 
@@ -57,6 +59,8 @@ export const kanada: CountryData = {
   "kesehatan": kanada_kesehatan,
   "hukum": kanada_hukum,
   "sektor_olahraga": kanada_olahraga,
+  "sektor_komersial": kanada_komersial,
+  "sektor_hiburan": kanada_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

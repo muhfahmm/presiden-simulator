@@ -1,3 +1,5 @@
+import { azerbaijan_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/57_azerbaijan";
+import { azerbaijan_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/57_azerbaijan";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { azerbaijan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/57_azerbaijan";
 
@@ -57,6 +59,8 @@ export const azerbaijan: CountryData = {
   "kesehatan": azerbaijan_kesehatan,
   "hukum": azerbaijan_hukum,
   "sektor_olahraga": azerbaijan_olahraga,
+  "sektor_komersial": azerbaijan_komersial,
+  "sektor_hiburan": azerbaijan_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

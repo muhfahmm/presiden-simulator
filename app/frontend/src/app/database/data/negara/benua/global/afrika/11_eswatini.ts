@@ -1,3 +1,5 @@
+import { eswatini_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/11_eswatini";
+import { eswatini_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/11_eswatini";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { eswatini_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/11_eswatini";
 
@@ -57,6 +59,8 @@ export const eswatini: CountryData = {
   "kesehatan": eswatini_kesehatan,
   "hukum": eswatini_hukum,
   "sektor_olahraga": eswatini_olahraga,
+  "sektor_komersial": eswatini_komersial,
+  "sektor_hiburan": eswatini_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

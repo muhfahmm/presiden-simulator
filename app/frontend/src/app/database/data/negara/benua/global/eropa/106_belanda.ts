@@ -1,3 +1,5 @@
+import { belanda_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/106_belanda";
+import { belanda_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/106_belanda";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { belanda_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/106_belanda";
 
@@ -57,6 +59,8 @@ export const belanda: CountryData = {
   "kesehatan": belanda_kesehatan,
   "hukum": belanda_hukum,
   "sektor_olahraga": belanda_olahraga,
+  "sektor_komersial": belanda_komersial,
+  "sektor_hiburan": belanda_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

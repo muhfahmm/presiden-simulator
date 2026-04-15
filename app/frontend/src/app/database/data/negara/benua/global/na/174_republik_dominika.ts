@@ -1,3 +1,5 @@
+import { republik_dominika_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/174_republik_dominika";
+import { republik_dominika_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/174_republik_dominika";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { republik_dominika_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/174_republik_dominika";
 
@@ -57,6 +59,8 @@ export const republik_dominika: CountryData = {
   "kesehatan": republik_dominika_kesehatan,
   "hukum": republik_dominika_hukum,
   "sektor_olahraga": republik_dominika_olahraga,
+  "sektor_komersial": republik_dominika_komersial,
+  "sektor_hiburan": republik_dominika_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

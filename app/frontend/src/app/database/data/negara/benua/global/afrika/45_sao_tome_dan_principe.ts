@@ -1,3 +1,5 @@
+import { sao_tome_dan_principe_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/45_sao_tome_dan_principe";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { sao_tome_dan_principe_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/45_sao_tome_dan_principe";
 
@@ -57,6 +59,8 @@ export const sao_tome_dan_principe: CountryData = {
   "kesehatan": sao_tome_dan_principe_kesehatan,
   "hukum": sao_tome_dan_principe_hukum,
   "sektor_olahraga": sao_tome_dan_principe_olahraga,
+  "sektor_komersial": sao_tome_dan_principe_komersial,
+  "sektor_hiburan": sao_tome_dan_principe_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

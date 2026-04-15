@@ -1,3 +1,5 @@
+import { aljazair_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/2_aljazair";
+import { aljazair_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/2_aljazair";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { aljazair_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/2_aljazair";
 
@@ -57,6 +59,8 @@ export const aljazair: CountryData = {
   "kesehatan": aljazair_kesehatan,
   "hukum": aljazair_hukum,
   "sektor_olahraga": aljazair_olahraga,
+  "sektor_komersial": aljazair_komersial,
+  "sektor_hiburan": aljazair_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

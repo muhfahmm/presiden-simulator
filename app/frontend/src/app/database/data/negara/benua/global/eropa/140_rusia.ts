@@ -1,3 +1,5 @@
+import { rusia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/140_rusia";
+import { rusia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/140_rusia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { rusia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/140_rusia";
 
@@ -57,6 +59,8 @@ export const rusia: CountryData = {
   "kesehatan": rusia_kesehatan,
   "hukum": rusia_hukum,
   "sektor_olahraga": rusia_olahraga,
+  "sektor_komersial": rusia_komersial,
+  "sektor_hiburan": rusia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

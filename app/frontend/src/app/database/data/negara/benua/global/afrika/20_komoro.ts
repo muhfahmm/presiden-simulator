@@ -1,3 +1,5 @@
+import { komoro_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/20_komoro";
+import { komoro_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/20_komoro";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { komoro_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/20_komoro";
 
@@ -57,6 +59,8 @@ export const komoro: CountryData = {
   "kesehatan": komoro_kesehatan,
   "hukum": komoro_hukum,
   "sektor_olahraga": komoro_olahraga,
+  "sektor_komersial": komoro_komersial,
+  "sektor_hiburan": komoro_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { el_salvador_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/161_el_salvador";
+import { el_salvador_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/161_el_salvador";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { el_salvador_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/161_el_salvador";
 
@@ -57,6 +59,8 @@ export const el_salvador: CountryData = {
   "kesehatan": el_salvador_kesehatan,
   "hukum": el_salvador_hukum,
   "sektor_olahraga": el_salvador_olahraga,
+  "sektor_komersial": el_salvador_komersial,
+  "sektor_hiburan": el_salvador_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

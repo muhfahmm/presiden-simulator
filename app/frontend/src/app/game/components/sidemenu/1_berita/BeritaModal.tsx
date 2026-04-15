@@ -125,51 +125,150 @@ export default function BeritaModal({ isOpen, onClose, setActiveMenu }: BeritaMo
 
     const smartDictionary = [
       // Detailed Education
-      { keys: ["pendidikan menengah", "smp", "sekolah menengah"], sector: "layanan_publik", card: "3_menengah", slug: "menengah" },
-      { keys: ["pendidikan dasar", "sd", "sekolah dasar"], sector: "layanan_publik", card: "1_dasar", slug: "dasar" },
-      { keys: ["paud", "prasekolah", "usia dini"], sector: "layanan_publik", card: "2_prasekolah", slug: "paud" },
-      { keys: ["pendidikan tinggi", "sma", "smk", "sekolah atas"], sector: "layanan_publik", card: "4_tinggi", slug: "tinggi" },
-      { keys: ["universitas", "kampus", "perguruan tinggi"], sector: "layanan_publik", card: "5_perguruan_tinggi", slug: "perguruan_tinggi" },
+      { keys: ["pendidikan menengah", "smp", "sekolah menengah"], sector: "layanan_publik", card: "menengah", slug: "pendidikan_menengah" },
+      { keys: ["pendidikan dasar", "sd", "sekolah dasar"], sector: "layanan_publik", card: "dasar", slug: "pendidikan_dasar" },
+      { keys: ["paud", "prasekolah", "usia dini"], sector: "layanan_publik", card: "prasekolah", slug: "pendidikan_anak_usia_dini" },
+      { keys: ["pendidikan tinggi", "sma", "smk", "sekolah atas", "pendidikan lanjutan"], sector: "layanan_publik", card: "lanjutan", slug: "pendidikan_lanjutan" },
+      { keys: ["universitas", "kampus", "perguruan tinggi"], sector: "layanan_publik", card: "universitas", slug: "universitas" },
       
       // Detailed Sports & Leisure
-      { keys: ["e-sports", "esports", "arena e-sports"], sector: "layanan_publik", card: "arena_esports", slug: "arena_esports" },
-      { keys: ["stadiun", "lapangan bola", "sepak bola"], sector: "layanan_publik", card: "stadion_nasional", slug: "stadion_nasional" },
+      { keys: ["e-sports", "esports", "arena e-sports"], sector: "layanan_publik", card: "esports", slug: "esports" },
+      { keys: ["stadiun", "lapangan bola", "sepak bola", "stadion nasional"], sector: "layanan_publik", card: "stadion", slug: "stadion_nasional" },
+      { keys: ["stadion internasional", "sirkuit", "akuatik"], sector: "layanan_publik", card: "stadion_internasional", slug: "stadion_internasional" },
+      
+      // Commercial & Retail
+      { keys: ["mall", "perbelanjaan", "pusat belanja"], sector: "layanan_publik", card: "pusat_belanja", slug: "pusat_belanja" },
+      { keys: ["hotel", "resort", "penginapan"], sector: "layanan_publik", card: "hotel", slug: "hotel" },
+      { keys: ["pusat grosir", "tekstil", "grosir tekstil"], sector: "layanan_publik", card: "pusat_grosir_tekstil", slug: "pusat_grosir_tekstil" },
+      
+      // Entertainment & Arts
+      { keys: ["bioskop", "cinema", "layar lebar"], sector: "layanan_publik", card: "bioskop", slug: "bioskop" },
+      { keys: ["teater", "seni pertunjukan", "gedung seni"], sector: "layanan_publik", card: "gedung_teater", slug: "gedung_teater" },
       
       // Residential
       { keys: ["mansion", "mewah", "eksklusif"], sector: "hunian_sosial", card: "mansion", slug: "mansion" },
       { keys: ["rumah subsidi", "subsidi", "terjangkau"], sector: "hunian_sosial", card: "rumah_subsidi", slug: "rumah_subsidi" },
       { keys: ["apartemen", "vertikal", "high-rise", "urban"], sector: "hunian_sosial", card: "apartemen", slug: "apartemen" },
 
-      // Infrastructure
-      { keys: ["jembatan", "jalan", "tol", "infrastruktur", "logistik", "pelabuhan", "bandara"], sector: "layanan_publik", card: "infrastruktur", slug: "infrastruktur" },
-      
+      // Infrastructure & Logistics
+      { keys: ["jalan raya", "tol", "jalan tol", "jalan"], sector: "layanan_publik", card: "jalan_raya", slug: "jalan_raya" },
+      { keys: ["pelabuhan laut", "pelabuhan", "dermaga"], sector: "layanan_publik", card: "pelabuhan", slug: "pelabuhan" },
+      { keys: ["bandara", "pesawat", "penerbangan", "lapangan terbang"], sector: "layanan_publik", card: "bandara", slug: "bandara" },
+      { keys: ["stasiun kereta", "jalur kereta", "kereta api"], sector: "layanan_publik", card: "stasiun_kereta_api", slug: "stasiun_kereta_api" },
+      { keys: ["kereta bawah tanah", "subway", "krl bawah"], sector: "layanan_publik", card: "kereta_bawah_tanah", slug: "kereta_bawah_tanah" },
+      { keys: ["terminal bus", "bus", "halte"], sector: "layanan_publik", card: "terminal_bus", slug: "terminal_bus" },
+      { keys: ["jalur sepeda", "sepeda"], sector: "layanan_publik", card: "jalur_sepeda", slug: "jalur_sepeda" },
+      { keys: ["helipad", "helikopter"], sector: "layanan_publik", card: "helipad", slug: "helipad" },
+      { keys: ["infrastruktur", "logistik", "jembatan"], sector: "layanan_publik", card: "infrastruktur", slug: "infrastruktur" }, // Fallback      
       // Generic Healthcare
-      { keys: ["rumah sakit", "klinik", "kesehatan", "medis"], sector: "layanan_publik", card: "kesehatan", slug: "kesehatan" },
+      { keys: ["rumah sakit daerah", "rsud", "rumah sakit kecil"], sector: "layanan_publik", card: "rumah_sakit_kecil", slug: "rumah_sakit_daerah" },
+      { keys: ["rumah sakit pusat", "rsup", "rumah sakit besar", "rumah sakit umum"], sector: "layanan_publik", card: "rumah_sakit_besar", slug: "rumah_sakit_pusat" },
+      { keys: ["diagnostik", "laboratorium medik", "lab medik"], sector: "layanan_publik", card: "pusat_diagnostik", slug: "laboratorium_medik" },
+      { keys: ["rumah sakit", "klinik", "kesehatan", "medis"], sector: "layanan_publik", card: "rumah_sakit_besar", slug: "rumah_sakit_pusat" },
       
       // Security & Law
-      { keys: ["hukum", "keamanan", "polisi", "pengadilan"], sector: "layanan_publik", card: "hukum", slug: "hukum" },
+      { keys: ["hukum", "bantuan hukum", "legal aid"], sector: "layanan_publik", card: "pusat_bantuan_hukum", slug: "pusat_bantuan_hukum" },
+      { keys: ["pengadilan", "mahkamah", "hakim"], sector: "layanan_publik", card: "pengadilan", slug: "pengadilan" },
+      { keys: ["kejaksaan", "jaksa"], sector: "layanan_publik", card: "kejaksaan", slug: "kejaksaan" },
+      { keys: ["keamanan", "polisi", "pos polisi"], sector: "layanan_publik", card: "pos_polisi", slug: "pos_polisi" },
       
-      // Production & Extraction
-      { keys: ["semen", "beton"], sector: "produksi", card: "5_pabrik_semen", slug: "pabrik_semen" },
-      { keys: ["baja", "besi", "smelter"], sector: "produksi", card: "4_smelter", slug: "smelter" },
-      { keys: ["kayu", "sawmill"], sector: "produksi", card: "6_penggergajian_kayu", slug: "penggergajian_kayu" },
-      { keys: ["nuklir", "pltn", "pembangkit listrik"], sector: "produksi", card: "1_pembangkit_listrik_tenaga_nuklir", slug: "pltn" },
-      { keys: ["garam", "tambang garam"], sector: "produksi", card: "6_garam", slug: "garam" },
-      { keys: ["uranium", "tambang uranium"], sector: "produksi", card: "1_uranium", slug: "uranium" },
-      { keys: ["minyak bumi", "kilang minyak", "pumping station"], sector: "produksi", card: "4_minyak_bumi", slug: "minyak_bumi" },
-      { keys: ["gas alam", "kilang gas"], sector: "produksi", card: "5_gas_alam", slug: "gas_alam" },
-      { keys: ["batu bara", "tambang batu bara"], sector: "produksi", card: "3_batu_bara", slug: "batu_bara" },
-      { keys: ["nikel", "feronikel"], sector: "produksi", card: "7_nikel", slug: "nikel" },
-      { keys: ["tembaga"], sector: "produksi", card: "9_tembaga", slug: "tembaga" },
-      { keys: ["emas"], sector: "produksi", card: "emas", slug: "emas" },
-      { keys: ["litium", "lithium"], sector: "produksi", card: "8_litium", slug: "litium" },
+      // AGRIKULTUR (Sector: Produksi)
+      { keys: ["padi", "beras", "sawah"], sector: "produksi", card: "padi", slug: "pertanian_padi" },
+      { keys: ["gandum", "sereal"], sector: "produksi", card: "gandum", slug: "pertanian_gandum" },
+      { keys: ["jagung"], sector: "produksi", card: "jagung", slug: "pertanian_jagung" },
+      { keys: ["umbi", "singkong", "kentang"], sector: "produksi", card: "umbi", slug: "pertanian_umbi" },
+      { keys: ["kedelai", "tempe", "tahu"], sector: "produksi", card: "kedelai", slug: "pertanian_kedelai" },
+      { keys: ["sawit", "kelapa sawit"], sector: "produksi", card: "kelapa_sawit", slug: "pertanian_kelapa_sawit" },
+      { keys: ["tebu"], sector: "produksi", card: "tebu", slug: "pertanian_tebu" },
+      { keys: ["teh"], sector: "produksi", card: "teh", slug: "pertanian_teh" },
+      { keys: ["kopi"], sector: "produksi", card: "kopi", slug: "pertanian_kopi" },
+      { keys: ["kakao", "cokelat"], sector: "produksi", card: "kakao", slug: "pertanian_kakao" },
+      { keys: ["karet"], sector: "produksi", card: "karet", slug: "pertanian_karet" },
+      { keys: ["kapas"], sector: "produksi", card: "kapas", slug: "pertanian_kapas" },
+      { keys: ["tembakau", "rokok"], sector: "produksi", card: "tembakau", slug: "pertanian_tembakau" },
+      { keys: ["sayur", "sayuran", "kebun"], sector: "produksi", card: "sayur", slug: "pertanian_sayur" },
+
+      // PETERNANKAN (Sector: Produksi)
+      { keys: ["ayam", "unggas", "telur"], sector: "produksi", card: "ayam_unggas", slug: "peternakan_ayam_unggas" },
+      { keys: ["sapi perah", "produksi susu"], sector: "produksi", card: "sapi_perah", slug: "peternakan_sapi_perah" },
+      { keys: ["sapi potong", "daging sapi"], sector: "produksi", card: "sapi_potong", slug: "peternakan_sapi_potong" },
+      { keys: ["kambing", "domba", "daging kambing"], sector: "produksi", card: "domba_kambing", slug: "peternakan_domba_kambing" },
+
+      // OLAHAN PANGAN (Sector: Pangan)
+      { keys: ["air mineral", "air minum"], sector: "pangan", card: "air_mineral", slug: "pabrik_air_mineral" },
+      { keys: ["pabrik gula"], sector: "pangan", card: "gula", slug: "pabrik_gula" },
+      { keys: ["roti", "bakery"], sector: "pangan", card: "roti", slug: "pabrik_roti" },
+      { keys: ["mie instan", "ramen"], sector: "pangan", card: "mie_instan", slug: "pabrik_mie_instan" },
+      { keys: ["minyak goreng"], sector: "pangan", card: "minyak_goreng", slug: "pabrik_minyak_goreng" },
+      { keys: ["pengolahan daging", "sosis", "kornet"], sector: "pangan", card: "pengolahan_daging", slug: "pabrik_pengolahan_daging" },
+      { keys: ["pengolahan susu", "yogurt", "keju"], sector: "pangan", card: "susu", slug: "pabrik_susu" },
+      { keys: ["pakan ternak"], sector: "pangan", card: "pakan_ternak", slug: "pabrik_pakan_ternak" },
+      { keys: ["pengalengan ikan", "sarden", "ikan kaleng"], sector: "pangan", card: "ikan_kaleng", slug: "pabrik_ikan_kaleng" },
+
+      // PERIKANAN (Sector: Produksi)
+      { keys: ["udang", "tambak udang"], sector: "produksi", card: "udang", slug: "perikanan_udang" },
+      { keys: ["budidaya ikan", "ikan air tawar"], sector: "produksi", card: "ikan", slug: "perikanan_ikan" },
+      { keys: ["mutiara", "kerang"], sector: "produksi", card: "mutiara", slug: "perikanan_mutiara" },
+
+      // FARMASI (Sector: Produksi)
+      { keys: ["obat", "farmasi", "medis"], sector: "produksi", card: "farmasi", slug: "farmasi_farmasi" },
+
+      // SEKTOR ENERGI (Sector: Produksi)
+      { keys: ["nuklir", "pltn", "pembangkit nuklir"], sector: "produksi", card: "pembangkit_listrik_tenaga_nuklir", slug: "energi_pembangkit_listrik_tenaga_nuklir" },
+      { keys: ["hidroelektrik", "plta", "pembangkit air"], sector: "produksi", card: "pembangkit_listrik_tenaga_air", slug: "energi_pembangkit_listrik_tenaga_air" },
+      { keys: ["surya", "plts", "panel surya"], sector: "produksi", card: "pembangkit_listrik_tenaga_surya", slug: "energi_pembangkit_listrik_tenaga_surya" },
+      { keys: ["uap", "pltu", "pembangkit uap"], sector: "produksi", card: "pembangkit_listrik_tenaga_uap", slug: "energi_pembangkit_listrik_tenaga_uap" },
+      { keys: ["gas alam", "pltg", "pembangkit gas"], sector: "produksi", card: "pembangkit_listrik_tenaga_gas", slug: "energi_pembangkit_listrik_tenaga_gas" },
+      { keys: ["angin", "pltb", "pembangkit angin"], sector: "produksi", card: "pembangkit_listrik_tenaga_angin", slug: "energi_pembangkit_listrik_tenaga_angin" },
+
+      // MINERAL KRITIS & EKSTRAKSI (Sector: Produksi)
+      { keys: ["emas", "tambang emas"], sector: "produksi", card: "emas", slug: "tambang_emas" },
+      { keys: ["uranium", "tambang uranium"], sector: "produksi", card: "uranium", slug: "tambang_uranium" },
+      { keys: ["batu bara", "tambang batu bara"], sector: "produksi", card: "batu_bara", slug: "tambang_batu_bara" },
+      { keys: ["minyak bumi", "kilang minyak", "sumur minyak"], sector: "produksi", card: "minyak_bumi", slug: "tambang_minyak_bumi" },
+      { keys: ["gas alam", "sumur gas"], sector: "produksi", card: "gas_alam", slug: "tambang_gas_alam" },
+      { keys: ["garam", "tambang garam"], sector: "produksi", card: "garam", slug: "tambang_garam" },
+      { keys: ["nikel", "tambang nikel"], sector: "produksi", card: "nikel", slug: "tambang_nikel" },
+      { keys: ["litium", "lithium"], sector: "produksi", card: "litium", slug: "tambang_litium" },
+      { keys: ["tembaga", "tambang tembaga"], sector: "produksi", card: "tembaga", slug: "tambang_tembaga" },
+      { keys: ["aluminium", "tambang aluminium"], sector: "produksi", card: "aluminium", slug: "tambang_aluminium" },
+      { keys: ["tanah jarang", "ltj"], sector: "produksi", card: "logam_tanah_jarang", slug: "tambang_logam_tanah_jarang" },
+      { keys: ["besi", "bijih besi"], sector: "produksi", card: "bijih_besi", slug: "tambang_bijih_besi" },
+
+      // MANUFAKTUR (Sector: Produksi)
+      { keys: ["semikonduktor", "elektronik", "pabrik chip"], sector: "produksi", card: "semikonduktor", slug: "pabrik_semikonduktor" },
+      { keys: ["mobil", "otomotif"], sector: "produksi", card: "mobil", slug: "pabrik_mobil" },
+      { keys: ["sepeda motor", "pabrik motor"], sector: "produksi", card: "sepeda_motor", slug: "pabrik_sepeda_motor" },
+      { keys: ["smelter", "pengolahan logam"], sector: "produksi", card: "smelter", slug: "pabrik_smelter" },
+      { keys: ["semen", "beton"], sector: "produksi", card: "semen_beton", slug: "pabrik_semen_beton" },
+      { keys: ["kayu", "pabrik kayu"], sector: "produksi", card: "kayu", slug: "pabrik_kayu" },
+      { keys: ["pupuk", "pabrik pupuk"], sector: "produksi", card: "pupuk", slug: "pabrik_pupuk" },
+
+      // Defense AI (New Modules)
+      { keys: ["barak militer", "konstruksi barak"], sector: "armada_militer", card: "barak", slug: "barak" },
+      { keys: ["intelijen", "radar", "siber", "mata-mata"], sector: "intelijen", card: "intelijen", slug: "intelijen" },
+      { keys: ["pabrik militer", "produksi senjata", "amunisi", "pabrik amunisi"], sector: "militer", card: "pabrik_amunisi", slug: "produksi_amunisi_militer" },
+      { keys: ["armada darat", "tank", "apc", "artileri"], sector: "armada_militer", card: "darat", slug: "pasukan_darat" },
+      { keys: ["armada laut", "kapal", "selam", "destroyer"], sector: "armada_militer", card: "laut", slug: "pasukan_laut" },
+      { keys: ["armada udara", "jet", "pesawat", "drone", "helikopter"], sector: "armada_militer", card: "udara", slug: "pasukan_udara" },
+      { keys: ["polisi", "keamanan dalam negeri", "patroli"], sector: "armada_polisi", card: "armada_polisi", slug: "kepolisian_nasional" },
+      { keys: ["manajemen pertahanan", "pilar pertahanan", "logistik militer"], sector: "manajemen_pertahanan", card: "manajemen_pertahanan", slug: "manajemen_pertahanan" },
+      
+      // Operasi Strategis
+      { keys: ["operasi siber", "pertahanan siber"], sector: "intelijen", card: "cyber_defense", slug: "operasi_siber" },
+      { keys: ["satelit", "spy satellite"], sector: "intelijen", card: "satelit_spy", slug: "satelit_mata_mata" },
+      { keys: ["radar nasional", "early warning"], sector: "intelijen", card: "radar_nasional", slug: "radar_nasional" },
     ];
 
     let cardSlug = "";
 
     // Priority: Try most specific matches first by checking longer keys first
     for (const entry of smartDictionary) {
-      if (entry.keys.some(k => textToSearch.includes(k))) {
+      if (entry.keys.some(k => {
+        // Use regex for whole-word matching to avoid bug 'kapas' in 'kapasitas'
+        const regex = new RegExp(`\\b${k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+        return regex.test(textToSearch);
+      })) {
         sector = entry.sector;
         cardId = entry.card;
         cardSlug = (entry as any).slug || entry.card.replace(/^\d+_/, '');
@@ -347,7 +446,8 @@ export default function BeritaModal({ isOpen, onClose, setActiveMenu }: BeritaMo
                                     onClick={() => {
                                       onClose();
                                       const countryId = targets.country.name_id.toLowerCase();
-                                      const tab = targets.sector === "produksi" ? "info_strategis" : targets.sector;
+                                      // Standardize to info_strategis tab for all detailed views to prevent URL redundancy
+                                      const tab = "info_strategis";
                                       const subTab = "detail_lengkap";
                                       const sector = targets.sector;
                                       const cardId = targets.cardId;

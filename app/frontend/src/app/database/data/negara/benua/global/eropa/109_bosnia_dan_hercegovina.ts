@@ -1,3 +1,5 @@
+import { bosnia_dan_hercegovina_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/109_bosnia_dan_hercegovina";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { bosnia_dan_hercegovina_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/109_bosnia_dan_hercegovina";
 
@@ -57,6 +59,8 @@ export const bosnia_dan_hercegovina: CountryData = {
   "kesehatan": bosnia_dan_hercegovina_kesehatan,
   "hukum": bosnia_dan_hercegovina_hukum,
   "sektor_olahraga": bosnia_dan_hercegovina_olahraga,
+  "sektor_komersial": bosnia_dan_hercegovina_komersial,
+  "sektor_hiburan": bosnia_dan_hercegovina_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { sudan_selatan_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/50_sudan_selatan";
+import { sudan_selatan_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/50_sudan_selatan";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { sudan_selatan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/50_sudan_selatan";
 
@@ -57,6 +59,8 @@ export const sudan_selatan: CountryData = {
   "kesehatan": sudan_selatan_kesehatan,
   "hukum": sudan_selatan_hukum,
   "sektor_olahraga": sudan_selatan_olahraga,
+  "sektor_komersial": sudan_selatan_komersial,
+  "sektor_hiburan": sudan_selatan_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

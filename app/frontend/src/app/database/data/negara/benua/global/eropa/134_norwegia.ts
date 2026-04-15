@@ -1,3 +1,5 @@
+import { norwegia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/134_norwegia";
+import { norwegia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/134_norwegia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { norwegia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/134_norwegia";
 
@@ -57,6 +59,8 @@ export const norwegia: CountryData = {
   "kesehatan": norwegia_kesehatan,
   "hukum": norwegia_hukum,
   "sektor_olahraga": norwegia_olahraga,
+  "sektor_komersial": norwegia_komersial,
+  "sektor_hiburan": norwegia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

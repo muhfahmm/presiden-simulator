@@ -1,3 +1,5 @@
+import { argentina_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/sa/195_argentina";
+import { argentina_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/sa/195_argentina";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { argentina_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/195_argentina";
 
@@ -57,6 +59,8 @@ export const argentina: CountryData = {
   "kesehatan": argentina_kesehatan,
   "hukum": argentina_hukum,
   "sektor_olahraga": argentina_olahraga,
+  "sektor_komersial": argentina_komersial,
+  "sektor_hiburan": argentina_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

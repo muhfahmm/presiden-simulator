@@ -1,3 +1,5 @@
+import { trinidad_dan_tobago_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/178_trinidad_dan_tobago";
+import { trinidad_dan_tobago_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/178_trinidad_dan_tobago";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { trinidad_dan_tobago_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/178_trinidad_dan_tobago";
 
@@ -57,6 +59,8 @@ export const trinidad_dan_tobago: CountryData = {
   "kesehatan": trinidad_dan_tobago_kesehatan,
   "hukum": trinidad_dan_tobago_hukum,
   "sektor_olahraga": trinidad_dan_tobago_olahraga,
+  "sektor_komersial": trinidad_dan_tobago_komersial,
+  "sektor_hiburan": trinidad_dan_tobago_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

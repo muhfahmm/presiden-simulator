@@ -1,3 +1,5 @@
+import { ethiopia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/12_ethiopia";
+import { ethiopia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/12_ethiopia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { ethiopia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/12_ethiopia";
 
@@ -57,6 +59,8 @@ export const ethiopia: CountryData = {
   "kesehatan": ethiopia_kesehatan,
   "hukum": ethiopia_hukum,
   "sektor_olahraga": ethiopia_olahraga,
+  "sektor_komersial": ethiopia_komersial,
+  "sektor_hiburan": ethiopia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

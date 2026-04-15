@@ -1,3 +1,5 @@
+import { venezuela_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/sa/207_venezuela";
+import { venezuela_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/sa/207_venezuela";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { venezuela_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/207_venezuela";
 
@@ -57,6 +59,8 @@ export const venezuela: CountryData = {
   "kesehatan": venezuela_kesehatan,
   "hukum": venezuela_hukum,
   "sektor_olahraga": venezuela_olahraga,
+  "sektor_komersial": venezuela_komersial,
+  "sektor_hiburan": venezuela_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

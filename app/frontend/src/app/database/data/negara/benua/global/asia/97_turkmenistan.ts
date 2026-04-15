@@ -1,3 +1,5 @@
+import { turkmenistan_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/97_turkmenistan";
+import { turkmenistan_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/97_turkmenistan";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { turkmenistan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/97_turkmenistan";
 
@@ -57,6 +59,8 @@ export const turkmenistan: CountryData = {
   "kesehatan": turkmenistan_kesehatan,
   "hukum": turkmenistan_hukum,
   "sektor_olahraga": turkmenistan_olahraga,
+  "sektor_komersial": turkmenistan_komersial,
+  "sektor_hiburan": turkmenistan_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { swiss_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/147_swiss";
+import { swiss_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/147_swiss";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { swiss_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/147_swiss";
 
@@ -57,6 +59,8 @@ export const swiss: CountryData = {
   "kesehatan": swiss_kesehatan,
   "hukum": swiss_hukum,
   "sektor_olahraga": swiss_olahraga,
+  "sektor_komersial": swiss_komersial,
+  "sektor_hiburan": swiss_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

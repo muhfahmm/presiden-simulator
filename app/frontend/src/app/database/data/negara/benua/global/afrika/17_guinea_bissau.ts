@@ -1,3 +1,5 @@
+import { guinea_bissau_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/17_guinea_bissau";
+import { guinea_bissau_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/17_guinea_bissau";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { guinea_bissau_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/17_guinea_bissau";
 
@@ -57,6 +59,8 @@ export const guinea_bissau: CountryData = {
   "kesehatan": guinea_bissau_kesehatan,
   "hukum": guinea_bissau_hukum,
   "sektor_olahraga": guinea_bissau_olahraga,
+  "sektor_komersial": guinea_bissau_komersial,
+  "sektor_hiburan": guinea_bissau_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

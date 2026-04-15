@@ -1,3 +1,5 @@
+import { tuvalu_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/193_tuvalu";
+import { tuvalu_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/193_tuvalu";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { tuvalu_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/193_tuvalu";
 
@@ -57,6 +59,8 @@ export const tuvalu: CountryData = {
   "kesehatan": tuvalu_kesehatan,
   "hukum": tuvalu_hukum,
   "sektor_olahraga": tuvalu_olahraga,
+  "sektor_komersial": tuvalu_komersial,
+  "sektor_hiburan": tuvalu_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

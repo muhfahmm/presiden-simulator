@@ -1,3 +1,5 @@
+import { liechtenstein_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/126_liechtenstein";
+import { liechtenstein_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/126_liechtenstein";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { liechtenstein_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/126_liechtenstein";
 
@@ -57,6 +59,8 @@ export const liechtenstein: CountryData = {
   "kesehatan": liechtenstein_kesehatan,
   "hukum": liechtenstein_hukum,
   "sektor_olahraga": liechtenstein_olahraga,
+  "sektor_komersial": liechtenstein_komersial,
+  "sektor_hiburan": liechtenstein_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

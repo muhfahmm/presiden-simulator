@@ -1,3 +1,5 @@
+import { pakistan_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/87_pakistan";
+import { pakistan_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/87_pakistan";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { pakistan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/87_pakistan";
 
@@ -57,6 +59,8 @@ export const pakistan: CountryData = {
   "kesehatan": pakistan_kesehatan,
   "hukum": pakistan_hukum,
   "sektor_olahraga": pakistan_olahraga,
+  "sektor_komersial": pakistan_komersial,
+  "sektor_hiburan": pakistan_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { nikaragua_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/171_nikaragua";
+import { nikaragua_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/171_nikaragua";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { nikaragua_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/171_nikaragua";
 
@@ -57,6 +59,8 @@ export const nikaragua: CountryData = {
   "kesehatan": nikaragua_kesehatan,
   "hukum": nikaragua_hukum,
   "sektor_olahraga": nikaragua_olahraga,
+  "sektor_komersial": nikaragua_komersial,
+  "sektor_hiburan": nikaragua_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

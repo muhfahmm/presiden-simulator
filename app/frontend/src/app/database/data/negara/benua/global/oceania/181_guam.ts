@@ -1,3 +1,5 @@
+import { guam_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/181_guam";
+import { guam_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/181_guam";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { guam_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/181_guam";
 
@@ -57,6 +59,8 @@ export const guam: CountryData = {
   "kesehatan": guam_kesehatan,
   "hukum": guam_hukum,
   "sektor_olahraga": guam_olahraga,
+  "sektor_komersial": guam_komersial,
+  "sektor_hiburan": guam_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { ghana_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/15_ghana";
+import { ghana_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/15_ghana";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { ghana_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/15_ghana";
 
@@ -57,6 +59,8 @@ export const ghana: CountryData = {
   "kesehatan": ghana_kesehatan,
   "hukum": ghana_hukum,
   "sektor_olahraga": ghana_olahraga,
+  "sektor_komersial": ghana_komersial,
+  "sektor_hiburan": ghana_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

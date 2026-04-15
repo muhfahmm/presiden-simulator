@@ -1,3 +1,5 @@
+import { irlandia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/118_irlandia";
+import { irlandia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/118_irlandia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { irlandia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/118_irlandia";
 
@@ -57,6 +59,8 @@ export const irlandia: CountryData = {
   "kesehatan": irlandia_kesehatan,
   "hukum": irlandia_hukum,
   "sektor_olahraga": irlandia_olahraga,
+  "sektor_komersial": irlandia_komersial,
+  "sektor_hiburan": irlandia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

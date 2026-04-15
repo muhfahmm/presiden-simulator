@@ -1,3 +1,5 @@
+import { brunei_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/61_brunei";
+import { brunei_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/61_brunei";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { brunei_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/61_brunei";
 
@@ -57,6 +59,8 @@ export const brunei: CountryData = {
   "kesehatan": brunei_kesehatan,
   "hukum": brunei_hukum,
   "sektor_olahraga": brunei_olahraga,
+  "sektor_komersial": brunei_komersial,
+  "sektor_hiburan": brunei_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { moldova_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/131_moldova";
+import { moldova_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/131_moldova";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { moldova_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/131_moldova";
 
@@ -57,6 +59,8 @@ export const moldova: CountryData = {
   "kesehatan": moldova_kesehatan,
   "hukum": moldova_hukum,
   "sektor_olahraga": moldova_olahraga,
+  "sektor_komersial": moldova_komersial,
+  "sektor_hiburan": moldova_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

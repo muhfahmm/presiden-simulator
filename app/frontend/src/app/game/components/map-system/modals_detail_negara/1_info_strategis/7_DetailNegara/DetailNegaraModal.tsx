@@ -6,7 +6,8 @@ import {
   Shield, Swords, Eye, Search, Home, GraduationCap, HeartPulse, 
   Scale, Siren, Landmark, Info, Briefcase, Users2, Users, Cloud, Target,
   Mountain, Gem, Waves, Battery, Box, Cpu, TreePine, Droplets, Flame, Radio, Hammer,
-  Clapperboard, Building2, Archive, TrendingUp, ShieldAlert, TrendingDown
+  Clapperboard, Building2, Archive, TrendingUp, ShieldAlert, TrendingDown,
+  Crosshair, Radar, Ship, Car, Settings
 } from "lucide-react";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { 
@@ -27,6 +28,12 @@ import {
   sosialRate, 
   hunianRate 
 } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
+import { komandoPertahananRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan";
+import { intelijenRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen";
+import { armadaMiliterRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer";
+import { armadaPolisiRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi";
+import { pertahananRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan";
+import { aiDefenseStorage } from "@/app/game/components/AI_logic/6_AI_pertahanan/antarmuka_data_pertahanan/AIDefenseStorage";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { aiPopulationStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
@@ -123,24 +130,47 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
       const cleanActiveCard = activeCard.replace(/^\d+_/, '');
       setHighlitCard(cleanActiveCard);
 
-      const timer = setTimeout(() => {
-        const element = document.getElementById(activeCard) || document.getElementById(cleanActiveCard);
+      // Scroll with multiple attempts to ensure DOM is ready
+      const scroll = () => {
+        const prefixes = [
+          '', 'pertanian_', 'pabrik_', 'tambang_', 'energi_', 'perikanan_', 'farmasi_',
+          'infra_', 'sosial_', 'intel_', 'ops_', 'darat_', 'laut_', 'udara_', 'polisi_', 'tahan_', 'hunian_'
+        ];
+        let element = null;
+        
+        // Try all possible ID combinations
+        for (const p of prefixes) {
+          element = document.getElementById(`${p}${activeCard}`) || document.getElementById(`${p}${cleanActiveCard}`);
+          if (element) break;
+        }
+
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return true;
         }
-      }, 500); 
+        return false;
+      };
 
-      // Remove highlight after 8 seconds
+      // Multiple attempts to handle rendering/tab switching delays
+      let attempts = 0;
+      const scrollInterval = setInterval(() => {
+        attempts++;
+        if (scroll() || attempts > 5) {
+          clearInterval(scrollInterval);
+        }
+      }, 250);
+
+      // Remove highlight after some time
       const clearTimer = setTimeout(() => {
         setHighlitCard(null);
-      }, 8000);
+      }, 10000);
 
       return () => {
-        clearTimeout(timer);
+        clearInterval(scrollInterval);
         clearTimeout(clearTimer);
       };
     }
-  }, [isOpen, activeCard, currentSector]);
+  }, [isOpen, activeCard, currentSector, refreshKey]);
 
   if (!isOpen) return null;
 
@@ -171,11 +201,19 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
     console.log(`[AI UI DEBUG] Malaysia Data:`, { buildingDeltas, queueLength: constructionQueue.length });
   }
 
+  // Defense construction data (AI-driven)
+  const defenseDeltas = aiDefenseStorage.getAllDefenseDeltas(countryEntry.name_en);
+  const defenseQueue = aiDefenseStorage.getQueue(countryEntry.name_en);
+
   const sectors = [
     { id: "produksi", label: "Produksi", icon: Factory },
     { id: "militer", label: "Militer", icon: Shield },
     { id: "layanan_publik", label: "Layanan Publik", icon: Landmark },
     { id: "hunian_sosial", label: "Hunian & Sosial", icon: Home },
+    { id: "intelijen", label: "Intelijen", icon: Eye },
+    { id: "armada_militer", label: "Armada Militer", icon: Crosshair },
+    { id: "armada_polisi", label: "Armada Polisi", icon: Car },
+    { id: "manajemen_pertahanan", label: "Manajemen Pertahanan", icon: Settings },
   ];
 
   return (
@@ -459,6 +497,179 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
             </div>
           )}
 
+          {/* === INTELIJEN TAB === */}
+          {currentSector === "intelijen" && (
+            <div className="space-y-10">
+              <SimpleGridSection
+                title="1. Sistem Intelijen Strategis"
+                data={countryEntry.intelijen}
+                buildingDeltas={{...buildingDeltas, ...defenseDeltas}}
+                constructionQueue={[...(constructionQueue || []), ...defenseQueue]}
+                icon={Eye}
+                color="text-violet-500"
+                handleIconClick={handleIconClick}
+                type="intelijen"
+                highlitCard={highlitCard}
+              />
+              {/* Militer Strategis / Komando */}
+              {(countryEntry as any).militer_strategis && (
+                <div className="bg-zinc-900/30 border border-zinc-800/50 rounded-3xl p-8 space-y-6">
+                  <h3 className="text-lg font-black text-white uppercase tracking-widest italic flex items-center gap-3">
+                    <div className="w-1.5 h-6 bg-violet-500 rounded-full" />
+                    2. Komando Strategis & Operasi
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {(() => {
+                      const strategis = (countryEntry as any).militer_strategis;
+                      const items = [
+                        { key: "waktu_respon", label: "Waktu Respon Nasional", value: strategis?.waktu_respon, unit: "Menit", color: "text-emerald-500" },
+                        { key: "intelijen", label: "Kapasitas Intelijen", value: strategis?.intelijen, unit: "Level", color: "text-violet-500" },
+                        { key: "status_nuklir", label: "Status Program Nuklir", value: strategis?.status_nuklir ? "AKTIF" : "NONAKTIF", unit: "", color: strategis?.status_nuklir ? "text-red-500" : "text-zinc-500" },
+                      ];
+                      return items.map(item => (
+                        <div key={item.key} className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl">
+                          <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">{item.label}</p>
+                          <p className={`text-xl font-black ${item.color}`}>
+                            {typeof item.value === 'number' ? item.value.toLocaleString('id-ID') : item.value}
+                            {item.unit && <span className="text-xs opacity-50 ml-1">{item.unit}</span>}
+                          </p>
+                        </div>
+                      ));
+                    })()}
+                  </div>
+                  {/* Operasi Strategis */}
+                  {(countryEntry as any).militer_strategis?.operasi_strategis && (
+                    <>
+                      <h4 className="text-sm font-black text-zinc-400 uppercase tracking-widest mt-4">Operasi Strategis</h4>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                        {Object.entries((countryEntry as any).militer_strategis.operasi_strategis).map(([key, val]: any) => {
+                          const elementId = `ops_${key}`;
+                          const isHighlit = elementId === highlitCard || key === highlitCard;
+                          return (
+                            <div 
+                              id={elementId}
+                              key={key} 
+                              className={`bg-zinc-950/60 border p-4 rounded-xl transition-all duration-500 relative ${
+                                isHighlit 
+                                  ? 'border-amber-500 shadow-[0_0_20px_rgba(245,158,11,0.4)] ring-2 ring-amber-500/30' 
+                                  : 'border-zinc-800/60'
+                              }`}
+                            >
+                              {isHighlit && (
+                                <div className="absolute inset-0 rounded-xl border-2 border-amber-500 animate-pulse pointer-events-none" />
+                              )}
+                              <p className="text-[9px] font-black tracking-widest text-zinc-500 uppercase mb-1">{key.replace(/_/g, ' ')}</p>
+                              <p className="text-lg font-black text-white">{val}</p>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* === ARMADA MILITER TAB === */}
+          {currentSector === "armada_militer" && (
+            <div className="space-y-10">
+              {(() => {
+                const armada = (countryEntry as any).armada_militer;
+                if (!armada) return <p className="text-zinc-500 italic">Data armada tidak tersedia.</p>;
+
+                const branches = [
+                  { key: "darat", label: "Armada Darat", color: "text-amber-500", icon: Shield, data: armada.darat },
+                  { key: "laut", label: "Armada Laut", color: "text-cyan-500", icon: Ship, data: armada.laut },
+                  { key: "udara", label: "Armada Udara", color: "text-sky-500", icon: Radar, data: armada.udara },
+                ];
+
+                return (
+                  <>
+                    {/* Barak — Top Level */}
+                    {(() => {
+                      const isBarakHighlit = highlitCard === 'barak';
+                      return (
+                        <div 
+                          id="barak" 
+                          className={`bg-zinc-900/30 border p-8 rounded-3xl transition-all duration-500 relative ${
+                            isBarakHighlit 
+                              ? 'border-amber-500 shadow-[0_0_25px_rgba(245,158,11,0.5)] ring-2 ring-amber-500/50 scale-[1.02] z-50 bg-amber-500/10' 
+                              : 'border-zinc-800/50'
+                          }`}
+                        >
+                          {isBarakHighlit && (
+                            <div className="absolute inset-0 rounded-3xl border-2 border-amber-500 animate-pulse pointer-events-none" />
+                          )}
+                          <h3 className="text-lg font-black text-white uppercase tracking-widest italic flex items-center gap-3 mb-4">
+                            <div className="w-1.5 h-6 bg-red-500 rounded-full" />
+                            Barak Militer
+                          </h3>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl">
+                              <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Jumlah Barak</p>
+                              <p className="text-3xl font-black text-white">{(armada.barak || 0) + (defenseDeltas["1_barak"] || 0)}</p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })()}
+
+                    {/* 3 Branches */}
+                    {branches.map(branch => (
+                      <SimpleGridSection
+                        key={branch.key}
+                        title={branch.label}
+                        data={branch.data}
+                        buildingDeltas={{...buildingDeltas, ...defenseDeltas}}
+                        constructionQueue={[...(constructionQueue || []), ...defenseQueue]}
+                        icon={branch.icon}
+                        color={branch.color}
+                        handleIconClick={handleIconClick}
+                        type={`armada_${branch.key}`}
+                        highlitCard={highlitCard}
+                      />
+                    ))}
+                  </>
+                );
+              })()}
+            </div>
+          )}
+
+          {/* === ARMADA POLISI TAB === */}
+          {currentSector === "armada_polisi" && (
+            <div className="space-y-10">
+              <SimpleGridSection
+                title="1. Armada Kepolisian Nasional"
+                data={(countryEntry as any).armada_kepolisian?.armada_polisi || (countryEntry as any).armada_kepolisian}
+                buildingDeltas={{...buildingDeltas, ...defenseDeltas}}
+                constructionQueue={[...(constructionQueue || []), ...defenseQueue]}
+                icon={Car}
+                color="text-blue-500"
+                handleIconClick={handleIconClick}
+                type="polisi"
+                highlitCard={highlitCard}
+              />
+            </div>
+          )}
+
+          {/* === MANAJEMEN PERTAHANAN TAB === */}
+          {currentSector === "manajemen_pertahanan" && (
+            <div className="space-y-10">
+              <SimpleGridSection
+                title="1. Infrastruktur Pertahanan Nasional"
+                data={(countryEntry as any).sektor_pertahanan}
+                buildingDeltas={{...buildingDeltas, ...defenseDeltas}}
+                constructionQueue={[...(constructionQueue || []), ...defenseQueue]}
+                icon={Settings}
+                color="text-teal-500"
+                handleIconClick={handleIconClick}
+                type="pertahanan"
+                highlitCard={highlitCard}
+              />
+            </div>
+          )}
+
           {currentSector === "hunian_sosial" && (
             <div className="space-y-12">
               {(() => {
@@ -540,8 +751,22 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                       const totalDayaTampung = totalUnits * house.capacity;
                       const isNationalShortage = totalNationalHousingCapacity < population;
 
+                      const elementId = `hunian_${house.id}`;
+                      const isHighlit = elementId === highlitCard || house.id === highlitCard;
+
                       return (
-                        <div id={house.id} key={house.id} className="bg-zinc-900/30 border border-zinc-800/50 rounded-[2.5rem] p-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center hover:border-zinc-700/50 transition-all duration-500 group relative overflow-hidden mb-12 last:mb-0">
+                        <div 
+                          id={elementId}
+                          key={house.id} 
+                          className={`bg-zinc-900/30 border p-8 rounded-[32px] transition-all duration-500 relative ${
+                            isHighlit 
+                              ? 'border-amber-500 shadow-[0_0_30px_rgba(245,158,11,0.4)] ring-2 ring-amber-500/50 scale-[1.01] z-10 bg-amber-500/5' 
+                              : 'border-zinc-800/50 hover:bg-zinc-900/40'
+                          }`}
+                        >
+                          {isHighlit && (
+                            <div className="absolute inset-0 rounded-[2.5rem] border-2 border-amber-500 animate-pulse pointer-events-none" />
+                          )}
                           {/* Unit Count */}
                           <div className="lg:col-span-3 flex flex-col items-center justify-center border-r border-zinc-800/50 pr-8">
                             <div 
@@ -797,7 +1022,21 @@ function ProductionSection({ title, items, buildingDeltas, constructionQueue, st
           const [key, baseline] = entry;
           const delta = buildingDeltas[key] || Object.entries(buildingDeltas).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1] || 0;
           const total = Number(baseline || 0) + Number(delta);
-          const isHighlit = key.replace(/^\d+_/, '') === highlitCard;
+          
+          // Smart ID Generation for deep-linking
+          const cleanKey = key.replace(/^\d+_/, '');
+          const elementId = 
+            type === 'agrikultur' ? `pertanian_${cleanKey}` : 
+            type === 'peternakan' ? `peternakan_${cleanKey}` :
+            type === 'pangan' ? `pabrik_${cleanKey}` : 
+            type === 'manufaktur' ? `pabrik_${cleanKey}` : 
+            type === 'militer' ? `pabrik_militer_${cleanKey}` : 
+            type === 'listrik' ? `energi_${cleanKey}` : 
+            type === 'ekstraksi' ? `tambang_${cleanKey}` : 
+            type === 'perikanan' ? `perikanan_${cleanKey}` : 
+            type === 'farmasi' ? `farmasi_${cleanKey}` : 
+            cleanKey;
+          const isHighlit = elementId === highlitCard || cleanKey === highlitCard || key === highlitCard;
           
           if (total <= 0 && baseline === undefined) return null;
 
@@ -805,7 +1044,7 @@ function ProductionSection({ title, items, buildingDeltas, constructionQueue, st
 
           return (
             <div 
-              id={key.replace(/^\d+_/, '')} 
+              id={elementId} 
               key={key} 
               className={`bg-zinc-900/40 border p-4 rounded-2xl flex flex-col gap-3 group transition-all duration-500 relative ${
                 isHighlit 
@@ -877,6 +1116,10 @@ function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, ico
     switch (type) {
       case 'infrastruktur': metadata = infrastrukturRate; break;
       case 'sosial': metadata = sosialRate; break;
+      case 'intelijen': metadata = intelijenRate; break;
+      case 'armada_darat': case 'armada_laut': case 'armada_udara': metadata = armadaMiliterRate; break;
+      case 'polisi': metadata = armadaPolisiRate; break;
+      case 'pertahanan': metadata = pertahananRate; break;
     }
 
     if (metadata) {
@@ -896,6 +1139,10 @@ function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, ico
     switch (type) {
       case 'infrastruktur': metadata = infrastrukturRate; break;
       case 'sosial': metadata = sosialRate; break;
+      case 'intelijen': metadata = intelijenRate; break;
+      case 'armada_darat': case 'armada_laut': case 'armada_udara': metadata = armadaMiliterRate; break;
+      case 'polisi': metadata = armadaPolisiRate; break;
+      case 'pertahanan': metadata = pertahananRate; break;
     }
     if (!metadata) return Object.entries(items);
 
@@ -932,13 +1179,52 @@ function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, ico
           const [key, val] = entry;
           const delta = buildingDeltas[key] || Object.entries(buildingDeltas).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1] || 0;
           const total = (typeof val === 'number' ? val : Number(val?.toString().replace(/\./g, '') || 0)) + Number(delta);
-          const isHighlit = key.replace(/^\d+_/, '') === highlitCard;
+          
+          const cleanKey = key.replace(/^\d+_/, '');
+          const elementId = 
+            type === 'infrastruktur' ? `infra_${cleanKey}` : 
+            type === 'sosial' ? `sosial_${cleanKey}` : 
+            type === 'intelijen' ? `intel_${cleanKey}` : 
+            type === 'armada_darat' ? `darat_${cleanKey}` : 
+            type === 'armada_laut' ? `laut_${cleanKey}` : 
+            type === 'armada_udara' ? `udara_${cleanKey}` : 
+            type === 'polisi' ? `polisi_${cleanKey}` : 
+            type === 'pertahanan' ? `tahan_${cleanKey}` : 
+            cleanKey;
+
+          // Extend highlit card match check to accommodate pure aesthetic slugs mapped back to original IDs
+          const isHighlit = 
+            elementId === highlitCard || 
+            cleanKey === highlitCard || 
+            key === highlitCard || 
+            (cleanKey === 'menengah' && highlitCard === 'pendidikan_menengah') ||
+            (cleanKey === 'dasar' && highlitCard === 'pendidikan_dasar') ||
+            (cleanKey === 'prasekolah' && highlitCard === 'pendidikan_anak_usia_dini') ||
+            (cleanKey === 'lanjutan' && highlitCard === 'pendidikan_lanjutan') ||
+            (cleanKey === 'tinggi' && highlitCard === 'pendidikan_tinggi') ||
+            (cleanKey === 'universitas' && highlitCard === 'universitas') ||
+            (cleanKey === 'rumah_sakit_kecil' && highlitCard === 'rumah_sakit_daerah') ||
+            (cleanKey === 'rumah_sakit_besar' && highlitCard === 'rumah_sakit_pusat') ||
+            (cleanKey === 'pusat_diagnostik' && highlitCard === 'laboratorium_medik') ||
+            (cleanKey === 'stadion' && highlitCard === 'stadion_nasional') ||
+            (cleanKey === 'pusat_latihan' && highlitCard === 'pusat_latihan_olahraga') ||
+            (cleanKey === 'mall' && highlitCard === 'pusat_belanja') ||
+            (cleanKey === 'teater' && (highlitCard === 'gedung_teater' || highlitCard === 'gedung_konser')) ||
+            (cleanKey === 'kejaksaan_court' && (highlitCard === 'pengadilan_tinggi' || highlitCard === 'fasilitas_koreksi')) ||
+            (cleanKey === 'legal_aid' && highlitCard === 'pusat_bantuan_hukum') ||
+            (cleanKey === 'cyber_defense' && highlitCard === 'operasi_siber') ||
+            (cleanKey === 'satelit_spy' && highlitCard === 'satelit_mata_mata') ||
+            (cleanKey === 'pabrik_amunisi' && highlitCard === 'produksi_amunisi_militer') ||
+            (cleanKey === 'darat' && highlitCard === 'pasukan_darat') ||
+            (cleanKey === 'laut' && highlitCard === 'pasukan_laut') ||
+            (cleanKey === 'udara' && highlitCard === 'pasukan_udara') ||
+            (cleanKey === 'armada_polisi' && highlitCard === 'kepolisian_nasional');
           
           if (total <= 0 && val === undefined) return null;
           
           return (
             <div 
-              id={key.replace(/^\d+_/, '')} 
+              id={elementId} 
               key={key} 
               className={`bg-zinc-900/40 border p-4 rounded-2xl flex flex-col gap-3 group transition-all duration-500 relative ${
                 isHighlit 

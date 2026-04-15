@@ -1,3 +1,5 @@
+import { portugal_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/136_portugal";
+import { portugal_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/136_portugal";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { portugal_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/136_portugal";
 
@@ -57,6 +59,8 @@ export const portugal: CountryData = {
   "kesehatan": portugal_kesehatan,
   "hukum": portugal_hukum,
   "sektor_olahraga": portugal_olahraga,
+  "sektor_komersial": portugal_komersial,
+  "sektor_hiburan": portugal_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

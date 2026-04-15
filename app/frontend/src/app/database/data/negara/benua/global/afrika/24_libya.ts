@@ -1,3 +1,5 @@
+import { libya_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/24_libya";
+import { libya_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/24_libya";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { libya_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/24_libya";
 
@@ -57,6 +59,8 @@ export const libya: CountryData = {
   "kesehatan": libya_kesehatan,
   "hukum": libya_hukum,
   "sektor_olahraga": libya_olahraga,
+  "sektor_komersial": libya_komersial,
+  "sektor_hiburan": libya_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

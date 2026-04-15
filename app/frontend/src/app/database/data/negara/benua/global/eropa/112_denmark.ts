@@ -1,3 +1,5 @@
+import { denmark_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/112_denmark";
+import { denmark_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/112_denmark";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { denmark_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/112_denmark";
 
@@ -57,6 +59,8 @@ export const denmark: CountryData = {
   "kesehatan": denmark_kesehatan,
   "hukum": denmark_hukum,
   "sektor_olahraga": denmark_olahraga,
+  "sektor_komersial": denmark_komersial,
+  "sektor_hiburan": denmark_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

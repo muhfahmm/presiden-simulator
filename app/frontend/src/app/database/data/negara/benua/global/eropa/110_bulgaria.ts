@@ -1,3 +1,5 @@
+import { bulgaria_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/110_bulgaria";
+import { bulgaria_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/110_bulgaria";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { bulgaria_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/110_bulgaria";
 
@@ -57,6 +59,8 @@ export const bulgaria: CountryData = {
   "kesehatan": bulgaria_kesehatan,
   "hukum": bulgaria_hukum,
   "sektor_olahraga": bulgaria_olahraga,
+  "sektor_komersial": bulgaria_komersial,
+  "sektor_hiburan": bulgaria_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { hungaria_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/116_hungaria";
+import { hungaria_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/116_hungaria";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { hungaria_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/116_hungaria";
 
@@ -57,6 +59,8 @@ export const hungaria: CountryData = {
   "kesehatan": hungaria_kesehatan,
   "hukum": hungaria_hukum,
   "sektor_olahraga": hungaria_olahraga,
+  "sektor_komersial": hungaria_komersial,
+  "sektor_hiburan": hungaria_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

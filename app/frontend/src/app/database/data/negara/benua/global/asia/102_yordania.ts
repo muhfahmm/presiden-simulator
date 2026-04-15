@@ -1,3 +1,5 @@
+import { yordania_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/102_yordania";
+import { yordania_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/102_yordania";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { yordania_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/102_yordania";
 
@@ -57,6 +59,8 @@ export const yordania: CountryData = {
   "kesehatan": yordania_kesehatan,
   "hukum": yordania_hukum,
   "sektor_olahraga": yordania_olahraga,
+  "sektor_komersial": yordania_komersial,
+  "sektor_hiburan": yordania_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

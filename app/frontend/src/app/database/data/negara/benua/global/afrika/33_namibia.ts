@@ -1,3 +1,5 @@
+import { namibia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/33_namibia";
+import { namibia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/33_namibia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { namibia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/33_namibia";
 
@@ -57,6 +59,8 @@ export const namibia: CountryData = {
   "kesehatan": namibia_kesehatan,
   "hukum": namibia_hukum,
   "sektor_olahraga": namibia_olahraga,
+  "sektor_komersial": namibia_komersial,
+  "sektor_hiburan": namibia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

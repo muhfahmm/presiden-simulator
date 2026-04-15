@@ -1,3 +1,5 @@
+import { selandia_baru_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/190_selandia_baru";
+import { selandia_baru_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/190_selandia_baru";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { selandia_baru_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/190_selandia_baru";
 
@@ -57,6 +59,8 @@ export const selandia_baru: CountryData = {
   "kesehatan": selandia_baru_kesehatan,
   "hukum": selandia_baru_hukum,
   "sektor_olahraga": selandia_baru_olahraga,
+  "sektor_komersial": selandia_baru_komersial,
+  "sektor_hiburan": selandia_baru_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

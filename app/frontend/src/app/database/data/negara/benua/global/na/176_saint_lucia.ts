@@ -1,3 +1,5 @@
+import { saint_lucia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/176_saint_lucia";
+import { saint_lucia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/176_saint_lucia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { saint_lucia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/176_saint_lucia";
 
@@ -57,6 +59,8 @@ export const saint_lucia: CountryData = {
   "kesehatan": saint_lucia_kesehatan,
   "hukum": saint_lucia_hukum,
   "sektor_olahraga": saint_lucia_olahraga,
+  "sektor_komersial": saint_lucia_komersial,
+  "sektor_hiburan": saint_lucia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { kuba_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/169_kuba";
+import { kuba_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/169_kuba";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { kuba_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/169_kuba";
 
@@ -57,6 +59,8 @@ export const kuba: CountryData = {
   "kesehatan": kuba_kesehatan,
   "hukum": kuba_hukum,
   "sektor_olahraga": kuba_olahraga,
+  "sektor_komersial": kuba_komersial,
+  "sektor_hiburan": kuba_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

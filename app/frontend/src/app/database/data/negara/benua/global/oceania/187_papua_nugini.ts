@@ -1,3 +1,5 @@
+import { papua_nugini_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/187_papua_nugini";
+import { papua_nugini_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/187_papua_nugini";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { papua_nugini_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/187_papua_nugini";
 
@@ -57,6 +59,8 @@ export const papua_nugini: CountryData = {
   "kesehatan": papua_nugini_kesehatan,
   "hukum": papua_nugini_hukum,
   "sektor_olahraga": papua_nugini_olahraga,
+  "sektor_komersial": papua_nugini_komersial,
+  "sektor_hiburan": papua_nugini_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

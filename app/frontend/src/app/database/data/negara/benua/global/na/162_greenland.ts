@@ -1,3 +1,5 @@
+import { greenland_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/162_greenland";
+import { greenland_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/162_greenland";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { greenland_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/162_greenland";
 
@@ -57,6 +59,8 @@ export const greenland: CountryData = {
   "kesehatan": greenland_kesehatan,
   "hukum": greenland_hukum,
   "sektor_olahraga": greenland_olahraga,
+  "sektor_komersial": greenland_komersial,
+  "sektor_hiburan": greenland_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

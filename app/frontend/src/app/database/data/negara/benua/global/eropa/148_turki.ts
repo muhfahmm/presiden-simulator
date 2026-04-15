@@ -1,3 +1,5 @@
+import { turki_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/148_turki";
+import { turki_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/148_turki";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { turki_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/148_turki";
 
@@ -57,6 +59,8 @@ export const turki: CountryData = {
   "kesehatan": turki_kesehatan,
   "hukum": turki_hukum,
   "sektor_olahraga": turki_olahraga,
+  "sektor_komersial": turki_komersial,
+  "sektor_hiburan": turki_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

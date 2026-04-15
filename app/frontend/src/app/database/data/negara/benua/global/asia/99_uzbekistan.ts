@@ -1,3 +1,5 @@
+import { uzbekistan_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/99_uzbekistan";
+import { uzbekistan_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/99_uzbekistan";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { uzbekistan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/99_uzbekistan";
 
@@ -57,6 +59,8 @@ export const uzbekistan: CountryData = {
   "kesehatan": uzbekistan_kesehatan,
   "hukum": uzbekistan_hukum,
   "sektor_olahraga": uzbekistan_olahraga,
+  "sektor_komersial": uzbekistan_komersial,
+  "sektor_hiburan": uzbekistan_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

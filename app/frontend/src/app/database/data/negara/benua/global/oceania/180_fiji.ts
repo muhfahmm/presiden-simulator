@@ -1,3 +1,5 @@
+import { fiji_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/180_fiji";
+import { fiji_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/180_fiji";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { fiji_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/180_fiji";
 
@@ -57,6 +59,8 @@ export const fiji: CountryData = {
   "kesehatan": fiji_kesehatan,
   "hukum": fiji_hukum,
   "sektor_olahraga": fiji_olahraga,
+  "sektor_komersial": fiji_komersial,
+  "sektor_hiburan": fiji_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

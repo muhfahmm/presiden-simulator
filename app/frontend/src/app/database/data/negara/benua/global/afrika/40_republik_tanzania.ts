@@ -1,3 +1,5 @@
+import { republik_tanzania_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/40_republik_tanzania";
+import { republik_tanzania_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/40_republik_tanzania";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { republik_tanzania_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/40_republik_tanzania";
 
@@ -57,6 +59,8 @@ export const republik_tanzania: CountryData = {
   "kesehatan": republik_tanzania_kesehatan,
   "hukum": republik_tanzania_hukum,
   "sektor_olahraga": republik_tanzania_olahraga,
+  "sektor_komersial": republik_tanzania_komersial,
+  "sektor_hiburan": republik_tanzania_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

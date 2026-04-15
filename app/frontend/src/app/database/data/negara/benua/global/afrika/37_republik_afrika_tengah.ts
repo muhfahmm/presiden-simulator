@@ -1,3 +1,5 @@
+import { republik_afrika_tengah_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/37_republik_afrika_tengah";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { republik_afrika_tengah_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/37_republik_afrika_tengah";
 
@@ -57,6 +59,8 @@ export const republik_afrika_tengah: CountryData = {
   "kesehatan": republik_afrika_tengah_kesehatan,
   "hukum": republik_afrika_tengah_hukum,
   "sektor_olahraga": republik_afrika_tengah_olahraga,
+  "sektor_komersial": republik_afrika_tengah_komersial,
+  "sektor_hiburan": republik_afrika_tengah_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { mongolia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/83_mongolia";
+import { mongolia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/83_mongolia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { mongolia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/83_mongolia";
 
@@ -57,6 +59,8 @@ export const mongolia: CountryData = {
   "kesehatan": mongolia_kesehatan,
   "hukum": mongolia_hukum,
   "sektor_olahraga": mongolia_olahraga,
+  "sektor_komersial": mongolia_komersial,
+  "sektor_hiburan": mongolia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

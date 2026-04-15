@@ -1,3 +1,5 @@
+import { iran_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/69_iran";
+import { iran_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/69_iran";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { iran_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/69_iran";
 
@@ -57,6 +59,8 @@ export const iran: CountryData = {
   "kesehatan": iran_kesehatan,
   "hukum": iran_hukum,
   "sektor_olahraga": iran_olahraga,
+  "sektor_komersial": iran_komersial,
+  "sektor_hiburan": iran_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

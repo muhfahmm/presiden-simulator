@@ -1,3 +1,5 @@
+import { swedia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/146_swedia";
+import { swedia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/146_swedia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { swedia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/146_swedia";
 
@@ -57,6 +59,8 @@ export const swedia: CountryData = {
   "kesehatan": swedia_kesehatan,
   "hukum": swedia_hukum,
   "sektor_olahraga": swedia_olahraga,
+  "sektor_komersial": swedia_komersial,
+  "sektor_hiburan": swedia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

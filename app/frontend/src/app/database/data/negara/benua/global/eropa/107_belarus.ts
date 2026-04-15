@@ -1,3 +1,5 @@
+import { belarus_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/107_belarus";
+import { belarus_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/107_belarus";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { belarus_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/107_belarus";
 
@@ -57,6 +59,8 @@ export const belarus: CountryData = {
   "kesehatan": belarus_kesehatan,
   "hukum": belarus_hukum,
   "sektor_olahraga": belarus_olahraga,
+  "sektor_komersial": belarus_komersial,
+  "sektor_hiburan": belarus_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

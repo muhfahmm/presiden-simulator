@@ -1,3 +1,5 @@
+import { makedonia_utara_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/129_makedonia_utara";
+import { makedonia_utara_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/129_makedonia_utara";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { makedonia_utara_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/129_makedonia_utara";
 
@@ -57,6 +59,8 @@ export const makedonia_utara: CountryData = {
   "kesehatan": makedonia_utara_kesehatan,
   "hukum": makedonia_utara_hukum,
   "sektor_olahraga": makedonia_utara_olahraga,
+  "sektor_komersial": makedonia_utara_komersial,
+  "sektor_hiburan": makedonia_utara_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

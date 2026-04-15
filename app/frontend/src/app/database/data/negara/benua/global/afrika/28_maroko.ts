@@ -1,3 +1,5 @@
+import { maroko_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/28_maroko";
+import { maroko_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/28_maroko";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { maroko_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/28_maroko";
 
@@ -57,6 +59,8 @@ export const maroko: CountryData = {
   "kesehatan": maroko_kesehatan,
   "hukum": maroko_hukum,
   "sektor_olahraga": maroko_olahraga,
+  "sektor_komersial": maroko_komersial,
+  "sektor_hiburan": maroko_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

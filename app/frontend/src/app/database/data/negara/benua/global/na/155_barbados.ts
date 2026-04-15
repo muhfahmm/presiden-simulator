@@ -1,3 +1,5 @@
+import { barbados_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/155_barbados";
+import { barbados_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/155_barbados";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { barbados_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/155_barbados";
 
@@ -57,6 +59,8 @@ export const barbados: CountryData = {
   "kesehatan": barbados_kesehatan,
   "hukum": barbados_hukum,
   "sektor_olahraga": barbados_olahraga,
+  "sektor_komersial": barbados_komersial,
+  "sektor_hiburan": barbados_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

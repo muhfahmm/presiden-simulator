@@ -1,3 +1,5 @@
+import { yaman_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/101_yaman";
+import { yaman_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/101_yaman";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { yaman_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/101_yaman";
 
@@ -57,6 +59,8 @@ export const yaman: CountryData = {
   "kesehatan": yaman_kesehatan,
   "hukum": yaman_hukum,
   "sektor_olahraga": yaman_olahraga,
+  "sektor_komersial": yaman_komersial,
+  "sektor_hiburan": yaman_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

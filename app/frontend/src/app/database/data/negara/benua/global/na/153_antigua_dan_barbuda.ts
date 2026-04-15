@@ -1,3 +1,5 @@
+import { antigua_dan_barbuda_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/153_antigua_dan_barbuda";
+import { antigua_dan_barbuda_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/153_antigua_dan_barbuda";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { antigua_dan_barbuda_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/153_antigua_dan_barbuda";
 
@@ -57,6 +59,8 @@ export const antigua_dan_barbuda: CountryData = {
   "kesehatan": antigua_dan_barbuda_kesehatan,
   "hukum": antigua_dan_barbuda_hukum,
   "sektor_olahraga": antigua_dan_barbuda_olahraga,
+  "sektor_komersial": antigua_dan_barbuda_komersial,
+  "sektor_hiburan": antigua_dan_barbuda_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

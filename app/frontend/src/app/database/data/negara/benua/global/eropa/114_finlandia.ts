@@ -1,3 +1,5 @@
+import { finlandia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/114_finlandia";
+import { finlandia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/114_finlandia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { finlandia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/114_finlandia";
 
@@ -57,6 +59,8 @@ export const finlandia: CountryData = {
   "kesehatan": finlandia_kesehatan,
   "hukum": finlandia_hukum,
   "sektor_olahraga": finlandia_olahraga,
+  "sektor_komersial": finlandia_komersial,
+  "sektor_hiburan": finlandia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

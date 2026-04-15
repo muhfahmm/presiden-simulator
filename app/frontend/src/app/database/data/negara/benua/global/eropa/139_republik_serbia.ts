@@ -1,3 +1,5 @@
+import { republik_serbia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/139_republik_serbia";
+import { republik_serbia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/139_republik_serbia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { republik_serbia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/139_republik_serbia";
 
@@ -57,6 +59,8 @@ export const republik_serbia: CountryData = {
   "kesehatan": republik_serbia_kesehatan,
   "hukum": republik_serbia_hukum,
   "sektor_olahraga": republik_serbia_olahraga,
+  "sektor_komersial": republik_serbia_komersial,
+  "sektor_hiburan": republik_serbia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

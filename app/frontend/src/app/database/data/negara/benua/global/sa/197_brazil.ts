@@ -1,3 +1,5 @@
+import { brazil_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/sa/197_brazil";
+import { brazil_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/sa/197_brazil";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { brazil_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/197_brazil";
 
@@ -57,6 +59,8 @@ export const brazil: CountryData = {
   "kesehatan": brazil_kesehatan,
   "hukum": brazil_hukum,
   "sektor_olahraga": brazil_olahraga,
+  "sektor_komersial": brazil_komersial,
+  "sektor_hiburan": brazil_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

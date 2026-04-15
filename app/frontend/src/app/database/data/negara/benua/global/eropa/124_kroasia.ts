@@ -1,3 +1,5 @@
+import { kroasia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/124_kroasia";
+import { kroasia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/124_kroasia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { kroasia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/124_kroasia";
 
@@ -57,6 +59,8 @@ export const kroasia: CountryData = {
   "kesehatan": kroasia_kesehatan,
   "hukum": kroasia_hukum,
   "sektor_olahraga": kroasia_olahraga,
+  "sektor_komersial": kroasia_komersial,
+  "sektor_hiburan": kroasia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

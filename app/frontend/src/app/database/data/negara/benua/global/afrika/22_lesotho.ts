@@ -1,3 +1,5 @@
+import { lesotho_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/22_lesotho";
+import { lesotho_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/22_lesotho";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { lesotho_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/22_lesotho";
 
@@ -57,6 +59,8 @@ export const lesotho: CountryData = {
   "kesehatan": lesotho_kesehatan,
   "hukum": lesotho_hukum,
   "sektor_olahraga": lesotho_olahraga,
+  "sektor_komersial": lesotho_komersial,
+  "sektor_hiburan": lesotho_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

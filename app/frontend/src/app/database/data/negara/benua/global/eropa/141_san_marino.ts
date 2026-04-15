@@ -1,3 +1,5 @@
+import { san_marino_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/141_san_marino";
+import { san_marino_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/141_san_marino";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { san_marino_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/141_san_marino";
 
@@ -57,6 +59,8 @@ export const san_marino: CountryData = {
   "kesehatan": san_marino_kesehatan,
   "hukum": san_marino_hukum,
   "sektor_olahraga": san_marino_olahraga,
+  "sektor_komersial": san_marino_komersial,
+  "sektor_hiburan": san_marino_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

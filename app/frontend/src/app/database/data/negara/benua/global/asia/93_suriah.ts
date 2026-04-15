@@ -1,3 +1,5 @@
+import { suriah_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/93_suriah";
+import { suriah_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/93_suriah";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { suriah_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/93_suriah";
 
@@ -57,6 +59,8 @@ export const suriah: CountryData = {
   "kesehatan": suriah_kesehatan,
   "hukum": suriah_hukum,
   "sektor_olahraga": suriah_olahraga,
+  "sektor_komersial": suriah_komersial,
+  "sektor_hiburan": suriah_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

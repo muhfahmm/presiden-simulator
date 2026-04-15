@@ -1,3 +1,5 @@
+import { ekuador_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/sa/199_ekuador";
+import { ekuador_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/sa/199_ekuador";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { ekuador_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/199_ekuador";
 
@@ -57,6 +59,8 @@ export const ekuador: CountryData = {
   "kesehatan": ekuador_kesehatan,
   "hukum": ekuador_hukum,
   "sektor_olahraga": ekuador_olahraga,
+  "sektor_komersial": ekuador_komersial,
+  "sektor_hiburan": ekuador_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { ukraina_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/149_ukraina";
+import { ukraina_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/149_ukraina";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { ukraina_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/149_ukraina";
 
@@ -57,6 +59,8 @@ export const ukraina: CountryData = {
   "kesehatan": ukraina_kesehatan,
   "hukum": ukraina_hukum,
   "sektor_olahraga": ukraina_olahraga,
+  "sektor_komersial": ukraina_komersial,
+  "sektor_hiburan": ukraina_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

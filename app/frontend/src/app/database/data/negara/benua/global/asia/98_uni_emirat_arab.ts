@@ -1,3 +1,5 @@
+import { uni_emirat_arab_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/98_uni_emirat_arab";
+import { uni_emirat_arab_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/98_uni_emirat_arab";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { uni_emirat_arab_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/98_uni_emirat_arab";
 
@@ -57,6 +59,8 @@ export const uni_emirat_arab: CountryData = {
   "kesehatan": uni_emirat_arab_kesehatan,
   "hukum": uni_emirat_arab_hukum,
   "sektor_olahraga": uni_emirat_arab_olahraga,
+  "sektor_komersial": uni_emirat_arab_komersial,
+  "sektor_hiburan": uni_emirat_arab_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { israel_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/70_israel";
+import { israel_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/70_israel";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { israel_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/70_israel";
 
@@ -57,6 +59,8 @@ export const israel: CountryData = {
   "kesehatan": israel_kesehatan,
   "hukum": israel_hukum,
   "sektor_olahraga": israel_olahraga,
+  "sektor_komersial": israel_komersial,
+  "sektor_hiburan": israel_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

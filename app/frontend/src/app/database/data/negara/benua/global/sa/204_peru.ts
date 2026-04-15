@@ -1,3 +1,5 @@
+import { peru_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/sa/204_peru";
+import { peru_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/sa/204_peru";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { peru_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/204_peru";
 
@@ -57,6 +59,8 @@ export const peru: CountryData = {
   "kesehatan": peru_kesehatan,
   "hukum": peru_hukum,
   "sektor_olahraga": peru_olahraga,
+  "sektor_komersial": peru_komersial,
+  "sektor_hiburan": peru_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { madagaskar_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/25_madagaskar";
+import { madagaskar_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/25_madagaskar";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { madagaskar_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/25_madagaskar";
 
@@ -57,6 +59,8 @@ export const madagaskar: CountryData = {
   "kesehatan": madagaskar_kesehatan,
   "hukum": madagaskar_hukum,
   "sektor_olahraga": madagaskar_olahraga,
+  "sektor_komersial": madagaskar_komersial,
+  "sektor_hiburan": madagaskar_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { tahiti_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/191_tahiti";
+import { tahiti_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/191_tahiti";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { tahiti_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/191_tahiti";
 
@@ -57,6 +59,8 @@ export const tahiti: CountryData = {
   "kesehatan": tahiti_kesehatan,
   "hukum": tahiti_hukum,
   "sektor_olahraga": tahiti_olahraga,
+  "sektor_komersial": tahiti_komersial,
+  "sektor_hiburan": tahiti_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

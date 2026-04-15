@@ -1,3 +1,5 @@
+import { republik_demokratik_kongo_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/38_republik_demokratik_kongo";
+import { republik_demokratik_kongo_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/38_republik_demokratik_kongo";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { republik_demokratik_kongo_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/38_republik_demokratik_kongo";
 
@@ -57,6 +59,8 @@ export const republik_demokratik_kongo: CountryData = {
   "kesehatan": republik_demokratik_kongo_kesehatan,
   "hukum": republik_demokratik_kongo_hukum,
   "sektor_olahraga": republik_demokratik_kongo_olahraga,
+  "sektor_komersial": republik_demokratik_kongo_komersial,
+  "sektor_hiburan": republik_demokratik_kongo_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

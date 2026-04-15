@@ -1,3 +1,5 @@
+import { vatikan_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/150_vatikan";
+import { vatikan_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/150_vatikan";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { vatikan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/150_vatikan";
 
@@ -57,6 +59,8 @@ export const vatikan: CountryData = {
   "kesehatan": vatikan_kesehatan,
   "hukum": vatikan_hukum,
   "sektor_olahraga": vatikan_olahraga,
+  "sektor_komersial": vatikan_komersial,
+  "sektor_hiburan": vatikan_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

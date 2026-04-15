@@ -1,3 +1,5 @@
+import { ceko_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/111_ceko";
+import { ceko_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/111_ceko";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { ceko_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/111_ceko";
 
@@ -57,6 +59,8 @@ export const ceko: CountryData = {
   "kesehatan": ceko_kesehatan,
   "hukum": ceko_hukum,
   "sektor_olahraga": ceko_olahraga,
+  "sektor_komersial": ceko_komersial,
+  "sektor_hiburan": ceko_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

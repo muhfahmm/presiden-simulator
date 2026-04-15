@@ -1,3 +1,5 @@
+import { seychelles_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/47_seychelles";
+import { seychelles_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/47_seychelles";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { seychelles_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/47_seychelles";
 
@@ -57,6 +59,8 @@ export const seychelles: CountryData = {
   "kesehatan": seychelles_kesehatan,
   "hukum": seychelles_hukum,
   "sektor_olahraga": seychelles_olahraga,
+  "sektor_komersial": seychelles_komersial,
+  "sektor_hiburan": seychelles_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

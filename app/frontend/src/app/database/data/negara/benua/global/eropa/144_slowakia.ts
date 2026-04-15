@@ -1,3 +1,5 @@
+import { slowakia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/144_slowakia";
+import { slowakia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/144_slowakia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { slowakia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/144_slowakia";
 
@@ -57,6 +59,8 @@ export const slowakia: CountryData = {
   "kesehatan": slowakia_kesehatan,
   "hukum": slowakia_hukum,
   "sektor_olahraga": slowakia_olahraga,
+  "sektor_komersial": slowakia_komersial,
+  "sektor_hiburan": slowakia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

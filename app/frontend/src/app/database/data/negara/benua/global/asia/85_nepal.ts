@@ -1,3 +1,5 @@
+import { nepal_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/85_nepal";
+import { nepal_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/85_nepal";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { nepal_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/85_nepal";
 
@@ -57,6 +59,8 @@ export const nepal: CountryData = {
   "kesehatan": nepal_kesehatan,
   "hukum": nepal_hukum,
   "sektor_olahraga": nepal_olahraga,
+  "sektor_komersial": nepal_komersial,
+  "sektor_hiburan": nepal_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

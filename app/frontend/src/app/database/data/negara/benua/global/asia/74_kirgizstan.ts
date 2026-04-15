@@ -1,3 +1,5 @@
+import { kirgizstan_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/74_kirgizstan";
+import { kirgizstan_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/74_kirgizstan";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { kirgizstan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/74_kirgizstan";
 
@@ -57,6 +59,8 @@ export const kirgizstan: CountryData = {
   "kesehatan": kirgizstan_kesehatan,
   "hukum": kirgizstan_hukum,
   "sektor_olahraga": kirgizstan_olahraga,
+  "sektor_komersial": kirgizstan_komersial,
+  "sektor_hiburan": kirgizstan_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { guyana_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/sa/201_guyana";
+import { guyana_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/sa/201_guyana";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { guyana_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/201_guyana";
 
@@ -57,6 +59,8 @@ export const guyana: CountryData = {
   "kesehatan": guyana_kesehatan,
   "hukum": guyana_hukum,
   "sektor_olahraga": guyana_olahraga,
+  "sektor_komersial": guyana_komersial,
+  "sektor_hiburan": guyana_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

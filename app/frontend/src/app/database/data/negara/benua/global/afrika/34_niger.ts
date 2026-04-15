@@ -1,3 +1,5 @@
+import { niger_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/34_niger";
+import { niger_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/34_niger";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { niger_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/34_niger";
 
@@ -57,6 +59,8 @@ export const niger: CountryData = {
   "kesehatan": niger_kesehatan,
   "hukum": niger_hukum,
   "sektor_olahraga": niger_olahraga,
+  "sektor_komersial": niger_komersial,
+  "sektor_hiburan": niger_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

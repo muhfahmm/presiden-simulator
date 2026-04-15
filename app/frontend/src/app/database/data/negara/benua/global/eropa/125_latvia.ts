@@ -1,3 +1,5 @@
+import { latvia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/125_latvia";
+import { latvia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/125_latvia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { latvia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/125_latvia";
 
@@ -57,6 +59,8 @@ export const latvia: CountryData = {
   "kesehatan": latvia_kesehatan,
   "hukum": latvia_hukum,
   "sektor_olahraga": latvia_olahraga,
+  "sektor_komersial": latvia_komersial,
+  "sektor_hiburan": latvia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

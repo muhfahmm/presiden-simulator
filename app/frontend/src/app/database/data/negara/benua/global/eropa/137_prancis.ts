@@ -1,3 +1,5 @@
+import { prancis_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/137_prancis";
+import { prancis_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/137_prancis";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { prancis_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/137_prancis";
 
@@ -57,6 +59,8 @@ export const prancis: CountryData = {
   "kesehatan": prancis_kesehatan,
   "hukum": prancis_hukum,
   "sektor_olahraga": prancis_olahraga,
+  "sektor_komersial": prancis_komersial,
+  "sektor_hiburan": prancis_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

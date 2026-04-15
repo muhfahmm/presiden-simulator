@@ -1,3 +1,5 @@
+import { guatemala_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/164_guatemala";
+import { guatemala_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/164_guatemala";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { guatemala_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/164_guatemala";
 
@@ -57,6 +59,8 @@ export const guatemala: CountryData = {
   "kesehatan": guatemala_kesehatan,
   "hukum": guatemala_hukum,
   "sektor_olahraga": guatemala_olahraga,
+  "sektor_komersial": guatemala_komersial,
+  "sektor_hiburan": guatemala_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

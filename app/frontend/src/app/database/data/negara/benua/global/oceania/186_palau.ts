@@ -1,3 +1,5 @@
+import { palau_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/186_palau";
+import { palau_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/186_palau";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { palau_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/186_palau";
 
@@ -57,6 +59,8 @@ export const palau: CountryData = {
   "kesehatan": palau_kesehatan,
   "hukum": palau_hukum,
   "sektor_olahraga": palau_olahraga,
+  "sektor_komersial": palau_komersial,
+  "sektor_hiburan": palau_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

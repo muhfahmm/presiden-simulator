@@ -1,3 +1,5 @@
+import { sri_lanka_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/92_sri_lanka";
+import { sri_lanka_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/92_sri_lanka";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { sri_lanka_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/92_sri_lanka";
 
@@ -57,6 +59,8 @@ export const sri_lanka: CountryData = {
   "kesehatan": sri_lanka_kesehatan,
   "hukum": sri_lanka_hukum,
   "sektor_olahraga": sri_lanka_olahraga,
+  "sektor_komersial": sri_lanka_komersial,
+  "sektor_hiburan": sri_lanka_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

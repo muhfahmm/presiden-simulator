@@ -1,3 +1,5 @@
+import { bolivia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/sa/196_bolivia";
+import { bolivia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/sa/196_bolivia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { bolivia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/196_bolivia";
 
@@ -57,6 +59,8 @@ export const bolivia: CountryData = {
   "kesehatan": bolivia_kesehatan,
   "hukum": bolivia_hukum,
   "sektor_olahraga": bolivia_olahraga,
+  "sektor_komersial": bolivia_komersial,
+  "sektor_hiburan": bolivia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { republik_timor_leste_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/90_republik_timor_leste";
+import { republik_timor_leste_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/90_republik_timor_leste";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { republik_timor_leste_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/90_republik_timor_leste";
 
@@ -57,6 +59,8 @@ export const republik_timor_leste: CountryData = {
   "kesehatan": republik_timor_leste_kesehatan,
   "hukum": republik_timor_leste_hukum,
   "sektor_olahraga": republik_timor_leste_olahraga,
+  "sektor_komersial": republik_timor_leste_komersial,
+  "sektor_hiburan": republik_timor_leste_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

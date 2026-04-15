@@ -1,3 +1,5 @@
+import { kuwait_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/77_kuwait";
+import { kuwait_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/77_kuwait";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { kuwait_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/77_kuwait";
 
@@ -57,6 +59,8 @@ export const kuwait: CountryData = {
   "kesehatan": kuwait_kesehatan,
   "hukum": kuwait_hukum,
   "sektor_olahraga": kuwait_olahraga,
+  "sektor_komersial": kuwait_komersial,
+  "sektor_hiburan": kuwait_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

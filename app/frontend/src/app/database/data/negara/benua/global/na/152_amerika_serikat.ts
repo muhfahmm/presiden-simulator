@@ -1,3 +1,5 @@
+import { amerika_serikat_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/152_amerika_serikat";
+import { amerika_serikat_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/152_amerika_serikat";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { amerika_serikat_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/152_amerika_serikat";
 
@@ -57,6 +59,8 @@ export const amerika_serikat: CountryData = {
   "kesehatan": amerika_serikat_kesehatan,
   "hukum": amerika_serikat_hukum,
   "sektor_olahraga": amerika_serikat_olahraga,
+  "sektor_komersial": amerika_serikat_komersial,
+  "sektor_hiburan": amerika_serikat_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

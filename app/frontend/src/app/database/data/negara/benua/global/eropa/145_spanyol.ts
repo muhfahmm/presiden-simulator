@@ -1,3 +1,5 @@
+import { spanyol_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/145_spanyol";
+import { spanyol_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/145_spanyol";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { spanyol_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/145_spanyol";
 
@@ -57,6 +59,8 @@ export const spanyol: CountryData = {
   "kesehatan": spanyol_kesehatan,
   "hukum": spanyol_hukum,
   "sektor_olahraga": spanyol_olahraga,
+  "sektor_komersial": spanyol_komersial,
+  "sektor_hiburan": spanyol_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

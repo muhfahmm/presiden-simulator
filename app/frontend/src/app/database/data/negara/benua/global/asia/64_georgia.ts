@@ -1,3 +1,5 @@
+import { georgia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/64_georgia";
+import { georgia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/64_georgia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { georgia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/64_georgia";
 
@@ -57,6 +59,8 @@ export const georgia: CountryData = {
   "kesehatan": georgia_kesehatan,
   "hukum": georgia_hukum,
   "sektor_olahraga": georgia_olahraga,
+  "sektor_komersial": georgia_komersial,
+  "sektor_hiburan": georgia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

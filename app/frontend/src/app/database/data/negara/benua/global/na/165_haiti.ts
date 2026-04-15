@@ -1,3 +1,5 @@
+import { haiti_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/165_haiti";
+import { haiti_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/165_haiti";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { haiti_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/165_haiti";
 
@@ -57,6 +59,8 @@ export const haiti: CountryData = {
   "kesehatan": haiti_kesehatan,
   "hukum": haiti_hukum,
   "sektor_olahraga": haiti_olahraga,
+  "sektor_komersial": haiti_komersial,
+  "sektor_hiburan": haiti_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

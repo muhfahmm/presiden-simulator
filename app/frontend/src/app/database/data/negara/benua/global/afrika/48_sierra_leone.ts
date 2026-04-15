@@ -1,3 +1,5 @@
+import { sierra_leone_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/48_sierra_leone";
+import { sierra_leone_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/48_sierra_leone";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { sierra_leone_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/48_sierra_leone";
 
@@ -57,6 +59,8 @@ export const sierra_leone: CountryData = {
   "kesehatan": sierra_leone_kesehatan,
   "hukum": sierra_leone_hukum,
   "sektor_olahraga": sierra_leone_olahraga,
+  "sektor_komersial": sierra_leone_komersial,
+  "sektor_hiburan": sierra_leone_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

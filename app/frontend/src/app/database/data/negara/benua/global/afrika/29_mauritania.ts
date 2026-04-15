@@ -1,3 +1,5 @@
+import { mauritania_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/29_mauritania";
+import { mauritania_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/29_mauritania";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { mauritania_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/29_mauritania";
 
@@ -57,6 +59,8 @@ export const mauritania: CountryData = {
   "kesehatan": mauritania_kesehatan,
   "hukum": mauritania_hukum,
   "sektor_olahraga": mauritania_olahraga,
+  "sektor_komersial": mauritania_komersial,
+  "sektor_hiburan": mauritania_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

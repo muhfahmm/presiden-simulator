@@ -1,3 +1,5 @@
+import { irak_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/68_irak";
+import { irak_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/68_irak";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { irak_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/68_irak";
 
@@ -57,6 +59,8 @@ export const irak: CountryData = {
   "kesehatan": irak_kesehatan,
   "hukum": irak_hukum,
   "sektor_olahraga": irak_olahraga,
+  "sektor_komersial": irak_komersial,
+  "sektor_hiburan": irak_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

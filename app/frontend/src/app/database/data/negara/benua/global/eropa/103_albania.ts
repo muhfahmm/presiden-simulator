@@ -1,3 +1,5 @@
+import { albania_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/103_albania";
+import { albania_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/103_albania";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { albania_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/103_albania";
 
@@ -57,6 +59,8 @@ export const albania: CountryData = {
   "kesehatan": albania_kesehatan,
   "hukum": albania_hukum,
   "sektor_olahraga": albania_olahraga,
+  "sektor_komersial": albania_komersial,
+  "sektor_hiburan": albania_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

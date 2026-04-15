@@ -1,3 +1,5 @@
+import { china_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/62_china";
+import { china_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/62_china";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { china_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/62_china";
 
@@ -57,6 +59,8 @@ export const china: CountryData = {
   "kesehatan": china_kesehatan,
   "hukum": china_hukum,
   "sektor_olahraga": china_olahraga,
+  "sektor_komersial": china_komersial,
+  "sektor_hiburan": china_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

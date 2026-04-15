@@ -1,3 +1,5 @@
+import { mali_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/27_mali";
+import { mali_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/27_mali";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { mali_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/27_mali";
 
@@ -57,6 +59,8 @@ export const mali: CountryData = {
   "kesehatan": mali_kesehatan,
   "hukum": mali_hukum,
   "sektor_olahraga": mali_olahraga,
+  "sektor_komersial": mali_komersial,
+  "sektor_hiburan": mali_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

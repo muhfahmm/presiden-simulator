@@ -1,3 +1,5 @@
+import { lithuania_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/127_lithuania";
+import { lithuania_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/127_lithuania";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { lithuania_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/127_lithuania";
 
@@ -57,6 +59,8 @@ export const lithuania: CountryData = {
   "kesehatan": lithuania_kesehatan,
   "hukum": lithuania_hukum,
   "sektor_olahraga": lithuania_olahraga,
+  "sektor_komersial": lithuania_komersial,
+  "sektor_hiburan": lithuania_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

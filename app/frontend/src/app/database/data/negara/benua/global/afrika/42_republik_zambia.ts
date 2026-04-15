@@ -1,3 +1,5 @@
+import { republik_zambia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/42_republik_zambia";
+import { republik_zambia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/42_republik_zambia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { republik_zambia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/42_republik_zambia";
 
@@ -57,6 +59,8 @@ export const republik_zambia: CountryData = {
   "kesehatan": republik_zambia_kesehatan,
   "hukum": republik_zambia_hukum,
   "sektor_olahraga": republik_zambia_olahraga,
+  "sektor_komersial": republik_zambia_komersial,
+  "sektor_hiburan": republik_zambia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

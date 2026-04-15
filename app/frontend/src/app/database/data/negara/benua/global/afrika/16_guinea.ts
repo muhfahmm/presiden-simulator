@@ -1,3 +1,5 @@
+import { guinea_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/16_guinea";
+import { guinea_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/16_guinea";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { guinea_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/16_guinea";
 
@@ -57,6 +59,8 @@ export const guinea: CountryData = {
   "kesehatan": guinea_kesehatan,
   "hukum": guinea_hukum,
   "sektor_olahraga": guinea_olahraga,
+  "sektor_komersial": guinea_komersial,
+  "sektor_hiburan": guinea_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { bhutan_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/60_bhutan";
+import { bhutan_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/60_bhutan";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { bhutan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/60_bhutan";
 
@@ -57,6 +59,8 @@ export const bhutan: CountryData = {
   "kesehatan": bhutan_kesehatan,
   "hukum": bhutan_hukum,
   "sektor_olahraga": bhutan_olahraga,
+  "sektor_komersial": bhutan_komersial,
+  "sektor_hiburan": bhutan_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { samoa_amerika_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/189_samoa_amerika";
+import { samoa_amerika_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/189_samoa_amerika";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { samoa_amerika_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/189_samoa_amerika";
 
@@ -57,6 +59,8 @@ export const samoa_amerika: CountryData = {
   "kesehatan": samoa_amerika_kesehatan,
   "hukum": samoa_amerika_hukum,
   "sektor_olahraga": samoa_amerika_olahraga,
+  "sektor_komersial": samoa_amerika_komersial,
+  "sektor_hiburan": samoa_amerika_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

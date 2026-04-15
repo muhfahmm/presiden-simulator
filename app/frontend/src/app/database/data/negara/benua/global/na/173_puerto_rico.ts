@@ -1,3 +1,5 @@
+import { puerto_rico_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/na/173_puerto_rico";
+import { puerto_rico_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/na/173_puerto_rico";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { puerto_rico_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/173_puerto_rico";
 
@@ -57,6 +59,8 @@ export const puerto_rico: CountryData = {
   "kesehatan": puerto_rico_kesehatan,
   "hukum": puerto_rico_hukum,
   "sektor_olahraga": puerto_rico_olahraga,
+  "sektor_komersial": puerto_rico_komersial,
+  "sektor_hiburan": puerto_rico_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

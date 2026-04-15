@@ -1,3 +1,5 @@
+import { republik_zimbabwe_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/43_republik_zimbabwe";
+import { republik_zimbabwe_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/43_republik_zimbabwe";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { republik_zimbabwe_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/43_republik_zimbabwe";
 
@@ -57,6 +59,8 @@ export const republik_zimbabwe: CountryData = {
   "kesehatan": republik_zimbabwe_kesehatan,
   "hukum": republik_zimbabwe_hukum,
   "sektor_olahraga": republik_zimbabwe_olahraga,
+  "sektor_komersial": republik_zimbabwe_komersial,
+  "sektor_hiburan": republik_zimbabwe_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { paraguay_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/sa/203_paraguay";
+import { paraguay_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/sa/203_paraguay";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { paraguay_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/203_paraguay";
 
@@ -57,6 +59,8 @@ export const paraguay: CountryData = {
   "kesehatan": paraguay_kesehatan,
   "hukum": paraguay_hukum,
   "sektor_olahraga": paraguay_olahraga,
+  "sektor_komersial": paraguay_komersial,
+  "sektor_hiburan": paraguay_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

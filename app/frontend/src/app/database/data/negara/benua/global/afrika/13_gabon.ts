@@ -1,3 +1,5 @@
+import { gabon_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/afrika/13_gabon";
+import { gabon_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/afrika/13_gabon";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { gabon_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/13_gabon";
 
@@ -57,6 +59,8 @@ export const gabon: CountryData = {
   "kesehatan": gabon_kesehatan,
   "hukum": gabon_hukum,
   "sektor_olahraga": gabon_olahraga,
+  "sektor_komersial": gabon_komersial,
+  "sektor_hiburan": gabon_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

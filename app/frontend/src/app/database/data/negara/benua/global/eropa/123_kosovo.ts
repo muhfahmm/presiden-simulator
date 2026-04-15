@@ -1,3 +1,5 @@
+import { kosovo_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/123_kosovo";
+import { kosovo_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/123_kosovo";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { kosovo_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/123_kosovo";
 
@@ -57,6 +59,8 @@ export const kosovo: CountryData = {
   "kesehatan": kosovo_kesehatan,
   "hukum": kosovo_hukum,
   "sektor_olahraga": kosovo_olahraga,
+  "sektor_komersial": kosovo_komersial,
+  "sektor_hiburan": kosovo_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

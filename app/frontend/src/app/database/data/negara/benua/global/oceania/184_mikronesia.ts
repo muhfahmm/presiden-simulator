@@ -1,3 +1,5 @@
+import { mikronesia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/oceania/184_mikronesia";
+import { mikronesia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/oceania/184_mikronesia";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { mikronesia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/184_mikronesia";
 
@@ -57,6 +59,8 @@ export const mikronesia: CountryData = {
   "kesehatan": mikronesia_kesehatan,
   "hukum": mikronesia_hukum,
   "sektor_olahraga": mikronesia_olahraga,
+  "sektor_komersial": mikronesia_komersial,
+  "sektor_hiburan": mikronesia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

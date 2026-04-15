@@ -1,3 +1,5 @@
+import { chile_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/sa/198_chile";
+import { chile_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/sa/198_chile";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { chile_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/198_chile";
 
@@ -57,6 +59,8 @@ export const chile: CountryData = {
   "kesehatan": chile_kesehatan,
   "hukum": chile_hukum,
   "sektor_olahraga": chile_olahraga,
+  "sektor_komersial": chile_komersial,
+  "sektor_hiburan": chile_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -1,3 +1,5 @@
+import { gibraltar_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/eropa/115_gibraltar";
+import { gibraltar_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/eropa/115_gibraltar";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { gibraltar_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/115_gibraltar";
 
@@ -57,6 +59,8 @@ export const gibraltar: CountryData = {
   "kesehatan": gibraltar_kesehatan,
   "hukum": gibraltar_hukum,
   "sektor_olahraga": gibraltar_olahraga,
+  "sektor_komersial": gibraltar_komersial,
+  "sektor_hiburan": gibraltar_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

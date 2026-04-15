@@ -1,3 +1,5 @@
+import { palestina_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/88_palestina";
+import { palestina_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/88_palestina";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { palestina_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/88_palestina";
 
@@ -57,6 +59,8 @@ export const palestina: CountryData = {
   "kesehatan": palestina_kesehatan,
   "hukum": palestina_hukum,
   "sektor_olahraga": palestina_olahraga,
+  "sektor_komersial": palestina_komersial,
+  "sektor_hiburan": palestina_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

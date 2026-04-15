@@ -1,3 +1,5 @@
+import { kazakhstan_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/73_kazakhstan";
+import { kazakhstan_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/73_kazakhstan";
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { kazakhstan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/73_kazakhstan";
 
@@ -57,6 +59,8 @@ export const kazakhstan: CountryData = {
   "kesehatan": kazakhstan_kesehatan,
   "hukum": kazakhstan_hukum,
   "sektor_olahraga": kazakhstan_olahraga,
+  "sektor_komersial": kazakhstan_komersial,
+  "sektor_hiburan": kazakhstan_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================
