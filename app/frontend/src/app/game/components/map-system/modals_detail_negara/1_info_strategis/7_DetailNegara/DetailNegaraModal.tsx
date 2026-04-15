@@ -136,11 +136,27 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
           '', 'pertanian_', 'pabrik_', 'tambang_', 'energi_', 'perikanan_', 'farmasi_',
           'infra_', 'sosial_', 'intel_', 'ops_', 'darat_', 'laut_', 'udara_', 'polisi_', 'tahan_', 'hunian_'
         ];
+        
+        // Map aesthetic slugs back to true DOM keys for scrolling
+        const scrollTargetKey = 
+            cleanActiveCard === 'pusat_latihan_olahraga' ? 'pusat_latihan' :
+            cleanActiveCard === 'pusat_belanja' ? 'mall' :
+            cleanActiveCard === 'gedung_teater' || cleanActiveCard === 'gedung_konser' ? 'teater' :
+            cleanActiveCard === 'fasilitas_koreksi' || cleanActiveCard === 'pengadilan_tinggi' ? 'kejaksaan_court' :
+            cleanActiveCard === 'pusat_bantuan_hukum' ? 'legal_aid' :
+            cleanActiveCard === 'laboratorium_medik' ? 'pusat_diagnostik' :
+            cleanActiveCard === 'rumah_sakit_daerah' ? 'rumah_sakit_kecil' :
+            cleanActiveCard === 'rumah_sakit_pusat' ? 'rumah_sakit_besar' :
+            cleanActiveCard === 'stadion_nasional' ? 'stadion' :
+            cleanActiveCard;
+
         let element = null;
         
         // Try all possible ID combinations
         for (const p of prefixes) {
-          element = document.getElementById(`${p}${activeCard}`) || document.getElementById(`${p}${cleanActiveCard}`);
+          element = document.getElementById(`${p}${activeCard}`) || 
+                    document.getElementById(`${p}${cleanActiveCard}`) || 
+                    document.getElementById(`${p}${scrollTargetKey}`);
           if (element) break;
         }
 

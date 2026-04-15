@@ -194,16 +194,16 @@ export default function BeritaModal({ isOpen, onClose, setActiveMenu }: BeritaMo
       { keys: ["sapi potong", "daging sapi"], sector: "produksi", card: "sapi_potong", slug: "peternakan_sapi_potong" },
       { keys: ["kambing", "domba", "daging kambing"], sector: "produksi", card: "domba_kambing", slug: "peternakan_domba_kambing" },
 
-      // OLAHAN PANGAN (Sector: Pangan)
-      { keys: ["air mineral", "air minum"], sector: "pangan", card: "air_mineral", slug: "pabrik_air_mineral" },
-      { keys: ["pabrik gula"], sector: "pangan", card: "gula", slug: "pabrik_gula" },
-      { keys: ["roti", "bakery"], sector: "pangan", card: "roti", slug: "pabrik_roti" },
-      { keys: ["mie instan", "ramen"], sector: "pangan", card: "mie_instan", slug: "pabrik_mie_instan" },
-      { keys: ["minyak goreng"], sector: "pangan", card: "minyak_goreng", slug: "pabrik_minyak_goreng" },
-      { keys: ["pengolahan daging", "sosis", "kornet"], sector: "pangan", card: "pengolahan_daging", slug: "pabrik_pengolahan_daging" },
-      { keys: ["pengolahan susu", "yogurt", "keju"], sector: "pangan", card: "susu", slug: "pabrik_susu" },
-      { keys: ["pakan ternak"], sector: "pangan", card: "pakan_ternak", slug: "pabrik_pakan_ternak" },
-      { keys: ["pengalengan ikan", "sarden", "ikan kaleng"], sector: "pangan", card: "ikan_kaleng", slug: "pabrik_ikan_kaleng" },
+      // OLAHAN PANGAN (Sector: Produksi)
+      { keys: ["air mineral", "air minum"], sector: "produksi", card: "air_mineral", slug: "pabrik_air_mineral" },
+      { keys: ["pabrik gula"], sector: "produksi", card: "gula", slug: "pabrik_gula" },
+      { keys: ["roti", "bakery"], sector: "produksi", card: "roti", slug: "pabrik_roti" },
+      { keys: ["mie instan", "ramen"], sector: "produksi", card: "mie_instan", slug: "pabrik_mie_instan" },
+      { keys: ["minyak goreng"], sector: "produksi", card: "minyak_goreng", slug: "pabrik_minyak_goreng" },
+      { keys: ["pengolahan daging", "sosis", "kornet"], sector: "produksi", card: "pengolahan_daging", slug: "pabrik_pengolahan_daging" },
+      { keys: ["pengolahan susu", "yogurt", "keju"], sector: "produksi", card: "susu", slug: "pabrik_susu" },
+      { keys: ["pakan ternak"], sector: "produksi", card: "pakan_ternak", slug: "pabrik_pakan_ternak" },
+      { keys: ["pengalengan ikan", "sarden", "ikan kaleng"], sector: "produksi", card: "ikan_kaleng", slug: "pabrik_ikan_kaleng" },
 
       // PERIKANAN (Sector: Produksi)
       { keys: ["udang", "tambak udang"], sector: "produksi", card: "udang", slug: "perikanan_udang" },
@@ -247,17 +247,17 @@ export default function BeritaModal({ isOpen, onClose, setActiveMenu }: BeritaMo
       // Defense AI (New Modules)
       { keys: ["barak militer", "konstruksi barak"], sector: "armada_militer", card: "barak", slug: "barak" },
       { keys: ["intelijen", "radar", "siber", "mata-mata"], sector: "intelijen", card: "intelijen", slug: "intelijen" },
-      { keys: ["pabrik militer", "produksi senjata", "amunisi", "pabrik amunisi"], sector: "militer", card: "pabrik_amunisi", slug: "produksi_amunisi_militer" },
-      { keys: ["armada darat", "tank", "apc", "artileri"], sector: "armada_militer", card: "darat", slug: "pasukan_darat" },
-      { keys: ["armada laut", "kapal", "selam", "destroyer"], sector: "armada_militer", card: "laut", slug: "pasukan_laut" },
-      { keys: ["armada udara", "jet", "pesawat", "drone", "helikopter"], sector: "armada_militer", card: "udara", slug: "pasukan_udara" },
-      { keys: ["polisi", "keamanan dalam negeri", "patroli"], sector: "armada_polisi", card: "armada_polisi", slug: "kepolisian_nasional" },
+      { keys: ["pabrik militer", "produksi senjata", "amunisi", "pabrik amunisi"], sector: "militer", card: "pabrik_amunisi", slug: "pabrik_amunisi" },
+      { keys: ["armada darat", "tank", "apc", "artileri"], sector: "armada_militer", card: "darat", slug: "darat" },
+      { keys: ["armada laut", "kapal", "selam", "destroyer"], sector: "armada_militer", card: "laut", slug: "laut" },
+      { keys: ["armada udara", "jet", "pesawat", "drone", "helikopter"], sector: "armada_militer", card: "udara", slug: "udara" },
+      { keys: ["polisi", "keamanan dalam negeri", "patroli"], sector: "armada_polisi", card: "armada_polisi", slug: "armada_polisi" },
       { keys: ["manajemen pertahanan", "pilar pertahanan", "logistik militer"], sector: "manajemen_pertahanan", card: "manajemen_pertahanan", slug: "manajemen_pertahanan" },
       
       // Operasi Strategis
-      { keys: ["operasi siber", "pertahanan siber"], sector: "intelijen", card: "cyber_defense", slug: "operasi_siber" },
-      { keys: ["satelit", "spy satellite"], sector: "intelijen", card: "satelit_spy", slug: "satelit_mata_mata" },
-      { keys: ["radar nasional", "early warning"], sector: "intelijen", card: "radar_nasional", slug: "radar_nasional" },
+      { keys: ["operasi siber", "pertahanan siber"], sector: "intelijen", card: "operasi_siber", slug: "operasi_siber" },
+      { keys: ["satelit", "spy satellite"], sector: "intelijen", card: "sistem_satelit", slug: "sistem_satelit" },
+      { keys: ["radar nasional", "early warning", "radar"], sector: "intelijen", card: "jaringan_radar", slug: "jaringan_radar" },
     ];
 
     let cardSlug = "";
