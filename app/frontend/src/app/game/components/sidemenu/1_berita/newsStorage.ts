@@ -33,7 +33,17 @@ export const newsStorage = {
     const stored = localStorage.getItem(NEWS_STORAGE_KEY);
     if (!stored) return [];
     try {
-      return JSON.parse(stored).sort((a: NewsItem, b: NewsItem) => b.timestamp - a.timestamp);
+      const parsed = JSON.parse(stored);
+      if (!Array.isArray(parsed)) return [];
+      
+      // Self-healing: Deduplicate by ID to prevent UI crashes from legacy data
+      const uniqueMap = new Map();
+      parsed.forEach((item: NewsItem) => {
+        if (item && item.id) uniqueMap.set(item.id, item);
+      });
+      
+      return Array.from(uniqueMap.values())
+        .sort((a: NewsItem, b: NewsItem) => b.timestamp - a.timestamp);
     } catch (e) {
       console.error("Failed to parse news storage", e);
       return [];
@@ -62,11 +72,19 @@ export const newsStorage = {
 
     // Get current local news (non-server items only)
     const current = newsStorage.getNews();
-    const localOnly = current.filter(cn => !cn.id.startsWith("sv-"));
+    const localOnly = current.filter(cn => !cn.id.startsWith("sv-") && !cn.id.startsWith("INTEL-SV-"));
 
     // Merge: server news first, then local news
-    const merged = [...mapped, ...localOnly]
-      .sort((a, b) => b.timestamp - a.timestamp)
+    const rawMerged = [...mapped, ...localOnly];
+    
+    // Deduplicate the merged list to ensure NO duplicates ever reach storage
+    const uniqueMap = new Map();
+    rawMerged.forEach(item => {
+      if (item && item.id) uniqueMap.set(item.id, item);
+    });
+
+    const merged = Array.from(uniqueMap.values())
+      .sort((a: any, b: any) => b.timestamp - a.timestamp)
       .slice(0, MAX_TOTAL_NEWS);
 
     try {
@@ -105,6 +123,13 @@ export const newsStorage = {
                 lastNewsCount = currentCount;
                 newsStorage.syncFromServer(data.news);
               }
+            }
+
+            // Sync inbox from server (quarterly updates etc)
+            if (data.inbox && Array.isArray(data.inbox)) {
+              // We'll need to implement a similar sync for inboxStorage
+              // or just handle it here if it's simple
+              window.dispatchEvent(new CustomEvent("inbox_sync_from_server", { detail: data.inbox }));
             }
           } catch (e) {
             // Silent parse error

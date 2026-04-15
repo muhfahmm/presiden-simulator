@@ -28,7 +28,18 @@ export const inboxStorage = {
     if (typeof window === 'undefined') return [];
     try {
       const data = localStorage.getItem(key);
-      return data ? JSON.parse(data) : [];
+      if (!data) return [];
+      const parsed = JSON.parse(data);
+      if (!Array.isArray(parsed)) return [];
+
+      // Self-healing: Deduplicate by ID to prevent UI crashes from legacy data
+      const uniqueMap = new Map();
+      parsed.forEach((item: InboxItem) => {
+        if (item && item.id) uniqueMap.set(item.id, item);
+      });
+
+      return Array.from(uniqueMap.values())
+        .sort((a, b) => b.timestamp - a.timestamp);
     } catch {
       return [];
     }
@@ -141,5 +152,50 @@ export const inboxStorage = {
       return true;
     }
     return false;
+  },
+
+  syncFromServer: (serverInbox: any[]) => {
+    if (typeof window === "undefined" || !Array.isArray(serverInbox)) return;
+
+    // Map server items to our format
+    const mapped: InboxItem[] = serverInbox.map((si: any) => ({
+      id: si.id || `isv-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
+      sender: si.sender || "System",
+      source: si.sender || "System", // Compatibility
+      subject: si.subject || "",
+      content: si.content || "",
+      time: si.time || new Date(si.timestamp).toLocaleDateString("id-ID"),
+      read: si.read || false,
+      priority: si.priority || "low",
+      category: si.category || "general",
+      timestamp: si.timestamp || Date.now(),
+    }));
+
+    // Get current local inbox (non-server items only)
+    const current = inboxStorage.getMessages();
+    const localOnly = current.filter(ci => !ci.id.startsWith("sv-") && !ci.id.startsWith("INTEL-SV-") && !ci.id.startsWith("isv-"));
+
+    // Merge: server first, then local
+    const rawMerged = [...mapped, ...localOnly];
+    
+    // Aggressive deduplication
+    const uniqueMap = new Map();
+    rawMerged.forEach(item => {
+      if (item && item.id) uniqueMap.set(item.id, item);
+    });
+
+    const merged = Array.from(uniqueMap.values())
+      .sort((a: any, b: any) => b.timestamp - a.timestamp)
+      .slice(0, MAX_INBOX_MESSAGES);
+
+    localStorage.setItem("em4_inbox_data", JSON.stringify(merged));
+    window.dispatchEvent(new Event("inbox_updated"));
   }
 };
+
+// Listen for server sync events (dispatched from newsStorage SSE)
+if (typeof window !== "undefined") {
+  window.addEventListener("inbox_sync_from_server", (e: any) => {
+    if (e.detail) inboxStorage.syncFromServer(e.detail);
+  });
+}

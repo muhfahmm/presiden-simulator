@@ -73,6 +73,7 @@ interface StrategyModalProps {
   activeTab?: string;
   activeSubTab?: string;
   activeSector?: string;
+  activeCard?: string;
   setActiveMenu: (menu: string) => void;
   onTabChange?: (tab: 'info' | 'diplomacy' | 'military' | 'aid') => void;
 }
@@ -115,7 +116,8 @@ const geoJsonToIndo: { [key: string]: string } = {
 
 
 export default function StrategyModal({ 
-  isOpen, onClose, targetCountry, userCountry, activeTab, activeSubTab, activeSector, setActiveMenu, onTabChange 
+  isOpen, onClose, targetCountry, userCountry, activeTab, 
+  activeSubTab, activeSector, activeCard, setActiveMenu, onTabChange 
 }: StrategyModalProps) {
   const [menuTab, setMenuTab] = useState<'info' | 'diplomacy' | 'military' | 'aid'>('info');
   const [liveStats, setLiveStats] = useState({ 
@@ -379,7 +381,8 @@ export default function StrategyModal({
                 <button 
                   onClick={() => {
                     if (countryEntry) {
-                      setActiveMenu(`CountryModal:${countryEntry.name_id.toLowerCase()}:info_strategis:detail_lengkap`);
+                      // Explicitly set 'produksi' as the default sector to ensure clean URLs
+                      setActiveMenu(`CountryModal:${countryEntry.name_id.toLowerCase()}:info_strategis:detail_lengkap:produksi`);
                     }
                   }}
                   className="w-full py-4 bg-zinc-800/50 hover:bg-amber-500/10 border border-zinc-700 hover:border-amber-500/30 rounded-2xl flex items-center justify-center gap-3 group transition-all cursor-pointer"
@@ -593,6 +596,7 @@ export default function StrategyModal({
         targetCountry={targetCountry || ""}
         isUser={targetId === userId}
         activeSector={activeSector}
+        activeCard={activeCard}
         setActiveMenu={setActiveMenu}
       />
     </>

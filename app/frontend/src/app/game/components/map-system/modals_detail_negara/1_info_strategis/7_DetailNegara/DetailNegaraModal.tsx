@@ -9,6 +9,24 @@ import {
   Clapperboard, Building2, Archive, TrendingUp, ShieldAlert, TrendingDown
 } from "lucide-react";
 import { countries } from "@/app/database/data/negara/benua/index";
+import { 
+  KAPASITAS_LISTRIK_METADATA,
+  pabrikMiliterRate
+} from "@/app/database/data/semua_fitur_negara";
+import { 
+  mineralKritisRate, 
+  manufakturRate, 
+  peternakanRate, 
+  agrikulturRate, 
+  perikananRate, 
+  olahanPanganRate, 
+  farmasiRate 
+} from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi";
+import { 
+  infrastrukturRate, 
+  sosialRate, 
+  hunianRate 
+} from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { aiPopulationStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
@@ -18,7 +36,6 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
 import { GameSession, gameStorage } from "@/app/game/gamestorage";
-import { hunianRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
 import { aiThinkingStorage } from "@/app/game/components/AI_logic/global_event/aiThinkingStorage";
 import { Brain } from "lucide-react";
 import BuildingInfoModal from "./BuildingInfoModal";
@@ -30,10 +47,11 @@ interface DetailNegaraModalProps {
   targetCountry: string;
   isUser: boolean;
   activeSector?: string;
+  activeCard?: string;
   setActiveMenu: (menu: string) => void;
 }
 
-export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUser, activeSector, setActiveMenu }: DetailNegaraModalProps) {
+export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUser, activeSector, activeCard, setActiveMenu }: DetailNegaraModalProps) {
   const currentSector = activeSector || "produksi";
   const [refreshKey, setRefreshKey] = useState(0);
   const [selectedBuildingInfo, setSelectedBuildingInfo] = useState<BuildingInfo | null>(null);
@@ -64,6 +82,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
     
   const initPop = isUser ? populationStorage.getPopulation() : (countryEntryRaw ? aiPopulationStorage.getPopulation(countryEntryRaw.name_en) : basePop);
   const [population, setPopulation] = useState(initPop);
+  const [highlitCard, setHighlitCard] = useState<string | null>(null);
 
   // Reactivity: Refresh when construction state changes
   useEffect(() => {
@@ -97,6 +116,31 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
       window.removeEventListener('ai_population_updated', handleAiPopUpdate);
     };
   }, [isUser, targetCountry, countryEntryRaw?.name_en, basePop]);
+
+  // Handle Deep-link Scroll and Highlight
+  useEffect(() => {
+    if (isOpen && activeCard) {
+      const cleanActiveCard = activeCard.replace(/^\d+_/, '');
+      setHighlitCard(cleanActiveCard);
+
+      const timer = setTimeout(() => {
+        const element = document.getElementById(activeCard) || document.getElementById(cleanActiveCard);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 500); 
+
+      // Remove highlight after 8 seconds
+      const clearTimer = setTimeout(() => {
+        setHighlitCard(null);
+      }, 8000);
+
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(clearTimer);
+      };
+    }
+  }, [isOpen, activeCard, currentSector]);
 
   if (!isOpen) return null;
 
@@ -243,6 +287,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 stocks={stocks}
                 type="listrik"
                 handleIconClick={handleIconClick}
+                highlitCard={highlitCard}
               />
               <ProductionSection 
                 title="2. Sektor Mineral Kritis" 
@@ -252,6 +297,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 stocks={stocks}
                 type="ekstraksi"
                 handleIconClick={handleIconClick}
+                highlitCard={highlitCard}
               />
               <ProductionSection 
                 title="3. Sektor Manufaktur" 
@@ -261,6 +307,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 stocks={stocks}
                 type="manufaktur"
                 handleIconClick={handleIconClick}
+                highlitCard={highlitCard}
               />
               <ProductionSection 
                 title="4. Sektor Peternakan" 
@@ -270,6 +317,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 stocks={stocks}
                 type="peternakan"
                 handleIconClick={handleIconClick}
+                highlitCard={highlitCard}
               />
               <ProductionSection 
                 title="5. Sektor Agrikultur" 
@@ -279,6 +327,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 stocks={stocks}
                 type="agrikultur"
                 handleIconClick={handleIconClick}
+                highlitCard={highlitCard}
               />
               <ProductionSection 
                 title="6. Sektor Perikanan" 
@@ -288,6 +337,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 stocks={stocks}
                 type="perikanan"
                 handleIconClick={handleIconClick}
+                highlitCard={highlitCard}
               />
               <ProductionSection 
                 title="7. Sektor Olahan Pangan" 
@@ -297,6 +347,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 stocks={stocks}
                 type="pangan"
                 handleIconClick={handleIconClick}
+                highlitCard={highlitCard}
               />
               <ProductionSection 
                 title="8. Sektor Farmasi" 
@@ -306,6 +357,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 stocks={stocks}
                 type="farmasi"
                 handleIconClick={handleIconClick}
+                highlitCard={highlitCard}
               />
             </div>
           )}
@@ -320,6 +372,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 stocks={stocks}
                 type="militer"
                 handleIconClick={handleIconClick}
+                highlitCard={highlitCard}
               />
             </div>
           )}
@@ -334,6 +387,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 icon={Activity}
                 color="text-emerald-500"
                 handleIconClick={handleIconClick}
+                type="infrastruktur"
+                highlitCard={highlitCard}
               />
               <SimpleGridSection 
                 title="2. Sektor Pendidikan & Riset" 
@@ -343,6 +398,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 icon={GraduationCap}
                 color="text-indigo-500"
                 handleIconClick={handleIconClick}
+                type="sosial"
+                highlitCard={highlitCard}
               />
               <SimpleGridSection 
                 title="3. Sektor Layanan Kesehatan" 
@@ -352,6 +409,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 icon={HeartPulse}
                 color="text-rose-500"
                 handleIconClick={handleIconClick}
+                type="sosial"
+                highlitCard={highlitCard}
               />
               <SimpleGridSection 
                 title="4. Sektor Hukum & Keamanan" 
@@ -361,6 +420,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 icon={Scale}
                 color="text-cyan-500"
                 handleIconClick={handleIconClick}
+                type="sosial"
+                highlitCard={highlitCard}
               />
               <SimpleGridSection 
                 title="5. Sektor Olahraga & Rekreasi" 
@@ -370,6 +431,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 icon={Target}
                 color="text-lime-500"
                 handleIconClick={handleIconClick}
+                type="sosial"
+                highlitCard={highlitCard}
               />
               <SimpleGridSection 
                 title="6. Sektor Komersial & Retail" 
@@ -379,6 +442,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 icon={Briefcase}
                 color="text-amber-500"
                 handleIconClick={handleIconClick}
+                type="sosial"
+                highlitCard={highlitCard}
               />
               <SimpleGridSection 
                 title="7. Sektor Hiburan & Seni" 
@@ -388,6 +453,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 icon={Clapperboard}
                 color="text-purple-500"
                 handleIconClick={handleIconClick}
+                type="sosial"
+                highlitCard={highlitCard}
               />
             </div>
           )}
@@ -438,28 +505,28 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
 
                     {[
                       {  
-                        title: "1. Hunian Rumah Menengah & Subsidi", 
+                        title: "1. " + (hunianRate.rumah_subsidi.label), 
                         id: "rumah_subsidi",
                         icon: Home, 
                         color: "text-emerald-500",
-                        description: "Hunian Terpadu Masyarakat Terjangkau",
-                        capacity: 5
+                        description: hunianRate.rumah_subsidi.deskripsi,
+                        capacity: hunianRate.rumah_subsidi.kapasitas
                       },
                       { 
-                        title: "2. Apartemen Modern & High-Rise", 
+                        title: "2. " + (hunianRate.apartemen.label), 
                         id: "apartemen",
                         icon: Building2, 
                         color: "text-sky-500",
-                        description: "Hunian Vertikal Kepadatan Tinggi",
-                        capacity: 6000
+                        description: hunianRate.apartemen.deskripsi,
+                        capacity: hunianRate.apartemen.kapasitas
                       },
                       { 
-                        title: "3. Kompleks Mansion Mewah", 
+                        title: "3. " + (hunianRate.mansion.label), 
                         id: "mansion",
                         icon: Landmark, 
                         color: "text-amber-500",
-                        description: "Hunian Eksklusif Kelas Atas",
-                        capacity: 10
+                        description: hunianRate.mansion.deskripsi,
+                        capacity: hunianRate.mansion.kapasitas
                       }
                     ].map((house) => {
                       const unitsBaseline = (countryEntry.hunian as any)?.[house.id] || 0;
@@ -474,7 +541,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                       const isNationalShortage = totalNationalHousingCapacity < population;
 
                       return (
-                        <div key={house.id} className="bg-zinc-900/30 border border-zinc-800/50 rounded-[2.5rem] p-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center hover:border-zinc-700/50 transition-all duration-500 group relative overflow-hidden mb-12 last:mb-0">
+                        <div id={house.id} key={house.id} className="bg-zinc-900/30 border border-zinc-800/50 rounded-[2.5rem] p-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center hover:border-zinc-700/50 transition-all duration-500 group relative overflow-hidden mb-12 last:mb-0">
                           {/* Unit Count */}
                           <div className="lg:col-span-3 flex flex-col items-center justify-center border-r border-zinc-800/50 pr-8">
                             <div 
@@ -628,32 +695,130 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
   );
 }
 
-function ProductionSection({ title, items, buildingDeltas, constructionQueue, stocks, type, handleIconClick }: any) {
+function ProductionSection({ title, items, buildingDeltas, constructionQueue, stocks, type, handleIconClick, highlitCard }: any) {
   if (!items) return null;
 
+  const getLabel = (key: string, type: string) => {
+    let metadata: any = null;
+    switch (type) {
+      case 'listrik': metadata = KAPASITAS_LISTRIK_METADATA; break;
+      case 'ekstraksi': metadata = mineralKritisRate; break;
+      case 'manufaktur': metadata = manufakturRate; break;
+      case 'peternakan': metadata = peternakanRate; break;
+      case 'agrikultur': metadata = agrikulturRate; break;
+      case 'perikanan': metadata = perikananRate; break;
+      case 'pangan': metadata = olahanPanganRate; break;
+      case 'farmasi': metadata = farmasiRate; break;
+      case 'militer': metadata = pabrikMiliterRate; break;
+      case 'infrastruktur': metadata = infrastrukturRate; break;
+      case 'sosial': metadata = sosialRate; break;
+      case 'hunian': metadata = hunianRate; break;
+    }
+
+    if (metadata) {
+      // Find entry by dataKey or direct key (matching logic from building hubs)
+      const entry = Object.values(metadata).find((v: any) => 
+        v.dataKey === key || 
+        v.key === key || 
+        (v.key && v.key.replace(/^\d+_/, '') === key)
+      );
+      if (entry && (entry as any).deskripsi) return (entry as any).deskripsi;
+      if (entry && (entry as any).label) return (entry as any).label;
+    }
+
+    return key.replace(/_/g, " ");
+  };
+
+  const getSortedEntries = (items: any, type: string) => {
+    let metadata: any = null;
+    let order: string[] = [];
+    
+    switch (type) {
+      case 'listrik': metadata = KAPASITAS_LISTRIK_METADATA; break;
+      case 'ekstraksi': 
+        metadata = mineralKritisRate; 
+        order = ["emas", "uranium", "batu_bara", "minyak_bumi", "gas_alam", "garam", "nikel", "litium", "tembaga", "aluminium", "logam_tanah_jarang", "bijih_besi"];
+        break;
+      case 'manufaktur': metadata = manufakturRate; break;
+      case 'peternakan': metadata = peternakanRate; break;
+      case 'agrikultur': metadata = agrikulturRate; break;
+      case 'perikanan': metadata = perikananRate; break;
+      case 'pangan': metadata = olahanPanganRate; break;
+      case 'farmasi': metadata = farmasiRate; break;
+      case 'militer': metadata = pabrikMiliterRate; break;
+      case 'infrastruktur': metadata = infrastrukturRate; break;
+      case 'sosial': metadata = sosialRate; break;
+    }
+
+    if (!metadata) return Object.entries(items);
+
+    // If explicit order is provided (e.g. for ekstraksi)
+    if (order.length > 0) {
+      return order
+        .filter(dataKey => Object.keys(items).includes(dataKey))
+        .map(dataKey => [dataKey, items[dataKey]]);
+    }
+
+    // Otherwise, use the order found in metadata objects
+    const sortedEntries: [string, any][] = [];
+    Object.values(metadata).forEach((val: any) => {
+      const dataKey = val.dataKey || val.key;
+      // Normalisasi dataKey (misal pltn vs 1_pltn)
+      const matches = (k: string) => k === dataKey || k === dataKey?.replace(/^\d+_/, '') || dataKey === k.replace(/^\d+_/, '');
+      
+      const foundKey = Object.keys(items).find(matches);
+      if (foundKey && items[foundKey] !== undefined) {
+        sortedEntries.push([foundKey, items[foundKey]]);
+      }
+    });
+
+    // Fallback: Add any items not found in metadata at the end
+    const foundKeys = new Set(sortedEntries.map(([k]) => k));
+    Object.entries(items).forEach(([k, v]) => {
+      if (!foundKeys.has(k)) sortedEntries.push([k, v]);
+    });
+
+    return sortedEntries;
+  };
+
+  const sortedItems = getSortedEntries(items, type);
+
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+    <div id={title.toLowerCase().replace(/[^a-z0-s]/g, '_').replace(/_+/g, '_')} className="animate-in fade-in slide-in-from-bottom-2 duration-500 transition-all rounded-3xl">
       <h3 className="text-lg font-black text-white uppercase tracking-widest italic mb-4 flex items-center gap-3">
         <div className="w-1.5 h-6 bg-amber-500 rounded-full" />
         {title}
         <span className="text-amber-500 ml-2 font-black lowercase italic text-[10px] tracking-normal bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
-          ({Object.keys(items || {}).length} Jenis)
+          ({sortedItems.length} Jenis)
         </span>
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {Object.entries(items).map(([key, baseline]: [string, any]) => {
-          // Normalisasi delta: cari key langsung atau yang berawalan angka_ (misal 3_plts)
+        {sortedItems.map((entry: any) => {
+          const [key, baseline] = entry;
           const delta = buildingDeltas[key] || Object.entries(buildingDeltas).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1] || 0;
           const total = Number(baseline || 0) + Number(delta);
+          const isHighlit = key.replace(/^\d+_/, '') === highlitCard;
+          
           if (total <= 0 && baseline === undefined) return null;
 
           const stock = stocks[key] || 0;
 
           return (
-            <div key={key} className="bg-zinc-900/40 border border-zinc-800/60 p-4 rounded-2xl flex flex-col gap-3 group hover:border-amber-500/30 transition-all">
+            <div 
+              id={key.replace(/^\d+_/, '')} 
+              key={key} 
+              className={`bg-zinc-900/40 border p-4 rounded-2xl flex flex-col gap-3 group transition-all duration-500 relative ${
+                isHighlit 
+                  ? 'border-amber-500 shadow-[0_0_25px_rgba(245,158,11,0.5)] ring-2 ring-amber-500/50 scale-[1.03] z-50 bg-amber-500/10' 
+                  : 'border-zinc-800/60 hover:border-amber-500/30'
+              }`}
+            >
+              {isHighlit && (
+                <div className="absolute inset-0 rounded-2xl border-2 border-amber-500 animate-pulse pointer-events-none" />
+              )}
               <div className="flex justify-between items-start">
                 <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter leading-tight pr-4">
-                  {key.replace(/_/g, " ")}
+                  {getLabel(key, type)}
                 </span>
                 <div 
                   className="p-1.5 bg-zinc-950 rounded-lg border border-zinc-800 cursor-pointer hover:border-amber-500/50 transition-colors"
@@ -704,30 +869,89 @@ function ProductionSection({ title, items, buildingDeltas, constructionQueue, st
   );
 }
 
-function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, icon: Icon, color, handleIconClick }: any) {
+function SimpleGridSection({ title, data, buildingDeltas, constructionQueue, icon: Icon, color, handleIconClick, type, highlitCard }: any) {
   if (!data) return null;
 
+  const getLabel = (key: string, type: string) => {
+    let metadata: any = null;
+    switch (type) {
+      case 'infrastruktur': metadata = infrastrukturRate; break;
+      case 'sosial': metadata = sosialRate; break;
+    }
+
+    if (metadata) {
+      const entry = Object.values(metadata).find((v: any) => 
+        v.dataKey === key || 
+        v.key === key || 
+        (v.key && v.key.replace(/^\d+_/, '') === key)
+      );
+      if (entry && (entry as any).deskripsi) return (entry as any).deskripsi;
+      if (entry && (entry as any).label) return (entry as any).label;
+    }
+    return key.replace(/_/g, " ");
+  };
+
+  const getSortedEntries = (items: any, type: string) => {
+    let metadata: any = null;
+    switch (type) {
+      case 'infrastruktur': metadata = infrastrukturRate; break;
+      case 'sosial': metadata = sosialRate; break;
+    }
+    if (!metadata) return Object.entries(items);
+
+    const sortedEntries: [string, any][] = [];
+    Object.values(metadata).forEach((val: any) => {
+      const dataKey = val.dataKey || val.key;
+      const matches = (k: string) => k === dataKey || k === dataKey?.replace(/^\d+_/, '') || dataKey === k.replace(/^\d+_/, '');
+      const foundKey = Object.keys(items).find(matches);
+      if (foundKey && items[foundKey] !== undefined) {
+        sortedEntries.push([foundKey, items[foundKey]]);
+      }
+    });
+
+    const foundKeys = new Set(sortedEntries.map(([k]) => k));
+    Object.entries(items).forEach(([k, v]) => {
+      if (!foundKeys.has(k)) sortedEntries.push([k, v]);
+    });
+    return sortedEntries;
+  };
+
+  const sortedItems = getSortedEntries(data, type);
+
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+    <div id={title.toLowerCase().replace(/[^a-z0-s]/g, '_').replace(/_+/g, '_')} className="animate-in fade-in slide-in-from-bottom-2 duration-500 transition-all rounded-3xl">
       <h3 className="text-lg font-black text-white uppercase tracking-widest italic mb-4 flex items-center gap-3">
         <div className={`w-1.5 h-6 ${color.replace('text-', 'bg-')} rounded-full`} />
         {title}
         <span className={`${color} ml-2 font-black lowercase italic text-[10px] tracking-normal ${color.replace('text-', 'bg-')}/10 px-2 py-0.5 rounded-full border ${color.replace('text-', 'border-')}/20`}>
-          ({Object.keys(data || {}).length} Jenis)
+          ({sortedItems.length} Jenis)
         </span>
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {Object.entries(data).map(([key, val]: [string, any]) => {
+        {sortedItems.map((entry: any) => {
+          const [key, val] = entry;
           const delta = buildingDeltas[key] || Object.entries(buildingDeltas).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1] || 0;
           const total = (typeof val === 'number' ? val : Number(val?.toString().replace(/\./g, '') || 0)) + Number(delta);
+          const isHighlit = key.replace(/^\d+_/, '') === highlitCard;
           
           if (total <= 0 && val === undefined) return null;
           
           return (
-            <div key={key} className={`bg-zinc-900/40 border border-zinc-800/60 p-4 rounded-2xl flex flex-col gap-3 group hover:border-zinc-500/30 transition-all`}>
+            <div 
+              id={key.replace(/^\d+_/, '')} 
+              key={key} 
+              className={`bg-zinc-900/40 border p-4 rounded-2xl flex flex-col gap-3 group transition-all duration-500 relative ${
+                isHighlit 
+                  ? 'border-amber-500 shadow-[0_0_25px_rgba(245,158,11,0.5)] ring-2 ring-amber-500/50 scale-[1.03] z-50 bg-amber-500/10' 
+                  : 'border-zinc-800/60 hover:border-zinc-500/30'
+              }`}
+            >
+              {isHighlit && (
+                <div className="absolute inset-0 rounded-2xl border-2 border-amber-500 animate-pulse pointer-events-none" />
+              )}
               <div className="flex justify-between items-start">
                 <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter leading-tight pr-4">
-                  {key.replace(/_/g, " ")}
+                  {getLabel(key, type)}
                 </span>
                 <div 
                   className="p-1.5 bg-zinc-950 rounded-lg border border-zinc-800 cursor-pointer hover:border-amber-500/50 transition-colors"

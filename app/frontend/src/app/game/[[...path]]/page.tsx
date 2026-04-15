@@ -186,6 +186,7 @@ export default function GamePage() {
             activeTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[2] : undefined}
             activeSubTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[3] : undefined}
             activeSector={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[4] : undefined}
+            activeCard={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[5] : undefined}
             setActiveMenu={setActiveMenu}
             onTabChange={(tab) => {
               if (targetCountry) {

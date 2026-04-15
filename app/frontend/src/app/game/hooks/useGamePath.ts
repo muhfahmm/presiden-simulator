@@ -13,9 +13,12 @@ export function useGamePath(path: string[]) {
     const tab = subMenu || "info_strategis";
     const subTab = path[2];
     const sector = path[3];
+    const cardId = path[4];
     
     if (subTab === "detail_lengkap") {
-      initialMenu = `CountryModal:${countryByPath.name_id}:${tab}:${subTab}:${sector || "produksi"}`;
+      // Ensure sector is valid and not redundant with tab name (info_strategis)
+      const validSector = (sector && sector !== "info_strategis") ? sector : "produksi";
+      initialMenu = `CountryModal:${countryByPath.name_id}:${tab}:${subTab}:${validSector}${cardId ? `:${cardId}` : ""}`;
     } else if (subTab) {
       initialMenu = `CountryModal:${countryByPath.name_id}:${tab}:${subTab}`;
     } else {
@@ -290,10 +293,12 @@ export function useGamePath(path: string[]) {
       const tab = parts[2] || "info_strategis";
       const subTab = parts[3];
       const sector = parts[4];
+      const cardId = parts[5];
       // URL Slug: Replace spaces with underscores
       targetPath = `/game/${countryId.replace(/ /g, '_')}/${tab}`;
       if (subTab) targetPath += `/${subTab}`;
       if (sector) targetPath += `/${sector}`;
+      if (cardId) targetPath += `/${cardId.replace(/^\d+_/, '')}`;
     }
 
 

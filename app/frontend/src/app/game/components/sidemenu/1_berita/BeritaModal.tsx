@@ -1,6 +1,7 @@
 "use client"
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { 
   X, 
   Newspaper, 
@@ -15,19 +16,22 @@ import {
   Calendar
 } from 'lucide-react';
 import { newsStorage, NewsItem } from './newsStorage';
+import { countries } from '@/app/database/data/negara/benua/index';
 
 interface BeritaModalProps {
   isOpen: boolean;
   onClose: () => void;
+  setActiveMenu: (menu: string) => void;
 }
 
-export default function BeritaModal({ isOpen, onClose }: BeritaModalProps) {
-  const [news, setNews] = React.useState<NewsItem[]>([]);
-  const [expandedId, setExpandedId] = React.useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = React.useState('');
-  const [activeTab, setActiveTab] = React.useState<string | null>(null);
+export default function BeritaModal({ isOpen, onClose, setActiveMenu }: BeritaModalProps) {
+  const router = useRouter();
+  const [news, setNews] = useState<NewsItem[]>([]);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeTab, setActiveTab] = useState<string | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isOpen) {
       setNews(newsStorage.getNews());
     }
@@ -94,6 +98,98 @@ export default function BeritaModal({ isOpen, onClose }: BeritaModalProps) {
         bg: 'bg-sky-500/10', border: 'border-sky-500/20', text: 'text-sky-400', 
         glow: 'shadow-[0_0_20px_rgba(14,165,233,0.15)]', icon: <Newspaper size={18} /> 
       };
+    }
+  };
+
+  const detectNavigationTargets = (item: NewsItem) => {
+    const textToSearch = (item.source + " " + item.subject + " " + item.content).toLowerCase();
+    
+    // 1. Detect Country
+    let targetCountry = null;
+    for (const country of countries) {
+      const nameId = country.name_id.toLowerCase();
+      const nameEn = country.name_en.toLowerCase();
+      const regexId = new RegExp(`\\b${nameId.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b`, 'i');
+      const regexEn = new RegExp(`\\b${nameEn.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b`, 'i');
+      if (regexId.test(textToSearch) || regexEn.test(textToSearch)) {
+        targetCountry = country;
+        break;
+      }
+    }
+
+    if (!targetCountry) return null;
+
+    // 2. Detect Smart Sector & Card deep-links
+    let sector = getTabSlug(item.category);
+    let cardId = "";
+
+    const smartDictionary = [
+      // Detailed Education
+      { keys: ["pendidikan menengah", "smp", "sekolah menengah"], sector: "layanan_publik", card: "3_menengah", slug: "menengah" },
+      { keys: ["pendidikan dasar", "sd", "sekolah dasar"], sector: "layanan_publik", card: "1_dasar", slug: "dasar" },
+      { keys: ["paud", "prasekolah", "usia dini"], sector: "layanan_publik", card: "2_prasekolah", slug: "paud" },
+      { keys: ["pendidikan tinggi", "sma", "smk", "sekolah atas"], sector: "layanan_publik", card: "4_tinggi", slug: "tinggi" },
+      { keys: ["universitas", "kampus", "perguruan tinggi"], sector: "layanan_publik", card: "5_perguruan_tinggi", slug: "perguruan_tinggi" },
+      
+      // Detailed Sports & Leisure
+      { keys: ["e-sports", "esports", "arena e-sports"], sector: "layanan_publik", card: "arena_esports", slug: "arena_esports" },
+      { keys: ["stadiun", "lapangan bola", "sepak bola"], sector: "layanan_publik", card: "stadion_nasional", slug: "stadion_nasional" },
+      
+      // Residential
+      { keys: ["mansion", "mewah", "eksklusif"], sector: "hunian_sosial", card: "mansion", slug: "mansion" },
+      { keys: ["rumah subsidi", "subsidi", "terjangkau"], sector: "hunian_sosial", card: "rumah_subsidi", slug: "rumah_subsidi" },
+      { keys: ["apartemen", "vertikal", "high-rise", "urban"], sector: "hunian_sosial", card: "apartemen", slug: "apartemen" },
+
+      // Infrastructure
+      { keys: ["jembatan", "jalan", "tol", "infrastruktur", "logistik", "pelabuhan", "bandara"], sector: "layanan_publik", card: "infrastruktur", slug: "infrastruktur" },
+      
+      // Generic Healthcare
+      { keys: ["rumah sakit", "klinik", "kesehatan", "medis"], sector: "layanan_publik", card: "kesehatan", slug: "kesehatan" },
+      
+      // Security & Law
+      { keys: ["hukum", "keamanan", "polisi", "pengadilan"], sector: "layanan_publik", card: "hukum", slug: "hukum" },
+      
+      // Production & Extraction
+      { keys: ["semen", "beton"], sector: "produksi", card: "5_pabrik_semen", slug: "pabrik_semen" },
+      { keys: ["baja", "besi", "smelter"], sector: "produksi", card: "4_smelter", slug: "smelter" },
+      { keys: ["kayu", "sawmill"], sector: "produksi", card: "6_penggergajian_kayu", slug: "penggergajian_kayu" },
+      { keys: ["nuklir", "pltn", "pembangkit listrik"], sector: "produksi", card: "1_pembangkit_listrik_tenaga_nuklir", slug: "pltn" },
+      { keys: ["garam", "tambang garam"], sector: "produksi", card: "6_garam", slug: "garam" },
+      { keys: ["uranium", "tambang uranium"], sector: "produksi", card: "1_uranium", slug: "uranium" },
+      { keys: ["minyak bumi", "kilang minyak", "pumping station"], sector: "produksi", card: "4_minyak_bumi", slug: "minyak_bumi" },
+      { keys: ["gas alam", "kilang gas"], sector: "produksi", card: "5_gas_alam", slug: "gas_alam" },
+      { keys: ["batu bara", "tambang batu bara"], sector: "produksi", card: "3_batu_bara", slug: "batu_bara" },
+      { keys: ["nikel", "feronikel"], sector: "produksi", card: "7_nikel", slug: "nikel" },
+      { keys: ["tembaga"], sector: "produksi", card: "9_tembaga", slug: "tembaga" },
+      { keys: ["emas"], sector: "produksi", card: "emas", slug: "emas" },
+      { keys: ["litium", "lithium"], sector: "produksi", card: "8_litium", slug: "litium" },
+    ];
+
+    let cardSlug = "";
+
+    // Priority: Try most specific matches first by checking longer keys first
+    for (const entry of smartDictionary) {
+      if (entry.keys.some(k => textToSearch.includes(k))) {
+        sector = entry.sector;
+        cardId = entry.card;
+        cardSlug = (entry as any).slug || entry.card.replace(/^\d+_/, '');
+        break;
+      }
+    }
+
+    return { country: targetCountry, sector, cardId, cardSlug };
+  };
+
+  const getTabSlug = (category: string) => {
+    switch (category) {
+      case 'construction': 
+      case 'economy': 
+        // These should map to the 'produksi' sector inside the full modal
+        return 'produksi';
+      case 'diplomacy': 
+        return 'diplomasi_hubungan';
+      default: 
+        return 'produksi';
     }
   };
 
@@ -181,7 +277,8 @@ export default function BeritaModal({ isOpen, onClose }: BeritaModalProps) {
                 <p className="text-xs font-black uppercase tracking-[0.3em]">Cakrawala Dunia Masih Tenang</p>
               </div>
             ) : (
-              filteredNews.map((item) => {
+              // Final deduplication gate to ensure no duplicate keys ever reach the renderer
+              Array.from(new Map(filteredNews.map(item => [item.id, item])).values()).map((item) => {
                 const theme = getCategoryTheme(item.category);
                 const isExpanded = expandedId === item.id;
 
@@ -234,12 +331,45 @@ export default function BeritaModal({ isOpen, onClose }: BeritaModalProps) {
                              <div className="flex items-center gap-2 text-zinc-500 text-[10px] font-bold uppercase tracking-widest">
                                 <Info size={14} /> ID: INTEL-{item.id.toUpperCase()}
                              </div>
-                             <button
-                                onClick={() => newsStorage.markAsRead(item.id)}
-                                className="text-[10px] font-black uppercase tracking-widest text-indigo-400 hover:text-indigo-300 transition-colors"
-                             >
-                                Tandai Telah Dibaca
-                             </button>
+                              <button
+                                 onClick={() => newsStorage.markAsRead(item.id)}
+                                 className="text-[10px] font-black uppercase tracking-widest text-indigo-400 hover:text-indigo-300 transition-colors"
+                              >
+                                 Tandai Telah Dibaca
+                              </button>
+                              
+                              {(() => {
+                                const targets = detectNavigationTargets(item);
+                                if (!targets) return null;
+                                
+                                return (
+                                  <button
+                                    onClick={() => {
+                                      onClose();
+                                      const countryId = targets.country.name_id.toLowerCase();
+                                      const tab = targets.sector === "produksi" ? "info_strategis" : targets.sector;
+                                      const subTab = "detail_lengkap";
+                                      const sector = targets.sector;
+                                      const cardId = targets.cardId;
+                                      const cardSlug = (targets as any).cardSlug || cardId.replace(/^\d+_/, '');
+
+                                      // Update internal state for modal triggering
+                                      const fullMenuPath = `CountryModal:${countryId}:${tab}:${subTab}:${sector}:${cardId}`;
+                                      setActiveMenu(fullMenuPath);
+
+                                      // Push to browser historical URL
+                                      // Pattern: /game/[country]/[tab]/[subtab]/[sector]/[slug]
+                                      router.push(`/game/${countryId}/${tab}/${subTab}/${sector}/${cardSlug}`);
+                                    }}
+                                    className="flex items-center gap-2 group/btn cursor-pointer py-2 px-4 bg-amber-500/10 hover:bg-amber-500 border border-amber-500/30 hover:border-amber-400 rounded-xl transition-all"
+                                  >
+                                    <TrendingUp size={14} className="text-amber-500 group-hover/btn:text-black transition-colors" />
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-amber-500 group-hover/btn:text-black transition-colors">
+                                      Lihat Detail Negara {targets.country.name_id}
+                                    </span>
+                                  </button>
+                                );
+                              })()}
                           </div>
                         </div>
                       </div>

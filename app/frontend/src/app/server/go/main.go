@@ -3,12 +3,14 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"math"
 	"math/rand"
 	"net/http"
 	"os/exec"
 	"regexp"
+	"sort"
 	"sync"
 	"time"
 )
@@ -38,6 +40,13 @@ type SimulationState struct {
 	DayCounter int         `json:"dayCounter"`
 	Player     PlayerState `json:"player"`
 	mu         sync.Mutex
+}
+
+type NPCNationState struct {
+	Name       string  `json:"name"`
+	GDPGrowth  float64 `json:"gdpGrowth"` // Annualized quarterly growth
+	Stability  float64 `json:"stability"`
+	EconomicTier int   `json:"tier"` // 1: developing, 2: emerging, 3: developed
 }
 
 type NewsItem struct {
@@ -79,6 +88,9 @@ var (
 	sseClients   = make(map[*SSEClient]bool)
 	sseClientsMu sync.Mutex
 	rng          = rand.New(rand.NewSource(time.Now().UnixNano()))
+	
+	globalNPCStates = make(map[string]*NPCNationState)
+	lastProcessedMonth time.Month = 0
 )
 
 // ═══════════════════════════════════════════════════════════
@@ -318,11 +330,20 @@ func main() {
 	http.HandleFunc("/api/health", handleHealth)
 	http.HandleFunc("/api/game/reset", handleReset)
 
+	// Initialize NPC States
+	for _, name := range npcNations {
+		tier := 1 + rng.Intn(3)
+		globalNPCStates[name] = &NPCNationState{
+			Name:       name,
+			GDPGrowth:  1.0 + rng.Float64()*3.0,
+			Stability:  60.0 + rng.Float64()*30.0,
+			EconomicTier: tier,
+		}
+	}
+
 	fmt.Println("═══════════════════════════════════════════════")
 	fmt.Println("[GO] Server-Authoritative Simulation Engine v2")
 	fmt.Println("[GO] AI Construction Simulation: ACTIVE")
-	fmt.Println("[GO] SSE Stream: http://localhost:8081/api/game/sync")
-	fmt.Println("[GO] Control:    http://localhost:8081/api/game/control")
 	fmt.Println("[GO] Listening on :8081")
 	fmt.Println("═══════════════════════════════════════════════")
 	http.ListenAndServe(":8081", nil)
@@ -384,6 +405,25 @@ func simulationEngine() {
 			snapshot = createPlayerSnapshot() // Lightweight: player stats only
 		}
 		state.mu.Unlock()
+
+		// Check for Month Change (Quarterly Detection)
+		if nextDate.Month() != lastProcessedMonth {
+			oldMonth := lastProcessedMonth
+			lastProcessedMonth = nextDate.Month()
+			
+			// Detect Quarter End (End of Mar, Jun, Sep, Dec)
+			// Trigger on the 1st of Apr, Jul, Oct, Jan
+			if oldMonth == 3 || oldMonth == 6 || oldMonth == 9 || oldMonth == 12 {
+				quarter := 0
+				switch oldMonth {
+				case 3: quarter = 1
+				case 6: quarter = 2
+				case 9: quarter = 3
+				case 12: quarter = 4
+				}
+				go invokeQuarterlyEconomicAI(nextDate, quarter)
+			}
+		}
 
 		broadcastSSE(snapshot)
 	}
@@ -627,6 +667,115 @@ func formatCurrency(amount int64) string {
 	return string(result)
 }
 
+// invokeQuarterlyEconomicAI runs the Python AI to update global 206 nation stats
+func invokeQuarterlyEconomicAI(date time.Time, quarter int) {
+	state.mu.Lock()
+	dateStr := date.Format("02 Jan 2006")
+	playerCountry := state.Player.Country
+	playerBudget := state.Player.Budget
+	playerHappiness := state.Player.Happiness
+	state.mu.Unlock()
+
+	fmt.Printf("[GO] Triggering Quarterly Economic AI for Q%d...\n", quarter)
+
+	// 1. Prepare Payload
+	payload := struct {
+		Quarter int                        `json:"quarter"`
+		Nations map[string]*NPCNationState `json:"nations"`
+	}{
+		Quarter: quarter,
+		Nations: globalNPCStates,
+	}
+
+	jsonPayload, _ := json.Marshal(payload)
+
+	// 2. Execute Python Worker
+	cmd := exec.Command("python", "src/app/server/python/strategy.py")
+	stdin, err := cmd.StdinPipe()
+	if err != nil {
+		fmt.Printf("[GO] Error: Failed to open stdin for Python worker: %v\n", err)
+		return
+	}
+
+	go func() {
+		defer stdin.Close()
+		io.WriteString(stdin, string(jsonPayload))
+	}()
+
+	out, err := cmd.Output()
+	if err != nil {
+		fmt.Printf("[GO] Error: Python quarterly worker failed: %v\n", err)
+		return
+	}
+
+	// 3. Parse Results
+	var results map[string]float64
+	if err := json.Unmarshal(out, &results); err != nil {
+		fmt.Printf("[GO] Error: Failed to parse Python response: %v\n", err)
+		return
+	}
+
+	// 4. Update States & Find Highlights
+	type pair struct {
+		name   string
+		growth float64
+	}
+	var allGrowth []pair
+
+	state.mu.Lock()
+	for name, growth := range results {
+		if nation, ok := globalNPCStates[name]; ok {
+			nation.GDPGrowth = growth
+			allGrowth = append(allGrowth, pair{name, growth})
+		}
+	}
+	state.mu.Unlock()
+
+	// Sort for highlights
+	sort.Slice(allGrowth, func(i, j int) bool {
+		return allGrowth[i].growth > allGrowth[j].growth
+	})
+
+	// 5. Generate News Highlight
+	if len(allGrowth) > 5 {
+		top := allGrowth[0]
+		bottom := allGrowth[len(allGrowth)-1]
+
+		subject := fmt.Sprintf("Laporan Ekonomi Global Kuartal %d", quarter)
+		content := fmt.Sprintf(
+			"Analisis ekonomi kuartal %d menunjukkan dinamika global yang beragam. "+
+				"%s memimpin pertumbuhan dengan +%.1f%%, sementara %s mencatat performa terendah dengan %.1f%%. "+
+				"Secara keseluruhan, ekonomi dunia sedang berada dalam fase adaptasi strategis.",
+			quarter, top.name, top.growth, bottom.name, bottom.growth,
+		)
+		state.mu.Lock()
+		addNewsItem("Python AI Strategy", subject, content, "economy", "high", dateStr)
+		state.mu.Unlock()
+	}
+
+	// 6. Generate Player Inbox Report
+	playerGrowth := results[playerCountry]
+	if playerGrowth == 0 {
+		playerGrowth = 0.5 + rng.Float64()*1.5 // Fallback if player nation not in NPC list
+	}
+
+	inboxSubject := fmt.Sprintf("Laporan Ekonomi Kuartal %d - %s", quarter, playerCountry)
+	inboxContent := fmt.Sprintf(
+		"Sayyidi, berikut adalah ringkasan performa ekonomi %s untuk Kuartal %d.\n\n"+
+			"- Pertumbuhan GDP: %.2f%%\n"+
+			"- Saldo Anggaran saat ini: %s EM\n"+
+			"- Tingkat Kebahagiaan: %.1f%%\n\n"+
+			"Staf ahli ekonomi kami menyarankan pengawasan ketat terhadap stabilitas nasional guna mempertahankan momentum pertumbuhan ini.",
+		playerCountry, quarter, playerGrowth, formatCurrency(int64(playerBudget)), playerHappiness,
+	)
+	
+	state.mu.Lock()
+	addInboxItem("Lembaga Analisis Ekonomi", inboxSubject, inboxContent, "high")
+	state.mu.Unlock()
+
+	fmt.Printf("[GO] Quarterly Economic Update Q%d finalized.\n", quarter)
+}
+
 func invokePolyglotWorkers(dateStr string) {
 	// C++ Worker (Construction Math)
 	cppOut, err := exec.Command("src/app/server/cpp/worker.exe").Output()
@@ -673,8 +822,10 @@ func generateWeeklyNews(date time.Time) {
 }
 
 func addNewsItem(source, subject, content, category, priority, timeStr string) {
+	// Use UnixNano + Random Int + Current Length to ensure absolute uniqueness in fast loops
+	uniqueID := fmt.Sprintf("INTEL-SV-%d-%x-%d", time.Now().UnixNano(), rng.Int63n(1000000), len(state.News))
 	item := NewsItem{
-		ID:        fmt.Sprintf("sv-%d-%d", time.Now().UnixNano(), len(state.News)),
+		ID:        uniqueID,
 		Source:    source,
 		Subject:   subject,
 		Content:   content,
@@ -687,6 +838,23 @@ func addNewsItem(source, subject, content, category, priority, timeStr string) {
 	state.News = append([]NewsItem{item}, state.News...)
 	if len(state.News) > 50 {
 		state.News = state.News[:50]
+	}
+}
+
+func addInboxItem(sender, subject, content, priority string) {
+	// Use UnixNano + Random Int + Current Length to ensure absolute uniqueness
+	uniqueID := fmt.Sprintf("INTEL-SV-%d-%x-%d", time.Now().UnixNano(), rng.Int63n(1000000), len(state.Inbox))
+	item := InboxItem{
+		ID:        uniqueID,
+		Sender:    sender,
+		Subject:   subject,
+		Content:   content,
+		Timestamp: time.Now().UnixMilli(),
+		Priority:  priority,
+	}
+	state.Inbox = append([]InboxItem{item}, state.Inbox...)
+	if len(state.Inbox) > 30 {
+		state.Inbox = state.Inbox[:30]
 	}
 }
 
