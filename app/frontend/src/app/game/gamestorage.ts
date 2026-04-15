@@ -32,6 +32,7 @@ import { playerMilitaryStorage } from "./components/map-system/modals_detail_neg
 import { stabilityStorage } from "./components/1_navbar/4_stabilitas";
 import { nuclearStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/nuclearStorage";
 import { aiBudgetStorage } from "./components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { aiPopulationStorage } from "./components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { importStockStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ImportStockStorage";
 import { historiImportStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ekspor_impor/impor/HistoriImportStorage";
 import { historiEksporStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ekspor_impor/ekspor/HistoriEksporStorage";
@@ -99,6 +100,8 @@ export const gameStorage = {
   saveSession: (country: string) => {
     if (typeof window === 'undefined') return;
     
+    console.log(`[SAVE SESSION] Starting new game for country: ${country}`);
+    
     // Hard stop timer first to prevent race condition ghost writes
     timeStorage.clear();
 
@@ -110,8 +113,10 @@ export const gameStorage = {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     localStorage.setItem("selectedCountry", country);
     localStorage.removeItem("em4_game_date"); // Reset date for new game
+    localStorage.setItem("em4_fresh_session", "true"); // Flag to force default values
     
     // Modular cleanup
+    console.log(`[SAVE SESSION] Clearing all storages...`);
     happinessStorage.clear();
     priceStorage.clear();
     expenseStorage.clear();
@@ -145,6 +150,7 @@ export const gameStorage = {
     stabilityStorage.clear();
     nuclearStorage.clear();
     aiBudgetStorage.clear();
+    aiPopulationStorage.clear();
     aiHappinessStorage.clear();
     aiBuildingStorage.clear();
     aiProductionStorage.clear();
@@ -247,6 +253,7 @@ export const gameStorage = {
     stabilityStorage.clear();
     nuclearStorage.clear();
     aiBudgetStorage.clear();
+    aiPopulationStorage.clear();
     aiHappinessStorage.clear();
     aiBuildingStorage.clear();
     aiProductionStorage.clear();
@@ -347,7 +354,11 @@ export const gameStorage = {
                 key === 'game_taxes' || 
                 key === 'selectedCountry' ||
                 key === 'em4_game_date' ||
-                key === 'em2_global_relation_matrix'
+                key === 'em2_global_relation_matrix' ||
+                key === 'em4_ai_populations' ||
+                key === 'em4_ai_budgets' ||
+                key === 'em4_ai_last_processed' ||
+                key === 'em4_ai_pop_last_processed'
             ) {
                 keysToRemove.add(key);
             }
@@ -385,6 +396,7 @@ export const gameStorage = {
     populationDeltaStorage.clear();
     stabilityStorage.clear();
     aiBudgetStorage.clear();
+    aiPopulationStorage.clear();
     aiHappinessStorage.clear();
     aiBuildingStorage.clear();
     aiProductionStorage.clear();
@@ -513,6 +525,7 @@ export const gameStorage = {
     stabilityStorage.clear();
     nuclearStorage.clear();
     aiBudgetStorage.clear();
+    aiPopulationStorage.clear();
     aiHappinessStorage.clear();
     aiBuildingStorage.clear();
     aiProductionStorage.clear();

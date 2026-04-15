@@ -37,6 +37,13 @@ export function useAIGameSync() {
 
       const gameDate = new Date(dateStr);
 
+      // SKIP updates if fresh session — preserve default database values
+      const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+      if (isFreshSession) {
+        console.log(`[useAIGameSync] Fresh session detected — skipping AI updates to preserve defaults`);
+        return;
+      }
+
       // 1. Update AI Budget (Kas Negara) — adds daily income for all 206 NPC nations
       try {
         aiBudgetStorage.updateAll(gameDate, userCountry);

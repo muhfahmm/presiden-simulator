@@ -38,6 +38,13 @@ export const aiPopulationStorage = {
   resetToDefault: (): AIPopulationData => {
     if (typeof window === 'undefined') return {};
     
+    // DEBUG: Log reset action
+    console.log(`[AI POPULATION] Resetting all AI populations to database defaults...`);
+    
+    // Aggressive: Explicitly remove key first to ensure clean slate
+    localStorage.removeItem(AI_POP_KEY);
+    localStorage.removeItem(LAST_PROCESSED_KEY);
+    
     const initialData: AIPopulationData = {};
     countries.forEach(c => {
       // Ensure we pull from the correct property and handle string/number
@@ -47,17 +54,37 @@ export const aiPopulationStorage = {
         : Number(rawPop);
       
       initialData[c.name_en] = (rawValue || 0);
+      
+      // DEBUG: Log Malaysia specifically
+      if (c.name_en === 'Malaysia') {
+        console.log(`[AI POPULATION] Malaysia default population: ${rawValue}`);
+      }
     });
 
     localStorage.setItem(AI_POP_KEY, JSON.stringify(initialData));
-    localStorage.removeItem(LAST_PROCESSED_KEY);
+    console.log(`[AI POPULATION] Reset complete. Total countries: ${countries.length}`);
     return initialData;
   },
 
   /**
-   * Get population for a specific country
+   * Get population for a specific country.
+   * If fresh session flag is set, returns database default.
    */
   getPopulation: (countryNameEn: string): number => {
+    // Check for fresh session flag - if set, return database default
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    if (isFreshSession) {
+      const c = countries.find(c => c.name_en === countryNameEn);
+      if (c) {
+        const rawPop = (c as any).jumlah_penduduk ?? (c as any).populasi;
+        const defaultPop = typeof rawPop === 'string'
+          ? Number(rawPop.replace(/\./g, ''))
+          : Number(rawPop) || 0;
+        console.log(`[AI POPULATION] Fresh session - returning default for ${countryNameEn}: ${defaultPop}`);
+        return defaultPop;
+      }
+    }
+    
     const data = aiPopulationStorage.getAll();
     if (data[countryNameEn] !== undefined) {
       return data[countryNameEn];
@@ -118,5 +145,12 @@ export const aiPopulationStorage = {
       // Dispatch event to update the UI (especially DetailNegaraModal)
       window.dispatchEvent(new Event("ai_population_updated"));
     }
+  },
+
+  clear: () => {
+    if (typeof window === 'undefined') return;
+    aiPopulationStorage.resetToDefault();
+    // Explicitly dispatch to notify any listeners
+    window.dispatchEvent(new Event('ai_population_updated'));
   }
 };

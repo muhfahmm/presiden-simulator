@@ -19,6 +19,8 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import GameNavbar from "@/app/game/components/1_navbar";
 import { initAiDiplomacy } from "../components/map-system/ai_diplomacy_engine/AiGlobalDiplomacy";
 import { newsStorage } from "../components/sidemenu/1_berita/newsStorage";
+import { aiBudgetStorage } from "../components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { aiPopulationStorage } from "../components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
 // import AILogicCNS from "../components/AI_logic"; // REMOVED: All AI logic migrated to Go Server
 
 import { useGameState } from "../hooks/useGameState";
@@ -45,6 +47,14 @@ export default function GamePage() {
   // Sync AI nation stats (Budget, Population, Happiness) with game time
   useAIGameSync();
 
+  // EXPLICIT RESET: Ensure AI storages are reset to defaults when game page loads
+  // This must happen BEFORE useAIGameSync starts updating
+  useEffect(() => {
+    console.log("[GAME PAGE] Explicitly resetting AI storages to database defaults...");
+    aiBudgetStorage.clear();
+    aiPopulationStorage.clear();
+    console.log("[GAME PAGE] AI storages reset complete");
+  }, []);
 
   useEffect(() => {
     initAiDiplomacy();

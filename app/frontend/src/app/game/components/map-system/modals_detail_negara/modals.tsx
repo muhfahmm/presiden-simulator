@@ -215,17 +215,39 @@ export default function StrategyModal({
         popTotal = populationStorage.getPopulation();
         popDelta = populationDeltaStorage.getDelta();
       } else {
-        currentAnggaran = aiBudgetStorage.getBudget(countryEntry.name_en);
+        // NPC: Get default values from database, not from localStorage
+        // This ensures we show pristine defaults (31,528,585 pop, 3,889 budget)
+        const rawPop = (countryEntry as any).jumlah_penduduk ?? (countryEntry as any).populasi ?? 0;
+        const defaultPop = typeof rawPop === 'string' 
+          ? parseInt(rawPop.replace(/\./g, '')) 
+          : (typeof rawPop === 'number' ? rawPop : 0);
+        const defaultBudget = typeof countryEntry.anggaran === 'string'
+          ? Number(countryEntry.anggaran.replace(/\./g, ''))
+          : Number(countryEntry.anggaran) || 0;
+        
+        // Use localStorage values if they exist (for accumulated state), 
+        // but default to database values if not initialized
+        const storedBudget = aiBudgetStorage.getBudget(countryEntry.name_en);
+        const storedPop = aiPopulationStorage.getPopulation(countryEntry.name_en);
+        
+        currentAnggaran = storedBudget || defaultBudget;
         
         // NPC Building Deltas Logic
         const aiDeltas = aiBuildingStorage.getAllBuildingDeltas(countryEntry.name_en);
         currentDailyDelta = calculateDailyBudgetDelta(countryEntry as any, aiDeltas);
         
         // NPC Population — Read from AIPopulationStorage (accumulates daily)
-        const aiPop = aiPopulationStorage.getPopulation(countryEntry.name_en);
+        const aiPop = storedPop || defaultPop;
         const popMetrics = calculateDetailedPopulationMetrics(countryEntry as any, aiPop, aiDeltas);
         popTotal = aiPop;
         popDelta = popMetrics.totalDailyDelta;
+        
+        // Clear fresh session flag after first read (only for non-user countries)
+        // This allows subsequent updates to use accumulated localStorage values
+        if (typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true") {
+          console.log(`[MODALS] Clearing fresh session flag after reading defaults for ${countryEntry.name_en}`);
+          localStorage.removeItem("em4_fresh_session");
+        }
       }
 
       setLiveStats({ 

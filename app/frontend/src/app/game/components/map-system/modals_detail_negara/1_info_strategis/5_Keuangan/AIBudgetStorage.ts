@@ -39,6 +39,13 @@ export const aiBudgetStorage = {
   resetToDefault: (): AIBudgetData => {
     if (typeof window === 'undefined') return {};
     
+    // DEBUG: Log reset action
+    console.log(`[AI BUDGET] Resetting all AI budgets to database defaults...`);
+    
+    // Aggressive: Explicitly remove key first to ensure clean slate
+    localStorage.removeItem(AI_BUDGET_KEY);
+    localStorage.removeItem(LAST_PROCESSED_KEY);
+    
     const initialData: AIBudgetData = {};
     countries.forEach(c => {
       // Ensure we pull from the correct property and handle string/number
@@ -48,10 +55,15 @@ export const aiBudgetStorage = {
       
       // ALIGNMENT FIX: Use raw value from database to match player budget scale
       initialData[c.name_en] = (rawValue || 0);
+      
+      // DEBUG: Log Malaysia specifically
+      if (c.name_en === 'Malaysia') {
+        console.log(`[AI BUDGET] Malaysia default anggaran: ${rawValue}`);
+      }
     });
 
     localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(initialData));
-    localStorage.removeItem(LAST_PROCESSED_KEY); // Also reset processing date
+    console.log(`[AI BUDGET] Reset complete. Total countries: ${countries.length}`);
     return initialData;
   },
 
@@ -64,8 +76,22 @@ export const aiBudgetStorage = {
 
   /**
    * Get the current budget for a specific country.
+   * If fresh session flag is set, returns database default and clears the flag.
    */
   getBudget: (countryNameEn: string): number => {
+    // Check for fresh session flag - if set, return database default
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    if (isFreshSession) {
+      const country = countries.find(c => c.name_en === countryNameEn);
+      if (country) {
+        const defaultBudget = typeof country.anggaran === 'string'
+          ? Number(country.anggaran.replace(/\./g, ''))
+          : Number(country.anggaran) || 0;
+        console.log(`[AI BUDGET] Fresh session - returning default for ${countryNameEn}: ${defaultBudget}`);
+        // Don't clear flag here - let the modal clear it after reading all values
+        return defaultBudget;
+      }
+    }
     const data = aiBudgetStorage.getAll();
     return data[countryNameEn] || 0;
   },
