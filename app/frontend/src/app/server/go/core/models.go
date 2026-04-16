@@ -81,6 +81,10 @@ type NPCNationState struct {
 	GDPGrowth    float64 `json:"gdpGrowth"`
 	Stability    float64 `json:"stability"`
 	EconomicTier int     `json:"economicTier"`
+	Population   float64 `json:"population"`
+	Budget       float64 `json:"budget"`
+	Happiness    float64 `json:"happiness"`
+	DailyIncome  float64 `json:"dailyIncome"`
 }
 
 type Relationship struct {

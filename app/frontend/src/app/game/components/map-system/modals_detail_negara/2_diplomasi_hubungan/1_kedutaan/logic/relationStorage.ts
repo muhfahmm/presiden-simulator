@@ -5,7 +5,6 @@
  * Menyimpan perubahan skor hubungan di localStorage untuk kegigihan sesi game.
  */
 
-import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { embassyStorage } from "./embassyStorage";
 import { nonAggressionStorage } from "../../2_pakta_non_agresi/logic/nonAggressionStorage";
@@ -105,13 +104,9 @@ export const relationStorage = {
     const targetCountries = centersData.filter(c => c.name_id.toLowerCase().trim() !== normalizedPlayer);
     
     // Build initial base scores map for fallback
-    const userRelations = (allRelations as any)[normalizedPlayer];
+    // DEPRECATED: We no longer use static allRelations here to save memory.
+    // Base relation map is now handled by the dynamic loader or backend sync.
     const baseRelationMap = new Map<string, number>();
-    if (Array.isArray(userRelations)) {
-      userRelations.forEach((rel: any) => {
-        if (rel.name) baseRelationMap.set(rel.name.toLowerCase().trim(), rel.relation);
-      });
-    }
 
     targetCountries.forEach(country => {
       const countryId = country.name_id.toLowerCase().trim();

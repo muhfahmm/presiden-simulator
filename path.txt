@@ -1,32 +1,39 @@
 === PRESIDEN SIMULATOR (EM2) ===
 
-# Cara Install
-1. Frontend:
-   cd "c:\fhm\em\app\frontend"
-   npm install
+# Cara Cepat (Install & Jalankan)
+cd "c:\fhm\em\app\frontend"
+npm run setup
+> Perintah di atas akan otomatis melakukan 'npm install' dan langsung menjalankan game.
 
-2. Backend:
-   cd "c:\fhm\em\app\backend"
-   go mod tidy
-
-# Cara Masuk (Mode Web)
+# Cara Jalankan (Harian)
 cd "c:\fhm\em\app\frontend"
 npm run dev
 > Akses: http://localhost:4000
+> Log Next.js (Cyan) dan Go Server (Magenta) akan tampil bersamaan.
+
+# Lokasi Server Backend (Go)
+Lokasi: c:\fhm\em\app\frontend\src\app\server\go
+> Server ini berjalan otomatis saat 'npm run dev' dipanggil.
+
+# Cara Jalankan (Hanya Server / Backend)
+Pilihan 1 (Lewat NPM):
+cd "c:\fhm\em\app\frontend"
+npm run dev:go
+
+Pilihan 2 (Langsung via Go):
+cd "c:\fhm\em\app\frontend\src\app\server\go"
+go run main.go
 
 # Cara Masuk (Mode Desktop - Tauri)
 cd "c:\fhm\em\app\frontend"
 npx tauri dev
 
-# Cara Masuk (Server Backend)
-cd "c:\fhm\em1\app\backend"
-go run cmd/main.go
-> Server: port 4001
+# Tutup / Force Stop (Jika Macet)
+Stop Game: taskkill /F /IM node.exe
+Stop Server: taskkill /F /IM goserver.exe
+Stop Semua: taskkill /F /IM main.exe
 
-# Tutup / Force Stop
-Stop Frontend: taskkill /F /IM node.exe
-Stop Backend: taskkill /F /IM main.exe
-
+# Git Manajemen
 git add .
-git commit -m "presiden-simulator"
+git commit -m "presiden-simulator: unified daily sync update"
 git push origin main

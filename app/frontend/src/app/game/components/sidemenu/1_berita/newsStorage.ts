@@ -145,6 +145,39 @@ export const newsStorage = {
               window.dispatchEvent(new CustomEvent("relation_matrix_sync", { detail: data.relationships }));
             }
 
+            // === NUCLEAR RESET SIGNAL ===
+            // If the Go server triggered a deep reset, we MUST clear all local AI caches
+            if (data.ResetTriggered === true) {
+              console.log("☢☢☢ [SSE] NUCLEAR RESET SIGNAL RECEIVED - WIPING LOCAL STORAGE ☢☢☢");
+              try {
+                // Hardcoded wipe of all AI and Game storage keys
+                // This is a fail-safe against modular import issues
+                const keysToRemove = [
+                  "em4_ai_budgets", "em4_ai_last_processed",
+                  "em4_ai_populations", "em4_ai_pop_last_processed",
+                  "em4_ai_happiness", "em4_ai_last_happiness_update",
+                  "em4_ai_building_data", "em4_ai_defense_counts",
+                  "em4_relation_matrix", "em4_global_news_v1",
+                  "em4_fresh_session"
+                ];
+
+                keysToRemove.forEach(key => localStorage.removeItem(key));
+                
+                // Set FRESH SESSION flag to TRUE to force components to re-read baseline
+                localStorage.setItem("em4_fresh_session", "true");
+                
+                // Also notify storages that are currently in memory
+                window.dispatchEvent(new Event("news_updated"));
+                window.dispatchEvent(new Event("ai_budget_updated"));
+                window.dispatchEvent(new Event("ai_population_updated"));
+                window.dispatchEvent(new Event("ai_happiness_updated"));
+                
+                console.log("[SSE] Nuclear Reset: Local caches purged. Components will reload baseline data.");
+              } catch (e) {
+                console.error("[SSE] Failed to purge some AI caches:", e);
+              }
+            }
+
             // === TRADE AI DAILY TRIGGER ===
             // Fire AiTradeService.processDaily() once per game day change
             if (data.gameDate && data.gameDate !== lastTradeProcessedDate && !data.isPaused) {
