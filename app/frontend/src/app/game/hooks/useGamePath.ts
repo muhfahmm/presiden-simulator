@@ -31,12 +31,10 @@ export function useGamePath(path: string[]) {
       
       if (s3 && s4) {
         const country = decodeURIComponent(s3).replace(/_/g, ' ');
-        const tab = s4 === 'tawaran' ? 'tawaran_ai' : s4;
-        initialMenu = `Menu:Perdagangan:${tab}:${country}`;
+        initialMenu = `Menu:Perdagangan:${s4}:${country}`;
       } else if (s3) {
         // Fallback untuk backward compatibility atau navigasi parsial
         if (s3 === 'histori' || s3 === 'berita') initialMenu = `Menu:Perdagangan:${s3}`;
-        else if (s3 === 'tawaran') initialMenu = "Menu:Perdagangan:tawaran_ai";
         else {
           const country = decodeURIComponent(s3).replace(/_/g, ' ');
           initialMenu = `Menu:Perdagangan:impor:${country}`;
@@ -265,10 +263,9 @@ export function useGamePath(path: string[]) {
     if (!targetPath && activeMenu.startsWith("Menu:Perdagangan")) {
       const parts = activeMenu.split(":");
       // Format: Menu:Perdagangan:[tab]:[negara]
-      const tabRaw = parts[2] || "impor";
+      const tab = parts[2] || "impor";
       const countryRaw = parts[3] || "Amerika Serikat";
       
-      const tab = tabRaw === 'tawaran_ai' ? 'tawaran' : tabRaw;
       const country = countryRaw.replace(/ /g, '_');
       
       targetPath = `/game/ekonomi/perdagangan/${country}/${tab}`;

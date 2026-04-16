@@ -34,10 +34,6 @@ import { ImporEksekusi } from "./ekspor_impor/impor/ImporEksekusi";
 import { HistoriEkspor } from "./ekspor_impor/ekspor/HistoriEkspor";
 import { HistoriImport } from "./ekspor_impor/impor/HistoriImport";
 import BeritaHalaman from "./berita/BeritaHalaman";
-import AiTradeOffersPanel from "@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/components/AiTradeOffersPanel";
-import { aiTradeOfferStorage } from "@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/aiTradeOfferStorage";
-import { tradeContractStorage } from "@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/tradeContractStorage";
-import { tradeAgreementStorage } from "@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/tradeAgreementStorage";
 
 interface ModalProps {
   isOpen: boolean;
@@ -76,7 +72,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   React.useEffect(() => {
     const handleUpdate = () => setUserBudget(budgetStorage.getBudget());
     window.addEventListener('budget_storage_updated', handleUpdate);
-    return () => window.removeEventListener('budget_storage_updated', handleUpdate);
+    
+    return () => {
+      window.removeEventListener('budget_storage_updated', handleUpdate);
+    };
   }, []);
 
   const handleAddProposal = (target: CountryData, waitDays: number, chance: number) => {
@@ -834,25 +833,6 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                   <Newspaper size={14} />
                   Berita
                 </button>
-
-                <button
-                  onClick={() => {
-                    const countryPart = selectedTradePartner ? `:${selectedTradePartner}` : "";
-                    setActiveMenu(`Menu:Perdagangan:tawaran_ai${countryPart}`);
-                  }}
-                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 flex items-center gap-2 cursor-pointer relative ${tradeType === "tawaran_ai"
-                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-[0_0_30px_rgba(99,102,241,0.3)] hover:shadow-[0_0_40px_rgba(99,102,241,0.5)]"
-                      : "text-zinc-500 hover:text-zinc-300"
-                    }`}
-                >
-                  <Sparkles size={14} />
-                  Tawaran
-                  {isMounted && (aiTradeOfferStorage.getPendingCount() + tradeContractStorage.getPendingCount() + tradeAgreementStorage.getPendingCount()) > 0 && (
-                    <span className="absolute -top-1 -right-1 px-1.5 py-0.5 text-[8px] font-black bg-red-500 text-white rounded-full min-w-[18px] text-center animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]">
-                      {aiTradeOfferStorage.getPendingCount() + tradeContractStorage.getPendingCount() + tradeAgreementStorage.getPendingCount()}
-                    </span>
-                  )}
-                </button>
               </div>
 
               {/* Logistics Efficiency Summary Card */}
@@ -930,8 +910,6 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     selectedTradePartner={selectedTradePartner}
                     getStoredGameDate={getStoredGameDate}
                   />
-                ) : tradeType === "tawaran_ai" ? (
-                  <AiTradeOffersPanel />
                 ) : tradeType === "berita" ? (
                   <BeritaHalaman />
                 ) : tradeType === "histori" ? (

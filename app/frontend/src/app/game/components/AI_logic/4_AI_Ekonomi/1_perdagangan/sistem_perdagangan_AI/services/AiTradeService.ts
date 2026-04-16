@@ -257,7 +257,9 @@ export const AiTradeService = {
                                         break;
                                     case 'AI_TRADE_PURCHASE_REQUEST':
                                         proposalLabel = 'Proposal Permintaan Beli';
-                                        if (event.offerId) metadata = { type: 'purchase_request', id: event.offerId };
+                                        // Fix: Python sends requestId for purchase requests
+                                        const rId = event.requestId || event.offerId;
+                                        if (rId) metadata = { type: 'purchase_request', id: rId };
                                         break;
                                     case 'AI_TRADE_CONTRACT_PROPOSAL':
                                         proposalLabel = 'Proposal Kontrak Perdagangan';
@@ -275,7 +277,7 @@ export const AiTradeService = {
                                 content: event.content,
                                 time: formatGameDate(gameDate),
                                 priority: event.priority || 'medium',
-                                metadata: isEmbassy ? { type: 'embassy', country: safeSource } : metadata
+                                metadata: isEmbassy ? { type: 'embassy', id: safeSource, country: safeSource } : metadata
                             });
                         }
                     }

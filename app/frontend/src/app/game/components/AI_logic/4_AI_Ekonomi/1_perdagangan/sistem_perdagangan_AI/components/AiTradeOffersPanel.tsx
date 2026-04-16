@@ -43,6 +43,25 @@ export default function AiTradeOffersPanel() {
     };
   }, [mounted]);
 
+  // Auto-select tab logic: Jika tab aktif kosong, pindah ke tab pertama yang punya konten
+  useEffect(() => {
+    if (!mounted) return;
+    
+    const counts = {
+      agreements: agreements.filter(a => a.status === "pending").length,
+      offers: offers.filter(o => o.status === "pending" && o.type === "product_offer").length,
+      requests: offers.filter(o => o.status === "pending" && o.type === "purchase_request").length,
+      contracts: contracts.filter(c => c.status === "pending").length + contracts.filter(c => c.status === "active").length
+    };
+
+    if (counts[activeTab] === 0) {
+      if (counts.agreements > 0) setActiveTab("agreements");
+      else if (counts.offers > 0) setActiveTab("offers");
+      else if (counts.requests > 0) setActiveTab("requests");
+      else if (counts.contracts > 0) setActiveTab("contracts");
+    }
+  }, [mounted, agreements, offers, contracts, activeTab]);
+
   if (!mounted) return null;
 
   const productOffers = offers.filter(o => o.type === "product_offer");
@@ -465,8 +484,8 @@ export default function AiTradeOffersPanel() {
       <div className="flex items-center gap-1 bg-zinc-900/50 p-1 rounded-2xl border border-zinc-800/50">
         {([
           { key: "agreements" as const, label: "Kemitraan", icon: Handshake, color: "amber" },
-          { key: "offers" as const, label: "Tawaran Produk", icon: Package, color: "rose" },
-          { key: "requests" as const, label: "Permintaan Beli", icon: ShoppingCart, color: "emerald" },
+          { key: "offers" as const, label: "Tawaran Produk (Impor)", icon: Package, color: "rose" },
+          { key: "requests" as const, label: "Permintaan Beli (Ekspor)", icon: ShoppingCart, color: "emerald" },
           { key: "contracts" as const, label: "Kontrak", icon: FileText, color: "indigo" }
         ] as const).map(tab => (
           <button
