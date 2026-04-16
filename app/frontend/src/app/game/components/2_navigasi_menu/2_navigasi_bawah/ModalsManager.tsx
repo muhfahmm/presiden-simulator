@@ -218,7 +218,9 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         setActiveMenu={setActiveMenu}
       />
       <InboxModal
-        isOpen={activeMenu === "Menu:Inbox"}
+        isOpen={activeMenu.startsWith("Menu:Inbox")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
         onClose={() => setActiveMenu("Peta Taktis")}
       />
       <RisetModal

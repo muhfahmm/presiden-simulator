@@ -40,8 +40,8 @@ export async function POST(req: NextRequest) {
       // Default ke Perdagangan AI
       const brainPath = path.join(
         process.cwd(), "src", "app", "game", "components",
-        "2_navigasi_menu", "2_navigasi_bawah", "2_ekonomi",
-        "1-perdagangan", "sistem_perdagangan_AI", "brain"
+        "AI_logic", "4_AI_Ekonomi", "1_perdagangan",
+        "sistem_perdagangan_AI", "brain"
       );
       scriptPath = path.join(brainPath, "trade_engine.py");
     }

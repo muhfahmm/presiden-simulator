@@ -19,11 +19,11 @@ import { researchStorage } from "@/app/game/components/sidemenu/3_riset_dan_pene
 // ══════════════════════════════════════════════════════════════
 
 // Sync UI control changes to Go Server (fire-and-forget)
-const syncGoServer = (action: string, speed?: number) => {
+const syncGoServer = (action: string, speed: number) => {
   fetch("http://localhost:8081/api/game/control", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ action, speed: speed || 1 }),
+    body: JSON.stringify({ action, speed: speed }),
   }).catch(() => { /* Server might be offline */ });
 };
 
@@ -96,14 +96,14 @@ export default function GameTimeControls() {
       {/* Controls */}
       <div className="flex items-center gap-1">
         <button
-          onClick={() => { timeStorage.setPaused(true); syncGoServer("pause"); }}
+          onClick={() => { timeStorage.setPaused(true); syncGoServer("pause", state.speed); }}
           className={`p-2 rounded-lg transition-all cursor-pointer ${state.isPaused ? 'bg-amber-500/20 text-amber-500 border border-amber-500/30' : 'text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-300'}`}
           title="Pause Game"
         >
           <Pause size={18} fill={state.isPaused ? "currentColor" : "none"} />
         </button>
         <button
-          onClick={() => { timeStorage.setPaused(false); syncGoServer("resume"); }}
+          onClick={() => { timeStorage.setPaused(false); syncGoServer("resume", state.speed); }}
           className={`p-2 rounded-lg transition-all cursor-pointer ${!state.isPaused ? 'bg-emerald-500/20 text-emerald-500 border border-emerald-500/30' : 'text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-300'}`}
           title="Resume Game"
         >

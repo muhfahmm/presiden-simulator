@@ -150,7 +150,7 @@ export const newsStorage = {
               tradeProcessTimeout = setTimeout(async () => {
                 try {
                   const { AiTradeService } = await import(
-                    '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/sistem_perdagangan_AI/services/AiTradeService'
+                    '@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/services/AiTradeService'
                   );
                   AiTradeService.processDaily();
                 } catch (e) {

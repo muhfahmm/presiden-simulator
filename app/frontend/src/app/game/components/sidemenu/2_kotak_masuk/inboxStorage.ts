@@ -9,6 +9,7 @@ export interface InboxItem {
   priority: 'low' | 'medium' | 'high';
   category?: 'finance' | 'trade' | 'pact' | 'alliance' | 'embassy' | 'intelligence' | 'general' | 'defense' | 'diplomacy';
   isProposal?: boolean;
+  proposalLabel?: string;
   timestamp: number;
   content?: string;
 }
@@ -133,10 +134,10 @@ export const inboxStorage = {
 
   /**
    * Weekly Quota check for AI Inbox.
-   * Limit: 2 per week per specific category.
+   * Limit: 15 per week per specific category.
    */
   canAddWeekly: (category: string, gameDate: Date): boolean => {
-    const WEEKLY_LIMIT = 2;
+    const WEEKLY_LIMIT = 15;
     const weekId = `IW${Math.floor(gameDate.getTime() / (7 * 24 * 60 * 60 * 1000))}`;
     
     // Use an internal memory counter (resets on reload, which is fine for UI fluff)
@@ -169,6 +170,7 @@ export const inboxStorage = {
       priority: si.priority || "low",
       category: si.category || "general",
       isProposal: si.isProposal || false,
+      proposalLabel: si.proposalLabel || "",
       timestamp: si.timestamp || Date.now(),
     }));
 

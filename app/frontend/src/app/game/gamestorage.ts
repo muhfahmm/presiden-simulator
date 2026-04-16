@@ -49,8 +49,9 @@ import { eventStorage } from "./logic/events/eventStorage";
 import { tradeStorage as diplomaticTradeStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
 import { RELATION_MATRIX_KEY } from "./components/map-system/ai_diplomacy_engine/services/MatrixHandler";
 import { timeStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
-import { aiTradeOfferStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/sistem_perdagangan_AI/storage/aiTradeOfferStorage";
-import { tradeContractStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/sistem_perdagangan_AI/storage/tradeContractStorage";
+import { aiTradeOfferStorage } from "./components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/aiTradeOfferStorage";
+import { tradeContractStorage } from "./components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/tradeContractStorage";
+import { tradeAgreementStorage } from "./components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/tradeAgreementStorage";
 import { aiHappinessStorage } from "./components/map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { aiBuildingStorage } from "./components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "./components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
@@ -170,6 +171,7 @@ export const gameStorage = {
     diplomaticTradeStorage.clear();
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
+    tradeAgreementStorage.clear();
     if (typeof window !== 'undefined') {
       localStorage.removeItem(RELATION_MATRIX_KEY);
     }
@@ -273,6 +275,7 @@ export const gameStorage = {
     diplomaticTradeStorage.clear();
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
+    tradeAgreementStorage.clear();
     localStorage.removeItem(RELATION_MATRIX_KEY);
     
     window.location.href = '/database';
@@ -437,6 +440,7 @@ export const gameStorage = {
     timeStorage.clear();
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
+    tradeAgreementStorage.clear();
 
     // SECTION 3: RE-INITIALIZE AI STORAGES WITH DEFAULTS
     console.log(`[RESET] PHASE 2b: Re-initializing AI storages with database defaults...`);
@@ -554,6 +558,7 @@ export const gameStorage = {
     diplomaticTradeStorage.clear();
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
+    tradeAgreementStorage.clear();
     localStorage.removeItem(RELATION_MATRIX_KEY);
   },
 };

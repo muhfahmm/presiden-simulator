@@ -100,7 +100,16 @@ export function useGamePath(path: string[]) {
       window.history.replaceState(null, '', "/game/berita_internasional");
     }
   } else if (category === 'inbox') {
-    initialMenu = "Menu:Inbox";
+    const filter = path[1] || "semua";
+    const filterMap: Record<string, string> = {
+      "semua": "all",
+      "keuangan": "finance",
+      "perdagangan": "trade",
+      "kedutaan": "embassy",
+      "pakta": "pact",
+      "aliansi": "alliance"
+    };
+    initialMenu = `Menu:Inbox:${filterMap[filter] || "all"}`;
   } else if (category === 'kependudukan') {
     initialMenu = "Dashboard:Populasi";
   } else if (category === 'riset') {
@@ -196,7 +205,13 @@ export function useGamePath(path: string[]) {
       "Kementerian": "/game/kementrian",
       "Dashboard:Kementerian": "/game/kementrian/kementrian-dashboard",
       "Menu:Berita": "/game/berita_internasional",
-      "Menu:Inbox": "/game/inbox",
+      "Menu:Inbox": "/game/inbox/semua",
+      "Menu:Inbox:all": "/game/inbox/semua",
+      "Menu:Inbox:finance": "/game/inbox/keuangan",
+      "Menu:Inbox:trade": "/game/inbox/perdagangan",
+      "Menu:Inbox:embassy": "/game/inbox/kedutaan",
+      "Menu:Inbox:pact": "/game/inbox/pakta",
+      "Menu:Inbox:alliance": "/game/inbox/aliansi",
       "Menu:Riset": "/game/riset",
       "Kepuasan": "/game/kepuasan",
 

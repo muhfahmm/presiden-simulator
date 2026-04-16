@@ -30,7 +30,7 @@ export const AiDiplomacyService = {
         
         try {
             // Ambil data negara untuk mencocokkan mitra dagang
-            const { collectCountriesData } = await import('@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/sistem_perdagangan_AI/services/AiTradeService');
+            const { collectCountriesData } = await import('@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/services/AiTradeService');
             const countriesData = collectCountriesData() || {};
 
             const response = await fetch('/api/game/diplomacy/ai-global/drift', {

@@ -33,12 +33,17 @@ import { aliansiStorage } from '../../map-system/modals_detail_negara/2_diplomas
 interface InboxModalProps {
   isOpen: boolean;
   onClose: () => void;
+  activeMenu: string;
+  setActiveMenu: (menu: string) => void;
 }
 
-export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
+export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu }: InboxModalProps) {
   const [messages, setMessages] = React.useState<InboxItem[]>([]);
   const [expandedId, setExpandedId] = React.useState<string | null>(null);
-  const [filter, setFilter] = React.useState<string>('all');
+  
+  // Derivasi filter dari URL/activeMenu state
+  const filter = activeMenu.startsWith("Menu:Inbox:") ? activeMenu.split(":")[2] : "all";
+  
   const [searchTerm, setSearchTerm] = React.useState('');
   
   // State untuk Modal Peringatan
@@ -97,27 +102,28 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
     }
   };
 
-  const getCategoryTheme = (category: string = 'general') => {
+  const getCategoryTheme = (category: string = 'general', isSystem: boolean = false) => {
+    if (isSystem) return {
+      bg: 'bg-blue-500/10', border: 'border-blue-500/30', text: 'text-blue-400', indicator: 'bg-blue-500', icon: <Info className="h-4 w-4" />,
+      glow: 'shadow-[0_0_20px_rgba(59,130,246,0.1)]'
+    };
+
     switch (category) {
       case 'finance': return { 
         bg: 'bg-emerald-500/5', border: 'border-emerald-500/20', text: 'text-emerald-400', indicator: 'bg-emerald-500', icon: <DollarSign className="h-4 w-4" />,
         glow: 'shadow-[0_0_30px_rgba(16,185,129,0.15)]'
       };
       case 'trade': return { 
-        bg: 'bg-blue-500/5', border: 'border-blue-500/20', text: 'text-blue-400', indicator: 'bg-blue-500', icon: <Briefcase className="h-4 w-4" />,
-        glow: 'shadow-[0_0_30px_rgba(59,130,246,0.15)]'
+        bg: 'bg-amber-500/5', border: 'border-amber-500/20', text: 'text-amber-400', indicator: 'bg-amber-500', icon: <Briefcase className="h-4 w-4" />,
+        glow: 'shadow-[0_0_30px_rgba(245,158,11,0.15)]'
       };
       case 'pact': return { 
-        bg: 'bg-orange-500/5', border: 'border-orange-500/20', text: 'text-orange-400', indicator: 'bg-orange-500', icon: <Shield className="h-4 w-4" />,
-        glow: 'shadow-[0_0_30px_rgba(249,115,22,0.15)]'
+        bg: 'bg-rose-500/5', border: 'border-rose-500/20', text: 'text-rose-400', indicator: 'bg-rose-500', icon: <Shield className="h-4 w-4" />,
+        glow: 'shadow-[0_0_30px_rgba(244,63,94,0.15)]'
       };
       case 'alliance': return { 
-        bg: 'bg-red-500/5', border: 'border-red-500/20', text: 'text-red-400', indicator: 'bg-red-500', icon: <Shield className="h-4 w-4" />,
-        glow: 'shadow-[0_0_30px_rgba(239,68,68,0.15)]'
-      };
-      case 'intelligence': return { 
-        bg: 'bg-amber-500/5', border: 'border-amber-500/20', text: 'text-amber-400', indicator: 'bg-amber-500', icon: <Globe className="h-4 w-4" />,
-        glow: 'shadow-[0_0_30px_rgba(245,158,11,0.15)]'
+        bg: 'bg-blue-600/5', border: 'border-blue-500/20', text: 'text-blue-400', indicator: 'bg-blue-600', icon: <Shield className="h-4 w-4" />,
+        glow: 'shadow-[0_0_30px_rgba(37,99,235,0.15)]'
       };
       case 'embassy': return { 
         bg: 'bg-purple-500/5', border: 'border-purple-500/20', text: 'text-purple-400', indicator: 'bg-purple-500', icon: <Building2 className="h-4 w-4" />,
@@ -239,8 +245,8 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setFilter(tab.id)}
-                className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${
+                onClick={() => setActiveMenu(`Menu:Inbox:${tab.id}`)}
+                className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all cursor-pointer ${
                   filter === tab.id ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'
                 }`}
               >
@@ -271,9 +277,7 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
               </div>
             ) : (
               filteredMessages.map((msg) => {
-                const theme = getCategoryTheme(msg.category);
                 const isExpanded = expandedId === msg.id;
-
                 return (
                   <div 
                     key={msg.id}
@@ -287,13 +291,14 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
                       onClick={() => setExpandedId(isExpanded ? null : msg.id)}
                     >
                       <div className="flex items-center gap-6">
-                        <div className={`p-4 rounded-2xl bg-zinc-950 border ${theme.border} ${theme.text} ${theme.glow}`}>
-                          {theme.icon}
+                        <div className={`p-4 rounded-2xl bg-zinc-950 border ${getCategoryTheme(msg.category, msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO').border} ${getCategoryTheme(msg.category, msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO').text} ${getCategoryTheme(msg.category, msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO').glow}`}>
+                          {getCategoryTheme(msg.category, msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO').icon}
                         </div>
                         <div>
                           <div className="flex items-center gap-3">
-                            <span className={`text-[9px] font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded-md ${theme.bg} ${theme.text}`}>
+                            <span className={`text-[9px] font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded-md ${getCategoryTheme(msg.category, msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO').bg} ${getCategoryTheme(msg.category, msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO').text}`}>
                               {(() => {
+                                if (msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO') return 'Informasi';
                                 const cat = msg.category?.toLowerCase() || 'general';
                                 const subj = msg.subject.toLowerCase();
                                 if (cat === 'defense' || cat === 'pact') return subj.includes('aliansi') ? 'aliansi' : 'pakta';
@@ -307,7 +312,7 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
                             {!msg.read && <div className="h-1.5 w-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>}
                             {msg.isProposal && (
                               <span className="bg-amber-500/10 text-amber-500 text-[9px] font-black px-2 py-0.5 rounded-md border border-amber-500/20 animate-pulse">
-                                PROPOSAL
+                                {msg.proposalLabel || 'PROPOSAL'}
                               </span>
                             )}
                           </div>
@@ -336,14 +341,14 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
                             <div className="mt-8 flex items-center gap-4 pt-6 border-t border-zinc-900">
                               <button 
                                 onClick={() => handleAction(msg, 'accept')}
-                                className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white py-4 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(16,185,129,0.2)] active:scale-[0.98]"
+                                className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white py-4 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all cursor-pointer flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(16,185,129,0.2)] active:scale-[0.98]"
                               >
                                 <CheckCircle2 className="h-5 w-5" />
                                 Terima & Ratifikasi
                               </button>
                               <button 
                                 onClick={() => handleAction(msg, 'decline')}
-                                className="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-400 py-4 px-8 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all active:scale-[0.98]"
+                                className="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-400 py-4 px-8 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all cursor-pointer active:scale-[0.98]"
                               >
                                 Tolak Proposal
                               </button>

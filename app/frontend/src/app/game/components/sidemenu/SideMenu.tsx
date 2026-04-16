@@ -32,8 +32,8 @@ export default function SideMenu({ activeMenu, setActiveMenu, unreadCount }: Sid
 
       {/* 2. Inbox / Communication Button */}
       <button
-        onClick={() => setActiveMenu("Menu:Inbox")}
-        className={`relative group flex flex-col items-center justify-center w-16 h-24 rounded-2xl transition-all cursor-pointer overflow-hidden ${activeMenu === "Menu:Inbox" ? 'bg-blue-500/20 shadow-[inset_0_0_20px_rgba(59,130,246,0.2)]' : 'hover:bg-white/5'}`}
+        onClick={() => setActiveMenu("Menu:Inbox:all")}
+        className={`relative group flex flex-col items-center justify-center w-16 h-24 rounded-2xl transition-all cursor-pointer overflow-hidden ${activeMenu.startsWith("Menu:Inbox") ? 'bg-blue-500/20 shadow-[inset_0_0_20px_rgba(59,130,246,0.2)]' : 'hover:bg-white/5'}`}
       >
         {/* Unread Glow Effect */}
         {unreadCount > 0 && (
@@ -41,18 +41,18 @@ export default function SideMenu({ activeMenu, setActiveMenu, unreadCount }: Sid
         )}
 
         <div className="relative">
-          <Mail className={`h-6 w-6 ${unreadCount > 0 || activeMenu === "Menu:Inbox" ? 'text-blue-400' : 'text-zinc-400'} group-hover:scale-110 group-hover:text-blue-400 transition-all`} />
+          <Mail className={`h-6 w-6 ${unreadCount > 0 || activeMenu.startsWith("Menu:Inbox") ? 'text-blue-400' : 'text-zinc-400'} group-hover:scale-110 group-hover:text-blue-400 transition-all`} />
           {unreadCount > 0 && (
             <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center bg-red-500 text-[8px] font-black text-white rounded-full border border-zinc-950 shadow-lg shadow-red-500/20">
               {unreadCount}
             </span>
           )}
         </div>
-        <span className={`text-[10px] font-black uppercase tracking-[0.1em] mt-2 ${activeMenu === "Menu:Inbox" ? 'text-blue-400' : 'text-zinc-300'} group-hover:text-blue-400 transition-colors`}>Inbox</span>
+        <span className={`text-[10px] font-black uppercase tracking-[0.1em] mt-2 ${activeMenu.startsWith("Menu:Inbox") ? 'text-blue-400' : 'text-zinc-300'} group-hover:text-blue-400 transition-colors`}>Inbox</span>
         <span className="text-[7px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">Pesan</span>
 
         {/* Active Indicator */}
-        {activeMenu === "Menu:Inbox" && (
+        {activeMenu.startsWith("Menu:Inbox") && (
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-blue-500 rounded-r-full shadow-[0_0_10px_rgba(59,130,246,1)]"></div>
         )}
       </button>

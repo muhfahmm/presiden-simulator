@@ -1,16 +1,16 @@
-export const INITIAL_GAME_DATE = new Date(2026, 0, 1); // 1 Januari 2026
+export const INITIAL_GAME_DATE = new Date(Date.UTC(2026, 0, 1)); // 1 Januari 2026 UTC
 const DATE_STORAGE_KEY = "em4_game_date";
 
 export function formatGameDate(date: Date): string {
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const year = date.getFullYear();
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+  const year = date.getUTCFullYear();
   return `${day}-${month}-${year}`;
 }
 
 export function addDays(date: Date, days: number): Date {
   const newDate = new Date(date);
-  newDate.setDate(newDate.getDate() + days);
+  newDate.setUTCDate(newDate.getUTCDate() + days);
   return newDate;
 }
 
@@ -47,7 +47,7 @@ export function getGameWeekIndex(date: Date): number {
  */
 export function parseFormattedDate(dateStr: string): Date {
   const [d, m, y] = dateStr.split('-').map(Number);
-  return new Date(y, m - 1, d);
+  return new Date(Date.UTC(y, m - 1, d));
 }
 
 /**

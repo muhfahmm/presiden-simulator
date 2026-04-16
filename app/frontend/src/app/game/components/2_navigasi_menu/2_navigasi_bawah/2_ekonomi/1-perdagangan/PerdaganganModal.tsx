@@ -34,9 +34,10 @@ import { ImporEksekusi } from "./ekspor_impor/impor/ImporEksekusi";
 import { HistoriEkspor } from "./ekspor_impor/ekspor/HistoriEkspor";
 import { HistoriImport } from "./ekspor_impor/impor/HistoriImport";
 import BeritaHalaman from "./berita/BeritaHalaman";
-import AiTradeOffersPanel from "./sistem_perdagangan_AI/components/AiTradeOffersPanel";
-import { aiTradeOfferStorage } from "./sistem_perdagangan_AI/storage/aiTradeOfferStorage";
-import { tradeContractStorage } from "./sistem_perdagangan_AI/storage/tradeContractStorage";
+import AiTradeOffersPanel from "@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/components/AiTradeOffersPanel";
+import { aiTradeOfferStorage } from "@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/aiTradeOfferStorage";
+import { tradeContractStorage } from "@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/tradeContractStorage";
+import { tradeAgreementStorage } from "@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/tradeAgreementStorage";
 
 interface ModalProps {
   isOpen: boolean;
@@ -176,6 +177,14 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
     calculateLogisticsSpeedup();
     window.addEventListener("building_storage_updated", calculateLogisticsSpeedup);
     return () => window.removeEventListener("building_storage_updated", calculateLogisticsSpeedup);
+  }, []);
+
+  // Update AI Trade Badge Count
+  const [aiTradeUpdateTick, setAiTradeUpdateTick] = useState(0);
+  useEffect(() => {
+    const handleUpdate = () => setAiTradeUpdateTick(prev => prev + 1);
+    window.addEventListener("ai_trade_updated", handleUpdate);
+    return () => window.removeEventListener("ai_trade_updated", handleUpdate);
   }, []);
 
 
@@ -787,9 +796,9 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 >
                   <Sparkles size={14} />
                   Tawaran
-                  {isMounted && (aiTradeOfferStorage.getPendingCount() + tradeContractStorage.getPendingCount()) > 0 && (
+                  {isMounted && (aiTradeOfferStorage.getPendingCount() + tradeContractStorage.getPendingCount() + tradeAgreementStorage.getPendingCount()) > 0 && (
                     <span className="absolute -top-1 -right-1 px-1.5 py-0.5 text-[8px] font-black bg-red-500 text-white rounded-full min-w-[18px] text-center animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]">
-                      {aiTradeOfferStorage.getPendingCount() + tradeContractStorage.getPendingCount()}
+                      {aiTradeOfferStorage.getPendingCount() + tradeContractStorage.getPendingCount() + tradeAgreementStorage.getPendingCount()}
                     </span>
                   )}
                 </button>
