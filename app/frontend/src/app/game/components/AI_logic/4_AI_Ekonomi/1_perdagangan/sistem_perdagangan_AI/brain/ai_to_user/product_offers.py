@@ -190,13 +190,10 @@ def simulate_product_offers(input_data):
         events.append({
             "type": "AI_TRADE_PRODUCT_OFFER",
             "source": offerer["country"],
-            "subject": f"Penawaran Dagang: {country_name} Menawarkan {commodity_label}",
+            "subject": f"tawaran impor: {commodity_label} dari {country_name}",
             "content": (
-                f"{greeting} Pemerintah {country_name} menawarkan {amount:,} unit {commodity_label} "
-                f"dengan harga spesial {offer_price:,}/unit (diskon {discount}% dari harga pasar {market_price:,}/unit). "
-                f"Total biaya: ${total_price:,}. "
-                f"Tawaran ini berlaku selama {expiry_days} hari. "
-                f"Silakan buka Hub Perdagangan untuk menerima atau menolak tawaran ini."
+                f"{country_name} menawarkan {amount:,} unit {commodity_label} "
+                f"dengan harga {offer_price:,}/unit (Diskon {discount}%)."
             ),
             "priority": "medium",
             "offerId": offer["id"]
@@ -207,7 +204,7 @@ def simulate_product_offers(input_data):
             "type": "GLOBAL_NEWS",
             "source": offerer["country"],
             "target": user_country,
-            "subject": f"Kerjasama Ekonomi: {country_name} Tawarkan {commodity_label} ke {user_country.capitalize()}",
+            "subject": f"Impor: {country_name} menawarkan produk {commodity_label} ke negara kita",
             "content": (
                 f"Dalam rangka memperkuat ikatan ekonomi bilateral, pemerintah {country_name} "
                 f"menawarkan paket ekspor {commodity_label} dengan harga khusus kepada {user_country.capitalize()}. "

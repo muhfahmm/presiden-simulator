@@ -13,16 +13,22 @@ import (
 // ═══════════════════════════════════════════════════════════
 
 type PlayerState struct {
-	Country        string  `json:"country"`
-	Happiness      float64 `json:"happiness"`
-	Population     float64 `json:"population"`
-	PopulationDelta float64 `json:"populationDelta"`
-	Budget         float64 `json:"budget"`
-	DailyIncome    float64 `json:"dailyIncome"`
-	Stability      float64 `json:"stability"`
-	Initialized    bool    `json:"initialized"`
-	GameDate       string  `json:"gameDate"`
-	DayCounter     int     `json:"dayCounter"`
+	Country         string             `json:"country"`
+	Happiness       float64            `json:"happiness"`
+	Population      float64            `json:"population"`
+	PopulationDelta float64            `json:"populationDelta"`
+	Budget          float64            `json:"budget"`
+	DailyIncome     float64            `json:"dailyIncome"`
+	Stability       float64            `json:"stability"`
+	Initialized     bool               `json:"initialized"`
+	GameDate        string             `json:"gameDate"`
+	DayCounter      int                `json:"dayCounter"`
+	Taxes           map[string]float64 `json:"taxes"`     // Key: "ppn", Value: rate (0-100)
+	Buildings       map[string]int     `json:"buildings"` // Key: buildingKey, Value: count
+	PriceIndex      float64            `json:"priceIndex"`      // 1.0 = baseline
+	HousingCapacity float64            `json:"housingCapacity"` // Total units available
+	Religion        string             `json:"religion"`        // Current religion name
+	Ideology        string             `json:"ideology"`        // Current ideology name
 }
 
 type BuildingType struct {
@@ -77,14 +83,16 @@ type InboxItem struct {
 }
 
 type NPCNationState struct {
-	Name         string  `json:"name"`
-	GDPGrowth    float64 `json:"gdpGrowth"`
-	Stability    float64 `json:"stability"`
-	EconomicTier int     `json:"economicTier"`
-	Population   float64 `json:"population"`
-	Budget       float64 `json:"budget"`
-	Happiness    float64 `json:"happiness"`
-	DailyIncome  float64 `json:"dailyIncome"`
+	Name         string             `json:"name"`
+	GDPGrowth    float64            `json:"gdpGrowth"`
+	Stability    float64            `json:"stability"`
+	EconomicTier int                `json:"economicTier"`
+	Population   float64            `json:"population"`
+	Budget       float64            `json:"budget"`
+	Happiness    float64            `json:"happiness"`
+	DailyIncome  float64            `json:"dailyIncome"`
+	Taxes        map[string]float64 `json:"taxes"`
+	PriceIndex   float64            `json:"priceIndex"`
 }
 
 type Relationship struct {

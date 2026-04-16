@@ -50,14 +50,21 @@ def calculate_daily_drift(matrix_data):
             is_user_target = (target == user_country)
 
             # --- TINGKAT 1: PERHITUNGAN DRIFT CERDAS ---
-            # Drift dasar
-            drift = random.uniform(-0.8, 0.8)
+            # Drift dasar (acak) - Kita kurangi sedikit volumenya agar drift sistemik lebih terasa
+            drift = random.uniform(-0.4, 0.4)
             
             # Pengaruh Perjanjian (Stability)
             if statuses["a"]: drift += 0.25  # Aliansi itu sangat stabil
             elif statuses["p"]: drift += 0.15 # Pakta itu stabil
             elif statuses["t"]: drift += 0.1  # Dagang itu cukup stabil
-            elif statuses["e"]: drift += 0.05 # Kedubes itu sedikit stabil
+            
+            # LOGIKA KEDUTAAN BESAR (Weekly Drift Sync) - Sesuai instruksi User
+            # 0.001% up per week with embassy, 0.01% down per week without
+            # Nilai harian = (Nilai Mingguan / 7)
+            if statuses["e"]:
+                drift += (0.001 / 7) # +0.001% per minggu
+            else:
+                drift -= (0.01 / 7)  # -0.01% per minggu
 
             # Pengaruh Triad Alignment (Sinergi Hubungan)
             # Konsep: "Teman dari temanku adalah pikiranku juga"
@@ -85,7 +92,7 @@ def calculate_daily_drift(matrix_data):
             elif random.random() < 0.002:
                 drift += random.uniform(5.0, 15.0) # Terobosan besar
 
-            new_score = round(max(0, min(100, score + drift)), 2)
+            new_score = round(max(0, min(100, score + drift)), 4)
             
             # --- TINGKAT 2: LOGIKA PENGKHIANATAN & PEMUTUSAN (BETRAYAL) ---
             # Jika hubungan memburuk melewati batas kritis, perjanjian batal!

@@ -140,15 +140,10 @@ def simulate_trade_agreement_proposals(input_data):
         events.append({
             "type": "AI_TRADE_AGREEMENT_PROPOSAL",
             "source": proposer["country"],
-            "subject": f"Proposal Perjanjian Dagang dari {country_name}",
+            "subject": f"tawaran kemitraan: dari {country_name}",
             "content": (
-                f"{tone}, pemerintah {country_name} secara resmi mengajukan proposal "
-                f"Perjanjian Kerjasama Perdagangan {duration} dengan negara Anda.\n\n"
-                f"Komoditas unggulan {country_name}: {commodities_text}.\n\n"
-                f"Jika perjanjian ini disetujui, {country_name} akan menjadi mitra dagang resmi "
-                f"dan dapat menawarkan komoditas surplus mereka kepada Anda, serta membeli "
-                f"komoditas yang Anda produksi.\n\n"
-                f"Silakan buka Hub Perdagangan → Tab Tawaran untuk menerima atau menolak."
+                f"Pemerintah {country_name} mengajak kemitraan perdagangan dengan negara kita "
+                f"untuk membuka akses pasar {commodities_text}."
             ),
             "priority": "high",
             "agreementId": agreement_id
@@ -160,7 +155,7 @@ def simulate_trade_agreement_proposals(input_data):
             "source": proposer["country"],
             "target": user_country,
             "category": "economy",
-            "subject": f"Diplomasi Ekonomi: {country_name} Ajukan Perjanjian Dagang ke {user_country.capitalize()}",
+            "subject": f"Ekonomi: {country_name} menawarkan kemitraan perdagangan",
             "content": (
                 f"Pemerintah {country_name} dilaporkan telah mengirimkan proposal formal "
                 f"untuk membentuk perjanjian Kerjasama Perdagangan bilateral dengan {user_country.capitalize()}. "

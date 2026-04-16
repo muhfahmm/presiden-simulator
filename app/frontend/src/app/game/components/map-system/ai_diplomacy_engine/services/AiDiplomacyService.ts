@@ -68,7 +68,7 @@ export const AiDiplomacyService = {
                     Object.keys(relations).forEach(targetId => {
                         const relData = relations[targetId];
                         const rawScore = relData.s;
-                        const newScore = Math.round(rawScore * 100) / 100;
+                        const newScore = Math.round(rawScore * 10000) / 10000;
 
                         // Gunakan composite key format di localStorage agar tidak saling tindih
                         const compositeKey = `${sourceId}:${targetId}`;

@@ -18,7 +18,9 @@ import {
   Filter,
   Search,
   Building2,
-  Heart
+  Heart,
+  ArrowUpRight,
+  ArrowDownLeft
 } from 'lucide-react';
 import { inboxStorage, InboxItem } from './inboxStorage';
 import { getNationalHealthImpact } from '@/app/game/data/layanan_publik/kesehatan/healthLogic';
@@ -29,6 +31,11 @@ import { AiDiplomacyService } from '../../map-system/ai_diplomacy_engine/service
 import { embassyStorage } from '../../map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage';
 import { nonAggressionStorage } from '../../map-system/modals_detail_negara/2_diplomasi_hubungan/2_pakta_non_agresi/logic/nonAggressionStorage';
 import { aliansiStorage } from '../../map-system/modals_detail_negara/2_diplomasi_hubungan/3_aliansi_pertahanan/logic/aliansiStorage';
+import { relationStorage } from '../../map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage';
+import { unSecurityCouncilStorage } from '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage';
+import { countries as centersData } from '@/app/database/data/negara/benua/index';
+import { getInitialAgreements } from '@/app/database/data/database_mitra_perdagangan/agreementsRegistry';
+import { AiTradeService } from '@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/services/AiTradeService';
 
 interface InboxModalProps {
   isOpen: boolean;
@@ -58,6 +65,22 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
     const handleUpdate = () => setMessages(inboxStorage.getMessages());
     window.addEventListener('inbox_updated', handleUpdate);
     return () => window.removeEventListener('inbox_updated', handleUpdate);
+  }, [isOpen]);
+
+  // Logic to get active trade partners for situational styling
+  const tradePartners = React.useMemo(() => {
+    if (!isOpen) return [];
+    const userCountryRaw = localStorage.getItem('selected_country') || "Indonesia";
+    const userCountryData = centersData.find(c => 
+      c.name_id === userCountryRaw || 
+      c.name_en === userCountryRaw || 
+      (c as any).id === userCountryRaw
+    ) || centersData[0];
+    
+    const agreements = getInitialAgreements(userCountryData.name_en, userCountryData.name_id || userCountryData.name_en);
+    return agreements
+      .filter((a: any) => a.type === 'Perdagangan' && a.status === 'Aktif')
+      .map((a: any) => a.mitra.toLowerCase());
   }, [isOpen]);
 
   if (!isOpen) return null;
@@ -91,6 +114,29 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
         else if (subj.includes('aliansi')) type = 'alliance';
         else if (isEmbassyOffer) type = 'embassy';
 
+        // KHUSUS: Jika ini adalah tawaran Transaksi Barang (Ekspor/Impor)
+        if (msg.metadata?.type === 'product_offer') {
+          const success = AiTradeService.acceptProductOffer(msg.metadata.id);
+          if (success) {
+            inboxStorage.markAsRead(msg.id);
+            setExpandedId(null);
+          } else {
+            alert("Gagal menerima tawaran: Anggaran kas tidak mencukupi.");
+          }
+          return;
+        }
+
+        if (msg.metadata?.type === 'purchase_request') {
+          const success = AiTradeService.acceptPurchaseRequest(msg.metadata.id);
+          if (success) {
+            inboxStorage.markAsRead(msg.id);
+            setExpandedId(null);
+          } else {
+            alert("Gagal menerima permintaan: Stok komoditas tidak mencukupi.");
+          }
+          return;
+        }
+
         AiDiplomacyService.finalizeTreaty(targetCountryRaw, type);
 
         inboxStorage.markAsRead(msg.id);
@@ -102,11 +148,41 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
     }
   };
 
-  const getCategoryTheme = (category: string = 'general', isSystem: boolean = false) => {
+  const getCategoryTheme = (category: string = 'general', isSystem: boolean = false, isProposal: boolean = false, subject: string = '') => {
     if (isSystem) return {
       bg: 'bg-blue-500/10', border: 'border-blue-500/30', text: 'text-blue-400', indicator: 'bg-blue-500', icon: <Info className="h-4 w-4" />,
       glow: 'shadow-[0_0_20px_rgba(59,130,246,0.1)]'
     };
+
+    if (isProposal && category === 'trade') {
+      const metadata = typeof isProposal === 'object' ? (isProposal as any) : null;
+      const type = metadata?.type;
+      const lowerSubj = subject.toLowerCase();
+
+      // EKSPOR (Tawaran beli dari AI/Server -> User dapet duit) = HIJAU
+      if (type === 'purchase_request' || lowerSubj.includes('ekspor')) return {
+        bg: 'bg-emerald-500/10', border: 'border-emerald-500/30', text: 'text-emerald-400', indicator: 'bg-emerald-500', icon: <ArrowUpRight className="h-4 w-4" />,
+        glow: 'shadow-[0_0_20px_rgba(16,185,129,0.2)]'
+      };
+
+      // IMPOR (Tawaran produk dari AI/Server -> User keluar duit) = MERAH/ROSE
+      if (type === 'product_offer' || lowerSubj.includes('impor')) return {
+        bg: 'bg-rose-500/10', border: 'border-rose-500/30', text: 'text-rose-400', indicator: 'bg-rose-500', icon: <ArrowDownLeft className="h-4 w-4" />,
+        glow: 'shadow-[0_0_20px_rgba(244,63,94,0.2)]'
+      };
+      
+      // KONTRAK DAGANG (Indigo)
+      if (type === 'trade_contract' || lowerSubj.includes('kontrak dagang')) return {
+        bg: 'bg-indigo-500/15', border: 'border-indigo-400/40', text: 'text-indigo-400', indicator: 'bg-indigo-500', icon: <Briefcase className="h-4 w-4" />,
+        glow: 'shadow-[0_0_40px_rgba(129,140,248,0.25)]'
+      };
+
+      // KEMITRAAN (Default Amber/Emas)
+      return {
+        bg: 'bg-amber-600/15', border: 'border-amber-400/50', text: 'text-amber-400', indicator: 'bg-amber-500', icon: <Handshake className="h-4 w-4" />,
+        glow: 'shadow-[0_0_40px_rgba(245,158,11,0.3)]'
+      };
+    }
 
     switch (category) {
       case 'finance': return { 
@@ -114,8 +190,8 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
         glow: 'shadow-[0_0_30px_rgba(16,185,129,0.15)]'
       };
       case 'trade': return { 
-        bg: 'bg-amber-500/5', border: 'border-amber-500/20', text: 'text-amber-400', indicator: 'bg-amber-500', icon: <Briefcase className="h-4 w-4" />,
-        glow: 'shadow-[0_0_30px_rgba(245,158,11,0.15)]'
+        bg: 'bg-zinc-900/50', border: 'border-zinc-800', text: 'text-zinc-400', indicator: 'bg-amber-500', icon: <Briefcase className="h-4 w-4" />,
+        glow: ''
       };
       case 'pact': return { 
         bg: 'bg-rose-500/5', border: 'border-rose-500/20', text: 'text-rose-400', indicator: 'bg-rose-500', icon: <Shield className="h-4 w-4" />,
@@ -151,6 +227,23 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
       if (msg.category === 'diplomacy' && filter === 'embassy') return true;
 
       return msg.category === filter;
+    })
+    // FILTER TRADE: Hanya tampilkan pesan trade dari mitra dagang aktif atau pesan sistem
+    .filter(msg => {
+      if (msg.category !== 'trade') return true; // Non-trade messages pass through
+      
+      // System messages always pass (e.g. "Aktivasi Hub Perdagangan")
+      if (msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO') return true;
+      if (!msg.isProposal && !msg.source.includes('(')) return true;
+      
+      // Transaction offers with metadata always pass (from AI Python)
+      if (msg.metadata) return true;
+      
+      // Check if the source country is an active trade partner
+      const countryMatch = msg.source.match(/\(([^)]+)\)/);
+      if (!countryMatch) return true;
+      const sourceCountry = countryMatch[1].trim().toLowerCase();
+      return tradePartners.includes(sourceCountry);
     })
     .filter(msg => msg.subject.toLowerCase().includes(searchTerm.toLowerCase()) || msg.source.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -268,8 +361,8 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
         </div>
 
         {/* Content Section */}
-        <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
-          <div className="max-w-4xl mx-auto space-y-4">
+        <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20 text-left">
+          <div className="w-full space-y-4">
             {filteredMessages.length === 0 ? (
               <div className="h-64 flex flex-col items-center justify-center text-zinc-600">
                 <Mail className="h-12 w-12 mb-4 opacity-20" />
@@ -278,11 +371,31 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
             ) : (
               filteredMessages.map((msg) => {
                 const isExpanded = expandedId === msg.id;
+                
+                // Only treat as "Premium Offer" if it's a trade proposal from an EXISTING active partner
+                const countryMatch = msg.source.match(/\(([^)]+)\)/);
+                const sourceCountry = countryMatch ? countryMatch[1].trim().toLowerCase() : "";
+                
+                // isOffer can now be a boolean (for partner gold) or the metadata object (for indigo transactions)
+                const isPartnerOffer = msg.isProposal && msg.category === 'trade' && tradePartners.includes(sourceCountry);
+                const isTransactionOffer = msg.isProposal && msg.category === 'trade' && msg.metadata;
+                const isExport = msg.metadata?.type === 'purchase_request' || msg.subject.toLowerCase().includes('ekspor');
+                const isImport = msg.metadata?.type === 'product_offer' || msg.subject.toLowerCase().includes('impor');
+                
+                const theme = getCategoryTheme(
+                  msg.category, 
+                  msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO', 
+                  (isTransactionOffer ? msg.metadata : isPartnerOffer) as any,
+                  msg.subject
+                );
+                
                 return (
                   <div 
                     key={msg.id}
-                    className={`group relative bg-zinc-900/30 border border-zinc-800/50 rounded-[32px] overflow-hidden transition-all duration-300 ${
-                      isExpanded ? 'ring-1 ring-zinc-700 bg-zinc-900/50' : 'hover:border-zinc-700 hover:bg-zinc-900/40'
+                    className={`group relative border rounded-[32px] overflow-hidden transition-all duration-300 ${
+                      isExpanded 
+                        ? `ring-1 ${isExport ? 'ring-emerald-500/50 bg-emerald-950/20' : isImport ? 'ring-rose-500/50 bg-rose-950/20' : isTransactionOffer ? 'ring-indigo-500/50 bg-indigo-950/20' : isPartnerOffer ? 'ring-amber-500/50 bg-amber-950/20' : 'ring-zinc-700 bg-zinc-900/50'}` 
+                        : `bg-zinc-900/30 ${isExport ? 'border-emerald-500/30 hover:border-emerald-400 hover:bg-emerald-900/20' : isImport ? 'border-rose-500/30 hover:border-rose-400 hover:bg-rose-900/20' : isTransactionOffer ? 'border-indigo-500/30 hover:border-indigo-400 hover:bg-indigo-900/20' : isPartnerOffer ? 'border-amber-500/30 hover:border-amber-400 hover:bg-amber-900/20' : 'border-zinc-800/50 hover:border-zinc-700 hover:bg-zinc-900/40'}`
                     }`}
                   >
                     {/* Message Header */}
@@ -291,32 +404,44 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
                       onClick={() => setExpandedId(isExpanded ? null : msg.id)}
                     >
                       <div className="flex items-center gap-6">
-                        <div className={`p-4 rounded-2xl bg-zinc-950 border ${getCategoryTheme(msg.category, msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO').border} ${getCategoryTheme(msg.category, msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO').text} ${getCategoryTheme(msg.category, msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO').glow}`}>
-                          {getCategoryTheme(msg.category, msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO').icon}
+                        <div className={`p-4 rounded-2xl bg-zinc-950 border ${theme.border} ${theme.text} ${theme.glow}`}>
+                          {theme.icon}
                         </div>
                         <div>
                           <div className="flex items-center gap-3">
-                            <span className={`text-[9px] font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded-md ${getCategoryTheme(msg.category, msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO').bg} ${getCategoryTheme(msg.category, msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO').text}`}>
+                            <span className={`text-[9px] font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded-md ${theme.bg} ${theme.text} border ${theme.border}`}>
                               {(() => {
                                 if (msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO') return 'Informasi';
-                                const cat = msg.category?.toLowerCase() || 'general';
+                                const cat = msg.category || 'general';
                                 const subj = msg.subject.toLowerCase();
                                 if (cat === 'defense' || cat === 'pact') return subj.includes('aliansi') ? 'aliansi' : 'pakta';
                                 if (cat === 'diplomacy' || cat === 'embassy') return 'kedutaan';
                                 if (cat === 'finance') return 'keuangan';
-                                if (cat === 'trade') return 'perdagangan';
+                                if (cat === 'trade') return isPartnerOffer ? 'TAWARAN MITRA' : 'perdagangan';
                                 return cat;
                               })()}
                             </span>
                             <span className="text-[10px] text-zinc-500 font-medium">{msg.time}</span>
                             {!msg.read && <div className="h-1.5 w-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>}
                             {msg.isProposal && (
-                              <span className="bg-amber-500/10 text-amber-500 text-[9px] font-black px-2 py-0.5 rounded-md border border-amber-500/20 animate-pulse">
+                              <span className={`text-[9px] font-black px-2 py-0.5 rounded-md border animate-pulse ${
+                                isExport ? 'bg-emerald-500 text-black border-emerald-300' : 
+                                isImport ? 'bg-rose-500 text-black border-rose-300' : 
+                                isTransactionOffer ? 'bg-indigo-500 text-black border-indigo-300' : 
+                                isPartnerOffer ? 'bg-amber-500 text-black border-amber-300' : 
+                                'bg-amber-500/10 text-amber-500 border-amber-500/20'
+                              }`}>
                                 {msg.proposalLabel || 'PROPOSAL'}
                               </span>
                             )}
                           </div>
-                          <h4 className="text-lg font-black text-white mt-1 group-hover:text-blue-400 transition-colors uppercase italic italic-none tracking-tight">
+                          <h4 className={`text-xl font-black mt-1.5 transition-colors uppercase italic tracking-tighter leading-tight ${
+                            isExport ? 'text-emerald-400 group-hover:text-emerald-200' : 
+                            isImport ? 'text-rose-400 group-hover:text-rose-200' : 
+                            isTransactionOffer ? 'text-indigo-400 group-hover:text-indigo-200' : 
+                            isPartnerOffer ? 'text-amber-400 group-hover:text-amber-200' : 
+                            'text-white group-hover:text-blue-400'
+                          }`}>
                             {msg.subject}
                           </h4>
                           <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-widest mt-0.5">{msg.source}</p>
@@ -366,38 +491,39 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
                                 if (!internationalCategories.includes(msg.category || '') && !msg.isProposal) return null;
                                 if (!targetCountryRaw) return null;
 
-                                const matrix = getGlobalRelationMatrix();
-                                const countryKey = Object.keys(matrix).find(k => k.toLowerCase() === targetCountryRaw.toLowerCase()) || targetCountryRaw.toLowerCase();
-                                const npcRelations = matrix[countryKey] || {};
-                                const relData = Object.entries(npcRelations).find(([k]) => k.toLowerCase() === userCountryRaw.toLowerCase())?.[1];
+                                // TRUTH SYNC: Use relationStorage to match Info Strategis
+                                const targetId = relationStorage.normalizeTargetId(targetCountryRaw, centersData);
+                                const userCountryID = localStorage.getItem('selected_country')?.toLowerCase() || "indonesia";
                                 
-                                const embassyStatus = embassyStorage.getEmbassyStatus(targetCountryRaw);
-                                const isEmbassyActive = embassyStatus === 'completed';
-                                const score = relData?.s || 50;
+                                // Get base and raw score from storage
+                                const rawScore = relationStorage.getRelationScore(targetId, 50, userCountryID);
+                                
+                                // Check UNSC membership for final score boost
+                                const isUNSCMember = unSecurityCouncilStorage.getData()?.members?.some(m => m.name === userCountryRaw);
+                                const finalScore = relationStorage.calculateFinalScore(rawScore, !!isUNSCMember);
+                                
+                                // Get visual metadata (labels and colors)
+                                const metadata = relationStorage.getRelationMetadata(finalScore);
                                 
                                 return (
-                                    <div className="mt-6 flex items-center justify-between gap-4 p-4 bg-zinc-900/30 rounded-2xl border border-zinc-800/30">
+                                    <div className={`mt-6 flex items-center justify-between gap-4 p-4 ${metadata.bg} rounded-2xl border ${metadata.border}`}>
                                         <div className="flex items-center gap-3 w-full">
-                                            <div className="p-2 bg-blue-500/10 rounded-lg">
-                                                <Info className="h-4 w-4 text-blue-400" />
+                                            <div className={`p-2 bg-zinc-950/50 rounded-lg border border-zinc-800/50`}>
+                                                <Globe className={`h-4 w-4 ${metadata.color}`} />
                                             </div>
                                             <div className="flex-1">
                                                 <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Informasi Hubungan Bilateral</p>
                                                 <div className="flex items-center gap-2 mt-0.5">
                                                     <div className="h-1.5 flex-1 bg-zinc-800 rounded-full overflow-hidden">
-                                                        <div className="h-full bg-blue-500 animate-pulse" style={{ width: `${score}%` }} />
+                                                        <div className={`h-full animate-pulse`} style={{ width: `${finalScore}%`, backgroundColor: metadata.hex }} />
                                                     </div>
-                                                    <span className="text-[11px] font-black text-white">{score.toFixed(1)} Pts</span>
+                                                    <span className={`text-[11px] font-black ${metadata.color}`}>{finalScore.toFixed(2)} Pts</span>
                                                 </div>
                                             </div>
                                             <div className="text-right">
                                                 <p className="text-[9px] text-zinc-500 font-bold uppercase tracking-tighter">Status Saat Ini</p>
-                                                <p className="text-[11px] font-black text-blue-400 uppercase italic">
-                                                    {score >= 75 ? "Sangat Baik" : score >= 50 ? "Baik" : "Netral"} / {
-                                                        relData?.a === 1 ? "Aliansi" :
-                                                        relData?.p === 1 ? "Pakta" : 
-                                                        isEmbassyActive ? "Kedubes" : "Umum"
-                                                    }
+                                                <p className={`text-[11px] font-black ${metadata.color} uppercase italic`}>
+                                                    {metadata.labelFull}
                                                 </p>
                                             </div>
                                         </div>
@@ -417,8 +543,8 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
         {/* Footer info */}
         <div className="px-8 py-4 bg-zinc-900/30 border-t border-zinc-800/50 flex items-center justify-between text-[10px] text-zinc-600 font-bold uppercase tracking-[0.2em]">
             <div className="flex items-center gap-4">
-                <span className="flex items-center gap-1.5"><div className="h-1.5 w-1.5 rounded-full bg-blue-500"></div> System Active</span>
-                <span className="flex items-center gap-1.5"><div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div> Encrypted Lane</span>
+                <span className="flex items-center gap-1.5"><div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div> Ekspor</span>
+                <span className="flex items-center gap-1.5"><div className="h-1.5 w-1.5 rounded-full bg-rose-500"></div> Impor</span>
             </div>
             <span>© 2026 National Initiative Center v1.0</span>
         </div>

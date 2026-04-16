@@ -5,7 +5,7 @@ import (
 	"time"
 	"emserver/core"
 	"emserver/server_inbox/1_keuangan"
-	"emserver/server_inbox/2_perdagangan"
+	// "emserver/server_inbox/2_perdagangan" — disabled, trade handled by AI Python
 	"emserver/server_inbox/3_kedutaan"
 	"emserver/server_inbox/4_pakta"
 	"emserver/server_inbox/5_aliansi"
@@ -21,11 +21,13 @@ func ProcessInboxDay(date time.Time) {
 		fmt.Printf("[INBOX] Week %d — Generating full diplomatic & economic batches\n", weekNum)
 		
 		finance.GenerateBatch(dateStr, 10)
-		trade.GenerateAgreementBatch(dateStr, 5)
-		trade.GenerateImportBatch(dateStr, 8)
-		trade.GenerateExportBatch(dateStr, 10)
-		trade.GenerateContractBatch(dateStr, 10)
-		trade.GenerateRouteBatch(dateStr, 10)
+		// Trade notifications are handled by the AI Python engine (AiTradeService),
+		// not by the Go server. These fake batch generators are disabled.
+		// trade.GenerateAgreementBatch(dateStr, 5)
+		// trade.GenerateImportBatch(dateStr, 8)
+		// trade.GenerateExportBatch(dateStr, 10)
+		// trade.GenerateContractBatch(dateStr, 10)
+		// trade.GenerateRouteBatch(dateStr, 10)
 		embassy.GenerateBatch(dateStr, 10)
 		pact.GenerateBatch(dateStr, 10)
 		alliance.GenerateBatch(dateStr, 10)

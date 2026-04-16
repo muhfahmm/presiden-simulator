@@ -16,6 +16,15 @@ import { getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_na
 
 const GO_SERVER = "http://localhost:8081";
 
+interface PolicyUpdate {
+  taxes?: Record<string, number>;
+  priceIndex?: number;
+  buildings?: Record<string, number>;
+  religion?: string;
+  ideology?: string;
+  housingCapacity?: number;
+}
+
 export function useGameState(setActiveMenu: (menu: string) => void) {
   const [approval, setApproval] = useState(55);
   const [budget, setBudget] = useState(0);
@@ -54,12 +63,43 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
     // Calculate dailyIncome from buildings and taxes (used by server for daily budget updates)
     const currentCountry = countries.find(c => c.name_id === countryName || c.name_en === countryName);
     let dailyIncome = 0;
+    let initialTaxes = {};
+    let initialBuildings = {};
+    let initialPriceIndex = 1.0;
+
     if (currentCountry) {
       const buildingData = buildingStorage.getData();
-      const breakdown = calculateBudgetBreakdown(currentCountry, buildingData.buildingDeltas);
-      dailyIncome = breakdown.dailyDelta; // Use Delta (Net) instead of just Tax Revenue
-      console.log(`[INIT] Calculating daily income for ${countryName}: ${dailyIncome.toFixed(2)} (Tax: ${breakdown.dailyTaxRevenue.toFixed(2)})`);
+      initialBuildings = buildingData.buildingDeltas || {};
+      
+      const breakdown = calculateBudgetBreakdown(currentCountry, initialBuildings);
+      dailyIncome = breakdown.dailyDelta; 
+      initialTaxes = JSON.parse(JSON.stringify(require("@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage").taxStorage.getTaxes(countryName) || currentCountry.pajak));
+      initialPriceIndex = breakdown.details.priceMultiplier || 1.0;
+
+      // Extract only the 'tarif' value for the Go backend (which expects map[string]float64)
+      const simplifiedTaxes: any = {};
+      Object.keys(initialTaxes).forEach(k => {
+        simplifiedTaxes[k] = (initialTaxes as any)[k]?.tarif || 0;
+      });
+      initialTaxes = simplifiedTaxes;
+
+      console.log(`[INIT] Calculating daily income for ${countryName}: ${dailyIncome.toFixed(2)} | PriceIndex: ${initialPriceIndex.toFixed(2)}`);
     }
+
+    const getSocialData = () => {
+      const countryName = gameStorage.getSession()?.country || "Indonesia";
+      const country = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
+      
+      const religion = require("@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage").religionStorage.getCurrentReligion(country.religion);
+      const ideology = require("@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/ideologyStorage").ideologyStorage.getCurrentIdeology(country.ideology);
+      
+      const deltas = buildingStorage.getBuildingDeltas();
+      const cap = (country.hunian?.rumah_subsidi || 0) * 100 + (deltas["9_rumah_subsidi"] || 0) * 100 +
+                  (country.hunian?.apartemen || 0) * 1000 + (deltas["10_apartemen"] || 0) * 1000 +
+                  (country.hunian?.mansion || 0) * 10 + (deltas["11_mansion"] || 0) * 10;
+      
+      return { religion, ideology, housingCapacity: cap };
+    };
 
     // Get current clock state to sync with server
     const currentClockDate = getStoredGameDate();
@@ -81,6 +121,12 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
         stability: stabilityStorage.getStability(),
         gameDate: gameDateStr,
         dayCounter: dayCounter,
+        taxes: initialTaxes,
+        buildings: initialBuildings,
+        priceIndex: initialPriceIndex,
+        religion: getSocialData().religion,
+        ideology: getSocialData().ideology,
+        housingCapacity: getSocialData().housingCapacity,
       }),
     }).then(res => res.json()).then(data => {
       // Server returns current state (either freshly initialized or existing)
@@ -163,11 +209,51 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
     window.addEventListener('happiness_critical', handleCritical);
     window.addEventListener('happiness_gameover', handleGameOver);
 
+    // ═══════════════════════════════════════════════════════
+    // POLICY SYNC: Push UI changes (Taxes, Prices, Buildings) to Go
+    // ═══════════════════════════════════════════════════════
+    const syncPolicies = () => {
+      const countryName = gameStorage.getSession()?.country || "Indonesia";
+      const currentCountry = countries.find(c => c.name_id === countryName || c.name_en === countryName);
+      if (!currentCountry) return;
+
+      const buildingData = buildingStorage.getData();
+      const breakdown = calculateBudgetBreakdown(currentCountry, buildingData.buildingDeltas);
+      const taxData = require("@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage").taxStorage.getTaxes(countryName) || currentCountry.pajak;
+      
+      const simplifiedTaxes: any = {};
+      Object.keys(taxData).forEach(k => {
+        simplifiedTaxes[k] = taxData[k]?.tarif || 0;
+      });
+
+      const social = getSocialData();
+
+      fetch(`${GO_SERVER}/api/game/update-policy`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          taxes: simplifiedTaxes,
+          priceIndex: breakdown.details.priceMultiplier,
+          buildings: buildingData.buildingDeltas,
+          religion: social.religion,
+          ideology: social.ideology,
+          housingCapacity: social.housingCapacity,
+        }),
+      }).catch(err => console.error("[POLICY] Sync Failed:", err));
+    };
+
+    window.addEventListener('tax_updated', syncPolicies);
+    window.addEventListener('price_updated', syncPolicies);
+    window.addEventListener('building_storage_updated', syncPolicies);
+
     return () => {
       window.removeEventListener('inbox_updated', updateInboxCount);
       window.removeEventListener('happiness_critical', handleCritical);
       window.removeEventListener('happiness_gameover', handleGameOver);
       window.removeEventListener('game_state_sync', handleServerSync);
+      window.removeEventListener('tax_updated', syncPolicies);
+      window.removeEventListener('price_updated', syncPolicies);
+      window.removeEventListener('building_storage_updated', syncPolicies);
     };
   }, [setActiveMenu]);
 

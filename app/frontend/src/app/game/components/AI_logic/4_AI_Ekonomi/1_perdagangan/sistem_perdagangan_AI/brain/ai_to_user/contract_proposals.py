@@ -145,16 +145,10 @@ def simulate_contract_proposals(input_data):
     events.append({
         "type": "AI_TRADE_CONTRACT_PROPOSAL",
         "source": chosen["country"],
-        "subject": f"Kontrak Dagang: {country_name} — {commodity_label} ({duration_months} Bulan)",
+        "subject": f"kontrak dagang: {commodity_label} dari {country_name}",
         "content": (
-            f"Pemerintah {country_name} {direction_detail} selama {duration_months} bulan. "
-            f"Detail kontrak:\n"
-            f"• Komoditas: {commodity_label}\n"
-            f"• Volume: {amount_per_month:,} unit/bulan\n"
-            f"• Harga Terikat: {contract_price:,}/unit\n"
-            f"• Total Estimasi: {total_value:,}\n"
-            f"• Durasi: {duration_months} bulan\n\n"
-            f"Kontrak ini menjamin stabilitas pasokan dan harga untuk kedua belah pihak."
+            f"Pemerintah {country_name} mengajak kontrak dagang rutin {commodity_label} "
+            f"selama {duration_months} bulan dengan volume {amount_per_month:,} unit/bulan."
         ),
         "priority": "high",
         "contractId": contract["id"]
@@ -164,7 +158,7 @@ def simulate_contract_proposals(input_data):
         "type": "GLOBAL_NEWS",
         "source": chosen["country"],
         "target": user_country,
-        "subject": f"Negosiasi Kontrak: {country_name} & {user_country.capitalize()} Bahas Kerjasama {commodity_label}",
+        "subject": f"Kontrak: {country_name} menawarkan kontrak dagang dengan negara kita",
         "content": (
             f"Sumber diplomatik mengonfirmasi bahwa {country_name} dan {user_country.capitalize()} "
             f"tengah dalam pembicaraan intensif untuk kontrak perdagangan {commodity_label} jangka panjang. "

@@ -12,6 +12,10 @@ export interface InboxItem {
   proposalLabel?: string;
   timestamp: number;
   content?: string;
+  metadata?: {
+    type: string;
+    id: string;
+  };
 }
 
 const MAX_INBOX_MESSAGES = 200;
@@ -33,9 +37,27 @@ export const inboxStorage = {
       const parsed = JSON.parse(data);
       if (!Array.isArray(parsed)) return [];
 
-      // Self-healing: Deduplicate by ID to prevent UI crashes from legacy data
+      // SELF-HEALING: Filter out stale/legacy trade messages that don't match the new simple format
+      // This solves the user's frustration by removing "trash" messages automatically.
+      const legacyKeywords = [
+        'framework agreement', 'koridor ekonomi', 'pelabuhan bebas', 'jalur dagang baru', 
+        'perjanjian pembelian terjadwal', 'pra-order batu bara', 'mou perdagangan',
+        'lelang komoditas', 'inisiasi hubungan dagang', 'misi dagang resmi', 'digitalisasi rantai pasok'
+      ];
+
+      const filtered = parsed.filter((item: InboxItem) => {
+        if (!item || !item.subject) return false;
+        if (item.category === 'trade' || item.category === 'diplomacy') {
+          const lowerSubj = item.subject.toLowerCase();
+          // If it contains legacy complex keywords, drop it
+          if (legacyKeywords.some(kw => lowerSubj.includes(kw))) return false;
+        }
+        return true;
+      });
+
+      // Deduplicate by ID to prevent UI crashes
       const uniqueMap = new Map();
-      parsed.forEach((item: InboxItem) => {
+      filtered.forEach((item: InboxItem) => {
         if (item && item.id) uniqueMap.set(item.id, item);
       });
 

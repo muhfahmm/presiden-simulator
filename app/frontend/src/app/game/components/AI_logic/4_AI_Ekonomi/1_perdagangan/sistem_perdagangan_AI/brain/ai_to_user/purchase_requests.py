@@ -188,14 +188,10 @@ def simulate_purchase_requests(input_data):
         events.append({
             "type": "AI_TRADE_PURCHASE_REQUEST",
             "source": buyer["country"],
-            "subject": f"{urgency_label}{country_name} Ingin Membeli {commodity_label} dari Anda",
+            "subject": f"tawaran ekspor: {commodity_label} dari {country_name}",
             "content": (
-                f"{greeting} {country_name} membutuhkan {request_amount:,} unit {commodity_label} "
-                f"dan bersedia membayar {purchase_price:,}/unit "
-                f"(premium +{premium}% di atas harga pasar {market_price:,}/unit). "
-                f"Total pendapatan: ${total_revenue:,}. "
-                f"{'Kebutuhan ini sangat mendesak bagi stabilitas domestik mereka. ' if urgency == 'tinggi' else ''}"
-                f"Tawaran berlaku selama {expiry_days} hari."
+                f"{country_name} ingin membeli {request_amount:,} unit {commodity_label} "
+                f"dengan harga premium {purchase_price:,}/unit (+{premium}%)."
             ),
             "priority": "high" if urgency == "tinggi" else "medium",
             "requestId": request["id"]
@@ -206,7 +202,7 @@ def simulate_purchase_requests(input_data):
             "type": "GLOBAL_NEWS",
             "source": buyer["country"],
             "target": user_country,
-            "subject": f"Permintaan Impor: {country_name} Cari Suplier {commodity_label}",
+            "subject": f"Ekspor: {country_name} ingin membeli produk {commodity_label} negara kita",
             "content": (
                 f"{country_name} dilaporkan sedang aktif mencari suplier {commodity_label} internasional "
                 f"untuk menutupi defisit produksi domestik mereka. "

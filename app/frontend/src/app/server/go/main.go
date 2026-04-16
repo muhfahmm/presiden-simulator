@@ -325,6 +325,8 @@ func InitializeNPCStatesLocked() {
 			Budget:       budget,
 			Happiness:    happiness, 
 			DailyIncome:  float64(tier) * 50.0,
+			Taxes:        map[string]float64{"ppn": 10, "korporasi": 20, "pendapatan_nasional": 15, "lingkungan": 5, "lainnya": 5},
+			PriceIndex:   1.0,
 		}
 	}
 	fmt.Printf("[GO] Initialized %d NPC nations with database-aligned baselines.\n", len(core.NpcNations))
@@ -355,8 +357,9 @@ func main() {
 	// 5. Data Endpoints (Fallback REST)
 	http.HandleFunc("/api/berita", handleBerita)
 	http.HandleFunc("/api/inbox", handleInbox)
-	http.HandleFunc("/api/health", handleHealth)
+	http.HandleFunc("/api/game/health", handleHealth)
 	http.HandleFunc("/api/game/reset", handleReset)
+	http.HandleFunc("/api/game/update-policy", handleUpdatePolicy)
 
 	// Initialize NPC States initially
 	core.GlobalState.Mu.Lock()
@@ -417,6 +420,7 @@ func simulationEngine() {
 
 		// --- Process 206 NPC Nations (Server-Side) ---
 		processNPCDay(nextDate)
+		processNPCConstruction(nextDate)
 
 		// --- Process Inbox & Events (Server-Side) ---
 		server_inbox.ProcessInboxDay(nextDate)
@@ -497,10 +501,10 @@ func processPlayerDay(date time.Time) {
 		return // Wait until frontend sends initial state
 	}
 
-	// 1. Budget: Add daily income (rounded to integer)
+	// 1. Budget: Add daily income
 	core.GlobalState.Player.Budget = math.Round(core.GlobalState.Player.Budget + core.GlobalState.Player.DailyIncome)
 
-	// 2. Population: Grow based on population size (realistic growth rate)
+	// 2. Population: Grow based on population size
 	growthRate := 0.00003
 	popGrowth := core.GlobalState.Player.Population * growthRate
 	popGrowth += float64(core.Rng.Intn(500)) - 250
@@ -510,16 +514,8 @@ func processPlayerDay(date time.Time) {
 	core.GlobalState.Player.PopulationDelta = math.Round(popGrowth)
 	core.GlobalState.Player.Population = math.Round(core.GlobalState.Player.Population + popGrowth)
 
-	// 3. Happiness: Weekly decay (every 7 days)
-	if core.GlobalState.DayCounter%7 == 0 {
-		decay := 0.1 + core.Rng.Float64()*0.3 // 0.1% - 0.4% weekly decay
-		core.GlobalState.Player.Happiness -= decay
-		if core.GlobalState.Player.Happiness > 100 {
-			core.GlobalState.Player.Happiness = 100
-		}
-		// Round to 1 decimal
-		core.GlobalState.Player.Happiness = math.Round(core.GlobalState.Player.Happiness*10) / 10
-	}
+	// 3. Happiness Calculation (Authoritative)
+	calculatePlayerHappiness()
 
 	// 4. Stability: Small weekly fluctuation
 	if core.GlobalState.DayCounter%7 == 0 {
@@ -531,29 +527,147 @@ func processPlayerDay(date time.Time) {
 		if core.GlobalState.Player.Stability > 100 {
 			core.GlobalState.Player.Stability = 100
 		}
-		// Round to 1 decimal
 		core.GlobalState.Player.Stability = math.Round(core.GlobalState.Player.Stability*10) / 10
 	}
 }
 
-func processNPCDay(date time.Time) {
-	dateStr := date.Format("02 Jan 2006")
-
-	// 1. Economic Drift for ALL 206 NPC Nations (Lightweight)
-	// We iterate through all to ensure stats are truly dynamic and reset-ready.
-	for _, nation := range core.NpcNations {
-		state, exists := core.GlobalState.NPCStates[nation]
-		if !exists || state == nil {
-			continue
+func calculatePlayerHappiness() {
+	p := &core.GlobalState.Player
+	
+	// A. Tax Impact
+	var avgTax float64 = 0
+	taxCount := 0
+	domesticKeys := []string{"ppn", "korporasi", "pendapatan_nasional", "lingkungan", "lainnya"}
+	for _, key := range domesticKeys {
+		if val, ok := p.Taxes[key]; ok {
+			avgTax += val
+			taxCount++
 		}
+	}
+	if taxCount > 0 { avgTax /= float64(taxCount) } else { avgTax = 50 } 
 
-		// Population Growth (0.00002 daily)
+	taxDelta := 0.0
+	if avgTax <= 25 { taxDelta = 0.1 } else if avgTax <= 50 { taxDelta = 0 } else if avgTax <= 75 { taxDelta = -0.2 } else { taxDelta = -0.5 }
+
+	// B. Price Impact
+	priceDelta := 0.0
+	if p.PriceIndex <= 0.8 { priceDelta = 0.1 } else if p.PriceIndex <= 1.2 { priceDelta = 0 } else if p.PriceIndex <= 1.5 { priceDelta = -0.2 } else { priceDelta = -0.5 }
+
+	// C. Infra Bonus
+	infraFactors := map[string]float64{
+		"1_jalur_sepeda": 0.0005, "2_jalan_tol": 0.0008, "3_terminal_bus": 0.001,
+		"4_jalur_kereta": 0.0012, "5_kereta_bawah_tanah": 0.0015,
+		"6_pelabuhan_laut": 0.0018, "7_bandara": 0.002, "8_helipad": 0.0005,
+	}
+	infraBonus := 0.0
+	for key, factor := range infraFactors {
+		if count, ok := p.Buildings[key]; ok {
+			infraBonus += float64(count) * factor
+		}
+	}
+	if infraBonus > 2.5 { infraBonus = 2.5 }
+
+	// D. Housing Penalty
+	housingPenalty := 0.0
+	if p.HousingCapacity > 0 && p.Population > p.HousingCapacity {
+		homelessRatio := (p.Population / p.HousingCapacity) - 1.0
+		housingPenalty = - (homelessRatio * 0.5)
+		if housingPenalty < -2.0 { housingPenalty = -2.0 }
+	}
+
+	// E. Ideology/Religion
+	socialDelta := 0.0
+	// Religion
+	if p.Religion == "Buddha" { socialDelta += 0.2 }
+	if p.Religion == "Konghucu" { socialDelta -= 0.2 }
+	// Ideology
+	switch p.Ideology {
+	case "Demokrasi": socialDelta += 0.1
+	case "Kapitalisme": socialDelta -= 0.2
+	case "Konservatisme": socialDelta += 0.1
+	case "Sosialisme": socialDelta += 0.05
+	}
+
+	totalDelta := taxDelta + priceDelta + infraBonus + housingPenalty + socialDelta
+
+	if p.Happiness < 40 {
+		if totalDelta < 0 { totalDelta *= 2 }
+		if totalDelta > 0 { totalDelta *= 1.5 }
+	}
+
+	p.Happiness += totalDelta
+	if p.Happiness > 100 { p.Happiness = 100 }
+	if p.Happiness < 1 { p.Happiness = 1 }
+	p.Happiness = math.Round(p.Happiness*100) / 100
+}
+
+// ═══════════════════════════════════════════════════════════
+// NPC NATIONS PROCESSING (Server-Side)
+// ═══════════════════════════════════════════════════════════
+
+func processNPCDay(date time.Time) {
+	for nation, state := range core.GlobalState.NPCStates {
+		if state == nil { continue }
+
+		// Population Growth
 		state.Population = math.Round(state.Population * 1.00002)
 		
-		// Budget Growth (very slight)
+		// Budget Growth
 		state.Budget += state.DailyIncome * (0.8 + core.Rng.Float64()*0.4)
 		state.Budget = math.Round(state.Budget)
+
+		// AI Tax Manager
+		if state.Budget < 1000 && state.Happiness > 45 {
+			for k := range state.Taxes {
+				state.Taxes[k] += 1.0 + core.Rng.Float64()*2.0
+				if state.Taxes[k] > 90 { state.Taxes[k] = 90 }
+				break 
+			}
+		} else if state.Happiness < 40 {
+			for k := range state.Taxes {
+				state.Taxes[k] -= 1.0 + core.Rng.Float64()*2.0
+				if state.Taxes[k] < 10 { state.Taxes[k] = 10 }
+				break
+			}
+		}
+
+		calculateNPCHappiness(nation, state)
 	}
+}
+
+func calculateNPCHappiness(nation string, s *core.NPCNationState) {
+	// 1. Tax Impact
+	var avgTax float64 = 0
+	for _, v := range s.Taxes { avgTax += v }
+	if len(s.Taxes) > 0 { avgTax /= float64(len(s.Taxes)) } else { avgTax = 20 }
+	taxDelta := 0.0
+	if avgTax <= 25 { taxDelta = 0.05 } else if avgTax <= 50 { taxDelta = 0 } else { taxDelta = -0.1 }
+
+	// 2. Infra Bonus (NPC)
+	infraBonus := 0.0
+	if buildings, ok := core.GlobalState.NPCBuildingLevels[nation]; ok {
+		infraFactors := map[string]float64{
+			"1_jalur_sepeda": 0.0005, "2_jalan_tol": 0.0008, "3_terminal_bus": 0.001,
+			"4_jalur_kereta": 0.0012, "5_kereta_bawah_tanah": 0.0015,
+			"6_pelabuhan_laut": 0.0018, "7_bandara": 0.002, "8_helipad": 0.0005,
+		}
+		for key, factor := range infraFactors {
+			if count, ok := buildings[key]; ok {
+				infraBonus += float64(count) * factor
+			}
+		}
+	}
+	if infraBonus > 2.0 { infraBonus = 2.0 }
+
+	totalDelta := taxDelta + infraBonus
+	s.Happiness += totalDelta
+	if s.Happiness > 100 { s.Happiness = 100 }
+	if s.Happiness < 20 { s.Happiness = 20 } 
+	s.Happiness = math.Round(s.Happiness*100) / 100
+}
+
+func processNPCConstruction(date time.Time) {
+	dateStr := date.Format("02 Jan 2006")
 	numBuilders := 2 + core.Rng.Intn(4) // 2 to 5 nations per day
 	if numBuilders > len(core.NpcNations) {
 		numBuilders = 3
@@ -1145,7 +1259,11 @@ func handleInitPlayer(w http.ResponseWriter, r *http.Request) {
 		DailyIncome:     init.DailyIncome,
 		Stability:       init.Stability,
 		Initialized:     true,
+		Taxes:           init.Taxes,
+		Buildings:       init.Buildings,
+		PriceIndex:      init.PriceIndex,
 	}
+	if core.GlobalState.Player.PriceIndex == 0 { core.GlobalState.Player.PriceIndex = 1.0 }
 
 	// Sync Clock & Budget Authority
 	// CRITICAL FIX: Only catch up if the server itself isn't at Day 0 (Reset state).
@@ -1214,3 +1332,39 @@ func handleHealth(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, `{"status":"online","engine":"Go Server-Authoritative v2","paused":%t,"day":%d,"sseClients":%d,"newsCount":%d}`, paused, day, clients, newsCount)
 }
 
+func handleUpdatePolicy(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	if r.Method == "OPTIONS" {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
+	var req struct {
+		Taxes      map[string]float64 `json:"taxes"`
+		PriceIndex float64            `json:"priceIndex"`
+		Buildings  map[string]int     `json:"buildings"`
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, "Invalid data", http.StatusBadRequest)
+		return
+	}
+
+	core.GlobalState.Mu.Lock()
+	if req.Taxes != nil {
+		core.GlobalState.Player.Taxes = req.Taxes
+	}
+	if req.PriceIndex > 0 {
+		core.GlobalState.Player.PriceIndex = req.PriceIndex
+	}
+	if req.Buildings != nil {
+		core.GlobalState.Player.Buildings = req.Buildings
+	}
+	core.GlobalState.Mu.Unlock()
+
+	fmt.Fprintf(w, `{"ok": true}`)
+}

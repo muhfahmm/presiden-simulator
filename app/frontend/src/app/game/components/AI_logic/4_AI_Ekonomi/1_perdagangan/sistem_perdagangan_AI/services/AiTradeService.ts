@@ -136,7 +136,8 @@ export const AiTradeService = {
                     dayTimestamp,
                     existingOffers,
                     existingRequests: existingOffers.filter(o => o.type === 'purchase_request'),
-                    existingContracts
+                    existingContracts,
+                    targetFrequency: { export: 5, import: 5 }
                 })
             });
 
@@ -237,9 +238,10 @@ export const AiTradeService = {
                         if (inboxStorage.canAddWeekly(event.category || 'trade', gameDate)) {
                             // Tawaran/request ke user → masuk Inbox
                             const safeSource = (event.source || 'Negara').toUpperCase();
-                            // Map specific label based on event type
                             const isEmbassy = event.type === 'AI_EMBASSY_PROPOSAL' || event.category === 'embassy';
+                            
                             let proposalLabel = 'PROPOSAL';
+                            let metadata: { type: string, id: string } | undefined = undefined;
                             
                             if (isEmbassy) {
                                 proposalLabel = 'Proposal Kedutaan';
@@ -250,9 +252,11 @@ export const AiTradeService = {
                                         break;
                                     case 'AI_TRADE_PRODUCT_OFFER':
                                         proposalLabel = 'Proposal Tawaran Produk';
+                                        if (event.offerId) metadata = { type: 'product_offer', id: event.offerId };
                                         break;
                                     case 'AI_TRADE_PURCHASE_REQUEST':
                                         proposalLabel = 'Proposal Permintaan Beli';
+                                        if (event.offerId) metadata = { type: 'purchase_request', id: event.offerId };
                                         break;
                                     case 'AI_TRADE_CONTRACT_PROPOSAL':
                                         proposalLabel = 'Proposal Kontrak Perdagangan';
@@ -268,7 +272,8 @@ export const AiTradeService = {
                                 subject: event.subject,
                                 content: event.content,
                                 time: formatGameDate(gameDate),
-                                priority: event.priority || 'medium'
+                                priority: event.priority || 'medium',
+                                metadata: metadata
                             });
                         }
                     }
