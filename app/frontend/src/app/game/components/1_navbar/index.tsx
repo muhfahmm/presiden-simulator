@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Heart, Users, Coins, Shield, LogOut, RotateCcw, TrendingUp, TrendingDown, Clock, Activity, Zap, PieChart, BarChart3, Landmark, Percent, Receipt } from "lucide-react";
+import { Heart, Users, Coins, Shield, LogOut, TrendingUp, TrendingDown, Clock, Activity, Zap, PieChart, BarChart3, Landmark, Percent, Receipt } from "lucide-react";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { HappinessBreakdown } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan";
 import { gameStorage } from "@/app/game/gamestorage";
@@ -142,10 +142,10 @@ export default function GameNavbar({
                 })();
               }
             }}
-            className="ml-4 p-2 rounded-lg bg-zinc-800/50 hover:bg-cyan-500/20 text-zinc-400 hover:text-cyan-400 transition-all border border-zinc-700/50 group"
+            className="ml-4 px-3 py-1.5 rounded-lg bg-zinc-800/50 hover:bg-cyan-500/20 text-zinc-400 hover:text-cyan-400 transition-all border border-zinc-700/50 group"
             title="Reset Total Game"
           >
-            <RotateCcw className="h-4 w-4 transition-transform group-hover:rotate-180 duration-500" />
+            <span className="text-[10px] font-black uppercase tracking-widest italic">Restart</span>
           </button>
 
           <button
