@@ -97,7 +97,7 @@ func GenerateImportBatch(dateStr string, count int) {
 		expiry := core.Rng.Intn(10) + 5
 
 		subj := fmt.Sprintf("tawaran impor: %s dari %s", c.name, nation)
-		content := fmt.Sprintf("%s menawarkan impor %s berjumlah %d %s dengan harga %d EM/unit.", nation, c.name, vol, c.unit, price)
+		content := fmt.Sprintf("%s menawarkan impor %s berjumlah %d %s (Harga: %d/unit). Total biaya: %d EM. Penawaran berlaku %d hari.", nation, c.name, vol, c.unit, price, total, expiry)
 
 		core.AddInboxItemLocked(fmt.Sprintf("Kemen. Perdagangan (%s)", nation), subj, content, "trade", "medium", true, "Proposal Tawaran Produk", dateStr)
 		time.Sleep(time.Microsecond)
@@ -124,7 +124,7 @@ func GenerateExportBatch(dateStr string, count int) {
 		days := core.Rng.Intn(8) + 3
 
 		subj := fmt.Sprintf("tawaran ekspor: %s dari %s", c.name, nation)
-		content := fmt.Sprintf("%s ingin membeli produk %s kita berjumlah %d %s dengan harga %d EM/unit.", nation, c.name, vol, c.unit, buyP)
+		content := fmt.Sprintf("%s ingin membeli produk %s kita berjumlah %d %s (Harga: %d/unit). Potensi pendapatan: %d EM. Berlaku %d hari.", nation, c.name, vol, c.unit, buyP, rev, days)
 
 		core.AddInboxItemLocked(fmt.Sprintf("Kemen. Perdagangan (%s)", nation), subj, content, "trade", "medium", true, "Proposal Permintaan Beli", dateStr)
 		time.Sleep(time.Microsecond)
@@ -159,7 +159,7 @@ func GenerateContractBatch(dateStr string, count int) {
 		cPrice := c.basePrice * (100 - core.Rng.Intn(10)) / 100
 
 		subj := fmt.Sprintf("kontrak dagang: %s dari %s", c.name, nation)
-		content := fmt.Sprintf("%s mengajak kontrak dagang %s selama %d bulan (%d unit/bulan).", nation, c.name, months, mVol)
+		content := fmt.Sprintf("%s mengajak kontrak dagang %s selama %d bulan (%d unit/bulan) dengan harga tetap %d EM/unit.", nation, c.name, months, mVol, cPrice)
 
 		core.AddInboxItemLocked(fmt.Sprintf("Kemen. Perdagangan (%s)", nation), subj, content, "trade", "high", true, "Proposal Kontrak Perdagangan", dateStr)
 		generated++

@@ -114,27 +114,30 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
         else if (subj.includes('aliansi')) type = 'alliance';
         else if (isEmbassyOffer) type = 'embassy';
 
-        // KHUSUS: Jika ini adalah tawaran Transaksi Barang (Ekspor/Impor)
-        if (msg.metadata?.type === 'product_offer') {
-          const success = AiTradeService.acceptProductOffer(msg.metadata.id);
-          if (success) {
-            inboxStorage.markAsRead(msg.id);
-            setExpandedId(null);
-          } else {
-            alert("Gagal menerima tawaran: Anggaran kas tidak mencukupi.");
-          }
-          return;
-        }
+        // LOGIKA PERDAGANGAN STRATEGIS (AiTradeService)
+        if (msg.metadata) {
+          const m = msg.metadata;
+          let success = false;
+          let handled = true;
 
-        if (msg.metadata?.type === 'purchase_request') {
-          const success = AiTradeService.acceptPurchaseRequest(msg.metadata.id);
-          if (success) {
-            inboxStorage.markAsRead(msg.id);
-            setExpandedId(null);
-          } else {
-            alert("Gagal menerima permintaan: Stok komoditas tidak mencukupi.");
+          if (m.type === 'product_offer') success = AiTradeService.acceptProductOffer(m.id);
+          else if (m.type === 'purchase_request') success = AiTradeService.acceptPurchaseRequest(m.id);
+          else if (m.type === 'trade_contract') {
+             AiTradeService.acceptContract(m.id);
+             success = true;
+          } else if (m.type === 'trade_agreement') success = AiTradeService.acceptTradeAgreement(m.id);
+          else if (m.type === 'embassy') success = AiTradeService.acceptEmbassyProposal(m.country || '');
+          else handled = false;
+
+          if (handled) {
+            if (success) {
+              inboxStorage.markAsRead(msg.id);
+              setExpandedId(null);
+            } else if (m.type === 'product_offer' || m.type === 'purchase_request') {
+              alert("Gagal memproses: Periksa anggaran atau ketersediaan stok Anda.");
+            }
+            return;
           }
-          return;
         }
 
         AiDiplomacyService.finalizeTreaty(targetCountryRaw, type);

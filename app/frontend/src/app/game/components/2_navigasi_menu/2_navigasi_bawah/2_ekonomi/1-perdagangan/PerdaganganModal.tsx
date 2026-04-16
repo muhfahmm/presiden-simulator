@@ -157,13 +157,34 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
     return () => window.removeEventListener('budget_storage_updated', handleUpdate);
   }, []);
 
-  const [selectedTradePartner, setSelectedTradePartner] = useState<string | null>(null);
-  const [tradeType, setTradeType] = useState<"impor" | "ekspor" | "histori" | "berita" | "tawaran_ai">("impor");
+  // SINGLE SOURCE OF TRUTH: Derive internal state directly from the activeMenu prop (URL)
+  const { tradeType, selectedTradePartner } = useMemo(() => {
+    if (!activeMenu.startsWith("Menu:Perdagangan")) return { tradeType: "impor" as const, selectedTradePartner: null as string | null };
+    const parts = activeMenu.split(":");
+    let type = (parts[2] as any) || "impor";
+    let partner = parts[3] || null;
+
+    // Deep-link support: Handle legacy or alternate format like Menu:Perdagangan:partner=USA
+    if (type.includes("=")) {
+      const [action, item] = type.split("=");
+      if (action === "partner") {
+        partner = item;
+        type = "impor"; // Default to impor tab when jumping to a partner
+      } else if (action === "impor" || action === "ekspor") {
+        type = action;
+      }
+    }
+
+    return { tradeType: type, selectedTradePartner: partner };
+  }, [activeMenu]);
+
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+
   const [historiType, setHistoriType] = useState<"impor" | "ekspor">("impor");
   const [logisticsSpeedup, setLogisticsSpeedup] = useState(0);
 
@@ -393,12 +414,12 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
       if (detail.includes("=")) {
         const [action, item] = detail.split("=");
         if (action === "partner") {
-          setSelectedTradePartner(item);
+          // Handled by useMemo derivation
         } else {
           const type = action === "impor" ? "buy" : "sell";
           setSelectedKey(item);
           setExecutionModalItem({ type });
-          setTradeType(action as "impor" | "ekspor");
+          // TradeType handled by useMemo derivation
           setActiveChartTab(type === "buy" ? "buy" : "sell");
         }
       }
@@ -410,8 +431,6 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   const currentDate = getStoredGameDate();
   const baseBuyPrice = getDynamicPrice(selectedKey, "buy", currentDate);
   const baseSellPrice = getDynamicPrice(selectedKey, "sell", currentDate);
-
-  if (!isOpen) return null;
 
   const iconMap: Record<string, any> = {
     emas: Gem, uranium: Radio, batu_bara: Layers, minyak_bumi: Droplets, gas_alam: Flame, garam: Waves,
@@ -442,25 +461,39 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   const exportPriceVal = baseSellPrice;
   const importPriceVal = baseBuyPrice;
 
-  const activePartnersList = (managedTrades?.filter((a: any) =>
-    (a.type === 'Perdagangan' || a.jenis === 'Perdagangan') &&
-    a.mitra.toLowerCase() !== currentCountry.name_id.toLowerCase() &&
-    a.mitra.toLowerCase() !== currentCountry.name_en.toLowerCase()
-  ).length > 0
-    ? managedTrades.filter((a: any) =>
+  const activePartnersList = useMemo(() => {
+    const list = (managedTrades?.filter((a: any) =>
       (a.type === 'Perdagangan' || a.jenis === 'Perdagangan') &&
-      a.mitra.toLowerCase() !== currentCountry.name_id.toLowerCase() &&
-      a.mitra.toLowerCase() !== currentCountry.name_en.toLowerCase()
-    ).sort((a: any, b: any) => a.mitra.localeCompare(b.mitra))
-    : getInitialAgreements(currentCountry.name_en, currentCountry.name_id).length > 0
-      ? getInitialAgreements(currentCountry.name_en, currentCountry.name_id)
-      : [
-        { mitra: "Afrika Selatan", status: "Aktif" },
-        { mitra: "Tiongkok", status: "Aktif" },
-        { mitra: "Uni Emirat Arab", status: "Aktif" },
-        { mitra: "Vietnam", status: "Aktif" }
-      ]
-  );
+      a.mitra?.toLowerCase() !== currentCountry?.name_id?.toLowerCase() &&
+      a.mitra?.toLowerCase() !== currentCountry?.name_en?.toLowerCase()
+    ) || []);
+
+    if (list.length > 0) {
+      return [...list].sort((a: any, b: any) => a.mitra.localeCompare(b.mitra));
+    }
+
+    const defaults = getInitialAgreements(currentCountry.name_en, currentCountry.name_id);
+    if (defaults.length > 0) return defaults;
+
+    return [
+      { mitra: "Afrika Selatan", status: "Aktif" },
+      { mitra: "Tiongkok", status: "Aktif" },
+      { mitra: "Uni Emirat Arab", status: "Aktif" },
+      { mitra: "Vietnam", status: "Aktif" }
+    ];
+  }, [managedTrades, currentCountry]);
+
+  useEffect(() => {
+    if (isOpen && !selectedTradePartner && (tradeType === "impor" || tradeType === "ekspor") && activePartnersList.length > 0) {
+      // Cari negara yang berawalan huruf 'A' terlebih dahulu, jika tidak ada baru ambil urutan pertama
+      const partnerWithA = activePartnersList.find((a: any) => a.mitra?.toUpperCase().startsWith('A'));
+      const firstPartner = partnerWithA || activePartnersList[0];
+      
+      setActiveMenu(`Menu:Perdagangan:${tradeType}:${firstPartner.mitra}`);
+    }
+  }, [isOpen, selectedTradePartner, tradeType, activePartnersList]);
+
+  if (!isOpen) return null;
 
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
@@ -519,7 +552,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
               {activePartnersList.filter((a: any) => a.status === 'Aktif' || !a.status || a.status !== 'Rejected').map((agreement: any, idx: number) => (
                 <button
                   key={idx}
-                  onClick={() => setSelectedTradePartner(selectedTradePartner === agreement.mitra ? null : agreement.mitra)}
+                  onClick={() => {
+                    const nextPartner = agreement.mitra;
+                    setActiveMenu(`Menu:Perdagangan:${tradeType === 'histori' || tradeType === 'berita' || tradeType === 'tawaran_ai' ? 'impor' : tradeType}:${nextPartner}`);
+                  }}
                   className={`w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border ${selectedTradePartner === agreement.mitra ? 'bg-emerald-600/10 border-emerald-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'
                     }`}
                 >
@@ -539,17 +575,21 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
           <div className="w-[320px] border-r border-zinc-900 bg-zinc-950/50 flex flex-col backdrop-blur-sm">
             <div className="p-6 border-b border-zinc-900/80 shrink-0">
               <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic text-center">
-                {selectedTradePartner ? `Daftar Komoditas ${selectedTradePartner}` : "Pilih Negara Terlebih Dahulu"}
+                {selectedTradePartner ? `Daftar Komoditas ${selectedTradePartner}` : 
+                 (tradeType === "berita" || tradeType === "tawaran_ai") ? "Monitoring Global" : "Pilih Negara Terlebih Dahulu"}
               </h3>
               <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic mt-1 text-center">
-                {selectedTradePartner ? "Kategori Produksi 1 - 6" : "Silakan pilih mitra dagang di sidebar kiri"}
+                {selectedTradePartner ? "Kategori Produksi 1 - 8" : 
+                 (tradeType === "berita" || tradeType === "tawaran_ai") ? "Statistik & Informasi Umum" : "Silakan pilih mitra dagang di sidebar kiri"}
               </p>
             </div>
             <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
               {!selectedTradePartner ? (
                 <div className="flex flex-col items-center justify-center h-full p-8 text-center space-y-4 opacity-40">
                   <Globe className="h-12 w-12 text-zinc-700" />
-                  <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Data Komoditas Tidak Tersedia</p>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500">
+                    {(tradeType === "berita" || tradeType === "tawaran_ai") ? "Data Global Aktif" : "Data Komoditas Tidak Tersedia"}
+                  </p>
                 </div>
               ) : (
                 <>
@@ -740,7 +780,8 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
               <div className="flex items-center gap-2 bg-zinc-900/50 p-1.5 rounded-3xl border border-zinc-800/50 backdrop-blur-xl w-fit">
                 <button
                   onClick={() => {
-                    setTradeType("impor");
+                    const countryPart = selectedTradePartner ? `:${selectedTradePartner}` : "";
+                    setActiveMenu(`Menu:Perdagangan:impor${countryPart}`);
                     setActiveChartTab("buy");
                   }}
                   className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 cursor-pointer ${tradeType === "impor"
@@ -752,7 +793,8 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 </button>
                 <button
                   onClick={() => {
-                    setTradeType("ekspor");
+                    const countryPart = selectedTradePartner ? `:${selectedTradePartner}` : "";
+                    setActiveMenu(`Menu:Perdagangan:ekspor${countryPart}`);
                     setActiveChartTab("sell");
                   }}
                   className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 cursor-pointer ${tradeType === "ekspor"
@@ -766,7 +808,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 <div className="w-[1px] h-4 bg-zinc-800 mx-2"></div>
 
                 <button
-                  onClick={() => setTradeType("histori")}
+                  onClick={() => {
+                    const countryPart = selectedTradePartner ? `:${selectedTradePartner}` : "";
+                    setActiveMenu(`Menu:Perdagangan:histori${countryPart}`);
+                  }}
                   className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 flex items-center gap-2 cursor-pointer ${tradeType === "histori"
                       ? "bg-blue-500 text-white shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-[0_0_40px_rgba(59,130,246,0.5)]"
                       : "text-zinc-500 hover:text-zinc-300"
@@ -777,7 +822,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 </button>
 
                 <button
-                  onClick={() => setTradeType("berita")}
+                  onClick={() => {
+                    const countryPart = selectedTradePartner ? `:${selectedTradePartner}` : "";
+                    setActiveMenu(`Menu:Perdagangan:berita${countryPart}`);
+                  }}
                   className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 flex items-center gap-2 cursor-pointer ${tradeType === "berita"
                       ? "bg-amber-600 text-white shadow-[0_0_30px_rgba(217,119,6,0.3)] hover:shadow-[0_0_40px_rgba(217,119,6,0.5)]"
                       : "text-zinc-500 hover:text-zinc-300"
@@ -788,7 +836,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 </button>
 
                 <button
-                  onClick={() => setTradeType("tawaran_ai")}
+                  onClick={() => {
+                    const countryPart = selectedTradePartner ? `:${selectedTradePartner}` : "";
+                    setActiveMenu(`Menu:Perdagangan:tawaran_ai${countryPart}`);
+                  }}
                   className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 flex items-center gap-2 cursor-pointer relative ${tradeType === "tawaran_ai"
                       ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-[0_0_30px_rgba(99,102,241,0.3)] hover:shadow-[0_0_40px_rgba(99,102,241,0.5)]"
                       : "text-zinc-500 hover:text-zinc-300"
@@ -837,7 +888,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
               </div>
 
 
-              {!selectedTradePartner && tradeType !== "histori" && tradeType !== "berita" ? (
+              {!selectedTradePartner && tradeType !== "histori" && tradeType !== "berita" && tradeType !== "tawaran_ai" ? (
                 <div className="flex-1 flex flex-col items-center justify-center space-y-6 animate-in fade-in duration-700">
                   <div className="w-24 h-24 rounded-full bg-zinc-900/50 border border-zinc-800 flex items-center justify-center text-zinc-700">
                     <Globe className="h-12 w-12 animate-pulse" />

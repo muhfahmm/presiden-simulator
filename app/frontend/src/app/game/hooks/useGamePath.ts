@@ -26,9 +26,24 @@ export function useGamePath(path: string[]) {
     }
   } else if (category === 'ekonomi') {
     if (subMenu === 'perdagangan') {
-      const detail = path[2];
-      if (detail) initialMenu = `Menu:Perdagangan:${detail}`;
-      else initialMenu = "Menu:Perdagangan";
+      const s3 = path[2]; // Berfungsi sebagai Negara (Format Baru) atau Tab (Format Lama)
+      const s4 = path[3]; // Berfungsi sebagai Tab (Format Baru)
+      
+      if (s3 && s4) {
+        const country = decodeURIComponent(s3).replace(/_/g, ' ');
+        const tab = s4 === 'tawaran' ? 'tawaran_ai' : s4;
+        initialMenu = `Menu:Perdagangan:${tab}:${country}`;
+      } else if (s3) {
+        // Fallback untuk backward compatibility atau navigasi parsial
+        if (s3 === 'histori' || s3 === 'berita') initialMenu = `Menu:Perdagangan:${s3}`;
+        else if (s3 === 'tawaran') initialMenu = "Menu:Perdagangan:tawaran_ai";
+        else {
+          const country = decodeURIComponent(s3).replace(/_/g, ' ');
+          initialMenu = `Menu:Perdagangan:impor:${country}`;
+        }
+      } else {
+        initialMenu = "Menu:Perdagangan:impor:Amerika Serikat";
+      }
     }
     else if (subMenu === 'pajak') initialMenu = "Menu:Pajak";
     else if (subMenu === 'hutang') initialMenu = "Menu:Hutang";
@@ -175,7 +190,6 @@ export function useGamePath(path: string[]) {
   useEffect(() => {
     const menuToPath: Record<string, string> = {
       "Ekonomi": "/game/ekonomi",
-      "Menu:Perdagangan": "/game/ekonomi/perdagangan",
       "Menu:Pajak": "/game/ekonomi/pajak",
       "Menu:Hutang": "/game/ekonomi/hutang",
       "Menu:Budget": "/game/ekonomi/pemasukkan-pengeluaran",
@@ -247,10 +261,17 @@ export function useGamePath(path: string[]) {
     }
 
 
-    // Dynamic path handling for Perdagangan details
-    if (!targetPath && activeMenu.startsWith("Menu:Perdagangan:")) {
-      const detail = activeMenu.split(":")[2];
-      targetPath = `/game/ekonomi/perdagangan/${detail}`;
+    // Dynamic path handling for Perdagangan (Uniform for all tabs)
+    if (!targetPath && activeMenu.startsWith("Menu:Perdagangan")) {
+      const parts = activeMenu.split(":");
+      // Format: Menu:Perdagangan:[tab]:[negara]
+      const tabRaw = parts[2] || "impor";
+      const countryRaw = parts[3] || "Amerika Serikat";
+      
+      const tab = tabRaw === 'tawaran_ai' ? 'tawaran' : tabRaw;
+      const country = countryRaw.replace(/ /g, '_');
+      
+      targetPath = `/game/ekonomi/perdagangan/${country}/${tab}`;
     }
 
     // Dynamic path handling for Diplomasi details

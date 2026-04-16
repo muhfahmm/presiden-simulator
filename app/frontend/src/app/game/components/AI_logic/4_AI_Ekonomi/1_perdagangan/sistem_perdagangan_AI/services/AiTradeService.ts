@@ -249,6 +249,7 @@ export const AiTradeService = {
                                 switch (event.type) {
                                     case 'AI_TRADE_AGREEMENT_PROPOSAL':
                                         proposalLabel = 'Proposal Kemitraan';
+                                        if (event.agreementId) metadata = { type: 'trade_agreement', id: event.agreementId };
                                         break;
                                     case 'AI_TRADE_PRODUCT_OFFER':
                                         proposalLabel = 'Proposal Tawaran Produk';
@@ -260,6 +261,7 @@ export const AiTradeService = {
                                         break;
                                     case 'AI_TRADE_CONTRACT_PROPOSAL':
                                         proposalLabel = 'Proposal Kontrak Perdagangan';
+                                        if (event.contractId) metadata = { type: 'trade_contract', id: event.contractId };
                                         break;
                                 }
                             }
@@ -273,7 +275,7 @@ export const AiTradeService = {
                                 content: event.content,
                                 time: formatGameDate(gameDate),
                                 priority: event.priority || 'medium',
-                                metadata: metadata
+                                metadata: isEmbassy ? { type: 'embassy', country: safeSource } : metadata
                             });
                         }
                     }

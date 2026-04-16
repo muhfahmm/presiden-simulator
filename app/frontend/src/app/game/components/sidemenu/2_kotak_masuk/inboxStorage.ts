@@ -15,6 +15,7 @@ export interface InboxItem {
   metadata?: {
     type: string;
     id: string;
+    country?: string;
   };
 }
 

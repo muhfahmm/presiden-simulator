@@ -94,10 +94,10 @@ export default function AiTradeOffersPanel() {
   const renderStatusBadge = (status: string) => {
     const styles: Record<string, string> = {
       pending: "bg-amber-500/10 text-amber-500 border-amber-500/20",
-      accepted: "bg-green-500/10 text-green-500 border-green-500/20",
-      rejected: "bg-red-500/10 text-red-500 border-red-500/20",
+      accepted: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20",
+      rejected: "bg-rose-500/10 text-rose-500 border-rose-500/20",
       expired: "bg-zinc-700/20 text-zinc-500 border-zinc-700/30",
-      active: "bg-blue-500/10 text-blue-500 border-blue-500/20",
+      active: "bg-indigo-500/10 text-indigo-500 border-indigo-500/20",
       completed: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20",
     };
     const labels: Record<string, string> = {
@@ -121,7 +121,9 @@ export default function AiTradeOffersPanel() {
       <div
         key={offer.id}
         className={`bg-zinc-900/40 border rounded-2xl overflow-hidden transition-all duration-500 ${
-          isPending ? "border-zinc-800/50 hover:border-blue-500/30" : "border-zinc-900/30 opacity-60"
+          isPending 
+            ? offer.type === "product_offer" ? "border-rose-500/30 hover:border-rose-400" : "border-emerald-500/30 hover:border-emerald-400"
+            : "border-zinc-900/30 opacity-60"
         }`}
       >
         {/* Header */}
@@ -132,8 +134,8 @@ export default function AiTradeOffersPanel() {
           <div className="flex items-center gap-4">
             <div className={`p-3 rounded-xl ${
               offer.type === "product_offer"
-                ? "bg-blue-500/10 text-blue-500"
-                : "bg-amber-500/10 text-amber-500"
+                ? "bg-rose-500/10 text-rose-400"
+                : "bg-emerald-500/10 text-emerald-400"
             }`}>
               {offer.type === "product_offer" ? <Package size={20} /> : <ShoppingCart size={20} />}
             </div>
@@ -187,12 +189,12 @@ export default function AiTradeOffersPanel() {
               </div>
               <div className={`p-3 rounded-xl border ${
                 offer.type === "product_offer"
-                  ? "bg-blue-500/5 border-blue-500/20"
-                  : "bg-amber-500/5 border-amber-500/20"
+                  ? "bg-rose-500/5 border-rose-500/20"
+                  : "bg-emerald-500/5 border-emerald-500/20"
               }`}>
                 <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">Harga Tawaran</p>
                 <p className={`text-sm font-black italic ${
-                  offer.type === "product_offer" ? "text-blue-400" : "text-amber-400"
+                  offer.type === "product_offer" ? "text-rose-400" : "text-emerald-400"
                 }`}>{offer.pricePerUnit.toLocaleString("id-ID")}/unit</p>
               </div>
               <div className="bg-zinc-950/50 p-3 rounded-xl border border-zinc-800/30">
@@ -227,8 +229,8 @@ export default function AiTradeOffersPanel() {
                     offer.type === "product_offer" && !canAfford
                       ? "bg-zinc-900 border-zinc-800 text-zinc-700 cursor-not-allowed"
                       : offer.type === "product_offer"
-                        ? "bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-500/20 hover:bg-blue-500"
-                        : "bg-green-600 border-green-500 text-white shadow-lg shadow-green-500/20 hover:bg-green-500"
+                        ? "bg-rose-600 border-rose-500 text-white shadow-lg shadow-rose-500/20 hover:bg-rose-500"
+                        : "bg-emerald-600 border-emerald-500 text-white shadow-lg shadow-emerald-500/20 hover:bg-emerald-500"
                   }`}
                 >
                   <Check size={14} />
@@ -275,7 +277,7 @@ export default function AiTradeOffersPanel() {
                 {renderStatusBadge(contract.status)}
               </div>
               <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider mt-0.5">
-                Kontrak {contract.commodityLabel} — {contract.durationMonths} Bulan
+                Kontrak {contract.commodityLabel} — {contract.direction === "ai_sells" ? "IMPOR" : "EKSPOR"}
               </div>
             </div>
           </div>
@@ -353,7 +355,7 @@ export default function AiTradeOffersPanel() {
       <div
         key={agreement.id}
         className={`bg-zinc-900/40 border rounded-2xl overflow-hidden transition-all duration-500 ${
-          isPending ? "border-blue-500/30 shadow-[0_0_20px_rgba(59,130,246,0.05)]" : "border-zinc-900/30 opacity-60"
+          isPending ? "border-amber-500/30 shadow-[0_0_20px_rgba(245,158,11,0.05)]" : "border-zinc-900/30 opacity-60"
         }`}
       >
         <button
@@ -361,7 +363,7 @@ export default function AiTradeOffersPanel() {
           className="w-full p-5 flex items-center justify-between cursor-pointer"
         >
           <div className="flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-blue-500/10 text-blue-500">
+            <div className="p-3 rounded-xl bg-amber-500/10 text-amber-500">
               <Handshake size={20} />
             </div>
             <div className="text-left">
@@ -369,7 +371,7 @@ export default function AiTradeOffersPanel() {
                 {agreement.countryLabel}
                 {renderStatusBadge(agreement.status)}
               </div>
-              <div className="text-[10px] font-bold text-blue-400 uppercase tracking-wider mt-0.5">
+              <div className="text-[10px] font-bold text-amber-500 uppercase tracking-wider mt-0.5">
                 Proposal Perjanjian Dagang
               </div>
             </div>
@@ -390,13 +392,13 @@ export default function AiTradeOffersPanel() {
 
         <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
           <div className="px-5 pb-5 space-y-4 border-t border-zinc-900/50 pt-4">
-            <div className="bg-blue-500/5 p-4 rounded-xl border border-blue-500/10">
-              <p className="text-[10px] text-blue-200/70 leading-relaxed font-medium">
+            <div className="bg-amber-500/5 p-4 rounded-xl border border-amber-500/10">
+              <p className="text-[10px] text-amber-200/70 leading-relaxed font-medium">
                 Pemerintah <span className="font-black text-white uppercase tracking-wider">{agreement.countryLabel}</span> mengajukan kerjasama perdagangan resmi. Perjanjian ini akan menjadikan mereka mitra dagang resmi, memungkinkan pertukaran komoditas unggulan seperti:
               </p>
               <div className="flex flex-wrap gap-2 mt-3">
                 {agreement.topCommodities.map((c, idx) => (
-                  <span key={idx} className="px-2 py-1 bg-blue-500/10 border border-blue-500/20 text-[9px] font-black text-blue-400 uppercase tracking-widest rounded-md">
+                  <span key={idx} className="px-2 py-1 bg-amber-500/10 border border-amber-500/20 text-[9px] font-black text-amber-400 uppercase tracking-widest rounded-md">
                     {c}
                   </span>
                 ))}
@@ -420,7 +422,7 @@ export default function AiTradeOffersPanel() {
                 </button>
                 <button
                   onClick={() => handleAcceptAgreement(agreement.id)}
-                  className="flex-[2] py-3 bg-blue-600 border border-blue-500 text-white shadow-lg shadow-blue-500/20 hover:bg-blue-500 font-black uppercase text-[9px] tracking-[0.3em] rounded-xl transition-all active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
+                  className="flex-[2] py-3 bg-amber-600 border border-amber-500 text-white shadow-lg shadow-amber-500/20 hover:bg-amber-500 font-black uppercase text-[9px] tracking-[0.3em] rounded-xl transition-all active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
                 >
                   <Check size={14} />
                   Bentuk Perjanjian Dagang
@@ -462,21 +464,23 @@ export default function AiTradeOffersPanel() {
       {/* Tab Navigation */}
       <div className="flex items-center gap-1 bg-zinc-900/50 p-1 rounded-2xl border border-zinc-800/50">
         {([
-          { key: "agreements" as const, label: "Kemitraan", icon: Handshake, color: "blue" },
-          { key: "offers" as const, label: "Tawaran Produk", icon: Package, color: "blue" },
-          { key: "requests" as const, label: "Permintaan Beli", icon: ShoppingCart, color: "amber" },
-          { key: "contracts" as const, label: "Kontrak", icon: FileText, color: "purple" }
+          { key: "agreements" as const, label: "Kemitraan", icon: Handshake, color: "amber" },
+          { key: "offers" as const, label: "Tawaran Produk", icon: Package, color: "rose" },
+          { key: "requests" as const, label: "Permintaan Beli", icon: ShoppingCart, color: "emerald" },
+          { key: "contracts" as const, label: "Kontrak", icon: FileText, color: "indigo" }
         ] as const).map(tab => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
             className={`flex-1 px-4 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
               activeTab === tab.key
-                ? tab.color === "blue"
-                  ? "bg-blue-500/10 text-blue-400 border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.1)]"
-                  : tab.color === "amber"
-                    ? "bg-amber-500/10 text-amber-400 border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.1)]"
-                    : "bg-purple-500/10 text-purple-400 border border-purple-500/20 shadow-[0_0_15px_rgba(139,92,246,0.1)]"
+                ? tab.color === "rose"
+                  ? "bg-rose-500/10 text-rose-400 border border-rose-500/20 shadow-[0_0_15px_rgba(244,63,94,0.1)]"
+                  : tab.color === "emerald"
+                    ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]"
+                    : tab.color === "amber"
+                      ? "bg-amber-500/10 text-amber-400 border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.1)]"
+                      : "bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.1)]"
                 : "text-zinc-600 hover:text-zinc-400 border border-transparent"
             }`}
           >
@@ -484,9 +488,10 @@ export default function AiTradeOffersPanel() {
             {tab.label}
             {tabCounts[tab.key] > 0 && (
               <span className={`px-2 py-0.5 text-[9px] font-black rounded-full shadow-lg shadow-black/20 transform transition-transform duration-300 group-hover:scale-110 ${
-                tab.color === "blue" ? "bg-blue-600 text-white" :
+                tab.color === "rose" ? "bg-rose-600 text-white" :
+                tab.color === "emerald" ? "bg-emerald-600 text-white" :
                 tab.color === "amber" ? "bg-amber-600 text-white" :
-                "bg-purple-600 text-white"
+                "bg-indigo-600 text-white"
               }`}>
                 {tabCounts[tab.key]}
               </span>
