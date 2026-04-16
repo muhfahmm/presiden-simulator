@@ -11,14 +11,19 @@ import (
 	"emserver/core"
 )
 
-// InitializeRelationships loads relationship data from all country TS files
+// InitializeRelationships loads relationship data from all country TS files.
+// It acquires a lock on core.GlobalState.Mu.
 func InitializeRelationships() error {
 	core.GlobalState.Mu.Lock()
 	defer core.GlobalState.Mu.Unlock()
+	return InitializeRelationshipsLocked()
+}
 
-	if core.GlobalState.Relationships == nil {
-		core.GlobalState.Relationships = make(map[string]map[string]*core.Relationship)
-	}
+// InitializeRelationshipsLocked performs the actual loading logic.
+// IMPORTANT: The caller must already hold core.GlobalState.Mu.Lock()
+func InitializeRelationshipsLocked() error {
+	// Always wipe and re-initialize for a fresh load (essential for Reset functionality)
+	core.GlobalState.Relationships = make(map[string]map[string]*core.Relationship)
 
 	basePath := "c:/fhm/em/app/frontend/src/app/database/data/database_hubungan_antar_negara"
 	
@@ -27,8 +32,9 @@ func InitializeRelationships() error {
 	
 	
 	// Robust regex: matches the entire JSON-like object to ensure name and relation are paired
-	// Matches: { id: 1, name: "malaysia", relation: 90 }
-	pairRegex := regexp.MustCompile(`\{\s*id:\s*\d+,\s*name:\s*"([^"]+)",\s*relation:\s*(\d+)\s*\}`)
+	// Matches: { id: 1, name: "malaysia", relation: 90 },
+	// We handle optional commas at the end and greedy whitespace.
+	pairRegex := regexp.MustCompile(`\{\s*id:\s*\d+,\s*name:\s*"([^"]+)",\s*relation:\s*(\d+)\s*\}\s*,?`)
 
 	totalFiles := 0
 	totalPairs := 0
@@ -79,6 +85,11 @@ func InitializeRelationships() error {
 				var score float64
 				fmt.Sscanf(match[2], "%f", &score)
 
+				// TRACE LOGGING: Explicitly check for China/Indonesia during reset
+				if (sourceName == "indonesia" && targetName == "china") || (sourceName == "china" && targetName == "indonesia") {
+					fmt.Printf("[HUBUNGAN] TRACE: Found link %s <-> %s: %.2f\n", sourceName, targetName, score)
+				}
+
 				core.GlobalState.Relationships[sourceName][targetName] = &core.Relationship{
 					S: score,
 					E: boolToInt(score >= 60),
@@ -92,7 +103,7 @@ func InitializeRelationships() error {
 		}
 	}
 
-	fmt.Printf("[HUBUNGAN] Initialized %d countries with %d total relationship pairs\n", totalFiles, totalPairs)
+	fmt.Printf("[HUBUNGAN] SUCCESS: Initialized %d countries with %d relationship pairs\n", totalFiles, totalPairs)
 	if totalFiles > 0 {
 		fmt.Printf("[HUBUNGAN] Sample loaded nations: %v...\n", regions)
 	} else {
@@ -119,8 +130,8 @@ func UpdateDailyRelationsLocked() {
 			// 1. Geopolitical Drift (Daily Scale)
 			drift := 0.015 
 			
-			// 2. Random Volatility (Extreme Boost for Verification)
-			volatility := (core.Rng.Float64() - 0.5) * 10.0 // +/- 5.0 jump daily
+			// 2. Random Volatility (Stabilized)
+			volatility := (core.Rng.Float64() - 0.5) * 0.05 // +/- 0.025 jump daily
 			
 			// 3. Stability Alignment
 			// If both countries are very stable, relations tend to improve slightly
@@ -155,11 +166,6 @@ func UpdateDailyRelationsLocked() {
 			rel.P = boolToInt(rel.S >= 70)
 			rel.A = boolToInt(rel.S >= 85)
 			rel.T = boolToInt(rel.S >= 65)
-
-			// Targeted debug for Malaysia & India vs Indonesia
-			if (source == "indonesia" && (target == "india" || target == "malaysia")) {
-				fmt.Printf("[FORCE DEBUG] %s:%s -> %.2f\n", source, target, rel.S)
-			}
 		}
 	}
 }

@@ -47,13 +47,19 @@ export default function GamePage() {
   // Sync AI nation stats (Budget, Population, Happiness) with game time
   useAIGameSync();
 
-  // EXPLICIT RESET: Ensure AI storages are reset to defaults when game page loads
-  // This must happen BEFORE useAIGameSync starts updating
+  // EXPLICIT RESET: Ensure AI storages are reset to defaults ONLY on a fresh session
+  // This prevents accidental wiping of NPC progress during normal page refreshes
   useEffect(() => {
-    console.log("[GAME PAGE] Explicitly resetting AI storages to database defaults...");
-    aiBudgetStorage.clear();
-    aiPopulationStorage.clear();
-    console.log("[GAME PAGE] AI storages reset complete");
+    const isFresh = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    if (isFresh) {
+      console.log("[GAME PAGE] Fresh session detected. Resetting AI storages to database defaults...");
+      aiBudgetStorage.clear();
+      aiPopulationStorage.clear();
+      // Reset relation scores too for absolute consistency
+      const { relationStorage } = require("../components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage");
+      relationStorage.clear();
+      console.log("[GAME PAGE] AI and Relation storages reset complete");
+    }
   }, []);
 
   useEffect(() => {

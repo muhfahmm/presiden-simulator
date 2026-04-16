@@ -30,10 +30,14 @@ export const relationStorage = {
   },
 
   getRelationScore: (targetCountry: string, baseScore: number, sourceCountry?: string, dataOverride?: Record<string, number>): number => {
+    // CRITICAL RESET GUARD: If this is a fresh session, ignore stale storage and use database defaults (75.0)
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    if (isFreshSession) return baseScore;
+
     const data = dataOverride || relationStorage.getRelationData();
     const targetKey = targetCountry.toLowerCase().trim();
     
-    // If sourceCountry is provided, use composite key, else default to legacy flat key (for migration/backward compatibility)
+    // If sourceCountry is provided, use composite key, else default to legacy flat key
     if (sourceCountry) {
       const sourceKey = sourceCountry.toLowerCase().trim();
       const compositeKey = `${sourceKey}:${targetKey}`;
@@ -143,6 +147,9 @@ export const relationStorage = {
   clear: () => {
     if (typeof window === "undefined") return;
     localStorage.removeItem(RELATION_STORAGE_KEY);
+    localStorage.removeItem("em2_global_relation_matrix");
+    // Dispatch event to clear any cached UI states
+    window.dispatchEvent(new Event("relation_storage_cleared"));
   },
 
   /**
@@ -252,15 +259,25 @@ if (typeof window !== 'undefined') {
     const serverMatrix = e.detail;
     if (!serverMatrix) return;
 
-    console.log("[RelationStorage] Received sync from server. Merging scores...");
-    
     // 1. Sync AI Global Matrix
     const currentMatrix = getGlobalRelationMatrix();
-    const mergedMatrix = { ...currentMatrix, ...serverMatrix };
+    const storedDay = typeof window !== 'undefined' ? localStorage.getItem("em4_last_sync_day") : "0";
+    const dayCounter = storedDay ? Number(storedDay) : 0;
+    
+    // CRITICAL: Overwrite instead of merge if it's a reset or the very beginning of the game (Day 0-2)
+    // This prevents "Memory Poisoning" where old 31.96 values are merged back into the fresh 75.0 state.
+    const isReset = e.detail.resetTriggered || (typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true") || dayCounter <= 2;
+    
+    const mergedMatrix = isReset ? { ...serverMatrix } : { ...currentMatrix, ...serverMatrix };
     saveGlobalRelationMatrix(mergedMatrix);
 
     // 2. Sync scores to relationStorage for UI compatibility
-    const relationData = relationStorage.getRelationData();
+    let relationData = relationStorage.getRelationData();
+    if (isReset) {
+      console.log("[RelationStorage] Fresh Reset detected - dropping all old memory scores.");
+      relationData = {}; // Clear memory immediately
+    }
+    
     let changed = false;
 
     Object.keys(serverMatrix).forEach(sourceId => {

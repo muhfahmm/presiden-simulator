@@ -18,15 +18,30 @@ export interface RelationMatrix {
     };
 }
 
+let inMemoryMatrix: RelationMatrix | null = null;
+
 export const getGlobalRelationMatrix = (): RelationMatrix => {
     if (typeof window === 'undefined') return {};
+    if (inMemoryMatrix) return inMemoryMatrix;
+
     const data = localStorage.getItem(RELATION_MATRIX_KEY);
     if (!data) return {};
     try {
-        return JSON.parse(data);
+        inMemoryMatrix = JSON.parse(data);
+        return inMemoryMatrix || {};
     } catch (e) {
         return {};
     }
+};
+
+/**
+ * Hard wipe of all matrix data (memory + storage)
+ */
+export const hardClearMatrix = () => {
+    if (typeof window === 'undefined') return;
+    inMemoryMatrix = {};
+    localStorage.removeItem(RELATION_MATRIX_KEY);
+    console.log("[AI-MATRIX] ☢ Nuclear wipe of in-memory and storage matrix data complete.");
 };
 
 /**

@@ -255,6 +255,25 @@ func loadBuildingsFromTypeScript() error {
 	return nil
 }
 
+// InitializeNPCStatesLocked populates the global state with starting values for AI countries.
+// IMPORTANT: The caller must already hold core.GlobalState.Mu.Lock()
+func InitializeNPCStatesLocked() {
+	if core.GlobalState.NPCStates == nil {
+		core.GlobalState.NPCStates = make(map[string]*core.NPCNationState)
+	}
+	
+	for _, name := range core.NpcNations {
+		tier := 1 + core.Rng.Intn(3)
+		core.GlobalState.NPCStates[name] = &core.NPCNationState{
+			Name:       name,
+			GDPGrowth:  1.0 + core.Rng.Float64()*3.0,
+			Stability:  75.0 + core.Rng.Float64()*20.0, // High stability for clean start
+			EconomicTier: tier,
+		}
+	}
+	fmt.Printf("[GO] Initialized %d NPC nations with database defaults.\n", len(core.NpcNations))
+}
+
 // ═══════════════════════════════════════════════════════════
 // MAIN
 // ═══════════════════════════════════════════════════════════
@@ -283,16 +302,10 @@ func main() {
 	http.HandleFunc("/api/health", handleHealth)
 	http.HandleFunc("/api/game/reset", handleReset)
 
-	// Initialize NPC States
-	for _, name := range core.NpcNations {
-		tier := 1 + core.Rng.Intn(3)
-		core.GlobalState.NPCStates[name] = &core.NPCNationState{
-			Name:       name,
-			GDPGrowth:  1.0 + core.Rng.Float64()*3.0,
-			Stability:  60.0 + core.Rng.Float64()*30.0,
-			EconomicTier: tier,
-		}
-	}
+	// Initialize NPC States initially
+	core.GlobalState.Mu.Lock()
+	InitializeNPCStatesLocked()
+	core.GlobalState.Mu.Unlock()
 
 	fmt.Println("═══════════════════════════════════════════════")
 	fmt.Println("[GO] Server-Authoritative Simulation Engine v2")
@@ -309,7 +322,7 @@ func main() {
 func simulationEngine() {
 	// Base tick rate: 100ms (allows responsive speed changes)
 	ticker := time.NewTicker(100 * time.Millisecond)
-	tickAccumulator := 0
+	acc := 0 // Simple accumulator
 
 	for range ticker.C {
 		core.GlobalState.Mu.Lock()
@@ -318,15 +331,16 @@ func simulationEngine() {
 		core.GlobalState.Mu.Unlock()
 
 		if isPaused {
+			acc = 0
 			continue
 		}
 
-		// Accumulate ticks based on speed
-		tickAccumulator += speed
-		if tickAccumulator < 10 {
+		// Accumulate based on speed
+		acc += speed
+		if acc < 10 {
 			continue
 		}
-		tickAccumulator = 0
+		acc = 0
 
 		// === ADVANCE ONE GAME DAY ===
 		core.GlobalState.Mu.Lock()
@@ -818,6 +832,7 @@ type SyncPayload struct {
 	Inbox      []core.InboxItem `json:"inbox,omitempty"`
 	Player     core.PlayerState                             `json:"player"`
 	Relationships map[string]map[string]*core.Relationship `json:"relationships,omitempty"`
+	ResetTriggered bool                             `json:"resetTriggered,omitempty"`
 }
 
 var lastBroadcastNewsLen int = 0
@@ -969,22 +984,44 @@ func handleReset(w http.ResponseWriter, r *http.Request) {
 	}
 
 	core.GlobalState.Mu.Lock()
-	core.GlobalState.IsPaused = true
+	core.GlobalState.IsPaused = true // Force pause immediately
 	core.GlobalState.GameDate = time.Date(2026, 1, 1, 0, 0, 0, 0, time.UTC).Format("2006-01-02")
 	core.GlobalState.DayCounter = 0
+	
+	// Nuclear wipe of complex objects
 	core.GlobalState.News = []core.NewsItem{}
 	core.GlobalState.Inbox = server_inbox.GetInitialInboxBatch("01 Jan 2026")
-	core.GlobalState.Player = core.PlayerState{Initialized: false}
-	core.GlobalState.NPCStates = make(map[string]*core.NPCNationState)
+	// CRITICAL: Re-initialize AI states to defaults properly
+	core.GlobalState.NPCStates = nil 
+	InitializeNPCStatesLocked()
+	
 	core.GlobalState.NPCBuildingLevels = make(map[string]map[string]int)
+	core.GlobalState.Relationships = nil // Explicitly set to nil to flush GC
+	
+	core.GlobalState.Player = core.PlayerState{Initialized: false}
 	core.GlobalState.LastProcessedMonth = 0
 	lastBroadcastNewsLen = 0
-	// Immediate broadcast to all clients that we reset
-	snapshot := createSnapshot()
+	
+	fmt.Println("[RESET] DEEP WIPE: Core server maps (NPCs & Relationships) have been restored to defaults.")
+	
+	// Reset International Relationships to Default from DISK
+	server_hubungan.InitializeRelationshipsLocked()
+	
+	// Immediate broadcast reset snapshot with reset signal
+	snapshotData := SyncPayload{
+		GameDate:       core.GlobalState.GameDate,
+		IsPaused:       core.GlobalState.IsPaused,
+		Speed:           core.GlobalState.Speed,
+		DayCounter:      core.GlobalState.DayCounter,
+		Player:          core.GlobalState.Player,
+		Relationships:   core.GlobalState.Relationships,
+		ResetTriggered: true, // NUCLEAR SIGNAL
+	}
+	snapshot, _ := json.Marshal(snapshotData)
 	core.GlobalState.Mu.Unlock()
 	broadcastSSE(snapshot)
 
-	fmt.Println("[GO] Global State RESET triggered by UI. Clock reset to 01-01-2026.")
+	fmt.Println("[GO] NUCLEAR RESET COMPLETE. Engine paused on 01-01-2026.")
 	fmt.Fprintf(w, `{"ok": true, "message": "Backend reset successful"}`)
 }
 
@@ -1024,33 +1061,6 @@ func handleInitPlayer(w http.ResponseWriter, r *http.Request) {
 
 	core.GlobalState.Mu.Lock()
 	// Only initialize if not already initialized (prevent hot-reload reset)
-	if core.GlobalState.Player.Initialized {
-		// Player already running — return current state, don't overwrite
-		fmt.Printf("[GO] Player re-init SKIPPED (already running). Current Budget: %.0f\n", core.GlobalState.Player.Budget)
-		// But update dailyIncome in case buildings changed
-		core.GlobalState.Player.DailyIncome = init.DailyIncome
-		
-		// Sync clock even on re-init
-		if init.DayCounter > 0 {
-			core.GlobalState.GameDate = init.GameDate
-			core.GlobalState.DayCounter = init.DayCounter
-			// Catch-up simulation state if needed
-			server_hubungan.CatchUpDriftLocked(init.DayCounter)
-		}
-		
-		response := struct {
-			Player        core.PlayerState                       `json:"player"`
-			Relationships map[string]map[string]*core.Relationship `json:"relationships"`
-		}{
-			Player:        core.GlobalState.Player,
-			Relationships: core.GlobalState.Relationships,
-		}
-		data, _ := json.Marshal(response)
-		core.GlobalState.Mu.Unlock()
-		w.Write(data)
-		return
-	}
-
 	core.GlobalState.Player = core.PlayerState{
 		Country:         init.Country,
 		Happiness:       init.Happiness,
@@ -1062,14 +1072,27 @@ func handleInitPlayer(w http.ResponseWriter, r *http.Request) {
 		Initialized:     true,
 	}
 
-	// Sync Clock
-	if init.DayCounter > 0 {
+	// Sync Clock & Budget Authority
+	// CRITICAL FIX: Only catch up if the server itself isn't at Day 0 (Reset state).
+	if init.DayCounter > 0 && core.GlobalState.DayCounter > 0 {
 		core.GlobalState.GameDate = init.GameDate
 		core.GlobalState.DayCounter = init.DayCounter
 		fmt.Printf("[GO] Synced Clock to Client: %s (Day %d)\n", init.GameDate, init.DayCounter)
 		
 		// Immediately fast-forward any missed weekly drifts
 		server_hubungan.CatchUpDriftLocked(init.DayCounter)
+	} else if core.GlobalState.DayCounter == 0 {
+		fmt.Printf("[GO] Detected Day 0. Discarding poisoned budget (%.2f). FORCING Sovereignty.\n", init.Budget)
+		// Ensure we start exactly at Jan 1 2026
+		core.GlobalState.GameDate = "2026-01-01"
+		core.GlobalState.DayCounter = 0
+		core.GlobalState.IsPaused = true
+		
+		// HARD-FORCE INDONESIA BASELINE
+		if init.Country == "Indonesia" {
+			core.GlobalState.Player.Budget = 13807
+			fmt.Println("[GO] Indonesia Sovereignty Enforced: Budget set to 13807.")
+		}
 	}
 
 	fmt.Printf("[GO] Player initialized: %s | Budget: %.0f | Pop: %.0f | Happy: %.1f%% | Income: +%.0f/day\n",

@@ -239,6 +239,13 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
       window.removeEventListener("relation_status_updated", handleUpdate);
     };
   }, []);
+  
+  // 1b. Cache Invalidation: Re-draw static layer whenever highlighted countries change
+  // This prevents 'invisible' countries when a modal is closed.
+  useEffect(() => {
+    needsCacheUpdate.current = true;
+    setTick(t => t + 1);
+  }, [userCountry, targetCountry]);
 
   // ═══════════════════════════════════════════════════════
   // MAIN RENDER — Only draws cache + 2 dynamic highlights

@@ -98,11 +98,18 @@ export const gameStorage = {
     }
   },
 
-  saveSession: (country: string) => {
+  saveSession: async (country: string) => {
     if (typeof window === 'undefined') return;
     
     console.log(`[SAVE SESSION] Starting new game for country: ${country}`);
     
+    // Phase 0: Ensure backend is wiped before starting new session
+    try {
+      await fetch('http://localhost:8081/api/game/reset', { method: 'POST' });
+    } catch (e) {
+      console.warn("[SAVE SESSION] Backend reset failed:", e);
+    }
+
     // Hard stop timer first to prevent race condition ghost writes
     timeStorage.clear();
 
@@ -211,8 +218,15 @@ export const gameStorage = {
     gameStorage.setWelcomeSeen(true);
   },
 
-  clearSession: () => {
+  clearSession: async () => {
     if (typeof window === 'undefined') return;
+
+    // Phase 0: Wipe backend on logout to prevent session leakage
+    try {
+      await fetch('http://localhost:8081/api/game/reset', { method: 'POST', keepalive: true });
+    } catch (e) {
+      console.warn("[CLEAR SESSION] Backend reset failed:", e);
+    }
 
     // Hard stop timer first to prevent race condition ghost writes
     timeStorage.clear();
@@ -306,10 +320,12 @@ export const gameStorage = {
         method: "POST",
         headers: { "Content-Type": "application/json" }
       });
+      if (!resp.ok) throw new Error("Backend reset failed");
       const result = await resp.json();
       console.log(`[RESET] Backend response:`, result);
     } catch (e) {
       console.warn(`[RESET] Backend reset failed (is server running?):`, e);
+      // We continue anyway to clear frontend, but user might need to restart Go manually
     }
 
     const currentCountry = countries.find(c => c.name_id === countryName || c.name_en === countryName);
@@ -319,71 +335,73 @@ export const gameStorage = {
       return;
     }
 
-    // Get profile defaults
-    const defaultPopulation = typeof currentCountry.jumlah_penduduk === 'string' 
-      ? parseInt(currentCountry.jumlah_penduduk.replace(/\./g, '')) 
-      : currentCountry.jumlah_penduduk;
-    const defaultBudget = typeof currentCountry.anggaran === 'number' ? currentCountry.anggaran : 0;
-    const defaultStability = 82;
-
-    console.log(`[RESET] Defaults to restore: Pop=${defaultPopulation}, Budget=${defaultBudget}, Stability=${defaultStability}`);
-
-    // SECTION 1: PHASE 1 - AGGRESSIVE WIPE
-    console.log(`[RESET] PHASE 1: Removing all em4_*, em2_*, game_taxes and other session keys...`);
+    // SECTION 1: PHASE 1 - NUCLEAR WIPE
+    console.log(`[RESET] PHASE 1: NUCLEAR WIPE of all session data...`);
     
-    // Clear sessionStorage too
-    console.log(`[RESET] Clearing sessionStorage...`);
-    const sessionKeysToRemove = [];
-    for (let i = 0; i < sessionStorage.length; i++) {
-        const key = sessionStorage.key(i);
-        if (key && (key.startsWith('em') || key.startsWith('game_') || key === 'selectedCountry')) {
-            sessionKeysToRemove.push(key);
-        }
-    }
-    sessionKeysToRemove.forEach(key => sessionStorage.removeItem(key));
+    // Clear ALL sessionStorage immediately
+    sessionStorage.clear();
 
-    // Clear localStorage
-    const keysToRemove = new Set<string>();
-    const allKeys: string[] = [];
-    
-    // Create a snapshot of keys first safely
+    // Aggressive clear of localStorage
+    // We iterate through all keys to ensure we catch everything with 'em' or 'game' or 'ai'
+    const keysToRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        if (key) {
-            allKeys.push(key);
-            if (
-                key.startsWith('em4_') || 
-                key.startsWith('em2_') || 
-                key === 'game_taxes' || 
-                key === 'selectedCountry' ||
-                key === 'em4_game_date' ||
-                key === 'em2_global_relation_matrix' ||
-                key === 'em4_ai_populations' ||
-                key === 'em4_ai_budgets' ||
-                key === 'em4_ai_last_processed' ||
-                key === 'em4_ai_pop_last_processed'
-            ) {
-                keysToRemove.add(key);
-            }
+        if (key && (
+            key.startsWith('em') || 
+            key.startsWith('game_') || 
+            key.startsWith('ai_') ||
+            key === 'selectedCountry' ||
+            key === 'lastProcessedDate' ||
+            key === 'last_sync_day'
+        )) {
+            keysToRemove.push(key);
         }
     }
-
-    console.log(`[RESET] Total keys in localStorage: ${allKeys.length}`);
-    console.log(`[RESET] Marked for removal: ${keysToRemove.size}`);
     
-    // Convert to array before iterating to be absolutely safe
-    Array.from(keysToRemove).forEach(key => {
-        try {
-            localStorage.removeItem(key);
-        } catch (e) {
-            console.error(`[RESET]   ✗ Failed to remove ${key}:`, e);
-        }
+    keysToRemove.forEach(key => {
+        localStorage.removeItem(key);
+        console.log(`[RESET]   ☢ Wiped: ${key}`);
     });
 
-    // SECTION 2: PHASE 2 - REINITIALIZE STOARGES
-    console.log(`[RESET] PHASE 2: Initializing systems to defaults...`);
+    // TRIGGER BACKEND RESET
+    try {
+        console.log(`[RESET] Signaling Go server to perform deep wipe...`);
+        // Set a global flag to block sync races during the reload transition
+        (window as any).__EM_RESETTING__ = true;
+        
+        const response = await fetch('http://localhost:8081/api/game/reset', { 
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        if (response.ok) {
+            console.log(`[RESET]   ✓ Backend reset signal successful`);
+        } else {
+            console.error(`[RESET]   ✗ Backend reset signal failed: ${response.statusText}`);
+        }
+    } catch (e) {
+        console.error(`[RESET]   ✗ Error connecting to Go backend for reset:`, e);
+    }
+
+    // For good measure, clear specific problematic matrix keys
+    const { hardClearMatrix } = require("./components/map-system/ai_diplomacy_engine/services/MatrixHandler");
+    hardClearMatrix();
+
+    console.log(`[RESET] NUCLEAR WIPE COMPLETE. Remaining localStorage size: ${localStorage.length}`);
+
+    // Wait 300ms to ensure localStorage writes are committed and backend has finished its pause
+    await new Promise(resolve => setTimeout(resolve, 300));
+
+    // SECTION 2: PHASE 2 - REINITIALIZE MODULAR STORAGES
+    console.log(`[RESET] PHASE 2: Re-initializing all modular storages to clean state...`);
     
-    // Call clear() on all modular storages to ensure in-memory state is also reset
+    // Core session and diplomatic wipes
+    relationStorage.clear();
+
+
+    // Additional Diplomatic Storages
+    embassyStorage.clear();
+    relationStorage.clear();
+    militaryAidStorage.clear();
     happinessStorage.clear();
     priceStorage.clear();
     expenseStorage.clear();
@@ -428,9 +446,6 @@ export const gameStorage = {
     unWMOStorage.clear();
 
     // Additional Diplomatic Storages
-    embassyStorage.clear();
-    relationStorage.clear();
-    militaryAidStorage.clear();
     playerMilitaryStorage.clear();
     nuclearStorage.clear();
     importStockStorage.clear();
@@ -453,6 +468,17 @@ export const gameStorage = {
     // SECTION 4: PHASE 4 - WRITE ATOMIC RESET DATA
     console.log(`[RESET] PHASE 4: Preparing and writing atomic reset data...`);
     
+    // Get profile defaults
+    const defaultPopulation = typeof currentCountry.jumlah_penduduk === 'number' 
+      ? currentCountry.jumlah_penduduk 
+      : parseInt(String(currentCountry.jumlah_penduduk).replace(/\./g, ''));
+    
+    // Ensure we use a clean number from 'anggaran' property
+    const defaultBudget = typeof currentCountry.anggaran === 'number' 
+      ? currentCountry.anggaran 
+      : parseFloat(String(currentCountry.anggaran).replace(/\./g, ''));
+    const defaultStability = 82;
+
     const resetData = {
       "selectedCountry": countryName,
       "em4_fresh_session": "true", // Flag to force default values on first view
