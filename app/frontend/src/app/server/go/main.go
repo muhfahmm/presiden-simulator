@@ -62,12 +62,16 @@ type NewsItem struct {
 }
 
 type InboxItem struct {
-	ID        string `json:"id"`
-	Sender    string `json:"sender"`
-	Subject   string `json:"subject"`
-	Content   string `json:"content"`
-	Timestamp int64  `json:"timestamp"`
-	Priority  string `json:"priority"`
+	ID         string `json:"id"`
+	Sender     string `json:"sender"`
+	Subject    string `json:"subject"`
+	Content    string `json:"content"`
+	Timestamp  int64  `json:"timestamp"`
+	Priority   string `json:"priority"`
+	Category   string `json:"category"`   // Added for frontend filtering
+	IsProposal bool   `json:"isProposal"` // Added for Accept/Decline actions
+	Read       bool   `json:"read"`
+	Time       string `json:"time"`
 }
 
 // SSE client registry
@@ -407,16 +411,19 @@ func simulationEngine() {
 		// --- Process 206 NPC Nations (Server-Side) ---
 		processNPCDay(nextDate)
 
+		// --- Process Inbox & Events (Server-Side) ---
+		processInboxDay(nextDate)
+
 		// --- Generate periodic news ---
 		if state.DayCounter%7 == 0 {
 			generateWeeklyNews(nextDate)
 		}
 
 		// Broadcast state to all SSE clients
-		// Use lightweight snapshot unless news changed
+		// Use lightweight snapshot unless news or inbox changed
 		var snapshot []byte
-		if len(state.News) != lastBroadcastNewsLen {
-			snapshot = createSnapshot() // Full payload with news
+		if len(state.News) != lastBroadcastNewsLen || len(state.Inbox) != lastBroadcastInboxLen {
+			snapshot = createSnapshot() // Full payload with news/inbox
 		} else {
 			snapshot = createPlayerSnapshot() // Lightweight: player stats only
 		}
@@ -808,9 +815,9 @@ func invokeQuarterlyEconomicAI(date time.Time, quarter int) {
 			"Staf ahli ekonomi kami menyarankan pengawasan ketat terhadap stabilitas nasional guna mempertahankan momentum pertumbuhan ini.",
 		playerCountry, quarter, playerGrowth, formatCurrency(int64(playerBudget)), playerHappiness,
 	)
-	
+	// Use dateStr defined at start of function
 	state.mu.Lock()
-	addInboxItem("Lembaga Analisis Ekonomi", inboxSubject, inboxContent, "high")
+	addInboxItem("Lembaga Analisis Ekonomi", inboxSubject, inboxContent, "finance", "high", false, dateStr)
 	state.mu.Unlock()
 
 	fmt.Printf("[GO] Quarterly Economic Update Q%d finalized.\n", quarter)
@@ -881,22 +888,7 @@ func addNewsItem(source, subject, content, category, priority, timeStr string) {
 	}
 }
 
-func addInboxItem(sender, subject, content, priority string) {
-	// Use UnixNano + Random Int + Current Length to ensure absolute uniqueness
-	uniqueID := fmt.Sprintf("INTEL-SV-%d-%x-%d", time.Now().UnixNano(), rng.Int63n(1000000), len(state.Inbox))
-	item := InboxItem{
-		ID:        uniqueID,
-		Sender:    sender,
-		Subject:   subject,
-		Content:   content,
-		Timestamp: time.Now().UnixMilli(),
-		Priority:  priority,
-	}
-	state.Inbox = append([]InboxItem{item}, state.Inbox...)
-	if len(state.Inbox) > 30 {
-		state.Inbox = state.Inbox[:30]
-	}
-}
+// [Legacy addInboxItem removed. Now handled in inbox.go]
 
 // ═══════════════════════════════════════════════════════════
 // SSE (Server-Sent Events) - Zero-Polling Architecture
@@ -913,6 +905,7 @@ type SyncPayload struct {
 }
 
 var lastBroadcastNewsLen int = 0
+var lastBroadcastInboxLen int = 0
 
 func createSnapshot() []byte {
 	payload := SyncPayload{
@@ -925,6 +918,7 @@ func createSnapshot() []byte {
 		Player:     state.Player,
 	}
 	lastBroadcastNewsLen = len(state.News)
+	lastBroadcastInboxLen = len(state.Inbox)
 	data, _ := json.Marshal(payload)
 	return data
 }

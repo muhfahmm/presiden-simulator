@@ -30,6 +30,10 @@ let sseSource: EventSource | null = null;
 let lastNewsCount = 0;
 let sseRetryTimeout: NodeJS.Timeout | null = null;
 
+// Trade AI daily trigger — tracks last processed game date to fire once per day
+let lastTradeProcessedDate = "";
+let tradeProcessTimeout: NodeJS.Timeout | null = null;
+
 export const newsStorage = {
   getNews: (): NewsItem[] => {
     if (typeof window === "undefined") return [];
@@ -133,9 +137,26 @@ export const newsStorage = {
 
             // Sync inbox from server (quarterly updates etc)
             if (data.inbox && Array.isArray(data.inbox)) {
-              // We'll need to implement a similar sync for inboxStorage
-              // or just handle it here if it's simple
               window.dispatchEvent(new CustomEvent("inbox_sync_from_server", { detail: data.inbox }));
+            }
+
+            // === TRADE AI DAILY TRIGGER ===
+            // Fire AiTradeService.processDaily() once per game day change
+            if (data.gameDate && data.gameDate !== lastTradeProcessedDate && !data.isPaused) {
+              lastTradeProcessedDate = data.gameDate;
+              
+              // Debounce: wait 5s after date change to avoid rapid-fire during speed 3x
+              if (tradeProcessTimeout) clearTimeout(tradeProcessTimeout);
+              tradeProcessTimeout = setTimeout(async () => {
+                try {
+                  const { AiTradeService } = await import(
+                    '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/sistem_perdagangan_AI/services/AiTradeService'
+                  );
+                  AiTradeService.processDaily();
+                } catch (e) {
+                  // Silent fail — don't crash SSE loop
+                }
+              }, 5000);
             }
           } catch (e) {
             // Silent parse error

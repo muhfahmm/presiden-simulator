@@ -192,10 +192,15 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
     const cacheCtx = staticCacheRef.current.getContext("2d", { alpha: false });
     if (!cacheCtx) return;
 
-    // Ocean
-    cacheCtx.fillStyle = "#070b13"; cacheCtx.fillRect(0, 0, mapWidth, mapHeight);
+    // Ocean - Sync with mainGameMap radial gradient
+    const bgGradient = cacheCtx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
+    bgGradient.addColorStop(0, "#121d31"); 
+    bgGradient.addColorStop(1, "#070b13"); 
+    cacheCtx.fillStyle = bgGradient; 
+    cacheCtx.fillRect(0, 0, mapWidth, mapHeight);
 
     // Countries (non-highlighted)
+    cacheCtx.lineWidth = 1;
     paths.forEach((item: any) => {
       const name = item.name;
       const targetUser = { "United States": "United States of America" }[userCountry] || userCountry;
@@ -204,9 +209,20 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       if (isPlayer || isTarget) return; // Skip — draw these dynamically
 
       const isPartner = tradePartners.has(name.toLowerCase().trim()) || tradePartners.has((fullGeoToIndoMap[name] || name).toLowerCase().trim());
-      let fill = getContinentColor(name, item.id), stroke = "rgba(245, 245, 220, 0.15)";
-      if (isPartner) { fill = "rgba(6, 182, 212, 0.4)"; stroke = "rgba(6, 182, 212, 0.6)"; }
-      cacheCtx.fillStyle = fill; cacheCtx.strokeStyle = stroke; cacheCtx.fill(item.path); cacheCtx.stroke(item.path);
+      
+      // Standardize stroke to match mainGameMap
+      let stroke = "rgba(255, 255, 255, 0.08)";
+      let fill = getContinentColor(name, item.id);
+      
+      if (isPartner) { 
+        fill = "rgba(6, 182, 212, 0.4)"; 
+        stroke = "rgba(6, 182, 212, 0.3)"; // Subtle blue stroke for partners
+      }
+      
+      cacheCtx.fillStyle = fill; 
+      cacheCtx.strokeStyle = stroke; 
+      cacheCtx.fill(item.path); 
+      cacheCtx.stroke(item.path);
     });
 
     // Maritime
@@ -246,10 +262,23 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       const isPlayer = name === targetUser, isTarget = name === targetHover;
       if (!isPlayer && !isTarget) return;
 
-      const fill = isPlayer ? "rgba(34, 197, 94, 0.3)" : "rgba(251, 191, 36, 0.3)";
-      const stroke = isPlayer ? "#4ade80" : "#fbbf24";
-      ctx.fillStyle = fill; ctx.strokeStyle = stroke; ctx.lineWidth = 3;
-      ctx.fill(item.path); ctx.stroke(item.path);
+      if (isPlayer) {
+        ctx.fillStyle = "rgba(34, 197, 94, 0.4)";
+        ctx.strokeStyle = "#4ade80";
+        ctx.lineWidth = 5;
+        ctx.shadowColor = "#4ade80";
+        ctx.shadowBlur = 20;
+      } else {
+        ctx.fillStyle = "rgba(251, 191, 36, 0.4)";
+        ctx.strokeStyle = "#fbbf24";
+        ctx.lineWidth = 5;
+        ctx.shadowColor = "#fbbf24";
+        ctx.shadowBlur = 20;
+      }
+
+      ctx.fill(item.path); 
+      ctx.stroke(item.path);
+      ctx.shadowBlur = 0; // Reset for next draws
     });
 
     // 4. Trade Routes (dynamic, changes with transactions)

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npm run build:workers && concurrently -n \"NEXT,GO\" -c \"cyan,magenta\" \"npm:dev:next\" \"npm:dev:go\"",
     "dev:next": "next dev -p 4000",
-    "dev:go": "go run src/app/server/go/main.go",
+    "dev:go": "go run src/app/server/go/main.go src/app/server/go/inbox.go",
     "build": "next build",
     "build:workers": "g++ src/app/server/cpp/main.cpp -o src/app/server/cpp/worker.exe && rustc src/app/server/rust/main.rs -o src/app/server/rust/worker.exe",
     "start": "next start",

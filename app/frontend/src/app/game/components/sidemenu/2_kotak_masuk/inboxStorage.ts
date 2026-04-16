@@ -13,7 +13,7 @@ export interface InboxItem {
   content?: string;
 }
 
-const MAX_INBOX_MESSAGES = 50;
+const MAX_INBOX_MESSAGES = 200;
 
 export const inboxStorage = {
   clear: () => {
@@ -168,6 +168,7 @@ export const inboxStorage = {
       read: si.read || false,
       priority: si.priority || "low",
       category: si.category || "general",
+      isProposal: si.isProposal || false,
       timestamp: si.timestamp || Date.now(),
     }));
 
