@@ -298,7 +298,7 @@ export const gameStorage = {
   resetCurrentSessionToDefaults: async () => {
     /**
      * NUCLEAR RESET: Completely wipes ALL localStorage and reinitializes to country defaults.
-     * This is the most aggressive reset to ensure no stale data persists.
+     * Aligned with saveSession to ensure 100% parity with fresh-start logic.
      */
     if (typeof window === 'undefined') return;
 
@@ -309,99 +309,33 @@ export const gameStorage = {
     }
 
     const countryName = session.country || "Indonesia";
-    console.log(`[RESET] ========== NUCLEAR RESET STARTING ==========`);
-    console.log(`[RESET] Target country: ${countryName}`);
-    gameStorage.debugLogStorage("[BEFORE RESET]");
+    console.log(`[RESET] ========== NUCLEAR RESTART STARTING ==========`);
     
-    // SECTION 0: RESET BACKEND (Go Server)
-    console.log(`[RESET] PHASE 0: Sending reset signal to Go backend...`);
+    // PHASE 0: DISCONNECT SSE TO PREVENT GHOST WRITES
     try {
-      const resp = await fetch(`http://localhost:8081/api/game/reset`, { 
-        method: "POST",
-        headers: { "Content-Type": "application/json" }
-      });
-      if (!resp.ok) throw new Error("Backend reset failed");
-      const result = await resp.json();
-      console.log(`[RESET] Backend response:`, result);
-    } catch (e) {
-      console.warn(`[RESET] Backend reset failed (is server running?):`, e);
-      // We continue anyway to clear frontend, but user might need to restart Go manually
-    }
+      const { newsStorage } = require("./components/sidemenu/1_berita/newsStorage");
+      newsStorage.disconnectSSE();
+    } catch(e) {}
 
-    const currentCountry = countries.find(c => c.name_id === countryName || c.name_en === countryName);
-    
-    if (!currentCountry) {
-      console.error(`[RESET] ERROR: Country not found: ${countryName}`);
-      return;
-    }
+    // Hard stop timer first
+    timeStorage.clear();
 
-    // SECTION 1: PHASE 1 - NUCLEAR WIPE
-    console.log(`[RESET] PHASE 1: NUCLEAR WIPE of all session data...`);
-    
-    // Clear ALL sessionStorage immediately
-    sessionStorage.clear();
-
-    // Aggressive clear of localStorage
-    // We iterate through all keys to ensure we catch everything with 'em' or 'game' or 'ai'
-    const keysToRemove: string[] = [];
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key && (
-            key.startsWith('em') || 
-            key.startsWith('game_') || 
-            key.startsWith('ai_') ||
-            key === 'selectedCountry' ||
-            key === 'lastProcessedDate' ||
-            key === 'last_sync_day'
-        )) {
-            keysToRemove.push(key);
-        }
-    }
-    
-    keysToRemove.forEach(key => {
-        localStorage.removeItem(key);
-        console.log(`[RESET]   ☢ Wiped: ${key}`);
-    });
-
-    // TRIGGER BACKEND RESET
+    // SECTION 0: RESET BACKEND
+    console.log(`[RESET] Sending reset signal to Go backend...`);
     try {
-        console.log(`[RESET] Signaling Go server to perform deep wipe...`);
-        // Set a global flag to block sync races during the reload transition
-        (window as any).__EM_RESETTING__ = true;
-        
-        const response = await fetch('http://localhost:8081/api/game/reset', { 
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
-        });
-        if (response.ok) {
-            console.log(`[RESET]   ✓ Backend reset signal successful`);
-        } else {
-            console.error(`[RESET]   ✗ Backend reset signal failed: ${response.statusText}`);
-        }
+      await fetch('http://localhost:8081/api/game/reset', { method: 'POST' });
     } catch (e) {
-        console.error(`[RESET]   ✗ Error connecting to Go backend for reset:`, e);
+      console.warn("[RESET] Backend reset failed:", e);
     }
 
-    // For good measure, clear specific problematic matrix keys
-    const { hardClearMatrix } = require("./components/map-system/ai_diplomacy_engine/services/MatrixHandler");
-    hardClearMatrix();
-
-    console.log(`[RESET] NUCLEAR WIPE COMPLETE. Remaining localStorage size: ${localStorage.length}`);
-
-    // Wait 300ms to ensure localStorage writes are committed and backend has finished its pause
-    await new Promise(resolve => setTimeout(resolve, 300));
-
-    // SECTION 2: PHASE 2 - REINITIALIZE MODULAR STORAGES
-    console.log(`[RESET] PHASE 2: Re-initializing all modular storages to clean state...`);
+    // SECTION 1: PHASE 1 - TOTAL NUCLEAR WIPE
+    console.log(`[RESET] Wiping all storages...`);
     
-    // Core session and diplomatic wipes
-    relationStorage.clear();
+    // Identity check matches saveSession/clearSession
+    localStorage.removeItem("em4_game_date");
+    localStorage.setItem("em4_fresh_session", "true"); // CRITICAL FLAG
 
-
-    // Additional Diplomatic Storages
-    embassyStorage.clear();
-    relationStorage.clear();
-    militaryAidStorage.clear();
+    // 1-to-1 parity with logout/saveSession cleanup list
     happinessStorage.clear();
     priceStorage.clear();
     expenseStorage.clear();
@@ -413,24 +347,6 @@ export const gameStorage = {
     budgetStorage.clear();
     budgetDeltaStorage.clear();
     acaraStorage.clear();
-    populationStorage.clear();
-    populationDeltaStorage.clear();
-    stabilityStorage.clear();
-    aiBudgetStorage.clear();
-    aiPopulationStorage.clear();
-    aiHappinessStorage.clear();
-    aiBuildingStorage.clear();
-    aiProductionStorage.clear();
-    aliansiStorage.clear();
-    nonAggressionStorage.clear();
-    globalNewsStorage.clear();
-    relationDeltaStorage.clear();
-    lawStorage.clear();
-    researchStorage.clear();
-    eventStorage.clear();
-    diplomaticTradeStorage.clear();
-    
-    // PBB Organizations
     unSecurityCouncilStorage.clear();
     unIMFStorage.clear();
     unWorldBankStorage.clear();
@@ -444,73 +360,69 @@ export const gameStorage = {
     unIMOStorage.clear();
     unITUStorage.clear();
     unWMOStorage.clear();
-
-    // Additional Diplomatic Storages
+    populationStorage.clear();
+    populationDeltaStorage.clear();
+    embassyStorage.clear();
+    relationStorage.clear();
+    militaryAidStorage.clear();
     playerMilitaryStorage.clear();
+    stabilityStorage.clear();
     nuclearStorage.clear();
+    aiBudgetStorage.clear();
+    aiPopulationStorage.clear();
+    aiHappinessStorage.clear();
+    aiBuildingStorage.clear();
+    aiProductionStorage.clear();
     importStockStorage.clear();
     historiImportStorage.clearHistory();
     historiEksporStorage.clearHistory();
+    aliansiStorage.clear();
+    nonAggressionStorage.clear();
     newsStorage.clear();
-    timeStorage.clear();
+    globalNewsStorage.clear();
+    relationDeltaStorage.clear();
+    religionStorage.clear();
+    ideologyStorage.clear();
+    lawStorage.clear();
+    researchStorage.clear();
+    eventStorage.clear();
+    diplomaticTradeStorage.clear();
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
     tradeAgreementStorage.clear();
 
-    // SECTION 3: RE-INITIALIZE AI STORAGES WITH DEFAULTS
-    console.log(`[RESET] PHASE 2b: Re-initializing AI storages with database defaults...`);
-    
-    // Explicitly reset AI budgets to database defaults
-    aiBudgetStorage.resetToDefault();
-    aiPopulationStorage.resetToDefault();
-    console.log(`[RESET]   ✓ AI budgets and populations reinitialized to defaults`);
+    // Catch-all sweeper for any custom keys
+    const keysToRemove: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key) {
+            const lowerKey = key.toLowerCase();
+            if (lowerKey.startsWith('em') || lowerKey.startsWith('game_') || lowerKey.startsWith('ai_') || lowerKey.includes('storage')) {
+                // Don't remove our fresh session flag or our current selectedCountry
+                if (key !== 'em4_fresh_session' && key !== 'selectedCountry' && key !== STORAGE_KEY) {
+                    keysToRemove.push(key);
+                }
+            }
+        }
+    }
+    keysToRemove.forEach(k => localStorage.removeItem(k));
 
-    // SECTION 4: PHASE 4 - WRITE ATOMIC RESET DATA
-    console.log(`[RESET] PHASE 4: Preparing and writing atomic reset data...`);
-    
-    // Get profile defaults
-    const defaultPopulation = typeof currentCountry.jumlah_penduduk === 'number' 
-      ? currentCountry.jumlah_penduduk 
-      : parseInt(String(currentCountry.jumlah_penduduk).replace(/\./g, ''));
-    
-    // Ensure we use a clean number from 'anggaran' property
-    const defaultBudget = typeof currentCountry.anggaran === 'number' 
-      ? currentCountry.anggaran 
-      : parseFloat(String(currentCountry.anggaran).replace(/\./g, ''));
-    const defaultStability = 82;
+    sessionStorage.clear();
 
-    const resetData = {
-      "selectedCountry": countryName,
-      "em4_fresh_session": "true", // Flag to force default values on first view
-      "em4_population_data": JSON.stringify({
-        population: defaultPopulation,
-        lastUpdated: Date.now()
-      }),
-      "em4_population_version": "2",
-      "em4_budget_data": JSON.stringify({
-        anggaran: defaultBudget,
-        cumulativeProduction: {},
-        lastProcessedDate: new Date().toISOString() // Start processing from NOW
-      }),
-      "em4_stability_data": JSON.stringify({
-        stability: defaultStability,
-        lastUpdated: Date.now()
-      })
+    // Wait for IO
+    await new Promise(resolve => setTimeout(resolve, 300));
+
+    // SECTION 2: PHASE 2 - RE-INITIALIZE ATOMIC DEFAULTS
+    localStorage.setItem("selectedCountry", countryName);
+    
+    const freshSession: GameSession = {
+      country: countryName,
+      startTime: Date.now(),
+      isWelcomeSeen: true,
     };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(freshSession));
     
-    Object.entries(resetData).forEach(([key, value]) => {
-      try {
-        localStorage.setItem(key, value);
-        console.log(`[RESET]   ✓ ${key} reinitialized`);
-      } catch (e) {
-        console.error(`[RESET]   ✗ ${key} failed: ${e}`);
-      }
-    });
-
-    console.log(`[RESET] ========== NUCLEAR RESET COMPLETE ==========`);
-    console.log(`[RESET] RELOADING PAGE TO APPLY CHANGES...`);
-    // Defer reload to the caller (GameNavbar) to handle cache busting
-    console.log(`[RESET] Yielding to GameNavbar for hard reload with cache bust...`);
+    console.log(`[RESET] ========== NUCLEAR RESTART COMPLETE ==========`);
   },
 
   resetCurrentSession: () => {

@@ -18,14 +18,20 @@ export const aiPopulationStorage = {
   getAll: (): AIPopulationData => {
     if (typeof window === 'undefined') return {};
     
-    const stored = localStorage.getItem(AI_POP_KEY);
-    if (stored && stored !== 'undefined' && stored !== 'null') {
-      try {
-        const parsed = JSON.parse(stored);
-        if (Object.keys(parsed).length > 0) return parsed;
-      } catch (e) {
-        console.error("Failed to parse AI populations", e);
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    
+    if (!isFreshSession) {
+      const stored = localStorage.getItem(AI_POP_KEY);
+      if (stored && stored !== 'undefined' && stored !== 'null') {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Object.keys(parsed).length > 0) return parsed;
+        } catch (e) {
+          console.error("Failed to parse AI populations", e);
+        }
       }
+    } else {
+      console.log(`[AI POPULATION] Fresh session detected in getAll() - forcing defaults.`);
     }
 
     // Fallback to defaults
@@ -71,8 +77,10 @@ export const aiPopulationStorage = {
    * If fresh session flag is set, returns database default.
    */
   getPopulation: (countryNameEn: string): number => {
-    // Check for fresh session flag - if set, return database default
-    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    if (typeof window === 'undefined') return 0;
+    
+    // Check for fresh session flag - if set, STRICTLY return database default
+    const isFreshSession = localStorage.getItem("em4_fresh_session") === "true";
     if (isFreshSession) {
       const c = countries.find(c => c.name_en === countryNameEn);
       if (c) {
@@ -80,7 +88,7 @@ export const aiPopulationStorage = {
         const defaultPop = typeof rawPop === 'string'
           ? Number(rawPop.replace(/\./g, ''))
           : Number(rawPop) || 0;
-        console.log(`[AI POPULATION] Fresh session - returning default for ${countryNameEn}: ${defaultPop}`);
+        console.log(`[AI POPULATION] Reset detected - providing default for ${countryNameEn}: ${defaultPop}`);
         return defaultPop;
       }
     }
@@ -152,5 +160,34 @@ export const aiPopulationStorage = {
     aiPopulationStorage.resetToDefault();
     // Explicitly dispatch to notify any listeners
     window.dispatchEvent(new Event('ai_population_updated'));
+  },
+
+  /**
+   * Sync all NPC populations from backend data.
+   * This makes the Go server the single source of truth.
+   */
+  syncFromBackend: (npcStates: Record<string, any>) => {
+    if (typeof window === 'undefined' || !npcStates) return;
+
+    const currentData = aiPopulationStorage.getAll();
+    let hasChanged = false;
+
+    Object.keys(npcStates).forEach(nationName => {
+      const state = npcStates[nationName];
+      if (state && typeof state.population === 'number') {
+        const serverPop = state.population;
+        
+        // Only update if value is different
+        if (currentData[nationName] !== serverPop) {
+          currentData[nationName] = serverPop;
+          hasChanged = true;
+        }
+      }
+    });
+
+    if (hasChanged) {
+      localStorage.setItem(AI_POP_KEY, JSON.stringify(currentData));
+      window.dispatchEvent(new Event('ai_population_updated'));
+    }
   }
 };

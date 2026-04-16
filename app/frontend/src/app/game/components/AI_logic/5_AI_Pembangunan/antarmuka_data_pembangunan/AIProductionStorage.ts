@@ -12,6 +12,13 @@ export interface AIProductionData {
 export const aiProductionStorage = {
   initialize: (): AIProductionData => {
     if (typeof window === 'undefined') return {};
+    
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    if (isFreshSession) {
+      console.log(`[AI PRODUCTION] Fresh session detected in initialize() - returning empty.`);
+      return {};
+    }
+
     const stored = localStorage.getItem(AI_PRODUCTION_KEY);
     return stored ? JSON.parse(stored) : {};
   },

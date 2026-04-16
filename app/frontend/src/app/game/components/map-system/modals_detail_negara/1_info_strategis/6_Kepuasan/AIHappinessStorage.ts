@@ -18,14 +18,20 @@ export const aiHappinessStorage = {
   getAll: (): AIHappinessData => {
     if (typeof window === 'undefined') return {};
     
-    const stored = localStorage.getItem(AI_HAPPINESS_KEY);
-    if (stored && stored !== 'undefined' && stored !== 'null') {
-      try {
-        const parsed = JSON.parse(stored);
-        if (Object.keys(parsed).length > 0) return parsed;
-      } catch (e) {
-        console.error("Failed to parse AI happiness", e);
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    
+    if (!isFreshSession) {
+      const stored = localStorage.getItem(AI_HAPPINESS_KEY);
+      if (stored && stored !== 'undefined' && stored !== 'null') {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Object.keys(parsed).length > 0) return parsed;
+        } catch (e) {
+          console.error("Failed to parse AI happiness", e);
+        }
       }
+    } else {
+      console.log(`[AI HAPPINESS] Fresh session detected in getAll() - forcing defaults.`);
     }
 
     // Default to 55%
@@ -179,5 +185,34 @@ export const aiHappinessStorage = {
     if (typeof window === 'undefined') return;
     aiHappinessStorage.resetToDefault();
     window.dispatchEvent(new Event('ai_happiness_updated'));
+  },
+
+  /**
+   * Sync all NPC happiness scores from backend data.
+   * This makes the Go server the single source of truth.
+   */
+  syncFromBackend: (npcStates: Record<string, any>) => {
+    if (typeof window === 'undefined' || !npcStates) return;
+
+    const currentData = aiHappinessStorage.getAll();
+    let hasChanged = false;
+
+    Object.keys(npcStates).forEach(nationName => {
+      const state = npcStates[nationName];
+      if (state && typeof state.happiness === 'number') {
+        const serverHappy = state.happiness;
+        
+        // Only update if value is different
+        if (currentData[nationName] !== serverHappy) {
+          currentData[nationName] = serverHappy;
+          hasChanged = true;
+        }
+      }
+    });
+
+    if (hasChanged) {
+      localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(currentData));
+      window.dispatchEvent(new Event('ai_happiness_updated'));
+    }
   }
 };

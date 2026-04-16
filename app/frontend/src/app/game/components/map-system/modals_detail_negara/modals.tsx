@@ -250,18 +250,6 @@ export default function StrategyModal({
         const popMetrics = calculateDetailedPopulationMetrics(countryEntry as any, aiPop, aiDeltas);
         popTotal = aiPop;
         popDelta = popMetrics.totalDailyDelta;
-        
-        // Clear fresh session flag after delay (only for non-user countries)
-        // This ensures user sees default values before updates begin
-        if (typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true") {
-          console.log(`[MODALS] Will clear fresh session flag in 5s for ${countryEntry.name_en}`);
-          setTimeout(() => {
-            if (localStorage.getItem("em4_fresh_session") === "true") {
-              console.log(`[MODALS] Clearing fresh session flag after delay for ${countryEntry.name_en}`);
-              localStorage.removeItem("em4_fresh_session");
-            }
-          }, 5000); // 5 second delay to ensure user sees defaults first
-        }
       }
 
       setLiveStats({ 

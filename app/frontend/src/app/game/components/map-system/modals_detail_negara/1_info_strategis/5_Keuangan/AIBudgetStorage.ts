@@ -19,14 +19,20 @@ export const aiBudgetStorage = {
   getAll: (): AIBudgetData => {
     if (typeof window === 'undefined') return {};
     
-    const stored = localStorage.getItem(AI_BUDGET_KEY);
-    if (stored && stored !== 'undefined' && stored !== 'null') {
-      try {
-        const parsed = JSON.parse(stored);
-        if (Object.keys(parsed).length > 0) return parsed;
-      } catch (e) {
-        console.error("Failed to parse AI budgets", e);
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    
+    if (!isFreshSession) {
+      const stored = localStorage.getItem(AI_BUDGET_KEY);
+      if (stored && stored !== 'undefined' && stored !== 'null') {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Object.keys(parsed).length > 0) return parsed;
+        } catch (e) {
+          console.error("Failed to parse AI budgets", e);
+        }
       }
+    } else {
+      console.log(`[AI BUDGET] Fresh session detected in getAll() - forcing defaults.`);
     }
 
     // Fallback to defaults
@@ -79,19 +85,21 @@ export const aiBudgetStorage = {
    * If fresh session flag is set, returns database default and clears the flag.
    */
   getBudget: (countryNameEn: string): number => {
-    // Check for fresh session flag - if set, return database default
-    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    if (typeof window === 'undefined') return 0;
+    
+    // Check for fresh session flag - if set, STRICTLY return database default
+    const isFreshSession = localStorage.getItem("em4_fresh_session") === "true";
     if (isFreshSession) {
       const country = countries.find(c => c.name_en === countryNameEn);
       if (country) {
         const defaultBudget = typeof country.anggaran === 'string'
           ? Number(country.anggaran.replace(/\./g, ''))
           : Number(country.anggaran) || 0;
-        console.log(`[AI BUDGET] Fresh session - returning default for ${countryNameEn}: ${defaultBudget}`);
-        // Don't clear flag here - let the modal clear it after reading all values
+        console.log(`[AI BUDGET] Reset detected - providing default for ${countryNameEn}: ${defaultBudget}`);
         return defaultBudget;
       }
     }
+    
     const data = aiBudgetStorage.getAll();
     return data[countryNameEn] || 0;
   },
@@ -155,5 +163,34 @@ export const aiBudgetStorage = {
     aiBudgetStorage.resetToDefault();
     // Explicitly dispatch to notify any listeners
     window.dispatchEvent(new Event('ai_budget_updated'));
+  },
+
+  /**
+   * Sync all NPC budgets from backend data.
+   * This makes the Go server the single source of truth.
+   */
+  syncFromBackend: (npcStates: Record<string, any>) => {
+    if (typeof window === 'undefined' || !npcStates) return;
+
+    const currentData = aiBudgetStorage.getAll();
+    let hasChanged = false;
+
+    Object.keys(npcStates).forEach(nationName => {
+      const state = npcStates[nationName];
+      if (state && typeof state.budget === 'number') {
+        const serverBudget = state.budget;
+        
+        // Only update if value is different
+        if (currentData[nationName] !== serverBudget) {
+          currentData[nationName] = serverBudget;
+          hasChanged = true;
+        }
+      }
+    });
+
+    if (hasChanged) {
+      localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(currentData));
+      window.dispatchEvent(new Event('ai_budget_updated'));
+    }
   }
 };

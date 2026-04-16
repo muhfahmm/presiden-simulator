@@ -43,20 +43,41 @@ export function useAIGameSync() {
 
       // SKIP updates if fresh session — preserve default database values
       const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+      
+      // NEW: Explicit Sync from Backend (Go Server Authoritative)
+      if (data.npcStates && typeof data.npcStates === 'object') {
+        try {
+          aiBudgetStorage.syncFromBackend(data.npcStates);
+          aiPopulationStorage.syncFromBackend(data.npcStates);
+          aiHappinessStorage.syncFromBackend(data.npcStates);
+          
+          // If we successfully synced from the server, we can safely clear the fresh session flag
+          if (isFreshSession) {
+             localStorage.removeItem("em4_fresh_session");
+             console.log(`[useAIGameSync] NPC states synced and fresh session flag cleared.`);
+          }
+        } catch (e) {
+          console.warn("[useAIGameSync] NPC State Sync Error:", e);
+        }
+      }
+
       if (isFreshSession) {
-        console.log(`[useAIGameSync] Fresh session detected — skipping AI updates to preserve defaults`);
+        // Still skip local AI calculations for now to preserve server authority
         return;
       }
 
       // 1. Update AI Budget (Kas Negara) — adds daily income for all 206 NPC nations
-      try {
-        aiBudgetStorage.updateAll(gameDate, userCountry);
-      } catch (e) { /* silent */ }
+      // SKIP these if backend sync already handled it, but keep as fallback if npcStates is missing
+      if (!data.npcStates) {
+        try {
+          aiBudgetStorage.updateAll(gameDate, userCountry);
+        } catch (e) { /* silent */ }
 
-      // 2. Update AI Population (Populasi) — grows population daily for all NPC nations
-      try {
-        aiPopulationStorage.updateAll(gameDate, userCountry);
-      } catch (e) { /* silent */ }
+        // 2. Update AI Population (Populasi) — grows population daily for all NPC nations
+        try {
+          aiPopulationStorage.updateAll(gameDate, userCountry);
+        } catch (e) { /* silent */ }
+      }
 
       // 3. Update AI Happiness (Kepuasan) — small daily decay
       try {

@@ -255,6 +255,24 @@ func loadBuildingsFromTypeScript() error {
 	return nil
 }
 
+func loadDefaultsFromPython() map[string]core.NPCNationState {
+	defaults := make(map[string]core.NPCNationState)
+	
+	cmd := exec.Command("python", "src/app/server/python/localstorage.py", "--reset")
+	out, err := cmd.Output()
+	if err != nil {
+		fmt.Printf("[GO] Warning: Failed to load defaults from Python: %v\n", err)
+		return defaults
+	}
+
+	if err := json.Unmarshal(out, &defaults); err != nil {
+		fmt.Printf("[GO] Warning: Failed to parse Python defaults: %v\n", err)
+	}
+	
+	fmt.Printf("[GO] Successfully loaded %d nation defaults from Python.\n", len(defaults))
+	return defaults
+}
+
 // InitializeNPCStatesLocked populates the global state with starting values for AI countries.
 // IMPORTANT: The caller must already hold core.GlobalState.Mu.Lock()
 func InitializeNPCStatesLocked() {
@@ -262,14 +280,26 @@ func InitializeNPCStatesLocked() {
 		core.GlobalState.NPCStates = make(map[string]*core.NPCNationState)
 	}
 	
+	pyDefaults := loadDefaultsFromPython()
+	
 	for _, name := range core.NpcNations {
 		tier := 1 + core.Rng.Intn(3)
 		
 		// Baseline Populations & Budgets matching the TypeScript database exactly
 		pop := 50000000.0 
 		budget := float64(tier) * 1000.0 // Default small budget
+		stability := 75.0 + core.Rng.Float64()*20.0
+		happiness := 55.0
 		
-		if name == "China" {
+		// Use Python defaults if available
+		if def, ok := pyDefaults[name]; ok {
+			pop = def.Population
+			budget = def.Budget
+			happiness = def.Happiness
+			stability = def.Stability
+			tier = def.EconomicTier
+			if tier == 0 { tier = 1 + core.Rng.Intn(3) }
+		} else if name == "China" {
 			pop = 1392730000.0
 			budget = 180167.0
 		} else if name == "India" {
@@ -289,15 +319,15 @@ func InitializeNPCStatesLocked() {
 		core.GlobalState.NPCStates[name] = &core.NPCNationState{
 			Name:         name,
 			GDPGrowth:    1.0 + core.Rng.Float64()*3.0,
-			Stability:    75.0 + core.Rng.Float64()*20.0,
+			Stability:    stability,
 			EconomicTier: tier,
 			Population:   pop,
 			Budget:       budget,
-			Happiness:    55.0, // Fixed baseline as requested
+			Happiness:    happiness, 
 			DailyIncome:  float64(tier) * 50.0,
 		}
 	}
-	fmt.Printf("[GO] Initialized %d NPC nations with database-aligned baselines (China @ 1.39B / 180K).\n", len(core.NpcNations))
+	fmt.Printf("[GO] Initialized %d NPC nations with database-aligned baselines.\n", len(core.NpcNations))
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -418,17 +448,19 @@ func simulationEngine() {
 			// Lightweight: player stats, date, and core clock only (NO RELATIONSHIPS)
 			// This reduces payload size by ~98% for daily ticks
 			subState := struct {
-				GameDate   string           `json:"gameDate"`
-				IsPaused   bool             `json:"isPaused"`
-				Speed      int              `json:"speed"`
-				DayCounter int              `json:"dayCounter"`
-				Player     core.PlayerState `json:"player"`
+				GameDate   string                          `json:"gameDate"`
+				IsPaused   bool                            `json:"isPaused"`
+				Speed      int                             `json:"speed"`
+				DayCounter int                             `json:"dayCounter"`
+				Player     core.PlayerState                `json:"player"`
+				NPCStates  map[string]*core.NPCNationState `json:"npcStates"`
 			}{
 				GameDate:   core.GlobalState.GameDate,
 				IsPaused:   core.GlobalState.IsPaused,
 				Speed:      core.GlobalState.Speed,
 				DayCounter: core.GlobalState.DayCounter,
 				Player:     core.GlobalState.Player,
+				NPCStates:  core.GlobalState.NPCStates,
 			}
 			snapshot, _ = json.Marshal(subState)
 		}
@@ -858,25 +890,21 @@ func generateWeeklyNews(date time.Time) {
 	)
 }
 
-// [Local addNewsItem removed – now handled in core.AddNewsItem]
-
-
-// [Legacy addInboxItem removed. Now handled in inbox.go]
-
 // ═══════════════════════════════════════════════════════════
 // SSE (Server-Sent Events) - Zero-Polling Architecture
 // ═══════════════════════════════════════════════════════════
 
 type SyncPayload struct {
-	GameDate   string           `json:"gameDate"`
-	IsPaused   bool             `json:"isPaused"`
-	Speed      int              `json:"speed"`
-	DayCounter int              `json:"dayCounter"`
-	News       []core.NewsItem  `json:"news,omitempty"`
-	Inbox      []core.InboxItem `json:"inbox,omitempty"`
-	Player     core.PlayerState                             `json:"player"`
-	Relationships map[string]map[string]*core.Relationship `json:"relationships,omitempty"`
-	ResetTriggered bool                             `json:"resetTriggered,omitempty"`
+	GameDate       string                          `json:"gameDate"`
+	IsPaused       bool                            `json:"isPaused"`
+	Speed          int                             `json:"speed"`
+	DayCounter     int                             `json:"dayCounter"`
+	News           []core.NewsItem                 `json:"news,omitempty"`
+	Inbox          []core.InboxItem                `json:"inbox,omitempty"`
+	Player         core.PlayerState                `json:"player"`
+	NPCStates      map[string]*core.NPCNationState `json:"npcStates,omitempty"`
+	Relationships  map[string]map[string]*core.Relationship `json:"relationships,omitempty"`
+	ResetTriggered bool                            `json:"resetTriggered,omitempty"`
 }
 
 var lastBroadcastNewsLen int = 0
@@ -891,6 +919,7 @@ func createSnapshot() []byte {
 		News:       core.GlobalState.News,
 		Inbox:      core.GlobalState.Inbox,
 		Player:     core.GlobalState.Player,
+		NPCStates:  core.GlobalState.NPCStates,
 		Relationships: core.GlobalState.Relationships,
 	}
 	lastBroadcastNewsLen = len(core.GlobalState.News)
@@ -1035,7 +1064,8 @@ func handleReset(w http.ResponseWriter, r *http.Request) {
 	// Nuclear wipe of complex objects
 	core.GlobalState.News = []core.NewsItem{}
 	core.GlobalState.Inbox = server_inbox.GetInitialInboxBatch("01 Jan 2026")
-	// CRITICAL: Re-initialize AI states to defaults properly
+	
+	// CRITICAL: Re-initialize AI states to defaults properly via Python
 	core.GlobalState.NPCStates = nil 
 	InitializeNPCStatesLocked()
 	
@@ -1058,6 +1088,7 @@ func handleReset(w http.ResponseWriter, r *http.Request) {
 		Speed:           core.GlobalState.Speed,
 		DayCounter:      core.GlobalState.DayCounter,
 		Player:          core.GlobalState.Player,
+		NPCStates:       core.GlobalState.NPCStates,
 		Relationships:   core.GlobalState.Relationships,
 		ResetTriggered: true, // NUCLEAR SIGNAL
 	}

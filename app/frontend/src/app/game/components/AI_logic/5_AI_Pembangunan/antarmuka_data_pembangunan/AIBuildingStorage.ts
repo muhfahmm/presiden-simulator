@@ -25,6 +25,13 @@ export interface AIBuildingData {
 export const aiBuildingStorage = {
   initialize: (): AIBuildingData => {
     if (typeof window === 'undefined') return {};
+    
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    if (isFreshSession) {
+      console.log(`[AI BUILDING] Fresh session detected in initialize() - returning empty.`);
+      return {};
+    }
+
     const stored = localStorage.getItem(AI_BUILDING_KEY);
     return stored ? JSON.parse(stored) : {};
   },
