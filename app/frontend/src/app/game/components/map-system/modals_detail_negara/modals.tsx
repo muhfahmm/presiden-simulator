@@ -589,9 +589,8 @@ export default function StrategyModal({
       <DetailNegaraModal 
         isOpen={activeSubTab === 'detail_lengkap'}
         onClose={() => {
-          if (countryEntry) {
-            setActiveMenu(`CountryModal:${countryEntry.name_id.toLowerCase()}:info_strategis`);
-          }
+          // Navigate back to Global News when closing the detail view
+          setActiveMenu("Menu:Berita");
         }}
         targetCountry={targetCountry || ""}
         isUser={targetId === userId}
