@@ -12,6 +12,7 @@ import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
+import { getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
 const GO_SERVER = "http://localhost:8081";
 
@@ -60,6 +61,12 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
       console.log(`[INIT] Calculating daily income for ${countryName}: ${dailyIncome.toFixed(2)} (Tax: ${breakdown.dailyTaxRevenue.toFixed(2)})`);
     }
 
+    // Get current clock state to sync with server
+    const currentClockDate = getStoredGameDate();
+    const gameDateStr = currentClockDate.toISOString().split('T')[0]; // Go-compatible YYYY-MM-DD
+    const diffTime = Math.abs(currentClockDate.getTime() - INITIAL_GAME_DATE.getTime());
+    const dayCounter = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
     // Send initial state to Go Server (server will SKIP if already initialized)
     fetch(`${GO_SERVER}/api/game/init-player`, {
       method: "POST",
@@ -72,9 +79,15 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
         budget: budgetStorage.getBudget(),
         dailyIncome: dailyIncome,
         stability: stabilityStorage.getStability(),
+        gameDate: gameDateStr,
+        dayCounter: dayCounter,
       }),
-    }).then(res => res.json()).then(serverPlayer => {
+    }).then(res => res.json()).then(data => {
       // Server returns current state (either freshly initialized or existing)
+      // New structure: { player: {...}, relationships: {...} }
+      const serverPlayer = data?.player;
+      const serverRelationships = data?.relationships;
+
       if (serverPlayer?.initialized) {
         serverConnected.current = true;
         setBudget(serverPlayer.budget);
@@ -87,7 +100,13 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
         budgetStorage.setBudgetDirect(serverPlayer.budget);
         populationStorage.setPopulationDirect(Math.round(serverPlayer.population));
         stabilityStorage.setStabilityDirect(serverPlayer.stability);
-        console.log("[GAME] Synced with Go Server. Budget:", serverPlayer.budget);
+        
+        // SYNC RELATIONSHIPS IMMEDIATELY
+        if (serverRelationships) {
+           window.dispatchEvent(new CustomEvent("relation_matrix_sync", { detail: serverRelationships }));
+        }
+
+        console.log("[GAME] Synced with Go Server. Budget:", serverPlayer.budget, "Relationships Synced.");
       }
     }).catch(() => {
       console.warn("[GAME] Go Server offline — using localStorage fallback.");
@@ -119,6 +138,11 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
       setPopulationDelta(Math.round(p.populationDelta));
       setHappiness({ global: Math.round(p.happiness * 10) / 10 });
       setStability(Math.round(p.stability * 10) / 10);
+
+      // Real-time Relationship Sync
+      if (data.relationships) {
+        window.dispatchEvent(new CustomEvent("relation_matrix_sync", { detail: data.relationships }));
+      }
 
       // Throttle localStorage writes to prevent QuotaExceededError
       const now = Date.now();

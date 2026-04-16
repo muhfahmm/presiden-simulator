@@ -2,6 +2,7 @@ package core
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 	"sync"
 	"time"
@@ -20,6 +21,8 @@ type PlayerState struct {
 	DailyIncome    float64 `json:"dailyIncome"`
 	Stability      float64 `json:"stability"`
 	Initialized    bool    `json:"initialized"`
+	GameDate       string  `json:"gameDate"`
+	DayCounter     int     `json:"dayCounter"`
 }
 
 type BuildingType struct {
@@ -42,6 +45,7 @@ type SimulationState struct {
 	Player             PlayerState                  `json:"player"`
 	NPCStates          map[string]*NPCNationState    `json:"npcStates"`
 	NPCBuildingLevels  map[string]map[string]int    `json:"npcBuildingLevels"`
+	Relationships      map[string]map[string]*Relationship `json:"relationships"` // source -> target -> relationship
 	LastProcessedMonth time.Month                   `json:"lastProcessedMonth"`
 	Mu                 sync.Mutex                   `json:"-"`
 }
@@ -77,6 +81,19 @@ type NPCNationState struct {
 	GDPGrowth    float64 `json:"gdpGrowth"`
 	Stability    float64 `json:"stability"`
 	EconomicTier int     `json:"economicTier"`
+}
+
+type Relationship struct {
+	S float64 `json:"s"` // Score (0-100)
+	E int     `json:"e"` // Embassy (0 or 1)
+	P int     `json:"p"` // Pact (0 or 1)
+	A int     `json:"a"` // Alliance (0 or 1)
+	T int     `json:"t"` // Trade (0 or 1)
+}
+
+func (r *Relationship) Prune() bool {
+	// A relation is "Neutral/Default" if score is near 50 and no statuses are active
+	return math.Abs(r.S-50) < 1.0 && r.E == 0 && r.P == 0 && r.A == 0 && r.T == 0
 }
 
 // ═══════════════════════════════════════════════════════════

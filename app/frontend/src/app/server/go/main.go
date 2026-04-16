@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"emserver/core"
+	"emserver/server_hubungan"
 	"emserver/server_inbox"
 )
 
@@ -259,12 +260,11 @@ func loadBuildingsFromTypeScript() error {
 // ═══════════════════════════════════════════════════════════
 
 func main() {
-	// Load building database from TypeScript files (direct from frontend database)
-	if err := loadBuildingsFromTypeScript(); err != nil {
-		fmt.Printf("[GO] Warning: Could not load buildings from TypeScript DB: %v\n", err)
-		fmt.Println("[GO] Server will start but building data may be empty")
+	// Load relationship database
+	if err := server_hubungan.InitializeRelationships(); err != nil {
+		fmt.Printf("[GO] Warning: Could not initialize international relationships: %v\n", err)
 	}
-	
+
 	// 1. Start the Global Ticker (Simulation Engine)
 	go simulationEngine()
 
@@ -356,6 +356,9 @@ func simulationEngine() {
 			generateWeeklyNews(nextDate)
 		}
 
+		// --- Update Relationships DAILY ---
+		server_hubungan.UpdateDailyRelationsLocked()
+
 		// Broadcast state to all SSE clients
 		var snapshot []byte
 		if len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen {
@@ -366,19 +369,24 @@ func simulationEngine() {
 		} else {
 			// Lightweight: player stats only inside the lock
 			subState := struct {
-				GameDate   string           `json:"gameDate"`
-				IsPaused   bool             `json:"isPaused"`
-				Speed      int              `json:"speed"`
-				DayCounter int              `json:"dayCounter"`
-				Player     core.PlayerState `json:"player"`
+				GameDate   string                               `json:"gameDate"`
+				IsPaused   bool                                 `json:"isPaused"`
+				Speed      int                                  `json:"speed"`
+				DayCounter int                                  `json:"dayCounter"`
+				Player     core.PlayerState                     `json:"player"`
+				Relationships map[string]map[string]*core.Relationship `json:"relationships"`
 			}{
 				GameDate:   core.GlobalState.GameDate,
 				IsPaused:   core.GlobalState.IsPaused,
 				Speed:      core.GlobalState.Speed,
 				DayCounter: core.GlobalState.DayCounter,
 				Player:     core.GlobalState.Player,
+				Relationships: core.GlobalState.Relationships,
 			}
 			snapshot, _ = json.Marshal(subState)
+			if core.GlobalState.DayCounter % 5 == 0 {
+				fmt.Printf("[SSE] Broadding Daily Sync (Day %d) with Relationships...\n", core.GlobalState.DayCounter)
+			}
 		}
 		core.GlobalState.Mu.Unlock()
 
@@ -808,7 +816,8 @@ type SyncPayload struct {
 	DayCounter int              `json:"dayCounter"`
 	News       []core.NewsItem  `json:"news,omitempty"`
 	Inbox      []core.InboxItem `json:"inbox,omitempty"`
-	Player     core.PlayerState `json:"player"`
+	Player     core.PlayerState                             `json:"player"`
+	Relationships map[string]map[string]*core.Relationship `json:"relationships,omitempty"`
 }
 
 var lastBroadcastNewsLen int = 0
@@ -823,6 +832,7 @@ func createSnapshot() []byte {
 		News:       core.GlobalState.News,
 		Inbox:      core.GlobalState.Inbox,
 		Player:     core.GlobalState.Player,
+		Relationships: core.GlobalState.Relationships,
 	}
 	lastBroadcastNewsLen = len(core.GlobalState.News)
 	lastBroadcastInboxLen = len(core.GlobalState.Inbox)
@@ -992,7 +1002,14 @@ func handleInitPlayer(w http.ResponseWriter, r *http.Request) {
 	// GET: Return current player state (for frontend to read server-authoritative values)
 	if r.Method == "GET" {
 		core.GlobalState.Mu.Lock()
-		data, _ := json.Marshal(core.GlobalState.Player)
+		response := struct {
+			Player        core.PlayerState                       `json:"player"`
+			Relationships map[string]map[string]*core.Relationship `json:"relationships"`
+		}{
+			Player:        core.GlobalState.Player,
+			Relationships: core.GlobalState.Relationships,
+		}
+		data, _ := json.Marshal(response)
 		core.GlobalState.Mu.Unlock()
 		w.Write(data)
 		return
@@ -1012,7 +1029,23 @@ func handleInitPlayer(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("[GO] Player re-init SKIPPED (already running). Current Budget: %.0f\n", core.GlobalState.Player.Budget)
 		// But update dailyIncome in case buildings changed
 		core.GlobalState.Player.DailyIncome = init.DailyIncome
-		data, _ := json.Marshal(core.GlobalState.Player)
+		
+		// Sync clock even on re-init
+		if init.DayCounter > 0 {
+			core.GlobalState.GameDate = init.GameDate
+			core.GlobalState.DayCounter = init.DayCounter
+			// Catch-up simulation state if needed
+			server_hubungan.CatchUpDriftLocked(init.DayCounter)
+		}
+		
+		response := struct {
+			Player        core.PlayerState                       `json:"player"`
+			Relationships map[string]map[string]*core.Relationship `json:"relationships"`
+		}{
+			Player:        core.GlobalState.Player,
+			Relationships: core.GlobalState.Relationships,
+		}
+		data, _ := json.Marshal(response)
 		core.GlobalState.Mu.Unlock()
 		w.Write(data)
 		return
@@ -1028,9 +1061,28 @@ func handleInitPlayer(w http.ResponseWriter, r *http.Request) {
 		Stability:       init.Stability,
 		Initialized:     true,
 	}
+
+	// Sync Clock
+	if init.DayCounter > 0 {
+		core.GlobalState.GameDate = init.GameDate
+		core.GlobalState.DayCounter = init.DayCounter
+		fmt.Printf("[GO] Synced Clock to Client: %s (Day %d)\n", init.GameDate, init.DayCounter)
+		
+		// Immediately fast-forward any missed weekly drifts
+		server_hubungan.CatchUpDriftLocked(init.DayCounter)
+	}
+
 	fmt.Printf("[GO] Player initialized: %s | Budget: %.0f | Pop: %.0f | Happy: %.1f%% | Income: +%.0f/day\n",
 		init.Country, init.Budget, init.Population, init.Happiness, init.DailyIncome)
-	data, _ := json.Marshal(core.GlobalState.Player)
+	
+	response := struct {
+		Player        core.PlayerState                       `json:"player"`
+		Relationships map[string]map[string]*core.Relationship `json:"relationships"`
+	}{
+		Player:        core.GlobalState.Player,
+		Relationships: core.GlobalState.Relationships,
+	}
+	data, _ := json.Marshal(response)
 	core.GlobalState.Mu.Unlock()
 
 	w.Write(data)

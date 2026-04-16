@@ -359,12 +359,12 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
         <div className="flex-1 overflow-y-auto px-8 py-10 no-scrollbar bg-[radial-gradient(circle_at_center,_#0a0a0f_0%,_#050508_100%)]">
           {augmentedRelationItems.length > 0 ? (
             <div className="flex flex-col gap-3.5 max-w-6xl mx-auto animate-in fade-in slide-in-from-bottom-10 duration-1000">
-              {augmentedRelationItems.map((rel) => {
+              {augmentedRelationItems.map((rel, idx) => {
                 const { liveScore, status, targetCountryObj, displayId } = rel;
                 
                 return (
                   <div
-                    key={rel.id || rel.name}
+                    key={`${rel.name}-${rel.id}-${idx}`}
                     className="group bg-zinc-900/10 border border-zinc-800/40 hover:border-emerald-500/30 hover:bg-zinc-900/30 p-4 pl-6 rounded-2xl transition-all duration-300 flex items-center justify-between relative backdrop-blur-sm shadow-sm hover:shadow-[0_0_30px_rgba(16,185,129,0.05)]"
                   >
                     <div className="absolute -left-1 top-1/2 -translate-y-1/2 w-1.5 h-0 group-hover:h-8 bg-emerald-500 rounded-full transition-all duration-500 opacity-0 group-hover:opacity-100" />

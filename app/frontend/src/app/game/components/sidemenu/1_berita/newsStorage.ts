@@ -140,6 +140,11 @@ export const newsStorage = {
               window.dispatchEvent(new CustomEvent("inbox_sync_from_server", { detail: data.inbox }));
             }
 
+            // Sync relationship matrix from server (weekly updates)
+            if (data.relationships && typeof data.relationships === 'object') {
+              window.dispatchEvent(new CustomEvent("relation_matrix_sync", { detail: data.relationships }));
+            }
+
             // === TRADE AI DAILY TRIGGER ===
             // Fire AiTradeService.processDaily() once per game day change
             if (data.gameDate && data.gameDate !== lastTradeProcessedDate && !data.isPaused) {

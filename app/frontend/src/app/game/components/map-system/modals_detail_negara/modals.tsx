@@ -172,6 +172,13 @@ export default function StrategyModal({
   const targetId = relationStorage.normalizeTargetId(targetCountry || "", centersData);
   const countryEntry = centersData.find(c => c.name_id.toLowerCase().trim() === targetId);
 
+  // Debugging target normalization
+  useEffect(() => {
+    if (targetCountry && targetId) {
+       console.log(`[MODALS] target: ${targetCountry} -> normalized ID: ${targetId}, user: ${userCountry}`);
+    }
+  }, [targetCountry, targetId, userCountry]);
+
   // States
   const [tick, setTick] = useState(0);
 

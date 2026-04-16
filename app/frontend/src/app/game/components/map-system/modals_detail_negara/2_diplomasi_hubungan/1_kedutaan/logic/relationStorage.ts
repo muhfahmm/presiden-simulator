@@ -12,6 +12,7 @@ import { nonAggressionStorage } from "../../2_pakta_non_agresi/logic/nonAggressi
 import { aliansiStorage } from "../../3_aliansi_pertahanan/logic/aliansiStorage";
 import { relationDeltaStorage } from "../../8_hubungan_internasional/logic/relationDeltaStorage";
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
+import { getGlobalRelationMatrix, saveGlobalRelationMatrix } from "@/app/game/components/map-system/ai_diplomacy_engine/services/MatrixHandler";
 
 const RELATION_STORAGE_KEY = "em2_relation_scores";
 
@@ -241,4 +242,52 @@ export const relationStorage = {
     return entry ? entry.name_id.toLowerCase().trim() : normalized.toLowerCase().trim();
   }
 };
+
+/**
+ * SSE INTEGRATION: Listen for server-authoritative matrix updates
+ * This is placed here to ensure it's loaded as part of the core relation storage logic.
+ */
+if (typeof window !== 'undefined') {
+  window.addEventListener('relation_matrix_sync', (e: any) => {
+    const serverMatrix = e.detail;
+    if (!serverMatrix) return;
+
+    console.log("[RelationStorage] Received sync from server. Merging scores...");
+    
+    // 1. Sync AI Global Matrix
+    const currentMatrix = getGlobalRelationMatrix();
+    const mergedMatrix = { ...currentMatrix, ...serverMatrix };
+    saveGlobalRelationMatrix(mergedMatrix);
+
+    // 2. Sync scores to relationStorage for UI compatibility
+    const relationData = relationStorage.getRelationData();
+    let changed = false;
+
+    Object.keys(serverMatrix).forEach(sourceId => {
+      const targets = serverMatrix[sourceId];
+      Object.keys(targets).forEach(targetId => {
+        const entry = targets[targetId];
+        const compositeKey = `${sourceId}:${targetId}`;
+        
+        // Log specific ones for verification
+        if (targetId === "malaysia" || targetId === "india" || targetId === "arab saudi" || targetId === "amerika serikat") {
+           console.log(`[RelationSync] ${sourceId}:${targetId} -> ${entry.s.toFixed(2)}`);
+        }
+
+        if (relationData[compositeKey] !== entry.s) {
+          relationData[compositeKey] = entry.s;
+          changed = true;
+        }
+      });
+    });
+
+    if (changed) {
+      localStorage.setItem("em2_relation_scores", JSON.stringify(relationData));
+      // Notify other systems that relations have changed
+      window.dispatchEvent(new Event("relation_storage_updated"));
+      window.dispatchEvent(new Event("relation_status_updated"));
+      console.log("[RelationStorage] Local scores updated and events dispatched.");
+    }
+  });
+}
 

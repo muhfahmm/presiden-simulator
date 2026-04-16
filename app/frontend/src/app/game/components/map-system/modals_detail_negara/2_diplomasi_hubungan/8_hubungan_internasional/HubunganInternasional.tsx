@@ -261,7 +261,7 @@ export default function HubunganInternasional({ isOpen, onClose, targetCountry }
 
               return (
                 <div 
-                  key={r.id || idx} 
+                  key={`${r.name}-${r.id}-${idx}`} 
                   className="bg-zinc-800/30 hover:bg-zinc-800/50 border border-zinc-700/20 hover:border-zinc-700/40 rounded-xl px-4 py-3 flex items-center gap-4 transition-all group"
                 >
                   {/* Rank Number */}
