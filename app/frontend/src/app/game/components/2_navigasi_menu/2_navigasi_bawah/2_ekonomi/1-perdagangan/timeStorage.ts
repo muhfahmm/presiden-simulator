@@ -13,6 +13,8 @@ class TimeStorage {
   private gameDate: Date = INITIAL_GAME_DATE;
   private isPaused: boolean = true;
   private speed: number = 1;
+  private lastManualActionTime: number = 0;
+  private readonly LOCK_DURATION = 2000; // 2 seconds to allow server to catch up
   private listeners: Set<TimeListener> = new Set();
 
   constructor() {
@@ -25,8 +27,15 @@ class TimeStorage {
         if (data.gameDate) {
           const newDate = new Date(data.gameDate);
           this.gameDate = newDate;
-          this.isPaused = data.isPaused;
-          this.speed = data.speed;
+          
+          // LOCKING MECHANISM: Don't let SSE override our manual choice for 2 seconds
+          const isLocked = (Date.now() - this.lastManualActionTime) < this.LOCK_DURATION;
+          
+          if (!isLocked) {
+            this.isPaused = data.isPaused;
+            this.speed = data.speed;
+          }
+          
           saveGameDate(newDate); // Sync to localStorage for other legacy components
           this.notify();
         }
@@ -46,6 +55,7 @@ class TimeStorage {
 
   public async setPaused(paused: boolean) {
     this.isPaused = paused;
+    this.lastManualActionTime = Date.now();
     this.notify();
 
     // Call Go Backend
@@ -62,6 +72,7 @@ class TimeStorage {
 
   public async setSpeed(speed: number) {
     this.speed = speed;
+    this.lastManualActionTime = Date.now();
     this.notify();
 
     // Call Go Backend

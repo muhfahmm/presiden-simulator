@@ -382,8 +382,8 @@ func main() {
 // ═══════════════════════════════════════════════════════════
 
 func simulationEngine() {
-	// Base tick rate: 20ms (High resolution for smooth speed scaling)
-	ticker := time.NewTicker(20 * time.Millisecond)
+	// Base tick rate: 10ms (Ultra high resolution for precise scaling)
+	ticker := time.NewTicker(10 * time.Millisecond)
 	acc := 0 
 
 	for range ticker.C {
@@ -398,18 +398,18 @@ func simulationEngine() {
 		}
 
 		// Accumulate based on speed
-		// 1x -> adds 1 (50 ticks = 1000ms)
-		// 2x -> adds 2 (25 ticks = 500ms)
-		// 3x -> adds 5 (10 ticks = 200ms)
+		// 1x -> adds 1 (100 ticks = 1000ms)
+		// 2x -> adds 2 (50 ticks = 500ms)
+		// 3x -> adds 3 (33.3 ticks = ~333ms)
 		increment := 1
 		if speed == 2 {
 			increment = 2
 		} else if speed == 3 {
-			increment = 5
+			increment = 3
 		}
 
 		acc += increment
-		if acc < 50 {
+		if acc < 100 {
 			continue
 		}
 		acc = 0
@@ -458,7 +458,7 @@ func simulationEngine() {
 			lastBroadcastNewsLen = len(core.GlobalState.News)
 			lastBroadcastInboxLen = len(core.GlobalState.Inbox)
 			snapshot, _ = json.Marshal(core.GlobalState)
-			fmt.Printf("[SSE] Broadcasting Full Snapshot (Day %d) - Relationship Matrix included.\n", core.GlobalState.DayCounter)
+			fmt.Printf("[SSE] Broadcasting Full Snapshot (Day %d) - Relationship Matrix and NPC States included.\n", core.GlobalState.DayCounter)
 		} else if isMajorUpdate {
 			// TRUNCATED SNAPSHOT: Only recent news/inbox (Sent when new items appear)
 			// This prevents sending thousands of historical items on every tick.
@@ -483,8 +483,7 @@ func simulationEngine() {
 				News:       getRecentNews(core.GlobalState.News, 20),
 				Inbox:      getRecentInbox(core.GlobalState.Inbox, 10),
 				Player:     core.GlobalState.Player,
-				NPCStates:  core.GlobalState.NPCStates,
-				// NOTE: Relationships is OMITTED (nil)
+				// NOTE: NPCStates and Relationships are OMITTED (nil)
 			}
 			snapshot, _ = json.Marshal(payload)
 		} else {
@@ -493,20 +492,23 @@ func simulationEngine() {
 				GameDate   string                          `json:"gameDate"`
 				IsPaused   bool                            `json:"isPaused"`
 				Speed      int                             `json:"speed"`
-				DayCounter int                             `json:"dayCounter"`
-				Player     core.PlayerState                `json:"player"`
-				NPCStates  map[string]*core.NPCNationState `json:"npcStates"`
+				DayCounter int              `json:"dayCounter"`
+				Player     core.PlayerState `json:"player"`
 			}{
 				GameDate:   core.GlobalState.GameDate,
 				IsPaused:   core.GlobalState.IsPaused,
 				Speed:      core.GlobalState.Speed,
 				DayCounter: core.GlobalState.DayCounter,
 				Player:     core.GlobalState.Player,
-				NPCStates:  core.GlobalState.NPCStates,
 			}
 			snapshot, _ = json.Marshal(subState)
 		}
 		core.GlobalState.Mu.Unlock()
+
+		// Run broadcasting in its own goroutine to avoid blocking the simulation loop
+		go func(data []byte) {
+			broadcastSSE(data)
+		}(snapshot)
 
 		// Check for Month Change (Quarterly Detection)
 		if nextDate.Month() != core.GlobalState.LastProcessedMonth {

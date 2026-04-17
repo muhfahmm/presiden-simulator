@@ -20,44 +20,65 @@ export default function NavigasiWaktu() {
   if (!isMounted) return null;
 
   return (
-    <div className="flex items-center gap-3 px-4 py-2 bg-zinc-900/40 rounded-xl border border-zinc-800/50 shadow-sm backdrop-blur-md">
+    <div className="flex items-center gap-4 px-4 py-2 bg-black/40 rounded-2xl border border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300">
       {/* Date Display */}
-      <div className="flex items-center gap-3 group mr-1">
-        <Calendar size={16} className="text-cyan-500 group-hover:scale-110 transition-transform" />
-        <span className="text-sm font-black text-white tracking-widest tabular-nums italic">
+      <div className="flex items-center gap-3 px-3 py-1.5 bg-zinc-950/40 rounded-xl border border-white/5 group hover:border-cyan-500/30 transition-all duration-300 cursor-default">
+        <Calendar size={16} className="text-cyan-400 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.5)] transition-all" />
+        <span className="text-sm font-black text-white/90 tracking-[0.15em] tabular-nums italic drop-shadow-sm">
           {formatGameDate(state.gameDate)}
         </span>
       </div>
 
-      <div className="h-5 w-[1px] bg-zinc-800/30"></div>
+      <div className="h-6 w-[1px] bg-white/10 shrink-0"></div>
 
       {/* Controls */}
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1.5 p-1 bg-zinc-950/40 rounded-xl border border-white/5">
         <button
           onClick={() => timeStorage.setPaused(true)}
-          className={`p-2 rounded-lg transition-all cursor-pointer ${state.isPaused ? 'bg-amber-500/20 text-amber-500 border border-amber-500/30' : 'text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-300'}`}
+          className={`group p-2 rounded-lg transition-all duration-300 cursor-pointer active:scale-90 ${state.isPaused 
+            ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.2)]' 
+            : 'text-zinc-500 hover:bg-white/5 hover:text-zinc-300 border border-transparent'}`}
           title="Pause Game"
         >
-          <Pause size={18} fill={state.isPaused ? "currentColor" : "none"} />
+          <Pause 
+            size={18} 
+            className="transition-transform duration-300 group-hover:scale-110" 
+            fill={state.isPaused ? "currentColor" : "none"} 
+          />
         </button>
         <button
           onClick={() => timeStorage.setPaused(false)}
-          className={`p-2 rounded-lg transition-all cursor-pointer ${!state.isPaused ? 'bg-emerald-500/20 text-emerald-500 border border-emerald-500/30' : 'text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-300'}`}
+          className={`group p-2 rounded-lg transition-all duration-300 cursor-pointer active:scale-90 ${!state.isPaused 
+            ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]' 
+            : 'text-zinc-500 hover:bg-white/5 hover:text-zinc-300 border border-transparent'}`}
           title="Resume Game"
         >
-          <Play size={18} fill={!state.isPaused ? "currentColor" : "none"} />
+          <Play 
+            size={18} 
+            className="transition-transform duration-300 group-hover:scale-110" 
+            fill={!state.isPaused ? "currentColor" : "none"} 
+          />
         </button>
       </div>
 
-      {/* Speed Selector */}
-      <div className="flex items-center bg-zinc-950/20 rounded-lg p-1 border border-zinc-800/30 ml-2">
+      {/* Speed Selector (Segmented Control Style) */}
+      <div className="flex items-center gap-1 p-1 bg-zinc-950/60 rounded-xl border border-white/5 shadow-inner">
         {[1, 2, 3].map((s) => (
           <button
             key={s}
             onClick={() => timeStorage.setSpeed(s)}
-            className={`px-2.5 py-0.5 text-xs font-black rounded transition-all cursor-pointer ${state.speed === s ? 'bg-cyan-500 text-zinc-950' : 'text-zinc-500 hover:text-zinc-300'}`}
+            className={`
+              relative px-3.5 py-1 text-xs font-black rounded-lg transition-all duration-300 cursor-pointer overflow-hidden active:scale-90
+              ${state.speed === s 
+                ? 'text-zinc-950 shadow-[0_0_20px_rgba(34,211,238,0.3)]' 
+                : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'}
+            `}
           >
-            {s}x
+            {/* Active Highlight Layer */}
+            {state.speed === s && (
+              <div className="absolute inset-0 bg-cyan-400 z-0 animate-in fade-in zoom-in duration-300" />
+            )}
+            <span className="relative z-10">{s}x</span>
           </button>
         ))}
       </div>
