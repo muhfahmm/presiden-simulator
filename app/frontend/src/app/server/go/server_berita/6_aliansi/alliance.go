@@ -20,3 +20,9 @@ func GenerateAllianceNews(dateStr string) {
 	
 	core.AddNewsItemLocked("International Alliance Network", subj, content, "diplomacy", "medium", dateStr)
 }
+
+func GenerateBatch(dateStr string, count int) {
+	for i := 0; i < count; i++ {
+		GenerateAllianceNews(dateStr)
+	}
+}

@@ -20,3 +20,9 @@ func GenerateBilateralNews(dateStr string) {
 	
 	core.AddNewsItemLocked("Kantor Berita Kedutaan", subj, content, "diplomacy", "low", dateStr)
 }
+
+func GenerateBatch(dateStr string, count int) {
+	for i := 0; i < count; i++ {
+		GenerateBilateralNews(dateStr)
+	}
+}

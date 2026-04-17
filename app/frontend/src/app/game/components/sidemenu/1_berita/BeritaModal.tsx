@@ -69,9 +69,12 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
 
       const subj = item.subject.toLowerCase();
       if (item.category === 'construction') counts.pembangunan++;
+      else if (item.category === 'finance') counts.keuangan++;
+      else if (item.category === 'trade') counts.perdagangan++;
       else if (item.category === 'economy') {
         if (/(dana|hibah|anggaran|pajak|ekonomi|utang|hutang|keuangan|moneter)/.test(subj)) counts.keuangan++;
-        if (/(dagang|ekspor|impor|tarif|logistik|pasar|perdagangan)/.test(subj)) counts.perdagangan++;
+        else if (/(dagang|ekspor|impor|tarif|logistik|pasar|perdagangan|komoditas|harga)/.test(subj)) counts.perdagangan++;
+        else counts.keuangan++; // Default to keuangan if it's general economy
       }
       else if (item.category === 'diplomacy') {
         if (/(pakta|perjanjian|mou|kesepakatan|traktat)/.test(subj)) counts.pakta++;
@@ -81,6 +84,7 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
       }
       else if (item.category === 'global') {
         if (/(dana|hibah|anggaran|pajak|ekonomi|utang|hutang|keuangan)/.test(subj)) counts.keuangan++;
+        else if (/(dagang|ekspor|impor|perdagangan)/.test(subj)) counts.perdagangan++;
       }
     });
 

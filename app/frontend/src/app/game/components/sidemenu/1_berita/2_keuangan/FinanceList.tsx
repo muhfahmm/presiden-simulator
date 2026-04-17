@@ -19,8 +19,13 @@ export const FinanceList = (props: TabProps) => {
       {...props} 
       categoryFilter={(item) => {
         const subjectLower = item.subject.toLowerCase();
-        return item.category === 'economy' || 
-               (item.category === 'global' && /(dana|hibah|anggaran|pajak|ekonomi|utang|hutang)/.test(subjectLower));
+        if (item.category === 'finance') return true;
+        if (item.category === 'economy') {
+           // Must NOT be a trade-specific news if we are using the keywords
+           const isTrade = /(dagang|ekspor|impor|tarif|logistik|pasar|perdagangan|komoditas|harga)/.test(subjectLower);
+           return !isTrade; 
+        }
+        return (item.category === 'global' && /(dana|hibah|anggaran|pajak|ekonomi|utang|hutang|keuangan)/.test(subjectLower));
       }} 
     />
   );

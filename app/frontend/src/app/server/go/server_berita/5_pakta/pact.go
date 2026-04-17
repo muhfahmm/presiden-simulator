@@ -20,3 +20,9 @@ func GeneratePactNews(dateStr string) {
 	
 	core.AddNewsItemLocked("Berita Hubungan Internasional", subj, content, "diplomacy", "low", dateStr)
 }
+
+func GenerateBatch(dateStr string, count int) {
+	for i := 0; i < count; i++ {
+		GeneratePactNews(dateStr)
+	}
+}

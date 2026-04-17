@@ -16,30 +16,36 @@ func ProcessNewsDay(date time.Time) {
 	dateStr := date.Format("02 Jan 2006")
 	day := core.GlobalState.DayCounter
 
-	// 1. Pembangunan (Daily progress)
+	// 1. Pembangunan (Daily progress) - Already active via ProcessDaily
 	pembangunan.ProcessDaily(dateStr)
 
-	// 2. Keuangan & Perdagangan
-	if day%30 == 0 {
-		keuangan.GenerateMonthlyReport(dateStr)
+	// --- BATCH NEWS GENERATION (5-15 items per tab) ---
+	// Trigger strictly on the 1st of the month (Day 1 for Finance)
+	isMonthlyFinanceDay := date.Day() == 1 && day > 0
+	if isMonthlyFinanceDay {
+		count := core.Rng.Intn(11) + 5 // 5 to 15
+		keuangan.GenerateBatch(dateStr, count)
 	}
-	
-	// Random economic flash news
+
+	// Trigger batches for Trade & Diplomacy twice a month (1st and 15th)
+	isBiWeeklyBatchDay := (date.Day() == 1 || date.Day() == 15) && day > 0
+	if isBiWeeklyBatchDay {
+		// Trade
+		tCount := core.Rng.Intn(11) + 5
+		perdagangan.GenerateBatch(dateStr, tCount)
+
+		// Diplomacy (split between Embassy, Pact, Alliance)
+		eCount := core.Rng.Intn(4) + 2
+		pCount := core.Rng.Intn(4) + 2
+		aCount := core.Rng.Intn(4) + 2
+		kedutaan.GenerateBatch(dateStr, eCount)
+		pakta.GenerateBatch(dateStr, pCount)
+		aliansi.GenerateBatch(dateStr, aCount)
+	}
+
+	// Maintain subtle daily variety (5% chance)
 	if core.Rng.Intn(100) < 5 { // 5% daily chance
 		keuangan.GenerateFlashNews(dateStr)
 		perdagangan.GenerateFlashNews(dateStr)
-	}
-
-	// 3. Kedutaan, Pakta, Aliansi (Diplomacy)
-	if day%5 == 0 {
-		roll := core.Rng.Intn(3)
-		switch roll {
-		case 0:
-			kedutaan.GenerateBilateralNews(dateStr)
-		case 1:
-			pakta.GeneratePactNews(dateStr)
-		case 2:
-			aliansi.GenerateAllianceNews(dateStr)
-		}
 	}
 }

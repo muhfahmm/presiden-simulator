@@ -11,7 +11,7 @@ export interface NewsItem {
   time: string;
   read: boolean;
   priority: 'low' | 'medium' | 'high';
-  category: 'global' | 'diplomacy' | 'conflict' | 'economy' | 'construction';
+  category: 'global' | 'diplomacy' | 'conflict' | 'economy' | 'construction' | 'finance' | 'trade';
   timestamp: number;
 }
 
@@ -249,7 +249,7 @@ export const newsStorage = {
       timestamp: Date.now()
     };
     
-    const updated = [newItem, ...currentParsed].slice(0, MAX_TOTAL_NEWS);
+    const updated = [newItem, ...currentParsed];
     try {
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(updated));
       // Trigger side-effects for AI construction

@@ -382,9 +382,9 @@ func main() {
 // ═══════════════════════════════════════════════════════════
 
 func simulationEngine() {
-	// Base tick rate: 100ms (allows responsive speed changes)
-	ticker := time.NewTicker(100 * time.Millisecond)
-	acc := 0 // Simple accumulator
+	// Base tick rate: 20ms (High resolution for smooth speed scaling)
+	ticker := time.NewTicker(20 * time.Millisecond)
+	acc := 0 
 
 	for range ticker.C {
 		core.GlobalState.Mu.Lock()
@@ -398,8 +398,18 @@ func simulationEngine() {
 		}
 
 		// Accumulate based on speed
-		acc += speed
-		if acc < 10 {
+		// 1x -> adds 1 (50 ticks = 1000ms)
+		// 2x -> adds 2 (25 ticks = 500ms)
+		// 3x -> adds 5 (10 ticks = 200ms)
+		increment := 1
+		if speed == 2 {
+			increment = 2
+		} else if speed == 3 {
+			increment = 5
+		}
+
+		acc += increment
+		if acc < 50 {
 			continue
 		}
 		acc = 0
@@ -437,23 +447,48 @@ func simulationEngine() {
 		server_hubungan.UpdateDailyRelationsLocked()
 
 		// Broadcast state to all SSE clients
-		// PERFORMANCE OPTIMIZATION: Only send the massive relationship matrix every 7 days
-		// or if a major event (news/inbox change) occurred.
+		// PERFORMANCE OPTIMIZATION: Drastically reduce payload for daily ticks.
+		// Massive objects (Relationships, Full History) are only sent weekly.
 		var snapshot []byte
 		isMajorUpdate := len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen
 		isWeeklySync := core.GlobalState.DayCounter%7 == 0 || core.GlobalState.DayCounter < 2
 
-		if isMajorUpdate || isWeeklySync {
-			// Full payload for major updates or periodic syncs
+		if isWeeklySync {
+			// FULL SNAPSHOT: Everything (Sent weekly to keep everything in sync)
 			lastBroadcastNewsLen = len(core.GlobalState.News)
 			lastBroadcastInboxLen = len(core.GlobalState.Inbox)
 			snapshot, _ = json.Marshal(core.GlobalState)
-			if isWeeklySync {
-				fmt.Printf("[SSE] Broadcasting Full Snapshot (Day %d) - Relationship Matrix included.\n", core.GlobalState.DayCounter)
+			fmt.Printf("[SSE] Broadcasting Full Snapshot (Day %d) - Relationship Matrix included.\n", core.GlobalState.DayCounter)
+		} else if isMajorUpdate {
+			// TRUNCATED SNAPSHOT: Only recent news/inbox (Sent when new items appear)
+			// This prevents sending thousands of historical items on every tick.
+			lastBroadcastNewsLen = len(core.GlobalState.News)
+			lastBroadcastInboxLen = len(core.GlobalState.Inbox)
+
+			// Helper to get last N items safely
+			getRecentNews := func(arr []core.NewsItem, n int) []core.NewsItem {
+				if len(arr) <= n { return arr }
+				return arr[len(arr)-n:]
 			}
+			getRecentInbox := func(arr []core.InboxItem, n int) []core.InboxItem {
+				if len(arr) <= n { return arr }
+				return arr[len(arr)-n:]
+			}
+
+			payload := SyncPayload{
+				GameDate:   core.GlobalState.GameDate,
+				IsPaused:   core.GlobalState.IsPaused,
+				Speed:      core.GlobalState.Speed,
+				DayCounter: core.GlobalState.DayCounter,
+				News:       getRecentNews(core.GlobalState.News, 20),
+				Inbox:      getRecentInbox(core.GlobalState.Inbox, 10),
+				Player:     core.GlobalState.Player,
+				NPCStates:  core.GlobalState.NPCStates,
+				// NOTE: Relationships is OMITTED (nil)
+			}
+			snapshot, _ = json.Marshal(payload)
 		} else {
-			// Lightweight: player stats, date, and core clock only (NO RELATIONSHIPS)
-			// This reduces payload size by ~98% for daily ticks
+			// HEARTBEAT SNAPSHOT: Date and Player stats only (Smallest possible)
 			subState := struct {
 				GameDate   string                          `json:"gameDate"`
 				IsPaused   bool                            `json:"isPaused"`

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os/exec"
+	"sync"
 	"emserver/core"
 )
 
@@ -44,6 +45,11 @@ func ProcessDaily(dateStr string) {
 
 	newsLimit := 15
 	newsCount := 0
+	var newsMu sync.Mutex
+
+	// Concurrency control: Limit number of parallel Python processes to prevent CPU spike
+	semaphore := make(chan struct{}, 5)
+	var wg sync.WaitGroup
 
 	for k := 0; k < numBuilders && k < len(shuffled); k++ {
 		nationName := shuffled[k]
@@ -52,78 +58,79 @@ func ProcessDaily(dateStr string) {
 			continue
 		}
 
-		// Prepare Payload for Python
-		payload := map[string]interface{}{
-			"negara":    nationName,
-			"budget":    state.Budget,
-			"income":    state.DailyIncome,
-			"pop":       state.Population,
-			"buildings": core.GlobalState.NPCBuildingLevels[nationName],
-			"stocks":    make(map[string]int), // Placeholder for real supply chain
-			"options":   options,
-		}
-		jsonPayload, _ := json.Marshal(payload)
+		wg.Add(1)
+		semaphore <- struct{}{} // Acquire slot
 
-		// Call Python AI (Modular)
-		// Path absolute to ensure it works regardless of CWD
-		pyScript := "C:/fhm/em/app/frontend/src/app/game/components/AI_logic/5_AI_Pembangunan/pusat_keputusan_pembangunan/brain/otak_pembangunan.py"
-		cmd := exec.Command("python", pyScript)
-		
-		stdout, err := cmd.StdoutPipe()
-		if err != nil { 
-			fmt.Printf("[AI ERROR] Failed to create stdout pipe: %v\n", err)
-			continue 
-		}
-		stdin, err := cmd.StdinPipe()
-		if err != nil { 
-			fmt.Printf("[AI ERROR] Failed to create stdin pipe: %v\n", err)
-			continue 
-		}
+		go func(nation string, nState *core.NPCNationState) {
+			defer wg.Done()
+			defer func() { <-semaphore }() // Release slot
 
-		if err := cmd.Start(); err != nil { 
-			fmt.Printf("[AI ERROR] Failed to start Python AI: %v (Path: %s)\n", err, pyScript)
-			continue 
-		}
-
-		stdin.Write(jsonPayload)
-		stdin.Close()
-
-		var result struct {
-			Decision    string `json:"decision"`
-			BuildingKey string `json:"building_key"`
-			Quantity    int    `json:"quantity"`
-			Reason      string `json:"reason"`
-			Cost        float64 `json:"cost"`
-			Error       string  `json:"error"`
-		}
-
-		if err := json.NewDecoder(stdout).Decode(&result); err == nil {
-			cmd.Wait()
-			if result.Decision == "EXECUTE" {
-				// 1. Update Server State
-				core.GlobalState.Mu.Lock()
-				if core.GlobalState.NPCBuildingLevels[nationName] == nil {
-					core.GlobalState.NPCBuildingLevels[nationName] = make(map[string]int)
-				}
-				core.GlobalState.NPCBuildingLevels[nationName][result.BuildingKey] += result.Quantity
-				state.Budget -= result.Cost
-				core.GlobalState.Mu.Unlock()
-
-				// 2. Broadcast News (if permitted)
-				if newsCount < newsLimit {
-					core.AddNewsItemLocked(
-						fmt.Sprintf("Kantor Berita %s", nationName),
-						fmt.Sprintf("AI Pembangunan: %s", nationName),
-						result.Reason, // Use the narrative from Python
-						"construction",
-						"medium",
-						dateStr,
-					)
-					newsCount++
-				}
+			// Prepare Payload for Python (local copy of options is safe)
+			payload := map[string]interface{}{
+				"negara":    nation,
+				"budget":    nState.Budget,
+				"income":    nState.DailyIncome,
+				"pop":       nState.Population,
+				"buildings": core.GlobalState.NPCBuildingLevels[nation],
+				"stocks":    make(map[string]int),
+				"options":   options,
 			}
-		} else {
-			cmd.Process.Kill()
-		}
+			jsonPayload, _ := json.Marshal(payload)
+
+			pyScript := "C:/fhm/em/app/frontend/src/app/game/components/AI_logic/5_AI_Pembangunan/pusat_keputusan_pembangunan/brain/otak_pembangunan.py"
+			cmd := exec.Command("python", pyScript)
+			
+			stdout, err := cmd.StdoutPipe()
+			if err != nil { return }
+			stdin, err := cmd.StdinPipe()
+			if err != nil { return }
+
+			if err := cmd.Start(); err != nil { return }
+
+			stdin.Write(jsonPayload)
+			stdin.Close()
+
+			var result struct {
+				Decision    string `json:"decision"`
+				BuildingKey string `json:"building_key"`
+				Quantity    int    `json:"quantity"`
+				Reason      string `json:"reason"`
+				Cost        float64 `json:"cost"`
+				Error       string  `json:"error"`
+			}
+
+			if err := json.NewDecoder(stdout).Decode(&result); err == nil {
+				cmd.Wait()
+				if result.Decision == "EXECUTE" {
+					// 1. Update Server State (Locked)
+					core.GlobalState.Mu.Lock()
+					if core.GlobalState.NPCBuildingLevels[nation] == nil {
+						core.GlobalState.NPCBuildingLevels[nation] = make(map[string]int)
+					}
+					core.GlobalState.NPCBuildingLevels[nation][result.BuildingKey] += result.Quantity
+					nState.Budget -= result.Cost
+					core.GlobalState.Mu.Unlock()
+
+					// 2. Broadcast News (Locked)
+					newsMu.Lock()
+					if newsCount < newsLimit {
+						core.AddNewsItemLocked(
+							fmt.Sprintf("Kantor Berita %s", nation),
+							fmt.Sprintf("AI Pembangunan: %s", nation),
+							result.Reason,
+							"construction",
+							"medium",
+							dateStr,
+						)
+						newsCount++
+					}
+					newsMu.Unlock()
+				}
+			} else {
+				cmd.Process.Kill()
+			}
+		}(nationName, state)
 	}
+
+	wg.Wait()
 }

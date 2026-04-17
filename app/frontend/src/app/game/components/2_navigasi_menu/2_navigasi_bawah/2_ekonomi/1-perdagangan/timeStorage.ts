@@ -44,14 +44,36 @@ class TimeStorage {
     this.listeners.forEach(l => l(this.gameDate, this.isPaused, this.speed));
   }
 
-  public setPaused(paused: boolean) {
+  public async setPaused(paused: boolean) {
     this.isPaused = paused;
     this.notify();
+
+    // Call Go Backend
+    try {
+      await fetch("http://localhost:8081/api/game/control", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: paused ? "pause" : "resume" })
+      });
+    } catch (e) {
+      console.error("Failed to sync pause state to server", e);
+    }
   }
 
-  public setSpeed(speed: number) {
+  public async setSpeed(speed: number) {
     this.speed = speed;
     this.notify();
+
+    // Call Go Backend
+    try {
+      await fetch("http://localhost:8081/api/game/control", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "setSpeed", speed: speed })
+      });
+    } catch (e) {
+      console.error("Failed to sync speed to server", e);
+    }
   }
 
   public setDate(date: Date) {

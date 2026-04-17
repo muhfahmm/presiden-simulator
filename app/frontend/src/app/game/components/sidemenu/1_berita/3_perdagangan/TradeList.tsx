@@ -19,7 +19,11 @@ export const TradeList = (props: TabProps) => {
       {...props} 
       categoryFilter={(item) => {
         const subjectLower = item.subject.toLowerCase();
-        return item.category === 'economy' || /(dagang|ekspor|impor|tarif|logistik|pasar)/.test(subjectLower);
+        if (item.category === 'trade') return true;
+        if (item.category === 'economy') {
+           return /(dagang|ekspor|impor|tarif|logistik|pasar|perdagangan|komoditas|harga)/.test(subjectLower);
+        }
+        return (item.category === 'global' && /(dagang|ekspor|impor|perdagangan)/.test(subjectLower));
       }} 
     />
   );
