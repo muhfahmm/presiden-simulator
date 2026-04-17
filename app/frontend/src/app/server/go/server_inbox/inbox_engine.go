@@ -4,33 +4,34 @@ import (
 	"fmt"
 	"time"
 	"emserver/core"
-	"emserver/server_inbox/1_keuangan"
-	// "emserver/server_inbox/2_perdagangan" — disabled, trade handled by AI Python
-	"emserver/server_inbox/3_kedutaan"
-	"emserver/server_inbox/4_pakta"
-	"emserver/server_inbox/5_aliansi"
+	finance "emserver/server_inbox/1_keuangan"
+	"emserver/server_inbox/2_perdagangan"
+	embassy "emserver/server_inbox/3_kedutaan"
+	pact "emserver/server_inbox/4_pakta"
+	alliance "emserver/server_inbox/5_aliansi"
 )
 
 // ProcessInboxDay coordinates weekly batch generation
 func ProcessInboxDay(date time.Time) {
 	dateStr := date.Format("02 Jan 2006")
+	day := core.GlobalState.DayCounter
 
-	// Weekly batch: Every 7 game days, generate notifications per category
-	if core.GlobalState.DayCounter > 0 && core.GlobalState.DayCounter%7 == 0 {
-		weekNum := core.GlobalState.DayCounter / 7
-		fmt.Printf("[INBOX] Week %d — Generating full diplomatic & economic batches\n", weekNum)
-		
+	// Weekly batch + Forced Day 1 & Day 8 for verification
+	isBatchDay := day > 0 && (day%7 == 0 || day == 1 || day == 8)
+
+	if isBatchDay {
+		fmt.Printf("[INBOX] Day %d — Generating trade & diplomatic batch (Inbox size before: %d)\n", day, len(core.GlobalState.Inbox))
+
 		finance.GenerateBatch(dateStr, 10)
-		// Trade notifications are handled by the AI Python engine (AiTradeService),
-		// not by the Go server. These fake batch generators are disabled.
-		// trade.GenerateAgreementBatch(dateStr, 5)
-		// trade.GenerateImportBatch(dateStr, 8)
-		// trade.GenerateExportBatch(dateStr, 10)
-		// trade.GenerateContractBatch(dateStr, 10)
-		// trade.GenerateRouteBatch(dateStr, 10)
+		trade.GenerateAgreementBatch(dateStr, 3)
+		trade.GenerateImportBatch(dateStr, 4)
+		trade.GenerateExportBatch(dateStr, 4)
+		trade.GenerateContractBatch(dateStr, 2)
 		embassy.GenerateBatch(dateStr, 10)
 		pact.GenerateBatch(dateStr, 10)
 		alliance.GenerateBatch(dateStr, 10)
+
+		fmt.Printf("[INBOX] Batch complete. New Inbox size: %d\n", len(core.GlobalState.Inbox))
 	}
 }
 

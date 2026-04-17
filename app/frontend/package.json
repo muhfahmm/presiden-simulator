@@ -8,7 +8,7 @@
     "dev:go": "cd src/app/server/go && go run main.go",
     "setup": "npm install && npm run dev",
     "build": "next build",
-    "build:workers": "g++ src/app/server/cpp/main.cpp -o src/app/server/cpp/worker.exe && rustc src/app/server/rust/main.rs -o src/app/server/rust/worker.exe",
+    "build:workers": "rustc src/app/server/rust/main.rs -o src/app/server/rust/worker.exe",
     "start": "next start",
     "lint": "eslint"
   },

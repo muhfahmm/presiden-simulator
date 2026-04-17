@@ -239,6 +239,13 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
       if (msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO') return true;
       if (!msg.isProposal && !msg.source.includes('(')) return true;
       
+      // ALWAYS allow agreement/partnership proposals from non-partners (critical for bootstrapping trade)
+      const subj = msg.subject.toLowerCase();
+      const isPartnership = subj.includes('kemitraan') || subj.includes('perjanjian') || (msg.proposalLabel && msg.proposalLabel.toLowerCase().includes('kemitraan'));
+      
+      // Also allow all trade proposals for now to ensure baseline offers are visible
+      if (msg.isProposal && (isPartnership || msg.category === 'trade')) return true;
+
       // Transaction offers with metadata always pass (from AI Python)
       if (msg.metadata) return true;
       
