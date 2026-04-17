@@ -105,7 +105,8 @@ export function useGamePath(path: string[]) {
     else if (subMenu === 'naikkan') initialMenu = "Action:NaikkanKepuasan";
     else initialMenu = "Kepuasan";
   } else if (category === 'berita_internasional') {
-    initialMenu = "Menu:Berita";
+    const filter = path[1] || "all";
+    initialMenu = `Menu:Berita:${filter}`;
   } else if (category === 'berita') {
     // Legacy redirect to new URL
     initialMenu = "Menu:Berita";
@@ -216,7 +217,14 @@ export function useGamePath(path: string[]) {
       "Geopolitik": "/game/geopolitik",
       "Kementerian": "/game/kementrian",
       "Dashboard:Kementerian": "/game/kementrian/kementrian-dashboard",
-      "Menu:Berita": "/game/berita_internasional",
+      "Menu:Berita": "/game/berita_internasional/all",
+      "Menu:Berita:all": "/game/berita_internasional/all",
+      "Menu:Berita:pembangunan": "/game/berita_internasional/pembangunan",
+      "Menu:Berita:keuangan": "/game/berita_internasional/keuangan",
+      "Menu:Berita:perdagangan": "/game/berita_internasional/perdagangan",
+      "Menu:Berita:kedutaan": "/game/berita_internasional/kedutaan",
+      "Menu:Berita:pakta": "/game/berita_internasional/pakta",
+      "Menu:Berita:aliansi": "/game/berita_internasional/aliansi",
       "Menu:Inbox": "/game/inbox/semua",
       "Menu:Inbox:all": "/game/inbox/semua",
       "Menu:Inbox:finance": "/game/inbox/keuangan",

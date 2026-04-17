@@ -16,6 +16,7 @@ import (
 	"emserver/core"
 	"emserver/server_hubungan"
 	"emserver/server_inbox"
+	"emserver/server_berita"
 )
 
 var (
@@ -420,15 +421,15 @@ func simulationEngine() {
 
 		// --- Process 206 NPC Nations (Server-Side) ---
 		processNPCDay(nextDate)
-		processNPCConstruction(nextDate)
+		server_berita.ProcessNewsDay(nextDate)
+
+		// Quarterly Polyglot Workers (Every 30 days)
+		if core.GlobalState.DayCounter%30 == 0 {
+			go invokePolyglotWorkers(nextDate.Format("02 Jan 2006"))
+		}
 
 		// --- Process Inbox & Events (Server-Side) ---
 		server_inbox.ProcessInboxDay(nextDate)
-
-		// --- Generate periodic news ---
-		if core.GlobalState.DayCounter%7 == 0 {
-			generateWeeklyNews(nextDate)
-		}
 
 		// --- Update Relationships DAILY ---
 		server_hubungan.UpdateDailyRelationsLocked()
@@ -664,124 +665,6 @@ func calculateNPCHappiness(nation string, s *core.NPCNationState) {
 	if s.Happiness > 100 { s.Happiness = 100 }
 	if s.Happiness < 20 { s.Happiness = 20 } 
 	s.Happiness = math.Round(s.Happiness*100) / 100
-}
-
-func processNPCConstruction(date time.Time) {
-	dateStr := date.Format("02 Jan 2006")
-	numBuilders := 2 + core.Rng.Intn(4) // 2 to 5 nations per day
-	if numBuilders > len(core.NpcNations) {
-		numBuilders = 3
-	}
-
-	// Shuffle and pick random nations
-	shuffled := make([]int, len(core.NpcNations))
-	for i := range shuffled {
-		shuffled[i] = i
-	}
-	core.Rng.Shuffle(len(shuffled), func(i, j int) {
-		shuffled[i], shuffled[j] = shuffled[j], shuffled[i]
-	})
-
-	// Skip construction news if no building data available
-	if len(core.BuildingTypes) == 0 {
-		return
-	}
-
-	constructionNewsToday := 0
-	maxConstructionPerDay := 3 // Cap to prevent news flood
-
-	for k := 0; k < numBuilders && constructionNewsToday < maxConstructionPerDay; k++ {
-		nationIdx := shuffled[k]
-		nation := core.NpcNations[nationIdx]
-		building := core.BuildingTypes[core.Rng.Intn(len(core.BuildingTypes))]
-
-		// Level Tracking & Transition Logic (Authoritative in GlobalState)
-		if core.GlobalState.NPCBuildingLevels[nation] == nil {
-			core.GlobalState.NPCBuildingLevels[nation] = make(map[string]int)
-		}
-		
-		levelKey := building.DataKey
-		currentLevel, exists := core.GlobalState.NPCBuildingLevels[nation][levelKey]
-		if !exists {
-			if nation == "Palau" && (levelKey == "helipad" || levelKey == "helikopter_polisi") {
-				currentLevel = 4
-			} else {
-				currentLevel = core.Rng.Intn(10)
-			}
-		}
-		
-		nextLevel := currentLevel + 1
-		core.GlobalState.NPCBuildingLevels[nation][building.Key] = nextLevel
-
-		transitionText := fmt.Sprintf("(%d ke %d)", currentLevel, nextLevel)
-
-		// Generate construction news with actual price from JSON database
-		subject := fmt.Sprintf("%s Inisiasi Proyek Konstruksi %s", nation, building.Name)
-		content := fmt.Sprintf(
-			"Pemerintah %s hari ini mengumumkan inisiasi proyek konstruksi %s %s di sektor %s. "+
-				"Proyek tersebut membutuhkan biaya investasi sebesar %s dengan estimasi waktu pengerjaan %d hari. "+
-				"Kebijakan ini diambil oleh otoritas %s sebagai langkah strategis untuk memperkuat "+
-				"kapasitas %s nasional di masa mendatang.",
-			nation, building.Name, transitionText, building.Sector,
-			formatCurrency(building.Biaya), building.Waktu,
-			nation, getSectorDesc(building.Sector),
-		)
-
-		core.AddNewsItemLocked(
-			fmt.Sprintf("Kementerian PU %s", nation),
-			subject,
-			content,
-			"construction",
-			"medium",
-			dateStr,
-		)
-		constructionNewsToday++
-	}
-
-	// --- Daily Economic/Diplomatic Events (lower frequency) ---
-	if core.GlobalState.DayCounter%3 == 0 {
-		ecoNation := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
-		ecoEvents := []struct{ subj, content string }{
-			{
-				fmt.Sprintf("%s Umumkan Pertumbuhan GDP Kuartal Ini", ecoNation),
-				fmt.Sprintf("Bank Sentral %s melaporkan pertumbuhan ekonomi sebesar %.1f%% pada kuartal ini, didorong oleh peningkatan ekspor dan investasi domestik.", ecoNation, 1.0+core.Rng.Float64()*5.0),
-			},
-			{
-				fmt.Sprintf("Reformasi Pajak Baru di %s", ecoNation),
-				fmt.Sprintf("Parlemen %s mengesahkan undang-undang reformasi pajak baru yang bertujuan meningkatkan pendapatan negara dan menarik investasi asing.", ecoNation),
-			},
-			{
-				fmt.Sprintf("%s Tingkatkan Anggaran Infrastruktur", ecoNation),
-				fmt.Sprintf("Pemerintah %s mengalokasikan tambahan anggaran untuk pembangunan infrastruktur di seluruh wilayah, menargetkan konektivitas yang lebih baik antar kota.", ecoNation),
-			},
-		}
-		ev := ecoEvents[core.Rng.Intn(len(ecoEvents))]
-		core.AddNewsItemLocked("Reuters Global", ev.subj, ev.content, "economy", "low", dateStr)
-	}
-
-	if core.GlobalState.DayCounter%5 == 0 {
-		n1 := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
-		n2 := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
-		for n2 == n1 {
-			n2 = core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
-		}
-		dipEvents := []struct{ subj, content string }{
-			{
-				fmt.Sprintf("%s dan %s Perkuat Hubungan Bilateral", n1, n2),
-				fmt.Sprintf("Menteri Luar Negeri %s dan %s bertemu untuk membahas penguatan kerjasama di bidang perdagangan, pendidikan, dan pertahanan.", n1, n2),
-			},
-			{
-				fmt.Sprintf("Perjanjian Dagang Baru Antara %s - %s", n1, n2),
-				fmt.Sprintf("%s dan %s menandatangani perjanjian perdagangan bilateral senilai miliaran dolar yang diharapkan meningkatkan volume ekspor kedua negara.", n1, n2),
-			},
-		}
-		ev := dipEvents[core.Rng.Intn(len(dipEvents))]
-		core.AddNewsItemLocked("Kantor Berita Internasional", ev.subj, ev.content, "diplomacy", "low", dateStr)
-	}
-
-	if core.GlobalState.DayCounter%30 == 0 {
-		go invokePolyglotWorkers(dateStr)
-	}
 }
 
 func getSectorDesc(sector string) string {

@@ -146,38 +146,24 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
           </button>
         </div>
 
-        {/* Filter Section */}
+        {/* Dashboard & Filter Section */}
         <div className="px-8 py-6 bg-zinc-900/20 border-b border-zinc-800/50 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2 bg-zinc-950/50 p-1 rounded-2xl border border-zinc-800">
-            {[
-              { id: 'all', label: 'semua' },
-              { id: 'finance', label: 'keuangan' },
-              { id: 'trade', label: 'perdagangan' },
-              { id: 'embassy', label: 'kedutaan' },
-              { id: 'pact', label: 'pakta' },
-              { id: 'alliance', label: 'aliansi' }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveMenu(`Menu:Inbox:${tab.id}`)}
-                className={`group flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${
-                  filter === tab.id 
-                    ? 'bg-zinc-800 text-white shadow-[0_0_20px_rgba(255,255,255,0.05)] border border-zinc-700/50' 
-                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/50'
-                }`}
-              >
-                <span>{tab.label}</span>
-                {unreadCounts[tab.id as keyof typeof unreadCounts] > 0 && (
-                  <span className={`px-2 py-0.5 rounded-full text-[9px] font-black italic tabular-nums animate-in zoom-in duration-500 ${
-                    filter === tab.id 
-                      ? 'bg-emerald-500 text-black shadow-[0_0_15px_rgba(16,185,129,0.5)]' 
-                      : 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
-                  }`}>
-                    {unreadCounts[tab.id as keyof typeof unreadCounts]}
-                  </span>
-                )}
-              </button>
-            ))}
+          <div className="flex gap-6">
+             <div className="flex items-center gap-3">
+                <div className="p-2 bg-purple-500/10 rounded-lg"><Mail size={16} className="text-purple-400" /></div>
+                <div>
+                    <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none text-nowrap">Total Pesan Masuk</p>
+                    <p className="text-xl font-black text-white mt-1">{messages.length} <span className="text-[10px] opacity-40 font-normal">UNIT</span></p>
+                </div>
+             </div>
+             <div className="h-10 w-[1px] bg-zinc-800 self-center"></div>
+             <div className="flex items-center gap-3">
+                <div className="p-2 bg-emerald-500/10 rounded-lg"><Search size={16} className="text-emerald-400" /></div>
+                <div>
+                    <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none text-nowrap">Filter Aktif</p>
+                    <p className="text-xl font-black text-emerald-500 mt-1 uppercase italic">{filter}</p>
+                </div>
+             </div>
           </div>
           
           <div className="relative group">
@@ -187,23 +173,78 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
               placeholder="CARI PESAN..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-zinc-950/50 border border-zinc-800 rounded-2xl pl-12 pr-6 py-2.5 text-[11px] font-bold text-white placeholder:text-zinc-700 focus:outline-none focus:border-zinc-700 w-64 transition-all"
+              className="bg-zinc-950/50 border border-zinc-800 rounded-2xl pl-12 pr-6 py-2.5 text-[11px] font-bold text-white placeholder:text-zinc-700 focus:outline-none focus:border-zinc-700 w-80 transition-all"
             />
           </div>
         </div>
 
-        {/* Content Section */}
-        <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20 text-left">
-          {renderActiveTab()}
+        {/* Main Content Area with Sidebar Layout */}
+        <div className="flex-1 flex overflow-hidden">
+          
+          {/* Sidebar Tabs (Left) */}
+          <div className="w-72 border-r border-zinc-800/30 bg-black/20 flex flex-col p-6 gap-3 overflow-y-auto no-scrollbar">
+            <p className="text-[10px] text-zinc-600 font-black uppercase tracking-[0.25em] mb-3 px-3">Kategori Pesan</p>
+            {[
+              { id: 'all', label: 'semua' },
+              { id: 'finance', label: 'keuangan' },
+              { id: 'trade', label: 'perdagangan' },
+              { id: 'embassy', label: 'kedutaan' },
+              { id: 'pact', label: 'pakta' },
+              { id: 'alliance', label: 'aliansi' }
+            ].map((tab) => {
+              const isActive = filter === tab.id;
+              const unread = unreadCounts[tab.id as keyof typeof unreadCounts];
+
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveMenu(`Menu:Inbox:${tab.id}`)}
+                  className={`group relative flex items-center justify-between px-6 py-4 rounded-full transition-all cursor-pointer border ${
+                    isActive 
+                      ? 'bg-zinc-800 text-white border-zinc-700 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] translate-x-1' 
+                      : 'text-zinc-500 border-transparent hover:bg-zinc-900/40 hover:text-zinc-300'
+                  }`}
+                >
+                  <span className="text-[11px] font-black uppercase tracking-[0.15em] italic relative z-10">{tab.label}</span>
+                  
+                  {/* Emerald Badge Style */}
+                  <div className={`flex items-center justify-center min-w-[32px] px-2 py-1 rounded-full transition-all duration-300 ${
+                    isActive 
+                    ? 'bg-emerald-500 text-zinc-900 shadow-[0_0_20px_rgba(16,185,129,0.4)]' 
+                    : unread > 0 ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' : 'opacity-0'
+                  }`}>
+                      <span className="text-[10px] font-black italic tabular-nums leading-none">
+                        {unread}
+                      </span>
+                  </div>
+
+                  {/* Active Background Glow */}
+                  {isActive && (
+                    <div className="absolute inset-0 bg-emerald-500/5 rounded-full blur-md -z-0"></div>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* List Content (Right) */}
+          <div className="flex-1 flex flex-col overflow-hidden bg-zinc-950/40">
+            <div className="flex-1 overflow-y-auto p-10 no-scrollbar">
+              <div className="max-w-4xl mx-auto">
+                {renderActiveTab()}
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Footer info */}
-        <div className="px-8 py-4 bg-zinc-900/30 border-t border-zinc-800/50 flex items-center justify-between text-[10px] text-zinc-600 font-bold uppercase tracking-[0.2em]">
+        <div className="px-8 py-4 bg-zinc-900/30 border-t border-zinc-800/50 flex items-center justify-center text-[10px] text-zinc-600 font-bold uppercase tracking-[0.3em] gap-8">
             <div className="flex items-center gap-4">
                 <span className="flex items-center gap-1.5"><div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div> Ekspor</span>
                 <span className="flex items-center gap-1.5"><div className="h-1.5 w-1.5 rounded-full bg-rose-500"></div> Impor</span>
             </div>
-            <span>© 2026 National Communication & Initiative Center</span>
+            <div className="h-3 w-[1px] bg-zinc-800"></div>
+            <span>National Communication Surveillance System © 2026</span>
         </div>
       </div>
     </div>
