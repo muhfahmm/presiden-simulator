@@ -20,7 +20,7 @@ const NEWS_WEEK_KEY = "em2_news_week_id";
 const NEWS_EFFECTS_KEY = "em4_news_effects_processed";
 const DAILY_LIMIT = 10;
 const WEEKLY_AI_LIMIT = 10; // User request: Max 10 AI news per week (excluding construction)
-const MAX_TOTAL_NEWS = 50; // Increased to accommodate construction + economy + diplomacy
+// News limits removed per user request to allow infinite history
 
 const dailyCounters: Record<string, Record<string, number>> = {};
 let weeklyCounters: Record<string, number> = {}; // weekId -> count
@@ -92,8 +92,7 @@ export const newsStorage = {
     });
 
     const merged = Array.from(uniqueMap.values())
-      .sort((a: any, b: any) => b.timestamp - a.timestamp)
-      .slice(0, MAX_TOTAL_NEWS);
+      .sort((a: any, b: any) => b.timestamp - a.timestamp);
 
     try {
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(merged));

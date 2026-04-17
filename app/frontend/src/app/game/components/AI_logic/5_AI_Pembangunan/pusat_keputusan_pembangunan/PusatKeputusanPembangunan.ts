@@ -175,7 +175,7 @@ export class PusatKeputusanPembangunan {
         cost_mans: getHousingCost("mansion")
       };
 
-      const response = await fetch('/game/components/AI_logic/5_AI_Pembangunan/routes/keputusan_cerdas', {
+      const response = await fetch('/game/components/AI_logic/5_AI_Pembangunan/pusat_keputusan_pembangunan/routes/keputusan_cerdas_modular', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(flatPayload)

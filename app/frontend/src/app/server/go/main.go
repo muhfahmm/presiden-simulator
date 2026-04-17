@@ -102,7 +102,9 @@ func parseTypeScriptBuildings(content []byte, defaultSector string) []core.Build
 	// and extract name, biaya, and waktu within that block.
 	
 	// Find all potential building blocks: "key": { ... } or key: { ... }
-	blockPattern := regexp.MustCompile(`(?s)(?:"?([\w_]+)"?):\s*\{([^}]*)\}`)
+	// Find all potential building blocks: "key": { ... } or key: { ... }
+	// Modified to be non-greedy to handle nested structures correctly
+	blockPattern := regexp.MustCompile(`(?s)(?:"?([\w_]+)"?):\s*\{(.+?)\}\s*,\s*[\r\n]`)
 	matches := blockPattern.FindAllStringSubmatch(contentStr, -1)
 	
 	for _, match := range matches {
@@ -259,7 +261,8 @@ func loadBuildingsFromTypeScript() error {
 func loadDefaultsFromPython() map[string]core.NPCNationState {
 	defaults := make(map[string]core.NPCNationState)
 	
-	cmd := exec.Command("python", "src/app/server/python/localstorage.py", "--reset")
+	pyScript := "C:/fhm/em/app/frontend/src/app/server/python/localstorage.py"
+	cmd := exec.Command("python", pyScript, "--reset")
 	out, err := cmd.Output()
 	if err != nil {
 		fmt.Printf("[GO] Warning: Failed to load defaults from Python: %v\n", err)
@@ -338,34 +341,33 @@ func InitializeNPCStatesLocked() {
 // ═══════════════════════════════════════════════════════════
 
 func main() {
-	// Load relationship database
+	// 1. Load Relationship Database
 	if err := server_hubungan.InitializeRelationships(); err != nil {
 		fmt.Printf("[GO] Warning: Could not initialize international relationships: %v\n", err)
 	}
 
-	// 1. Start the Global Ticker (Simulation Engine)
+	// 2. Load Building Database from TypeScript
+	if err := loadBuildingsFromTypeScript(); err != nil {
+		fmt.Printf("[GO] Warning: Could not load building database: %v\n", err)
+	}
+
+	// 3. Initialize NPC States (Crucial BEFORE Engine starts)
+	core.GlobalState.Mu.Lock()
+	InitializeNPCStatesLocked()
+	core.GlobalState.Mu.Unlock()
+
+	// 4. Start the Global Ticker (Simulation Engine)
 	go simulationEngine()
 
-	// 2. SSE Endpoint (The Single Stream)
+	// 5. Setup HTTP Handlers
 	http.HandleFunc("/api/game/sync", handleSSE)
-
-	// 3. Control Endpoints (Pause/Resume/Speed from UI)
 	http.HandleFunc("/api/game/control", handleControl)
-
-	// 4. Player Init Endpoint (Receives initial stats from UI)
 	http.HandleFunc("/api/game/init-player", handleInitPlayer)
-
-	// 5. Data Endpoints (Fallback REST)
 	http.HandleFunc("/api/berita", handleBerita)
 	http.HandleFunc("/api/inbox", handleInbox)
 	http.HandleFunc("/api/game/health", handleHealth)
 	http.HandleFunc("/api/game/reset", handleReset)
 	http.HandleFunc("/api/game/update-policy", handleUpdatePolicy)
-
-	// Initialize NPC States initially
-	core.GlobalState.Mu.Lock()
-	InitializeNPCStatesLocked()
-	core.GlobalState.Mu.Unlock()
 
 	fmt.Println("═══════════════════════════════════════════════")
 	fmt.Println("[GO] Server-Authoritative Simulation Engine v2")

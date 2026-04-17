@@ -147,9 +147,7 @@ func AddNewsItemLocked(source, subject, content, category, priority, timeStr str
 		Time:      timeStr,
 	}
 	GlobalState.News = append([]NewsItem{item}, GlobalState.News...)
-	if len(GlobalState.News) > 50 {
-		GlobalState.News = GlobalState.News[:50]
-	}
+	// News limit removed per user request
 }
 
 // AddInboxItem adds an inbox item with automatic locking. Use this for API handlers.
