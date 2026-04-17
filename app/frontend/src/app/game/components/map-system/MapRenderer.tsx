@@ -26,35 +26,31 @@ const MapRenderer = memo(function MapRenderer({
 
   return (
     <>
-      <div style={{ display: mapMode === "trade" ? "none" : "contents" }} className="h-full">
-        {mapMode === "default" && (
-          <div className="relative h-full">
-            <GameMapCanvas
-              userCountry={userCountry}
-              targetCountry={targetCountry}
-              mapMode={mapMode}
-              geoData={geoData}
-              onSelect={onSelect}
-            />
-          </div>
-        )}
-        {mapMode === "sda" && (
-          <MapSDA
-            userCountry={userCountry}
-            targetCountry={targetCountry}
-            geoData={geoData}
-            onSelect={onSelect}
-            onSelectSDA={onSelectSDA}
-          />
-        )}
-        {mapMode === "hubungan" && (
-          <MapHubungan
-            userCountry={userCountry}
-            targetCountry={targetCountry}
-            geoData={geoData}
-            onSelect={onSelect}
-          />
-        )}
+      <div style={{ display: mapMode === "default" ? "contents" : "none" }} className="h-full">
+        <GameMapCanvas
+          userCountry={userCountry}
+          targetCountry={targetCountry}
+          mapMode={mapMode}
+          geoData={geoData}
+          onSelect={onSelect}
+        />
+      </div>
+      <div style={{ display: mapMode === "sda" ? "contents" : "none" }} className="h-full">
+        <MapSDA
+          userCountry={userCountry}
+          targetCountry={targetCountry}
+          geoData={geoData}
+          onSelect={onSelect}
+          onSelectSDA={onSelectSDA}
+        />
+      </div>
+      <div style={{ display: mapMode === "hubungan" ? "contents" : "none" }} className="h-full">
+        <MapHubungan
+          userCountry={userCountry}
+          targetCountry={targetCountry}
+          geoData={geoData}
+          onSelect={onSelect}
+        />
       </div>
       <div style={{ display: mapMode === "trade" ? "contents" : "none" }} className="h-full">
         <TradeMapCanvas

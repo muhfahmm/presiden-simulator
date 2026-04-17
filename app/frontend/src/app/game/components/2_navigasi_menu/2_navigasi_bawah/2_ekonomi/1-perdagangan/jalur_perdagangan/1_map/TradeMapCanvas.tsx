@@ -9,6 +9,7 @@ import { tradeStorage } from "../../TradeStorage";
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index";
 import { calculateTradeRoute, getHubForCountry, Point } from "../2_rute/tradeRoutes";
 import { timeStorage } from "../../timeStorage";
+import { mapPathCache } from "@/app/game/components/map-system/utils/MapPathCache";
 
 interface TradeMapCanvasProps {
   userCountry: string;
@@ -149,22 +150,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
   }, [userCountry, sessionTrades]);
 
   const paths = useMemo(() => {
-    if (!geoData) return [];
-    needsCacheUpdate.current = true;
-    return geoData.features.map((feature: any) => {
-      const path = new Path2D();
-      const drawCoords = (coordinates: any) => {
-        coordinates.forEach((polyline: any) => {
-          polyline.forEach((coord: any, i: number) => {
-            const { x, y } = projectMap(coord[0], coord[1]);
-            if (i === 0) path.moveTo(x, y); else path.lineTo(x, y);
-          });
-        });
-      };
-      if (feature.geometry.type === "Polygon") drawCoords(feature.geometry.coordinates);
-      else if (feature.geometry.type === "MultiPolygon") feature.geometry.coordinates.forEach((p: any) => drawCoords(p));
-      return { name: feature.properties.name, path, id: feature.id };
-    });
+    return mapPathCache.getPaths(geoData, projectMap);
   }, [geoData, projectMap]);
 
   // --- 1. STATIC LAYER CACHE ---

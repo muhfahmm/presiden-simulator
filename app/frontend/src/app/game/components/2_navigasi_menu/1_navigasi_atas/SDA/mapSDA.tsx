@@ -1,8 +1,9 @@
 "use client"
-
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
+
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { Layers, Mountain, Gem, Waves, Flame, Battery, Droplets, Box, Cpu, Pickaxe, Radio } from "lucide-react";
+import { mapPathCache } from "@/app/game/components/map-system/utils/MapPathCache";
 
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index";
 
@@ -155,18 +156,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
   }, []);
 
   const paths = useMemo(() => {
-    if (!geoData) return [];
-    needsCacheUpdate.current = true;
-    return geoData.features.map((feature: any) => {
-      const path = new Path2D();
-      const drawCoords = (coords: any) => coords.forEach((poly: any) => poly.forEach((c: any, i: number) => {
-        const { x, y } = project(c[0], c[1]);
-        if (i === 0) path.moveTo(x, y); else path.lineTo(x, y);
-      }));
-      if (feature.geometry.type === "Polygon") drawCoords(feature.geometry.coordinates);
-      else if (feature.geometry.type === "MultiPolygon") feature.geometry.coordinates.forEach((p: any) => drawCoords(p));
-      return { name: feature.properties.name, path, id: feature.id };
-    });
+    return mapPathCache.getPaths(geoData, project);
   }, [geoData, project]);
 
   const drawStaticCache = useCallback(() => {

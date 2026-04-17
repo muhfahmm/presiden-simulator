@@ -5,6 +5,7 @@ import { countries as centersData } from "@/app/database/data/negara/benua/index
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
 import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
+import { mapPathCache } from "@/app/game/components/map-system/utils/MapPathCache";
 
 interface MapHubunganProps {
   userCountry: string;
@@ -159,18 +160,7 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
   }, []);
 
   const paths = useMemo(() => {
-    if (!geoData) return [];
-    needsCacheUpdate.current = true;
-    return geoData.features.map((feature: any) => {
-      const path = new Path2D();
-      const drawCoords = (coords: any) => coords.forEach((poly: any) => poly.forEach((c: any, i: number) => {
-        const { x, y } = project(c[0], c[1]);
-        if (i === 0) path.moveTo(x, y); else path.lineTo(x, y);
-      }));
-      if (feature.geometry.type === "Polygon") drawCoords(feature.geometry.coordinates);
-      else if (feature.geometry.type === "MultiPolygon") feature.geometry.coordinates.forEach((p: any) => drawCoords(p));
-      return { name: feature.properties.name, path, id: feature.id };
-    });
+    return mapPathCache.getPaths(geoData, project);
   }, [geoData, project]);
 
   const drawStaticCache = useCallback(() => {
