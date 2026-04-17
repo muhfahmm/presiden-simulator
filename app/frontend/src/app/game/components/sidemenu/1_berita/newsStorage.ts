@@ -78,19 +78,19 @@ export const newsStorage = {
       timestamp: sn.timestamp || Date.now(),
     }));
 
-    // Get current local news (non-server items only)
+    // Get ALL existing news (Server + Local)
     const current = newsStorage.getNews();
-    const localOnly = current.filter(cn => !cn.id.startsWith("sv-") && !cn.id.startsWith("INTEL-SV-"));
-
-    // Merge: server news first, then local news
-    const rawMerged = [...mapped, ...localOnly];
     
-    // Deduplicate the merged list to ensure NO duplicates ever reach storage
+    // Merge: incoming server items first, then current history
+    const rawMerged = [...mapped, ...current];
+    
+    // Deduplicate the merged list strictly by ID
     const uniqueMap = new Map();
     rawMerged.forEach(item => {
       if (item && item.id) uniqueMap.set(item.id, item);
     });
-
+    
+    // Sort: most recent first
     const merged = Array.from(uniqueMap.values())
       .sort((a: any, b: any) => b.timestamp - a.timestamp);
 
@@ -99,8 +99,8 @@ export const newsStorage = {
       // Trigger side-effects for AI construction
       newsStorage.processConstructionEffects(merged);
     } catch (e) {
-      // Quota exceeded — trim and retry
-      const trimmed = merged.slice(0, 10);
+      // Quota exceeded — only trim if absolutely necessary to prevent crash, but keep a large buffer
+      const trimmed = merged.slice(0, 1000); 
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
     }
     window.dispatchEvent(new Event("news_updated"));
@@ -255,8 +255,8 @@ export const newsStorage = {
       // Trigger side-effects for AI construction
       newsStorage.processConstructionEffects(updated);
     } catch (e) {
-      // Quota exceeded — clear old data and retry
-      const trimmed = updated.slice(0, 10);
+      // Quota exceeded — keep up to 1000 items
+      const trimmed = updated.slice(0, 1000);
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
     }
     window.dispatchEvent(new Event("news_updated"));
