@@ -27,23 +27,34 @@ func ProcessInboxDay(date time.Time) {
 	}
 
 	// 2. Weekly Batch for Trading & Diplomacy (Every 7 days)
-	isWeeklyBatchDay := day > 0 && (day%7 == 0 || day == 1 || day == 8)
+	// Simplified to trigger strictly on Day 1, 8, 15, 22, etc. exactly once a week.
+	isWeeklyBatchDay := day > 0 && day%7 == 1
 
 	if isWeeklyBatchDay {
 		fmt.Printf("[INBOX] Day %d — Generating trade & diplomatic batch (Inbox size before: %d)\n", day, len(core.GlobalState.Inbox))
 
-		// finance.GenerateBatch is moved to the monthly trigger above
-		
-		// 2a. Randomized Trade Sub-batches (Summing to roughly 5-15)
-		trade.GenerateAgreementBatch(dateStr, core.Rng.Intn(3)+1) // 1-3
-		trade.GenerateImportBatch(dateStr, core.Rng.Intn(4)+2)    // 2-5
-		trade.GenerateExportBatch(dateStr, core.Rng.Intn(4)+2)    // 2-5
-		trade.GenerateContractBatch(dateStr, core.Rng.Intn(2)+1)  // 1-2
+		// 2a. Randomized Trade Sub-batches (Summing to roughly 6-15)
+		tAg := core.Rng.Intn(3)+1
+		tIm := core.Rng.Intn(4)+2
+		tEx := core.Rng.Intn(4)+2
+		tCo := core.Rng.Intn(2)+1
+		tTotal := tAg + tIm + tEx + tCo
+		fmt.Printf("[INBOX] Trade Sub-batches: %d (Ag:%d, Im:%d, Ex:%d, Co:%d)\n", tTotal, tAg, tIm, tEx, tCo)
+
+		trade.GenerateAgreementBatch(dateStr, tAg) 
+		trade.GenerateImportBatch(dateStr, tIm)    
+		trade.GenerateExportBatch(dateStr, tEx)    
+		trade.GenerateContractBatch(dateStr, tCo)  
 
 		// 2b. Randomized Diplomatic Batches (5-15 each)
-		embassy.GenerateBatch(dateStr, core.Rng.Intn(11)+5)
-		pact.GenerateBatch(dateStr, core.Rng.Intn(11)+5)
-		alliance.GenerateBatch(dateStr, core.Rng.Intn(11)+5)
+		eCount := core.Rng.Intn(11) + 5
+		pCount := core.Rng.Intn(11) + 5
+		aCount := core.Rng.Intn(11) + 5
+		fmt.Printf("[INBOX] Diplomatic Batches - Embassy: %d, Pact: %d, Alliance: %d\n", eCount, pCount, aCount)
+
+		embassy.GenerateBatch(dateStr, eCount)
+		pact.GenerateBatch(dateStr, pCount)
+		alliance.GenerateBatch(dateStr, aCount)
 
 		fmt.Printf("[INBOX] Batch complete. New Inbox size: %d\n", len(core.GlobalState.Inbox))
 	}
