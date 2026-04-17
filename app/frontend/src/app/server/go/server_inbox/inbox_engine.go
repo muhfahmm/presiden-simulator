@@ -16,20 +16,34 @@ func ProcessInboxDay(date time.Time) {
 	dateStr := date.Format("02 Jan 2006")
 	day := core.GlobalState.DayCounter
 
-	// Weekly batch + Forced Day 1 & Day 8 for verification
-	isBatchDay := day > 0 && (day%7 == 0 || day == 1 || day == 8)
+	// 1. Monthly Finance Report (Every 1st of the month)
+	// We check if it's the 1st day of the month to generate comprehensive reports.
+	isMonthlyFinanceDay := date.Day() == 1 && day > 0
+	if isMonthlyFinanceDay {
+		// New: Randomized range 5-15 per user request
+		count := core.Rng.Intn(11) + 5
+		fmt.Printf("[INBOX] Day %d — Generating Monthly Finance Report (%d items)\n", day, count)
+		finance.GenerateBatch(dateStr, count)
+	}
 
-	if isBatchDay {
+	// 2. Weekly Batch for Trading & Diplomacy (Every 7 days)
+	isWeeklyBatchDay := day > 0 && (day%7 == 0 || day == 1 || day == 8)
+
+	if isWeeklyBatchDay {
 		fmt.Printf("[INBOX] Day %d — Generating trade & diplomatic batch (Inbox size before: %d)\n", day, len(core.GlobalState.Inbox))
 
-		finance.GenerateBatch(dateStr, 10)
-		trade.GenerateAgreementBatch(dateStr, 3)
-		trade.GenerateImportBatch(dateStr, 4)
-		trade.GenerateExportBatch(dateStr, 4)
-		trade.GenerateContractBatch(dateStr, 2)
-		embassy.GenerateBatch(dateStr, 10)
-		pact.GenerateBatch(dateStr, 10)
-		alliance.GenerateBatch(dateStr, 10)
+		// finance.GenerateBatch is moved to the monthly trigger above
+		
+		// 2a. Randomized Trade Sub-batches (Summing to roughly 5-15)
+		trade.GenerateAgreementBatch(dateStr, core.Rng.Intn(3)+1) // 1-3
+		trade.GenerateImportBatch(dateStr, core.Rng.Intn(4)+2)    // 2-5
+		trade.GenerateExportBatch(dateStr, core.Rng.Intn(4)+2)    // 2-5
+		trade.GenerateContractBatch(dateStr, core.Rng.Intn(2)+1)  // 1-2
+
+		// 2b. Randomized Diplomatic Batches (5-15 each)
+		embassy.GenerateBatch(dateStr, core.Rng.Intn(11)+5)
+		pact.GenerateBatch(dateStr, core.Rng.Intn(11)+5)
+		alliance.GenerateBatch(dateStr, core.Rng.Intn(11)+5)
 
 		fmt.Printf("[INBOX] Batch complete. New Inbox size: %d\n", len(core.GlobalState.Inbox))
 	}
@@ -85,6 +99,19 @@ func GetInitialInboxBatch(dateStr string) []core.InboxItem {
 			Timestamp:     time.Now().UnixMilli(),
 			Priority:      "high",
 			Category:      "alliance",
+			IsProposal:    false,
+			ProposalLabel: "SISTEM",
+			Read:          false,
+			Time:          dateStr,
+		},
+		{
+			ID:            "init-finance",
+			Sender:        "Kementerian Keuangan",
+			Subject:       "Sistem Pelaporan Keuangan Aktif",
+			Content:       "Pusat monitoring keuangan negara telah diaktifkan. Laporan performa ekonomi makro, kebijakan moneter, dan proyeksi fiskal akan dikirimkan secara komprehensif setiap awal bulan (Bulanan). Laporan pertama akan diterbitkan pada 1 Februari 2026.",
+			Timestamp:     time.Now().UnixMilli(),
+			Priority:      "high",
+			Category:      "finance",
 			IsProposal:    false,
 			ProposalLabel: "SISTEM",
 			Read:          false,
