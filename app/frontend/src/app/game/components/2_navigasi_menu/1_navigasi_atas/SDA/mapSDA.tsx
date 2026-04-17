@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { Layers, Mountain, Gem, Waves, Flame, Battery, Droplets, Box, Cpu, Pickaxe, Radio } from "lucide-react";
 
@@ -127,12 +127,33 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
   const mapWidth = 6000;
   const mapHeight = 2400;
 
-  const project = (lon: number, lat: number) => ({
+  // 1. Memoized projection
+  const project = useCallback((lon: number, lat: number) => ({
     x: ((lon + 180) / 360) * mapWidth,
     y: ((90 - lat) / 180) * mapHeight
-  });
+  }), [mapWidth, mapHeight]);
 
-  // Pre-compute Path2D objects (expensive, only on geoData change)
+  // 2. Pre-index relationship status (O(1) lookup map)
+  const relationsCache = useMemo(() => {
+    const cache = new Map<string, number>();
+    centersData.forEach(center => {
+      const score = getRelation(center.name_en, userCountry);
+      cache.set(center.name_id.toLowerCase(), score);
+      cache.set(center.name_en.toLowerCase(), score);
+      cache.set(center.name_id.toUpperCase(), score);
+    });
+    return cache;
+  }, [userCountry]);
+
+  // 3. Pre-compute path centers (O(1) lookups)
+  const centerPixels = useMemo(() => {
+    return centersData.map(c => ({
+      ...c,
+      px: ((c.lon + 180) / 360) * mapWidth,
+      py: ((90 - c.lat) / 180) * mapHeight
+    }));
+  }, []);
+
   const paths = useMemo(() => {
     if (!geoData) return [];
     needsCacheUpdate.current = true;
@@ -146,10 +167,9 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
       else if (feature.geometry.type === "MultiPolygon") feature.geometry.coordinates.forEach((p: any) => drawCoords(p));
       return { name: feature.properties.name, path, id: feature.id };
     });
-  }, [geoData]);
+  }, [geoData, project]);
 
-  // Offscreen cache for static world layer
-  const drawStaticCache = () => {
+  const drawStaticCache = useCallback(() => {
     if (!geoData || paths.length === 0) return;
     if (!staticCacheRef.current) {
       staticCacheRef.current = document.createElement("canvas");
@@ -159,7 +179,6 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
     const cacheCtx = staticCacheRef.current.getContext("2d", { alpha: false });
     if (!cacheCtx) return;
 
-    // Background
     const bgGradient = cacheCtx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
     bgGradient.addColorStop(0, "#121d31");
     bgGradient.addColorStop(1, "#070b13");
@@ -178,7 +197,6 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
       cacheCtx.stroke(item.path);
     });
 
-    // Maritime labels
     maritimeLabels.forEach(label => {
       const { x, y } = project(label.lon, label.lat);
       cacheCtx.font = `italic ${label.size}px 'Inter', sans-serif`;
@@ -189,7 +207,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
     });
 
     needsCacheUpdate.current = false;
-  };
+  }, [geoData, paths, userCountry, targetCountry, project]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -197,10 +215,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
     const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
-    // 1. Ensure cache
     if (needsCacheUpdate.current || !staticCacheRef.current) drawStaticCache();
-
-    // 2. Draw cached base
     ctx.drawImage(staticCacheRef.current!, 0, 0);
 
     // 3. Dynamic highlights (player + target only)
@@ -214,7 +229,8 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
         ctx.strokeStyle = "#4ade80";
         ctx.lineWidth = 3;
       } else {
-        const rel = getRelation(item.name, userCountry);
+        const countryKey = (geoJsonToIndo[item.name] || item.name).toLowerCase();
+        const rel = relationsCache.get(countryKey) || 50;
         if (rel >= 70) { ctx.fillStyle = "rgba(34, 197, 94, 0.4)"; ctx.strokeStyle = "#4ade80"; }
         else if (rel >= 41) { ctx.fillStyle = "rgba(234, 179, 8, 0.4)"; ctx.strokeStyle = "#fbbf24"; }
         else { ctx.fillStyle = "rgba(239, 68, 68, 0.4)"; ctx.strokeStyle = "#f87171"; }
@@ -229,8 +245,9 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
     ctx.textBaseline = "middle";
     const labelGrid: { x: number, y: number }[] = [];
 
-    centersData.forEach((center: any) => {
-      const { x, y } = project(center.lon, center.lat);
+    centerPixels.forEach((center: any) => {
+      const x = center.px;
+      const y = center.py;
       const isPlayer = center.name_en === userCountry;
       const isTarget = center.name_en === targetCountry;
 
@@ -239,7 +256,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
         ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fillStyle = "#22d3ee"; 
         ctx.shadowColor = "#22d3ee"; ctx.shadowBlur = 15;
       } else if (isTarget) {
-        const rel = getRelation(center.name_en, userCountry);
+        const rel = relationsCache.get(center.name_id.toLowerCase()) || 50;
         ctx.arc(x, y, 6, 0, Math.PI * 2);
         ctx.fillStyle = rel >= 70 ? "#22c55e" : rel >= 41 ? "#eab308" : "#ef4444";
         ctx.shadowColor = ctx.fillStyle as string; ctx.shadowBlur = 15;
@@ -261,10 +278,55 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
       }
     });
 
-  }, [geoData, paths, userCountry, targetCountry]);
+  }, [geoData, paths, userCountry, targetCountry, centerPixels, drawStaticCache, relationsCache]);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!active) return;
+    const canvas = canvasRef.current; if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
+    const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
+
+    // Use squared distance (fastest)
+    const hovering = centerPixels.some((c: any) => {
+      const dx = clickX - c.px;
+      const dy = clickY - c.py;
+      return (dx * dx + dy * dy) < 3600; // 60px radius
+    });
+
+    if (hovering !== isHovering) setIsHovering(hovering);
+  }, [active, centerPixels, isHovering, mapWidth, mapHeight]);
+
+  const handleClick = useCallback((e: React.MouseEvent) => {
+    if (!active) return;
+    const startPos = mouseDownPosRef.current;
+    if (startPos) {
+      const distSq = (e.clientX - startPos.x) ** 2 + (e.clientY - startPos.y) ** 2;
+      if (distSq > 225) return; // 15px threshold
+    }
+
+    const canvas = canvasRef.current; if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
+    const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
+
+    let closest: any = null;
+    let minDistSq = 10000; // 100px radius squared
+
+    centerPixels.forEach((c: any) => {
+      const dx = clickX - c.px;
+      const dy = clickY - c.py;
+      const distSq = dx * dx + dy * dy;
+      if (distSq < minDistSq) {
+        minDistSq = distSq;
+        closest = c;
+      }
+    });
+
+    if (closest) onSelect(closest.name_en);
+  }, [active, onSelect, centerPixels, mapWidth, mapHeight]);
 
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
-  const hoverCursor = "pointer";
 
   return (
     <div className="relative w-full h-full">
@@ -273,59 +335,12 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
         width={mapWidth}
         height={mapHeight}
         className="h-full w-auto max-w-none z-10"
-        style={{ cursor: isHovering ? hoverCursor : defaultCursor, pointerEvents: active ? "auto" : "none" }}
-        onMouseMove={(e) => {
-          if (!active) return;
-          const canvas = canvasRef.current;
-          if (!canvas) return;
-          const rect = canvas.getBoundingClientRect();
-          const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
-          const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-
-          let foundHover = false;
-          centersData.forEach((center: any) => {
-            const x = ((center.lon + 180) / 360) * mapWidth;
-            const y = ((90 - center.lat) / 180) * mapHeight;
-            const dist = Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2);
-            if (dist < 60) foundHover = true;
-          });
-
-          setIsHovering(foundHover);
-        }}
+        style={{ cursor: isHovering ? "pointer" : defaultCursor, pointerEvents: active ? "auto" : "none" }}
+        onMouseMove={handleMouseMove}
         onMouseDown={(e) => {
           mouseDownPosRef.current = { x: e.clientX, y: e.clientY };
         }}
-        onClick={(e) => {
-          if (!active) return;
-          const startPos = mouseDownPosRef.current;
-          if (startPos) {
-            const dist = Math.hypot(e.clientX - startPos.x, e.clientY - startPos.y);
-            if (dist > 15) return;
-          }
-
-          const canvas = canvasRef.current;
-          if (!canvas) return;
-          const rect = canvas.getBoundingClientRect();
-          const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
-          const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-
-          let closest: any = null;
-          let minDist = 100;
-
-          centersData.forEach((center: any) => {
-            const x = ((center.lon + 180) / 360) * mapWidth;
-            const y = ((90 - center.lat) / 180) * mapHeight;
-            const dist = Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2);
-            if (dist < minDist) {
-              minDist = dist;
-              closest = center;
-            }
-          });
-
-          if (closest) {
-            onSelect(closest.name_en);
-          }
-        }}
+        onClick={handleClick}
       />
 
       <div className="absolute inset-0 pointer-events-none z-20">

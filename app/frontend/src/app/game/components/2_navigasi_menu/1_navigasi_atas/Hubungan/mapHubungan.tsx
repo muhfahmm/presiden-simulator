@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
 import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
@@ -105,7 +105,39 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
 
   const mapWidth = 6000;
   const mapHeight = 2400;
-  const project = (lon: number, lat: number) => ({ x: ((lon + 180) / 360) * mapWidth, y: ((90 - lat) / 180) * mapHeight });
+
+  // 1. Memoized projection function
+  const project = useCallback((lon: number, lat: number) => ({ 
+    x: ((lon + 180) / 360) * mapWidth, 
+    y: ((90 - lat) / 180) * mapHeight 
+  }), [mapWidth, mapHeight]);
+
+  // 2. Pre-index relationship status (O(N) instead of O(N^2) inside render)
+  const relationsCache = useMemo(() => {
+    const cache = new Map<string, { hex: string; score: number }>();
+    const isUNSCMember = unSecurityCouncilStorage.getData()?.members?.some((m: any) =>
+      m.name.toLowerCase() === userCountry.toLowerCase()
+    );
+
+    centersData.forEach(center => {
+      const relScore = getRelation(center.name_en, userCountry);
+      const finalScore = relationStorage.calculateFinalScore(relScore, !!isUNSCMember);
+      const meta = relationStorage.getRelationMetadata(finalScore);
+      cache.set(center.name_id.toLowerCase(), { hex: meta.hex, score: finalScore });
+      cache.set(center.name_en.toLowerCase(), { hex: meta.hex, score: finalScore });
+      cache.set(center.name_id.toUpperCase(), { hex: meta.hex, score: finalScore });
+    });
+    return cache;
+  }, [userCountry, tick]);
+
+  // 3. Pre-compute path centers for interaction (O(1) lookups)
+  const centerPixels = useMemo(() => {
+    return centersData.map(c => ({
+      ...c,
+      px: ((c.lon + 180) / 360) * mapWidth,
+      py: ((90 - c.lat) / 180) * mapHeight
+    }));
+  }, []);
 
   useEffect(() => {
     const handleUpdate = () => {
@@ -114,7 +146,7 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
         needsCacheUpdate.current = true;
         setTick(t => t + 1);
         debounceTimerRef.current = null;
-      }, 200);
+      }, 250); // Increased debounce to 250ms
     };
     window.addEventListener("relation_storage_updated", handleUpdate);
     window.addEventListener("relation_status_updated", handleUpdate);
@@ -139,9 +171,9 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
       else if (feature.geometry.type === "MultiPolygon") feature.geometry.coordinates.forEach((p: any) => drawCoords(p));
       return { name: feature.properties.name, path, id: feature.id };
     });
-  }, [geoData]);
+  }, [geoData, project]);
 
-  const drawStaticCache = () => {
+  const drawStaticCache = useCallback(() => {
     if (!geoData || paths.length === 0) return;
     if (!staticCacheRef.current) {
       staticCacheRef.current = document.createElement("canvas");
@@ -156,10 +188,12 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
     cacheCtx.fillStyle = bgGradient; cacheCtx.fillRect(0, 0, mapWidth, mapHeight);
 
     paths.forEach((item: any) => {
-      const relation = getRelation(item.name, userCountry);
-      const meta = relationStorage.getRelationMetadata(relation);
+      // O(1) color lookup
+      const countryKey = (geoJsonToIndo[item.name] || item.name).toLowerCase();
+      const relData = relationsCache.get(countryKey) || { hex: "#475569" }; 
+      
       cacheCtx.lineWidth = 1;
-      cacheCtx.fillStyle = `${meta.hex}99`;
+      cacheCtx.fillStyle = `${relData.hex}99`;
       cacheCtx.strokeStyle = "rgba(255, 255, 255, 0.2)";
       cacheCtx.fill(item.path);
       cacheCtx.stroke(item.path);
@@ -173,7 +207,7 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
     });
 
     needsCacheUpdate.current = false;
-  };
+  }, [geoData, paths, userCountry, relationsCache, project]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -184,31 +218,74 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
     if (needsCacheUpdate.current || !staticCacheRef.current) drawStaticCache();
     ctx.drawImage(staticCacheRef.current!, 0, 0);
 
-    const sortedCenters = [...centersData].sort((a, b) => {
-      if (a.name_en === targetCountry || a.name_id === userCountry) return 1;
-      if (b.name_en === targetCountry || b.name_id === userCountry) return -1;
-      return 0;
-    });
-
-    sortedCenters.forEach((center: any) => {
-      const { x, y } = project(center.lon, center.lat);
+    // Draw only player & target dot highlights (High Performance)
+    centerPixels.forEach((center: any) => {
       const isPlayer = center.name_en === userCountry || center.name_id === userCountry;
       const isTarget = center.name_en === targetCountry || center.name_id === targetCountry;
+      if (!isPlayer && !isTarget) {
+         // Tiny static dot
+         ctx.beginPath();
+         const relData = relationsCache.get(center.name_id.toLowerCase());
+         ctx.arc(center.px, center.py, 4, 0, Math.PI * 2); 
+         ctx.fillStyle = relData?.hex || "#475569";
+         ctx.fill();
+         return;
+      }
 
       ctx.beginPath();
-      if (isPlayer) { ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fillStyle = "#22d3ee"; ctx.shadowColor = "#22d3ee"; ctx.shadowBlur = 15; }
-      else if (isTarget) {
-        ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fillStyle = "#f59e0b"; ctx.shadowColor = "#f59e0b"; ctx.shadowBlur = 15;
+      if (isPlayer) { 
+        ctx.arc(center.px, center.py, 6, 0, Math.PI * 2); 
+        ctx.fillStyle = "#22d3ee"; 
+        ctx.shadowColor = "#22d3ee"; 
+        ctx.shadowBlur = 15; 
       } else {
-        const relation = getRelation(center.name_en, userCountry);
-        const meta = relationStorage.getRelationMetadata(relation);
-        ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fillStyle = meta.hex;
-        ctx.shadowBlur = 0;
+        ctx.arc(center.px, center.py, 6, 0, Math.PI * 2); 
+        ctx.fillStyle = "#f59e0b"; 
+        ctx.shadowColor = "#f59e0b"; 
+        ctx.shadowBlur = 15;
       }
       ctx.fill(); ctx.shadowBlur = 0;
     });
 
-  }, [geoData, paths, userCountry, targetCountry, tick]);
+  }, [geoData, paths, userCountry, targetCountry, tick, centerPixels, drawStaticCache, relationsCache]);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (debounceTimerRef.current) return;
+    const canvas = canvasRef.current; if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
+    const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
+    
+    // Throttled hover detection with squared distance (no Math.sqrt)
+    const hovering = centerPixels.some((c: any) => {
+      const dx = clickX - c.px;
+      const dy = clickY - c.py;
+      return (dx * dx + dy * dy) < 3600; // 60px radius
+    });
+    
+    if (hovering !== isHovering) setIsHovering(hovering);
+  }, [centerPixels, isHovering, mapWidth, mapHeight]);
+
+  const handleClick = useCallback((e: React.MouseEvent) => {
+    if (!active) return;
+    if (mouseDownPosRef.current) {
+      if (Math.hypot(e.clientX - mouseDownPosRef.current.x, e.clientY - mouseDownPosRef.current.y) > 15) return;
+    }
+    const canvas = canvasRef.current; if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
+    const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
+    
+    let closest: any = null; let minDistSq = 10000; // 100px radius
+    centerPixels.forEach((c: any) => {
+      const dx = clickX - c.px;
+      const dy = clickY - c.py;
+      const distSq = dx * dx + dy * dy;
+      if (distSq < minDistSq) { minDistSq = distSq; closest = c; }
+    });
+
+    if (closest) onSelect(closest.name_en);
+  }, [active, onSelect, centerPixels, mapWidth, mapHeight]);
 
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
   return (
@@ -217,35 +294,9 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
         ref={canvasRef} width={mapWidth} height={mapHeight}
         className="h-full w-auto max-w-none z-10"
         style={{ cursor: isHovering ? "pointer" : defaultCursor, pointerEvents: active ? "auto" : "none" }}
-        onMouseMove={(e) => {
-          const canvas = canvasRef.current; if (!canvas) return;
-          const rect = canvas.getBoundingClientRect();
-          const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
-          const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-          setIsHovering(centersData.some((c: any) => {
-            const { x, y } = project(c.lon, c.lat);
-            return Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2) < 60;
-          }));
-        }}
+        onMouseMove={handleMouseMove}
         onMouseDown={(e) => mouseDownPosRef.current = { x: e.clientX, y: e.clientY }}
-        onClick={(e) => {
-          if (!active) return;
-          if (mouseDownPosRef.current) {
-            if (Math.hypot(e.clientX - mouseDownPosRef.current.x, e.clientY - mouseDownPosRef.current.y) > 15) return;
-          }
-          const canvas = canvasRef.current; if (!canvas) return;
-          const rect = canvas.getBoundingClientRect();
-          const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
-          const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-          let closest: any = null; let minDist = 100;
-          centersData.forEach((c: any) => {
-            const { x, y } = project(c.lon, c.lat);
-            const dist = Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2);
-            if (dist < minDist) { minDist = dist; closest = c; }
-          });
-
-          if (closest) onSelect(closest.name_en);
-        }}
+        onClick={handleClick}
       />
     </div>
   );

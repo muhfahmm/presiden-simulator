@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { PlaneDetailCard } from "../2_map/PlaneDetailCard";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { internationalHubs } from "../3_hub/hubs";
@@ -100,22 +100,57 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
   const [activeTransactions, setActiveTransactions] = useState<any[]>([]);
   const [tick, setTick] = useState(0);
 
-  // REDUCED TO 6000px (SAMA DENGAN MAIN MAP)
-  const mapWidth = 6000;
-  const mapHeight = 2400;
-
   const activeTxRef = useRef<any[]>([]);
   const gameStateRef = useRef(timeStorage.getState());
-  const requestRef = useRef<number>(null);
+  const requestRef = useRef<number | null>(null);
   const lastTimestampRef = useRef<number>(Date.now());
   const txAccumulatedTimeRef = useRef<Record<number, number>>({});
   const activeRoutesCacheRef = useRef<Record<number, { pts: Point[], pixels: { x: number, y: number }[] }>>({});
   const planePositionsRef = useRef<Record<number, { x: number, y: number, tx: any, progress: number }>>({});
+  const staticCacheRef = useRef<HTMLCanvasElement | null>(null);
+  const needsCacheUpdate = useRef(true);
 
-  const projectMap = (lon: number, lat: number) => ({ x: ((lon + 180) / 360) * mapWidth, y: ((90 - lat) / 180) * mapHeight });
+  const fullGeoToIndoMap = useMemo(() => {
+    const map: Record<string, string> = { ...geoJsonToIndo };
+    centersData.forEach(c => { if (c.name_en) map[c.name_en] = c.name_id; });
+    return map;
+  }, []);
+
+  // REDUCED TO 6000px (SAMA DENGAN MAIN MAP)
+  const mapWidth = 6000;
+  const mapHeight = 2400;
+
+  // 1. Memoized projection
+  const projectMap = useCallback((lon: number, lat: number) => ({ 
+    x: ((lon + 180) / 360) * mapWidth, 
+    y: ((90 - lat) / 180) * mapHeight 
+  }), []);
+
+  // 2. Pre-index centers and partners (O(1) lookups)
+  const centerPixels = useMemo(() => {
+    return centersData.map(c => ({
+      ...c,
+      px: ((c.lon + 180) / 360) * mapWidth,
+      py: ((90 - c.lat) / 180) * mapHeight
+    }));
+  }, []);
+
+  const tradePartners = useMemo(() => {
+    if (!userCountry) return new Set<string>();
+    const entry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+    const activeAgreements = sessionTrades.filter((t: any) => (t.type === 'Perdagangan' || t.jenis === 'Perdagangan') && t.status === 'Aktif');
+    const partners = activeAgreements.length > 0 ? activeAgreements : getInitialAgreements(entry?.name_en || "", entry?.name_id || "");
+    const partnerSet = new Set<string>();
+    partners.forEach((p: any) => {
+      const pName = (p.mitra || p.name || "").toLowerCase().trim();
+      partnerSet.add(pName);
+    });
+    return partnerSet;
+  }, [userCountry, sessionTrades]);
 
   const paths = useMemo(() => {
     if (!geoData) return [];
+    needsCacheUpdate.current = true;
     return geoData.features.map((feature: any) => {
       const path = new Path2D();
       const drawCoords = (coordinates: any) => {
@@ -130,29 +165,76 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       else if (feature.geometry.type === "MultiPolygon") feature.geometry.coordinates.forEach((p: any) => drawCoords(p));
       return { name: feature.properties.name, path, id: feature.id };
     });
-  }, [geoData]);
+  }, [geoData, projectMap]);
 
-  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  // --- 1. STATIC LAYER CACHE ---
+  const drawStaticCache = useCallback(() => {
+    if (!geoData || paths.length === 0) return;
+    if (!staticCacheRef.current) {
+      staticCacheRef.current = document.createElement("canvas");
+      staticCacheRef.current.width = mapWidth;
+      staticCacheRef.current.height = mapHeight;
+    }
+    const cacheCtx = staticCacheRef.current.getContext("2d", { alpha: false });
+    if (!cacheCtx) return;
+
+    const bgGradient = cacheCtx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
+    bgGradient.addColorStop(0, "#121d31"); 
+    bgGradient.addColorStop(1, "#070b13"); 
+    cacheCtx.fillStyle = bgGradient; 
+    cacheCtx.fillRect(0, 0, mapWidth, mapHeight);
+
+    paths.forEach((item: any) => {
+      const name = item.name;
+      const targetUser = { "United States": "United States of America" }[userCountry] || userCountry;
+      const targetHover = targetCountry ? ({ "United States": "United States of America" }[targetCountry] || targetCountry) : null;
+      const isPlayer = name === targetUser, isTarget = name === targetHover;
+      if (isPlayer || isTarget) return;
+
+      const normName = name.toLowerCase().trim();
+      const isPartner = tradePartners.has(normName) || tradePartners.has((fullGeoToIndoMap[name] || name).toLowerCase().trim());
+      
+      let stroke = "rgba(255, 255, 255, 0.08)";
+      let fill = getContinentColor(name, item.id);
+      
+      if (isPartner) { 
+        fill = "rgba(6, 182, 212, 0.4)"; 
+        stroke = "rgba(6, 182, 212, 0.3)"; 
+      }
+      
+      cacheCtx.fillStyle = fill; 
+      cacheCtx.strokeStyle = stroke; 
+      cacheCtx.fill(item.path); 
+      cacheCtx.stroke(item.path);
+    });
+
+    maritimeLabels.forEach(label => {
+      const { x, y } = projectMap(label.lon, label.lat);
+      cacheCtx.font = `italic ${label.size}px 'Inter', sans-serif`; cacheCtx.fillStyle = label.color;
+      cacheCtx.textAlign = "center"; cacheCtx.textBaseline = "middle";
+      cacheCtx.fillText(label.name, x, y);
+    });
+
+    internationalHubs.forEach(h => {
+      const { x, y } = projectMap(h.lon, h.lat);
+      cacheCtx.beginPath(); cacheCtx.arc(x, y, 4, 0, 7); cacheCtx.fillStyle = h.fill || "#ffffff"; cacheCtx.fill();
+    });
+
+    needsCacheUpdate.current = false;
+  }, [geoData, paths, userCountry, targetCountry, tradePartners, projectMap, fullGeoToIndoMap]);
 
   useEffect(() => {
     const update = () => {
-      if (debounceTimerRef.current) return;
-      debounceTimerRef.current = setTimeout(() => {
-        const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
-        if (userEntry) {
-          setSessionTrades(tradeStorage.getTrade(userEntry.name_en) || tradeStorage.getTrade(userEntry.name_id) || []);
-          setActiveTransactions(tradeStorage.getActiveTransactions());
-        }
-        setTick(t => t + 1);
-        debounceTimerRef.current = null;
-      }, 200);
+      const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+      if (userEntry) {
+        setSessionTrades(tradeStorage.getTrade(userEntry.name_en) || tradeStorage.getTrade(userEntry.name_id) || []);
+        setActiveTransactions(tradeStorage.getActiveTransactions());
+      }
+      setTick(t => t + 1);
     };
     update();
     window.addEventListener('trade_storage_updated', update);
-    return () => {
-      window.removeEventListener('trade_storage_updated', update);
-      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
-    };
+    return () => window.removeEventListener('trade_storage_updated', update);
   }, [userCountry]);
 
   useEffect(() => { activeTxRef.current = activeTransactions; }, [activeTransactions]);
@@ -164,97 +246,16 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
     return () => unsubscribe();
   }, []);
 
-  const tradePartners = useMemo(() => {
-    if (!userCountry) return new Set<string>();
-    const entry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
-    const activeAgreements = sessionTrades.filter((t: any) => (t.type === 'Perdagangan' || t.jenis === 'Perdagangan') && t.status === 'Aktif');
-    const partners = activeAgreements.length > 0 ? activeAgreements : getInitialAgreements(entry?.name_en || "", entry?.name_id || "");
-    return new Set(partners.map((p: any) => (p.mitra || p.name || "").toLowerCase().trim()));
-  }, [userCountry, sessionTrades]);
-
-  const fullGeoToIndoMap = useMemo(() => {
-    const map: Record<string, string> = { ...geoJsonToIndo };
-    centersData.forEach(c => { if (c.name_en) map[c.name_en] = c.name_id; });
-    return map;
-  }, []);
-
-  const staticCacheRef = useRef<HTMLCanvasElement | null>(null);
-  const needsCacheUpdate = useRef(true);
-
-  // --- 1. STATIC LAYER CACHE (Countries + Maritime) ---
-  const drawStaticCache = () => {
-    if (!geoData || paths.length === 0) return;
-    if (!staticCacheRef.current) {
-      staticCacheRef.current = document.createElement("canvas");
-      staticCacheRef.current.width = mapWidth;
-      staticCacheRef.current.height = mapHeight;
-    }
-    const cacheCtx = staticCacheRef.current.getContext("2d", { alpha: false });
-    if (!cacheCtx) return;
-
-    // Ocean - Sync with mainGameMap radial gradient
-    const bgGradient = cacheCtx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
-    bgGradient.addColorStop(0, "#121d31"); 
-    bgGradient.addColorStop(1, "#070b13"); 
-    cacheCtx.fillStyle = bgGradient; 
-    cacheCtx.fillRect(0, 0, mapWidth, mapHeight);
-
-    // Countries (non-highlighted)
-    cacheCtx.lineWidth = 1;
-    paths.forEach((item: any) => {
-      const name = item.name;
-      const targetUser = { "United States": "United States of America" }[userCountry] || userCountry;
-      const targetHover = targetCountry ? ({ "United States": "United States of America" }[targetCountry] || targetCountry) : null;
-      const isPlayer = name === targetUser, isTarget = name === targetHover;
-      if (isPlayer || isTarget) return; // Skip — draw these dynamically
-
-      const isPartner = tradePartners.has(name.toLowerCase().trim()) || tradePartners.has((fullGeoToIndoMap[name] || name).toLowerCase().trim());
-      
-      // Standardize stroke to match mainGameMap
-      let stroke = "rgba(255, 255, 255, 0.08)";
-      let fill = getContinentColor(name, item.id);
-      
-      if (isPartner) { 
-        fill = "rgba(6, 182, 212, 0.4)"; 
-        stroke = "rgba(6, 182, 212, 0.3)"; // Subtle blue stroke for partners
-      }
-      
-      cacheCtx.fillStyle = fill; 
-      cacheCtx.strokeStyle = stroke; 
-      cacheCtx.fill(item.path); 
-      cacheCtx.stroke(item.path);
-    });
-
-    // Maritime
-    maritimeLabels.forEach(label => {
-      const { x, y } = projectMap(label.lon, label.lat);
-      cacheCtx.font = `italic ${label.size}px 'Inter', sans-serif`; cacheCtx.fillStyle = label.color;
-      cacheCtx.textAlign = "center"; cacheCtx.textBaseline = "middle";
-      cacheCtx.fillText(label.name, x, y);
-    });
-
-    // Hubs
-    internationalHubs.forEach(h => {
-      const { x, y } = projectMap(h.lon, h.lat);
-      cacheCtx.beginPath(); cacheCtx.arc(x, y, 4, 0, 7); cacheCtx.fillStyle = h.fill || "#ffffff"; cacheCtx.fill();
-    });
-
-    needsCacheUpdate.current = false;
-  };
-
   useEffect(() => {
     const canvas = bgCanvasRef.current;
     if (!canvas || !geoData || paths.length === 0) return;
     const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
-    // 1. Ensure cache
     if (needsCacheUpdate.current || !staticCacheRef.current) drawStaticCache();
-
-    // 2. Draw cached base
     ctx.drawImage(staticCacheRef.current!, 0, 0);
 
-    // 3. Dynamic highlights (player + target countries)
+    // Dynamic highlights
     paths.forEach((item: any) => {
       const name = item.name;
       const targetUser = { "United States": "United States of America" }[userCountry] || userCountry;
@@ -263,25 +264,16 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       if (!isPlayer && !isTarget) return;
 
       if (isPlayer) {
-        ctx.fillStyle = "rgba(34, 197, 94, 0.4)";
-        ctx.strokeStyle = "#4ade80";
-        ctx.lineWidth = 5;
-        ctx.shadowColor = "#4ade80";
-        ctx.shadowBlur = 20;
+        ctx.fillStyle = "rgba(34, 197, 94, 0.4)"; ctx.strokeStyle = "#4ade80"; ctx.lineWidth = 5;
+        ctx.shadowColor = "#4ade80"; ctx.shadowBlur = 20;
       } else {
-        ctx.fillStyle = "rgba(251, 191, 36, 0.4)";
-        ctx.strokeStyle = "#fbbf24";
-        ctx.lineWidth = 5;
-        ctx.shadowColor = "#fbbf24";
-        ctx.shadowBlur = 20;
+        ctx.fillStyle = "rgba(251, 191, 36, 0.4)"; ctx.strokeStyle = "#fbbf24"; ctx.lineWidth = 5;
+        ctx.shadowColor = "#fbbf24"; ctx.shadowBlur = 20;
       }
-
-      ctx.fill(item.path); 
-      ctx.stroke(item.path);
-      ctx.shadowBlur = 0; // Reset for next draws
+      ctx.fill(item.path); ctx.stroke(item.path); ctx.shadowBlur = 0;
     });
 
-    // 4. Trade Routes (dynamic, changes with transactions)
+    // Trade Routes
     activeTransactions.forEach(tx => {
       if (!activeRoutesCacheRef.current[tx.id]) {
         const sHub = getHubForCountry(tx.source), dHub = getHubForCountry(tx.dest);
@@ -298,10 +290,9 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         ctx.globalAlpha = 0.4; ctx.stroke(); ctx.globalAlpha = 1.0;
       }
     });
+  }, [tick, geoData, userCountry, targetCountry, drawStaticCache, activeTransactions, projectMap, paths]);
 
-  }, [tick, geoData, userCountry, targetCountry]);
-
-  // --- 2. DYNAMIC LAYER (Ships Only) ---
+  // --- 2. DYNAMIC LAYER (Ships/PlanesAnimation) ---
   useEffect(() => {
     const animate = () => {
       const now = Date.now();
@@ -325,10 +316,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               const duration = 45000;
               const elapsed = txAccumulatedTimeRef.current[tx.id] || 0;
               const progress = Math.min(1, Math.max(0, elapsed / duration));
-              if (elapsed >= duration) {
-                delete txAccumulatedTimeRef.current[tx.id]; // Cleanup
-                return;
-              }
+              if (elapsed >= duration) { delete txAccumulatedTimeRef.current[tx.id]; return; }
               const totalSegs = pixels.length - 1;
               const curSeg = Math.min(totalSegs - 1, Math.floor(progress * totalSegs));
               const segProg = (progress * totalSegs) - curSeg;
@@ -337,38 +325,11 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
 
               ctx.save(); ctx.translate(curX, curY); ctx.rotate(angle); ctx.fillStyle = "#ffffff";
-              // Plane Body & Wings
-              ctx.beginPath();
-              ctx.moveTo(16, 0);           // Nose
-              ctx.lineTo(2, -3);           // Body upper
-              ctx.lineTo(0, -12);          // Wing Tip top
-              ctx.lineTo(-3, -12);         // Wing back top
-              ctx.lineTo(-2, -3);          // Body side mid top
-              ctx.lineTo(-10, -3);         // Tail connector top
-              ctx.lineTo(-13, -7);         // Tail tip top
-              ctx.lineTo(-14, -7);         // Tail back top
-              ctx.lineTo(-14, 7);          // Tail back bottom
-              ctx.lineTo(-13, 7);          // Tail tip bottom
-              ctx.lineTo(-10, 3);          // Tail connector bottom
-              ctx.lineTo(-2, 3);           // Body side mid bottom
-              ctx.lineTo(-3, 12);          // Wing back bottom
-              ctx.lineTo(0, 12);           // Wing tip bottom
-              ctx.lineTo(2, 3);            // Body lower
-              ctx.closePath();
-              ctx.fill();
-
-              // Cockpit / Nose detail (slightly different shade or highlight)
-              ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
-              ctx.beginPath();
-              ctx.moveTo(16, 0);
-              ctx.lineTo(8, -2);
-              ctx.lineTo(8, 2);
-              ctx.closePath();
-              ctx.fill();
-
+              ctx.beginPath(); ctx.moveTo(16, 0); ctx.lineTo(2, -3); ctx.lineTo(0, -12); ctx.lineTo(-3, -12);
+              ctx.lineTo(-2, -3); ctx.lineTo(-10, -3); ctx.lineTo(-13, -7); ctx.lineTo(-14, -7);
+              ctx.lineTo(-14, 7); ctx.lineTo(-13, 7); ctx.lineTo(-10, 3); ctx.lineTo(-2, 3);
+              ctx.lineTo(-3, 12); ctx.lineTo(0, 12); ctx.lineTo(2, 3); ctx.closePath(); ctx.fill();
               ctx.restore();
-
-              // Update plane positions for hit detection
               planePositionsRef.current[tx.id] = { x: curX, y: curY, tx, progress };
             }
           });
@@ -380,37 +341,36 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
     return () => { if (requestRef.current) cancelAnimationFrame(requestRef.current); };
   }, []);
 
-  const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
-
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!active || !fgCanvasRef.current) return;
     const rect = fgCanvasRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * mapWidth;
     const y = ((e.clientY - rect.top) / rect.height) * mapHeight;
 
-    // Check hit on planes (higher priority)
     let planeHit = false;
-    Object.values(planePositionsRef.current).forEach(p => {
-      const dist = Math.sqrt((p.x - x) ** 2 + (p.y - y) ** 2);
-      if (dist < 40) planeHit = true; // Use larger radius for airplanes
+    Object.values(planePositionsRef.current).forEach((p: any) => {
+      const dx = p.x - x;
+      const dy = p.y - y;
+      if ((dx * dx + dy * dy) < 1600) planeHit = true; // 40px radius squared
     });
 
-    setIsHoveringPlane(planeHit);
-  };
+    if (planeHit !== isHoveringPlane) setIsHoveringPlane(planeHit);
+  }, [active, isHoveringPlane, mapWidth, mapHeight]);
 
-  const handleCanvasClick = (e: React.MouseEvent) => {
+  const handleCanvasClick = useCallback((e: React.MouseEvent) => {
     if (!active || !fgCanvasRef.current) return;
     const rect = fgCanvasRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * mapWidth;
     const y = ((e.clientY - rect.top) / rect.height) * mapHeight;
 
-    // 1. Check hit on planes
     let clickedPlane: any = null;
-    let minDist = 50;
-    Object.values(planePositionsRef.current).forEach(p => {
-      const d = Math.sqrt((p.x - x) ** 2 + (p.y - y) ** 2);
-      if (d < minDist) {
-        minDist = d;
+    let minDistSq = 2500; // 50px radius squared
+    Object.values(planePositionsRef.current).forEach((p: any) => {
+      const dx = p.x - x;
+      const dy = p.y - y;
+      const dSq = dx * dx + dy * dy;
+      if (dSq < minDistSq) {
+        minDistSq = dSq;
         clickedPlane = p.tx;
       }
     });
@@ -420,9 +380,10 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       return;
     }
 
-    // 2. Click outside to close (Optional: Country clicks disabled as requested)
     setSelectedPlane(null);
-  };
+  }, [active, mapWidth, mapHeight]);
+
+  const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
 
   return (
     <div className="relative h-full w-full overflow-hidden">
