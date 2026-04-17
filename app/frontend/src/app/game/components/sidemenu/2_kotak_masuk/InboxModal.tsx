@@ -83,6 +83,33 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
       .map((a: any) => a.mitra.toLowerCase());
   }, [isOpen]);
 
+  // Hitung jumlah unread per kategori untuk ditampilkan di badge tab
+  const unreadCounts = React.useMemo(() => {
+    const counts: Record<string, number> = {
+      all: 0, finance: 0, trade: 0, embassy: 0, pact: 0, alliance: 0
+    };
+
+    messages.forEach(msg => {
+      if (msg.read) return;
+
+      counts.all++;
+
+      if (msg.category === 'finance') counts.finance++;
+      else if (msg.category === 'trade') counts.trade++;
+      else if (msg.category === 'embassy') counts.embassy++;
+      else if (msg.category === 'pact') counts.pact++;
+      else if (msg.category === 'alliance') counts.alliance++;
+      else if (msg.category === 'defense') {
+        const subj = msg.subject.toLowerCase();
+        if (subj.includes('pakta')) counts.pact++;
+        else if (subj.includes('aliansi')) counts.alliance++;
+      }
+      else if (msg.category === 'diplomacy') counts.embassy++;
+    });
+
+    return counts;
+  }, [messages]);
+
   if (!isOpen) return null;
 
   const handleAction = (msg: InboxItem, action: 'accept' | 'decline') => {
@@ -349,11 +376,22 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
               <button
                 key={tab.id}
                 onClick={() => setActiveMenu(`Menu:Inbox:${tab.id}`)}
-                className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all cursor-pointer ${
-                  filter === tab.id ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'
+                className={`group flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${
+                  filter === tab.id 
+                    ? 'bg-zinc-800 text-white shadow-[0_0_20px_rgba(255,255,255,0.05)] border border-zinc-700/50' 
+                    : 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/50'
                 }`}
               >
-                {tab.label}
+                <span>{tab.label}</span>
+                {unreadCounts[tab.id as keyof typeof unreadCounts] > 0 && (
+                  <span className={`px-2 py-0.5 rounded-full text-[9px] font-black italic tabular-nums animate-in zoom-in duration-500 ${
+                    filter === tab.id 
+                      ? 'bg-emerald-500 text-black shadow-[0_0_15px_rgba(16,185,129,0.5)]' 
+                      : 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
+                  }`}>
+                    {unreadCounts[tab.id as keyof typeof unreadCounts]}
+                  </span>
+                )}
               </button>
             ))}
           </div>
