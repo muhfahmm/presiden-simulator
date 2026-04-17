@@ -70,16 +70,17 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
       const subj = item.subject.toLowerCase();
       if (item.category === 'construction') counts.pembangunan++;
       else if (item.category === 'economy') {
-        if (/(dana|hibah|anggaran|pajak|ekonomi|utang|hutang)/.test(subj)) counts.keuangan++;
-        if (/(dagang|ekspor|impor|tarif|logistik|pasar)/.test(subj)) counts.perdagangan++;
+        if (/(dana|hibah|anggaran|pajak|ekonomi|utang|hutang|keuangan|moneter)/.test(subj)) counts.keuangan++;
+        if (/(dagang|ekspor|impor|tarif|logistik|pasar|perdagangan)/.test(subj)) counts.perdagangan++;
       }
       else if (item.category === 'diplomacy') {
         if (/(pakta|perjanjian|mou|kesepakatan|traktat)/.test(subj)) counts.pakta++;
         else if (/(aliansi|sekutu|koalisi|blok|pertahanan)/.test(subj)) counts.aliansi++;
+        else if (/(kedutaan|bilateral|diplomatik|pertemuan)/.test(subj)) counts.kedutaan++;
         else counts.kedutaan++;
       }
       else if (item.category === 'global') {
-        if (/(dana|hibah|anggaran|pajak|ekonomi|utang|hutang)/.test(subj)) counts.keuangan++;
+        if (/(dana|hibah|anggaran|pajak|ekonomi|utang|hutang|keuangan)/.test(subj)) counts.keuangan++;
       }
     });
 

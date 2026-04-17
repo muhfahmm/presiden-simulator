@@ -3,9 +3,12 @@ package server_berita
 import (
 	"time"
 	"emserver/core"
-	construction "emserver/server_berita/1_pembangunan"
-	economy "emserver/server_berita/2_ekonomi"
-	diplomacy "emserver/server_berita/3_diplomasi"
+	aliansi "emserver/server_berita/6_aliansi"
+	kedutaan "emserver/server_berita/4_kedutaan"
+	keuangan "emserver/server_berita/2_keuangan"
+	pakta "emserver/server_berita/5_pakta"
+	pembangunan "emserver/server_berita/1_pembangunan"
+	perdagangan "emserver/server_berita/3_perdagangan"
 )
 
 // ProcessNewsDay coordinates daily international news generation
@@ -13,22 +16,30 @@ func ProcessNewsDay(date time.Time) {
 	dateStr := date.Format("02 Jan 2006")
 	day := core.GlobalState.DayCounter
 
-	// 1. Diplomatic News (Triggered every 5 days or on major relation changes)
-	if day%5 == 0 {
-		diplomacy.GenerateBatch(dateStr)
-	}
+	// 1. Pembangunan (Daily progress)
+	pembangunan.ProcessDaily(dateStr)
 
-	// 2. Construction News (Randomly based on NPC progress)
-	// We'll let the individual sub-package handle the probability logic
-	construction.ProcessDaily(dateStr)
-
-	// 3. Economy News (Monthly reports and major fluctuations)
+	// 2. Keuangan & Perdagangan
 	if day%30 == 0 {
-		economy.GenerateMonthlyReport(dateStr)
+		keuangan.GenerateMonthlyReport(dateStr)
 	}
 	
 	// Random economic flash news
 	if core.Rng.Intn(100) < 5 { // 5% daily chance
-		economy.GenerateFlashNews(dateStr)
+		keuangan.GenerateFlashNews(dateStr)
+		perdagangan.GenerateFlashNews(dateStr)
+	}
+
+	// 3. Kedutaan, Pakta, Aliansi (Diplomacy)
+	if day%5 == 0 {
+		roll := core.Rng.Intn(3)
+		switch roll {
+		case 0:
+			kedutaan.GenerateBilateralNews(dateStr)
+		case 1:
+			pakta.GeneratePactNews(dateStr)
+		case 2:
+			aliansi.GenerateAllianceNews(dateStr)
+		}
 	}
 }
