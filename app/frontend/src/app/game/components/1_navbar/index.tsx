@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Heart, Users, Coins, Shield, LogOut, TrendingUp, TrendingDown, Clock, Activity, Zap, PieChart, BarChart3, Landmark, Percent, Receipt } from "lucide-react";
+import { Heart, Users, Coins, Shield, LogOut, RotateCcw, TrendingUp, TrendingDown, Clock, Activity, Zap, PieChart, BarChart3, Landmark, Percent, Receipt } from "lucide-react";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { HappinessBreakdown } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan";
 import { gameStorage } from "@/app/game/gamestorage";
@@ -119,20 +119,71 @@ export default function GameNavbar({
                     console.log("[RESET] STARTING COMPLETE RESET SEQUENCE");
                     console.log("═══════════════════════════════════════");
                     
-                    // The backend reset and aggressive wipe is now entirely handled by gameStorage
-                    console.log("[RESET] Awaiting nuclear localStorage wipe and server reset...");
-                    await gameStorage.resetCurrentSessionToDefaults();
-                    console.log("[RESET] ✓ WIPE COMPLETE");
+                    // STEP 1: Reset Go Server
+                    console.log("[RESET] STEP 1: Resetting Go Server state");
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+                    
+                    try {
+                      const resetResponse = await fetch("http://localhost:8081/api/game/reset", { 
+                        method: "POST",
+                        signal: controller.signal 
+                      });
+                      
+                      clearTimeout(timeoutId);
+                      
+                      if (resetResponse.ok) {
+                        console.log("[RESET] ✓ STEP 1 COMPLETE: Go Server reset successful");
+                      } else {
+                        console.warn(`[RESET] ⚠ Go Server returned status: ${resetResponse.status}`);
+                      }
+                    } catch (fetchErr: any) {
+                      clearTimeout(timeoutId);
+                      if (fetchErr.name === 'AbortError') {
+                        console.warn("[RESET] ⚠ Go Server reset timeout (>10s)");
+                      } else {
+                        console.warn("[RESET] ⚠ Go Server reset failed:", fetchErr.message);
+                      }
+                    }
 
-                    // Small pause to ensure IO catches up
-                    await new Promise(resolve => setTimeout(resolve, 100));
+                    // STEP 2: Wait for server to process
+                    console.log("[RESET] STEP 2: Waiting 1 second for server to process reset");
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    console.log("[RESET] ✓ STEP 2 COMPLETE");
+                    
+                    // STEP 3: Reset localStorage with aggressive wipe
+                    console.log("[RESET] STEP 3: Performing nuclear localStorage wipe");
+                    gameStorage.resetCurrentSessionToDefaults();
+                    console.log("[RESET] ✓ STEP 3 COMPLETE");
+
+                    // STEP 4: Wait for localStorage writes to fully persist
+                    console.log("[RESET] STEP 4: Waiting 500ms for localStorage writes to persist");
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    console.log("[RESET] ✓ STEP 4 COMPLETE");
+                    
+                    // STEP 5: Final verification
+                    console.log("[RESET] STEP 5: Final verification before reload");
+                    const finalPopulation = localStorage.getItem("em4_population_data");
+                    const finalBudget = localStorage.getItem("em4_budget_data");
+                    
+                    if (finalPopulation && finalBudget) {
+                      try {
+                        const popData = JSON.parse(finalPopulation);
+                        const budgetData = JSON.parse(finalBudget);
+                        console.log(`[RESET] ✓ Final state: Pop=${popData.population}, Budget=${budgetData.anggaran}`);
+                      } catch (e) {
+                        console.error("[RESET] ✗ Could not parse final state:", e);
+                      }
+                    } else {
+                      console.error("[RESET] ✗ CRITICAL: Final storage not found!");
+                    }
                     
                     console.log("═══════════════════════════════════════");
                     console.log("[RESET] RESET SEQUENCE COMPLETE");
                     console.log("[RESET] Performing hard page refresh with cache bust...");
                     console.log("═══════════════════════════════════════");
                     
-                    // Hard reload with cache bust parameter
+                    // Hard reload with cache bust parameter to prevent browser caching issues
                     const cacheUuid = Date.now() + "_" + Math.random().toString(36).substring(2, 9);
                     window.location.href = window.location.origin + "/game?cb=" + cacheUuid;
                   } catch (e) {
@@ -142,10 +193,10 @@ export default function GameNavbar({
                 })();
               }
             }}
-            className="ml-4 px-3 py-1.5 rounded-lg bg-zinc-800/50 hover:bg-cyan-500/20 text-zinc-400 hover:text-cyan-400 transition-all border border-zinc-700/50 group"
+            className="ml-4 p-2 rounded-lg bg-zinc-800/50 hover:bg-cyan-500/20 text-zinc-400 hover:text-cyan-400 transition-all border border-zinc-700/50 group"
             title="Reset Total Game"
           >
-            <span className="text-[10px] font-black uppercase tracking-widest italic">Restart</span>
+            <RotateCcw className="h-4 w-4 transition-transform group-hover:rotate-180 duration-500" />
           </button>
 
           <button

@@ -54,8 +54,12 @@ class TimeStorage {
   }
 
   public async setPaused(paused: boolean) {
+    // Debounce: prevent multiple rapid clicks
+    const now = Date.now();
+    if (now - this.lastManualActionTime < 100) return;
+
     this.isPaused = paused;
-    this.lastManualActionTime = Date.now();
+    this.lastManualActionTime = now;
     this.notify();
 
     // Call Go Backend

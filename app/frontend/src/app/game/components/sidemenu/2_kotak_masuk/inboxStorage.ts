@@ -9,17 +9,11 @@ export interface InboxItem {
   priority: 'low' | 'medium' | 'high';
   category?: 'finance' | 'trade' | 'pact' | 'alliance' | 'embassy' | 'intelligence' | 'general' | 'defense' | 'diplomacy';
   isProposal?: boolean;
-  proposalLabel?: string;
   timestamp: number;
   content?: string;
-  metadata?: {
-    type: string;
-    id: string;
-    country?: string;
-  };
 }
 
-const MAX_INBOX_MESSAGES = 200;
+const MAX_INBOX_MESSAGES = 50;
 
 export const inboxStorage = {
   clear: () => {
@@ -34,36 +28,7 @@ export const inboxStorage = {
     if (typeof window === 'undefined') return [];
     try {
       const data = localStorage.getItem(key);
-      if (!data) return [];
-      const parsed = JSON.parse(data);
-      if (!Array.isArray(parsed)) return [];
-
-      // SELF-HEALING: Filter out stale/legacy trade messages that don't match the new simple format
-      // This solves the user's frustration by removing "trash" messages automatically.
-      const legacyKeywords = [
-        'framework agreement', 'koridor ekonomi', 'pelabuhan bebas', 'jalur dagang baru', 
-        'perjanjian pembelian terjadwal', 'pra-order batu bara', 'mou perdagangan',
-        'lelang komoditas', 'inisiasi hubungan dagang', 'misi dagang resmi', 'digitalisasi rantai pasok'
-      ];
-
-      const filtered = parsed.filter((item: InboxItem) => {
-        if (!item || !item.subject) return false;
-        if (item.category === 'trade' || item.category === 'diplomacy') {
-          const lowerSubj = item.subject.toLowerCase();
-          // If it contains legacy complex keywords, drop it
-          if (legacyKeywords.some(kw => lowerSubj.includes(kw))) return false;
-        }
-        return true;
-      });
-
-      // Deduplicate by ID to prevent UI crashes
-      const uniqueMap = new Map();
-      filtered.forEach((item: InboxItem) => {
-        if (item && item.id) uniqueMap.set(item.id, item);
-      });
-
-      return Array.from(uniqueMap.values())
-        .sort((a, b) => b.timestamp - a.timestamp);
+      return data ? JSON.parse(data) : [];
     } catch {
       return [];
     }
@@ -157,10 +122,10 @@ export const inboxStorage = {
 
   /**
    * Weekly Quota check for AI Inbox.
-   * Limit: 15 per week per specific category.
+   * Limit: 2 per week per specific category.
    */
   canAddWeekly: (category: string, gameDate: Date): boolean => {
-    const WEEKLY_LIMIT = 15;
+    const WEEKLY_LIMIT = 2;
     const weekId = `IW${Math.floor(gameDate.getTime() / (7 * 24 * 60 * 60 * 1000))}`;
     
     // Use an internal memory counter (resets on reload, which is fine for UI fluff)
@@ -176,52 +141,5 @@ export const inboxStorage = {
       return true;
     }
     return false;
-  },
-
-  syncFromServer: (serverInbox: any[]) => {
-    if (typeof window === "undefined" || !Array.isArray(serverInbox)) return;
-
-    // Map server items to our format
-    const mapped: InboxItem[] = serverInbox.map((si: any) => ({
-      id: si.id || `isv-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
-      sender: si.sender || "System",
-      source: si.sender || "System", // Compatibility
-      subject: si.subject || "",
-      content: si.content || "",
-      time: si.time || new Date(si.timestamp).toLocaleDateString("id-ID"),
-      read: si.read || false,
-      priority: si.priority || "low",
-      category: si.category || "general",
-      isProposal: si.isProposal || false,
-      proposalLabel: si.proposalLabel || "",
-      timestamp: si.timestamp || Date.now(),
-    }));
-
-    // Get current local inbox (non-server items only)
-    const current = inboxStorage.getMessages();
-    const localOnly = current.filter(ci => !ci.id.startsWith("sv-") && !ci.id.startsWith("INTEL-SV-") && !ci.id.startsWith("isv-"));
-
-    // Merge: server first, then local
-    const rawMerged = [...mapped, ...localOnly];
-    
-    // Aggressive deduplication
-    const uniqueMap = new Map();
-    rawMerged.forEach(item => {
-      if (item && item.id) uniqueMap.set(item.id, item);
-    });
-
-    const merged = Array.from(uniqueMap.values())
-      .sort((a: any, b: any) => b.timestamp - a.timestamp)
-      .slice(0, MAX_INBOX_MESSAGES);
-
-    localStorage.setItem("em4_inbox_data", JSON.stringify(merged));
-    window.dispatchEvent(new Event("inbox_updated"));
   }
 };
-
-// Listen for server sync events (dispatched from newsStorage SSE)
-if (typeof window !== "undefined") {
-  window.addEventListener("inbox_sync_from_server", (e: any) => {
-    if (e.detail) inboxStorage.syncFromServer(e.detail);
-  });
-}

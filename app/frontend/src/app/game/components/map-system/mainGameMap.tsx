@@ -110,11 +110,13 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [tick, setTick] = useState(0);
+  const [visualDelta, setVisualDelta] = useState<Record<string, number>>({});
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
   const staticCacheRef = useRef<HTMLCanvasElement | null>(null);
   const needsCacheUpdate = useRef(true);
-  const lastHoverRef = useRef(false); // Prevent redundant setIsHovering calls
+  const lastHoverRef = useRef(false);
+  const workerRef = useRef<Worker | null>(null);
 
   const mapWidth = 6000;
   const mapHeight = 2400;
@@ -124,7 +126,37 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
     y: ((90 - lat) / 180) * mapHeight 
   }), []);
 
-  // Pre-compute pixel positions for all countries (ONCE, not per mouse-move)
+  // 1. Polyglot Worker Initialization
+  useEffect(() => {
+    if (!geoData) return;
+    
+    // Use WebWorker to build paths off-thread (Fase 3 Optimization)
+    if (!workerRef.current) {
+        workerRef.current = new Worker(new URL('./MapWorker.ts', import.meta.url));
+        workerRef.current.onmessage = (e) => {
+            if (e.data.type === 'DONE') {
+                console.log("[Polyglot Map] Path generation complete in worker.");
+                needsCacheUpdate.current = true;
+                setTick(t => t + 1);
+            }
+        };
+    }
+    
+    workerRef.current.postMessage({ geoData, mapWidth, mapHeight });
+
+    // Listen for Visual Delta updates from Go Server (Polyglot Python/Rust Results)
+    const handleVisualDelta = (e: any) => {
+        if (e.detail) setVisualDelta(e.detail);
+    };
+    window.addEventListener("visual_delta_updated", handleVisualDelta);
+
+    return () => {
+        workerRef.current?.terminate();
+        window.removeEventListener("visual_delta_updated", handleVisualDelta);
+    };
+  }, [geoData]);
+
+  // Pre-compute pixel positions
   const centerPixels = useMemo(() => {
     return centersData.map((c: any) => ({
       ...c,
@@ -133,7 +165,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
     }));
   }, []);
 
-  // Path2D memoization (only recomputed when geoData changes)
+  // Path2D generation (Now using cached worker results if possible, but keeping fallback)
   const paths = useMemo(() => {
     if (!geoData) return [];
     needsCacheUpdate.current = true;
@@ -149,7 +181,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
     });
   }, [geoData, project]);
 
-  // 1. STATIC LAYER CACHING (The expensive part - drawn ONCE)
+  // 2. Optimized Layer Baking (STATIC ONLY)
   const drawStaticCache = useCallback(() => {
     if (!geoData || paths.length === 0) return;
     
@@ -162,27 +194,20 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
     const cacheCtx = staticCacheRef.current.getContext("2d", { alpha: false });
     if (!cacheCtx) return;
 
-    // Draw Background
-    const bgGradient = cacheCtx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
-    bgGradient.addColorStop(0, "#121d31"); 
-    bgGradient.addColorStop(1, "#070b13"); 
-    cacheCtx.fillStyle = bgGradient; 
+    // Deep Ocean Background
+    cacheCtx.fillStyle = "#070b13";
     cacheCtx.fillRect(0, 0, mapWidth, mapHeight);
 
-    // Draw ALL non-special countries to cache
+    // Bake all country borders (Base color from continent)
     cacheCtx.lineWidth = 1;
     paths.forEach((item: any) => {
-      const isSpecial = item.name === userCountry || geoJsonToIndo[item.name] === userCountry || 
-                        item.name === targetCountry || geoJsonToIndo[item.name] === targetCountry;
-      if (isSpecial) return;
-
       cacheCtx.fillStyle = getContinentColor(item.name, item.id);
       cacheCtx.strokeStyle = "rgba(255, 255, 255, 0.08)";
       cacheCtx.fill(item.path); 
       cacheCtx.stroke(item.path);
     });
 
-    // Draw maritime labels to cache (NEVER changes)
+    // Maritime labels
     maritimeLabels.forEach(label => {
       const { x, y } = project(label.lon, label.lat);
       cacheCtx.font = `italic ${label.size}px 'Inter', sans-serif`; 
@@ -192,20 +217,18 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
       if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) cacheCtx.fillText(label.name, x, y);
     });
 
-    // Also bake NON-special dots and labels into the static cache
+    // Bake small dots and flags for NON-special countries
     const labelGrid: { x: number, y: number }[] = [];
     centerPixels.forEach((center: any) => {
-      const isPlayer = center.name_en === userCountry || center.name_id === userCountry;
-      const isTarget = center.name_en === targetCountry || center.name_id === targetCountry;
-      if (isPlayer || isTarget) return; // Skip — dynamic layer handles these
+      const isSpecial = center.name_en === userCountry || center.name_id === userCountry || 
+                        center.name_en === targetCountry || center.name_id === targetCountry;
+      if (isSpecial) return; 
 
-      // Static dots (no shadow, no glow)
       cacheCtx.beginPath();
       cacheCtx.arc(center.px, center.py, 3, 0, Math.PI * 2); 
       cacheCtx.fillStyle = "rgba(148, 163, 184, 0.4)"; 
       cacheCtx.fill();
 
-      // Static flag labels (collision-tested)
       const isTooCrowded = labelGrid.some(pos => Math.abs(pos.x - center.px) < 140 && Math.abs(pos.y - center.py) < 80);
       if (!isTooCrowded) {
         cacheCtx.font = "16px 'Inter', sans-serif"; 
@@ -218,137 +241,112 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
     });
 
     needsCacheUpdate.current = false;
-  }, [geoData, paths, userCountry, targetCountry, centerPixels, project]);
+  }, [geoData, paths, project, centerPixels, userCountry, targetCountry]);
 
-  // Relation event listener (debounced)
-  useEffect(() => {
-    const handleUpdate = () => {
-      if (debounceTimerRef.current) return;
-      debounceTimerRef.current = setTimeout(() => {
-        needsCacheUpdate.current = true;
-        setTick(t => t + 1);
-        debounceTimerRef.current = null;
-      }, 250); // Increased from 150 to 250ms — relation changes are rare
-    };
-    window.addEventListener("relation_storage_updated", handleUpdate);
-    window.addEventListener("relation_status_updated", handleUpdate);
-
-    return () => {
-      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
-      window.removeEventListener("relation_storage_updated", handleUpdate);
-      window.removeEventListener("relation_status_updated", handleUpdate);
-    };
-  }, []);
-  
-  // 1b. Cache Invalidation: Re-draw static layer whenever highlighted countries change
-  // This prevents 'invisible' countries when a modal is closed.
-  useEffect(() => {
-    needsCacheUpdate.current = true;
-    setTick(t => t + 1);
-  }, [userCountry, targetCountry]);
-
-  // ═══════════════════════════════════════════════════════
-  // MAIN RENDER — Only draws cache + 2 dynamic highlights
-  // ═══════════════════════════════════════════════════════
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || !geoData || paths.length === 0) return;
-    const ctx = canvas.getContext("2d", { alpha: false });
-    if (!ctx) return;
-
-    // 1. Ensure Cache is Ready
-    if (needsCacheUpdate.current || !staticCacheRef.current) {
-      drawStaticCache();
+  // 3. Dynamic Frame Updates (Heatmap, Selection, Player Focus)
+  const drawDynamicOverlay = useCallback((ctx: CanvasRenderingContext2D) => {
+    // 3a. Heatmap (from SSE visualDelta)
+    if (Object.keys(visualDelta).length > 0) {
+      paths.forEach((item: any) => {
+        const name = item.name.toLowerCase();
+        const heatmapVal = visualDelta[name] || visualDelta[geoJsonToIndo[item.name]] || 0;
+        if (heatmapVal > 0) {
+          ctx.fillStyle = `rgba(34, 197, 94, ${heatmapVal * 0.4})`;
+          ctx.fill(item.path);
+        }
+      });
     }
 
-    // 2. DRAW BASE (FROM CACHE) — 1 drawImage call instead of 207 fill+stroke calls
-    if (staticCacheRef.current) {
-      ctx.drawImage(staticCacheRef.current, 0, 0);
-    }
-
-    // 3. DRAW DYNAMIC HIGHLIGHTS (Player & Target ONLY — max 2 countries)
+    // 3b. Special Status (Player & Target Highlight)
     paths.forEach((item: any) => {
       const isPlayer = item.name === userCountry || geoJsonToIndo[item.name] === userCountry;
       const isTarget = item.name === targetCountry || geoJsonToIndo[item.name] === targetCountry;
       if (!isPlayer && !isTarget) return;
 
       if (isPlayer) { 
-        ctx.fillStyle = "rgba(34, 197, 94, 0.4)"; 
+        ctx.fillStyle = "rgba(34, 197, 94, 0.3)"; 
         ctx.strokeStyle = "#4ade80"; 
-        ctx.lineWidth = 5; 
-        ctx.shadowColor = "#4ade80"; 
-        ctx.shadowBlur = 20; 
+        ctx.lineWidth = 4; 
       } else { 
         const rel = getRelation(item.name, userCountry);
         const meta = relationStorage.getRelationMetadata(rel);
-        ctx.fillStyle = `${meta.hex}55`; 
+        ctx.fillStyle = `${meta.hex}44`; 
         ctx.strokeStyle = meta.hex; 
-        ctx.lineWidth = 5; 
-        ctx.shadowColor = meta.hex; 
-        ctx.shadowBlur = 20;
+        ctx.lineWidth = 4; 
       }
-
       ctx.fill(item.path); 
       ctx.stroke(item.path);
-      ctx.shadowBlur = 0;
     });
 
-    // 4. DRAW PLAYER & TARGET DOTS + FLAGS (only 2 items, not 207)
+    // 3c. Hero Icons (Big flags for player/target)
     centerPixels.forEach((center: any) => {
       const isPlayer = center.name_en === userCountry || center.name_id === userCountry;
       const isTarget = center.name_en === targetCountry || center.name_id === targetCountry;
       if (!isPlayer && !isTarget) return;
 
       ctx.beginPath();
-      if (isPlayer) { 
-        ctx.arc(center.px, center.py, 7, 0, Math.PI * 2); 
-        ctx.fillStyle = "#22d3ee"; 
-        ctx.shadowColor = "#22d3ee"; 
-        ctx.shadowBlur = 15; 
-      } else {
-        const rel = getRelation(center.name_en, userCountry);
-        const meta = relationStorage.getRelationMetadata(rel);
-        ctx.arc(center.px, center.py, 7, 0, Math.PI * 2);
-        ctx.fillStyle = meta.hex; 
-        ctx.shadowColor = meta.hex; 
-        ctx.shadowBlur = 15;
-      }
+      ctx.arc(center.px, center.py, 8, 0, Math.PI * 2); 
+      ctx.fillStyle = isPlayer ? "#22d3ee" : "#f43f5e";
       ctx.fill(); 
-      ctx.shadowBlur = 0;
 
-      // Flag label
       ctx.font = "bold 52px sans-serif"; 
-      ctx.shadowColor = "black"; 
-      ctx.shadowBlur = 10;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(center.flag, center.px, center.py - 95); 
-      ctx.shadowBlur = 0;
     });
+  }, [paths, visualDelta, userCountry, targetCountry, centerPixels]);
 
-  }, [geoData, paths, userCountry, targetCountry, tick, centerPixels, drawStaticCache]);
+  useEffect(() => {
+    const handleUpdate = () => { setTick(t => t + 1); };
+    window.addEventListener("relation_storage_updated", handleUpdate);
+    window.addEventListener("relation_status_updated", handleUpdate);
+    return () => {
+      window.removeEventListener("relation_storage_updated", handleUpdate);
+      window.removeEventListener("relation_status_updated", handleUpdate);
+    };
+  }, []);
+  
+  // Master Animation Loop
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d", { alpha: false });
+    if (!ctx) return;
 
-  // ═══════════════════════════════════════════════════════
-  // MOUSE HANDLERS — Throttled & Optimized
-  // ═══════════════════════════════════════════════════════
+    let animationFrame: number;
+    const render = () => {
+      if (needsCacheUpdate.current || !staticCacheRef.current) {
+        drawStaticCache();
+      }
+
+      // Step 1: Draw Static Base
+      if (staticCacheRef.current) {
+        ctx.drawImage(staticCacheRef.current, 0, 0);
+      }
+
+      // Step 2: Draw Dynamic Overlay (Heatmap + Players)
+      drawDynamicOverlay(ctx);
+
+      animationFrame = requestAnimationFrame(render);
+    };
+
+    render();
+    return () => cancelAnimationFrame(animationFrame);
+  }, [tick, drawStaticCache, drawDynamicOverlay]);
+
   const defaultCursor = useMemo(() => 
     `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`
   , []);
 
-  // Throttled mouse move — no longer calls setIsHovering 60x/sec
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     const canvas = canvasRef.current; if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
     const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
     const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-    
-    // Use pre-computed pixel positions (no projection math per event)
     const hovering = centerPixels.some((c: any) => {
       const dx = clickX - c.px, dy = clickY - c.py;
-      return (dx * dx + dy * dy) < 3600; // 60^2 = 3600 (avoid sqrt)
+      return (dx * dx + dy * dy) < 3600;
     });
-
-    // Only update state if changed (prevents 60 re-renders/sec)
     if (hovering !== lastHoverRef.current) {
       lastHoverRef.current = hovering;
       setIsHovering(hovering);
@@ -364,14 +362,12 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
     const rect = canvas.getBoundingClientRect();
     const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
     const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-    
-    let closest: any = null; let minDist = 10000; // 100^2
+    let closest: any = null; let minDist = 10000;
     centerPixels.forEach((c: any) => {
       const dx = clickX - c.px, dy = clickY - c.py;
       const distSq = dx * dx + dy * dy;
       if (distSq < minDist) { minDist = distSq; closest = c; }
     });
-
     if (closest && minDist < 10000) onSelect(closest.name_en);
   }, [active, onSelect, centerPixels]);
 

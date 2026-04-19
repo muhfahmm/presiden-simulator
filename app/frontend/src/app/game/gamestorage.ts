@@ -32,7 +32,6 @@ import { playerMilitaryStorage } from "./components/map-system/modals_detail_neg
 import { stabilityStorage } from "./components/1_navbar/4_stabilitas";
 import { nuclearStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/nuclearStorage";
 import { aiBudgetStorage } from "./components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
-import { aiPopulationStorage } from "./components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { importStockStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ImportStockStorage";
 import { historiImportStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ekspor_impor/impor/HistoriImportStorage";
 import { historiEksporStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ekspor_impor/ekspor/HistoriEksporStorage";
@@ -51,7 +50,6 @@ import { RELATION_MATRIX_KEY } from "./components/map-system/ai_diplomacy_engine
 import { timeStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { aiTradeOfferStorage } from "./components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/aiTradeOfferStorage";
 import { tradeContractStorage } from "./components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/tradeContractStorage";
-import { tradeAgreementStorage } from "./components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/tradeAgreementStorage";
 import { aiHappinessStorage } from "./components/map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { aiBuildingStorage } from "./components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "./components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
@@ -98,18 +96,9 @@ export const gameStorage = {
     }
   },
 
-  saveSession: async (country: string) => {
+  saveSession: (country: string) => {
     if (typeof window === 'undefined') return;
     
-    console.log(`[SAVE SESSION] Starting new game for country: ${country}`);
-    
-    // Phase 0: Ensure backend is wiped before starting new session
-    try {
-      await fetch('http://localhost:8081/api/game/reset', { method: 'POST' });
-    } catch (e) {
-      console.warn("[SAVE SESSION] Backend reset failed:", e);
-    }
-
     // Hard stop timer first to prevent race condition ghost writes
     timeStorage.clear();
 
@@ -121,10 +110,8 @@ export const gameStorage = {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     localStorage.setItem("selectedCountry", country);
     localStorage.removeItem("em4_game_date"); // Reset date for new game
-    localStorage.setItem("em4_fresh_session", "true"); // Flag to force default values
     
     // Modular cleanup
-    console.log(`[SAVE SESSION] Clearing all storages...`);
     happinessStorage.clear();
     priceStorage.clear();
     expenseStorage.clear();
@@ -158,7 +145,6 @@ export const gameStorage = {
     stabilityStorage.clear();
     nuclearStorage.clear();
     aiBudgetStorage.clear();
-    aiPopulationStorage.clear();
     aiHappinessStorage.clear();
     aiBuildingStorage.clear();
     aiProductionStorage.clear();
@@ -178,7 +164,6 @@ export const gameStorage = {
     diplomaticTradeStorage.clear();
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
-    tradeAgreementStorage.clear();
     if (typeof window !== 'undefined') {
       localStorage.removeItem(RELATION_MATRIX_KEY);
     }
@@ -218,15 +203,8 @@ export const gameStorage = {
     gameStorage.setWelcomeSeen(true);
   },
 
-  clearSession: async () => {
+  clearSession: () => {
     if (typeof window === 'undefined') return;
-
-    // Phase 0: Wipe backend on logout to prevent session leakage
-    try {
-      await fetch('http://localhost:8081/api/game/reset', { method: 'POST', keepalive: true });
-    } catch (e) {
-      console.warn("[CLEAR SESSION] Backend reset failed:", e);
-    }
 
     // Hard stop timer first to prevent race condition ghost writes
     timeStorage.clear();
@@ -269,7 +247,6 @@ export const gameStorage = {
     stabilityStorage.clear();
     nuclearStorage.clear();
     aiBudgetStorage.clear();
-    aiPopulationStorage.clear();
     aiHappinessStorage.clear();
     aiBuildingStorage.clear();
     aiProductionStorage.clear();
@@ -289,16 +266,15 @@ export const gameStorage = {
     diplomaticTradeStorage.clear();
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
-    tradeAgreementStorage.clear();
     localStorage.removeItem(RELATION_MATRIX_KEY);
     
     window.location.href = '/database';
   },
 
-  resetCurrentSessionToDefaults: async () => {
+  resetCurrentSessionToDefaults: () => {
     /**
      * NUCLEAR RESET: Completely wipes ALL localStorage and reinitializes to country defaults.
-     * Aligned with saveSession to ensure 100% parity with fresh-start logic.
+     * This is the most aggressive reset to ensure no stale data persists.
      */
     if (typeof window === 'undefined') return;
 
@@ -309,120 +285,162 @@ export const gameStorage = {
     }
 
     const countryName = session.country || "Indonesia";
-    console.log(`[RESET] ========== NUCLEAR RESTART STARTING ==========`);
+    console.log(`[RESET] ========== NUCLEAR RESET STARTING ==========`);
+    console.log(`[RESET] Target country: ${countryName}`);
+    gameStorage.debugLogStorage("[BEFORE RESET]");
     
-    // PHASE 0: DISCONNECT SSE TO PREVENT GHOST WRITES
-    try {
-      const { newsStorage } = require("./components/sidemenu/1_berita/newsStorage");
-      newsStorage.disconnectSSE();
-    } catch(e) {}
-
-    // Hard stop timer first
-    timeStorage.clear();
-
-    // SECTION 0: RESET BACKEND
-    console.log(`[RESET] Sending reset signal to Go backend...`);
-    try {
-      await fetch('http://localhost:8081/api/game/reset', { method: 'POST' });
-    } catch (e) {
-      console.warn("[RESET] Backend reset failed:", e);
+    const currentCountry = countries.find(c => c.name_id === countryName || c.name_en === countryName);
+    
+    if (!currentCountry) {
+      console.error(`[RESET] ERROR: Country not found: ${countryName}`);
+      return;
     }
 
-    // SECTION 1: PHASE 1 - TOTAL NUCLEAR WIPE
-    console.log(`[RESET] Wiping all storages...`);
+    // Get profile defaults
+    const defaultPopulation = typeof currentCountry.jumlah_penduduk === 'string' 
+      ? parseInt(currentCountry.jumlah_penduduk.replace(/\./g, '')) 
+      : currentCountry.jumlah_penduduk;
+    const defaultBudget = typeof currentCountry.anggaran === 'number' ? currentCountry.anggaran : 0;
+    const defaultStability = 82;
+
+    console.log(`[RESET] Defaults to restore: Pop=${defaultPopulation}, Budget=${defaultBudget}, Stability=${defaultStability}`);
+
+    // SECTION 1: PHASE 1 - AGGRESSIVE WIPE
+    console.log(`[RESET] PHASE 1: Removing all em4_*, em2_* and game_taxes keys...`);
     
-    // Identity check matches saveSession/clearSession
-    localStorage.removeItem("em4_game_date");
-    localStorage.setItem("em4_fresh_session", "true"); // CRITICAL FLAG
+    // Clear sessionStorage too
+    console.log(`[RESET] Clearing sessionStorage...`);
+    const sessionKeysToRemove = [];
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const key = sessionStorage.key(i);
+      if (key && (key.startsWith('em4_') || key.startsWith('em2_') || key === 'game_taxes')) {
+        sessionKeysToRemove.push(key);
+      }
+    }
+    sessionKeysToRemove.forEach(key => sessionStorage.removeItem(key));
+    if (sessionKeysToRemove.length > 0) {
+      console.log(`[RESET] Cleared ${sessionKeysToRemove.length} sessionStorage keys`);
+    }
 
-    // 1-to-1 parity with logout/saveSession cleanup list
-    happinessStorage.clear();
-    priceStorage.clear();
-    expenseStorage.clear();
-    incomeStorage.clear();
-    taxStorage.clear();
-    tradeStorage.clear();
-    buildingStorage.clear();
-    inboxStorage.clear();
-    budgetStorage.clear();
-    budgetDeltaStorage.clear();
-    acaraStorage.clear();
-    unSecurityCouncilStorage.clear();
-    unIMFStorage.clear();
-    unWorldBankStorage.clear();
-    unInterpolStorage.clear();
-    unWHOStorage.clear();
-    unUNESCOStorage.clear();
-    unWTOStorage.clear();
-    unILOStorage.clear();
-    unFAOStorage.clear();
-    unICAOStorage.clear();
-    unIMOStorage.clear();
-    unITUStorage.clear();
-    unWMOStorage.clear();
-    populationStorage.clear();
-    populationDeltaStorage.clear();
-    embassyStorage.clear();
-    relationStorage.clear();
-    militaryAidStorage.clear();
-    playerMilitaryStorage.clear();
-    stabilityStorage.clear();
-    nuclearStorage.clear();
-    aiBudgetStorage.clear();
-    aiPopulationStorage.clear();
-    aiHappinessStorage.clear();
-    aiBuildingStorage.clear();
-    aiProductionStorage.clear();
-    importStockStorage.clear();
-    historiImportStorage.clearHistory();
-    historiEksporStorage.clearHistory();
-    aliansiStorage.clear();
-    nonAggressionStorage.clear();
-    newsStorage.clear();
-    globalNewsStorage.clear();
-    relationDeltaStorage.clear();
-    religionStorage.clear();
-    ideologyStorage.clear();
-    lawStorage.clear();
-    researchStorage.clear();
-    eventStorage.clear();
-    diplomaticTradeStorage.clear();
-    aiTradeOfferStorage.clear();
-    tradeContractStorage.clear();
-    tradeAgreementStorage.clear();
-
-    // Catch-all sweeper for any custom keys
-    const keysToRemove: string[] = [];
+    // Clear localStorage
+    const keysToRemove = new Set<string>();
+    const allKeys = [];
     for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key) {
-            const lowerKey = key.toLowerCase();
-            if (lowerKey.startsWith('em') || lowerKey.startsWith('game_') || lowerKey.startsWith('ai_') || lowerKey.includes('storage')) {
-                // Don't remove our fresh session flag or our current selectedCountry
-                if (key !== 'em4_fresh_session' && key !== 'selectedCountry' && key !== STORAGE_KEY) {
-                    keysToRemove.push(key);
-                }
-            }
+      const key = localStorage.key(i);
+      if (key) {
+        allKeys.push(key);
+        if (key.startsWith('em4_') || key.startsWith('em2_') || key === 'game_taxes') {
+          keysToRemove.add(key);
         }
+      }
     }
-    keysToRemove.forEach(k => localStorage.removeItem(k));
 
-    sessionStorage.clear();
-
-    // Wait for IO
-    await new Promise(resolve => setTimeout(resolve, 300));
-
-    // SECTION 2: PHASE 2 - RE-INITIALIZE ATOMIC DEFAULTS
-    localStorage.setItem("selectedCountry", countryName);
+    console.log(`[RESET] Total keys in localStorage: ${allKeys.length}`);
+    console.log(`[RESET] Marked for removal: ${keysToRemove.size}`);
     
-    const freshSession: GameSession = {
-      country: countryName,
-      startTime: Date.now(),
-      isWelcomeSeen: true,
+    let removedCount = 0;
+    keysToRemove.forEach(key => {
+      try {
+        localStorage.removeItem(key);
+        removedCount++;
+      } catch (e) {
+        console.error(`[RESET]   ✗ Failed to remove ${key}:`, e);
+      }
+    });
+    console.log(`[RESET] Removed ${removedCount}/${keysToRemove.size} localStorage keys`);
+    gameStorage.debugLogStorage("[AFTER WIPE]");
+
+    // SECTION 2: PHASE 2 - VERIFY WIPE
+    console.log(`[RESET] PHASE 2: Verifying complete wipe...`);
+    let staleKeys = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && (key.startsWith('em4_') || key.startsWith('em2_'))) {
+        staleKeys.push(key);
+        console.warn(`[RESET]   WARNING: Stale key remains: ${key}`);
+      }
+    }
+
+    if (staleKeys.length > 0) {
+      console.warn(`[RESET] WARNING: ${staleKeys.length} stale keys remain, attempting force removal...`);
+      staleKeys.forEach(key => {
+        try {
+          localStorage.removeItem(key);
+          console.log(`[RESET]   Force removed: ${key}`);
+        } catch (e) {
+          console.error(`[RESET]   Could not force remove ${key}:`, e);
+        }
+      });
+    } else {
+      console.log(`[RESET] ✓ Wipe verified - no stale keys remain`);
+    }
+
+    // SECTION 3: PHASE 3 - PREPARE RESET DATA (BEFORE writing)
+    console.log(`[RESET] PHASE 3: Preparing reset data...`);
+    const resetData = {
+      "em4_population_data": JSON.stringify({
+        population: defaultPopulation,
+        lastUpdated: Date.now()
+      }),
+      "em4_population_version": "2",
+      "em4_budget_data": JSON.stringify({
+        anggaran: defaultBudget,
+        cumulativeProduction: {},
+        lastProcessedDate: "2026-01-01T00:00:00.000Z"
+      }),
+      "em4_stability_data": JSON.stringify({
+        stability: defaultStability,
+        lastUpdated: Date.now()
+      })
     };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(freshSession));
     
-    console.log(`[RESET] ========== NUCLEAR RESTART COMPLETE ==========`);
+    console.log(`[RESET] PHASE 3B: Atomic write of ${Object.keys(resetData).length} keys...`);
+    const writeErrors: string[] = [];
+    
+    // Write all in quick succession
+    Object.entries(resetData).forEach(([key, value]) => {
+      try {
+        localStorage.setItem(key, value);
+        const displayValue = typeof value === 'string' && value.length > 50 ? value.substring(0, 50) + "..." : value;
+        console.log(`[RESET]   ✓ ${key} = ${displayValue}`);
+      } catch (e) {
+        writeErrors.push(`${key}: ${e}`);
+        console.error(`[RESET]   ✗ ${key} failed: ${e}`);
+      }
+    });
+
+    if (writeErrors.length > 0) {
+      console.error(`[RESET] ERROR: ${writeErrors.length} write failures - CANNOT CONTINUE:`, writeErrors);
+      throw new Error(`Failed to write reset data: ${writeErrors.join(", ")}`);
+    }
+
+    // SECTION 4: PHASE 4 - VERIFY DEFAULTS
+    console.log(`[RESET] PHASE 4: Verifying defaults were written...`);
+    gameStorage.debugLogStorage("[AFTER REINIT]");
+    
+    try {
+      const verifyPop = JSON.parse(localStorage.getItem("em4_population_data") || '{}');
+      const verifyBudget = JSON.parse(localStorage.getItem("em4_budget_data") || '{}');
+      const verifyStability = JSON.parse(localStorage.getItem("em4_stability_data") || '{}');
+
+      const popMatch = verifyPop.population === defaultPopulation;
+      const budgetMatch = verifyBudget.anggaran === defaultBudget;
+      const stabMatch = verifyStability.stability === defaultStability;
+
+      console.log(`[RESET]   Population: ${verifyPop.population} (expected: ${defaultPopulation}) ${popMatch ? '✓' : '✗'}`);
+      console.log(`[RESET]   Budget: ${verifyBudget.anggaran} (expected: ${defaultBudget}) ${budgetMatch ? '✓' : '✗'}`);
+      console.log(`[RESET]   Stability: ${verifyStability.stability} (expected: ${defaultStability}) ${stabMatch ? '✓' : '✗'}`);
+
+      if (popMatch && budgetMatch && stabMatch) {
+        console.log(`[RESET] ✓ VERIFICATION PASSED - All defaults correct!`);
+      } else {
+        console.error(`[RESET] ✗ VERIFICATION FAILED - Values don't match!`);
+      }
+    } catch (e) {
+      console.error("[RESET] ERROR during verification:", e);
+    }
+
+    console.log(`[RESET] ========== NUCLEAR RESET COMPLETE ==========`);
   },
 
   resetCurrentSession: () => {
@@ -476,7 +494,6 @@ export const gameStorage = {
     stabilityStorage.clear();
     nuclearStorage.clear();
     aiBudgetStorage.clear();
-    aiPopulationStorage.clear();
     aiHappinessStorage.clear();
     aiBuildingStorage.clear();
     aiProductionStorage.clear();
@@ -496,7 +513,6 @@ export const gameStorage = {
     diplomaticTradeStorage.clear();
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
-    tradeAgreementStorage.clear();
     localStorage.removeItem(RELATION_MATRIX_KEY);
   },
 };

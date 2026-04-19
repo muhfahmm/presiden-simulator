@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"emserver/core"
+	"emserver/map_engine"
 	"emserver/server_hubungan"
 	"emserver/server_inbox"
 	"emserver/server_berita"
@@ -231,8 +232,8 @@ func loadBuildingsFromTypeScript() error {
 		sector string
 		id     string
 	}{
-		{basePath + "2_pertahanan/1_intelijen/index.ts", "Intelijen", "militer-1"},
-		{basePath + "2_pertahanan/2_produksi_militer/index.ts", "Produksi Militer", "militer-2"},
+		{basePath + "2_pertahanan/2_intelijen/index.ts", "Intelijen", "militer-1"},
+		{basePath + "2_pertahanan/1_komando_pertahanan/index.ts", "Komando Pertahanan", "militer-2"},
 		{basePath + "2_pertahanan/4_armada_polisi/index.ts", "Armada Polisi", "militer-3"},
 		{basePath + "2_pertahanan/5_manajemen_pertahanan/index.ts", "Manajemen Pertahanan", "militer-4"},
 		{basePath + "2_pertahanan/3_armada_militer/index.ts", "Armada Militer", "armada-1"},
@@ -368,6 +369,7 @@ func main() {
 	http.HandleFunc("/api/game/health", handleHealth)
 	http.HandleFunc("/api/game/reset", handleReset)
 	http.HandleFunc("/api/game/update-policy", handleUpdatePolicy)
+	http.HandleFunc("/api/ai/run", handleAIRun)
 
 	fmt.Println("═══════════════════════════════════════════════")
 	fmt.Println("[GO] Server-Authoritative Simulation Engine v2")
@@ -673,6 +675,62 @@ func processNPCDay(date time.Time) {
 
 		calculateNPCHappiness(nation, state)
 	}
+
+	// AI Batch Processing every 5 days
+	if core.GlobalState.DayCounter % 5 == 0 {
+		go runAIBatch()
+	}
+}
+
+func runAIBatch() {
+	fmt.Println("[GO] [AI BATCH] Starting decision cycle for 207 nations...")
+	
+	// Prepare batch data
+	var batchData struct {
+		Countries []map[string]interface{} `json:"countries"`
+	}
+	for name, s := range core.GlobalState.NPCStates {
+		batchData.Countries = append(batchData.Countries, map[string]interface{}{
+			"name": name,
+			"budget": s.Budget,
+			"stability": s.Stability,
+		})
+	}
+
+	cmd := exec.Command("python", "src/app/server/python/map_engine/ai_batch_optimizer.py")
+	stdin, _ := cmd.StdinPipe()
+	go func() {
+		defer stdin.Close()
+		json.NewEncoder(stdin).Encode(batchData)
+	}()
+
+	out, err := cmd.Output()
+	if err != nil {
+		fmt.Printf("[GO] [AI BATCH] Error: %v\n", err)
+		return
+	}
+
+	var results []map[string]interface{}
+	if err := json.Unmarshal(out, &results); err != nil {
+		fmt.Printf("[GO] [AI BATCH] Parse Error: %v\n", err)
+		return
+	}
+
+	// Process decisions
+	core.GlobalState.Mu.Lock()
+	defer core.GlobalState.Mu.Unlock()
+	for _, res := range results {
+		if res["decision"] == "EXECUTE" {
+			nation := res["nation"].(string)
+			// Apply building logic to NPC (simplified for now)
+			if buildings, ok := core.GlobalState.NPCBuildingLevels[nation]; ok {
+				key := res["building_key"].(string)
+				buildings[key]++
+				fmt.Printf("[GO] [AI BATCH] %s executed: %s\n", nation, key)
+			}
+		}
+	}
+	fmt.Printf("[GO] [AI BATCH] Cycle complete. Processed %d decisions.\n", len(results))
 }
 
 func calculateNPCHappiness(nation string, s *core.NPCNationState) {
@@ -805,7 +863,7 @@ func invokeQuarterlyEconomicAI(date time.Time, quarter int) {
 
 	jsonPayload, _ := json.Marshal(payload)
 
-	// 2. Execute Python Worker
+	// 2. Execute Python Worker (Economic Strategy + Heatmap)
 	cmd := exec.Command("python", "src/app/server/python/strategy.py")
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
@@ -825,11 +883,17 @@ func invokeQuarterlyEconomicAI(date time.Time, quarter int) {
 	}
 
 	// 3. Parse Results
-	var results map[string]float64
-	if err := json.Unmarshal(out, &results); err != nil {
+	var pyResponse struct {
+		Growth  map[string]float64 `json:"growth"`
+		Heatmap map[string]float64 `json:"heatmap"`
+	}
+	if err := json.Unmarshal(out, &pyResponse); err != nil {
 		fmt.Printf("[GO] Error: Failed to parse Python response: %v\n", err)
 		return
 	}
+	results := pyResponse.Growth
+	// Update high-performance Map Engine visual state
+	map_engine.GlobalVisualState.UpdateHeatmap(pyResponse.Heatmap)
 
 	// 4. Update States & Find Highlights
 	type pair struct {
@@ -890,26 +954,26 @@ func invokeQuarterlyEconomicAI(date time.Time, quarter int) {
 
 
 func invokePolyglotWorkers(dateStr string) {
-	// C++ Worker (Construction Math)
-	cppOut, err := exec.Command("src/app/server/cpp/worker.exe").Output()
+	// C++ Worker (Specialized Geometric Logic)
+	cppOut, err := exec.Command("src/app/server/cpp/map_engine/map_engine.exe").Output()
 	if err == nil && len(cppOut) > 0 {
 		core.AddNewsItem("C++ Engine", "Kalkulasi Infrastruktur Global", string(cppOut), "construction", "low", dateStr)
 	}
 
-	// Python Worker (Strategy)
-	pyOut, err := exec.Command("python", "src/app/server/python/strategy.py").Output()
+	// Python Worker (Strategic Heatmaps)
+	pyOut, err := exec.Command("python", "src/app/server/python/map_engine/map_engine.py").Output()
 	if err == nil && len(pyOut) > 0 {
 		core.AddNewsItem("Python AI", "Analisis Strategi Ekonomi", string(pyOut), "economy", "low", dateStr)
 	}
 
-	// Rust Worker (Compute)
-	rustOut, err := exec.Command("src/app/server/rust/worker.exe").Output()
+	// Rust Worker (Massive Matrix Drift)
+	rustOut, err := exec.Command("src/app/server/rust/map_engine/map_engine.exe").Output()
 	if err == nil && len(rustOut) > 0 {
 		core.AddNewsItem("Rust Engine", "Pemrosesan Data Militer", string(rustOut), "global", "low", dateStr)
 	}
 
-	// Java Worker (Logic)
-	javaOut, err := exec.Command("java", "-cp", "src/app/server/java", "Main").Output()
+	// Java Worker (Naming Normalization)
+	javaOut, err := exec.Command("java", "-cp", "src/app/server/java/map_engine", "map_engine").Output()
 	if err == nil && len(javaOut) > 0 {
 		core.AddNewsItem("Java Logic", "Manajemen Diplomasi Global", string(javaOut), "diplomacy", "low", dateStr)
 	}
@@ -940,6 +1004,7 @@ type SyncPayload struct {
 	Player         core.PlayerState                `json:"player"`
 	NPCStates      map[string]*core.NPCNationState `json:"npcStates,omitempty"`
 	Relationships  map[string]map[string]*core.Relationship `json:"relationships,omitempty"`
+	VisualDelta    map[string]float64              `json:"visualDelta,omitempty"` // ID -> Heatmap from MapEngine
 	ResetTriggered bool                            `json:"resetTriggered,omitempty"`
 }
 
@@ -957,6 +1022,7 @@ func createSnapshot() []byte {
 		Player:     core.GlobalState.Player,
 		NPCStates:  core.GlobalState.NPCStates,
 		Relationships: core.GlobalState.Relationships,
+		VisualDelta:   map_engine.GlobalVisualState.GetHeatmap(),
 	}
 	lastBroadcastNewsLen = len(core.GlobalState.News)
 	lastBroadcastInboxLen = len(core.GlobalState.Inbox)
@@ -972,6 +1038,24 @@ func createPlayerSnapshot() []byte {
 		Speed:      core.GlobalState.Speed,
 		DayCounter: core.GlobalState.DayCounter,
 		Player:     core.GlobalState.Player,
+		VisualDelta: map_engine.GlobalVisualState.GetHeatmap(),
+	}
+	data, _ := json.Marshal(payload)
+	return data
+}
+
+// Ultra-lightweight snapshot — for pause/resume/speed control only
+func createControlSnapshot() []byte {
+	payload := struct {
+		GameDate   string `json:"gameDate"`
+		IsPaused   bool   `json:"isPaused"`
+		Speed      int    `json:"speed"`
+		DayCounter int    `json:"dayCounter"`
+	}{
+		GameDate:   core.GlobalState.GameDate,
+		IsPaused:   core.GlobalState.IsPaused,
+		Speed:      core.GlobalState.Speed,
+		DayCounter: core.GlobalState.DayCounter,
 	}
 	data, _ := json.Marshal(payload)
 	return data
@@ -1058,6 +1142,25 @@ func handleControl(w http.ResponseWriter, r *http.Request) {
 	case "pause":
 		core.GlobalState.IsPaused = true
 		fmt.Println("[GO] Game PAUSED by UI.")
+		
+		// Polyglot Optimization: Trigger Situation Report
+		go func() {
+			report, err := map_engine.TriggerResumePausedSystem(true, core.GlobalState)
+			if err == nil && report != nil {
+				core.GlobalState.Mu.Lock()
+				core.AddInboxItem(
+					"Sistem Intelijen Nasional",
+					report["subject"].(string),
+					report["content"].(string),
+					"government",
+					report["priority"].(string),
+					false,
+					"",
+					core.GlobalState.GameDate,
+				)
+				core.GlobalState.Mu.Unlock()
+			}
+		}()
 	case "resume":
 		core.GlobalState.IsPaused = false
 		fmt.Println("[GO] Game RESUMED by UI.")
@@ -1067,7 +1170,7 @@ func handleControl(w http.ResponseWriter, r *http.Request) {
 			fmt.Printf("[GO] Speed set to %dx.\n", req.Speed)
 		}
 	}
-	snapshot := createSnapshot()
+	snapshot := createControlSnapshot()
 	core.GlobalState.Mu.Unlock()
 
 	// Immediately broadcast the control state change
@@ -1126,6 +1229,7 @@ func handleReset(w http.ResponseWriter, r *http.Request) {
 		Player:          core.GlobalState.Player,
 		NPCStates:       core.GlobalState.NPCStates,
 		Relationships:   core.GlobalState.Relationships,
+		VisualDelta:     map_engine.GlobalVisualState.GetHeatmap(),
 		ResetTriggered: true, // NUCLEAR SIGNAL
 	}
 	snapshot, _ := json.Marshal(snapshotData)
@@ -1289,4 +1393,51 @@ func handleUpdatePolicy(w http.ResponseWriter, r *http.Request) {
 	core.GlobalState.Mu.Unlock()
 
 	fmt.Fprintf(w, `{"ok": true}`)
+}
+
+func handleAIRun(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	if r.Method == "OPTIONS" {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
+	var req struct {
+		ScriptPath string          `json:"scriptPath"`
+		Payload    json.RawMessage `json:"payload"`
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		fmt.Printf("[GO AI] Error decoding request: %v\n", err)
+		http.Error(w, "Invalid input", http.StatusBadRequest)
+		return
+	}
+
+	fmt.Printf("[GO AI] Running script: %s\n", req.ScriptPath)
+
+	cmd := exec.Command("python", req.ScriptPath)
+	stdin, err := cmd.StdinPipe()
+	if err != nil {
+		http.Error(w, "Failed to capture stdin", http.StatusInternalServerError)
+		return
+	}
+
+	go func() {
+		defer stdin.Close()
+		stdin.Write(req.Payload)
+	}()
+
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		fmt.Printf("[GO AI] Error executing %s: %v\n", req.ScriptPath, err)
+		// Return JSON with error field to match frontend expectation
+		w.Write([]byte(fmt.Sprintf(`{"decision": "SKIP", "error": %q, "raw": %q}`, err.Error(), string(out))))
+		return
+	}
+
+	w.Write(out)
 }

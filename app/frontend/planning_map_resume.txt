@@ -1,0 +1,50 @@
+RENCANA OPTIMALISASI LANJUTAN - MAP RESUME SYSTEM
+================================================
+
+Tujuan: Menghilangkan lag dan freeze saat user memuat ulang (resume) game
+dengan data yang sudah kompleks.
+
+1. BINARY MAP DATA (FORMAT BINER)
+---------------------------------
+- Masalah: Parsing JSON (GeoJSON) 4MB+ di browser sangat lambat.
+- Solusi: 
+  * Gunakan C++ Engine untuk konversi GeoJSON -> Binary format (FlatBuffers).
+  * Browser membaca data biner menggunakan Typed Arrays (jauh lebih cepat).
+- Target: Reduksi waktu baca data hingga 80%.
+
+2. VISUAL CACHING (INDEXEDDB)
+-----------------------------
+- Masalah: Proses "Baking" static layer map memakan CPU setiap kali resume.
+- Solusi:
+  * Simpan hasil render (ImageBitmap) ke IndexedDB browser.
+  * Saat resume, langsung tampilkan dari cache tanpa hitung ulang koordinat.
+- Target: Rendering awal map yang "Instan".
+
+3. PROGRESSIVE STATE LOADING (CHUNKED SSE)
+------------------------------------------
+- Masalah: Packet JSON awal saat resume terlalu besar (Relationships + NPC States).
+- Solusi:
+  * Server Go mengirim data secara bertahap (per batch negara).
+  * UI tampil lebih dulu sebelum seluruh data detail (tooltip/modal) selesai dimuat.
+- Target: UI Responsiveness saat inisialisasi data.
+
+4. CANVAS TILING (SISTEM GRID)
+------------------------------
+- Masalah: Satu canvas raksasa 6000x2400 sangat boros memori GPU.
+- Solusi:
+  * Implementasi grid canvas (misal 10x4 kotak kecil).
+  * Hanya update kotak yang mengalami perubahan data AI dari backend.
+- Target: Penghematan memori hingga 50% dan FPS lebih stabil.
+
+5. GEOMETRY SIMPLIFICATION (LOD - LEVEL OF DETAIL)
+--------------------------------------------------
+- Masalah: Terlalu banyak titik poligon saat map dalam posisi zoom-out.
+- Solusi:
+  * Gunakan algoritma Douglas-Peucker (di sisi C++) untuk membuat versi map 
+    yang lebih ringan.
+  * Tukar poligon detail tinggi hanya saat user melakukan zoom-in.
+- Target: Performa smooth saat navigasi global.
+
+Dibuat oleh: Antigravity AI
+Status: Draft Planning
+Target Implementasi: Tahap 2
