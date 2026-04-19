@@ -6,8 +6,7 @@ import {
   HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight, X,
   Globe2, Landmark, Users, Coins, TrendingUp, Globe, Church, Scale, Search, ShieldAlert 
 } from "lucide-react";
-import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch";
-import WorldMapCanvas from "./databasemap";
+import MapContainer from "../map-system/components/MapContainer";
 import MapHubungan from "../game/components/2_navigasi_menu/1_navigasi_atas/Hubungan/mapHubungan";
 import { countries } from "./data/negara/benua/index";
 import { gameStorage } from "../game/gamestorage";
@@ -21,7 +20,6 @@ export default function DatabasePage() {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [showSelectionWarning, setShowSelectionWarning] = useState(false);
-  const [isCentered, setIsCentered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
@@ -70,7 +68,6 @@ export default function DatabasePage() {
 
   const selectedData = countries.find(c => c.name_en === selectedCountry);
   const baseData = (selectedData || countries[0]) as CountryData;
-  const transformRef = useRef<ReactZoomPanPinchRef>(null);
   const isInternalSelection = useRef(false);
   const hasSelection = !!selectedData;
 
@@ -87,40 +84,6 @@ export default function DatabasePage() {
     c.name_en.toLowerCase().includes(searchQuery.toLowerCase()) ||
     c.capital.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
-  // AUTO-FOCUS ON SELECTED COUNTRY
-  useEffect(() => {
-    if (selectedCountry && transformRef.current && isInternalSelection.current) {
-      isInternalSelection.current = false; // Reset
-      const country = countries.find(c => c.name_en === selectedCountry);
-      if (country) {
-        const mapWidth = 4000;
-        const mapHeight = 2000;
-        const scale = 4; // Higher zoom for focus level
-
-        const x = ((country.lon + 180) / 360) * mapWidth;
-        const y = ((90 - country.lat) / 180) * mapHeight;
-
-        const centerX = x + mapWidth;
-        const centerY = y;
-
-        const wrapper = transformRef.current.instance.wrapperComponent;
-        const content = transformRef.current.instance.contentComponent;
-        if (wrapper && content) {
-          const { offsetWidth: wrapperWidth, offsetHeight: wrapperHeight } = wrapper;
-          const { offsetWidth: contentWidth, offsetHeight: contentHeight } = content;
-
-          const px = (centerX / (mapWidth * 3)) * contentWidth;
-          const py = (centerY / mapHeight) * contentHeight;
-
-          const targetX = wrapperWidth / 2 - px * scale;
-          const targetY = wrapperHeight / 2 - py * scale;
-
-          transformRef.current.setTransform(targetX, targetY, scale, 1200, "easeOut");
-        }
-      }
-    }
-  }, [selectedCountry]);
 
   return (
     <div className="flex flex-col h-screen w-screen bg-zinc-950 text-white font-sans relative overflow-hidden select-none">
@@ -166,33 +129,23 @@ export default function DatabasePage() {
         </div>
       </header>
 
-      {/* 2. MAIN MAP DISPLAY area with Zoom/Pan */}
+      {/* 2. MAIN MAP DISPLAY area */}
       <main className="flex-1 relative w-full h-full z-10 overflow-hidden">
-        <TransformWrapper
-          ref={transformRef}
-          initialScale={1}
-          minScale={1}
-          maxScale={8}
-          centerOnInit={!isCentered}
-          onInit={() => setIsCentered(true)}
-          limitToBounds={true}
-          doubleClick={{ disabled: true }}
-        >
-          <TransformComponent wrapperClass="!w-full !h-full" contentClass="!h-full flex items-center justify-center">
-            <div ref={containerRef} className="relative h-full flex items-center justify-center w-max">
-              {mapMode === "default" ? (
-                <WorldMapCanvas selectedCountry={selectedCountry} onSelect={setSelectedCountry} />
-              ) : (
-                <MapHubungan
-                  userCountry={selectedCountry}
-                  targetCountry={null}
-                  geoData={geoData}
-                  onSelect={setSelectedCountry}
-                />
-              )}
-            </div>
-          </TransformComponent>
-        </TransformWrapper>
+        <div className="w-full h-full">
+          {mapMode === "default" ? (
+            <MapContainer 
+              selectedName={selectedCountry} 
+              onSelectCountry={(c) => setSelectedCountry(c.nama_negara)} 
+            />
+          ) : (
+            <MapHubungan
+              userCountry={selectedCountry}
+              targetCountry={null}
+              geoData={geoData}
+              onSelect={setSelectedCountry}
+            />
+          )}
+        </div>
 
         {/* Ambient Darkened Vignette */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
@@ -414,10 +367,4 @@ function StatItem({ icon, label, value }: { icon: React.ReactNode, label: string
       </div>
     </div>
   );
-}
-
-function formatNumber(num: number): string {
-  if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-  if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-  return num.toString();
 }
