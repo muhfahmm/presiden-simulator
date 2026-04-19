@@ -9,6 +9,8 @@ export interface InboxItem {
   priority: 'low' | 'medium' | 'high';
   category?: 'finance' | 'trade' | 'pact' | 'alliance' | 'embassy' | 'intelligence' | 'general' | 'defense' | 'diplomacy';
   isProposal?: boolean;
+  proposalLabel?: string;
+  metadata?: any;
   timestamp: number;
   content?: string;
 }
