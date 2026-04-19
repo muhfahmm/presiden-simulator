@@ -1,6 +1,9 @@
 import { BaseMapEngine, GeoJsonFeature, CONTINENT_COLORS } from './BaseMapEngine';
 
 export class MainMapEngine extends BaseMapEngine {
+  public playerCountryName: string | null = null;
+  public targetCountryName: string | null = null;
+
   protected drawBackground(): void {
     // Ocean Background - Tactical Blue
     this.ctx.fillStyle = '#1e3a8a';
@@ -9,29 +12,33 @@ export class MainMapEngine extends BaseMapEngine {
 
   protected drawFeature(feature: GeoJsonFeature): void {
     const continent = feature.properties.CONTINENT || 'Unknown';
-    const name = feature.properties.NAME || 'Unknown';
-    const nameLong = feature.properties.NAME_LONG || '';
+    const name = (feature.properties.NAME || 'Unknown').toLowerCase();
+    const nameLong = (feature.properties.NAME_LONG || '').toLowerCase();
+    const nameId = (feature.properties.NAME_ID || '').toLowerCase();
 
-    const isSelected = (
-      (this.selectedCountryCode && (
-        feature.properties.ISO_A3?.toLowerCase() === this.selectedCountryCode.toLowerCase() ||
-        feature.properties.ISO_A2?.toLowerCase() === this.selectedCountryCode.toLowerCase() ||
-        feature.properties.ADM0_A3?.toLowerCase() === this.selectedCountryCode.toLowerCase()
-      )) ||
-      (this.selectedCountryName && (
-        name.toLowerCase() === this.selectedCountryName.toLowerCase() ||
-        nameLong.toLowerCase() === this.selectedCountryName.toLowerCase() ||
-        feature.properties.NAME_ID?.toLowerCase() === this.selectedCountryName.toLowerCase()
-      ))
+    const isPlayer = this.playerCountryName && (
+      name === this.playerCountryName.toLowerCase() ||
+      nameLong === this.playerCountryName.toLowerCase() ||
+      nameId === this.playerCountryName.toLowerCase()
+    );
+
+    const isTarget = this.targetCountryName && (
+      name === this.targetCountryName.toLowerCase() ||
+      nameLong === this.targetCountryName.toLowerCase() ||
+      nameId === this.targetCountryName.toLowerCase()
     );
 
     let color = CONTINENT_COLORS[continent] || '#475569';
     let borderColor = 'rgba(255, 255, 255, 0.6)';
     let lineWidth = Math.max(0.7 / this.scale, 0.4);
 
-    if (isSelected) {
+    if (isPlayer) {
       color = '#10b981'; // Emerald-500
       borderColor = '#34d399';
+      lineWidth = Math.max(2 / this.scale, 1);
+    } else if (isTarget) {
+      color = '#f59e0b'; // Amber-500
+      borderColor = '#fbbf24';
       lineWidth = Math.max(2 / this.scale, 1);
     }
 

@@ -8,8 +8,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface MapContainerProps {
   mode?: 'MAIN';
-  userCountry?: string;
-  targetCoords?: { lat: number; lng: number } | null;
+  userCountry?: string | null;
+  targetName?: string | null;
+  targetCode?: string | null;
   selectedName?: string | null;
   selectedCode?: string | null;
   relations?: any[];
@@ -19,8 +20,9 @@ interface MapContainerProps {
 
 export default function MapContainer({ 
   mode = 'MAIN', 
-  userCountry = "Indonesia", 
-  targetCoords, 
+  userCountry, 
+  targetName, 
+  targetCode,
   selectedName, 
   selectedCode, 
   relations = [],
@@ -39,9 +41,6 @@ export default function MapContainer({
   const [isDragging, setIsDragging] = useState(false);
   const [lastMousePos, setLastMousePos] = useState({ x: 0, y: 0 });
   const [isHoveringStar, setIsHoveringStar] = useState(false);
-
-  // Animation State
-  const animationRef = useRef<number | null>(null);
 
   // Load Map Data
   useEffect(() => {
@@ -93,9 +92,6 @@ export default function MapContainer({
 
     engine.setData(data);
     engine.setCountries(countries);
-    engine.setSelectedCountry(selectedName || null, selectedCode || null);
-    engine.setRelations(relations);
-    engine.setTransform(transform.scale, transform.x, transform.y);
     engineRef.current = engine;
 
     const handleResize = () => {
@@ -114,16 +110,30 @@ export default function MapContainer({
             engineRef.current.stopRenderLoop();
         }
     };
-  }, [data, countries, mode, relations, selectedName, selectedCode]);
+  }, [data, countries, mode]); // Only re-init when fundamental data or mode changes
 
-  // Sync Transform, Selections & Relations
+  // Sync Transform, Selections & Relations (Consolidated to fix hook size issues)
   useEffect(() => {
-    if (engineRef.current) {
-        engineRef.current.setSelectedCountry(selectedName || null, selectedCode || null);
-        engineRef.current.setRelations(relations);
-        engineRef.current.setTransform(transform.scale, transform.x, transform.y);
+    if (engineRef.current instanceof MainMapEngine) {
+        const engine = engineRef.current as MainMapEngine;
+        
+        // Sync Game Selections
+        engine.playerCountryName = userCountry || null;
+        engine.targetCountryName = targetName || selectedName || null;
+        
+        // Sync Base Engine State
+        engine.setRelations(relations);
+        engine.setTransform(transform.scale, transform.x, transform.y);
     }
-  }, [transform, selectedName, selectedCode, relations]);
+  }, [
+    transform.scale, 
+    transform.x, 
+    transform.y, 
+    selectedName, 
+    userCountry, 
+    targetName, 
+    relations
+  ]);
 
   // Interaction Handlers (Mouse/Wheel)
   const handleWheel = useCallback((e: React.WheelEvent) => {

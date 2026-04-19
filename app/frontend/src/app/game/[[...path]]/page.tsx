@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import MapRenderer from "@/app/game/components/map-system/MapRenderer";
 import MapCategorySelector from "../components/2_navigasi_menu/1_navigasi_atas/MapCategorySelector";
 import TradeRouteLegend from "../components/2_navigasi_menu/1_navigasi_atas/TradeRouteLegend";
@@ -156,28 +155,14 @@ export default function GamePage() {
           {/* Keterangan Rute (Pelat Menu Pendukung Navigasi) */}
           <TradeRouteLegend isVisible={mapMode === "trade"} />
 
-          <TransformWrapper
-              initialScale={1}
-              minScale={1}
-              maxScale={8}
-              centerOnInit={!isCentered}
-              onInit={() => setIsCentered(true)}
-              limitToBounds={true}
-              doubleClick={{ disabled: true }}
-            >
-              <TransformComponent wrapperClass="!w-full !h-full" contentClass="!h-full flex items-center justify-center">
-                <div ref={containerRef} className="relative h-full flex items-center justify-center w-max">
-                  <MapRenderer
-                    mapMode={mapMode}
-                    userCountry={userCountry}
-                    targetCountry={targetCountry}
-                    geoData={geoData}
-                    onSelect={handleSelect}
-                    onSelectSDA={(data) => setSelectedCountrySDA(data)}
-                  />
-                </div>
-              </TransformComponent>
-            </TransformWrapper>
+          <MapRenderer
+            mapMode={mapMode}
+            userCountry={userCountry}
+            targetCountry={targetCountry}
+            geoData={geoData}
+            onSelect={handleSelect}
+            onSelectSDA={(data) => setSelectedCountrySDA(data)}
+          />
 
           {/* Target Interaction Modal */}
           <StrategyModal
