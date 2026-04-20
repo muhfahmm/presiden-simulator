@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { 
-  X, Users, Info, Smile, ShoppingCart, Receipt, CalendarDays, Flame, Activity, 
-  Zap, Target, Eye, Building2, Briefcase, GraduationCap, Home, HeartPulse, 
+import {
+  X, Users, Info, Smile, ShoppingCart, Receipt, CalendarDays, Flame, Activity,
+  Zap, Target, Eye, Building2, Briefcase, GraduationCap, Home, HeartPulse,
   Shield, Globe, Coins, Droplets, Navigation, Truck, Ship, Plane, TrainFront
 } from "lucide-react";
 import { happinessStorage, HappinessStats } from "./happinessStorage";
@@ -71,22 +71,22 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
     return -0.5;
   };
   const dailyPriceDelta = computeDailyPriceDelta();
-  
+
   // Hitung Bonus Infrastruktur & Logistik
   const infraBreakdown = happinessStorage.getInfraDetailedBreakdown();
 
   const isRedZone = happiness < 40;
-  
+
   // Total Daily Delta (Rating harian asli)
   const totalDailyDeltaRaw = dailyTaxDelta + dailyPriceDelta;
 
   // Khusus untuk tampilan (Dampak Terpisah)
-  const effectiveTaxDailyDelta = isRedZone 
-    ? (dailyTaxDelta < 0 ? dailyTaxDelta * 2 : dailyTaxDelta * 1.5) 
+  const effectiveTaxDailyDelta = isRedZone
+    ? (dailyTaxDelta < 0 ? dailyTaxDelta * 2 : dailyTaxDelta * 1.5)
     : dailyTaxDelta;
-    
-  const effectivePriceDailyDelta = isRedZone 
-    ? (dailyPriceDelta < 0 ? dailyPriceDelta * 2 : dailyPriceDelta * 1.5) 
+
+  const effectivePriceDailyDelta = isRedZone
+    ? (dailyPriceDelta < 0 ? dailyPriceDelta * 2 : dailyPriceDelta * 1.5)
     : dailyPriceDelta;
 
   // Sektor Hunian & Permukiman
@@ -106,7 +106,7 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
   return (
     <div className="absolute inset-0 bg-stone-900/40 z-50 flex items-center justify-center animate-in fade-in duration-300 p-6">
       <div className="bg-[#f3e9d8] border border-amber-800/20 rounded-[32px] w-full max-w-xl max-h-[85vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
-        
+
         {/* Subtle Accents */}
         <div className="absolute top-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent blur-sm"></div>
         <div className="absolute -top-24 -left-24 w-64 h-64 bg-amber-600/5 rounded-full blur-[80px]"></div>
@@ -129,13 +129,13 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
 
         {/* Content */}
         <div className="p-6 space-y-6 flex-1 overflow-y-auto no-scrollbar">
-          
+
           {/* Main Stat Card */}
           <div className="relative p-8 rounded-[2rem] bg-[#e7d9c1] border border-amber-800/10 overflow-hidden group shadow-inner">
             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
               <Smile className="h-24 w-24 text-amber-800" />
             </div>
-            
+
             <div className="relative flex flex-col items-center text-center space-y-3">
               <div className="text-6xl font-black text-amber-950 tracking-tighter italic">
                 {happiness.toFixed(1)}<span className="text-2xl text-amber-700/60 ml-0.5">%</span>
@@ -148,7 +148,7 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
             {/* Progress Bar */}
             <div className="mt-6 space-y-2">
               <div className="h-2 w-full bg-amber-800/10 rounded-full overflow-hidden border border-amber-800/5">
-                <div 
+                <div
                   className={`h-full bg-gradient-to-r ${happiness >= 60 ? 'from-emerald-600 to-emerald-400' : 'from-amber-600 to-amber-400'} transition-all duration-1000 ease-out shadow-sm`}
                   style={{ width: `${happiness}%` }}
                 />
@@ -195,8 +195,8 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
                     <span className="text-emerald-700 italic">+{item.value.toFixed(3)}/hari</span>
                   </div>
                   <div className="h-1 w-full bg-amber-800/10 rounded-full overflow-hidden">
-                    <div 
-                      className="h-full bg-emerald-600 transition-all duration-1000" 
+                    <div
+                      className="h-full bg-emerald-600 transition-all duration-1000"
                       style={{ width: `${Math.min(100, (item.value / item.max) * 100)}%` }}
                     />
                   </div>
@@ -222,8 +222,8 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
                   </span>
                 </div>
                 <div className="h-1 w-full bg-amber-800/10 rounded-full overflow-hidden">
-                  <div 
-                    className={`h-full ${housingPenalty >= 0 ? "bg-emerald-600" : "bg-rose-600"} transition-all duration-1000`} 
+                  <div
+                    className={`h-full ${housingPenalty >= 0 ? "bg-emerald-600" : "bg-rose-600"} transition-all duration-1000`}
                     style={{ width: `${Math.min(100, housingStats?.homeless_percent ? 100 - housingStats.homeless_percent : (housingPenalty >= 0 ? 100 : Math.abs(housingPenalty) * 200))}%` }}
                   />
                 </div>
@@ -265,7 +265,7 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
 
         {/* Action button */}
         <div className="p-4 border-t border-amber-800/10 bg-[#dcc7a1]/40">
-          <button 
+          <button
             onClick={onClose}
             className="w-full py-3 bg-amber-800 hover:bg-amber-700 text-white font-black text-xs uppercase tracking-[0.2em] rounded-xl transition-all active:scale-95 shadow-sm space-x-2"
           >
