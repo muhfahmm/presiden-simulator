@@ -11,7 +11,7 @@ export interface StabilityData {
 export const stabilityStorage = {
   getData: (): StabilityData => {
     const defaults: StabilityData = {
-      stability: 82, // Base stability fallback
+      stability: 50, // Base stability fallback
       lastUpdated: Date.now()
     };
 
@@ -32,7 +32,7 @@ export const stabilityStorage = {
       const countryName = session.country || "Indonesia";
       const countryData = countries.find(c => c.name_id === countryName || c.name_en === countryName);
       return {
-        stability: 80, // Hardcoded baseline to match page.tsx initial state
+        stability: 50, // Hardcoded baseline to match page.tsx initial state
         lastUpdated: Date.now()
       };
     }
@@ -158,8 +158,8 @@ export const stabilityStorage = {
 
     // 5. Baseline Drift (Stabilitas perlahan kembali ke normal/80 jika tidak ada tekanan)
     if (delta === 0) {
-      if (data.stability < 80) delta += 0.05;
-      else if (data.stability > 80) delta -= 0.02;
+      if (data.stability < 50) delta += 0.05;
+      else if (data.stability > 50) delta -= 0.02;
     }
 
     if (delta !== 0) {

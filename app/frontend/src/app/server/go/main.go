@@ -294,7 +294,7 @@ func InitializeNPCStatesLocked() {
 		pop := 50000000.0 
 		budget := float64(tier) * 1000.0 // Default small budget
 		stability := 75.0 + core.Rng.Float64()*20.0
-		happiness := 55.0
+		happiness := 50.0
 		
 		// Use Python defaults if available
 		if def, ok := pyDefaults[name]; ok {
@@ -419,7 +419,7 @@ func simulationEngine() {
 		// === ADVANCE ONE GAME DAY ===
 		core.GlobalState.Mu.Lock()
 
-		// Parse and advance date
+		// 1. Parse and advance date
 		currentDate, err := time.Parse("2006-01-02", core.GlobalState.GameDate)
 		if err != nil {
 			fmt.Printf("[GO] ERROR Parsing Date: %v (Value: %s)\n", err, core.GlobalState.GameDate)
@@ -430,92 +430,54 @@ func simulationEngine() {
 
 		fmt.Printf("[GO] Tick: %s (Day %d) | Speed: %d\n", core.GlobalState.GameDate, core.GlobalState.DayCounter, speed)
 
-		// --- Process Player Nation (Server-Side) ---
+		// 2. Process Player Nation (Calculates Happiness, Stability, Budget)
 		processPlayerDay(nextDate)
+		
+		// Capture snapshot for SSE while locked
+		isMajorUpdate := len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen
+		isWeeklySync := core.GlobalState.DayCounter%7 == 0 || core.GlobalState.DayCounter < 2
+		
+		var snapshot []byte
+		if isWeeklySync {
+			snapshot = createSnapshot()
+		} else if isMajorUpdate {
+			snapshot = createMajorUpdateSnapshot()
+		} else {
+			snapshot = createPlayerSnapshot()
+		}
+		core.GlobalState.Mu.Unlock()
 
-		// --- Process 206 NPC Nations (Server-Side) ---
+		// 3. Process NPC & Global Simulation (CRITICAL: Called OUTSIDE Lock to prevent deadlock)
 		processNPCDay(nextDate)
 		server_berita.ProcessNewsDay(nextDate)
-
-		// Quarterly Polyglot Workers (Every 30 days)
+		
+		// Quarterly Polyglot Workers
 		if core.GlobalState.DayCounter%30 == 0 {
 			go invokePolyglotWorkers(nextDate.Format("02 Jan 2006"))
 		}
 
-		// --- Process Inbox & Events (Server-Side) ---
+		// Process Inbox & Events
 		server_inbox.ProcessInboxDay(nextDate)
 
-		// --- Update Relationships DAILY ---
+		// Update Relationships
+		// Since this accesses Relationships map, we handle internal locking there if needed, 
+		// but currently it's safe if only the engine writes.
 		server_hubungan.UpdateDailyRelationsLocked()
 
 		// Broadcast state to all SSE clients
-		// PERFORMANCE OPTIMIZATION: Drastically reduce payload for daily ticks.
-		// Massive objects (Relationships, Full History) are only sent weekly.
-		var snapshot []byte
-		isMajorUpdate := len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen
-		isWeeklySync := core.GlobalState.DayCounter%7 == 0 || core.GlobalState.DayCounter < 2
-
-		if isWeeklySync {
-			// FULL SNAPSHOT: Everything (Sent weekly to keep everything in sync)
-			lastBroadcastNewsLen = len(core.GlobalState.News)
-			lastBroadcastInboxLen = len(core.GlobalState.Inbox)
-			snapshot, _ = json.Marshal(core.GlobalState)
-			fmt.Printf("[SSE] Broadcasting Full Snapshot (Day %d) - Relationship Matrix and NPC States included.\n", core.GlobalState.DayCounter)
-		} else if isMajorUpdate {
-			// TRUNCATED SNAPSHOT: Only recent news/inbox (Sent when new items appear)
-			// This prevents sending thousands of historical items on every tick.
-			lastBroadcastNewsLen = len(core.GlobalState.News)
-			lastBroadcastInboxLen = len(core.GlobalState.Inbox)
-
-			// Helper to get last N items safely
-			getRecentNews := func(arr []core.NewsItem, n int) []core.NewsItem {
-				if len(arr) <= n { return arr }
-				return arr[len(arr)-n:]
-			}
-			getRecentInbox := func(arr []core.InboxItem, n int) []core.InboxItem {
-				if len(arr) <= n { return arr }
-				return arr[len(arr)-n:]
-			}
-
-			payload := SyncPayload{
-				GameDate:   core.GlobalState.GameDate,
-				IsPaused:   core.GlobalState.IsPaused,
-				Speed:      core.GlobalState.Speed,
-				DayCounter: core.GlobalState.DayCounter,
-				News:       getRecentNews(core.GlobalState.News, 20),
-				Inbox:      getRecentInbox(core.GlobalState.Inbox, 10),
-				Player:     core.GlobalState.Player,
-				// NOTE: NPCStates and Relationships are OMITTED (nil)
-			}
-			snapshot, _ = json.Marshal(payload)
-		} else {
-			// HEARTBEAT SNAPSHOT: Date and Player stats only (Smallest possible)
-			subState := struct {
-				GameDate   string                          `json:"gameDate"`
-				IsPaused   bool                            `json:"isPaused"`
-				Speed      int                             `json:"speed"`
-				DayCounter int              `json:"dayCounter"`
-				Player     core.PlayerState `json:"player"`
-			}{
-				GameDate:   core.GlobalState.GameDate,
-				IsPaused:   core.GlobalState.IsPaused,
-				Speed:      core.GlobalState.Speed,
-				DayCounter: core.GlobalState.DayCounter,
-				Player:     core.GlobalState.Player,
-			}
-			snapshot, _ = json.Marshal(subState)
-		}
-		core.GlobalState.Mu.Unlock()
-
-		// Run broadcasting in its own goroutine to avoid blocking the simulation loop
 		go func(data []byte) {
 			broadcastSSE(data)
 		}(snapshot)
 
 		// Check for Month Change (Quarterly Detection)
 		if nextDate.Month() != core.GlobalState.LastProcessedMonth {
-			oldMonth := core.GlobalState.LastProcessedMonth
+			// Update this atomicaly if needed, or rely on loop context
+			core.GlobalState.Mu.Lock()
 			core.GlobalState.LastProcessedMonth = nextDate.Month()
+			core.GlobalState.Mu.Unlock()
+			
+			oldMonth := nextDate.Month() - 1
+			if oldMonth == 0 { oldMonth = 12 }
 			
 			if oldMonth == 3 || oldMonth == 6 || oldMonth == 9 || oldMonth == 12 {
 				quarter := 0
@@ -528,8 +490,6 @@ func simulationEngine() {
 				go invokeQuarterlyEconomicAI(nextDate, quarter)
 			}
 		}
-
-		broadcastSSE(snapshot)
 	}
 }
 
@@ -1011,6 +971,10 @@ type SyncPayload struct {
 var lastBroadcastNewsLen int = 0
 var lastBroadcastInboxLen int = 0
 
+// ═══════════════════════════════════════════════════════════
+// SNAPSHOT UTILITIES (JSON PAYLOAD GENERATORS)
+// ═══════════════════════════════════════════════════════════
+
 func createSnapshot() []byte {
 	payload := SyncPayload{
 		GameDate:   core.GlobalState.GameDate,
@@ -1030,7 +994,7 @@ func createSnapshot() []byte {
 	return data
 }
 
-// Lightweight snapshot — player stats only, no news (saves bandwidth)
+// Lightweight snapshot for periodic ticks (bandwidth optimization)
 func createPlayerSnapshot() []byte {
 	payload := SyncPayload{
 		GameDate:   core.GlobalState.GameDate,
@@ -1038,29 +1002,54 @@ func createPlayerSnapshot() []byte {
 		Speed:      core.GlobalState.Speed,
 		DayCounter: core.GlobalState.DayCounter,
 		Player:     core.GlobalState.Player,
-		VisualDelta: map_engine.GlobalVisualState.GetHeatmap(),
 	}
 	data, _ := json.Marshal(payload)
 	return data
 }
 
-// Ultra-lightweight snapshot — for pause/resume/speed control only
-func createControlSnapshot() []byte {
-	payload := struct {
-		GameDate   string `json:"gameDate"`
-		IsPaused   bool   `json:"isPaused"`
-		Speed      int    `json:"speed"`
-		DayCounter int    `json:"dayCounter"`
-	}{
+// Snapshot for when new news or inbox items arrive
+func createMajorUpdateSnapshot() []byte {
+	lastBroadcastNewsLen = len(core.GlobalState.News)
+	lastBroadcastInboxLen = len(core.GlobalState.Inbox)
+
+	getRecentNews := func(arr []core.NewsItem, n int) []core.NewsItem {
+		if len(arr) <= n { return arr }
+		return arr[len(arr)-n:]
+	}
+	getRecentInbox := func(arr []core.InboxItem, n int) []core.InboxItem {
+		if len(arr) <= n { return arr }
+		return arr[len(arr)-n:]
+	}
+
+	payload := SyncPayload{
 		GameDate:   core.GlobalState.GameDate,
 		IsPaused:   core.GlobalState.IsPaused,
 		Speed:      core.GlobalState.Speed,
 		DayCounter: core.GlobalState.DayCounter,
+		News:       getRecentNews(core.GlobalState.News, 20),
+		Inbox:      getRecentInbox(core.GlobalState.Inbox, 10),
+		Player:     core.GlobalState.Player,
 	}
 	data, _ := json.Marshal(payload)
 	return data
 }
 
+// Snapshot for control actions (pause/resume/speed)
+func createControlSnapshot() []byte {
+	payload := SyncPayload{
+		GameDate:   core.GlobalState.GameDate,
+		IsPaused:   core.GlobalState.IsPaused,
+		Speed:      core.GlobalState.Speed,
+		DayCounter: core.GlobalState.DayCounter,
+		Player:     core.GlobalState.Player,
+	}
+	data, _ := json.Marshal(payload)
+	return data
+}
+
+// ═══════════════════════════════════════════════════════════
+// SSE & API HANDLERS
+// ═══════════════════════════════════════════════════════════
 
 func handleSSE(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/event-stream")
@@ -1144,23 +1133,27 @@ func handleControl(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("[GO] Game PAUSED by UI.")
 		
 		// Polyglot Optimization: Trigger Situation Report
-		go func() {
-			report, err := map_engine.TriggerResumePausedSystem(true, core.GlobalState)
-			if err == nil && report != nil {
-				core.GlobalState.Mu.Lock()
-				core.AddInboxItem(
-					"Sistem Intelijen Nasional",
-					report["subject"].(string),
-					report["content"].(string),
-					"government",
-					report["priority"].(string),
-					false,
-					"",
-					core.GlobalState.GameDate,
-				)
-				core.GlobalState.Mu.Unlock()
-			}
-		}()
+		{
+			// Take a local copy of state to avoid holding lock while calling Python
+			snapshotState := core.GlobalState
+			go func(state core.SimulationState) {
+				report, err := map_engine.TriggerResumePausedSystem(true, state)
+				if err == nil && report != nil {
+					core.GlobalState.Mu.Lock()
+					core.AddInboxItemLocked(
+						"Sistem Intelijen Nasional",
+						report["subject"].(string),
+						report["content"].(string),
+						"government",
+						report["priority"].(string),
+						false,
+						"",
+						state.GameDate,
+					)
+					core.GlobalState.Mu.Unlock()
+				}
+			}(snapshotState)
+		}
 	case "resume":
 		core.GlobalState.IsPaused = false
 		fmt.Println("[GO] Game RESUMED by UI.")

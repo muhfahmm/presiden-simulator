@@ -301,7 +301,7 @@ export const gameStorage = {
       ? parseInt(currentCountry.jumlah_penduduk.replace(/\./g, '')) 
       : currentCountry.jumlah_penduduk;
     const defaultBudget = typeof currentCountry.anggaran === 'number' ? currentCountry.anggaran : 0;
-    const defaultStability = 82;
+    const defaultStability = 50;
 
     console.log(`[RESET] Defaults to restore: Pop=${defaultPopulation}, Budget=${defaultBudget}, Stability=${defaultStability}`);
 

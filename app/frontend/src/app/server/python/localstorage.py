@@ -11,36 +11,36 @@ def get_defaults():
         "China": {
             "population": 1392730000.0,
             "budget": 180167.0,
-            "happiness": 55.0,
-            "stability": 82.0,
+            "happiness": 50.0,
+            "stability": 50.0,
             "economicTier": 4
         },
         "India": {
             "population": 1352640000.0,
             "budget": 165000.0,
-            "happiness": 55.0,
-            "stability": 78.0,
+            "happiness": 50.0,
+            "stability": 50.0,
             "economicTier": 4
         },
         "Amerika Serikat": {
             "population": 331002651.0,
             "budget": 150000.0,
-            "happiness": 55.0,
-            "stability": 85.0,
+            "happiness": 50.0,
+            "stability": 50.0,
             "economicTier": 4
         },
         "Indonesia": {
             "population": 273523615.0,
             "budget": 13807.0,
-            "happiness": 55.0,
-            "stability": 82.0,
+            "happiness": 50.0,
+            "stability": 50.0,
             "economicTier": 3
         },
         "Thailand": {
             "population": 69800000.0,
             "budget": 12000.0,
-            "happiness": 55.0,
-            "stability": 80.0,
+            "happiness": 50.0,
+            "stability": 50.0,
             "economicTier": 2
         }
     }

@@ -26,7 +26,7 @@ export interface HappinessStats {
 const STORAGE_KEY = "em4_happiness_stats_v2";
 
 const DEFAULT_STATS: HappinessStats = {
-  value: 55,
+  value: 50,
   reasoning: "Tingkat kepuasan awal rakyat pada transisi pemerintahan.",
   trend: "stable",
   lastMonthlyUpdate: "2026-1"

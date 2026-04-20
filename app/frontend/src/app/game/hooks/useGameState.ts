@@ -26,11 +26,11 @@ interface PolicyUpdate {
 }
 
 export function useGameState(setActiveMenu: (menu: string) => void) {
-  const [approval, setApproval] = useState(55);
+  const [approval, setApproval] = useState(50);
   const [budget, setBudget] = useState(0);
   const [budgetDelta, setBudgetDelta] = useState(0);
-  const [happiness, setHappiness] = useState({ global: 55 });
-  const [stability, setStability] = useState(80);
+  const [happiness, setHappiness] = useState({ global: 50 });
+  const [stability, setStability] = useState(50);
   const [population, setPopulation] = useState(0);
   const [populationDelta, setPopulationDelta] = useState(0);
   const [userCountry, setUserCountry] = useState("Indonesia");
@@ -113,7 +113,7 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         country: countryName,
-        happiness: calculatePopulationHappiness().global || 55,
+        happiness: calculatePopulationHappiness().global || 50,
         population: populationStorage.getPopulation(),
         populationDelta: 0,
         budget: budgetStorage.getBudget(),
