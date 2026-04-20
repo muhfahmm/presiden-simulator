@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import {
-  X, Users, Info, Smile, ShoppingCart, Receipt, CalendarDays, Flame, Activity,
-  Zap, Target, Eye, Building2, Briefcase, GraduationCap, Home, HeartPulse,
+import { 
+  X, Users, Info, Smile, ShoppingCart, Receipt, CalendarDays, Flame, Activity, 
+  Zap, Target, Eye, Building2, Briefcase, GraduationCap, Home, HeartPulse, 
   Shield, Globe, Coins, Droplets
 } from "lucide-react";
 import { happinessStorage, HappinessStats } from "./happinessStorage";
@@ -68,17 +68,17 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
   const dailyPriceDelta = computeDailyPriceDelta();
 
   const isRedZone = happiness < 40;
-
+  
   // Total Daily Delta (Rating harian asli)
   const totalDailyDeltaRaw = dailyTaxDelta + dailyPriceDelta;
 
   // Khusus untuk tampilan (Dampak Terpisah)
-  const effectiveTaxDailyDelta = isRedZone
-    ? (dailyTaxDelta < 0 ? dailyTaxDelta * 2 : dailyTaxDelta * 1.5)
+  const effectiveTaxDailyDelta = isRedZone 
+    ? (dailyTaxDelta < 0 ? dailyTaxDelta * 2 : dailyTaxDelta * 1.5) 
     : dailyTaxDelta;
-
-  const effectivePriceDailyDelta = isRedZone
-    ? (dailyPriceDelta < 0 ? dailyPriceDelta * 2 : dailyPriceDelta * 1.5)
+    
+  const effectivePriceDailyDelta = isRedZone 
+    ? (dailyPriceDelta < 0 ? dailyPriceDelta * 2 : dailyPriceDelta * 1.5) 
     : dailyPriceDelta;
 
 
@@ -94,7 +94,7 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
-
+        
         {/* Header Decor */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-cyan-500/10 to-transparent pointer-events-none" />
 
@@ -109,7 +109,7 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
               <p className="text-sm text-zinc-500 font-medium">Indeks Kebahagiaan Nasional</p>
             </div>
           </div>
-          <button
+          <button 
             onClick={onClose}
             className="p-2 hover:bg-zinc-800 rounded-xl transition-colors text-zinc-500 hover:text-white cursor-pointer"
           >
@@ -119,13 +119,13 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
 
         {/* Content */}
         <div className="p-8 space-y-8">
-
+          
           {/* Main Stat Card */}
           <div className="relative p-10 rounded-[2.5rem] bg-zinc-950 border border-zinc-800/50 overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
               <Smile className="h-32 w-32 text-cyan-400" />
             </div>
-
+            
             <div className="relative flex flex-col items-center text-center space-y-4">
               <div className="text-7xl font-black text-white tracking-tighter">
                 {happiness.toFixed(1)}<span className="text-3xl text-cyan-500 ml-1">%</span>
@@ -138,7 +138,7 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
             {/* Progress Bar */}
             <div className="mt-8 space-y-2">
               <div className="h-3 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800">
-                <div
+                <div 
                   className="h-full bg-gradient-to-r from-cyan-600 via-blue-500 to-cyan-400 transition-all duration-1000 ease-out shadow-[0_0_15px_rgba(6,182,212,0.3)]"
                   style={{ width: `${happiness}%` }}
                 />
@@ -162,10 +162,11 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
               </div>
             </div>
 
-            <div className={`p-4 rounded-2xl flex flex-col items-center text-center space-y-2 relative overflow-hidden border ${effectiveTaxDailyDelta > 0 ? 'bg-emerald-950/40 border-emerald-500/20' :
-                effectiveTaxDailyDelta < 0 ? 'bg-rose-950/40 border-rose-500/20' :
-                  'bg-zinc-950/50 border-zinc-800/50'
-              }`}>
+            <div className={`p-4 rounded-2xl flex flex-col items-center text-center space-y-2 relative overflow-hidden border ${
+              effectiveTaxDailyDelta > 0 ? 'bg-emerald-950/40 border-emerald-500/20' :
+              effectiveTaxDailyDelta < 0 ? 'bg-rose-950/40 border-rose-500/20' :
+              'bg-zinc-950/50 border-zinc-800/50'
+            }`}>
               {isRedZone && effectiveTaxDailyDelta < 0 && (
                 <Flame className="h-5 w-5 text-rose-500 animate-pulse" />
               )}
@@ -188,10 +189,11 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
               </div>
             </div>
 
-            <div className={`p-4 rounded-2xl flex flex-col items-center text-center space-y-2 border ${effectivePriceDailyDelta > 0 ? 'bg-emerald-950/20 border-emerald-500/20' :
-                effectivePriceDailyDelta < 0 ? 'bg-rose-950/20 border-rose-500/20' :
-                  'bg-zinc-950/50 border-zinc-800/50'
-              }`}>
+            <div className={`p-4 rounded-2xl flex flex-col items-center text-center space-y-2 border ${
+              effectivePriceDailyDelta > 0 ? 'bg-emerald-950/20 border-emerald-500/20' :
+              effectivePriceDailyDelta < 0 ? 'bg-rose-950/20 border-rose-500/20' :
+              'bg-zinc-950/50 border-zinc-800/50'
+            }`}>
               <ShoppingCart className={`h-5 w-5 ${effectivePriceDailyDelta > 0 ? 'text-emerald-400' : effectivePriceDailyDelta < 0 ? 'text-rose-400' : 'text-zinc-500'}`} />
               <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">DAMPAK HARGA / HARI</div>
               <div className={`text-sm font-black ${effectivePriceDailyDelta > 0 ? 'text-emerald-400' : effectivePriceDailyDelta < 0 ? 'text-rose-400' : 'text-zinc-300'}`}>
@@ -222,7 +224,7 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
 
         {/* Action button */}
         <div className="p-6 border-t border-zinc-800/50 bg-zinc-900/50">
-          <button
+          <button 
             onClick={onClose}
             className="w-full py-4 bg-zinc-800 hover:bg-zinc-700 text-white font-bold rounded-2xl transition-all active:scale-95 shadow-lg border border-zinc-700 hover:border-zinc-600 cursor-pointer"
           >
