@@ -96,7 +96,7 @@ export default function DatabasePage() {
     <div className="flex flex-col h-screen w-screen bg-[#f3e9d8] text-amber-950 font-sans relative overflow-hidden select-none">
 
       {/* 1. TOP STATS BAR */}
-      <header className="bg-[#dcc7a1]/95 backdrop-blur-md border-b border-amber-800/10 px-6 py-2 flex items-center justify-between z-20 text-xs text-amber-900/60 font-bold">
+      <header className="bg-[#dcc7a1]/95 backdrop-blur-md border-b border-amber-800/10 px-6 py-4 flex items-center justify-between z-20 text-xs text-amber-900/60 font-bold">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
             <button className="h-6 w-6 rounded-full bg-amber-800/10 flex items-center justify-center hover:bg-amber-800/20 transition cursor-pointer shadow-sm">
