@@ -1,7 +1,7 @@
 "use client"
 
-import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
-import { aiHappinessStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
+import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { aiHappinessStorage } from "@/app/game/components/modals/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
 import { aiPublicEventStorage } from "../antarmuka_data_acara/AIPublicEventStorage";
 import { DATA_ACARA, Acara } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/acara/acaraStorage";
@@ -40,3 +40,4 @@ export class EksekutorAcaraNasional {
     return true;
   }
 }
+

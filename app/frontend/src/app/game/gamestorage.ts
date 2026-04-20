@@ -25,32 +25,32 @@ import { unITUStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/5_ge
 import { unWMOStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/12_Organisasi_Meteorologi_Dunia/unWMOStorage";
 import { populationStorage } from "./components/1_navbar/2_populasi";
 import { populationDeltaStorage } from "./components/1_navbar/2_populasi/PopulationDeltaStorage";
-import { embassyStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage";
-import { relationStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
-import { militaryAidStorage } from "./components/map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
-import { playerMilitaryStorage } from "./components/map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
+import { embassyStorage } from "./components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage";
+import { relationStorage } from "./components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
+import { militaryAidStorage } from "./components/modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
+import { playerMilitaryStorage } from "./components/modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
 import { stabilityStorage } from "./components/1_navbar/4_stabilitas";
 import { nuclearStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/nuclearStorage";
-import { aiBudgetStorage } from "./components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { aiBudgetStorage } from "./components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { importStockStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ImportStockStorage";
 import { historiImportStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ekspor_impor/impor/HistoriImportStorage";
 import { historiEksporStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ekspor_impor/ekspor/HistoriEksporStorage";
-import { aliansiStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/3_aliansi_pertahanan/logic/aliansiStorage";
-import { nonAggressionStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/2_pakta_non_agresi/logic/nonAggressionStorage";
+import { aliansiStorage } from "./components/modals/2_diplomasi_hubungan/3_aliansi_pertahanan/logic/aliansiStorage";
+import { nonAggressionStorage } from "./components/modals/2_diplomasi_hubungan/2_pakta_non_agresi/logic/nonAggressionStorage";
 import { newsStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/berita/newsStorage";
 import { newsStorage as globalNewsStorage } from "./components/sidemenu/1_berita/newsStorage";
-import { relationDeltaStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/8_hubungan_internasional/logic/relationDeltaStorage";
+import { relationDeltaStorage } from "./components/modals/2_diplomasi_hubungan/8_hubungan_internasional/logic/relationDeltaStorage";
 import { religionStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 import { ideologyStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/ideologyStorage";
 import { lawStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/7_kementrian/2_database_undang_undang/lawStorage";
 import { researchStorage } from "./components/sidemenu/3_riset_dan_penelitian/researchStorage";
 import { eventStorage } from "./logic/events/eventStorage";
-import { tradeStorage as diplomaticTradeStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
-import { RELATION_MATRIX_KEY } from "./components/map-system/ai_diplomacy_engine/services/MatrixHandler";
+import { tradeStorage as diplomaticTradeStorage } from "./components/modals/2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
+import { getGlobalRelationMatrix, RELATION_MATRIX_KEY } from "@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler";
 import { timeStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { aiTradeOfferStorage } from "./components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/aiTradeOfferStorage";
 import { tradeContractStorage } from "./components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/tradeContractStorage";
-import { aiHappinessStorage } from "./components/map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
+import { aiHappinessStorage } from "./components/modals/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { aiBuildingStorage } from "./components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "./components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
 
@@ -516,3 +516,4 @@ export const gameStorage = {
     localStorage.removeItem(RELATION_MATRIX_KEY);
   },
 };
+

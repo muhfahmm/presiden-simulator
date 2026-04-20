@@ -8,7 +8,7 @@ import { allRelations } from "@/app/database/data/database_hubungan_antar_negara
 
 import { unSecurityCouncilStorage } from "../1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
-import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
+import { relationStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { timeStorage } from "../../2_ekonomi/1-perdagangan/timeStorage";
 
 type Continent = "Asia" | "Afrika" | "Eropa" | "Amerika Utara" | "Amerika Selatan" | "Oseania";
@@ -474,3 +474,4 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
     </div>
   );
 }
+

@@ -21,7 +21,7 @@ import { TAOISME_HEAVY_INDUSTRY_PENALTY } from "@/app/game/components/2_navigasi
 import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic"
 import { hunianRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/index";
 import { happinessStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/happinessStorage";
-import { aiHappinessStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
+import { aiHappinessStorage } from "@/app/game/components/modals/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 
 /**
@@ -349,4 +349,5 @@ export function calculateDailyBudgetDelta(countryData: CountryData, buildingDelt
   const breakdown = calculateBudgetBreakdown(countryData, buildingDeltas);
   return breakdown.dailyDelta;
 }
+
 

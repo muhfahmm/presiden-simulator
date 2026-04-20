@@ -2,12 +2,12 @@
 
 import { useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import MapRenderer from "@/app/game/components/map-system/MapRenderer";
+import MapRenderer from "@/app/game/components/2_navigasi_menu/1_navigasi_atas/MapRenderer";
 import MapCategorySelector from "../components/2_navigasi_menu/1_navigasi_atas/MapCategorySelector";
 import TradeRouteLegend from "../components/2_navigasi_menu/1_navigasi_atas/TradeRouteLegend";
 import { sdaIcons } from "../components/2_navigasi_menu/1_navigasi_atas/SDA/mapSDA";
-import StrategyModal from "@/app/game/components/map-system/modals_detail_negara/modals";
-import SDADetailsModal from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/1_SDA/SDADetailsModal";
+import StrategyModal from "@/app/game/components/modals/modals";
+import SDADetailsModal from "@/app/game/components/modals/1_info_strategis/1_SDA/SDADetailsModal";
 import BottomNav from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/BottomNav";
 import SideMenu from "@/app/game/components/sidemenu/SideMenu";
 import ModalsManager from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/ModalsManager";
@@ -16,10 +16,10 @@ import WelcomeOverlay from "@/app/game/components/6_overlays/WelcomeOverlay";
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import GameNavbar from "@/app/game/components/1_navbar";
-import { initAiDiplomacy } from "../components/map-system/ai_diplomacy_engine/AiGlobalDiplomacy";
+import { initAiDiplomacy } from "../logic/ai/ai_diplomacy_engine/AiGlobalDiplomacy";
 import { newsStorage } from "../components/sidemenu/1_berita/newsStorage";
-import { aiBudgetStorage } from "../components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
-import { aiPopulationStorage } from "../components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
+import { aiBudgetStorage } from "../components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { aiPopulationStorage } from "../components/modals/1_info_strategis/2_Populasi/AIPopulationStorage";
 // import AILogicCNS from "../components/AI_logic"; // REMOVED: All AI logic migrated to Go Server
 
 import { useGameState } from "../hooks/useGameState";
@@ -55,7 +55,7 @@ export default function GamePage() {
       aiBudgetStorage.clear();
       aiPopulationStorage.clear();
       // Reset relation scores too for absolute consistency
-      const { relationStorage } = require("../components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage");
+      const { relationStorage } = require("../components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage");
       relationStorage.clear();
       console.log("[GAME PAGE] AI and Relation storages reset complete");
     }

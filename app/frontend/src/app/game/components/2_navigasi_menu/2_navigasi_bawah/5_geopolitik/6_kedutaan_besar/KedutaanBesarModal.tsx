@@ -6,8 +6,8 @@ import {
   ChevronRight, ArrowUpRight, Info 
 } from "lucide-react";
 import { countries } from "@/app/database/data/negara/benua/index";
-import { embassyStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage";
-import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
+import { embassyStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage";
+import { relationStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 
 interface KedutaanBesarModalProps {
   isOpen: boolean;
@@ -197,3 +197,4 @@ export default function KedutaanBesarModal({
     </div>
   );
 }
+

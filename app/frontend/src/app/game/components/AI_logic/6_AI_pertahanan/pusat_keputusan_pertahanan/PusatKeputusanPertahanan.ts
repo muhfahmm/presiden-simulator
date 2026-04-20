@@ -1,8 +1,8 @@
 "use client"
 
 import { countries } from "@/app/database/data/negara/benua/index";
-import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
-import { aiPopulationStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
+import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { aiPopulationStorage } from "@/app/game/components/modals/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { aiDefenseStorage } from "../antarmuka_data_pertahanan/AIDefenseStorage";
 import { EksekutorPertahananAI } from "../sistem_tindakan_respon/EksekutorPertahananAI";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
@@ -401,3 +401,4 @@ export class PusatKeputusanPertahanan {
     }
   }
 }
+

@@ -41,8 +41,8 @@ import {
   STEALTH_POWER_PER_UNIT, INTERCEPTOR_POWER_PER_UNIT, BOMBER_POWER_PER_UNIT, ATTACK_HELI_POWER_PER_UNIT, RECON_POWER_PER_UNIT, UAV_POWER_PER_UNIT, KAMIKAZE_POWER_PER_UNIT, TRANSPORT_POWER_PER_UNIT,
   INFANTRY_POWER_PER_UNIT, calculateTotalMilitaryPower 
 } from "./kekuatanmiliter";
-import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
-import { playerMilitaryStorage } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
+import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
+import { playerMilitaryStorage } from "../../../../modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
 
 export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, setActiveMenu }: { isOpen: boolean; onClose: () => void; data: any; activeMenu?: string; setActiveMenu?: (menu: string) => void }) {
   const [activeConstructions, setActiveConstructions] = useState<any[]>([]);

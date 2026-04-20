@@ -1,5 +1,5 @@
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
-import { aiPopulationStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
+import { aiPopulationStorage } from "@/app/game/components/modals/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaStorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
@@ -106,3 +106,4 @@ export class AiPembangunanService {
         console.log(`[AI Construction] Successfully queued ${quantity} units of ${label}.`);
     }
 }
+

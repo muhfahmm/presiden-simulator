@@ -8,11 +8,11 @@ import {
   Search
 } from 'lucide-react';
 import { inboxStorage, InboxItem } from './inboxStorage';
-import { embassyStorage } from '../../map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage';
+import { embassyStorage } from '../../modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage';
 import { getInitialAgreements } from '@/app/database/data/database_mitra_perdagangan/agreementsRegistry';
 import { countries as centersData } from '@/app/database/data/negara/benua/index';
-import { getGlobalRelationMatrix } from '../../map-system/ai_diplomacy_engine/services/MatrixHandler';
-import { relationStorage } from '../../map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage';
+import { getGlobalRelationMatrix } from '../../../logic/ai/ai_diplomacy_engine/services/MatrixHandler';
+import { relationStorage } from '../../modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage';
 import { unSecurityCouncilStorage } from '../../2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage';
 
 // Modular Tab Components

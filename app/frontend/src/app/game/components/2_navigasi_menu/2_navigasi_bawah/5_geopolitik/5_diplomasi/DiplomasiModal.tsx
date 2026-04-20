@@ -14,12 +14,12 @@ import { allRelations } from "@/app/database/data/database_hubungan_antar_negara
 
 
 // Import modular action components
-import Kedutaan from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/1_Kedutaan";
-import PaktaNonAgresi from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/2_pakta_non_agresi/2_PaktaNonAgresi";
-import AliansiPertahanan from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/3_aliansi_pertahanan/3_AliansiPertahanan";
-import PerjanjianDagang from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/4_perjanjian_dagang/4_PerjanjianDagang";
-import KontrakPenelitian from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/5_kontrak_penelitian/5_KontrakPenelitian";
-import KirimPasukan from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/6_kirim_pasukan/6_KirimPasukan";
+import Kedutaan from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/1_Kedutaan";
+import PaktaNonAgresi from "@/app/game/components/modals/2_diplomasi_hubungan/2_pakta_non_agresi/2_PaktaNonAgresi";
+import AliansiPertahanan from "@/app/game/components/modals/2_diplomasi_hubungan/3_aliansi_pertahanan/3_AliansiPertahanan";
+import PerjanjianDagang from "@/app/game/components/modals/2_diplomasi_hubungan/4_perjanjian_dagang/4_PerjanjianDagang";
+import KontrakPenelitian from "@/app/game/components/modals/2_diplomasi_hubungan/5_kontrak_penelitian/5_KontrakPenelitian";
+import KirimPasukan from "@/app/game/components/modals/2_diplomasi_hubungan/6_kirim_pasukan/6_KirimPasukan";
 
 interface DiplomasiModalProps {
   isOpen: boolean;
@@ -361,3 +361,4 @@ export default function DiplomasiModal({ isOpen, onClose, activeMenu, setActiveM
     </div>
   );
 }
+

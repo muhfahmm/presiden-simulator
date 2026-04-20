@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { Layers, Mountain, Gem, Waves, Flame, Battery, Droplets, Box, Cpu, Pickaxe, Radio } from "lucide-react";
-import { mapPathCache } from "@/app/game/components/map-system/utils/MapPathCache";
+import { mapPathCache } from "@/app/map-system/engine/utils/MapPathCache";
 
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index";
 

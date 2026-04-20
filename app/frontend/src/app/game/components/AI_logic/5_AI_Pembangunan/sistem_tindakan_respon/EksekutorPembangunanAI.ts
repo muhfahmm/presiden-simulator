@@ -1,6 +1,6 @@
 "use client"
 
-import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { aiBuildingStorage } from "../antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "../antarmuka_data_pembangunan/AIProductionStorage";
 import { getBuildingRequirement } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/1-produksi/MaterialRequirement";
@@ -139,3 +139,4 @@ export class EksekutorPembangunanAI {
     });
   }
 }
+

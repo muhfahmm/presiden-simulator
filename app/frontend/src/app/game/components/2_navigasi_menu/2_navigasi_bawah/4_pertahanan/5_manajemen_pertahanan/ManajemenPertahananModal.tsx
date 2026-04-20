@@ -13,8 +13,8 @@ import MaterialRequirement, { getBuildingRequirement } from "../../3_pembangunan
 import { pertahananRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../../3_pembangunan/jika_uang_kurang";
-import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
-import { playerMilitaryStorage } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
+import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
+import { playerMilitaryStorage } from "../../../../modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
 
 interface ModalProps {
   isOpen: boolean;

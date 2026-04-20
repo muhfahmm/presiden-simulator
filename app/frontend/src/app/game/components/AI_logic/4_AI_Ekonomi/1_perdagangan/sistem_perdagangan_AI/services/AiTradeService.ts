@@ -3,8 +3,8 @@
  * Jembatan antara Frontend (TypeScript) dan Otak AI (Python).
  * Dipanggil setiap hari game dari timeStorage.
  */
-import { getGlobalRelationMatrix, saveGlobalRelationMatrix } from '@/app/game/components/map-system/ai_diplomacy_engine/services/MatrixHandler';
-import { tradeStorage as diplomaticTradeStorage } from '@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage';
+import { getGlobalRelationMatrix, saveGlobalRelationMatrix } from '@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler';
+import { tradeStorage as diplomaticTradeStorage } from '@/app/game/components/modals/2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage';
 import { inboxStorage } from '@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage';
 import { newsStorage as globalNewsStorage } from '@/app/game/components/sidemenu/1_berita/newsStorage';
 import { budgetStorage } from '@/app/game/components/1_navbar/3_kas_negara';
@@ -601,3 +601,4 @@ export const AiTradeService = {
         return false;
     }
 };
+

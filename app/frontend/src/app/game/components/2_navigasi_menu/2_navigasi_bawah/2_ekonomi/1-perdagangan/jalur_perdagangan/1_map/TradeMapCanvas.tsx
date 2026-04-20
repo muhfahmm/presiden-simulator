@@ -9,7 +9,7 @@ import { tradeStorage } from "../../TradeStorage";
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index";
 import { calculateTradeRoute, getHubForCountry, Point } from "../2_rute/tradeRoutes";
 import { timeStorage } from "../../timeStorage";
-import { mapPathCache } from "@/app/game/components/map-system/utils/MapPathCache";
+import { mapPathCache } from "@/app/map-system/engine/utils/MapPathCache";
 
 interface TradeMapCanvasProps {
   userCountry: string;

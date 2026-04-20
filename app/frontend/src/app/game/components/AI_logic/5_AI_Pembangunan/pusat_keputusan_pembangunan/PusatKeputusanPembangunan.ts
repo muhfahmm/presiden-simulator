@@ -1,12 +1,12 @@
 "use client"
 
 import { countries } from "@/app/database/data/negara/benua/index";
-import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
-import { aiPopulationStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
+import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { aiPopulationStorage } from "@/app/game/components/modals/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { aiBuildingStorage } from "../antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "../antarmuka_data_pembangunan/AIProductionStorage";
-import { aiRootCauseStorage } from "../../../map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/socialDiagnosisStorage";
-import { aiHappinessStorage } from "../../../map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
+import { aiRootCauseStorage } from "../../../modals/1_info_strategis/6_Kepuasan/socialDiagnosisStorage";
+import { aiHappinessStorage } from "../../../modals/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { EksekutorPembangunanAI } from "../sistem_tindakan_respon/EksekutorPembangunanAI";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { aiThinkingStorage } from "../../global_event/aiThinkingStorage";
@@ -200,3 +200,4 @@ export class PusatKeputusanPembangunan {
     }
   }
 }
+

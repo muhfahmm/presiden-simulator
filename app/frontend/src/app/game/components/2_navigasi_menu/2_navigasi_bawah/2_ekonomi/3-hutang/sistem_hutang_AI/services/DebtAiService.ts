@@ -2,7 +2,7 @@
 
 import { countries } from '@/app/database/data/negara/benua/index';
 import { OrganizationMembers } from '@/app/database/data/database_organisasi_internasional/index';
-import { getGlobalRelationMatrix, initializeMatrixData } from '@/app/game/components/map-system/ai_diplomacy_engine/services/MatrixHandler';
+import { getGlobalRelationMatrix, initializeMatrixData } from '@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler';
 import { debtAiStorage, DebtOffer, ActiveDebt } from '../storage/DebtAiStorage';
 import { budgetStorage } from '@/app/game/components/1_navbar/3_kas_negara';
 import { gameStorage } from '@/app/game/gamestorage';

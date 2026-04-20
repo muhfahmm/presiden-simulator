@@ -7,7 +7,7 @@ import { ModulPenyesuaianPajak } from "./1_AI_Kepuasan/1_statistik_kepuasan/sist
 import { PusatKeputusanAcara } from "./1_AI_Kepuasan/2_naikkan_kepuasan/pusat_keputusan_acara/PusatKeputusanAcara";
 import { PusatKeputusanPembangunan } from "./5_AI_Pembangunan/pusat_keputusan_pembangunan/PusatKeputusanPembangunan";
 import { produksiNegaraAI } from "./5_AI_Pembangunan/sistem_tindakan_respon/ProduksiNegaraAI";
-import { aiBudgetStorage } from "../map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { aiBudgetStorage } from "../modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { EksekutorPembangunanAI } from "./5_AI_Pembangunan/sistem_tindakan_respon/EksekutorPembangunanAI";
 import { aiProductionStorage } from "./5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
 import { countries } from "@/app/database/data/negara/benua/index";

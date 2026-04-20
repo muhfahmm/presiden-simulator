@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import { gameStorage } from "@/app/game/gamestorage";
-import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
-import { aiPopulationStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/2_Populasi/AIPopulationStorage";
-import { aiHappinessStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/6_Kepuasan/AIHappinessStorage";
+import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { aiPopulationStorage } from "@/app/game/components/modals/1_info_strategis/2_Populasi/AIPopulationStorage";
+import { aiHappinessStorage } from "@/app/game/components/modals/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 
 import { countries } from "@/app/database/data/negara/benua/index";
 import { EksekutorPertahananAI } from "../components/AI_logic/6_AI_pertahanan/sistem_tindakan_respon/EksekutorPertahananAI";
@@ -115,3 +115,4 @@ export function useAIGameSync() {
     };
   }, []);
 }
+

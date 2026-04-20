@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { X, Swords, TrendingUp, TrendingDown, Target, ShieldAlert, Info } from "lucide-react"
 import { calculateTotalMilitaryPower } from "../../kekuatanmiliter"
-import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage"
+import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../../../modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage"
 
 // Custom Realistic Icons
 const TankIcon = ({ size = 24, className = "" }) => (

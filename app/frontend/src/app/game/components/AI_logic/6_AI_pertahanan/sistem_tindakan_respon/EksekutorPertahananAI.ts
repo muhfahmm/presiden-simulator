@@ -1,6 +1,6 @@
 "use client"
 
-import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { aiDefenseStorage } from "../antarmuka_data_pertahanan/AIDefenseStorage";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
 import { addDays, formatGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
@@ -231,3 +231,4 @@ export class EksekutorPertahananAI {
     });
   }
 }
+
