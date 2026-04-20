@@ -355,7 +355,7 @@ export default function DiplomasiModal({ isOpen, onClose, activeMenu, setActiveM
 
         {/* FOOTER */}
         <div className="px-10 py-5 bg-zinc-900/40 border-t border-zinc-800/30 flex justify-center sticky bottom-0 backdrop-blur-md z-[100]">
-           <p className="text-[9px] text-zinc-700 font-black uppercase tracking-[0.5em] opacity-40 italic">Global Diplomatic Intelligence Network â€¢ EM4 Geopolitical Sovereignty System</p>
+           <p className="text-[9px] text-zinc-700 font-black uppercase tracking-[0.5em] opacity-40 italic">Global Diplomatic Intelligence Network â€¢ em Geopolitical Sovereignty System</p>
         </div>
       </div>
     </div>

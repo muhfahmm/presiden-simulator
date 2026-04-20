@@ -98,7 +98,7 @@ export const gameStorage = {
 
   saveSession: (country: string) => {
     if (typeof window === 'undefined') return;
-    
+
     // Hard stop timer first to prevent race condition ghost writes
     timeStorage.clear();
 
@@ -109,8 +109,8 @@ export const gameStorage = {
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     localStorage.setItem("selectedCountry", country);
-    localStorage.removeItem("em4_game_date"); // Reset date for new game
-    
+    localStorage.removeItem("em_game_date"); // Reset date for new game
+
     // Modular cleanup
     happinessStorage.clear();
     priceStorage.clear();
@@ -178,7 +178,7 @@ export const gameStorage = {
       if (!session || typeof session !== 'object') {
         return null;
       }
-      
+
       return session as GameSession;
     } catch (e) {
       console.error("Failed to parse game session", e);
@@ -208,10 +208,10 @@ export const gameStorage = {
 
     // Hard stop timer first to prevent race condition ghost writes
     timeStorage.clear();
-    
+
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem("selectedCountry");
-    localStorage.removeItem("em4_game_date");
+    localStorage.removeItem("em_game_date");
 
     // Modular cleanup
     happinessStorage.clear();
@@ -267,7 +267,7 @@ export const gameStorage = {
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
     localStorage.removeItem(RELATION_MATRIX_KEY);
-    
+
     window.location.href = '/pilih_negara';
   },
 
@@ -288,17 +288,17 @@ export const gameStorage = {
     console.log(`[RESET] ========== NUCLEAR RESET STARTING ==========`);
     console.log(`[RESET] Target country: ${countryName}`);
     gameStorage.debugLogStorage("[BEFORE RESET]");
-    
+
     const currentCountry = countries.find(c => c.name_id === countryName || c.name_en === countryName);
-    
+
     if (!currentCountry) {
       console.error(`[RESET] ERROR: Country not found: ${countryName}`);
       return;
     }
 
     // Get profile defaults
-    const defaultPopulation = typeof currentCountry.jumlah_penduduk === 'string' 
-      ? parseInt(currentCountry.jumlah_penduduk.replace(/\./g, '')) 
+    const defaultPopulation = typeof currentCountry.jumlah_penduduk === 'string'
+      ? parseInt(currentCountry.jumlah_penduduk.replace(/\./g, ''))
       : currentCountry.jumlah_penduduk;
     const defaultBudget = typeof currentCountry.anggaran === 'number' ? currentCountry.anggaran : 0;
     const defaultStability = 50;
@@ -306,14 +306,14 @@ export const gameStorage = {
     console.log(`[RESET] Defaults to restore: Pop=${defaultPopulation}, Budget=${defaultBudget}, Stability=${defaultStability}`);
 
     // SECTION 1: PHASE 1 - AGGRESSIVE WIPE
-    console.log(`[RESET] PHASE 1: Removing all em4_*, em2_* and game_taxes keys...`);
-    
+    console.log(`[RESET] PHASE 1: Removing all em_* and game_taxes keys...`);
+
     // Clear sessionStorage too
     console.log(`[RESET] Clearing sessionStorage...`);
     const sessionKeysToRemove = [];
     for (let i = 0; i < sessionStorage.length; i++) {
       const key = sessionStorage.key(i);
-      if (key && (key.startsWith('em4_') || key.startsWith('em2_') || key === 'game_taxes')) {
+      if (key && (key.startsWith('em_') || key === 'game_taxes')) {
         sessionKeysToRemove.push(key);
       }
     }
@@ -329,7 +329,7 @@ export const gameStorage = {
       const key = localStorage.key(i);
       if (key) {
         allKeys.push(key);
-        if (key.startsWith('em4_') || key.startsWith('em2_') || key === 'game_taxes') {
+        if (key.startsWith('em_') || key === 'game_taxes') {
           keysToRemove.add(key);
         }
       }
@@ -337,7 +337,7 @@ export const gameStorage = {
 
     console.log(`[RESET] Total keys in localStorage: ${allKeys.length}`);
     console.log(`[RESET] Marked for removal: ${keysToRemove.size}`);
-    
+
     let removedCount = 0;
     keysToRemove.forEach(key => {
       try {
@@ -355,7 +355,7 @@ export const gameStorage = {
     let staleKeys = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key && (key.startsWith('em4_') || key.startsWith('em2_'))) {
+      if (key && key.startsWith('em_')) {
         staleKeys.push(key);
         console.warn(`[RESET]   WARNING: Stale key remains: ${key}`);
       }
@@ -378,25 +378,25 @@ export const gameStorage = {
     // SECTION 3: PHASE 3 - PREPARE RESET DATA (BEFORE writing)
     console.log(`[RESET] PHASE 3: Preparing reset data...`);
     const resetData = {
-      "em4_population_data": JSON.stringify({
+      "em_population_data": JSON.stringify({
         population: defaultPopulation,
         lastUpdated: Date.now()
       }),
-      "em4_population_version": "2",
-      "em4_budget_data": JSON.stringify({
+      "em_population_version": "2",
+      "em_budget_data": JSON.stringify({
         anggaran: defaultBudget,
         cumulativeProduction: {},
         lastProcessedDate: "2026-01-01T00:00:00.000Z"
       }),
-      "em4_stability_data": JSON.stringify({
+      "em_stability_data": JSON.stringify({
         stability: defaultStability,
         lastUpdated: Date.now()
       })
     };
-    
+
     console.log(`[RESET] PHASE 3B: Atomic write of ${Object.keys(resetData).length} keys...`);
     const writeErrors: string[] = [];
-    
+
     // Write all in quick succession
     Object.entries(resetData).forEach(([key, value]) => {
       try {
@@ -417,11 +417,11 @@ export const gameStorage = {
     // SECTION 4: PHASE 4 - VERIFY DEFAULTS
     console.log(`[RESET] PHASE 4: Verifying defaults were written...`);
     gameStorage.debugLogStorage("[AFTER REINIT]");
-    
+
     try {
-      const verifyPop = JSON.parse(localStorage.getItem("em4_population_data") || '{}');
-      const verifyBudget = JSON.parse(localStorage.getItem("em4_budget_data") || '{}');
-      const verifyStability = JSON.parse(localStorage.getItem("em4_stability_data") || '{}');
+      const verifyPop = JSON.parse(localStorage.getItem("em_population_data") || '{}');
+      const verifyBudget = JSON.parse(localStorage.getItem("em_budget_data") || '{}');
+      const verifyStability = JSON.parse(localStorage.getItem("em_stability_data") || '{}');
 
       const popMatch = verifyPop.population === defaultPopulation;
       const budgetMatch = verifyBudget.anggaran === defaultBudget;
@@ -448,7 +448,7 @@ export const gameStorage = {
 
     // Hard stop timer first to prevent race condition ghost writes
     timeStorage.clear();
-    
+
     const session = gameStorage.getSession();
     if (!session) return;
 
@@ -456,9 +456,9 @@ export const gameStorage = {
     session.startTime = Date.now();
     session.isWelcomeSeen = true;
     delete session.cumulativeProduction;
-    
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
-    localStorage.removeItem("em4_game_date");
+    localStorage.removeItem("em_game_date");
 
     // Modular cleanup for all systems
     happinessStorage.clear();

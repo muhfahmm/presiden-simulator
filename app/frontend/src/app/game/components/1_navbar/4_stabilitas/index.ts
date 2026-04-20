@@ -1,7 +1,7 @@
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 
-const STABILITY_STORAGE_KEY = "em4_stability_data";
+const STABILITY_STORAGE_KEY = "em_stability_data";
 
 export interface StabilityData {
   stability: number;
@@ -52,24 +52,24 @@ export const stabilityStorage = {
       try {
         // 1. Trim Inbox to 10
         let cleaned = false;
-        const inbox = localStorage.getItem("em4_inbox_data");
+        const inbox = localStorage.getItem("em_inbox_data");
         if (inbox) {
           try {
             const parsed = JSON.parse(inbox);
             if (Array.isArray(parsed) && parsed.length > 10) {
-              localStorage.setItem("em4_inbox_data", JSON.stringify(parsed.slice(0, 10)));
+              localStorage.setItem("em_inbox_data", JSON.stringify(parsed.slice(0, 10)));
               cleaned = true;
             }
           } catch {}
         }
         
         // 2. Trim News to 5
-        const news = localStorage.getItem("em2_global_news_v1");
+        const news = localStorage.getItem("em_global_news_v1");
         if (news) {
           try {
             const parsed = JSON.parse(news);
             if (Array.isArray(parsed) && parsed.length > 5) {
-              localStorage.setItem("em2_global_news_v1", JSON.stringify(parsed.slice(0, 5)));
+              localStorage.setItem("em_global_news_v1", JSON.stringify(parsed.slice(0, 5)));
               cleaned = true;
             }
           } catch {}
@@ -81,7 +81,7 @@ export const stabilityStorage = {
         console.warn("Global cleanup attempt failed, trying aggressive cleanup", e2);
         try {
           // More aggressive cleanup: clear news entirely
-          localStorage.removeItem("em2_global_news_v1");
+          localStorage.removeItem("em_global_news_v1");
           localStorage.setItem(STABILITY_STORAGE_KEY, value);
         } catch (e3) {
           console.error("Critical: Failed to save stability even after aggressive cleanup", e3);

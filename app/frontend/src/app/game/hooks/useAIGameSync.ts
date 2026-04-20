@@ -42,7 +42,7 @@ export function useAIGameSync() {
       const gameDate = new Date(dateStr);
 
       // SKIP updates if fresh session — preserve default database values
-      const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+      const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true";
       
       // NEW: Explicit Sync from Backend (Go Server Authoritative)
       if (data.npcStates && typeof data.npcStates === 'object') {
@@ -53,7 +53,7 @@ export function useAIGameSync() {
           
           // If we successfully synced from the server, we can safely clear the fresh session flag
           if (isFreshSession) {
-             localStorage.removeItem("em4_fresh_session");
+             localStorage.removeItem("em_fresh_session");
              console.log(`[useAIGameSync] NPC states synced and fresh session flag cleared.`);
           }
         } catch (e) {

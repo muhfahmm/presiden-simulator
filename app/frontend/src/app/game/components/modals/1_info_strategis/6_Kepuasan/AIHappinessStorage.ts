@@ -2,8 +2,8 @@
 
 import { countries } from "@/app/database/data/negara/benua/index";
 
-const AI_HAPPINESS_KEY = "em4_ai_happiness";
-const LAST_PROCESSED_HAPPINESS_KEY = "em4_ai_last_happiness_update";
+const AI_HAPPINESS_KEY = "em_ai_happiness";
+const LAST_PROCESSED_HAPPINESS_KEY = "em_ai_last_happiness_update";
 
 import { aiRootCauseStorage } from "./socialDiagnosisStorage";
 
@@ -18,7 +18,7 @@ export const aiHappinessStorage = {
   getAll: (): AIHappinessData => {
     if (typeof window === 'undefined') return {};
     
-    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true";
     
     if (!isFreshSession) {
       const stored = localStorage.getItem(AI_HAPPINESS_KEY);

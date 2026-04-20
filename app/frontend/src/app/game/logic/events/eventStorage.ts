@@ -13,7 +13,7 @@ export interface ActiveEvent {
   };
 }
 
-const STORAGE_KEY = "em4_active_events";
+const STORAGE_KEY = "em_active_events";
 
 export const eventStorage = {
   getActiveEvents: (): ActiveEvent[] => {

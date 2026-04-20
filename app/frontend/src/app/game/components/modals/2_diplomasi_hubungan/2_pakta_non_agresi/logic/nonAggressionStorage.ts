@@ -13,7 +13,7 @@ export interface NonAggressionData {
   };
 }
 
-const NON_AGG_STORAGE_KEY_V2 = "em2_non_aggression_status_v2";
+const NON_AGG_STORAGE_KEY_V2 = "em_non_aggression_status_v2";
 
 export const nonAggressionStorage = {
   getData: (): Record<string, NonAggressionData> => {

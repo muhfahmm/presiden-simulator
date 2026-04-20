@@ -181,8 +181,8 @@ export default function GameNavbar({
                     
                     // STEP 5: Final verification
                     console.log("[RESET] STEP 5: Final verification before reload");
-                    const finalPopulation = localStorage.getItem("em4_population_data");
-                    const finalBudget = localStorage.getItem("em4_budget_data");
+                    const finalPopulation = localStorage.getItem("em_population_data");
+                    const finalBudget = localStorage.getItem("em_budget_data");
                     
                     if (finalPopulation && finalBudget) {
                       try {

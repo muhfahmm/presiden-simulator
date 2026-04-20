@@ -1,7 +1,7 @@
 import { buildingStorage } from "../../../../2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { playerMilitaryStorage } from "./playerMilitaryStorage";
 
-const AID_STORAGE_KEY = "em4_military_aid_data";
+const AID_STORAGE_KEY = "em_military_aid_data";
 
 export interface AidData {
   [targetId: string]: Record<string, number>;

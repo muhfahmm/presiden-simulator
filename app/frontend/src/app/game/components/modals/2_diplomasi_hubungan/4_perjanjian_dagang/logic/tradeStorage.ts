@@ -2,7 +2,7 @@ import { getInitialAgreements } from "@/app/database/data/database_mitra_perdaga
 
 export type TradeStatus = 'active' | 'none';
 
-const STORAGE_KEY = "em2_trade_agreements";
+const STORAGE_KEY = "em_trade_agreements";
 
 export const tradeStorage = {
   getTradeStatus: (userCountry: string, targetCountry: string): TradeStatus => {

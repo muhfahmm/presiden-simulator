@@ -13,7 +13,7 @@ import { relationDeltaStorage } from "../../8_hubungan_internasional/logic/relat
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 import { getGlobalRelationMatrix, saveGlobalRelationMatrix } from "@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler";
 
-const RELATION_STORAGE_KEY = "em2_relation_scores";
+const RELATION_STORAGE_KEY = "em_relation_scores";
 
 export const relationStorage = {
   getRelationData: (): Record<string, number> => {
@@ -30,7 +30,7 @@ export const relationStorage = {
 
   getRelationScore: (targetCountry: string, baseScore: number, sourceCountry?: string, dataOverride?: Record<string, number>): number => {
     // CRITICAL RESET GUARD: If this is a fresh session, ignore stale storage and use database defaults (75.0)
-    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true";
     if (isFreshSession) return baseScore;
 
     const data = dataOverride || relationStorage.getRelationData();
@@ -142,7 +142,7 @@ export const relationStorage = {
   clear: () => {
     if (typeof window === "undefined") return;
     localStorage.removeItem(RELATION_STORAGE_KEY);
-    localStorage.removeItem("em2_global_relation_matrix");
+    localStorage.removeItem("em_global_relation_matrix");
     // Dispatch event to clear any cached UI states
     window.dispatchEvent(new Event("relation_storage_cleared"));
   },
@@ -256,12 +256,12 @@ if (typeof window !== 'undefined') {
 
     // 1. Sync AI Global Matrix
     const currentMatrix = getGlobalRelationMatrix();
-    const storedDay = typeof window !== 'undefined' ? localStorage.getItem("em4_last_sync_day") : "0";
+    const storedDay = typeof window !== 'undefined' ? localStorage.getItem("em_last_sync_day") : "0";
     const dayCounter = storedDay ? Number(storedDay) : 0;
     
     // CRITICAL: Overwrite instead of merge if it's a reset or the very beginning of the game (Day 0-2)
     // This prevents "Memory Poisoning" where old 31.96 values are merged back into the fresh 75.0 state.
-    const isReset = e.detail.resetTriggered || (typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true") || dayCounter <= 2;
+    const isReset = e.detail.resetTriggered || (typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true") || dayCounter <= 2;
     
     const mergedMatrix = isReset ? { ...serverMatrix } : { ...currentMatrix, ...serverMatrix };
     saveGlobalRelationMatrix(mergedMatrix);
@@ -294,7 +294,7 @@ if (typeof window !== 'undefined') {
     });
 
     if (changed) {
-      localStorage.setItem("em2_relation_scores", JSON.stringify(relationData));
+      localStorage.setItem("em_relation_scores", JSON.stringify(relationData));
       // Notify other systems that relations have changed
       window.dispatchEvent(new Event("relation_storage_updated"));
       window.dispatchEvent(new Event("relation_status_updated"));

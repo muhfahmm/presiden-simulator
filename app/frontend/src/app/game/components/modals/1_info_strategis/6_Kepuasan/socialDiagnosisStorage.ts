@@ -1,7 +1,7 @@
 "use client"
 // Diagnostic storage for AI root cause analysis
 
-const AI_ROOT_CAUSE_KEY = "em4_ai_social_root_causes";
+const AI_ROOT_CAUSE_KEY = "em_ai_social_root_causes";
 
 export interface AIRootCauseData {
   root_cause: string;

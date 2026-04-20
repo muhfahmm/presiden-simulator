@@ -1,6 +1,6 @@
 "use client"
 
-const STORAGE_KEY = "em4_population_delta";
+const STORAGE_KEY = "em_population_delta";
 
 export const populationDeltaStorage = {
   getDelta: (): number => {

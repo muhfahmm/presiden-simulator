@@ -5,7 +5,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { countries } from "@/app/database/data/negara/benua/index";
 import { gameStorage } from "@/app/game/gamestorage";
 
-const SOCIAL_STORAGE_KEY = "em4_ai_social_welfare_data";
+const SOCIAL_STORAGE_KEY = "em_ai_social_welfare_data";
 
 export interface SocialImpactStats {
     homelessCount: number;

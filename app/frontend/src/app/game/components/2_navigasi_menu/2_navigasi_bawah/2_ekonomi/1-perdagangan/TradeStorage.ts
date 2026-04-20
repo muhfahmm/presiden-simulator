@@ -13,7 +13,7 @@ export const tradeStorage = {
     if (typeof window !== "undefined") {
       localStorage.removeItem("game_trades");
       const countriesList = ["Indonesia", "Amerika Serikat", "Singapura", "Rusia", "Cina", "Arab Saudi"];
-      countriesList.forEach(c => localStorage.removeItem(`em4_trade_agreements_${c}`));
+      countriesList.forEach(c => localStorage.removeItem(`em_trade_agreements_${c}`));
       
       // Reset trade histories
       historiImportStorage.clearHistory();

@@ -21,7 +21,7 @@ export interface AiTradeOffer {
   dayCreated: number;
 }
 
-const STORAGE_KEY = 'em4_ai_trade_offers';
+const STORAGE_KEY = 'em_ai_trade_offers';
 
 export const aiTradeOfferStorage = {
   clear: () => {

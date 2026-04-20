@@ -3,7 +3,7 @@ import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 
-const STORAGE_KEY = "em4_price_data_v3";
+const STORAGE_KEY = "em_price_data_v3";
 
 export interface PriceData {
   harga_beras: number;
@@ -36,7 +36,7 @@ export const BASE_PRICES = {
 
 export const priceStorage = {
   clear: () => {
-    if (typeof window !== "undefined") localStorage.removeItem("em4_price_data_v3");
+    if (typeof window !== "undefined") localStorage.removeItem("em_price_data_v3");
   },
   getData: (countryData?: CountryData): PriceData => {
     if (typeof window === 'undefined') return { ...BASE_PRICES, lastUpdated: Date.now() };

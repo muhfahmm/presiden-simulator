@@ -5,7 +5,7 @@
  * Menyimpan persentase perubahan harian untuk ditampilkan di UI.
  */
 
-const RELATION_DELTA_STORAGE_KEY = "em2_relation_deltas";
+const RELATION_DELTA_STORAGE_KEY = "em_relation_deltas";
 
 export const relationDeltaStorage = {
   getDeltaData: (): Record<string, number> => {

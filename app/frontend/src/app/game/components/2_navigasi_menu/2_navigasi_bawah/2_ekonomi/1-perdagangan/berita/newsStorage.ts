@@ -1,6 +1,6 @@
 import { newsData, NewsItem } from "./newsData";
 
-const NEWS_STORAGE_KEY = "em4_trade_news_data";
+const NEWS_STORAGE_KEY = "em_trade_news_data";
 
 export const newsStorage = {
   clear: () => {

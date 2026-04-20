@@ -5,7 +5,7 @@
  * Mengelola perubahan ideologi di localStorage untuk sinkronisasi antar sesi.
  */
 
-const IDEOLOGY_STORAGE_KEY = "em2_national_ideology";
+const IDEOLOGY_STORAGE_KEY = "em_national_ideology";
 
 export const ideologyStorage = {
   /**

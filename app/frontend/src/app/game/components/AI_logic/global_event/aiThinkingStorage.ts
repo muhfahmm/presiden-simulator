@@ -1,6 +1,6 @@
 "use client"
 
-const AI_THINKING_KEY = "em4_ai_critical_thinking_logs";
+const AI_THINKING_KEY = "em_ai_critical_thinking_logs";
 
 export interface AIThinkingData {
     reason: string;

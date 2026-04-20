@@ -2,7 +2,7 @@ import { getInitialAgreements } from "@/app/database/data/database_mitra_perdaga
 
 export type EmbassyStatus = 'none' | 'building' | 'completed';
 
-const EMBASSY_STORAGE_KEY = "em2_embassy_status";
+const EMBASSY_STORAGE_KEY = "em_embassy_status";
 
 export const embassyStorage = {
   getEmbassyData: (): Record<string, EmbassyStatus> => {

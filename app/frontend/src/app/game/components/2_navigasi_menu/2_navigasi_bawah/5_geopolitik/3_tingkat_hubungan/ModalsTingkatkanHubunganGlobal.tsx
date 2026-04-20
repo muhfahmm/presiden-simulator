@@ -192,7 +192,7 @@ export default function ModalsTingkatkanHubunganGlobal({
 
         {/* Footer Notice */}
         <div className="p-8 pt-0 text-center opacity-30 select-none">
-           <p className="text-[9px] font-black text-white italic uppercase tracking-[0.8em]">EM4 Global Diplomatic Protocol • Multi-Node Synergy Enabled</p>
+           <p className="text-[9px] font-black text-white italic uppercase tracking-[0.8em]">em Global Diplomatic Protocol • Multi-Node Synergy Enabled</p>
         </div>
       </div>
     </div>

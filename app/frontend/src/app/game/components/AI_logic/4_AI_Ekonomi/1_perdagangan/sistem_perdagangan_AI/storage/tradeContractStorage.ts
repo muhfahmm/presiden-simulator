@@ -21,7 +21,7 @@ export interface TradeContract {
   lastProcessedMonth?: number;
 }
 
-const STORAGE_KEY = 'em4_trade_contracts';
+const STORAGE_KEY = 'em_trade_contracts';
 
 export const tradeContractStorage = {
   clear: () => {

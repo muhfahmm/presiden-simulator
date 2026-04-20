@@ -1,7 +1,7 @@
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 
-const STORAGE_KEY = "em4_un_who";
+const STORAGE_KEY = "em_un_who";
 
 export interface UNWHOState {
   isJoined: boolean;

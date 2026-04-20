@@ -27,7 +27,7 @@ export interface ActiveDebt {
 }
 
 class DebtAiStorage {
-    private STORAGE_KEY = 'em4_debt_ai_data';
+    private STORAGE_KEY = 'em_debt_ai_data';
 
     getData() {
         if (typeof window === 'undefined') return { offers: [], activeDebts: [] };

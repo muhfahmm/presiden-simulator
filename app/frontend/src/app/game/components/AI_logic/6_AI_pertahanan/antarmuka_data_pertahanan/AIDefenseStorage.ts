@@ -1,7 +1,7 @@
 "use client"
 import { formatGameDate, getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
-const AI_DEFENSE_KEY = "em4_ai_defense_data";
+const AI_DEFENSE_KEY = "em_ai_defense_data";
 
 export interface AIDefenseItem {
   id: string;
@@ -97,7 +97,7 @@ export const aiDefenseStorage = {
   completeProjects: (countryNameEn: string, projects: AIDefenseItem[]) => {
     const data = aiDefenseStorage.getData(countryNameEn);
     const projectIds = projects.map(p => p.id);
-    const currentDate = typeof window !== 'undefined' ? localStorage.getItem("em4_game_date") : null;
+    const currentDate = typeof window !== 'undefined' ? localStorage.getItem("em_game_date") : null;
 
     projects.forEach(project => {
       const buildingKey = project.buildingKey;

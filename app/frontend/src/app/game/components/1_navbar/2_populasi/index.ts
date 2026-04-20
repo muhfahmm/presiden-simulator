@@ -1,7 +1,7 @@
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 
-const POPULATION_STORAGE_KEY = "em4_population_data";
+const POPULATION_STORAGE_KEY = "em_population_data";
 
 export interface PopulationData {
   population: number;
@@ -19,7 +19,7 @@ export const populationStorage = {
       try {
         const parsed = JSON.parse(stored);
         const population = typeof parsed.population === 'number' ? parsed.population : 0;
-        const version = localStorage.getItem("em4_population_version");
+        const version = localStorage.getItem("em_population_version");
 
         // Auto-sync logic (Migration v2): If version is missing, force sync with original country data once
         if (version !== "2") {
@@ -28,7 +28,7 @@ export const populationStorage = {
              const countryName = session.country || "Indonesia";
              const countryData = countries.find(c => c.name_id === countryName || c.name_en === countryName);
              if (countryData) {
-               localStorage.setItem("em4_population_version", "2");
+               localStorage.setItem("em_population_version", "2");
                return populationStorage.getDataFromCountry(countryData);
              }
            }
@@ -68,7 +68,7 @@ export const populationStorage = {
   saveData: (data: PopulationData) => {
     if (typeof window === 'undefined') return;
     localStorage.setItem(POPULATION_STORAGE_KEY, JSON.stringify({ ...data, lastUpdated: Date.now() }));
-    localStorage.setItem("em4_population_version", "2");
+    localStorage.setItem("em_population_version", "2");
     
     // Dispatch event for UI updates
     window.dispatchEvent(new Event('population_updated'));
@@ -110,7 +110,7 @@ export const populationStorage = {
   clear: () => {
     if (typeof window === 'undefined') return;
     localStorage.removeItem(POPULATION_STORAGE_KEY);
-    localStorage.removeItem("em4_population_version");
+    localStorage.removeItem("em_population_version");
     window.dispatchEvent(new Event('population_updated'));
   }
 };

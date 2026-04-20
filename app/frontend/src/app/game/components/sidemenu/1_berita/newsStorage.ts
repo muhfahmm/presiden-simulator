@@ -16,9 +16,9 @@ export interface NewsItem {
   timestamp: number;
 }
 
-const NEWS_STORAGE_KEY = "em2_global_news_v1";
-const NEWS_WEEK_KEY = "em2_news_week_id";
-const NEWS_EFFECTS_KEY = "em4_news_effects_processed";
+const NEWS_STORAGE_KEY = "em_global_news_v1";
+const NEWS_WEEK_KEY = "em_news_week_id";
+const NEWS_EFFECTS_KEY = "em_news_effects_processed";
 const DAILY_LIMIT = 10;
 const WEEKLY_AI_LIMIT = 10; // User request: Max 10 AI news per week (excluding construction)
 // News limits removed per user request to allow infinite history
@@ -158,18 +158,18 @@ export const newsStorage = {
                 // Hardcoded wipe of all AI and Game storage keys
                 // This is a fail-safe against modular import issues
                 const keysToRemove = [
-                  "em4_ai_budgets", "em4_ai_last_processed",
-                  "em4_ai_populations", "em4_ai_pop_last_processed",
-                  "em4_ai_happiness", "em4_ai_last_happiness_update",
-                  "em4_ai_building_data", "em4_ai_defense_counts",
-                  "em4_relation_matrix", "em4_global_news_v1",
-                  "em4_fresh_session"
+                  "em_ai_budgets", "em_ai_last_processed",
+                  "em_ai_populations", "em_ai_pop_last_processed",
+                  "em_ai_happiness", "em_ai_last_happiness_update",
+                  "em_ai_building_data", "em_ai_defense_counts",
+                  "em_relation_matrix", "em_global_news_v1",
+                  "em_fresh_session"
                 ];
 
                 keysToRemove.forEach(key => localStorage.removeItem(key));
                 
                 // Set FRESH SESSION flag to TRUE to force components to re-read baseline
-                localStorage.setItem("em4_fresh_session", "true");
+                localStorage.setItem("em_fresh_session", "true");
                 
                 // Also notify storages that are currently in memory
                 window.dispatchEvent(new Event("news_updated"));

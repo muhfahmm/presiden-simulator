@@ -2,7 +2,7 @@
  * Storage to track cumulative imported amounts from specific partners.
  * This ensures that simulated partner stock decreases as we buy from them.
  */
-const IMPORT_STOCK_KEY = "em4_import_stock_tracking";
+const IMPORT_STOCK_KEY = "em_import_stock_tracking";
 
 export const importStockStorage = {
     getImportedAmount: (partner: string | null, key: string): number => {

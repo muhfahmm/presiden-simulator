@@ -23,7 +23,7 @@ export interface HappinessStats {
   priceImpact?: number;
 }
 
-const STORAGE_KEY = "em4_happiness_stats_v2";
+const STORAGE_KEY = "em_happiness_stats_v2";
 
 const DEFAULT_STATS: HappinessStats = {
   value: 50,
@@ -35,9 +35,9 @@ const DEFAULT_STATS: HappinessStats = {
 export const happinessStorage = {
   clear: () => {
     if (typeof window !== "undefined") {
-      localStorage.removeItem("em4_happiness_stats_v2");
-      localStorage.removeItem("em4_happiness_stats");
-      localStorage.removeItem("em4_last_month_budget");
+      localStorage.removeItem("em_happiness_stats_v2");
+      localStorage.removeItem("em_happiness_stats");
+      localStorage.removeItem("em_last_month_budget");
     }
   },
   getStats: (): HappinessStats => {

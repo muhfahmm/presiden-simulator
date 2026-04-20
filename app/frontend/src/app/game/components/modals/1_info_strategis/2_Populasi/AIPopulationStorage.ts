@@ -4,8 +4,8 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import { calculateDailyPopulationDelta } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
 import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
-const AI_POP_KEY = "em4_ai_populations";
-const LAST_PROCESSED_KEY = "em4_ai_pop_last_processed";
+const AI_POP_KEY = "em_ai_populations";
+const LAST_PROCESSED_KEY = "em_ai_pop_last_processed";
 
 export interface AIPopulationData {
   [countryNameEn: string]: number;
@@ -18,7 +18,7 @@ export const aiPopulationStorage = {
   getAll: (): AIPopulationData => {
     if (typeof window === 'undefined') return {};
     
-    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true";
     
     if (!isFreshSession) {
       const stored = localStorage.getItem(AI_POP_KEY);
@@ -80,7 +80,7 @@ export const aiPopulationStorage = {
     if (typeof window === 'undefined') return 0;
     
     // Check for fresh session flag - if set, STRICTLY return database default
-    const isFreshSession = localStorage.getItem("em4_fresh_session") === "true";
+    const isFreshSession = localStorage.getItem("em_fresh_session") === "true";
     if (isFreshSession) {
       const c = countries.find(c => c.name_en === countryNameEn);
       if (c) {

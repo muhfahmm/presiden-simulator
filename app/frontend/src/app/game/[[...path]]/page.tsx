@@ -49,7 +49,7 @@ export default function GamePage() {
   // EXPLICIT RESET: Ensure AI storages are reset to defaults ONLY on a fresh session
   // This prevents accidental wiping of NPC progress during normal page refreshes
   useEffect(() => {
-    const isFresh = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    const isFresh = typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true";
     if (isFresh) {
       console.log("[GAME PAGE] Fresh session detected. Resetting AI storages to database defaults...");
       aiBudgetStorage.clear();

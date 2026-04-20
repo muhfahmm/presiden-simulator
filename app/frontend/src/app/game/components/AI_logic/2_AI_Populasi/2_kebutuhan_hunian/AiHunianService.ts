@@ -11,8 +11,8 @@ import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage
 import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { aiThinkingStorage } from "../../global_event/aiThinkingStorage";
 
-const STORAGE_KEY_PENALTY = "em4_ai_housing_penalty_data";
-const STORAGE_KEY_LAST_NEWS = "em4_ai_last_rebellion_news_date";
+const STORAGE_KEY_PENALTY = "em_ai_housing_penalty_data";
+const STORAGE_KEY_LAST_NEWS = "em_ai_last_rebellion_news_date";
 
 /**
  * Optimized Service to manage AI Logic for Housing and Rebellion Prevention

@@ -5,8 +5,8 @@ import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLo
 import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 
 
-const AI_BUDGET_KEY = "em4_ai_budgets";
-const LAST_PROCESSED_KEY = "em4_ai_last_processed";
+const AI_BUDGET_KEY = "em_ai_budgets";
+const LAST_PROCESSED_KEY = "em_ai_last_processed";
 
 export interface AIBudgetData {
   [countryNameEn: string]: number;
@@ -19,7 +19,7 @@ export const aiBudgetStorage = {
   getAll: (): AIBudgetData => {
     if (typeof window === 'undefined') return {};
     
-    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true";
     
     if (!isFreshSession) {
       const stored = localStorage.getItem(AI_BUDGET_KEY);
@@ -88,7 +88,7 @@ export const aiBudgetStorage = {
     if (typeof window === 'undefined') return 0;
     
     // Check for fresh session flag - if set, STRICTLY return database default
-    const isFreshSession = localStorage.getItem("em4_fresh_session") === "true";
+    const isFreshSession = localStorage.getItem("em_fresh_session") === "true";
     if (isFreshSession) {
       const country = countries.find(c => c.name_en === countryNameEn);
       if (country) {

@@ -30,12 +30,12 @@ export interface NuclearData {
 
 export const nuclearStorage = {
   getStorageKey: () => {
-    if (typeof window === 'undefined') return "em4_nuclear_program_data_default";
+    if (typeof window === 'undefined') return "em_nuclear_program_data_default";
     const session = gameStorage.getSession() as any;
     const countryId = session?.country || "Indonesia";
     // Sanitize countryId for key safety
     const safeId = countryId.toLowerCase().replace(/\s+/g, '_');
-    return `em4_nuclear_data_${safeId}`;
+    return `em_nuclear_data_${safeId}`;
   },
   
   getDefaultData: (status: NuclearStatus = 'none'): NuclearData => ({

@@ -1,6 +1,6 @@
 "use client"
 
-const STORAGE_KEY = "em4_budget_delta";
+const STORAGE_KEY = "em_budget_delta";
 
 export const budgetDeltaStorage = {
   getDelta: (): number => {

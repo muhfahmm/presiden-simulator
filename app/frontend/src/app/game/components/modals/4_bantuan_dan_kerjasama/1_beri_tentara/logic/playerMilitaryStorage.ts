@@ -1,4 +1,4 @@
-const PLAYER_MILITARY_STORAGE_KEY = "em4_player_military_deductions";
+const PLAYER_MILITARY_STORAGE_KEY = "em_player_military_deductions";
 
 export interface PlayerMilitaryDeductions {
   [unitKey: string]: number;

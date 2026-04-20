@@ -18,7 +18,7 @@ export interface TradeAgreementProposal {
   expiryDays: number;
 }
 
-const STORAGE_KEY = 'em4_trade_agreement_proposals';
+const STORAGE_KEY = 'em_trade_agreement_proposals';
 
 export const tradeAgreementStorage = {
   clear: () => {

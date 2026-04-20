@@ -5,7 +5,7 @@
  * Mengelola status aktif/rancangan UU di localStorage.
  */
 
-const LAW_STORAGE_KEY = "em2_national_laws";
+const LAW_STORAGE_KEY = "em_national_laws";
 
 export const lawStorage = {
   /**

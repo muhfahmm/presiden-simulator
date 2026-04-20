@@ -14,7 +14,7 @@ export interface AliansiData {
   };
 }
 
-const ALIANSI_STORAGE_KEY = "em2_aliansi_status_v1";
+const ALIANSI_STORAGE_KEY = "em_aliansi_status_v1";
 
 export const aliansiStorage = {
   getData: (): Record<string, AliansiData> => {

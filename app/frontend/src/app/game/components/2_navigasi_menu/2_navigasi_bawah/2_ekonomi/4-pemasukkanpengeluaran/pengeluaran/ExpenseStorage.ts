@@ -1,6 +1,6 @@
 import { gameStorage } from "@/app/game/gamestorage";
 
-const EXPENSE_STORAGE_KEY = "em4_expense_data";
+const EXPENSE_STORAGE_KEY = "em_expense_data";
 
 export interface ExpenseData {
   socialWelfareLevel: number; // 0-100
@@ -10,7 +10,7 @@ export interface ExpenseData {
 
 export const expenseStorage = {
   clear: () => {
-    if (typeof window !== "undefined") localStorage.removeItem("em4_expense_data");
+    if (typeof window !== "undefined") localStorage.removeItem("em_expense_data");
   },
   getStorageKey: (countryName: string) => `${EXPENSE_STORAGE_KEY}_${countryName.replace(/\s+/g, '_').toLowerCase()}`,
 

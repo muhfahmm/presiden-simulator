@@ -1,6 +1,6 @@
 import { gameStorage } from "@/app/game/gamestorage";
 
-const INCOME_STORAGE_KEY = "em4_income_data";
+const INCOME_STORAGE_KEY = "em_income_data";
 
 export interface IncomeData {
   grants: number; // For future foreign aid
@@ -10,7 +10,7 @@ export interface IncomeData {
 
 export const incomeStorage = {
   clear: () => {
-    if (typeof window !== "undefined") localStorage.removeItem("em4_income_data");
+    if (typeof window !== "undefined") localStorage.removeItem("em_income_data");
   },
   getData: (): IncomeData => {
     if (typeof window === 'undefined') return { grants: 0, investments: 0, lastUpdated: Date.now() };

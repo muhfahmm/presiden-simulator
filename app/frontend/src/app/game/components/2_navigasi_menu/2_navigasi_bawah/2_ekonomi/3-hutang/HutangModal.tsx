@@ -33,7 +33,7 @@ export default function HutangModal({ isOpen, onClose }: ModalProps) {
     setOffers(data.offers);
     setActiveDebts(data.activeDebts);
     
-    const storedScore = localStorage.getItem('em4_user_credit_score');
+    const storedScore = localStorage.getItem('em_user_credit_score');
     if (storedScore) setCreditScore(parseInt(storedScore));
 
     const session = gameStorage.getSession();

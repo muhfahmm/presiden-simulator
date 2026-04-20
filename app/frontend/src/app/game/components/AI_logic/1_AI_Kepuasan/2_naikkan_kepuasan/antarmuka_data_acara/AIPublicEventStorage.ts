@@ -1,6 +1,6 @@
 "use client"
 
-const AI_ACARA_KEY = "em4_ai_acara_history";
+const AI_ACARA_KEY = "em_ai_acara_history";
 
 export interface AIEventHistory {
   [countryNameEn: string]: {

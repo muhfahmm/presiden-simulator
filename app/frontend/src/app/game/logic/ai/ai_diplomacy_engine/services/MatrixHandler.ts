@@ -2,7 +2,7 @@ import { allRelations } from "@/app/database/data/database_hubungan_antar_negara
 import { relationStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 
-export const RELATION_MATRIX_KEY = 'em2_global_relation_matrix';
+export const RELATION_MATRIX_KEY = 'em_global_relation_matrix';
 
 export interface RelationEntry {
     s: number; // score
@@ -83,7 +83,7 @@ const getNormalizedUser = (): string => {
 export const initializeMatrixData = () => {
     if (typeof window === 'undefined') return;
 
-    const storedDate = localStorage.getItem("em4_game_date");
+    const storedDate = localStorage.getItem("em_game_date");
     const gameDate = storedDate ? new Date(Number(storedDate)) : new Date(2026, 0, 1);
     const isFirstDay = gameDate.getFullYear() === 2026 && gameDate.getMonth() === 0 && gameDate.getDate() === 1;
 

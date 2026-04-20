@@ -19,10 +19,10 @@ const MAX_INBOX_MESSAGES = 50;
 
 export const inboxStorage = {
   clear: () => {
-    if (typeof window !== "undefined") localStorage.removeItem("em4_inbox_data");
+    if (typeof window !== "undefined") localStorage.removeItem("em_inbox_data");
   },
   getStorageKey: () => {
-    return "em4_inbox_data";
+    return "em_inbox_data";
   },
   
   getMessages: (): InboxItem[] => {

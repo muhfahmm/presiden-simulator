@@ -114,7 +114,7 @@ export const DebtAiService = {
 
             // Update credit score di suatu tempat jika perlu
             if (result.creditScore) {
-                localStorage.setItem('em4_user_credit_score', result.creditScore.toString());
+                localStorage.setItem('em_user_credit_score', result.creditScore.toString());
             }
 
         } catch (error) {

@@ -1,5 +1,5 @@
 export const INITIAL_GAME_DATE = new Date(Date.UTC(2026, 0, 1)); // 1 Januari 2026 UTC
-const DATE_STORAGE_KEY = "em4_game_date";
+const DATE_STORAGE_KEY = "em_game_date";
 
 export function formatGameDate(date: Date): string {
   const day = String(date.getUTCDate()).padStart(2, '0');

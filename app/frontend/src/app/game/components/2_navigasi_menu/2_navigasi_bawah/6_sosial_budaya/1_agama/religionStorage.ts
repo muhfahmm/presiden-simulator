@@ -5,7 +5,7 @@
  * Mengelola perubahan religi di localStorage untuk sinkronisasi antar sesi.
  */
 
-const RELIGION_STORAGE_KEY = "em2_national_religion";
+const RELIGION_STORAGE_KEY = "em_national_religion";
 
 export const religionStorage = {
   /**

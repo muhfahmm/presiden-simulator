@@ -1,6 +1,6 @@
 "use client"
 
-const AI_PRODUCTION_KEY = "em4_ai_production_data";
+const AI_PRODUCTION_KEY = "em_ai_production_data";
 
 export interface AIProductionData {
   [countryNameEn: string]: {
@@ -13,7 +13,7 @@ export const aiProductionStorage = {
   initialize: (): AIProductionData => {
     if (typeof window === 'undefined') return {};
     
-    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true";
     if (isFreshSession) {
       console.log(`[AI PRODUCTION] Fresh session detected in initialize() - returning empty.`);
       return {};

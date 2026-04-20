@@ -120,7 +120,7 @@ export default function OrgIntlModal({
     }
     
     // Get current date from storage
-    const storedDate = localStorage.getItem("em4_game_date");
+    const storedDate = localStorage.getItem("em_game_date");
     if (storedDate) {
       const dateObj = JSON.parse(storedDate);
       setCurrentDate(`${dateObj.day} ${dateObj.month} ${dateObj.year}`);
@@ -465,7 +465,7 @@ export default function OrgIntlModal({
 
             {/* MODAL FOOTER DECORATION */}
             <div className="px-10 py-4 bg-zinc-900/20 border-t border-zinc-800/30">
-              <p className="text-[8px] text-zinc-600 font-black uppercase tracking-[0.3em] text-center opacity-40">EM4 Geopolitical Strategic System • Confidential Data</p>
+              <p className="text-[8px] text-zinc-600 font-black uppercase tracking-[0.3em] text-center opacity-40">em Geopolitical Strategic System • Confidential Data</p>
             </div>
           </div>
         </div>

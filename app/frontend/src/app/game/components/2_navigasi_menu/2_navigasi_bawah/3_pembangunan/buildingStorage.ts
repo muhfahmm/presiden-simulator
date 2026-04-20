@@ -1,7 +1,7 @@
 import { gameStorage, GameSession, ConstructionItem } from "@/app/game/gamestorage";
 import { formatGameDate, getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
-const BUILDING_STORAGE_KEY = "em4_building_data";
+const BUILDING_STORAGE_KEY = "em_building_data";
 
 export interface BuildingData {
   constructionQueue: ConstructionItem[];
@@ -11,7 +11,7 @@ export interface BuildingData {
 
 export const buildingStorage = {
   clear: () => {
-    if (typeof window !== "undefined") localStorage.removeItem("em4_building_data");
+    if (typeof window !== "undefined") localStorage.removeItem("em_building_data");
   },
   // Get all building data, with migration fallback
   getData: (): BuildingData => {

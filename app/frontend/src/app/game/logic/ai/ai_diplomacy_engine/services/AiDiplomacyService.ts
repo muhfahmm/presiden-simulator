@@ -114,7 +114,7 @@ export const AiDiplomacyService = {
 
                 if (hasChanges) {
                     // Simpan hasil update masal ke LocalStorage Utama
-                    localStorage.setItem("em2_relation_scores", JSON.stringify(liveRelationData));
+                    localStorage.setItem("em_relation_scores", JSON.stringify(liveRelationData));
                     // Pancing UI (halaman Geopolitik & Map) agar Render Ulang
                     window.dispatchEvent(new Event("relation_storage_updated"));
                 }

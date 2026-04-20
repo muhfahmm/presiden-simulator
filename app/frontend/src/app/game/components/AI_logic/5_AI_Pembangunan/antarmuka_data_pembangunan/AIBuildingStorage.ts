@@ -1,7 +1,7 @@
 "use client"
 import { formatGameDate, getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
-const AI_BUILDING_KEY = "em4_ai_building_data";
+const AI_BUILDING_KEY = "em_ai_building_data";
 
 export interface AIConstructionItem {
   id: string;
@@ -26,7 +26,7 @@ export const aiBuildingStorage = {
   initialize: (): AIBuildingData => {
     if (typeof window === 'undefined') return {};
     
-    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em4_fresh_session") === "true";
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true";
     if (isFreshSession) {
       console.log(`[AI BUILDING] Fresh session detected in initialize() - returning empty.`);
       return {};
@@ -105,7 +105,7 @@ export const aiBuildingStorage = {
   completeProjects: (countryNameEn: string, projects: AIConstructionItem[]) => {
     const data = aiBuildingStorage.getData(countryNameEn);
     const projectIds = projects.map(p => p.id);
-    const currentDate = typeof window !== 'undefined' ? localStorage.getItem("em4_game_date") : null;
+    const currentDate = typeof window !== 'undefined' ? localStorage.getItem("em_game_date") : null;
 
     projects.forEach(project => {
       const buildingKey = project.buildingKey;

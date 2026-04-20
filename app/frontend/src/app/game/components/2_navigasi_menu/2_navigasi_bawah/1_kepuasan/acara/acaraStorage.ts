@@ -86,7 +86,7 @@ export const DATA_ACARA: Acara[] = [
   }
 ];
 
-const STORAGE_KEY = "em4_acara_history";
+const STORAGE_KEY = "em_acara_history";
 
 export interface AcaraHistory {
   acaraId: string;

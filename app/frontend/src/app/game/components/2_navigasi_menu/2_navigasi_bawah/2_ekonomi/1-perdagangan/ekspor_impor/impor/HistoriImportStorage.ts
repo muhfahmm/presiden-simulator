@@ -1,6 +1,6 @@
 import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
-const IMPORT_HISTORY_KEY = "em4_trade_history_import";
+const IMPORT_HISTORY_KEY = "em_trade_history_import";
 
 export interface TradeTransaction {
   id: string;
