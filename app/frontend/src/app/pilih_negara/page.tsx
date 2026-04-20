@@ -13,6 +13,18 @@ import { taxStorage } from "../game/components/2_navigasi_menu/2_navigasi_bawah/
 import { CountryData } from "./data/semua_fitur_negara";
 import { calculateGoldMineRevenue } from "../game/components/1_navbar/3_kas_negara/GoldMineRevenue";
 import { calculateTempatUmumRevenue } from "../game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/logic/TempatUmumRevenueLogic";
+import { motion, useSpring, useTransform } from "framer-motion";
+
+function AnimatedNumber({ value }: { value: number }) {
+  const spring = useSpring(value, { mass: 0.8, stiffness: 75, damping: 15 });
+  const display = useTransform(spring, (current) => Math.round(current).toLocaleString('id-ID'));
+
+  useEffect(() => {
+    spring.set(value);
+  }, [value, spring]);
+
+  return <motion.span className="tabular-nums">{display}</motion.span>;
+}
 
 export default function DatabasePage() {
   const router = useRouter();
@@ -433,17 +445,18 @@ export default function DatabasePage() {
 }
 
 function StatItem({ icon, label, value }: { icon: React.ReactNode, label: string, value: string | number }) {
-  const displayValue = typeof value === 'number' ? value.toLocaleString('id-ID') : value;
+  const displayValue = typeof value === 'number' ? <AnimatedNumber value={value} /> : value;
 
   return (
-    <div className="flex items-center gap-2">
-      <div className="flex items-center justify-center w-6 h-6 rounded-lg bg-amber-800/10 border border-amber-800/10 shadow-sm">
+    <div className="flex items-center gap-2 min-w-[120px]">
+      <div className="flex items-center justify-center w-6 h-6 rounded-lg bg-amber-800/10 border border-amber-800/10 shadow-sm shrink-0">
         {icon}
       </div>
-      <div className="flex flex-col">
-        <span className="text-[10px] text-amber-900/60 font-bold uppercase tracking-wider leading-none mb-0.5">{label}</span>
-        <span className="font-black text-amber-950 text-xs leading-tight italic">
-          {label === "Kas Negara" && typeof value === 'number' ? `Rp ${displayValue}` : displayValue}
+      <div className="flex flex-col overflow-hidden">
+        <span className="text-[10px] text-amber-900/60 font-bold uppercase tracking-wider leading-none mb-0.5 truncate">{label}</span>
+        <span className="font-black text-amber-950 text-xs leading-tight italic flex gap-1 truncate">
+          {label === "Kas Negara" && typeof value === 'number' && <span>Rp</span>}
+          {displayValue}
         </span>
       </div>
     </div>

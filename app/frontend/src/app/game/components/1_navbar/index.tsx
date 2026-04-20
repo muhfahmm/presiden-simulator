@@ -10,6 +10,20 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import GameTimeControls from "@/app/game/components/1_navbar/5_navigasi_waktu/GameTimeControls";
 import BudgetDetailModal from "@/app/game/components/1_navbar/3_kas_negara/BudgetDetailModal";
 
+import { motion, useSpring, useTransform } from "framer-motion";
+import { useEffect } from "react";
+
+function AnimatedNumber({ value }: { value: number }) {
+  const spring = useSpring(value, { mass: 0.8, stiffness: 75, damping: 15 });
+  const display = useTransform(spring, (current) => Math.round(current).toLocaleString('id-ID'));
+
+  useEffect(() => {
+    spring.set(value);
+  }, [value, spring]);
+
+  return <motion.span className="tabular-nums">{display}</motion.span>;
+}
+
 // --- Sub-component: StatusBadge ---
 interface StatusBadgeProps {
   icon: React.ReactNode;
@@ -21,12 +35,10 @@ interface StatusBadgeProps {
 }
 
 function StatusBadge({ icon, label, value, delta, deltaColor, onClick }: StatusBadgeProps) {
-  const displayValue = typeof value === 'number' ? value.toLocaleString('id-ID') : value;
-
   return (
     <div
       onClick={onClick}
-      className={`flex items-center gap-2 bg-[#d4c19c]/40 px-3 py-1.5 rounded-lg border border-amber-800/10 relative group overflow-hidden transition-all ${onClick ? 'cursor-pointer hover:border-amber-800/30 hover:bg-[#d4c19c]/60' : ''} shadow-sm`}
+      className={`flex items-center gap-2 bg-[#d4c19c]/40 px-3 py-1.5 rounded-lg border border-amber-800/10 relative group overflow-hidden transition-all min-w-[140px] shrink-0 ${onClick ? 'cursor-pointer hover:border-amber-800/30 hover:bg-[#d4c19c]/60' : ''} shadow-sm`}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-amber-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       {icon}
@@ -34,7 +46,7 @@ function StatusBadge({ icon, label, value, delta, deltaColor, onClick }: StatusB
         <p className="text-[10px] text-amber-900/60 font-bold uppercase">{label}</p>
         <div className="flex items-center gap-1.5">
           <p className="text-xs font-black text-amber-950 italic tracking-wide">
-            {displayValue}
+            {typeof value === 'number' ? <AnimatedNumber value={value} /> : value}
           </p>
           {delta !== undefined && delta !== 0 && (
             <span className={`text-[9px] font-black px-1 rounded-sm ${deltaColor ? deltaColor : (delta > 0 ? 'text-emerald-800 bg-emerald-500/10' : 'text-rose-800 bg-rose-500/10')}`}>
@@ -118,7 +130,7 @@ export default function GameNavbar({
           <StatusBadge
             icon={<Coins className="h-4 w-4 text-yellow-500" />}
             label="Kas Negara"
-            value={`${Math.round(budget).toLocaleString('id-ID')}`}
+            value={budget}
             delta={budgetDelta}
           />
           <StatusBadge
