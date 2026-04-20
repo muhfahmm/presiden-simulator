@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { BaseMapEngine, GeoJsonData } from '../engine/ts/BaseMapEngine';
 import { MainMapEngine } from '../engine/ts/MainMapEngine';
+import { Projector } from '../engine/ts/Projector';
 import { Globe, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -13,6 +14,9 @@ interface MapContainerProps {
   targetCode?: string | null;
   selectedName?: string | null;
   selectedCode?: string | null;
+  selectedLat?: number | null;
+  selectedLon?: number | null;
+  isInternal?: boolean;
   relations?: any[];
   onSelectCountry?: (country: any) => void;
   onResetMode?: () => void;
@@ -25,6 +29,9 @@ export default function MapContainer({
   targetCode,
   selectedName, 
   selectedCode, 
+  selectedLat,
+  selectedLon,
+  isInternal = false,
   relations = [],
   onSelectCountry, 
   onResetMode 
@@ -134,6 +141,48 @@ export default function MapContainer({
     targetName, 
     relations
   ]);
+  
+  // Camera Synchronizer (Fly-to)
+  useEffect(() => {
+    if (!data || !containerRef.current || isDragging) return;
+    
+    // Only focus if we have coordinates and it's an internal selection (carousel/search)
+    // or if selectedName is set and we found it (fallback)
+    let lat = selectedLat;
+    let lon = selectedLon;
+
+    if (lat === undefined || lat === null || lon === undefined || lon === null) {
+      if (!selectedName) return;
+      const country = countries.find(c => 
+        c.nama_negara.toLowerCase() === selectedName.toLowerCase() ||
+        c.kode_negara === selectedName ||
+        c.ibukota.toLowerCase() === selectedName.toLowerCase()
+      );
+      if (country && country.latitude && country.longitude) {
+        lat = Number(country.latitude);
+        lon = Number(country.longitude);
+      }
+    }
+
+    if (lat !== undefined && lat !== null && lon !== undefined && lon !== null) {
+      const width = containerRef.current.clientWidth;
+      const height = containerRef.current.clientHeight;
+      const proj = new Projector(width, height);
+      const { x: px, y: py } = proj.project(lon, lat);
+      
+      const targetScale = 4.5;
+      let nX = width / 2 - px * targetScale;
+      let nY = height / 2 - py * targetScale;
+      
+      if (targetScale <= 1.0) { nX = 0; nY = 0; }
+      else {
+        nX = Math.min(Math.max(nX, width * (1 - targetScale)), 0);
+        nY = Math.min(Math.max(nY, height * (1 - targetScale)), 0);
+      }
+      
+      setTransform({ scale: targetScale, x: nX, y: nY });
+    }
+  }, [selectedName, selectedLat, selectedLon, data, countries]);
 
   // Interaction Handlers (Mouse/Wheel)
   const handleWheel = useCallback((e: React.WheelEvent) => {

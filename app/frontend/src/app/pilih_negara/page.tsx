@@ -135,7 +135,19 @@ export default function DatabasePage() {
           {mapMode === "default" ? (
             <MapContainer 
               selectedName={selectedCountry} 
-              onSelectCountry={(c) => setSelectedCountry(c.nama_negara)} 
+              selectedLat={selectedData?.lat}
+              selectedLon={selectedData?.lon}
+              isInternal={isInternalSelection.current}
+              onSelectCountry={(c) => {
+                const matched = countries.find(tc => 
+                  tc.name_id.toLowerCase() === c.nama_negara.toLowerCase() || 
+                  tc.name_en.toLowerCase() === c.nama_negara.toLowerCase()
+                );
+                if (matched) {
+                  isInternalSelection.current = false;
+                  setSelectedCountry(matched.name_en);
+                }
+              }} 
             />
           ) : (
             <MapHubungan
