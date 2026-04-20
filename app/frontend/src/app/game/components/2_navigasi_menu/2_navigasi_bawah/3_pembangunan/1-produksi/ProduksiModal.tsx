@@ -1,22 +1,22 @@
 import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain, Briefcase, Users2, Cloud, Target, Truck } from "lucide-react"
-import { 
-  mineralKritisRate, 
-  manufakturRate, 
-  peternakanRate, 
-  agrikulturRate, 
-  perikananRate, 
-  olahanPanganRate, 
-  farmasiRate 
+import {
+  mineralKritisRate,
+  manufakturRate,
+  peternakanRate,
+  agrikulturRate,
+  perikananRate,
+  olahanPanganRate,
+  farmasiRate
 } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi";
-import { 
-  KONSUMSI_PERTAHANAN, 
-  KONSUMSI_STRATEGIC, 
-  KONSUMSI_SOSIAL, 
-  KONSUMSI_TRANSPORTASI, 
-  infrastrukturRate, 
-  sosialRate, 
-  pabrikMiliterRate, 
+import {
+  KONSUMSI_PERTAHANAN,
+  KONSUMSI_STRATEGIC,
+  KONSUMSI_SOSIAL,
+  KONSUMSI_TRANSPORTASI,
+  infrastrukturRate,
+  sosialRate,
+  pabrikMiliterRate,
   hunianRate,
   KAPASITAS_LISTRIK_METADATA,
   DASHBOARD_LABELS,
@@ -254,15 +254,15 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
       const isKomunisme = currentIdeology === "Komunisme";
       const isFactory = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi" || confirmBuild.groupId === "olahan_pangan";
-      
+
       let effectiveUnitCost = confirmBuild.cost;
       if (isKomunisme && isFactory) effectiveUnitCost = Math.ceil(effectiveUnitCost * KOMUNISME_FACTORY_COST_MULTIPLIER);
-      
+
       // Apply PBB Sanction Cost Penalty (+15%)
       effectiveUnitCost = Math.ceil(effectiveUnitCost * pbbMultipliers.buildCost);
 
       const totalCost = effectiveUnitCost * quantity;
-      
+
       // 2. Check for Financial Sufficiency
       const currentBalance = budgetStorage.getBudget();
       const isMoneyShort = currentBalance < totalCost;
@@ -309,11 +309,11 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         const isHeavyIndustry = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi";
 
         let effectiveBuildTime = confirmBuild.buildTime;
-        
+
         // PBB Production Penalties
         const isHighTech = confirmBuild.key.includes("electronics") || confirmBuild.key.includes("semikonduktor") || confirmBuild.groupId === "cyber" || confirmBuild.groupId === "space";
         const isArms = confirmBuild.groupId === "militer" || confirmBuild.key.includes("pabrik_amunisi");
-        
+
         if (isHighTech) effectiveBuildTime = Math.ceil(effectiveBuildTime / pbbMultipliers.techSpeed);
         if (isArms) effectiveBuildTime = Math.ceil(effectiveBuildTime / pbbMultipliers.armsSpeed);
 
@@ -670,7 +670,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         </div>
 
         {/* Insufficient Funds / Both Modal */}
-        <JikaUangKurang 
+        <JikaUangKurang
           isOpen={isInsufficientFundsModalOpen}
           onClose={() => setIsInsufficientFundsModalOpen(false)}
           requiredAmount={requiredAmount}
@@ -721,8 +721,8 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                                 onBuild={handleBuildRequest}
                                 construction={currentConstruction}
                                 cumulative={
-                                  group.id === "kelistrikan" 
-                                    ? (currentDataWithDeltas.sektor_listrik as any)[(KAPASITAS_LISTRIK_METADATA as any)[item.key]?.dataKey] || 0 
+                                  group.id === "kelistrikan"
+                                    ? (currentDataWithDeltas.sektor_listrik as any)[(KAPASITAS_LISTRIK_METADATA as any)[item.key]?.dataKey] || 0
                                     : budgetStorage.getCumulativeProduction()[item.key]
                                 }
                                 hasUraniumMines={uraniumStats.hasMines}
@@ -744,7 +744,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         {confirmBuild && (
           <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
             <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[40px] shadow-2xl max-w-4xl w-full mx-4 flex flex-col gap-6 animate-in zoom-in-95 max-h-[90vh]">
-              
+
               {/* Header: Icon & Title (Full Width) */}
               <div className="flex items-center gap-6 shrink-0 border-b border-zinc-800/50 pb-6">
                 <div className="p-4 bg-cyan-500/10 rounded-3xl border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
@@ -759,7 +759,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
               {/* Main Content: 2-Column Grid Area */}
               <div className="flex-1 overflow-y-auto no-scrollbar py-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  
+
                   {/* Column 1: Stats & Info */}
                   <div className="space-y-6">
                     <div className="flex flex-col gap-3">
@@ -769,37 +769,37 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Total</span>
                           <span className="text-xl font-black text-amber-500 tracking-tight">
                             {(() => {
-                               const session = gameStorage.getSession() as any;
-                               const currentData = countries.find(c => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
-                               const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
-                               const isKomunisme = currentIdeology === "Komunisme";
-                               const isFactory = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi" || confirmBuild.groupId === "olahan_pangan";
-                               
-                               let effectiveUnitCost = confirmBuild.cost;
-                               if (isKomunisme && isFactory) effectiveUnitCost = Math.ceil(effectiveUnitCost * KOMUNISME_FACTORY_COST_MULTIPLIER);
-                               const totalCost = Number(effectiveUnitCost || 0) * quantity;
-                               
-                               return totalCost.toLocaleString('id-ID');
+                              const session = gameStorage.getSession() as any;
+                              const currentData = countries.find(c => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
+                              const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
+                              const isKomunisme = currentIdeology === "Komunisme";
+                              const isFactory = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi" || confirmBuild.groupId === "olahan_pangan";
+
+                              let effectiveUnitCost = confirmBuild.cost;
+                              if (isKomunisme && isFactory) effectiveUnitCost = Math.ceil(effectiveUnitCost * KOMUNISME_FACTORY_COST_MULTIPLIER);
+                              const totalCost = Number(effectiveUnitCost || 0) * quantity;
+
+                              return totalCost.toLocaleString('id-ID');
                             })()}
                           </span>
                           {(() => {
-                               const session = gameStorage.getSession() as any;
-                               const currentData = countries.find(c => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
-                               const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
-                               const isKomunisme = currentIdeology === "Komunisme";
-                               const isFactory = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi" || confirmBuild.groupId === "olahan_pangan";
-                               
-                               let effectiveUnitCost = confirmBuild.cost;
-                               if (isKomunisme && isFactory) effectiveUnitCost = Math.ceil(effectiveUnitCost * KOMUNISME_FACTORY_COST_MULTIPLIER);
-                               const totalCost = Number(effectiveUnitCost || 0) * quantity;
-                               const deficit = totalCost - budgetStorage.getBudget();
-                               
-                               return deficit > 0 ? (
-                                 <span className="text-[10px] font-black text-rose-500 uppercase absolute -bottom-2 whitespace-nowrap">
-                                   Kurang: {deficit.toLocaleString('id-ID')}
-                                 </span>
-                               ) : null;
-                             })()}
+                            const session = gameStorage.getSession() as any;
+                            const currentData = countries.find(c => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
+                            const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
+                            const isKomunisme = currentIdeology === "Komunisme";
+                            const isFactory = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi" || confirmBuild.groupId === "olahan_pangan";
+
+                            let effectiveUnitCost = confirmBuild.cost;
+                            if (isKomunisme && isFactory) effectiveUnitCost = Math.ceil(effectiveUnitCost * KOMUNISME_FACTORY_COST_MULTIPLIER);
+                            const totalCost = Number(effectiveUnitCost || 0) * quantity;
+                            const deficit = totalCost - budgetStorage.getBudget();
+
+                            return deficit > 0 ? (
+                              <span className="text-[10px] font-black text-rose-500 uppercase absolute -bottom-2 whitespace-nowrap">
+                                Kurang: {deficit.toLocaleString('id-ID')}
+                              </span>
+                            ) : null;
+                          })()}
                         </div>
                         <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>
@@ -820,7 +820,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                                 if (isTaoisme && isHeavyIndustry) effectiveBuildTime = Math.ceil(effectiveBuildTime * 1.25);
                                 if (isDemokrasi) effectiveBuildTime = Math.ceil(effectiveBuildTime / DEMOKRASI_DECISION_SPEED_PENALTY);
                                 if (isKapitalisme) effectiveBuildTime = Math.ceil(effectiveBuildTime / KAPITALISME_CONSTRUCTION_SPEED_BONUS);
-                                
+
                                 return effectiveBuildTime.toLocaleString('id-ID');
                               })()} Hari
                             </span>
@@ -845,23 +845,23 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                     <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
                       <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian Seluruh Unit</span>
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
-                         {(() => {
-                            const currentReligion = religionStorage.getCurrentReligion(currentData?.religion || "Islam");
-                            const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
-                            const isProtestan = currentReligion === "Protestan";
-                            const isTaoisme = currentReligion === "Taoisme";
-                            const isDemokrasi = currentIdeology === "Demokrasi";
-                            const isKapitalisme = currentIdeology === "Kapitalisme";
-                            const isHeavyIndustry = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi";
+                        {(() => {
+                          const currentReligion = religionStorage.getCurrentReligion(currentData?.religion || "Islam");
+                          const currentIdeology = ideologyStorage.getCurrentIdeology(currentData?.ideology || "Demokrasi");
+                          const isProtestan = currentReligion === "Protestan";
+                          const isTaoisme = currentReligion === "Taoisme";
+                          const isDemokrasi = currentIdeology === "Demokrasi";
+                          const isKapitalisme = currentIdeology === "Kapitalisme";
+                          const isHeavyIndustry = confirmBuild.groupId === "manufaktur" || confirmBuild.groupId === "ekstraksi";
 
-                            let effectiveBuildTime = confirmBuild.buildTime;
-                            if (isProtestan) effectiveBuildTime = Math.ceil(effectiveBuildTime / PROTESTAN_PRODUCTION_SPEED_BONUS);
-                            if (isTaoisme && isHeavyIndustry) effectiveBuildTime = Math.ceil(effectiveBuildTime * 1.25);
-                            if (isDemokrasi) effectiveBuildTime = Math.ceil(effectiveBuildTime / DEMOKRASI_DECISION_SPEED_PENALTY);
-                                 if (isKapitalisme) effectiveBuildTime = Math.ceil(effectiveBuildTime / KAPITALISME_CONSTRUCTION_SPEED_BONUS);
+                          let effectiveBuildTime = confirmBuild.buildTime;
+                          if (isProtestan) effectiveBuildTime = Math.ceil(effectiveBuildTime / PROTESTAN_PRODUCTION_SPEED_BONUS);
+                          if (isTaoisme && isHeavyIndustry) effectiveBuildTime = Math.ceil(effectiveBuildTime * 1.25);
+                          if (isDemokrasi) effectiveBuildTime = Math.ceil(effectiveBuildTime / DEMOKRASI_DECISION_SPEED_PENALTY);
+                          if (isKapitalisme) effectiveBuildTime = Math.ceil(effectiveBuildTime / KAPITALISME_CONSTRUCTION_SPEED_BONUS);
 
-                            return formatGameDate(addDays(getStoredGameDate(), effectiveBuildTime * quantity));
-                         })()}
+                          return formatGameDate(addDays(getStoredGameDate(), effectiveBuildTime * quantity));
+                        })()}
                       </p>
                     </div>
                   </div>
@@ -1013,7 +1013,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, hasUraniumMines
                 <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">Spesifikasi & Biaya</p>
               </div>
             </div>
-            <button 
+            <button
               onClick={() => setShowDetail(false)}
               className="p-2.5 hover:bg-zinc-800/80 rounded-xl text-zinc-500 hover:text-white transition-all cursor-pointer border border-transparent hover:border-zinc-700"
             >
@@ -1028,7 +1028,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, hasUraniumMines
             </div>
 
             <div className="grid gap-2">
-              
+
               {item.powerUsage > 0 && (
                 <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                   <div className="flex items-center gap-2.5">
@@ -1095,14 +1095,14 @@ function BuildingCard({ item, onBuild, construction, cumulative, hasUraniumMines
 
         <div className="flex flex-col gap-2.5 flex-1">
 
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-amber-500/10 rounded-lg">
-                <TrendingUp size={12} className={item.groupId === 'ekstraksi' && pbbMultipliers.resource < 1 ? 'text-rose-500 animate-pulse' : 'text-amber-500'} />
-              </div>
-              <span className={`text-[12px] font-bold ${item.groupId === 'ekstraksi' && pbbMultipliers.resource < 1 ? 'text-rose-500' : 'text-amber-500/90'}`}>
-                Produksi: +{Math.floor(item.tarif * (item.groupId === 'ekstraksi' ? pbbMultipliers.resource : 1)).toLocaleString('id-ID')} {item.unit}/unit
-              </span>
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 bg-amber-500/10 rounded-lg">
+              <TrendingUp size={12} className={item.groupId === 'ekstraksi' && pbbMultipliers.resource < 1 ? 'text-rose-500 animate-pulse' : 'text-amber-500'} />
             </div>
+            <span className={`text-[12px] font-bold ${item.groupId === 'ekstraksi' && pbbMultipliers.resource < 1 ? 'text-rose-500' : 'text-amber-500/90'}`}>
+              Produksi: +{Math.floor(item.tarif * (item.groupId === 'ekstraksi' ? pbbMultipliers.resource : 1)).toLocaleString('id-ID')} {item.unit}/unit
+            </span>
+          </div>
 
           {item.konsumsi_uranium > 0 && (
             <div className="flex items-center gap-2.5">
@@ -1189,7 +1189,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, hasUraniumMines
               <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost?.toLocaleString('id-ID')}</span>
             </div>
             {item.key === "1_pembangkit_listrik_tenaga_nuklir" && !hasUraniumMines ? (
-               <button disabled className="flex-1 py-3.5 rounded-2xl bg-zinc-800 text-rose-500/40 text-[9px] font-black uppercase tracking-tight border border-rose-500/20 cursor-not-allowed flex flex-col items-center justify-center leading-none">
+              <button disabled className="flex-1 py-3.5 rounded-2xl bg-zinc-800 text-rose-500/40 text-[9px] font-black uppercase tracking-tight border border-rose-500/20 cursor-not-allowed flex flex-col items-center justify-center leading-none">
                 <span className="text-[7px] text-zinc-500 mb-0.5">SYARAT GAGAL</span>
                 BUTUH TAMBANG URANIUM
               </button>
