@@ -5,7 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import MapRenderer from "@/app/game/components/2_navigasi_menu/1_navigasi_atas/MapRenderer";
 import MapCategorySelector from "../components/2_navigasi_menu/1_navigasi_atas/MapCategorySelector";
 import TradeRouteLegend from "../components/2_navigasi_menu/1_navigasi_atas/TradeRouteLegend";
-import { sdaIcons } from "../components/2_navigasi_menu/1_navigasi_atas/SDA/mapSDA";
+import { sdaIcons } from "../components/2_navigasi_menu/1_navigasi_atas/SDA/sdaIcons";
 import StrategyModal from "@/app/game/components/modals/modals";
 import SDADetailsModal from "@/app/game/components/modals/1_info_strategis/1_SDA/SDADetailsModal";
 import BottomNav from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/BottomNav";

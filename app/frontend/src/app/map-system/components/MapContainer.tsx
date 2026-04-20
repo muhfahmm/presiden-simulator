@@ -3,12 +3,15 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { BaseMapEngine, GeoJsonData } from '../engine/ts/BaseMapEngine';
 import { MainMapEngine } from '../engine/ts/MainMapEngine';
+import { DiplomacyMapEngine } from '../engine/ts/DiplomacyMapEngine';
+import { SDAMapEngine } from '../engine/ts/SDAMapEngine';
+import { TradeMapEngine } from '../engine/ts/TradeMapEngine';
 import { Projector } from '../engine/ts/Projector';
 import { Globe, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface MapContainerProps {
-  mode?: 'MAIN';
+  mode?: 'MAIN' | 'SDA' | 'DIPLOMACY' | 'TRADE';
   userCountry?: string | null;
   targetName?: string | null;
   targetCode?: string | null;
@@ -18,7 +21,9 @@ interface MapContainerProps {
   selectedLon?: number | null;
   isInternal?: boolean;
   relations?: any[];
+  transactions?: any[];
   onSelectCountry?: (country: any) => void;
+  onSelectSDA?: (data: any) => void;
   onResetMode?: () => void;
 }
 
@@ -33,7 +38,9 @@ export default function MapContainer({
   selectedLon,
   isInternal = false,
   relations = [],
-  onSelectCountry, 
+  transactions = [],
+  onSelectCountry,
+  onSelectSDA,
   onResetMode 
 }: MapContainerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -94,8 +101,23 @@ export default function MapContainer({
     canvasRef.current.width = width;
     canvasRef.current.height = height;
 
-    // Hardcoded to MainMapEngine for absolute minimalism
-    const engine = new MainMapEngine(ctx, width, height);
+    // Instantiate Correct Engine based on Mode
+    let engine: BaseMapEngine;
+    switch (mode) {
+      case 'DIPLOMACY':
+        engine = new DiplomacyMapEngine(ctx, width, height);
+        break;
+      case 'SDA':
+        engine = new SDAMapEngine(ctx, width, height);
+        break;
+      case 'TRADE':
+        engine = new TradeMapEngine(ctx, width, height);
+        break;
+      case 'MAIN':
+      default:
+        engine = new MainMapEngine(ctx, width, height);
+        break;
+    }
 
     engine.setData(data);
     engine.setCountries(countries);
@@ -119,19 +141,35 @@ export default function MapContainer({
     };
   }, [data, countries, mode]); // Only re-init when fundamental data or mode changes
 
-  // Sync Transform, Selections & Relations (Consolidated to fix hook size issues)
+  // Sync Transform, Selections & Specialized Data
   useEffect(() => {
-    if (engineRef.current instanceof MainMapEngine) {
-        const engine = engineRef.current as MainMapEngine;
+    if (!engineRef.current) return;
+    const engine = engineRef.current;
         
-        // Sync Game Selections
-        engine.playerCountryName = userCountry || null;
-        engine.targetCountryName = targetName || selectedName || null;
-        
-        // Sync Base Engine State
-        engine.setRelations(relations);
-        engine.setTransform(transform.scale, transform.x, transform.y);
+    // 1. Common Selections
+    if (engine instanceof MainMapEngine || engine instanceof DiplomacyMapEngine || engine instanceof SDAMapEngine || engine instanceof TradeMapEngine) {
+      (engine as any).playerCountryName = userCountry || null;
+      (engine as any).targetCountryName = targetName || selectedName || null;
     }
+        
+    // 2. Diplomacy Specifics
+    if (engine instanceof DiplomacyMapEngine) {
+      engine.updateRelations();
+    }
+
+    // 3. Trade Specifics
+    if (engine instanceof TradeMapEngine) {
+      engine.setTransactions(transactions);
+    }
+    
+    // 4. SDA Specifics
+    if (engine instanceof SDAMapEngine) {
+      engine.onSelectSDA = onSelectSDA || null;
+    }
+
+    // 5. Global State
+    engine.setRelations(relations);
+    engine.setTransform(transform.scale, transform.x, transform.y);
   }, [
     transform.scale, 
     transform.x, 
@@ -139,7 +177,10 @@ export default function MapContainer({
     selectedName, 
     userCountry, 
     targetName, 
-    relations
+    relations,
+    transactions,
+    onSelectSDA,
+    mode
   ]);
   
   // Camera Synchronizer (Fly-to)
@@ -246,9 +287,19 @@ export default function MapContainer({
         className={`w-full h-full block transition-opacity duration-1000 ${isDragging ? 'cursor-grabbing' : isHoveringStar ? 'cursor-pointer' : 'cursor-grab'}`}
         onClick={(e) => {
           const rect = canvasRef.current?.getBoundingClientRect();
-          if (!rect || !engineRef.current || !onSelectCountry) return;
+          if (!rect || !engineRef.current) return;
           const country = engineRef.current.getCountryAt(e.clientX - rect.left, e.clientY - rect.top);
-          if (country) onSelectCountry(country);
+          if (country) {
+            if (mode === 'SDA' && onSelectSDA) {
+              onSelectSDA({ 
+                name: country.name_id || country.nama_negara, 
+                flag: country.flag, 
+                resources: country.sektor_ekstraksi 
+              });
+            } else if (onSelectCountry) {
+              onSelectCountry(country);
+            }
+          }
         }}
         style={{ opacity: isLoading ? 0 : 1 }}
       />

@@ -1,10 +1,6 @@
-import { memo } from "react";
-import { useRouter } from "next/navigation";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { memo, useState, useEffect } from "react";
 import MapContainer from "@/app/map-system/components/MapContainer";
-import TradeMapCanvas from "../2_navigasi_bawah/2_ekonomi/1-perdagangan/jalur_perdagangan/1_map/TradeMapCanvas";
-import MapSDA from "./SDA/mapSDA";
-import MapHubungan from "./Hubungan/mapHubungan";
+import { tradeStorage } from "../2_navigasi_bawah/2_ekonomi/1-perdagangan/TradeStorage";
 
 interface MapRendererProps {
   mapMode: "default" | "sda" | "hubungan" | "trade";
@@ -23,57 +19,38 @@ const MapRenderer = memo(function MapRenderer({
   onSelect,
   onSelectSDA
 }: MapRendererProps) {
-  
-  if (mapMode === "default") {
-    return (
-      <div className="w-full h-full">
-        <MapContainer 
-          userCountry={userCountry}
-          targetName={targetCountry}
-          onSelectCountry={(c) => onSelect(c.nama_negara)}
-        />
-      </div>
-    );
-  }
+  const [transactions, setTransactions] = useState<any[]>([]);
+
+  useEffect(() => {
+    const update = () => {
+      setTransactions(tradeStorage.getActiveTransactions());
+    };
+    update();
+    window.addEventListener('trade_storage_updated', update);
+    return () => window.removeEventListener('trade_storage_updated', update);
+  }, []);
+
+  // Translate gamemode to engine mode
+  const engineMode = (() => {
+    switch (mapMode) {
+      case "sda": return "SDA";
+      case "hubungan": return "DIPLOMACY";
+      case "trade": return "TRADE";
+      default: return "MAIN";
+    }
+  })();
 
   return (
-    <TransformWrapper
-      initialScale={1}
-      minScale={1}
-      maxScale={8}
-      limitToBounds={true}
-      doubleClick={{ disabled: true }}
-    >
-      <TransformComponent wrapperClass="!w-full !h-full" contentClass="!h-full flex items-center justify-center">
-        <div className="relative h-full flex items-center justify-center w-max">
-          <div style={{ display: mapMode === "sda" ? "contents" : "none" }} className="h-full">
-            <MapSDA
-              userCountry={userCountry}
-              targetCountry={targetCountry}
-              geoData={geoData}
-              onSelect={onSelect}
-              onSelectSDA={onSelectSDA}
-            />
-          </div>
-          <div style={{ display: mapMode === "hubungan" ? "contents" : "none" }} className="h-full">
-            <MapHubungan
-              userCountry={userCountry}
-              targetCountry={targetCountry}
-              geoData={geoData}
-              onSelect={onSelect}
-            />
-          </div>
-          <div style={{ display: mapMode === "trade" ? "contents" : "none" }} className="h-full">
-            <TradeMapCanvas
-              userCountry={userCountry}
-              targetCountry={targetCountry}
-              geoData={geoData}
-              onSelect={onSelect}
-            />
-          </div>
-        </div>
-      </TransformComponent>
-    </TransformWrapper>
+    <div className="w-full h-full">
+      <MapContainer 
+        mode={engineMode}
+        userCountry={userCountry}
+        targetName={targetCountry}
+        transactions={transactions}
+        onSelectCountry={(c) => onSelect(c.nama_negara)}
+        onSelectSDA={onSelectSDA}
+      />
+    </div>
   );
 }, (prev, next) => {
   return prev.mapMode === next.mapMode && 

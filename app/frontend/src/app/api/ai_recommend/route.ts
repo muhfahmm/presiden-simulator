@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
       'src', 'app', 'game', 'components', '2_navigasi_menu', '2_navigasi_bawah', '7_kementrian', '2_database_undang_undang', 'ai_bot', 'recommendation_engine.py'
     );
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       // Spawn python process
       // Use 'python' or 'python3' depending on the environment. For Windows it's usually 'python'.
       const pythonProcess = spawn('python', [pythonScriptPath, JSON.stringify(body)]);

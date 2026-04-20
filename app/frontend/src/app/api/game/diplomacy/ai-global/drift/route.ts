@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { POST as handleGlobalAiDrift } from "@/app/game/components/map-system/ai_diplomacy_engine/routes/route";
+import { POST as handleGlobalAiDrift } from "@/app/game/logic/ai/ai_diplomacy_engine/routes/route";
 
 /**
  * Proxy Route for Global AI Diplomacy

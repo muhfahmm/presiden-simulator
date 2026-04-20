@@ -7,7 +7,6 @@ import {
   Globe2, Landmark, Users, Coins, TrendingUp, Globe, Church, Scale, Search, ShieldAlert 
 } from "lucide-react";
 import MapContainer from "../map-system/components/MapContainer";
-import MapHubungan from "../game/components/2_navigasi_menu/1_navigasi_atas/Hubungan/mapHubungan";
 import { countries } from "./data/negara/benua/index";
 import { gameStorage } from "../game/gamestorage";
 import { taxStorage } from "../game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
@@ -175,11 +174,20 @@ export default function DatabasePage() {
               }} 
             />
           ) : (
-            <MapHubungan
+            <MapContainer 
+              mode="DIPLOMACY"
               userCountry={selectedCountry}
-              targetCountry={null}
-              geoData={geoData}
-              onSelect={setSelectedCountry}
+              targetName={null}
+              onSelectCountry={(c) => {
+                const matched = countries.find(tc => 
+                  tc.name_id.toLowerCase() === c.nama_negara.toLowerCase() || 
+                  tc.name_en.toLowerCase() === c.nama_negara.toLowerCase()
+                );
+                if (matched) {
+                  isInternalSelection.current = false;
+                  setSelectedCountry(matched.name_en);
+                }
+              }} 
             />
           )}
         </div>
