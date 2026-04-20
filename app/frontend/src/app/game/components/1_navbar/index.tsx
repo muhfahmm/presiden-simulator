@@ -76,14 +76,35 @@ export default function GameNavbar({
     <>
       <header className="fixed top-0 left-0 w-full z-[100000] bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/80 px-8 py-4 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
         <div className="flex items-center gap-4">
-          {countryData && (
-            <div className="flex items-center gap-2 bg-zinc-800/40 px-3 py-1.5 rounded-xl border border-zinc-700/50 shadow-sm backdrop-blur-md">
-              <span className="text-base">{countryData.flag}</span>
-              <span className="text-xs font-bold text-zinc-200 tracking-wide uppercase">
-                {countryData.name_id}
-              </span>
-            </div>
-          )}
+          {countryData && (() => {
+            const getCountryCode = (emoji: string) => {
+              const chars = [...emoji];
+              if (chars.length < 2) return "";
+              return chars.map(ch => String.fromCharCode((ch.codePointAt(0) || 0) - 0x1F1E6 + 65)).join("").toLowerCase();
+            };
+            const code = getCountryCode(countryData.flag);
+            
+            return (
+              <div className="flex items-center gap-3 bg-zinc-900/60 pl-2 pr-4 py-1.5 rounded-2xl border border-zinc-800/80 shadow-[0_0_20px_rgba(0,0,0,0.3)] backdrop-blur-md group hover:border-amber-500/50 transition-all duration-500">
+                <div className="relative w-9 h-6 rounded-md overflow-hidden shadow-2xl border border-white/10 group-hover:scale-110 transition-transform duration-500">
+                  <img 
+                    src={`https://flagcdn.com/w160/${code}.png`} 
+                    alt={countryData.name_id}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black text-zinc-100 italic tracking-wider uppercase group-hover:text-amber-400 transition-colors">
+                    {countryData.name_id}
+                  </span>
+                  <span className="text-[7px] font-bold text-zinc-500 uppercase tracking-[0.2em]">
+                    Kedaulatan Nasional
+                  </span>
+                </div>
+              </div>
+            );
+          })()}
         </div>
         <div className="flex items-center gap-6">
           <StatusBadge

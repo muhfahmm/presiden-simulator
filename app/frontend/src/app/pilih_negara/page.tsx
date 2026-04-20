@@ -85,15 +85,24 @@ export default function DatabasePage() {
     c.capital.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const getCountryCode = (emoji: string) => {
+    const chars = [...emoji];
+    if (chars.length < 2) return "";
+    return chars.map(ch => String.fromCharCode((ch.codePointAt(0) || 0) - 0x1F1E6 + 65)).join("").toLowerCase();
+  };
+  const selectedCode = hasSelection ? getCountryCode(currentData.flag) : "";
+
   return (
     <div className="flex flex-col h-screen w-screen bg-zinc-950 text-white font-sans relative overflow-hidden select-none">
 
       {/* 1. TOP STATS BAR */}
       <header className="bg-zinc-900/90 backdrop-blur-md border-b border-zinc-800 px-6 py-2 flex items-center justify-between z-20 text-xs text-zinc-300">
         <div className="flex items-center gap-6">
-          <button className="h-6 w-6 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-zinc-700 transition cursor-pointer">
-            <HelpCircle className="h-3.5 w-3.5 text-teal-400" />
-          </button>
+          <div className="flex items-center gap-3">
+            <button className="h-6 w-6 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-zinc-700 transition cursor-pointer">
+              <HelpCircle className="h-3.5 w-3.5 text-teal-400" />
+            </button>
+          </div>
 
           <div className="flex items-center gap-4">
             <StatItem label="Ibukota" value={hasSelection ? currentData.capital : "-"} icon={<Landmark size={14} className="text-amber-400" />} />
@@ -123,10 +132,26 @@ export default function DatabasePage() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 bg-zinc-800/80 px-4 py-1.5 rounded-lg border border-zinc-700">
-          <span className="text-xl">{hasSelection ? currentData.flag : "🌍"}</span>
-          <span className="text-xs font-bold text-zinc-100 uppercase tracking-wide">{hasSelection ? currentData.name_id : "Pilih Negara"}</span>
-        </div>
+        {hasSelection && (
+          <div className="flex items-center gap-3 bg-zinc-900/60 pl-2 pr-4 py-1.5 rounded-2xl border border-zinc-800/80 shadow-[0_10px_20px_rgba(0,0,0,0.4)] backdrop-blur-md animate-in fade-in slide-in-from-right-4 duration-500">
+            <div className="relative w-8 h-5 rounded-sm overflow-hidden shadow-sm border border-white/10">
+              <img 
+                src={`https://flagcdn.com/w80/${selectedCode}.png`} 
+                alt={currentData.name_id}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[10px] font-black text-white italic tracking-wider uppercase">
+                {currentData.name_id}
+              </span>
+              <span className="text-[8px] font-black text-zinc-300 uppercase tracking-[0.15em] leading-none mt-0.5">
+                {currentData.capital}
+              </span>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* 2. MAIN MAP DISPLAY area */}
@@ -159,8 +184,6 @@ export default function DatabasePage() {
           )}
         </div>
 
-        {/* Ambient Darkened Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
       </main>
 
       {/* Consolidated Map Controls & Search */}
@@ -224,16 +247,21 @@ export default function DatabasePage() {
       </div>
 
       {/* 3. FOOTER CAROUSEL & CONTROLS */}
-      <footer className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 flex items-end justify-between z-20">
-        <div className="flex flex-col gap-3">
-          <button className="flex items-center gap-2 bg-gradient-to-r from-teal-900/40 to-emerald-900/40 border border-teal-800/40 px-3 py-1.5 rounded-xl text-xs font-semibold text-teal-300 hover:from-teal-800/60 transition cursor-pointer w-fit uppercase tracking-wider">
-            <Filter className="h-3.5 w-3.5" />
-            Filter Region
+      <footer className="absolute bottom-0 inset-x-0 p-6 flex items-end justify-between z-20 pointer-events-none">
+        
+        {/* Left Action: Kembali */}
+        <div className="pointer-events-auto">
+          <button
+            onClick={() => router.push("/")}
+            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 font-bold hover:bg-zinc-800 hover:border-zinc-700 transition cursor-pointer active:scale-95 text-sm text-zinc-400 hover:text-white"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Kembali
           </button>
         </div>
 
-        {/* Carousel with Chevrons */}
-        <div className="absolute left-1/2 bottom-8 -translate-x-1/2 flex items-center gap-4 w-full max-w-6xl z-30">
+        {/* Carousel with Chevrons (Absolute Centered) */}
+        <div className="absolute left-1/2 bottom-8 -translate-x-1/2 flex items-center gap-4 w-full max-w-6xl z-30 pointer-events-auto">
           <button
             onClick={() => scrollByAmount('left')}
             className="p-1 px-2 rounded-full bg-zinc-900/80 border border-zinc-700/60 text-zinc-400 hover:bg-zinc-800 hover:text-white transition cursor-pointer active:scale-95"
@@ -242,36 +270,77 @@ export default function DatabasePage() {
           </button>
 
           <div ref={scrollRef} className="flex flex-1 gap-10 overflow-x-auto pt-10 pb-4 no-scrollbar">
-            {filteredCountries.map((c, i) => (
-              <button
-                key={i}
-                ref={el => { buttonRefs.current[c.name_en] = el; }}
-                onClick={() => {
-                  isInternalSelection.current = true;
-                  setSelectedCountry(c.name_en);
-                }}
-                className={`relative flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all cursor-pointer min-w-[150px] h-[100px] justify-center ${selectedCountry === c.name_en
-                    ? 'bg-amber-500/10 border-amber-500 shadow-[0_0_30px_rgba(245,158,11,0.2)] scale-105 z-10'
-                    : 'bg-zinc-900/60 border-zinc-800 hover:bg-zinc-800/80 hover:border-zinc-700 hover:scale-[1.02]'
-                  }`}
-              >
-                {selectedCountry === c.name_en && (
-                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-amber-500 text-black font-bold text-xs px-2 py-1 rounded-md shadow-lg font-sans whitespace-nowrap z-30">
-                    {c.name_id}
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-amber-500" />
+            {filteredCountries.map((c, i) => {
+              // Helper to extract ISO code from emoji
+              const getCode = (emoji: string) => {
+                const chars = [...emoji];
+                if (chars.length < 2) return "";
+                return chars.map(ch => String.fromCharCode((ch.codePointAt(0) || 0) - 0x1F1E6 + 65)).join("").toLowerCase();
+              };
+              const code = getCode(c.flag);
+              
+              return (
+                <button
+                  key={i}
+                  ref={el => { buttonRefs.current[c.name_en] = el; }}
+                  onClick={() => {
+                    isInternalSelection.current = true;
+                    setSelectedCountry(c.name_en);
+                  }}
+                  className={`relative flex flex-col items-center gap-3 p-4 rounded-3xl border transition-all cursor-pointer min-w-[160px] h-[120px] justify-center overflow-hidden group ${selectedCountry === c.name_en
+                    ? 'bg-zinc-900/90 border-amber-500 shadow-[0_0_40px_rgba(245,158,11,0.25)] scale-110 z-10'
+                    : 'bg-zinc-900/40 border-zinc-800/80 hover:bg-zinc-900/60 hover:border-zinc-600 hover:scale-[1.05]'
+                    }`}
+                >
+                  {/* Premium Shine Effect on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+
+                  {selectedCountry === c.name_en && (
+                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-amber-500 text-black font-black text-[10px] px-3 py-1.5 rounded-full shadow-[0_10px_20px_rgba(245,158,11,0.4)] font-sans whitespace-nowrap z-30 uppercase tracking-widest animate-in fade-in zoom-in slide-in-from-top-2 duration-300">
+                      {c.name_id}
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-amber-500" />
+                    </div>
+                  )}
+                  
+                  {/* Flag Container with Shadow & Glow */}
+                  <div className={`relative w-16 h-10 rounded-lg overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-110 border ${
+                    selectedCountry === c.name_en ? 'border-amber-400/50' : 'border-white/10'
+                  }`}>
+                    {code ? (
+                      <img 
+                        src={`https://flagcdn.com/w160/${code}.png`} 
+                        alt={c.name_id}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          // Fallback to emoji if image fails
+                          (e.target as any).style.display = 'none';
+                          const parent = (e.target as any).parentElement;
+                          const fallback = document.createElement('span');
+                          fallback.className = 'text-2xl absolute inset-0 flex items-center justify-center';
+                          fallback.innerText = c.flag;
+                          parent.appendChild(fallback);
+                        }}
+                      />
+                    ) : (
+                      <span className="text-3xl filter drop-shadow-lg">{c.flag}</span>
+                    )}
+                    {/* Subtle Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                   </div>
-                )}
-                <span className="text-3xl filter drop-shadow-lg">{c.flag}</span>
-                <div className="flex flex-col items-center gap-0.5 mt-1">
-                  <span className="text-[11px] font-black text-white text-center line-clamp-1 px-1 uppercase tracking-wider">
-                    {c.name_id}
-                  </span>
-                  <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-[0.2em]">
-                    {c.capital}
-                  </span>
-                </div>
-              </button>
-            ))}
+
+                  <div className="flex flex-col items-center gap-1">
+                    <span className={`text-[11px] font-black text-center line-clamp-1 px-1 uppercase tracking-wider transition-colors ${
+                      selectedCountry === c.name_en ? 'text-amber-400' : 'text-zinc-200 group-hover:text-white'
+                    }`}>
+                      {c.name_id}
+                    </span>
+                    <span className="text-[9px] font-black text-zinc-300 uppercase tracking-[0.15em] group-hover:text-white transition-colors">
+                      {c.capital}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
           </div>
 
           <button
@@ -282,16 +351,8 @@ export default function DatabasePage() {
           </button>
         </div>
 
-        {/* Action Buttons Right */}
-        <div className="flex gap-4">
-          <button
-            onClick={() => router.push("/")}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 font-bold hover:bg-zinc-800 hover:border-zinc-700 transition cursor-pointer active:scale-95 text-sm"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Kembali
-          </button>
-
+        {/* Right Action: Mulai */}
+        <div className="pointer-events-auto">
           <button
             onClick={() => {
               if (!hasSelection) {
@@ -305,10 +366,10 @@ export default function DatabasePage() {
               }, 1500);
             }}
             disabled={isLoading}
-            className={`flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/30 transition-all cursor-pointer group scale-100 hover:scale-[1.02] active:scale-[0.98] ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/30 transition-all cursor-pointer group scale-100 hover:scale-[1.05] active:scale-[0.98] ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <Play className="h-4 w-4" />
-            {isLoading ? "Memproses..." : "Mulai"}
+            {isLoading ? "Memproses..." : "Mulai Simulasi"}
           </button>
         </div>
       </footer>
