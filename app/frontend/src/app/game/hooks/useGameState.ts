@@ -14,7 +14,7 @@ import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populas
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
-const GO_SERVER = "http://localhost:8081";
+const GO_SERVER = "http://127.0.0.1:8081";
 
 interface PolicyUpdate {
   taxes?: Record<string, number>;

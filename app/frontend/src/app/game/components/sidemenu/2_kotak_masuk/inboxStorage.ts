@@ -143,5 +143,60 @@ export const inboxStorage = {
       return true;
     }
     return false;
+  },
+
+  /**
+   * Sync inbox from Go Server SSE stream.
+   */
+  syncFromServer: (serverInbox: any[]) => {
+    if (typeof window === 'undefined' || !Array.isArray(serverInbox)) return;
+
+    const key = inboxStorage.getStorageKey();
+    const current = inboxStorage.getMessages();
+    
+    // Map server items to our internal format
+    const mapped: InboxItem[] = serverInbox.map(si => ({
+      id: si.id || `sv-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
+      source: si.source || "Pemerintah",
+      subject: si.subject || "Pemberitahuan",
+      content: si.content || "",
+      time: si.time || new Date(si.timestamp * 1000).toLocaleDateString("id-ID"),
+      read: si.read || false,
+      priority: si.priority || "low",
+      category: si.category || "general",
+      timestamp: si.timestamp * 1000 || Date.now()
+    }));
+
+    // Merge logic: deduplicate by ID and preserve local 'read' status
+    const uniqueMap = new Map();
+    
+    // Process local items first
+    current.forEach(item => uniqueMap.set(item.id, item));
+    
+    // Process server items
+    mapped.forEach(serverItem => {
+      if (uniqueMap.has(serverItem.id)) {
+        // Keep existing item to preserve its 'read' status, but update content if varied
+        const existing = uniqueMap.get(serverItem.id);
+        existing.content = serverItem.content || existing.content;
+      } else {
+        uniqueMap.set(serverItem.id, serverItem);
+      }
+    });
+
+    // Sort by most recent first
+    const sorted = Array.from(uniqueMap.values())
+      .sort((a: any, b: any) => b.timestamp - a.timestamp);
+    
+    // Limit storage
+    const limited = sorted.slice(0, MAX_INBOX_MESSAGES);
+
+    try {
+      localStorage.setItem(key, JSON.stringify(limited));
+      // Dispatch update event so SideMenu red dot appears
+      window.dispatchEvent(new Event('inbox_updated'));
+    } catch (e) {
+      console.error("Failed to sync inbox from server", e);
+    }
   }
 };

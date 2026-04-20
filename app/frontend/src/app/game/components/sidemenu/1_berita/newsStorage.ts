@@ -2,6 +2,7 @@
 import { detectConstructionDetails } from "./buildingLookupUtility";
 import { aiBuildingStorage } from "../../AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiDefenseStorage } from "../../AI_logic/6_AI_pertahanan/antarmuka_data_pertahanan/AIDefenseStorage";
+import { inboxStorage } from "../2_kotak_masuk/inboxStorage";
 
 export interface NewsItem {
   id: string;
@@ -28,6 +29,7 @@ let weeklyCounters: Record<string, number> = {}; // weekId -> count
 // SSE connection reference
 let sseSource: EventSource | null = null;
 let lastNewsCount = 0;
+let lastInboxCount = 0;
 let sseRetryTimeout: NodeJS.Timeout | null = null;
 
 // Trade AI daily trigger — tracks last processed game date to fire once per day
@@ -116,7 +118,7 @@ export const newsStorage = {
 
     const connect = () => {
       try {
-        sseSource = new EventSource("http://localhost:8081/api/game/sync");
+        sseSource = new EventSource("http://127.0.0.1:8081/api/game/sync");
 
         sseSource.onmessage = (event) => {
           try {
@@ -136,7 +138,11 @@ export const newsStorage = {
 
             // Sync inbox from server (quarterly updates etc)
             if (data.inbox && Array.isArray(data.inbox)) {
-              window.dispatchEvent(new CustomEvent("inbox_sync_from_server", { detail: data.inbox }));
+              const currentInboxCount = data.inbox.length;
+              if (currentInboxCount !== lastInboxCount) {
+                lastInboxCount = currentInboxCount;
+                inboxStorage.syncFromServer(data.inbox);
+              }
             }
 
             // Sync relationship matrix from server (weekly updates)

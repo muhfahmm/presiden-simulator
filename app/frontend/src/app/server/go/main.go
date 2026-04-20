@@ -445,13 +445,11 @@ func simulationEngine() {
 		} else {
 			snapshot = createPlayerSnapshot()
 		}
-		core.GlobalState.Mu.Unlock()
-
-		// 3. Process NPC & Global Simulation (CRITICAL: Called OUTSIDE Lock to prevent deadlock)
+		// 3. Process NPC & Global Simulation (CRITICAL: Called INSIDE Lock for thread-safety)
 		processNPCDay(nextDate)
 		server_berita.ProcessNewsDay(nextDate)
 		
-		// Quarterly Polyglot Workers
+		// Quarterly Polyglot Workers (Spawns background goroutine, doesn't need lock)
 		if core.GlobalState.DayCounter%30 == 0 {
 			go invokePolyglotWorkers(nextDate.Format("02 Jan 2006"))
 		}
@@ -460,11 +458,11 @@ func simulationEngine() {
 		server_inbox.ProcessInboxDay(nextDate)
 
 		// Update Relationships
-		// Since this accesses Relationships map, we handle internal locking there if needed, 
-		// but currently it's safe if only the engine writes.
 		server_hubungan.UpdateDailyRelationsLocked()
 
-		// Broadcast state to all SSE clients
+		core.GlobalState.Mu.Unlock()
+
+		// Broadcast state to all SSE clients (Fire and forget outside lock)
 		go func(data []byte) {
 			broadcastSSE(data)
 		}(snapshot)
@@ -649,6 +647,7 @@ func runAIBatch() {
 	var batchData struct {
 		Countries []map[string]interface{} `json:"countries"`
 	}
+	core.GlobalState.Mu.Lock()
 	for name, s := range core.GlobalState.NPCStates {
 		batchData.Countries = append(batchData.Countries, map[string]interface{}{
 			"name": name,
@@ -656,6 +655,7 @@ func runAIBatch() {
 			"stability": s.Stability,
 		})
 	}
+	core.GlobalState.Mu.Unlock()
 
 	cmd := exec.Command("python", "src/app/server/python/map_engine/ai_batch_optimizer.py")
 	stdin, _ := cmd.StdinPipe()
@@ -1107,10 +1107,12 @@ func broadcastSSE(data []byte) {
 }
 
 func handleControl(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("[DEBUG] Incoming %s %s from %s\n", r.Method, r.URL.Path, r.RemoteAddr)
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.Header().Set("Access-Control-Max-Age", "86400")
 
 	if r.Method == "OPTIONS" {
 		w.WriteHeader(http.StatusOK)
