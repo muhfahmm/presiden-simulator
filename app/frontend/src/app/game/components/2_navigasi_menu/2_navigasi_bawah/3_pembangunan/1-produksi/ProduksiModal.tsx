@@ -1104,6 +1104,17 @@ function BuildingCard({ item, onBuild, construction, cumulative, hasUraniumMines
             </span>
           </div>
 
+          {item.key === '1_tambang_emas' && (
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 bg-emerald-500/10 rounded-lg">
+                <Coins size={12} className="text-emerald-500" />
+              </div>
+              <span className="text-[12px] font-bold text-emerald-500/90">
+                Pendapatan Kas: +150/hari
+              </span>
+            </div>
+          )}
+
           {item.konsumsi_uranium > 0 && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-emerald-500/10 rounded-lg">

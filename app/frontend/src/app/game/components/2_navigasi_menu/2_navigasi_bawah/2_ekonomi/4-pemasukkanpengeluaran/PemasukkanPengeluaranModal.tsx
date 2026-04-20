@@ -323,19 +323,41 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
 
                     {/* Resources & Production Income */}
                     {(() => {
-                      const goldMineCount = buildingData.buildingDeltas["1_tambang_emas"] || 0;
-                      return goldMineCount > 0 ? (
-                        <div className="space-y-3 mt-6">
+                      const baseGoldMine = parseInt((initialCountry.sektor_ekstraksi as any)?.emas) || 0;
+                      const builtGoldMine = buildingData.buildingDeltas["1_tambang_emas"] || 0;
+                      const totalGoldMineCount = baseGoldMine + builtGoldMine;
+                      const ortodoksBonus = religionStorage.getCurrentReligion(initialCountry.religion) === "Kristen Ortodoks" ? 0.1 : 0;
+                      return (
+                        <div className="space-y-2 mt-6">
                            <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Resource & Production Revenue</span>
                            <div className="bg-zinc-950/50 border border-amber-500/20 p-4 rounded-2xl flex justify-between items-center group hover:border-amber-500/40 transition-all shadow-[0_0_15px_rgba(245,158,11,0.05)]">
                               <div className="flex items-center gap-3">
-                                 <div className="p-1.5 bg-amber-500/10 rounded-lg"><Coins size={14} className="text-amber-400" /></div>
-                                 <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Hasil Tambang Emas ({goldMineCount} Unit)</span>
+                                 <div className="p-1.5 bg-amber-500/10 rounded-lg"><Coins size={14} className={totalGoldMineCount > 0 ? "text-amber-400" : "text-zinc-600"} /></div>
+                                 <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Total Tambang Emas ({totalGoldMineCount} Unit)</span>
                               </div>
-                              <span className="text-[13px] font-black text-amber-500">+{Math.round(goldRevenue * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
+                              <span className={`text-[13px] font-black ${totalGoldMineCount > 0 ? "text-amber-500" : "text-zinc-600"}`}>+{Math.round(goldRevenue * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
                            </div>
+                           
+                           {baseGoldMine > 0 && (
+                              <div className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
+                                <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">Aset Bawaan Negara ({baseGoldMine} Unit)</span>
+                                <span className="text-[11px] font-bold text-zinc-400">+{Math.round(baseGoldMine * 150 * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
+                              </div>
+                           )}
+                           {builtGoldMine > 0 && (
+                              <div className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
+                                <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">Aset Tambahan / Proyek Baru ({builtGoldMine} Unit)</span>
+                                <span className="text-[11px] font-bold text-zinc-400">+{Math.round(builtGoldMine * 150 * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
+                              </div>
+                           )}
+                           {ortodoksBonus > 0 && totalGoldMineCount > 0 && (
+                              <div className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-amber-500/20">
+                                <span className="text-[11px] font-bold text-amber-500/70 uppercase tracking-wider italic">Bonus Produksi Ortodoks (+10%)</span>
+                                <span className="text-[11px] font-black text-amber-500">+{Math.round((baseGoldMine + builtGoldMine) * 150 * ortodoksBonus * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
+                              </div>
+                           )}
                         </div>
-                      ) : null;
+                      );
                     })()}
 
                     {/* Services & Commercial Income Breakdown (Always Visible) */}
@@ -458,12 +480,55 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                      </div>
 
                      <div className="flex-1 overflow-y-auto no-scrollbar space-y-6">
-                        {expandedItem && (
+                        {expandedItem === 'unrest' ? (
+                           <div className="space-y-6">
+                              <div className="bg-amber-500/10 border border-amber-500/20 p-6 rounded-3xl space-y-4">
+                                 <div className="flex items-center gap-3">
+                                    <Users className="h-6 w-6 text-amber-500" />
+                                    <h4 className="text-sm font-black text-amber-400 uppercase tracking-widest">Kalkulasi Inefisiensi Kepuasan</h4>
+                                 </div>
+                                 <p className="text-[13px] text-amber-500/70 leading-relaxed font-medium">Berdasarkan mekanika simulasi, penurunan kepuasan publik di bawah 100% akan menyebabkan inefisiensi pada total perputaran ekonomi nasional harian akibat ketidakstabilan sipil dan perlambatan rantai pasok.</p>
+                                 
+                                 <div className="pt-4 border-t border-amber-500/20 space-y-3">
+                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
+                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Potensi Maksimal Kasar</span>
+                                       <span className="text-sm font-black text-emerald-400">{Math.round(totalDailyIncome).toLocaleString('id-ID')} / Hari</span>
+                                    </div>
+                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
+                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Tingkat Kepuasan Publik</span>
+                                       <span className="text-sm font-black text-amber-400">{breakdown.details.satisfaction.toFixed(1)}%</span>
+                                    </div>
+                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
+                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Tingkat Efisiensi Ekonomi</span>
+                                       <span className="text-sm font-black text-amber-400">{Math.round(breakdown.details.happinessImpact * 100)}%</span>
+                                    </div>
+                                    <div className="flex justify-between items-center bg-rose-500/10 p-3 rounded-xl border border-rose-500/20 shadow-[0_0_15px_rgba(225,29,72,0.1)]">
+                                       <span className="text-xs font-black text-rose-400 uppercase tracking-wider items-center flex gap-2"><TrendingDown size={14} className="text-rose-500" /> Potensi Hilang Berjalan</span>
+                                       <span className="text-sm font-black text-rose-500">{Math.round(totalDailyIncome * (1 - breakdown.details.happinessImpact)).toLocaleString('id-ID')} / Hari</span>
+                                    </div>
+                                 </div>
+                              </div>
+                              
+                              <div className="bg-zinc-950/50 border border-zinc-900 p-6 rounded-3xl">
+                                 <h4 className="text-xs font-black text-zinc-500 uppercase tracking-widest mb-4">Saran Manajemen Strategis</h4>
+                                 <ul className="space-y-3">
+                                   <li className="text-[13px] text-zinc-400 flex items-start gap-2">
+                                      <span className="text-amber-500 mt-0.5">•</span> 
+                                      Tingkatkan kepuasan drastis dengan membangun Fasilitas Umum (Hiburan, Komersial, Olahraga) yang disukai banyak rakyat.
+                                   </li>
+                                   <li className="text-[13px] text-zinc-400 flex items-start gap-2">
+                                      <span className="text-amber-500 mt-0.5">•</span> 
+                                      Tinjau dan sesuaikan Pajak Domestik agar daya beli warga meningkat, hal ini membalikkan siklus ketidakpuasan.
+                                   </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        ) : expandedItem ? (
                            <div className="flex flex-col items-center justify-center h-full gap-3">
                               <Info size={24} className="text-zinc-600" />
                               <p className="text-xs text-zinc-500 italic">Rincian statis tidak memiliki kontrol manajemen saat ini.</p>
                            </div>
-                        )}
+                        ) : null}
                      </div>
                   </div>
                
