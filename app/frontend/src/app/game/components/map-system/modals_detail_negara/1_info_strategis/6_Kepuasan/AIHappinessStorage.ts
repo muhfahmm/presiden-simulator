@@ -98,6 +98,8 @@ export const aiHappinessStorage = {
     if (batchPackets.length === 0) return;
 
     try {
+      /* 
+      // LEGACY: Broken relative path fetch
       const response = await fetch("/game/components/AI_logic/1_AI_Kepuasan/routes/1_statistik_kepuasan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -105,6 +107,8 @@ export const aiHappinessStorage = {
       });
 
       const results = await response.json();
+      */
+      const results: any = null; // Backend handles this via syncFromBackend now
 
       if (results && !results.error) {
         Object.entries(results).forEach(([name, result]: [string, any]) => {

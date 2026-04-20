@@ -128,7 +128,10 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
         ideology: getSocialData().ideology,
         housingCapacity: getSocialData().housingCapacity,
       }),
-    }).then(res => res.json()).then(data => {
+    }).then(res => {
+      if (!res.ok) throw new Error(`Server returned ${res.status}`);
+      return res.json();
+    }).then(data => {
       // Server returns current state (either freshly initialized or existing)
       // New structure: { player: {...}, relationships: {...} }
       const serverPlayer = data?.player;

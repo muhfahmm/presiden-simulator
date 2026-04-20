@@ -101,7 +101,7 @@ export function useGamePath(path: string[]) {
     if (subMenu === 'kementrian-dashboard') initialMenu = "Dashboard:Kementerian";
     else initialMenu = "Kementerian";
   } else if (category === 'kepuasan') {
-    if (subMenu === 'dashboard') initialMenu = "Dashboard:Kepuasan";
+    if (subMenu === 'dashboard' || subMenu === 'statistik_kepuasan') initialMenu = "Dashboard:Kepuasan";
     else if (subMenu === 'naikkan') initialMenu = "Action:NaikkanKepuasan";
     else initialMenu = "Kepuasan";
   } else if (category === 'berita_internasional') {

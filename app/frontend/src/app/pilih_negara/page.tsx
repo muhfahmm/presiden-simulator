@@ -93,39 +93,39 @@ export default function DatabasePage() {
   const selectedCode = hasSelection ? getCountryCode(currentData.flag) : "";
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-zinc-950 text-white font-sans relative overflow-hidden select-none">
+    <div className="flex flex-col h-screen w-screen bg-[#f3e9d8] text-amber-950 font-sans relative overflow-hidden select-none">
 
       {/* 1. TOP STATS BAR */}
-      <header className="bg-zinc-900/90 backdrop-blur-md border-b border-zinc-800 px-6 py-2 flex items-center justify-between z-20 text-xs text-zinc-300">
+      <header className="bg-[#dcc7a1]/95 backdrop-blur-md border-b border-amber-800/10 px-6 py-2 flex items-center justify-between z-20 text-xs text-amber-900/60 font-bold">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
-            <button className="h-6 w-6 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-zinc-700 transition cursor-pointer">
-              <HelpCircle className="h-3.5 w-3.5 text-teal-400" />
+            <button className="h-6 w-6 rounded-full bg-amber-800/10 flex items-center justify-center hover:bg-amber-800/20 transition cursor-pointer shadow-sm">
+              <HelpCircle className="h-3.5 w-3.5 text-amber-900/70" />
             </button>
           </div>
 
           <div className="flex items-center gap-4">
-            <StatItem label="Ibukota" value={hasSelection ? currentData.capital : "-"} icon={<Landmark size={14} className="text-amber-400" />} />
-            <StatItem label="Populasi" value={hasSelection ? currentData.jumlah_penduduk : "-"} icon={<Users size={14} className="text-blue-400" />} />
-            <StatItem label="Kas Negara" value={hasSelection ? currentData.anggaran : "-"} icon={<Coins size={14} className="text-yellow-400" />} />
-            <StatItem label="Pendapatan/Hari" value={hasSelection ? `+${Math.round(totalPendapatanPajak).toLocaleString('id-ID')}` : "-"} icon={<TrendingUp size={14} className="text-emerald-400" />} />
-            <StatItem label="Total Negara" value={`${countries.length}`} icon={<Globe size={14} className="text-teal-400" />} />
+            <StatItem label="Ibukota" value={hasSelection ? currentData.capital : "-"} icon={<Landmark size={14} className="text-amber-800" />} />
+            <StatItem label="Populasi" value={hasSelection ? currentData.jumlah_penduduk : "-"} icon={<Users size={14} className="text-amber-800" />} />
+            <StatItem label="Kas Negara" value={hasSelection ? currentData.anggaran : "-"} icon={<Coins size={14} className="text-amber-700" />} />
+            <StatItem label="Pendapatan/Hari" value={hasSelection ? `+${Math.round(totalPendapatanPajak).toLocaleString('id-ID')}` : "-"} icon={<TrendingUp size={14} className="text-emerald-800" />} />
+            <StatItem label="Total Negara" value={`${countries.length}`} icon={<Globe size={14} className="text-teal-800" />} />
           </div>
         </div>
 
         <div className="flex items-center gap-6">
-          <StatItem label="Agama Mayoritas" value={hasSelection ? currentData.religion : "-"} icon={<Church size={14} className="text-purple-400" />} />
-          <StatItem label="Ideologi" value={hasSelection ? currentData.ideology : "-"} icon={<Scale size={14} className="text-orange-400" />} />
+          <StatItem label="Agama Mayoritas" value={hasSelection ? currentData.religion : "-"} icon={<Church size={14} className="text-purple-800" />} />
+          <StatItem label="Ideologi" value={hasSelection ? currentData.ideology : "-"} icon={<Scale size={14} className="text-amber-900" />} />
 
-          <div className="h-4 w-px bg-zinc-800" />
+          <div className="h-4 w-px bg-amber-800/10" />
 
           <div className="flex items-center gap-2">
-            <Globe2 size={12} className="text-blue-400" />
-            <span className="text-xs text-zinc-500 font-medium uppercase tracking-wider">Suara PBB</span>
-            <span className={`text-xs font-black px-1.5 py-0.5 rounded ${!hasSelection ? 'bg-zinc-800 text-zinc-600' :
-                currentData.geopolitik.un_vote >= 139 ? 'bg-emerald-500/20 text-emerald-400' :
-                  currentData.geopolitik.un_vote >= 70 ? 'bg-sky-500/20 text-sky-400' :
-                    'bg-red-500/20 text-red-400'
+            <Globe2 size={12} className="text-amber-800" />
+            <span className="text-xs text-amber-900/60 font-bold uppercase tracking-wider">Suara PBB</span>
+            <span className={`text-xs font-black px-1.5 py-0.5 rounded shadow-sm ${!hasSelection ? 'bg-amber-800/10 text-amber-900/40' :
+                currentData.geopolitik.un_vote >= 139 ? 'bg-emerald-500/20 text-emerald-800 border border-emerald-500/30' :
+                  currentData.geopolitik.un_vote >= 70 ? 'bg-sky-500/20 text-sky-800 border border-sky-500/30' :
+                    'bg-red-500/20 text-red-800 border border-red-500/30'
               }`}>
               {hasSelection ? currentData.geopolitik.un_vote : "-"}
             </span>
@@ -133,20 +133,20 @@ export default function DatabasePage() {
         </div>
 
         {hasSelection && (
-          <div className="flex items-center gap-3 bg-zinc-900/60 pl-2 pr-4 py-1.5 rounded-2xl border border-zinc-800/80 shadow-[0_10px_20px_rgba(0,0,0,0.4)] backdrop-blur-md animate-in fade-in slide-in-from-right-4 duration-500">
-            <div className="relative w-8 h-5 rounded-sm overflow-hidden shadow-sm border border-white/10">
+          <div className="flex items-center gap-3 bg-amber-50/20 pl-2 pr-4 py-1.5 rounded-2xl border border-amber-800/10 shadow-sm backdrop-blur-md animate-in fade-in slide-in-from-right-4 duration-500">
+            <div className="relative w-8 h-5 rounded-sm overflow-hidden shadow-sm border border-amber-900/10">
               <img 
                 src={`https://flagcdn.com/w80/${selectedCode}.png`} 
                 alt={currentData.name_id}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
             </div>
             <div className="flex flex-col">
-              <span className="text-[10px] font-black text-white italic tracking-wider uppercase">
+              <span className="text-[10px] font-black text-amber-950 italic tracking-wider uppercase">
                 {currentData.name_id}
               </span>
-              <span className="text-[8px] font-black text-zinc-300 uppercase tracking-[0.15em] leading-none mt-0.5">
+              <span className="text-[8px] font-black text-amber-800/60 uppercase tracking-[0.15em] leading-none mt-0.5">
                 {currentData.capital}
               </span>
             </div>
@@ -429,12 +429,12 @@ function StatItem({ icon, label, value }: { icon: React.ReactNode, label: string
 
   return (
     <div className="flex items-center gap-2">
-      <div className="flex items-center justify-center w-6 h-6 rounded-lg bg-zinc-800/50 border border-zinc-700/50">
+      <div className="flex items-center justify-center w-6 h-6 rounded-lg bg-amber-800/10 border border-amber-800/10 shadow-sm">
         {icon}
       </div>
       <div className="flex flex-col">
-        <span className="text-xs text-zinc-500 font-medium uppercase tracking-wider">{label}</span>
-        <span className="font-bold text-white text-sm leading-tight">
+        <span className="text-[10px] text-amber-900/60 font-bold uppercase tracking-wider leading-none mb-0.5">{label}</span>
+        <span className="font-black text-amber-950 text-xs leading-tight italic">
           {label === "Kas Negara" && typeof value === 'number' ? `Rp ${displayValue}` : displayValue}
         </span>
       </div>
