@@ -19,7 +19,7 @@ import {
   sosialRate 
 } from "@/app/database/data/semua_fitur_negara"
 
-import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMaintenance } from "@/app/game/data/economy/BudgetDeltaLogic"
+import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMaintenance, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic"
 import { incomeStorage } from "./pemasukkan/IncomeStorage"
 import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic"
 
@@ -105,8 +105,6 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   
   const dailyTaxRevenueAdjusted = adjustedDomesticRevenue + adjustedTradeRevenue;
   const economicGrowthBonus = isProtestan ? dailyTaxRevenueAdjusted * PROTESTAN_GROWTH_BONUS : 0;
-  
-  const totalDailyIncome = dailyTaxRevenueAdjusted + economicGrowthBonus + (incData.grants || 0) + (incData.investments || 0) + goldRevenue + serviceRevenue;
 
   const incomeStatusColor = pbbImpactLogic.getStatusColor(pbbMultipliers.impactLevel, 'text-emerald-400');
 
@@ -138,13 +136,20 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
 
 
 
-  const totalDailyExpense = (expData.debtInterestPaid || 0);
+  const breakdown = calculateBudgetBreakdown(initialCountry, buildingData.buildingDeltas);
+  const rawDailyIncome = (breakdown.totalAnnualRevenue / breakdown.details.happinessImpact) / 365;
+  const totalDailyIncome = rawDailyIncome; // Show potential raw income
+  const totalDailyExpense = (breakdown.totalAnnualExpense / 365) + (totalDailyIncome * (1 - breakdown.details.happinessImpact));
 
   // 3. Final Balance
-  const netDailySurplus = totalDailyIncome - totalDailyExpense;
+  const netDailySurplus = breakdown.dailyDelta;
   const surplusPercentage = totalDailyIncome > 0 ? (netDailySurplus / totalDailyIncome) * 100 : 0;
+  
   const expenseItems = [
-     ...(expData.debtInterestPaid > 0 ? [{ id: "debt", label: "Bunga Hutang Luar Negeri", value: expData.debtInterestPaid, icon: Landmark, color: "text-rose-500", desc: "Biaya bunga atas pinjaman dana internasional." }] : [])
+     ...(breakdown.expenses.debtInterest > 0 ? [{ id: "debt", label: "Bunga Hutang Luar Negeri", value: breakdown.expenses.debtInterest / 365, icon: Landmark, color: "text-rose-500", desc: "Biaya bunga atas pinjaman dana internasional." }] : []),
+     ...(breakdown.expenses.priceSubsidies > 0 ? [{ id: "subsidy", label: "Subsidi Harga Pasar", value: breakdown.expenses.priceSubsidies / 365, icon: TrendingDown, color: "text-rose-500", desc: "Biaya subsidi untuk menstabilkan harga bahan pokok dan energi." }] : []),
+     ...(breakdown.details.societalPenalty > 0 ? [{ id: "homeless", label: "Beban Sosial & Tunawisma", value: breakdown.details.societalPenalty, icon: Home, color: "text-rose-500", desc: "Kerugian dan beban akibat tingkat tunawisma dan krisis perumahan." }] : []),
+     ...(breakdown.details.happinessImpact < 1.0 ? [{ id: "unrest", label: "Inefisiensi Kepemimpinan", value: totalDailyIncome * (1 - breakdown.details.happinessImpact), icon: Users, color: "text-amber-500", desc: "Potensi pendapatan yang hilang akibat penurunan kepuasan publik." }] : [])
   ];
 
   return (
@@ -195,6 +200,11 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                    <span className="text-xs font-black text-zinc-500 uppercase tracking-widest block mb-2">Total Kas Negara</span>
                    <div className="flex items-baseline gap-2">
                       <span className="text-3xl font-black text-white tracking-tight">{Math.round(currentBudget).toLocaleString('id-ID')}</span>
+                      {netDailySurplus !== 0 && (
+                         <span className={`text-sm font-black px-2 py-0.5 rounded-md ${netDailySurplus > 0 ? 'text-emerald-400 bg-emerald-500/10' : 'text-rose-400 bg-rose-500/10'}`}>
+                            {netDailySurplus > 0 ? '+' : ''}{Math.round(netDailySurplus).toLocaleString('id-ID')}
+                         </span>
+                      )}
                    </div>
                 </div>
                 <div className="pt-4 border-t border-zinc-800 flex justify-between items-center">
@@ -207,7 +217,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                 <div>
                    <span className="text-xs font-black text-zinc-500 uppercase tracking-widest block mb-2">Pendapatan Pajak</span>
                    <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-black text-blue-400 tracking-tight">{Math.round(dailyTaxRevenueAdjusted).toLocaleString('id-ID')}</span>
+                      <span className="text-3xl font-black text-blue-400 tracking-tight">{Math.round(breakdown.dailyTaxRevenue).toLocaleString('id-ID')}</span>
                       <span className="text-sm font-bold text-zinc-500 uppercase">/ Hari</span>
                    </div>
                 </div>
