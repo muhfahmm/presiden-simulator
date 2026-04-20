@@ -1,4 +1,4 @@
-import { countries } from "../database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 import { happinessStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/happinessStorage";
 import { priceStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 import { expenseStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
@@ -268,7 +268,7 @@ export const gameStorage = {
     tradeContractStorage.clear();
     localStorage.removeItem(RELATION_MATRIX_KEY);
     
-    window.location.href = '/database';
+    window.location.href = '/pilih_negara';
   },
 
   resetCurrentSessionToDefaults: () => {

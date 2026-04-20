@@ -172,7 +172,7 @@ func loadBuildingsFromTypeScript() error {
 	core.BuildingTypes = []core.BuildingType{}
 	
 	// Use absolute path to ensure files are found regardless of where the binary is run
-	basePath := "c:/fhm/em/app/frontend/src/app/database/data/semua_fitur_negara/"
+	basePath := "c:/fhm/em/app/frontend/src/app/pilih_negara/data/semua_fitur_negara/"
 	
 	fmt.Printf("[GO] Loading buildings from absolute path: %s\n", basePath)
 	

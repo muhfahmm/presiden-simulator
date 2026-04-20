@@ -129,7 +129,7 @@ export default function GamePage() {
         onLogout={() => {
           if (confirm("Apakah Anda yakin ingin mengakhiri sesi simulasi ini? Semua kemajuan akan hilang.")) {
             gameStorage.clearSession();
-            router.push("/database");
+            router.push("/pilih_negara");
           }
         }}
       />

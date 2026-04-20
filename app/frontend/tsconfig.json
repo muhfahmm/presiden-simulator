@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/app/database/*": ["./src/app/pilih_negara/*"]
     }
   },
   "include": [

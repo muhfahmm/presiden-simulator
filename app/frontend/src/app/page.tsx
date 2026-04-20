@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <MainMenuLayer 
-      onStart={() => router.push("/database")} 
+      onStart={() => router.push("/pilih_negara")} 
     />
   );
 }
