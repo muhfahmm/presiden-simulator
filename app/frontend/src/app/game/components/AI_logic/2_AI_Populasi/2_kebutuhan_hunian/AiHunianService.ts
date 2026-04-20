@@ -134,6 +134,17 @@ export class AiHunianService {
     localStorage.setItem(STORAGE_KEY_LAST_NEWS, currentGameDate.getTime().toString());
   }
 
+  static getHousingStats(): { penalty: number, deficit: number, homeless_percent: number } | null {
+      if (typeof window === "undefined") return null;
+      const stored = localStorage.getItem(STORAGE_KEY_PENALTY);
+      if (!stored) return null;
+      try {
+          return JSON.parse(stored);
+      } catch {
+          return null;
+      }
+  }
+
   static getHousingPenalty(): number {
       if (typeof window === "undefined") return 0;
       const stored = localStorage.getItem(STORAGE_KEY_PENALTY);

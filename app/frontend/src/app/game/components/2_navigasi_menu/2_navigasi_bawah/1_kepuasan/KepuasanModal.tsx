@@ -11,6 +11,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
+import { AiHunianService } from "../../../AI_logic/2_AI_Populasi/2_kebutuhan_hunian/AiHunianService";
 
 interface KepuasanModalProps {
   isOpen: boolean;
@@ -87,6 +88,10 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
   const effectivePriceDailyDelta = isRedZone 
     ? (dailyPriceDelta < 0 ? dailyPriceDelta * 2 : dailyPriceDelta * 1.5) 
     : dailyPriceDelta;
+
+  // Sektor Hunian & Permukiman
+  const housingStats = AiHunianService.getHousingStats();
+  const housingPenalty = housingStats?.penalty || 0;
 
 
   const getStatus = (val: number) => {
@@ -173,7 +178,6 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
           </div>
 
           {/* Sektor Infrastruktur & Mobilitas */}
-          {/* Sektor Infrastruktur */}
           <div className="p-6 rounded-2xl bg-amber-800/5 border border-amber-800/10">
             <h3 className="text-[10px] font-black text-amber-950 uppercase tracking-[0.15em] italic mb-6 flex items-center gap-2">
               <Activity size={14} className="text-emerald-600" /> Sektor Infrastruktur & Mobilitas
@@ -198,6 +202,47 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Sektor Hunian & Permukiman */}
+          <div className="p-6 rounded-2xl bg-amber-800/5 border border-amber-800/10">
+            <h3 className="text-[10px] font-black text-amber-950 uppercase tracking-[0.15em] italic mb-6 flex items-center gap-2">
+              <Home size={14} className={housingPenalty >= 0 ? "text-emerald-600" : "text-rose-600"} /> Sektor Hunian & Permukiman
+            </h3>
+
+            <div className="space-y-4">
+              <div className="flex flex-col gap-1.5">
+                <div className="flex justify-between items-center text-[9px] font-black uppercase">
+                  <span className="text-amber-900/60 flex items-center gap-1.5">
+                    {housingPenalty >= 0 ? "Surplus / Kecukupan Hunian" : "Defisit Hunian Nasional"}
+                  </span>
+                  <span className={housingPenalty >= 0 ? "text-emerald-700 italic" : "text-rose-700 italic"}>
+                    {housingPenalty > 0 ? "+" : ""}{housingPenalty.toFixed(3)}/hari
+                  </span>
+                </div>
+                <div className="h-1 w-full bg-amber-800/10 rounded-full overflow-hidden">
+                  <div 
+                    className={`h-full ${housingPenalty >= 0 ? "bg-emerald-600" : "bg-rose-600"} transition-all duration-1000`} 
+                    style={{ width: `${Math.min(100, housingStats?.homeless_percent ? 100 - housingStats.homeless_percent : (housingPenalty >= 0 ? 100 : Math.abs(housingPenalty) * 200))}%` }}
+                  />
+                </div>
+                {housingStats && housingStats.deficit > 0 && (
+                  <p className="text-[9px] text-rose-800/70 font-bold italic mt-1 uppercase">
+                    Peringatan: Kekurangan {housingStats.deficit.toLocaleString('id-ID')} unit tempat tinggal!
+                  </p>
+                )}
+                {housingStats && housingStats.homeless_percent > 0 && (
+                  <p className="text-[9px] text-rose-800/70 font-bold italic uppercase">
+                    Sekitar {housingStats.homeless_percent.toFixed(1)}% populasi tidak memiliki hunian tetap.
+                  </p>
+                )}
+                {housingPenalty > 0 && (
+                  <p className="text-[9px] text-emerald-800/70 font-bold italic mt-1 uppercase">
+                    Kecukupan hunian memberikan bonus stabilitas sosial.
+                  </p>
+                )}
+              </div>
             </div>
           </div>
 
