@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ decision: "SKIP", error: "Binary not found" }, { status: 200 });
     }
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       console.log(`[AI C++] Executing binary at: ${binaryPath}`);
 
       const child = exec(`"${binaryPath}"`, { timeout: 10000 }, (error, stdout, stderr) => {

@@ -28,19 +28,23 @@ export async function POST(req: NextRequest) {
     ];
 
     const runScript = (scriptPath: string, inputData: any): Promise<any> => {
-      return new Promise((resolve) => {
+      return new Promise<any>((resolve) => {
         const child = spawn("python", [scriptPath]);
         let stdoutData = "";
         child.stdin.write(JSON.stringify(inputData));
         child.stdin.end();
         child.stdout.on("data", (data) => { stdoutData += data.toString(); });
         child.on("close", (code) => {
-          if (code !== 0) return resolve({ matrix: inputData.matrix, events: [], budgetGain: 0 });
+          const defaultValue = { matrix: inputData.matrix, events: [], budgetGain: 0 };
+          if (code !== 0) return resolve(defaultValue);
           try { 
             const trimmed = stdoutData.trim();
-            if(!trimmed) return resolve({ matrix: inputData.matrix, events: [], budgetGain: 0 });
-            resolve(JSON.parse(trimmed)); 
-          } catch { resolve({ matrix: inputData.matrix, events: [], budgetGain: 0 }); }
+            if(!trimmed) return resolve(defaultValue);
+            const parsed = JSON.parse(trimmed);
+            resolve(parsed && typeof parsed === "object" ? parsed : defaultValue);
+          } catch { 
+            resolve(defaultValue); 
+          }
         });
       });
     };

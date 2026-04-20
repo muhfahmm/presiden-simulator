@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
       "src/app/game/components/AI_logic/5_AI_Pembangunan/pemantauan_nasional/brain/national_scanner.py"
     );
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       const pyProcess = exec(`python "${scriptPath}"`, (error, stdout, stderr) => {
         if (error) {
           console.error(`[Scanner API] Exec error: ${error.message}`);

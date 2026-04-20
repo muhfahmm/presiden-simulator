@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
       `src/app/game/components/AI_logic/5_AI_Pembangunan/2_produksi_militer/brain/${scriptFile}.py`
     );
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       const pyProcess = exec(`python "${scriptPath}"`, (error, stdout, stderr) => {
         if (error) {
           console.error(`[AI Military API] Exec error: ${error.message}`);

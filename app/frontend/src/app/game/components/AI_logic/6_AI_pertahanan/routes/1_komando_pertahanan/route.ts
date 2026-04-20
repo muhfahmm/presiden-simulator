@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ decision: "SKIP", error: "Script not found" }, { status: 200 });
     }
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       const child = exec(`python "${scriptPath}"`, { timeout: 15000 }, (error, stdout, stderr) => {
         if (error) {
           console.error(`[AI Komando] Error: ${error.message}`);

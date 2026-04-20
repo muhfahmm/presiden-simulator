@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ decision: "SKIP", error: "Python script not found" }, { status: 200 });
     }
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       // Execute Python with CWD set to its directory for relative imports to work
       const child = exec(`python "${scriptPath}"`, { 
         timeout: 10000,

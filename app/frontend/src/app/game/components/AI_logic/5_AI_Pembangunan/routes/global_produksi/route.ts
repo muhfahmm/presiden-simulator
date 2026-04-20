@@ -12,7 +12,7 @@ export async function POST(request: Request) {
       'src/app/game/components/AI_logic/5_AI_Pembangunan/sistem_tindakan_respon/pusat_produksi.py'
     );
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       const pythonProcess = exec(
         `python "${scriptPath}"`,
         (error, stdout, stderr) => {

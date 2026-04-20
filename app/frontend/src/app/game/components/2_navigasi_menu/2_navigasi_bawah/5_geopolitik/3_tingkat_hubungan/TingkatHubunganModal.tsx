@@ -181,7 +181,7 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
         const targetK = targetCountryObj?.name_id.toLowerCase().trim() || rel.name.toLowerCase().trim();
         
         // Pass pre-fetched relationData to avoid repeated localStorage parsing
-        const liveScore = relationStorage.getRelationScore(targetK, rel.relation, currentCountry, relationData);
+        const liveScore = relationStorage.getRelationScore(targetK, rel.relation, currentCountry);
         const status = getRelationStatus(liveScore);
         
         return {
