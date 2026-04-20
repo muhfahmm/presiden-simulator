@@ -75,29 +75,48 @@ export class SDAMapEngine extends BaseMapEngine {
   }
 
   private drawResourceIcon(x: number, y: number) {
-    const size = 12 / this.scale;
+    const size = 14 / this.scale;
     const padding = 2 / this.scale;
     
-    // Background Box
-    this.ctx.fillStyle = 'rgba(24, 24, 27, 0.8)'; // zinc-900 shadow
-    this.ctx.strokeStyle = 'rgba(63, 63, 70, 0.8)'; // zinc-700
+    // 1. Shadow for contrast
+    this.ctx.save();
+    this.ctx.shadowBlur = 10 / this.scale;
+    this.ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+    
+    // 2. Background Slate/Slate Box
+    const grad = this.ctx.createLinearGradient(x, y - size/2, x, y + size/2);
+    grad.addColorStop(0, '#3f3f46'); // zinc-700
+    grad.addColorStop(1, '#18181b'); // zinc-900
+
+    this.ctx.fillStyle = grad;
+    this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
     this.ctx.lineWidth = 1 / this.scale;
     
     this.ctx.beginPath();
-    this.ctx.roundRect(x - size/2 - padding, y - size/2 - padding, size + padding*2, size + padding*2, 2 / this.scale);
+    this.ctx.roundRect(x - size/2 - padding, y - size/2 - padding, size + padding*2, size + padding*2, 4 / this.scale);
     this.ctx.fill();
     this.ctx.stroke();
+    this.ctx.restore();
 
-    // Simplified Pickaxe Icon
-    this.ctx.fillStyle = '#fb923c'; // orange-400
+    // 3. Hammer (Palu) Drawing
+    const s = 1.2 / this.scale; // Scale factor for the icon itself
+
+    // Handle (Wood)
+    this.ctx.fillStyle = '#78350f'; // amber-900
     this.ctx.beginPath();
-    // Handle
-    this.ctx.rect(x - 1/this.scale, y - 4/this.scale, 2/this.scale, 8/this.scale);
-    // Head
-    this.ctx.moveTo(x - 5/this.scale, y - 4/this.scale);
-    this.ctx.lineTo(x + 5/this.scale, y - 4/this.scale);
-    this.ctx.lineTo(x, y - 2/this.scale);
-    this.ctx.closePath();
+    this.ctx.roundRect(x - 1*s, y - 1*s, 2*s, 6*s, 0.5*s);
+    this.ctx.fill();
+
+    // Head (Polished Steel)
+    this.ctx.fillStyle = '#f8fafc'; // slate-50
+    this.ctx.beginPath();
+    this.ctx.roundRect(x - 5*s, y - 5*s, 10*s, 4.5*s, 1*s);
+    this.ctx.fill();
+    
+    // Head Secondary (Shadow side)
+    this.ctx.fillStyle = '#cbd5e1'; // slate-300
+    this.ctx.beginPath();
+    this.ctx.roundRect(x - 5*s, y - 2*s, 10*s, 1.5*s, 1*s);
     this.ctx.fill();
   }
 }

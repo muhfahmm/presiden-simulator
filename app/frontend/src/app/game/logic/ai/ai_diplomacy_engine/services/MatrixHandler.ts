@@ -1,5 +1,3 @@
-import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
-import { relationStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 
 export const RELATION_MATRIX_KEY = 'em_global_relation_matrix';
@@ -32,6 +30,27 @@ export const getGlobalRelationMatrix = (): RelationMatrix => {
     } catch (e) {
         return {};
     }
+};
+
+/**
+ * Mendapatkan skor hubungan dari Matrix (Source of Truth)
+ */
+export const getRelationScore = (targetCountryId: string, baseScore: number, sourceCountryId?: string): number => {
+    if (typeof window === 'undefined') return baseScore;
+    
+    // CRITICAL RESET GUARD
+    const isFreshSession = localStorage.getItem("em_fresh_session") === "true";
+    if (isFreshSession) return baseScore;
+
+    const sourceKey = sourceCountryId?.toLowerCase().trim() || "player";
+    const targetKey = targetCountryId.toLowerCase().trim();
+
+    const matrix = getGlobalRelationMatrix();
+    if (matrix[sourceKey] && matrix[sourceKey][targetKey]) {
+        return matrix[sourceKey][targetKey].s;
+    }
+    
+    return baseScore;
 };
 
 /**
@@ -80,7 +99,16 @@ const getNormalizedUser = (): string => {
     return normalizeId(userCountry);
 };
 
-export const initializeMatrixData = () => {
+// Lazy import for database to avoid circular issues during init
+let allRelations: any = null;
+const getAllRelations = async () => {
+    if (allRelations) return allRelations;
+    const module = await import("@/app/database/data/database_hubungan_antar_negara");
+    allRelations = module.allRelations;
+    return allRelations;
+};
+
+export const initializeMatrixData = async () => {
     if (typeof window === 'undefined') return;
 
     const storedDate = localStorage.getItem("em_game_date");
@@ -93,10 +121,11 @@ export const initializeMatrixData = () => {
     if (!existing || existing === "{}" || isFirstDay) {
         console.log("[AI-MATRIX] Initializing Database Sync...");
         const matrix: RelationMatrix = {};
+        const database = await getAllRelations();
 
-        Object.keys(allRelations).forEach(rawSourceId => {
+        Object.keys(database).forEach(rawSourceId => {
             const sourceId = normalizeId(rawSourceId);
-            const relations = (allRelations as any)[rawSourceId];
+            const relations = (database as any)[rawSourceId];
             
             if (Array.isArray(relations)) {
                 if (!matrix[sourceId]) matrix[sourceId] = {};
@@ -107,12 +136,12 @@ export const initializeMatrixData = () => {
                     
                     if (targetId === normalizedUser && !isFirstDay) {
                         // Get the stored score for [source] seeing [target (user)]
-                        score = relationStorage.getRelationScore(normalizedUser, score, sourceId);
+                        score = getRelationScore(normalizedUser, score, sourceId);
                     }
                     
                     if (sourceId === normalizedUser && !isFirstDay) {
                         // Get the stored score for [user] seeing [target]
-                        score = relationStorage.getRelationScore(targetId, score, normalizedUser);
+                        score = getRelationScore(targetId, score, normalizedUser);
                     }
                     
                     const entry: RelationEntry = {
@@ -182,6 +211,40 @@ export const saveGlobalRelationMatrix = (matrix: RelationMatrix) => {
             console.error("Critical Quota Error in Matrix Storage", e);
         }
     }
+};
+
+/**
+ * Updates a single relationship score in reality.
+ * Pruning is automatically applied during save.
+ */
+export const updateMatrixScore = (sourceId: string, targetId: string, score: number) => {
+    const matrix = getGlobalRelationMatrix();
+    if (!matrix[sourceId]) matrix[sourceId] = {};
+    if (!matrix[sourceId][targetId]) {
+        matrix[sourceId][targetId] = { s: 50, e: 0, p: 0, a: 0, t: 0 };
+    }
+    
+    matrix[sourceId][targetId].s = score;
+    saveGlobalRelationMatrix(matrix);
+};
+
+/**
+ * Updates multiple relationship scores for a single source country.
+ * Optimized with a single save operation.
+ */
+export const updateMatrixScoresBatch = (sourceId: string, updates: Record<string, number>) => {
+    const matrix = getGlobalRelationMatrix();
+    if (!matrix[sourceId]) matrix[sourceId] = {};
+    
+    Object.keys(updates).forEach(targetId => {
+        const score = updates[targetId];
+        if (!matrix[sourceId][targetId]) {
+            matrix[sourceId][targetId] = { s: 50, e: 0, p: 0, a: 0, t: 0 };
+        }
+        matrix[sourceId][targetId].s = score;
+    });
+    
+    saveGlobalRelationMatrix(matrix);
 };
 
 

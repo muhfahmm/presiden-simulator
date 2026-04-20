@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
       "src", "app", "game", "components", "map-system", "modals_detail_negara", "2_diplomasi_hubungan", "3_aliansi_pertahanan", "logic", "aliansi_logic.py"
     );
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       const args = [scriptPath, String(relation_score), String(duration_years)];
       if (starting_date) args.push(String(starting_date));
 

@@ -183,7 +183,7 @@ export abstract class BaseMapEngine {
 
   public getCountryAt(mouseX: number, mouseY: number): any | null {
     if (!this.countries || this.countries.length === 0) return null;
-    const hitThreshold = 10;
+    const hitThreshold = 15;
 
     for (const country of this.countries) {
         if (!country.latitude || !country.longitude) continue;

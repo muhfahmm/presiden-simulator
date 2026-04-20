@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 
     console.log("Executing Pact Logic Python:", scriptPath);
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       // Build args
       const args = [scriptPath, String(relation_score), String(duration_years)];
       if (starting_date) args.push(String(starting_date));

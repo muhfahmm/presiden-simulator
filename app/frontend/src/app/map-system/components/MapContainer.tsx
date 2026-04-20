@@ -25,6 +25,7 @@ interface MapContainerProps {
   onSelectCountry?: (country: any) => void;
   onSelectSDA?: (data: any) => void;
   onResetMode?: () => void;
+  externalCountries?: any[];
 }
 
 export default function MapContainer({ 
@@ -41,7 +42,8 @@ export default function MapContainer({
   transactions = [],
   onSelectCountry,
   onSelectSDA,
-  onResetMode 
+  onResetMode,
+  externalCountries
 }: MapContainerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef<BaseMapEngine | null>(null);
@@ -63,18 +65,24 @@ export default function MapContainer({
 
     async function loadData() {
       try {
-        const [geoRes, countryRes] = await Promise.all([
-          fetch('/data/world.json'),
-          fetch('/data/countries.json')
-        ]);
+        const fetchGeo = fetch('/data/world.json');
+        const fetchCountries = externalCountries && externalCountries.length > 0 
+          ? Promise.resolve(null) 
+          : fetch('/data/countries.json');
 
-        if (!geoRes.ok || !countryRes.ok) throw new Error('Failed to load data');
+        const [geoRes, countryRes] = await Promise.all([fetchGeo, fetchCountries]);
 
+        if (!geoRes.ok) throw new Error('Failed to load geography');
         const geoJson = await geoRes.json();
-        const countryList = await countryRes.json();
-
         setData(geoJson);
-        setCountries(countryList);
+
+        if (externalCountries && externalCountries.length > 0) {
+          setCountries(externalCountries);
+        } else if (countryRes && countryRes.ok) {
+          const countryList = await countryRes.json();
+          setCountries(countryList);
+        }
+
         setIsLoading(false);
       } catch (error: any) {
         if (retryCount < maxRetries) {
@@ -82,11 +90,13 @@ export default function MapContainer({
           setTimeout(loadData, 2000);
         } else {
           setIsLoading(false);
+          console.error("Map Data Loading Error:", error);
         }
       }
     }
+
     loadData();
-  }, []);
+  }, [externalCountries]);
 
   // Initialize/Swap Engine
   useEffect(() => {

@@ -162,6 +162,7 @@ export default function GamePage() {
             geoData={geoData}
             onSelect={handleSelect}
             onSelectSDA={(data) => setSelectedCountrySDA(data)}
+            countries={countries}
           />
 
           {/* Target Interaction Modal */}

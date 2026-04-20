@@ -9,6 +9,7 @@ interface MapRendererProps {
   geoData: any;
   onSelect: (name: string) => void;
   onSelectSDA: (data: any) => void;
+  countries?: any[];
 }
 
 const MapRenderer = memo(function MapRenderer({
@@ -17,7 +18,8 @@ const MapRenderer = memo(function MapRenderer({
   targetCountry,
   geoData,
   onSelect,
-  onSelectSDA
+  onSelectSDA,
+  countries
 }: MapRendererProps) {
   const [transactions, setTransactions] = useState<any[]>([]);
 
@@ -49,6 +51,7 @@ const MapRenderer = memo(function MapRenderer({
         transactions={transactions}
         onSelectCountry={(c) => onSelect(c.nama_negara)}
         onSelectSDA={onSelectSDA}
+        externalCountries={countries}
       />
     </div>
   );
@@ -56,7 +59,8 @@ const MapRenderer = memo(function MapRenderer({
   return prev.mapMode === next.mapMode && 
          prev.userCountry === next.userCountry && 
          prev.targetCountry === next.targetCountry &&
-         prev.geoData === next.geoData;
+         prev.geoData === next.geoData &&
+         prev.countries === next.countries;
 });
 
 export default MapRenderer;

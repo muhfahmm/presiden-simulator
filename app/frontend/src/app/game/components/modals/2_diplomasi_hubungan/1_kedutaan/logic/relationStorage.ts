@@ -1,4 +1,5 @@
 "use client"
+import { updateMatrixScore, updateMatrixScoresBatch, getRelationScore } from "@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler";
 
 /**
  * Penyimpanan Skor Hubungan Diplomatik yang Dinamis
@@ -18,34 +19,21 @@ const RELATION_STORAGE_KEY = "em_relation_scores";
 export const relationStorage = {
   getRelationData: (): Record<string, number> => {
     if (typeof window === "undefined") return {};
-    const stored = localStorage.getItem(RELATION_STORAGE_KEY);
-    if (!stored) return {};
-    try {
-      return JSON.parse(stored);
-    } catch (e) {
-      console.error("Failed to parse relation storage", e);
-      return {};
-    }
+    const matrix = getGlobalRelationMatrix();
+    const flat: Record<string, number> = {};
+    
+    Object.keys(matrix).forEach(sourceId => {
+      const targets = matrix[sourceId];
+      Object.keys(targets).forEach(targetId => {
+        flat[`${sourceId}:${targetId}`] = targets[targetId].s;
+      });
+    });
+    
+    return flat;
   },
 
-  getRelationScore: (targetCountry: string, baseScore: number, sourceCountry?: string, dataOverride?: Record<string, number>): number => {
-    // CRITICAL RESET GUARD: If this is a fresh session, ignore stale storage and use database defaults (75.0)
-    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true";
-    if (isFreshSession) return baseScore;
-
-    const data = dataOverride || relationStorage.getRelationData();
-    const targetKey = targetCountry.toLowerCase().trim();
-    
-    // If sourceCountry is provided, use composite key, else default to legacy flat key
-    if (sourceCountry) {
-      const sourceKey = sourceCountry.toLowerCase().trim();
-      const compositeKey = `${sourceKey}:${targetKey}`;
-      if (data[compositeKey] !== undefined) return data[compositeKey];
-    }
-    
-    // Fallback to legacy flat key if exists
-    return data[targetKey] !== undefined ? data[targetKey] : baseScore;
-  },
+  // Note: getRelationScore is now imported from MatrixHandler to break circular dependency
+  getRelationScore: getRelationScore,
 
   updateRelationScore: (targetCountry: string, delta: number, currentBase: number, sourceCountry?: string) => {
     if (typeof window === "undefined") return;
@@ -85,9 +73,8 @@ export const relationStorage = {
       }));
     }
 
-    // Save in composite format
-    data[compositeKey] = newScore;
-    localStorage.setItem(RELATION_STORAGE_KEY, JSON.stringify(data));
+    // Save in Matrix structure (Consolidated)
+    updateMatrixScore(finalSourceKey, targetKey, newScore);
     
     // Dispatch event to notify UI components
     window.dispatchEvent(new CustomEvent("relation_status_updated", { 
@@ -96,29 +83,22 @@ export const relationStorage = {
   },
 
   updateAllRelationScores: (delta: number, playerCountry: string) => {
-    if (typeof window === "undefined") return;
-    const data = relationStorage.getRelationData();
     const normalizedPlayer = playerCountry.toLowerCase().trim();
     
     // Get all countries except the player
     const targetCountries = centersData.filter(c => c.name_id.toLowerCase().trim() !== normalizedPlayer);
     
-    // Build initial base scores map for fallback
-    // DEPRECATED: We no longer use static allRelations here to save memory.
-    // Base relation map is now handled by the dynamic loader or backend sync.
-    const baseRelationMap = new Map<string, number>();
+    const updates: Record<string, number> = {};
 
     targetCountries.forEach(country => {
       const countryId = country.name_id.toLowerCase().trim();
-      const baseScore = baseRelationMap.get(countryId) ?? 50;
-      const currentScore = relationStorage.getRelationScore(countryId, baseScore, normalizedPlayer);
+      const currentScore = relationStorage.getRelationScore(countryId, 50, normalizedPlayer);
       const newScore = Math.max(0, Math.min(100, currentScore + delta));
-      
-      const compositeKey = `${normalizedPlayer}:${countryId}`;
-      data[compositeKey] = newScore;
+      updates[countryId] = newScore;
     });
 
-    localStorage.setItem(RELATION_STORAGE_KEY, JSON.stringify(data));
+    // Save in Matrix structure (Consolidated Batch)
+    updateMatrixScoresBatch(normalizedPlayer, updates);
     
     // Notify UI that a batch update occurred
     window.dispatchEvent(new Event("relation_storage_updated"));
@@ -141,7 +121,7 @@ export const relationStorage = {
 
   clear: () => {
     if (typeof window === "undefined") return;
-    localStorage.removeItem(RELATION_STORAGE_KEY);
+    localStorage.removeItem(RELATION_STORAGE_KEY); // Clean up legacy key
     localStorage.removeItem("em_global_relation_matrix");
     // Dispatch event to clear any cached UI states
     window.dispatchEvent(new Event("relation_storage_cleared"));
@@ -293,12 +273,14 @@ if (typeof window !== 'undefined') {
       });
     });
 
+    // Redundant flat storage save removed to fix QuotaExceededError
+    // RelationStorage now pulls directly from getGlobalRelationMatrix()
+    
     if (changed) {
-      localStorage.setItem("em_relation_scores", JSON.stringify(relationData));
       // Notify other systems that relations have changed
       window.dispatchEvent(new Event("relation_storage_updated"));
       window.dispatchEvent(new Event("relation_status_updated"));
-      console.log("[RelationStorage] Local scores updated and events dispatched.");
+      console.log("[RelationStorage] Local scores synced from matrix.");
     }
   });
 }

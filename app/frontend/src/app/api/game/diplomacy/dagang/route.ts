@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
       "src", "app", "game", "components", "map-system", "modals_detail_negara", "2_diplomasi_hubungan", "4_perjanjian_dagang", "logic", "dagang_logic.py"
     );
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       execFile("python", [scriptPath, relation_score.toString()], (error, stdout, stderr) => {
         if (error) {
           console.error("Exec error (Trade):", error);
