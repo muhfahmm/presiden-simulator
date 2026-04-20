@@ -49,7 +49,7 @@ const MapRenderer = memo(function MapRenderer({
         userCountry={userCountry}
         targetName={targetCountry}
         transactions={transactions}
-        onSelectCountry={(c) => onSelect(c.nama_negara)}
+        onSelectCountry={(c) => onSelect(c.name_id || c.name_en || c.nama_negara)}
         onSelectSDA={onSelectSDA}
         externalCountries={countries}
       />

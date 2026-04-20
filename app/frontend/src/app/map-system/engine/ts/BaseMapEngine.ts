@@ -186,8 +186,11 @@ export abstract class BaseMapEngine {
     const hitThreshold = 15;
 
     for (const country of this.countries) {
-        if (!country.latitude || !country.longitude) continue;
-        const { x, y } = this.projector.project(Number(country.longitude), Number(country.latitude));
+        const lat = country.lat !== undefined ? country.lat : country.latitude;
+        const lon = country.lon !== undefined ? country.lon : country.longitude;
+        if (lat === undefined || lon === undefined) continue;
+        
+        const { x, y } = this.projector.project(Number(lon), Number(lat));
         const screenX = x * this.scale + this.offsetX;
         const screenY = y * this.scale + this.offsetY;
         const dx = mouseX - screenX;

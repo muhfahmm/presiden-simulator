@@ -61,8 +61,10 @@ export class SDAMapEngine extends BaseMapEngine {
 
     this.ctx.save();
     for (const center of this.countries) {
-      if (!center.latitude || !center.longitude) continue;
-      const { x, y } = this.projector.project(Number(center.longitude), Number(center.latitude));
+      const lat = center.lat !== undefined ? center.lat : center.latitude;
+      const lon = center.lon !== undefined ? center.lon : center.longitude;
+      if (lat === undefined || lon === undefined) continue;
+      const { x, y } = this.projector.project(Number(lon), Number(lat));
 
       const resources = center.sektor_ekstraksi || {};
       const activeResources = Object.entries(resources).filter(([_, v]) => (v as number) > 0);

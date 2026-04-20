@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
       "2_diplomasi_hubungan", "1_kedutaan", "logic", "update_hubungan_master.py"
     );
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       const child = spawn("python", [scriptPath]);
       let stdoutData = "";
       let stderrData = "";

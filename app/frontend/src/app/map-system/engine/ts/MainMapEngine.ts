@@ -72,8 +72,12 @@ export class MainMapEngine extends BaseMapEngine {
     this.ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
 
     for (const country of this.countries) {
-      if (!country.latitude || !country.longitude) continue;
-      const { x, y } = this.projector.project(Number(country.longitude), Number(country.latitude));
+      const lat = country.lat !== undefined ? country.lat : country.latitude;
+      const lon = country.lon !== undefined ? country.lon : country.longitude;
+      const capitalName = country.capital || country.ibukota;
+      
+      if (lat === undefined || lon === undefined) continue;
+      const { x, y } = this.projector.project(Number(lon), Number(lat));
 
       // Draw Capital Star
       const outerRadius = Math.max(3.5 / this.scale, 0.8);
@@ -83,12 +87,12 @@ export class MainMapEngine extends BaseMapEngine {
       this.ctx.fill();
 
       // Labels at high zoom
-      if (this.scale > 4.5 && country.ibukota) {
+      if (this.scale > 4.5 && capitalName) {
         this.ctx.font = `bold ${10 / this.scale}px "Cascadia Code", monospace`;
         this.ctx.fillStyle = '#22d3ee';
         this.ctx.textAlign = 'center';
         this.ctx.shadowBlur = 2 / this.scale;
-        this.ctx.fillText(country.ibukota.toUpperCase(), x, y - (6 / this.scale));
+        this.ctx.fillText(capitalName.toUpperCase(), x, y - (6 / this.scale));
       }
     }
     this.ctx.restore();

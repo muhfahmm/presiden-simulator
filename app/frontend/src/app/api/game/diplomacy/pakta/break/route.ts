@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
       "src", "app", "game", "components", "map-system", "modals_detail_negara", "2_diplomasi_hubungan", "2_pakta_non_agresi", "logic", "pemutusan_pakta_non_agresi.py"
     );
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       execFile("python", [scriptPath, target_country], (error, stdout, stderr) => {
         if (error) {
           console.error("Exec error (Break Pact):", error);

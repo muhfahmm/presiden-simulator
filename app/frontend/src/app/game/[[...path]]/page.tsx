@@ -92,6 +92,7 @@ export default function GamePage() {
   const countryData = countries.find(c => c.name_id === userCountry || c.name_en === userCountry) || countries[0];
 
   const handleSelect = (name: string) => {
+    if (!name) return;
     if (name === userCountry) {
       setTargetCountry(null);
       setIsMenuOpen(false);

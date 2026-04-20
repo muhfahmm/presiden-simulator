@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
       "src/app/game/components/AI_logic/2_AI_Populasi/2_kebutuhan_hunian/brain/analisis_hunian_kepuasan.py"
     );
 
-    return new Promise((resolve) => {
+    return new Promise<NextResponse>((resolve) => {
       const pyProcess = exec(`python "${scriptPath}"`, (error, stdout, stderr) => {
         if (error) {
           console.error(`[AI Housing API] Exec error: ${error.message}`);
