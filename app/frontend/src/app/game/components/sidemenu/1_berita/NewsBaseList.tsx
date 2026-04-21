@@ -1,12 +1,12 @@
 "use client"
 
 import React from 'react';
-import {
-  Newspaper,
-  Globe,
-  ChevronRight,
-  TrendingUp,
-  Shield,
+import { 
+  Newspaper, 
+  Globe, 
+  ChevronRight, 
+  TrendingUp, 
+  Shield, 
   Zap,
   Info,
   Calendar,
@@ -15,9 +15,9 @@ import {
 import { NewsItem, newsStorage } from './newsStorage';
 import { countries } from '@/app/database/data/negara/benua/index';
 import { useRouter } from 'next/navigation';
-import {
-  detectConstructionDetails,
-  resolveNestedValue
+import { 
+  detectConstructionDetails, 
+  resolveNestedValue 
 } from './buildingLookupUtility';
 
 interface NewsBaseListProps {
@@ -30,11 +30,11 @@ interface NewsBaseListProps {
   setActiveMenu: (menu: string) => void;
 }
 
-export const NewsBaseList = ({
-  news,
-  expandedId,
-  setExpandedId,
-  searchTerm,
+export const NewsBaseList = ({ 
+  news, 
+  expandedId, 
+  setExpandedId, 
+  searchTerm, 
   categoryFilter,
   onClose,
   setActiveMenu
@@ -43,25 +43,25 @@ export const NewsBaseList = ({
 
   const getCategoryTheme = (category: string) => {
     switch (category) {
-      case 'global': return {
-        bg: 'bg-indigo-500/10', border: 'border-indigo-500/20', text: 'text-indigo-400',
-        glow: 'shadow-[0_0_20px_rgba(99,102,241,0.15)]', icon: <Globe size={18} />
+      case 'global': return { 
+        bg: 'bg-indigo-500/10', border: 'border-indigo-500/20', text: 'text-indigo-400', 
+        glow: 'shadow-[0_0_20px_rgba(99,102,241,0.15)]', icon: <Globe size={18} /> 
       };
-      case 'diplomacy': return {
-        bg: 'bg-purple-500/10', border: 'border-purple-500/20', text: 'text-purple-400',
-        glow: 'shadow-[0_0_20px_rgba(168,85,247,0.15)]', icon: <Shield size={18} />
+      case 'diplomacy': return { 
+        bg: 'bg-purple-500/10', border: 'border-purple-500/20', text: 'text-purple-400', 
+        glow: 'shadow-[0_0_20px_rgba(168,85,247,0.15)]', icon: <Shield size={18} /> 
       };
-      case 'economy': return {
-        bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-400',
-        glow: 'shadow-[0_0_20px_rgba(16,185,129,0.15)]', icon: <TrendingUp size={18} />
+      case 'economy': return { 
+        bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-400', 
+        glow: 'shadow-[0_0_20px_rgba(16,185,129,0.15)]', icon: <TrendingUp size={18} /> 
       };
-      case 'construction': return {
-        bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400',
-        glow: 'shadow-[0_0_20px_rgba(245,158,11,0.15)]', icon: <Zap size={18} />
+      case 'construction': return { 
+        bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400', 
+        glow: 'shadow-[0_0_20px_rgba(245,158,11,0.15)]', icon: <Zap size={18} /> 
       };
-      default: return {
-        bg: 'bg-sky-500/10', border: 'border-sky-500/20', text: 'text-sky-400',
-        glow: 'shadow-[0_0_20px_rgba(14,165,233,0.15)]', icon: <Newspaper size={18} />
+      default: return { 
+        bg: 'bg-sky-500/10', border: 'border-sky-500/20', text: 'text-sky-400', 
+        glow: 'shadow-[0_0_20px_rgba(14,165,233,0.15)]', icon: <Newspaper size={18} /> 
       };
     }
   };
@@ -98,8 +98,8 @@ export const NewsBaseList = ({
   };
 
   const filtered = news.filter(item => {
-    const matchesSearch = item.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.content.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = item.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                         item.content.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = categoryFilter ? categoryFilter(item) : true;
     return matchesSearch && matchesCategory;
   });
@@ -118,12 +118,13 @@ export const NewsBaseList = ({
           const isExpanded = expandedId === item.id;
 
           return (
-            <div
+            <div 
               key={item.id}
-              className={`group relative bg-zinc-900/30 border border-zinc-800/50 rounded-[32px] overflow-hidden transition-all duration-300 ${isExpanded ? 'ring-1 ring-zinc-700 bg-zinc-900/50' : 'hover:border-zinc-700 hover:bg-zinc-900/40'
-                }`}
+              className={`group relative bg-zinc-900/30 border border-zinc-800/50 rounded-[32px] overflow-hidden transition-all duration-300 ${
+                isExpanded ? 'ring-1 ring-zinc-700 bg-zinc-900/50' : 'hover:border-zinc-700 hover:bg-zinc-900/40'
+              }`}
             >
-              <div
+              <div 
                 className="p-6 cursor-pointer flex items-center justify-between"
                 onClick={() => setExpandedId(isExpanded ? null : item.id)}
               >
@@ -137,7 +138,7 @@ export const NewsBaseList = ({
                         NEWS / {item.category}
                       </span>
                       <span className="text-[10px] text-zinc-500 font-medium flex items-center gap-1.5">
-                        <Calendar size={12} /> {item.time}
+                          <Calendar size={12} /> {item.time}
                       </span>
                     </div>
                     <h4 className="text-lg font-black text-white mt-1 group-hover:text-indigo-400 transition-colors uppercase italic tracking-tight">
@@ -153,42 +154,42 @@ export const NewsBaseList = ({
                 <div className="px-8 pb-8 pt-2 animate-in slide-in-from-top-4 duration-500">
                   <div className="bg-zinc-950/50 rounded-[24px] p-6 border border-zinc-800/50 relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-4 opacity-5">
-                      <Newspaper size={120} />
+                       <Newspaper size={120} />
                     </div>
                     <p className="text-zinc-300 text-sm leading-relaxed font-medium whitespace-pre-line relative z-10 border-l-2 border-indigo-500/30 pl-6 py-2">
                       {item.content}
                     </p>
                     <div className="mt-8 pt-6 border-t border-zinc-900 flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-zinc-500 text-[10px] font-bold uppercase tracking-widest">
-                        <Info size={14} /> ID: INTEL-{item.id.toUpperCase()}
-                      </div>
-                      <button
-                        onClick={() => newsStorage.markAsRead(item.id)}
-                        className="text-[10px] font-black uppercase tracking-widest text-indigo-400 hover:text-indigo-300 transition-colors cursor-pointer"
-                      >
-                        Tandai Telah Dibaca
-                      </button>
-
-                      {(() => {
-                        const targets = detectNavigationTargets(item);
-                        if (!targets) return null;
-                        return (
-                          <button
-                            onClick={() => {
-                              onClose();
-                              const countryId = targets.country.name_id.toLowerCase();
-                              setActiveMenu(`CountryModal:${countryId}:info_strategis:detail_lengkap:produksi:emas`);
-                              router.push(`/game/${countryId}/info_strategis/detail_lengkap/produksi/emas`);
-                            }}
-                            className="flex items-center gap-2 group/btn cursor-pointer py-2 px-4 bg-amber-500/10 hover:bg-amber-500 border border-amber-500/30 hover:border-amber-400 rounded-xl transition-all"
-                          >
-                            <TrendingUp size={14} className="text-amber-500 group-hover/btn:text-black transition-colors" />
-                            <span className="text-[10px] font-black uppercase tracking-widest text-amber-500 group-hover/btn:text-black transition-colors">
-                              Lihat Detail Negara {targets.country.name_id}
-                            </span>
-                          </button>
-                        );
-                      })()}
+                       <div className="flex items-center gap-2 text-zinc-500 text-[10px] font-bold uppercase tracking-widest">
+                          <Info size={14} /> ID: INTEL-{item.id.toUpperCase()}
+                       </div>
+                        <button
+                           onClick={() => newsStorage.markAsRead(item.id)}
+                           className="text-[10px] font-black uppercase tracking-widest text-indigo-400 hover:text-indigo-300 transition-colors cursor-pointer"
+                        >
+                           Tandai Telah Dibaca
+                        </button>
+                        
+                        {(() => {
+                          const targets = detectNavigationTargets(item);
+                          if (!targets) return null;
+                          return (
+                            <button
+                              onClick={() => {
+                                onClose();
+                                const countryId = targets.country.name_id.toLowerCase();
+                                setActiveMenu(`CountryModal:${countryId}:info_strategis:detail_lengkap:produksi:emas`);
+                                router.push(`/game/${countryId}/info_strategis/detail_lengkap/produksi/emas`);
+                              }}
+                              className="flex items-center gap-2 group/btn cursor-pointer py-2 px-4 bg-amber-500/10 hover:bg-amber-500 border border-amber-500/30 hover:border-amber-400 rounded-xl transition-all"
+                            >
+                              <TrendingUp size={14} className="text-amber-500 group-hover/btn:text-black transition-colors" />
+                              <span className="text-[10px] font-black uppercase tracking-widest text-amber-500 group-hover/btn:text-black transition-colors">
+                                Lihat Detail Negara {targets.country.name_id}
+                              </span>
+                            </button>
+                          );
+                        })()}
                     </div>
                   </div>
                 </div>
