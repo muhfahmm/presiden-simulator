@@ -223,7 +223,7 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
 
   // 2. Expenses & Penalties
   const expData = expenseStorage.getData(countryData.name_en, countryData);
-  const maintenanceExpense = 0; 
+  const maintenanceExpense = 0;
   const militaryExpense = 0;
   const serviceExpense = 0; // Explicitly set to 0 to remove hidden maintenance
 
@@ -250,12 +250,12 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
     (getUnits("mansion") * hunianRate.mansion.kapasitas);
 
   // 4. Satisfaction (Happiness) Impact
-  let currentSatisfaction = 50; 
+  let currentSatisfaction = 50;
   if (typeof window !== 'undefined') {
     const session = gameStorage.getSession();
     const isIndonesia = countryData.name_en === "Indonesia" || (countryData as any).name_id === "Indonesia";
     const isPlayer = session?.country === countryData.name_en || session?.country === (countryData as any).name_id || (session && isIndonesia) || (!session && isIndonesia);
-    
+
     if (isPlayer) {
       // Prioritize LIVE happiness storage for player country
       currentSatisfaction = happinessStorage.getStats().value;
@@ -289,7 +289,7 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   const happinessMultiplier = 0.4 + (0.6 * (currentSatisfaction / 100));
   const finalAnnualRevenue = totalAnnualRevenue * happinessMultiplier;
 
-  const annualMaintenance = 0; 
+  const annualMaintenance = 0;
   const annualMilitary = militaryExpense * 365;
   const annualDebtInterest = expData.debtInterestPaid || 0;
   const annualPriceSubsidy = priceSubsidyExpense * 365;
