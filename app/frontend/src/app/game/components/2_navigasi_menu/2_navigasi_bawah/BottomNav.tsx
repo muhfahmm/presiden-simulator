@@ -60,6 +60,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
       { id: "Menu:Produksi", label: "Produksi", icon: Hammer },
       { id: "Menu:ProduksiMiliter", label: "Produksi Militer", icon: MilitaryIcon },
       { id: "Menu:TempatUmum", label: "Tempat Umum", icon: Users2 },
+      { id: "Menu:HunianPermukiman", label: "Hunian Permukiman", icon: Home },
     ],
     "ProduksiKonsumsi": [
       { id: "Menu:Kelistrikan", label: "Grid Nasional", icon: Bolt },

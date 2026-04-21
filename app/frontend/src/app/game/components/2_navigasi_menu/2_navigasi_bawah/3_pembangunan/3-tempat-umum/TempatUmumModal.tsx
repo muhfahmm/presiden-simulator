@@ -9,18 +9,16 @@ import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/negara/benua/index";
 
-import { infrastrukturRate, sosialRate, hunianRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
+import { infrastrukturRate, sosialRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum";
 import { mineralKritisRate, manufakturRate, peternakanRate, agrikulturRate, perikananRate, olahanPanganRate, farmasiRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi";
 import { pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
-import JikaMaterialKurang from "../jika_material_kurang";
 import { getBuildingRequirement, MaterialRequirement } from "../1-produksi/MaterialRequirement";
 import { REVENUE_RATES, MAINTENANCE_RATES, getTempatUmumRevenueBreakdown, getTempatUmumMaintenanceBreakdown } from "./logic/TempatUmumRevenueLogic";
 import { getNationalHealthImpact } from "@/app/game/data/layanan_publik/kesehatan/healthLogic";
 import { getNationalSecurityImpact } from "@/app/game/data/layanan_publik/keamanan/securityLogic";
-// import HunianPemukiman from "./HunianPemukiman";
 
 interface ModalProps {
   isOpen: boolean;
@@ -35,10 +33,8 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
   const [showQueue, setShowQueue] = useState(false);
   const [isInsufficientFundsModalOpen, setIsInsufficientFundsModalOpen] = useState(false);
-  const [isInsufficientMaterialsModalOpen, setIsInsufficientMaterialsModalOpen] = useState(false);
   const [missingMaterialsData, setMissingMaterialsData] = useState<any[]>([]);
   const [requiredAmount, setRequiredAmount] = useState(0);
-  const [activeTab, setActiveTab] = useState<'layanan' | 'hunian'>('layanan');
   const [population, setPopulation] = useState(() => populationStorage.getPopulation());
 
   useEffect(() => {
@@ -82,7 +78,6 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
               buildingStorage.removeFromQueue(finishItem.id);
             }
           });
-          // Dispatch event to sync lainnya components
           window.dispatchEvent(new Event('building_storage_updated'));
         }
 
@@ -107,8 +102,6 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
   const buildingData = buildingStorage.getData();
   const buildingDeltas = buildingData.buildingDeltas;
 
-  // --- ENERGY DASHBOARD SYNCHRONIZATION ---
-  // Apply construction deltas to a temporary country object to get accurate supply/usage
   const currentDataWithDeltas = {
     ...currentData,
     sektor_listrik: { ...currentData.sektor_listrik || {} },
@@ -130,58 +123,45 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
     hunian: { ...currentData.hunian || {} },
   };
 
-  const healthImpact = getNationalHealthImpact();
-  const securityImpact = getNationalSecurityImpact();
-
   Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
     if (typeof deltaValue !== 'number' || deltaValue === 0) return;
 
-    // 1. Electricity Sector
     if (KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA]) {
       const dataKey = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA].dataKey;
       if (dataKey) (currentDataWithDeltas.sektor_listrik as any)[dataKey] = ((currentDataWithDeltas.sektor_listrik as any)[dataKey] || 0) + deltaValue;
     }
-    // 2. Critical Minerals
     else if ((mineralKritisRate as any)[key]) {
       const dataKey = (mineralKritisRate as any)[key].dataKey;
       if (dataKey) (currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] = ((currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] || 0) + deltaValue;
     }
-    // 3. Manufaktur
     else if ((manufakturRate as any)[key]) {
       const dataKey = (manufakturRate as any)[key].dataKey;
       if (dataKey) (currentDataWithDeltas.sektor_manufaktur as any)[dataKey] = ((currentDataWithDeltas.sektor_manufaktur as any)[dataKey] || 0) + deltaValue;
     }
-    // 4. Peternakan
     else if ((peternakanRate as any)[key]) {
       const dataKey = (peternakanRate as any)[key].dataKey;
       if (dataKey) (currentDataWithDeltas.sektor_peternakan as any)[dataKey] = ((currentDataWithDeltas.sektor_peternakan as any)[dataKey] || 0) + deltaValue;
     }
-    // 5. Agrikultur
     else if ((agrikulturRate as any)[key]) {
       const dataKey = (agrikulturRate as any)[key].dataKey;
       if (dataKey) (currentDataWithDeltas.sektor_agrikultur as any)[dataKey] = ((currentDataWithDeltas.sektor_agrikultur as any)[dataKey] || 0) + deltaValue;
     }
-    // 6. Perikanan
     else if ((perikananRate as any)[key]) {
       const dataKey = (perikananRate as any)[key].dataKey;
       if (dataKey) (currentDataWithDeltas.sektor_perikanan as any)[dataKey] = ((currentDataWithDeltas.sektor_perikanan as any)[dataKey] || 0) + deltaValue;
     }
-    // 7. Olahan Pangan
     else if ((olahanPanganRate as any)[key]) {
       const dataKey = (olahanPanganRate as any)[key].dataKey;
       if (dataKey) (currentDataWithDeltas.sektor_olahan_pangan as any)[dataKey] = ((currentDataWithDeltas.sektor_olahan_pangan as any)[dataKey] || 0) + deltaValue;
     }
-    // 8. Farmasi
     else if ((farmasiRate as any)[key]) {
       const dataKey = (farmasiRate as any)[key].dataKey;
       if (dataKey) (currentDataWithDeltas.sektor_farmasi as any)[dataKey] = ((currentDataWithDeltas.sektor_farmasi as any)[dataKey] || 0) + deltaValue;
     }
-    // 9. Infrastruktur
     else if (infrastrukturRate[key]) {
       const dataKey = (infrastrukturRate as any)[key].dataKey;
       if (dataKey) (currentDataWithDeltas.infrastruktur as any)[dataKey] = ((currentDataWithDeltas.infrastruktur as any)[dataKey] || 0) + deltaValue;
     }
-    // 10. Sosial & Public
     else if (sosialRate[key]) {
       const dataKey = (sosialRate as any)[key].dataKey;
       const groupId = (sosialRate as any)[key].groupId;
@@ -194,33 +174,15 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
         else if (groupId === "hiburan") (currentDataWithDeltas.sektor_hiburan as any)[dataKey] = ((currentDataWithDeltas.sektor_hiburan as any)[dataKey] || 0) + deltaValue;
       }
     }
-    // 11. Pabrik Militer
     else if (pabrikMiliterRate[key as keyof typeof pabrikMiliterRate]) {
        const dataKey = pabrikMiliterRate[key as keyof typeof pabrikMiliterRate].dataKey;
        if (dataKey) (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
-    }
-    // 12. Hunian
-    else if ((hunianRate as any)[key]) {
-      const dataKey = key; // for hunian, the key IS the dataKey
-      (currentDataWithDeltas.hunian as any)[dataKey] = ((currentDataWithDeltas.hunian as any)[dataKey] || 0) + deltaValue;
     }
   });
 
   const adjustedTotalPasokan = hitungTotalKapasitas(currentDataWithDeltas.sektor_listrik);
   const adjustedTotalBeban = hitungTotalKonsumsiNasional(currentDataWithDeltas);
   const surplus = adjustedTotalPasokan - adjustedTotalBeban;
-
-  // --- HOUSING CAPACITY CALCULATION ---
-  const totalHousingCapacity = (currentDataWithDeltas.hunian?.rumah_subsidi || 0) * (hunianRate.rumah_subsidi.kapasitas) +
-                               (currentDataWithDeltas.hunian?.apartemen || 0) * (hunianRate.apartemen.kapasitas) +
-                               (currentDataWithDeltas.hunian?.mansion || 0) * (hunianRate.mansion.kapasitas);
-                               
-  const isHousingShortage = totalHousingCapacity < population;
-  
-  // Tiered Demand Calculation (70% Subsidi, 25% Apartemen, 5% Mansion)
-  const demandSubsidi = population > 0 ? Math.min(100, Math.max(0, (1 - ((currentDataWithDeltas.hunian?.rumah_subsidi || 0) * (hunianRate.rumah_subsidi.kapasitas)) / (population * 0.7))) * 100) : 0;
-  const demandApartemen = population > 0 ? Math.min(100, Math.max(0, (1 - ((currentDataWithDeltas.hunian?.apartemen || 0) * (hunianRate.apartemen.kapasitas)) / (population * 0.25))) * 100) : 0;
-  const demandMansion = population > 0 ? Math.min(100, Math.max(0, (1 - ((currentDataWithDeltas.hunian?.mansion || 0) * (hunianRate.mansion.kapasitas)) / (population * 0.05))) * 100) : 0;
 
   const publicGroups = [
     {
@@ -232,16 +194,11 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
         { ...infrastrukturRate["1_jalur_sepeda"], key: "1_jalur_sepeda", groupId: "infra_darat", label: "Jalur Sepeda", icon: Bike, desc: "Logistik", efek: "+0.05% Kepuasan Rakyat & +0.01% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["1_jalur_sepeda"].biaya_pembangunan, buildTime: infrastrukturRate["1_jalur_sepeda"].waktu_pembangunan, count: (currentData.infrastruktur?.jalur_sepeda || 0) + ((buildingDeltas["1_jalur_sepeda"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_sepeda },
         { ...infrastrukturRate["2_jalan_tol"], key: "2_jalan_tol", groupId: "infra_darat", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", efek: "+0.08% Kepuasan Rakyat & +0.02% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["2_jalan_tol"].biaya_pembangunan, buildTime: infrastrukturRate["2_jalan_tol"].waktu_pembangunan, count: (currentData.infrastruktur?.jalan_raya || 0) + ((buildingDeltas["2_jalan_tol"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalan_raya },
         { ...infrastrukturRate["3_terminal_bus"], key: "3_terminal_bus", groupId: "infra_darat", label: "Terminal Bus", icon: Bus, desc: "Transportasi", efek: "+0.10% Kepuasan Rakyat & +0.05% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["3_terminal_bus"].biaya_pembangunan, buildTime: infrastrukturRate["3_terminal_bus"].waktu_pembangunan, count: (currentData.infrastruktur?.terminal_bus || 0) + ((buildingDeltas["3_terminal_bus"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.terminal_bus },
-
-        
         { ...infrastrukturRate["4_jalur_kereta"], key: "4_jalur_kereta", groupId: "perkeretaapian", label: "Stasiun Kereta Api", icon: TrainFront, desc: "Logistik", efek: "+0.12% Kepuasan Rakyat & +0.10% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["4_jalur_kereta"].biaya_pembangunan, buildTime: infrastrukturRate["4_jalur_kereta"].waktu_pembangunan, count: (currentData.infrastruktur?.stasiun_kereta_api || 0) + ((buildingDeltas["4_jalur_kereta"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.stasiun_kereta_api },
         { ...infrastrukturRate["5_kereta_bawah_tanah"], key: "5_kereta_bawah_tanah", groupId: "perkeretaapian", label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transportasi", efek: "+0.15% Kepuasan Rakyat & +0.15% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["5_kereta_bawah_tanah"].biaya_pembangunan, buildTime: infrastrukturRate["5_kereta_bawah_tanah"].waktu_pembangunan, count: (currentData.infrastruktur?.kereta_bawah_tanah || 0) + ((buildingDeltas["5_kereta_bawah_tanah"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.kereta_bawah_tanah },
-
-        
         { ...infrastrukturRate["6_pelabuhan_laut"], key: "6_pelabuhan_laut", groupId: "maritim_udara", label: "Pelabuhan", icon: Ship, desc: "Maritim", efek: "+0.18% Kepuasan Rakyat & +0.20% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["6_pelabuhan_laut"].biaya_pembangunan, buildTime: infrastrukturRate["6_pelabuhan_laut"].waktu_pembangunan, count: (currentData.infrastruktur?.pelabuhan || 0) + ((buildingDeltas["6_pelabuhan_laut"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.pelabuhan },
         { ...infrastrukturRate["7_bandara"], key: "7_bandara", groupId: "maritim_udara", label: "Bandara", icon: Plane, desc: "Udara", efek: "+0.20% Kepuasan Rakyat & +0.30% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["7_bandara"].biaya_pembangunan, buildTime: infrastrukturRate["7_bandara"].waktu_pembangunan, count: (currentData.infrastruktur?.bandara || 0) + ((buildingDeltas["7_bandara"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bandara },
         { ...infrastrukturRate["8_helipad"], key: "8_helipad", groupId: "maritim_udara", label: "Helipad", icon: Plane, desc: "Udara", efek: "+0.05% Kepuasan Rakyat & +0.10% Kec. Riset", tarif: 1, unit: "Unit", cost: infrastrukturRate["8_helipad"].biaya_pembangunan, buildTime: infrastrukturRate["8_helipad"].waktu_pembangunan, count: (currentData.infrastruktur?.helipad || 0) + ((buildingDeltas["8_helipad"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.helipad },
-
       ]
     },
     {
@@ -260,7 +217,6 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
         { ...sosialRate["8_observatorium"], key: "8_observatorium", groupId: "pendidikan", label: "Observatorium", icon: Eye, desc: "Astronomi", efek: "+0.17% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["8_observatorium"].biaya_pembangunan, buildTime: sosialRate["8_observatorium"].waktu_pembangunan, count: (currentData.pendidikan?.observatorium || 0) + ((buildingDeltas["8_observatorium"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.observatorium },
         { ...sosialRate["9_pusat_penelitian"], key: "9_pusat_penelitian", groupId: "pendidikan", label: "Pusat Penelitian", icon: Search, desc: "Riset Strategis", efek: "+0.19% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["9_pusat_penelitian"].biaya_pembangunan, buildTime: sosialRate["9_pusat_penelitian"].waktu_pembangunan, count: (currentData.pendidikan?.pusat_penelitian || 0) + ((buildingDeltas["9_pusat_penelitian"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.pusat_penelitian },
         { ...sosialRate["10_pusat_pengembangan"], key: "10_pusat_pengembangan", groupId: "pendidikan", label: "Pusat Pengembangan", icon: Lightbulb, desc: "Inovasi", efek: "+0.21% Kecepatan Riset Nasional", tarif: 1, cost: sosialRate["10_pusat_pengembangan"].biaya_pembangunan, buildTime: sosialRate["10_pusat_pengembangan"].waktu_pembangunan, count: (currentData.pendidikan?.pusat_pengembangan || 0) + ((buildingDeltas["10_pusat_pengembangan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.pusat_pengembangan },
-
       ]
     },
     {
@@ -322,20 +278,6 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
     }
   ];
 
-  const hunianGroups = [
-    {
-      id: "hunian_nasional",
-      title: "1. Sektor Hunian & Pemukiman Nasional (3 jenis)",
-      icon: Home,
-      color: "text-amber-400",
-      items: [
-        { ...hunianRate.rumah_subsidi, key: "rumah_subsidi", groupId: "hunian", label: hunianRate.rumah_subsidi.label, icon: Home, deskripsi: "Residensial", tarif: 1, unit: "Unit", cost: hunianRate.rumah_subsidi.biaya_pembangunan, biaya_pembangunan: hunianRate.rumah_subsidi.biaya_pembangunan, waktu_pembangunan: hunianRate.rumah_subsidi.waktu_pembangunan, count: (currentDataWithDeltas.hunian?.rumah_subsidi || 0), consumption: hunianRate.rumah_subsidi.konsumsi_listrik, konsumsi_listrik: hunianRate.rumah_subsidi.konsumsi_listrik, kapasitas: hunianRate.rumah_subsidi.kapasitas },
-        { ...hunianRate.apartemen, key: "apartemen", groupId: "hunian", label: hunianRate.apartemen.label, icon: Building2, deskripsi: "Residensial", tarif: 1, unit: "Unit", cost: hunianRate.apartemen.biaya_pembangunan, biaya_pembangunan: hunianRate.apartemen.biaya_pembangunan, waktu_pembangunan: hunianRate.apartemen.waktu_pembangunan, count: (currentDataWithDeltas.hunian?.apartemen || 0), consumption: hunianRate.apartemen.konsumsi_listrik, konsumsi_listrik: hunianRate.apartemen.konsumsi_listrik, kapasitas: hunianRate.apartemen.kapasitas },
-        { ...hunianRate.mansion, key: "mansion", groupId: "hunian", label: hunianRate.mansion.label, icon: Landmark, deskripsi: "Residensial", tarif: 1, unit: "Unit", cost: hunianRate.mansion.biaya_pembangunan, biaya_pembangunan: hunianRate.mansion.biaya_pembangunan, waktu_pembangunan: hunianRate.mansion.waktu_pembangunan, count: (currentDataWithDeltas.hunian?.mansion || 0), consumption: hunianRate.mansion.konsumsi_listrik, konsumsi_listrik: hunianRate.mansion.konsumsi_listrik, kapasitas: hunianRate.mansion.kapasitas },
-      ]
-    }
-  ];
-
   const handleBuildRequest = (item: any) => {
     setConfirmBuild(item);
     setQuantity(1);
@@ -344,16 +286,12 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
   const handleConfirmBuild = () => {
     if (!confirmBuild) return;
     try {
-      // 1. Calculate total cost with robust number casting
       const unitCost = Number(confirmBuild.biaya_pembangunan || 0);
       const buildQuantity = Number(quantity || 1);
       const totalCost = unitCost * buildQuantity;
-      
-      // 2. Check for Financial Sufficiency
       const currentBalance = Number(budgetStorage.getBudget() || 0);
       const isMoneyShort = currentBalance < totalCost;
 
-      // 3. Check for Material Sufficiency
       const requirements = getBuildingRequirement(confirmBuild.key);
       const cumulativeStock = budgetStorage.getCumulativeProduction();
       const missing: any[] = [];
@@ -369,10 +307,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
       checkMaterial("Baja", requirements.baja, cumulativeStock["12_tambang_bijih_besi"] || 0, Hammer);
       checkMaterial("Kayu", requirements.kayu, cumulativeStock["6_penggergajian_kayu"] || 0, TreePine);
 
-      const areMaterialsShort = missing.length > 0;
-
-      // 4. Handle Shortages (Unified Modal)
-      if (isMoneyShort || areMaterialsShort) {
+      if (isMoneyShort || missing.length > 0) {
         setRequiredAmount(totalCost);
         setMissingMaterialsData(missing);
         setConfirmBuild(null);
@@ -380,9 +315,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
         return;
       }
 
-      // 4. Deduct construction cost from budget
       budgetStorage.updateBudget(-totalCost);
-
       let currentStart = getStoredGameDate().getTime();
       const itemsToAdd: any[] = [];
       for (let i = 0; i < quantity; i++) {
@@ -410,7 +343,6 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
         
-        {/* Insufficient Funds / Both Modal */}
         <JikaUangKurang 
           isOpen={isInsufficientFundsModalOpen}
           onClose={() => setIsInsufficientFundsModalOpen(false)}
@@ -419,8 +351,6 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
           missingMaterials={missingMaterialsData}
         />
 
-
-        
         {/* Header */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
@@ -433,11 +363,11 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <button onClick={() => setShowQueue(true)} className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group flex items-center gap-2 relative shadow-[0_0_15px_rgba(8,145,178,0.1)] active:scale-95">
-              <Clock className="h-6 w-6 text-cyan-500 group-hover:scale-110 group-hover:rotate-12 transition-transform" />
+            <button onClick={() => setShowQueue(true)} className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group flex items-center gap-2 relative shadow-lg active:scale-95">
+              <Clock className="h-6 w-6 text-cyan-500 transition-transform" />
               {activeConstructions.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-cyan-500 text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-zinc-950 shadow-lg animate-in zoom-in">{activeConstructions.length}</span>}
             </button>
-            <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
+            <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-lg active:scale-95 group flex items-center gap-2">
               <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
               <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
             </button>
@@ -447,21 +377,21 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
         {/* Electricity Summary */}
         <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 shadow-sm">
               <div className="p-3 bg-cyan-500/10 rounded-xl"><Zap className="h-6 w-6 text-cyan-500" /></div>
               <div>
                 <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.supply.title}</p>
                 <p className="text-xl font-black text-white leading-tight">{adjustedTotalPasokan.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
               </div>
             </div>
-            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 shadow-sm">
               <div className="p-3 bg-rose-500/10 rounded-xl"><Activity className="h-6 w-6 text-rose-500" /></div>
               <div>
                 <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.usage.title}</p>
                 <p className="text-xl font-black text-white leading-tight">{adjustedTotalBeban.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
               </div>
             </div>
-            <div className={`bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 relative overflow-hidden group`}>
+            <div className={`bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 relative overflow-hidden group shadow-sm`}>
               <div className={`p-3 rounded-xl ${surplus >= 0 ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>{surplus >= 0 ? <TrendingUp className="h-6 w-6 text-emerald-500" /> : <TrendingDown className="h-6 w-6 text-rose-500" />}</div>
               <div>
                 <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.balance.title}</p>
@@ -471,330 +401,117 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
           </div>
         </div>
 
-        {/* Tabs Selection */}
-        <div className="px-8 py-2 bg-zinc-900/10 border-b border-zinc-800/30 flex gap-4">
-          <button 
-            onClick={() => setActiveTab('layanan')}
-            className={`px-6 py-3 rounded-2xl font-black uppercase tracking-widest text-xs transition-all flex items-center gap-2 cursor-pointer ${activeTab === 'layanan' ? 'bg-cyan-600 text-white shadow-[0_0_15px_rgba(8,145,178,0.3)]' : 'bg-zinc-900/50 text-zinc-500 hover:bg-zinc-800'}`}
-          >
-            <Building2 size={16} />
-            Layanan Publik
-          </button>
-          <button 
-            onClick={() => setActiveTab('hunian')}
-            className={`px-6 py-3 rounded-2xl font-black uppercase tracking-widest text-xs transition-all flex items-center gap-2 cursor-pointer ${activeTab === 'hunian' ? 'bg-cyan-600 text-white shadow-[0_0_15px_rgba(8,145,178,0.3)]' : 'bg-zinc-900/50 text-zinc-500 hover:bg-zinc-800'}`}
-          >
-            <Home size={16} />
-            Hunian & Pemukiman
-          </button>
-
-          {/* Multi-Tier Housing Demand Indicators - Horizontal Layout */}
-          <div className={`flex items-center gap-8 transition-all duration-500 ${activeTab === 'hunian' ? 'opacity-100 translate-x-0 ml-6 pl-6 border-l border-white/10' : 'opacity-0 scale-95 pointer-events-none w-0 overflow-hidden'}`}>
-            <div className="flex flex-row items-end gap-10">
-              {/* Subsidi Bar */}
-              <div className="flex flex-col gap-1.5 w-[110px]">
-                <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-wider italic outline-none">
-                  <span className="text-zinc-500">Subsidi</span>
-                  <span className={`${demandSubsidi > 80 ? 'text-rose-500 animate-pulse' : 'text-zinc-400'}`}>{demandSubsidi.toFixed(0)}%</span>
-                </div>
-                <div className="h-1.5 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden">
-                  <div className={`h-full rounded-full transition-all duration-500 ${demandSubsidi > 80 ? 'bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.4)]' : 'bg-emerald-500'}`} style={{ width: `${demandSubsidi}%` }} />
-                </div>
-              </div>
-              
-              {/* Apartemen Bar */}
-              <div className="flex flex-col gap-1.5 w-[110px]">
-                <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-wider italic outline-none">
-                  <span className="text-zinc-500">Apartemen</span>
-                  <span className={`${demandApartemen > 80 ? 'text-amber-500 animate-pulse' : 'text-zinc-400'}`}>{demandApartemen.toFixed(0)}%</span>
-                </div>
-                <div className="h-1.5 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden">
-                  <div className={`h-full rounded-full transition-all duration-500 ${demandApartemen > 80 ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.4)]' : 'bg-emerald-500'}`} style={{ width: `${demandApartemen}%` }} />
-                </div>
-              </div>
-              
-              {/* Mansion Bar */}
-              <div className="flex flex-col gap-1.5 w-[110px]">
-                <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-wider italic outline-none">
-                  <span className="text-zinc-500">Mansion</span>
-                  <span className={`${demandMansion > 80 ? 'text-purple-500 animate-pulse' : 'text-zinc-400'}`}>{demandMansion.toFixed(0)}%</span>
-                </div>
-                <div className="h-1.5 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden">
-                  <div className={`h-full rounded-full transition-all duration-500 ${demandMansion > 80 ? 'bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.4)]' : 'bg-emerald-500'}`} style={{ width: `${demandMansion}%` }} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
-          {activeTab === 'layanan' ? (
-            <div className="space-y-12">
-
-              {publicGroups.map((group) => (
-              <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-                <div className="flex items-center gap-3 mb-5 px-1">
-                  <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>
-                  <div className="flex flex-col flex-1">
-                    <h3 className="text-xl font-black text-white uppercase tracking-widest italic flex items-center gap-3">
-                      {group.title} 
-                      <span className="text-cyan-400 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span>
-                    </h3>
-                    {['olahraga', 'komersial', 'hiburan'].includes(group.id) ? (
-                      <div className="flex items-center gap-6 mt-1 flex-wrap">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">Pendapatan:</span>
-                          <span className="text-[10px] font-black text-emerald-500 italic">+{ (getTempatUmumRevenueBreakdown(buildingDeltas, currentData) as any)[group.id]?.toLocaleString('id-ID') } / hari</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 border-l border-zinc-800 pl-4">
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">Total Pendapatan Kas:</span>
-                          <span className="text-[10px] font-black text-emerald-400 italic">Rp { (getTempatUmumRevenueBreakdown(buildingDeltas, currentData) as any)[group.id]?.toLocaleString('id-ID') } / hari</span>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-6 mt-1 flex-wrap">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">Biaya Pemeliharaan:</span>
-                          <span className="text-[10px] font-black text-rose-500 italic">-{ (getTempatUmumMaintenanceBreakdown(buildingDeltas, currentData) as any)[group.id === 'olahraga' || group.id === 'komersial' || group.id === 'hiburan' ? '' : group.id]?.toLocaleString('id-ID') } / hari</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 border-l border-zinc-800 pl-4">
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">Total Beban Anggaran:</span>
-                          <span className="text-[10px] font-black text-rose-400 italic">Rp { (getTempatUmumMaintenanceBreakdown(buildingDeltas, currentData) as any)[group.id === 'olahraga' || group.id === 'komersial' || group.id === 'hiburan' ? '' : group.id]?.toLocaleString('id-ID') } / hari</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50 hidden lg:block"></div>
-                  <button onClick={() => toggleSector(group.id)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95">
-                    {collapsedSectors.has(group.id) ? <EyeOff size={16} /> : <Eye size={16} className="text-cyan-400" />}
-                  </button>
+          <div className="space-y-12">
+            {publicGroups.map((group) => (
+            <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <div className="flex items-center gap-3 mb-5 px-1 font-black">
+                <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>
+                <div className="flex flex-col flex-1">
+                  <h3 className="text-xl font-black text-white uppercase tracking-widest italic flex items-center gap-3">
+                    {group.title} 
+                    <span className="text-cyan-400 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span>
+                  </h3>
                 </div>
-                <div className={`grid transition-all duration-700 ease-in-out ${!collapsedSectors.has(group.id) ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
-                  <div className="overflow-hidden">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
-                      {group.items.map((item: any, idx: number) => {
-                        const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
-                        const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
-                        
-                        const subGroupLabels: Record<string, string> = {
-                          manufaktur: "Manufaktur & Industri",
-                          peternakan: "Peternakan & Perikanan",
-                          pertanian: "Agrikultur & Pertanian",
-                          pendidikan: "Pendidikan & Riset",
-                          kesehatan: "Layanan Kesehatan",
-                          olahraga: "Sektor Olahraga",
-                          komersial: "Fasilitas Komersial",
-                          hukum: "Hukum, Pertahanan & Keamanan",
-                          infra_darat: "Infrastruktur Darat & Logistik",
-                          perkeretaapian: "Sistem Perkeretaapian Nasional",
-                          maritim_udara: "Hub Maritim & Dirgantara"
-                        };
-
-                        const showSubHeader = item.groupId && item.groupId !== prevGroupId;
-
-                        return (
-                          <Fragment key={item.key || idx}>
-                            {showSubHeader && subGroupLabels[item.groupId] && (
-                              <div className="col-span-full mt-6 mb-2 flex items-center gap-4">
-                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-800 to-zinc-800"></div>
-                                <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] whitespace-nowrap bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full shadow-xl">
-                                  {subGroupLabels[item.groupId]}
-                                </span>
-                                <div className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-800 to-zinc-800"></div>
-                              </div>
-                            )}
-                            <BuildingCard
-                              item={item}
-                              onBuild={handleBuildRequest}
-                              construction={currentConstruction}
-                              cumulative={0}
-                            />
-                          </Fragment>
-                        );
-                      })}
-                    </div>
+                <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50 hidden lg:block"></div>
+                <button onClick={() => toggleSector(group.id)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95">
+                  {collapsedSectors.has(group.id) ? <EyeOff size={16} /> : <Eye size={16} className="text-cyan-400" />}
+                </button>
+              </div>
+              <div className={`grid transition-all duration-700 ease-in-out ${!collapsedSectors.has(group.id) ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
+                <div className="overflow-hidden">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
+                    {group.items.map((item: any, idx: number) => {
+                      const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
+                      const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
+                      const subGroupLabels: Record<string, string> = {
+                        pendidikan: "Pendidikan & Riset",
+                        kesehatan: "Layanan Kesehatan",
+                        olahraga: "Sektor Olahraga",
+                        komersial: "Fasilitas Komersial",
+                        hukum: "Hukum, Pertahanan & Keamanan",
+                        infra_darat: "Infrastruktur Darat & Logistik",
+                        perkeretaapian: "Sistem Perkeretaapian Nasional",
+                        maritim_udara: "Hub Maritim & Dirgantara"
+                      };
+                      const showSubHeader = item.groupId && item.groupId !== prevGroupId;
+                      return (
+                        <Fragment key={item.key || idx}>
+                          {showSubHeader && subGroupLabels[item.groupId] && (
+                            <div className="col-span-full mt-6 mb-2 flex items-center gap-4">
+                              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-800 to-zinc-800"></div>
+                              <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] whitespace-nowrap bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full shadow-xl">
+                                {subGroupLabels[item.groupId]}
+                              </span>
+                              <div className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-800 to-zinc-800"></div>
+                            </div>
+                          )}
+                          <BuildingCard
+                            item={item}
+                            onBuild={handleBuildRequest}
+                            construction={currentConstruction}
+                            cumulative={0}
+                          />
+                        </Fragment>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
+            </div>
             ))}
           </div>
-          ) : (
-            <div className="space-y-12">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-1 mb-8">
-                <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
-                  <div>
-                    <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Total Kebutuhan Rumah</p>
-                    <p className="text-xl font-black text-rose-400">{population.toLocaleString('id-ID')} <span className="text-xs text-rose-500/50">Jiwa</span></p>
-                  </div>
-                  <div className="p-3 bg-rose-500/10 rounded-xl"><Users size={20} className="text-rose-500" /></div>
-                </div>
-                
-                <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
-                  <div>
-                    <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Total Kapasitas Tersedia</p>
-                    <p className="text-xl font-black text-emerald-400">{totalHousingCapacity.toLocaleString('id-ID')} <span className="text-xs text-emerald-500/50">Jiwa</span></p>
-                  </div>
-                  <div className="p-3 bg-emerald-500/10 rounded-xl"><Home size={20} className="text-emerald-500" /></div>
-                </div>
-
-                <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between">
-                  <div>
-                    <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Neraca Hunian (Surplus)</p>
-                    <p className={`text-xl font-black ${totalHousingCapacity - population >= 0 ? 'text-cyan-400' : 'text-red-400'}`}>{(totalHousingCapacity - population) > 0 ? '+' : ''}{(totalHousingCapacity - population).toLocaleString('id-ID')} <span className="text-xs opacity-50">Jiwa</span></p>
-                  </div>
-                  <div className={`p-3 rounded-xl ${totalHousingCapacity - population >= 0 ? 'bg-cyan-500/10' : 'bg-red-500/10'}`}>
-                    <Activity size={20} className={totalHousingCapacity - population >= 0 ? 'text-cyan-500' : 'text-red-500'} />
-                  </div>
-                </div>
-              </div>
-
-              {hunianGroups.map((group) => (
-                <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-                  <div className="flex items-center gap-3 mb-5 px-1">
-                    <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>
-                    <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title} <span className="text-cyan-400 ml-3 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span></h3>
-                    <div className="flex items-center gap-6 ml-6">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter italic">Beban Operasional:</span>
-                        <span className="text-[10px] font-black text-rose-500 italic">-{ (getTempatUmumMaintenanceBreakdown(buildingDeltas, currentData) as any)["hunian"]?.toLocaleString('id-ID') } / hari</span>
-                      </div>
-                    </div>
-                    <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
-                    <button onClick={() => toggleSector(group.id)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95">
-                      {collapsedSectors.has(group.id) ? <EyeOff size={16} /> : <Eye size={16} className="text-cyan-400" />}
-                    </button>
-                  </div>
-                  <div className={`grid transition-all duration-700 ease-in-out ${!collapsedSectors.has(group.id) ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
-                    <div className="overflow-hidden">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
-                        {group.items.map((item: any, idx: number) => {
-                          const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
-                          return (
-                            <Fragment key={item.key || idx}>
-                              <BuildingCard
-                                item={item}
-                                onBuild={handleBuildRequest}
-                                construction={currentConstruction}
-                                cumulative={Math.max(0, population - totalHousingCapacity)}
-                                isShortage={isHousingShortage}
-                              />
-                            </Fragment>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
 
         {/* Confirmation Modal Overlay */}
         {confirmBuild && (
           <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
             <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[40px] shadow-2xl max-w-4xl w-full mx-4 flex flex-col gap-6 animate-in zoom-in-95 max-h-[90vh]">
-              
-              {/* Header: Icon & Title (Full Width) */}
               <div className="flex items-center gap-6 shrink-0 border-b border-zinc-800/50 pb-6">
-                <div className="p-4 bg-cyan-500/10 rounded-3xl border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
-                  <confirmBuild.icon className="h-10 w-10 text-cyan-500" />
+                <div className="p-4 bg-cyan-500/10 rounded-3xl border border-cyan-500/20 shadow-lg font-black italic">
+                   <confirmBuild.icon size={40} className="text-cyan-500" />
                 </div>
                 <div className="flex-1 text-left">
                   <h3 className="text-3xl font-black text-white uppercase tracking-tighter italic leading-none">Konfirmasi Bangun?</h3>
-                  <p className="text-zinc-400 text-sm font-medium mt-2">Membangun <span className="text-white font-black underline">{confirmBuild.label}</span> untuk fasilitas publik nasional.</p>
+                  <p className="text-zinc-400 text-sm font-medium mt-2">Membangun <span className="text-white font-black underline">{confirmBuild.label}</span> untuk fasilitas publik.</p>
                 </div>
               </div>
-
-              {/* Main Content: 2-Column Grid Area */}
               <div className="flex-1 overflow-y-auto no-scrollbar py-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  
-                  {/* Column 1: Stats & Info */}
                   <div className="space-y-6">
-                    <div className="flex flex-col gap-3">
-                      <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest italic leading-none ml-1">Spesifikasi Fasilitas</span>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group relative">
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Total</span>
-                          <span className="text-xl font-black text-amber-500 tracking-tight">{(Number(confirmBuild.biaya_pembangunan || 0) * quantity).toLocaleString('id-ID')}</span>
-                          {budgetStorage.getBudget() < (Number(confirmBuild.biaya_pembangunan || 0) * quantity) && (
-                            <span className="text-[10px] font-black text-rose-500 uppercase absolute -bottom-2 whitespace-nowrap">
-                              Kurang: {((Number(confirmBuild.biaya_pembangunan || 0) * quantity) - budgetStorage.getBudget()).toLocaleString('id-ID')}
-                            </span>
-                          )}
-                        </div>
-                        <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>
-                          <div className="flex items-center gap-1.5">
-                            <Clock size={14} className="text-cyan-500" />
-                            <span className="text-xl font-black text-white tracking-tight">{(confirmBuild.waktu_pembangunan).toLocaleString('id-ID')} Hari</span>
-                          </div>
-                        </div>
-                        {confirmBuild.consumption > 0 && (
-                          <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group col-span-2">
-                            <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Estimasi Beban Energi</span>
-                            <div className="flex items-center gap-1.5">
-                              <Zap size={14} className="text-rose-500" />
-                              <span className="text-xl font-black text-rose-500 tracking-tight">{(confirmBuild.consumption).toLocaleString('id-ID')} MW</span>
-                            </div>
-                          </div>
-                        )}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group relative">
+                        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Total</span>
+                        <span className="text-xl font-black text-amber-500 tracking-tight">{(Number(confirmBuild.biaya_pembangunan || 0) * quantity).toLocaleString('id-ID')}</span>
+                      </div>
+                      <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
+                        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>
+                        <span className="text-xl font-black text-white tracking-tight">{(confirmBuild.waktu_pembangunan).toLocaleString('id-ID')} Hari</span>
                       </div>
                     </div>
-
                     <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
-                      <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian Seluruh Unit</span>
+                      <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian</span>
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
                          {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
                       </p>
                     </div>
                   </div>
-
-                  {/* Column 2: Materials & Quantity */}
                   <div className="space-y-6">
                     <MaterialRequirement buildingKey={confirmBuild.key} quantity={quantity} />
-
                     <div className="space-y-3">
-                      <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest italic ml-1">Kuantitas Pembangunan</span>
                       <div className="flex items-center justify-center gap-6 bg-zinc-950/80 border border-zinc-800 p-2 rounded-2xl shadow-inner">
-                        <button
-                          onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                          className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 text-xl font-black text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all cursor-pointer shadow-lg active:scale-95"
-                        >
-                          -
-                        </button>
-                        <div className="flex flex-col items-center min-w-[90px]">
-                          <span className="text-3xl font-black text-white tracking-tighter">{quantity.toLocaleString('id-ID')}</span>
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter italic leading-none">Unit Strategis</span>
-                        </div>
-                        <button
-                          onClick={() => setQuantity(quantity + 1)}
-                          className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 text-xl font-black text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all cursor-pointer shadow-lg active:scale-95"
-                        >
-                          +
-                        </button>
+                        <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 text-xl font-black text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all cursor-pointer shadow-lg active:scale-95">-</button>
+                        <div className="flex flex-col items-center min-w-[90px]"><span className="text-3xl font-black text-white tracking-tighter">{quantity.toLocaleString('id-ID')}</span><span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter italic leading-none">Unit Strategis</span></div>
+                        <button onClick={() => setQuantity(quantity + 1)} className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 text-xl font-black text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all cursor-pointer shadow-lg active:scale-95">+</button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-              {/* Footer: Action Buttons */}
               <div className="flex gap-4 shrink-0 mt-2 border-t border-zinc-800/50 pt-6">
-                <button
-                  onClick={() => setConfirmBuild(null)}
-                  className="flex-1 px-8 py-5 rounded-3xl bg-zinc-800/50 text-zinc-400 font-black text-xs uppercase tracking-widest border border-zinc-700 hover:bg-zinc-800 hover:text-white transition-all cursor-pointer"
-                >
-                  Batal
-                </button>
-                <button
-                  onClick={handleConfirmBuild}
-                  className="flex-[2] px-8 py-5 rounded-3xl bg-cyan-600 text-white font-black text-sm uppercase tracking-widest shadow-[0_10px_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_20px_40px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95"
-                >
-                  Konfirmasi & Bangun Sekarang
-                </button>
+                <button onClick={() => setConfirmBuild(null)} className="flex-1 px-8 py-5 rounded-3xl bg-zinc-800/50 text-zinc-400 font-black text-xs uppercase tracking-widest border border-zinc-700 hover:bg-zinc-800 transition-all cursor-pointer">Batal</button>
+                <button onClick={handleConfirmBuild} className="flex-[2] px-8 py-5 rounded-3xl bg-cyan-600 text-white font-black text-sm uppercase tracking-widest shadow-lg hover:bg-cyan-500 transition-all cursor-pointer active:scale-95">Konfirmasi & Bangun</button>
               </div>
             </div>
           </div>
@@ -803,17 +520,17 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
         {/* Queue Sidebar */}
         <div className={`absolute inset-0 z-[90] flex items-center justify-end transition-colors duration-300 ${showQueue ? 'bg-black/20 pointer-events-auto' : 'bg-transparent pointer-events-none'}`} onClick={() => setShowQueue(false)}>
           <div className={`bg-zinc-950/95 border-l border-zinc-800 w-full max-w-sm h-full shadow-2xl flex flex-col transition-transform duration-500 ${showQueue ? 'translate-x-0' : 'translate-x-full'}`} onClick={e => e.stopPropagation()}>
-            <div className="p-6 border-b border-zinc-800 flex justify-between items-center"><h3 className="text-lg font-bold text-white tracking-tight">Antrean Pembangunan</h3><button onClick={() => setShowQueue(false)}><X className="h-5 w-5 text-zinc-400" /></button></div>
+            <div className="p-6 border-b border-zinc-800 flex justify-between items-center"><h3 className="text-lg font-black text-white italic uppercase tracking-widest leading-none">Antrean Pembangunan</h3><button onClick={() => setShowQueue(false)}><X className="h-5 w-5 text-zinc-400" /></button></div>
             <div className="flex-1 overflow-y-auto p-6 space-y-4 no-scrollbar">
-              {activeConstructions.length === 0 ? <p className="text-zinc-500 text-center font-bold uppercase tracking-widest mt-10">Antrean Kosong</p> : 
+              {activeConstructions.length === 0 ? <p className="text-zinc-500 text-center font-bold uppercase tracking-widest mt-10 italic">Antrean Kosong</p> : 
                 activeConstructions.map((item, idx) => {
                   const progress = calculateConstructionProgress(item.startDate, item.endDate, getStoredGameDate().getTime());
                   if (!progress) return null;
                   return (
-                    <div key={item.id || idx} className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 flex flex-col gap-3 relative overflow-hidden">
+                    <div key={item.id || idx} className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 flex flex-col gap-3 relative overflow-hidden shadow-md">
                       <div className="absolute top-0 left-0 bottom-0 bg-cyan-500/5" style={{ width: `${progress.percentage}%` }} />
                       <div className="flex justify-between items-center relative z-10"><h4 className="text-sm font-black text-white">{item.label}</h4><span className="text-[10px] font-bold text-cyan-400">{progress.percentage}%</span></div>
-                      <div className="h-1.5 w-full bg-zinc-950 rounded-full mt-2 overflow-hidden border border-zinc-800/50"><div className={`h-full ${progress.colorClass}`} style={{ width: `${progress.percentage}%` }} /></div>
+                      <div className="h-1.5 w-full bg-zinc-950 rounded-full mt-2 overflow-hidden border border-zinc-800/50"><div className={`h-full ${progress.colorClass} rounded-full`} style={{ width: `${progress.percentage}%` }} /></div>
                     </div>
                   )
                 })
@@ -830,267 +547,91 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
   const [showDetail, setShowDetail] = useState(false);
   const currentDate = getStoredGameDate().getTime();
   const progress = construction ? calculateConstructionProgress(construction.startDate, construction.endDate, currentDate) : null;
-
-
-
   return (
-    <div className={`bg-zinc-900/40 border ${progress ? 'border-cyan-500/30 bg-cyan-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative overflow-hidden h-full min-h-[380px]`}>
+    <div className={`bg-zinc-900/40 border ${progress ? 'border-cyan-500/30 bg-cyan-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative overflow-hidden h-full min-h-[380px] shadow-lg`}>
       {progress && (
         <div className="absolute top-0 left-0 bottom-0 bg-cyan-500/5 transition-all duration-1000" style={{ width: `${progress.percentage}%` }} />
       )}
-
-      {/* Info overlay */}
       {showDetail && (
-        <div className="absolute inset-0 z-50 bg-zinc-950/98 backdrop-blur-md p-6 flex flex-col animate-in fade-in zoom-in-95 duration-200">
+        <div className="absolute inset-0 z-50 bg-zinc-950/98 backdrop-blur-md p-6 flex flex-col animate-in fade-in zoom-in-95 duration-200 border border-zinc-800 rounded-2xl shadow-xl">
           <div className="flex justify-between items-center mb-6">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-cyan-500/10 rounded-xl border border-cyan-500/20 text-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
-                <Info size={18} />
-              </div>
+              <div className="p-2.5 bg-cyan-500/10 rounded-xl border border-cyan-500/20 text-cyan-500 shadow-lg"><Info size={18} /></div>
               <div>
                 <h5 className="text-[14px] font-black text-white uppercase tracking-wider italic">Detail Fasilitas</h5>
-                <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">Spesifikasi &amp; Biaya</p>
+                <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mt-0.5">Spesifikasi &amp; Dampak</p>
               </div>
             </div>
-            <button onClick={() => setShowDetail(false)} className="p-2.5 hover:bg-zinc-800/80 rounded-xl text-zinc-500 hover:text-white transition-all cursor-pointer border border-transparent hover:border-zinc-700">
-              <X size={20} />
-            </button>
+            <button onClick={() => setShowDetail(false)} className="p-2.5 hover:bg-zinc-800 rounded-xl text-zinc-500 transition-all cursor-pointer"><X size={20} /></button>
           </div>
-
-          <div className="space-y-4 flex-1 overflow-y-auto no-scrollbar pr-1">
-            <div className="flex flex-col gap-1.5 p-4 rounded-2xl bg-zinc-900/50 border border-zinc-800/30">
-              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] opacity-60">Nama Bangunan</span>
-              <h4 className="text-xl font-black text-amber-400 uppercase italic leading-tight tracking-tight">{item.label}</h4>
+          <div className="space-y-4 flex-1">
+            <div className="flex flex-col gap-1.5 p-4 rounded-2xl bg-zinc-900/50 border border-zinc-800/30 shadow-inner">
+              <span className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">Katalog Nasional</span>
+              <h4 className="text-xl font-black text-amber-400 uppercase italic tracking-tighter leading-tight">{item.label}</h4>
             </div>
-
-            {item.efek && (
-              <div className="flex flex-col gap-2 p-4 rounded-2xl bg-cyan-500/5 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.1)]">
-                <div className="flex items-center gap-2">
-                  <div className="p-1 px-2 rounded-md bg-cyan-600/20 text-cyan-400 text-[9px] font-black uppercase tracking-widest border border-cyan-500/30">Dampak Strategis</div>
-                </div>
-                <p className="text-sm font-black text-white italic leading-tight leading-relaxed">{item.efek}</p>
-              </div>
-            )}
-
+            <div className="flex flex-col gap-3 p-4 rounded-2xl bg-cyan-500/5 border border-cyan-500/20 shadow-lg">
+               <p className="text-sm font-black text-white italic leading-relaxed">{item.efek || "Fasilitas Publik Strategis"}</p>
+            </div>
             <div className="grid gap-2">
-
-              {/* Energy Row */}
-              {item.konsumsi_listrik > 0 && (
-                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-pink-500/30 transition-all group/row">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-pink-500/10 rounded-xl text-pink-500 border border-pink-500/20 group-hover/row:scale-110 transition-transform"><Zap size={14} /></div>
-                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Beban Energi</span>
+                {item.konsumsi_listrik > 0 && (
+                  <div className="flex items-center justify-between p-3.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 group/row hover:border-pink-500/30 transition-all">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-pink-500/10 rounded-xl text-pink-500 border border-pink-500/20"><Zap size={14} /></div>
+                      <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Beban Energi</span>
+                    </div>
+                    <span className="text-[15px] font-black text-pink-500 tabular-nums">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
                   </div>
-                  <span className="text-[15px] font-black text-pink-500 tabular-nums">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
-                </div>
-              )}
-
-              {/* Capacity Row (Only for Housing or relevant sectors) */}
-              {item.kapasitas > 0 && (
-                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-cyan-500/30 transition-all group/row">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-cyan-500/10 rounded-xl text-cyan-500 border border-cyan-500/20 group-hover/row:scale-110 transition-transform"><Users size={14} /></div>
-                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Kapasitas Hunian</span>
-                  </div>
-                  <span className="text-[15px] font-black text-cyan-400 tabular-nums">{item.kapasitas?.toLocaleString('id-ID')} Jiwa</span>
-                </div>
-              )}
-
-
+                )}
             </div>
           </div>
-
-          <button
-            onClick={() => setShowDetail(false)}
-            className="mt-6 w-full py-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-zinc-800 hover:text-white transition-all cursor-pointer active:scale-[0.98] shadow-lg"
-          >
-            Kembali
-          </button>
+          <button onClick={() => setShowDetail(false)} className="mt-6 w-full py-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-zinc-800 transition-all cursor-pointer shadow-lg active:scale-95">Kembali</button>
         </div>
       )}
-
-      {/* Card header */}
       <div className="flex items-start justify-between relative z-10">
         <div className="flex gap-2">
           <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform">
-            <item.icon className={`h-5 w-5 ${progress ? 'text-white' : 'text-cyan-500'} shadow-[0_0_10px_rgba(6,182,212,0.3)]`} />
+            <item.icon className="h-5 w-5 text-cyan-500" />
           </div>
-          <button
-            onClick={() => setShowDetail(!showDetail)}
-            className={`p-2.5 rounded-xl border transition-all cursor-pointer ${showDetail ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'}`}
-          >
-            <Info size={16} />
-          </button>
+          <button onClick={() => setShowDetail(!showDetail)} className="p-2.5 rounded-xl border bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 cursor-pointer transition-all shadow-sm"><Info size={16} /></button>
         </div>
         <div className="flex flex-col items-end gap-1">
-          <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
-            {item.deskripsi}
-          </div>
-          <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-            Terbangun: {item.count.toLocaleString('id-ID')} Unit {(item.konsumsi_listrik || 0) > 0 && `(${(item.count * (item.konsumsi_listrik || 0)).toLocaleString('id-ID')} MW)`}
-          </div>
+          <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 uppercase tracking-tight italic">{item.desc || "PUBLIK"}</div>
+          <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter">Terbangun: {item.count.toLocaleString('id-ID')} Unit</div>
         </div>
       </div>
-
-      {/* Card body */}
       <div className="flex-1 flex flex-col relative z-10 mt-1">
-        <h4 className="text-[17px] font-black text-zinc-100 tracking-tight group-hover:text-amber-400 transition-colors uppercase italic leading-tight mb-3">
-          {item.label}
-        </h4>
-
-        <div className="flex flex-col gap-2.5 flex-1">
-
-          {((item.konsumsi_listrik ?? 0) >= 0) && (
-            <>
+        <h4 className="text-[17px] font-black text-zinc-100 group-hover:text-amber-400 transition-colors uppercase italic mb-3 leading-tight">{item.label}</h4>
+        <div className="flex flex-col gap-2.5 flex-1 justify-center">
+            {item.consumption > 0 && (
               <div className="flex items-center gap-2.5">
-                <div className="p-1.5 bg-rose-500/10 rounded-lg">
-                  <Zap size={12} className="text-rose-500/90" />
-                </div>
-                <span className="text-[12px] font-bold text-rose-500/80">
-                  Konsumsi: {Math.max((item.konsumsi_listrik || 0), 1).toLocaleString('id-ID')} MW/unit
-                </span>
+                <Zap size={12} className="text-amber-500" /><span className="text-[12px] font-bold text-amber-500/80">Konsumsi: {item.consumption.toLocaleString('id-ID')} MW/unit</span>
               </div>
-              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
-                <div className="p-1.5 bg-rose-500/5 rounded-lg">
-                  <Activity size={12} className="text-rose-400/70" />
-                </div>
-                <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                  Total Konsumsi Listrik: {(item.count * Math.max((item.konsumsi_listrik || 0), 1)).toLocaleString('id-ID')} MW
-                </span>
-              </div>
-            </>
-          )}
-
-          {REVENUE_RATES[item.key] > 0 && (
-            <>
-              <div className="flex items-center gap-2.5">
-                <div className="p-1.5 bg-emerald-500/10 rounded-lg">
-                  <Coins size={12} className="text-emerald-500/90" />
-                </div>
-                <span className="text-[12px] font-bold text-emerald-500/80">
-                  Pendapatan: +{REVENUE_RATES[item.key].toLocaleString('id-ID')} / hari
-                </span>
-              </div>
-              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-emerald-500/10 pl-3">
-                <div className="p-1.5 bg-emerald-500/5 rounded-lg">
-                  <TrendingUp size={12} className="text-emerald-400/70" />
-                </div>
-                <span className="text-[11px] font-bold text-emerald-400/70 uppercase">
-                  Total Pendapatan Kas: {(item.count * REVENUE_RATES[item.key]).toLocaleString('id-ID')} / hari
-                </span>
-              </div>
-            </>
-          )}
-
-          {MAINTENANCE_RATES[item.key] > 0 && (
-            <>
-              <div className="flex items-center gap-2.5">
-                <div className="p-1.5 bg-rose-500/10 rounded-lg">
-                  <TrendingDown size={12} className="text-rose-500/90" />
-                </div>
-                <span className="text-[12px] font-bold text-rose-500/80">
-                  Biaya Pemeliharaan: -{MAINTENANCE_RATES[item.key].toLocaleString('id-ID')} / hari
-                </span>
-              </div>
-              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
-                <div className="p-1.5 bg-rose-500/5 rounded-lg">
-                  <Activity size={12} className="text-rose-400/70" />
-                </div>
-                <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                  Total Biaya Harian: -{(item.count * MAINTENANCE_RATES[item.key]).toLocaleString('id-ID')} / hari
-                </span>
-              </div>
-            </>
-          )}
-
-
-
-          {item.kapasitas > 0 && (
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-indigo-500/10 rounded-lg">
-                <Users2 size={12} className="text-indigo-400" />
-              </div>
-              <span className="text-[12px] font-bold text-indigo-400/80">
-                Kapasitas: {item.kapasitas.toLocaleString('id-ID')} Jiwa/unit
-              </span>
+            )}
+            <div className="flex items-center gap-2.5 italic opacity-60">
+              <Clock size={12} className="text-zinc-500" /><span className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest">Waktu: {item.buildTime?.toLocaleString('id-ID')} Hari</span>
             </div>
-          )}
-
-          {!progress && (
-            <div className="flex flex-col gap-2.5">
-              <div className="flex items-center gap-2.5">
-                <div className="p-1.5 bg-zinc-800/50 rounded-lg">
-                  <Clock size={12} className="text-zinc-500" />
-                </div>
-                <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime?.toLocaleString('id-ID')} Hari</span>
-              </div>
-            </div>
-          )}
         </div>
-
-        {/* Total Fasilitas section */}
         <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
           <div className="flex justify-between items-baseline gap-2">
-            <span className={`text-[11px] font-black ${item.groupId === 'hunian' && isShortage ? 'text-rose-500' : 'text-cyan-500/80'} uppercase tracking-[0.15em] italic`}>
-              TOTAL FASILITAS:
-            </span>
-            <span className={`text-[16px] font-black ${item.groupId === 'hunian' && isShortage ? 'text-rose-400 animate-pulse' : 'text-cyan-400'} tracking-tight`}>
-              {(item.count || 0).toLocaleString('id-ID')} <span className={`text-[10px] ${item.groupId === 'hunian' && isShortage ? 'text-rose-500/50' : 'text-cyan-500/50'} font-normal uppercase italic ml-1`}>Unit</span>
-            </span>
+            <span className={`text-[11px] font-black text-cyan-500/80 uppercase tracking-[0.15em] italic`}>TOTAL FASILITAS:</span>
+            <span className={`text-[16px] font-black text-cyan-400 tracking-tight`}>{(item.count || 0).toLocaleString('id-ID')} <span className="text-[10px] font-normal uppercase italic ml-1">Unit</span></span>
           </div>
-          {item.groupId === 'hunian' && isShortage && (
-             <div className="flex flex-col gap-1 mt-1 animate-in slide-in-from-top-1 px-1">
-                <div className="flex items-center gap-1.5">
-                  <AlertTriangle size={12} className="text-rose-500" />
-                  <span className="text-[12px] font-black text-rose-500 uppercase italic tracking-tighter">Kapasitas Nasional Kurang</span>
-                </div>
-                <div className="flex items-center gap-1.5 ml-4">
-                  <span className="text-[11px] font-bold text-rose-400 opacity-90 uppercase tracking-tighter">
-                    Estimasi Kekurangan: <span className="text-white font-black text-[13px]">{Math.ceil(cumulative / (item.kapasitas || 1)).toLocaleString('id-ID')}</span> Unit
-                  </span>
-                </div>
-             </div>
-          )}
         </div>
       </div>
-
-      {/* Build button / progress */}
       <div className="mt-auto pt-4 relative z-10">
         {progress ? (
-          <div className="space-y-3 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
-            <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-zinc-400">
-              <span className="flex items-center gap-1.5">
-                <Loader2 size={12} className={`animate-spin ${progress.isWaiting ? 'text-zinc-600' : 'text-cyan-400'}`} />
-                {getStatusText(progress.percentage, progress.isWaiting)}
-              </span>
-              <span className={progress.colorClass.replace('bg-', 'text-')}>{progress.percentage}%</span>
-            </div>
-            <div className="h-2 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/30 p-0.5">
-              <div
-                className={`h-full transition-all duration-1000 ${progress.colorClass} rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]`}
-                style={{ width: `${progress.percentage}%` }}
-              />
-            </div>
-            <div className="flex justify-between items-center text-[9px] font-bold text-zinc-500 uppercase tracking-tighter italic opacity-70">
-              <span className="flex items-center gap-1"><Clock size={10} /> ESTIMASI:</span>
-              <span className="text-zinc-400">{formatGameDate(new Date(construction.endDate))}</span>
-            </div>
+          <div className="space-y-2 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50 shadow-inner">
+             <div className="flex justify-between text-[10px] font-black text-cyan-400 uppercase tracking-tighter italic"><span>PROSES BANGUN:</span><span>{progress.percentage}%</span></div>
+             <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/50"><div className={`h-full ${progress.colorClass} rounded-full`} style={{ width: `${progress.percentage}%` }} /></div>
+             <div className="text-[9px] font-bold text-zinc-600 uppercase italic tracking-tighter text-right">E.T.A: {formatGameDate(new Date(construction.endDate))}</div>
           </div>
         ) : (
           <div className="flex items-center justify-between gap-4">
-            <div className="flex flex-col">
-              <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span>
-              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya_pembangunan?.toLocaleString('id-ID')}</span>
-            </div>
-            <button
-              onClick={(e) => { e.stopPropagation(); onBuild(item); }}
-              className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20"
-            >
-              Bangun
-            </button>
+             <div className="flex flex-col"><span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span><span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost?.toLocaleString('id-ID')}</span></div>
+             <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-lg hover:bg-cyan-500 transition-all cursor-pointer active:scale-95 border border-cyan-400/20">Bangun</button>
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }

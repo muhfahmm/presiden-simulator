@@ -12,6 +12,7 @@ import ProduksiHubV3 from "@/app/game/components/2_navigasi_menu/2_navigasi_bawa
 import ProduksiMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/2-produksi-militer/ProduksiMiliterModal";
 import { KelistrikanModal, PerminyakanModal, UraniumModal } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/9_produksi_konsumsi";
 import TempatUmumModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/TempatUmumModal";
+import HunianPermukimanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/4-hunian-permukiman/HunianPermukimanModal";
 import PertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/PertahananModal";
 import IntelijenModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/2_intelijen/IntelijenModal";
 import ArmadaMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/3_armada_militer/ArmadaMiliterModal";
@@ -127,6 +128,10 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       />
       <TempatUmumModal
         isOpen={activeMenu === "Menu:TempatUmum"}
+        onClose={() => setActiveMenu("Pembangunan")}
+      />
+      <HunianPermukimanModal
+        isOpen={activeMenu === "Menu:HunianPermukiman"}
         onClose={() => setActiveMenu("Pembangunan")}
       />
       <AcaraModal
