@@ -16,7 +16,7 @@ export interface InboxItem {
   content?: string;
 }
 
-const MAX_INBOX_MESSAGES = 50;
+const MAX_INBOX_MESSAGES = 10000; // Increased to effectively unlimited per user request
 
 export const inboxStorage = {
   clear: () => {
