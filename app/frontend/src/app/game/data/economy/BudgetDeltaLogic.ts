@@ -82,14 +82,14 @@ export interface BudgetBreakdown {
  */
 export function calculateBudgetBreakdown(countryData: CountryData, buildingDeltas: Record<string, number>): BudgetBreakdown {
   const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(countryData.name_en);
-  
+
   // 1. Income (Revenue) â€” iterate ALL tax keys dynamically (same as PajakModal)
   const currentTaxes = taxStorage.getTaxes(countryData.name_en) || countryData.pajak;
   const TRADE_KEYS = new Set(["bea_cukai", "transit_sekutu", "transit_non_sekutu", "tarif_ekspor", "tarif_impor"]);
   const allTaxKeys = Object.keys(currentTaxes as any);
 
   const revenues: BudgetBreakdown['revenues'] = { domestic: {}, trade: {}, resources: {}, other: {} };
-  
+
   allTaxKeys.forEach(key => {
     const pendapatan = (currentTaxes as any)[key]?.pendapatan || 0;
     if (TRADE_KEYS.has(key)) {
@@ -118,8 +118,8 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   // 1.3 Protestant Growth Bonus (+5% of tax revenue)
   const currentReligion = religionStorage.getCurrentReligion(countryData.religion);
   if (currentReligion === "Protestan") {
-    const taxRevenueAnnual = Object.values(revenues.domestic).reduce((a, b) => a + b, 0) + 
-                            Object.values(revenues.trade).reduce((a, b) => a + b, 0);
+    const taxRevenueAnnual = Object.values(revenues.domestic).reduce((a, b) => a + b, 0) +
+      Object.values(revenues.trade).reduce((a, b) => a + b, 0);
     const growthBonusAnnual = taxRevenueAnnual * PROTESTAN_GROWTH_BONUS;
     revenues.other["pertumbuhan_ekonomi"] = growthBonusAnnual;
   }
@@ -129,20 +129,20 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
     // We apply this to raw resource categories if they exist in revenues.resources or specific domestic keys
     // For now, let's add it as a separate 'Other' line item for clarity, or modify existing ones
     let totalRawRevenueAnnual = 0;
-    
+
     // Sum from resources (e.g. Gold)
     totalRawRevenueAnnual += Object.values(revenues.resources).reduce((a, b) => a + b, 0);
-    
+
     // Sum from domestic sectors that are 'raw' (Agriculture, Extraction, etc.)
     // Note: In this game's database, these sectors contribute to domestic tax
     // We'll calculate 10% of the relevant domestic tax keys if we can identify them
     // Alternatively, we apply it to the base production value before tax, 
     // but here we modify the final budget delta.
-    
+
     const RAW_SECTOR_KEYS = ["sektor_ekstraksi", "sektor_agrikultur", "sektor_peternakan", "sektor_perikanan"];
     // In BudgetDeltaLogic, these might not be keys in 'domestic' directly if domestic is just 'pajak'
     // Let's check how domestic is populated.
-    
+
     const rawBonusAnnual = totalRawRevenueAnnual * ORTODOKS_RAW_PRODUCTION_BONUS;
     if (rawBonusAnnual > 0) {
       revenues.other["bonus_produksi_ortodoks"] = rawBonusAnnual;
@@ -153,23 +153,23 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   if (currentReligion === "Hindu") {
     // Agriculture Bonus (+10%)
     // Livestock Penalty (-30%)
-    
+
     // In this game's model, we check for specific domestic keys or sector-wide contributions
     // For simplicity and visibility, we'll calculate them based on the domestic tax total 
     // or specific keys if found.
     const domesticTaxKeys = Object.keys(revenues.domestic);
-    
+
     let agrikulturTaxAnnual = revenues.domestic["pajak_agrikultur"] || revenues.domestic["agrikultur"] || 0;
     let peternakanTaxAnnual = revenues.domestic["pajak_peternakan"] || revenues.domestic["peternakan"] || 0;
-    
+
     // If keys don't exist directly (it's dynamic), we can estimate based on sector weights if needed
     // or simply apply a global modifier. 
     // Given the request, we'll add them as adjustments.
-    
+
     if (agrikulturTaxAnnual > 0) {
       revenues.other["bonus_pertanian_hindu"] = agrikulturTaxAnnual * HINDU_AGRICULTURE_BONUS;
     }
-    
+
     if (peternakanTaxAnnual > 0) {
       revenues.other["penalti_peternakan_hindu"] = peternakanTaxAnnual * HINDU_LIVESTOCK_PENALTY;
     }
@@ -193,8 +193,8 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   // 1.7 Konghucu Bonuses
   if (currentReligion === "Konghucu") {
     // Tax Efficiency (+25% of all domestic & trade taxes)
-    const baseTaxRevenueAnnual = Object.values(revenues.domestic).reduce((a, b) => a + b, 0) + 
-                                Object.values(revenues.trade).reduce((a, b) => a + b, 0);
+    const baseTaxRevenueAnnual = Object.values(revenues.domestic).reduce((a, b) => a + b, 0) +
+      Object.values(revenues.trade).reduce((a, b) => a + b, 0);
     revenues.other["efisiensi_pajak_konghucu"] = baseTaxRevenueAnnual * KONGHUCU_TAX_EFFICIENCY_BONUS;
 
     // Manufacturing Bonus (+20%)
@@ -207,23 +207,23 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   // 1.8 Taoisme Penalties
   if (currentReligion === "Taoisme") {
     // Heavy Industry Penalty (-20% of Manufacturing & Extraction revenue)
-    const baseHeavyIndustryAnnual = (revenues.domestic["pajak_manufaktur"] || revenues.domestic["manufaktur"] || 0) + 
-                                    (revenues.domestic["pajak_ekstraksi"] || revenues.domestic["ekstraksi"] || 0);
+    const baseHeavyIndustryAnnual = (revenues.domestic["pajak_manufaktur"] || revenues.domestic["manufaktur"] || 0) +
+      (revenues.domestic["pajak_ekstraksi"] || revenues.domestic["ekstraksi"] || 0);
     revenues.other["penalti_industri_taoisme"] = baseHeavyIndustryAnnual * TAOISME_HEAVY_INDUSTRY_PENALTY;
   }
 
   // 1.9 Capitalism Growth Bonus (+30% of tax revenue)
   const currentIdeology = ideologyStorage.getCurrentIdeology(countryData.ideology);
   if (currentIdeology === "Kapitalisme") {
-    const baseTaxRevenueAnnual = Object.values(revenues.domestic).reduce((a, b) => a + b, 0) + 
-                                Object.values(revenues.trade).reduce((a, b) => a + b, 0);
+    const baseTaxRevenueAnnual = Object.values(revenues.domestic).reduce((a, b) => a + b, 0) +
+      Object.values(revenues.trade).reduce((a, b) => a + b, 0);
     revenues.other["efisiensi_pasar_kapitalisme"] = baseTaxRevenueAnnual * KAPITALISME_TREASURY_GROWTH_BONUS;
   }
 
   // 1.10 Sosialisme Treasury Accumulation Penalty (-15% of tax revenue)
   if (currentIdeology === "Sosialisme") {
-    const baseTaxRevenueAnnual = Object.values(revenues.domestic).reduce((a, b) => a + b, 0) + 
-                                Object.values(revenues.trade).reduce((a, b) => a + b, 0);
+    const baseTaxRevenueAnnual = Object.values(revenues.domestic).reduce((a, b) => a + b, 0) +
+      Object.values(revenues.trade).reduce((a, b) => a + b, 0);
     revenues.other["penalti_kas_sosialisme"] = baseTaxRevenueAnnual * SOSIALISME_TREASURY_PENALTY;
   }
 
@@ -239,7 +239,7 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
     revenues.other["penalti_impor_nasionalisme"] = -(importTariffAnnual * NASIONALISME_IMPORT_COST_PENALTY);
   }
 
-  const totalAnnualRevenueRaw = 
+  const totalAnnualRevenueRaw =
     Object.values(revenues.domestic).reduce((a, b) => a + b, 0) +
     Object.values(revenues.trade).reduce((a, b) => a + b, 0) +
     Object.values(revenues.resources).reduce((a, b) => a + b, 0) +
@@ -255,8 +255,8 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
 
   // 2. Expenses & Penalties
   const expData = expenseStorage.getData(countryData.name_en, countryData);
-  const maintenanceExpense = calculateTempatUmumMaintenance(buildingDeltas, countryData);
-  const militaryExpense = 0; 
+  const maintenanceExpense = 0; // Disabled as per request
+  const militaryExpense = 0;
 
   // Price Subsidies Logic
   const priceData = priceStorage.getData();
@@ -276,13 +276,13 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
     return Number(baseline) + Number(delta);
   };
 
-  const housingCapacity = 
-    (getUnits("rumah_subsidi") * hunianRate.rumah_subsidi.kapasitas) + 
-    (getUnits("apartemen") * hunianRate.apartemen.kapasitas) + 
+  const housingCapacity =
+    (getUnits("rumah_subsidi") * hunianRate.rumah_subsidi.kapasitas) +
+    (getUnits("apartemen") * hunianRate.apartemen.kapasitas) +
     (getUnits("mansion") * hunianRate.mansion.kapasitas);
 
   const rawPop = (countryData as any).jumlah_penduduk ?? (countryData as any).populasi ?? 0;
-  const population = typeof rawPop === 'string' 
+  const population = typeof rawPop === 'string'
     ? (parseInt(rawPop.replace(/\./g, '')) || 0)
     : (typeof rawPop === 'number' ? rawPop : 0);
 
@@ -304,7 +304,7 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   const happinessMultiplier = 0.4 + (0.6 * (currentSatisfaction / 100)); // 0.4 - 1.0 range
   const finalAnnualRevenue = totalAnnualRevenue * happinessMultiplier;
 
-  const annualMaintenance = maintenanceExpense * 365;
+  const annualMaintenance = 0; 
   const annualMilitary = militaryExpense * 365;
   const annualDebtInterest = expData.debtInterestPaid || 0;
   const annualPriceSubsidy = priceSubsidyExpense * 365;

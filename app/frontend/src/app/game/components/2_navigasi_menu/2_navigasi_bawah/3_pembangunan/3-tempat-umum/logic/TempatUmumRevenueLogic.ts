@@ -11,22 +11,22 @@
  */
 export const REVENUE_RATES: Record<string, number> = {
   // 5. Sektor Olahraga & Rekreasi
-  "16_kolam_renang": 50,
-  "17_sirkuit_balap": 300,
-  "18_stadium_int": 450,
-  "19_gym_center": 100,
-  "20_lapangan_golf": 250,
-  "21_esports_arena": 150,
-  "22_gokart_circuit": 200,
+  "16_kolam_renang": 100,
+  "17_sirkuit_balap": 250,
+  "18_stadium_int": 500,
+  "19_gym_center": 150,
+  "20_lapangan_golf": 300,
+  "21_esports_arena": 200,
+  "22_gokart_circuit": 150,
 
   // 6. Sektor Komersial & Retail
   "23_pusat_belanja": 350,
-  "24_hotel": 450,
+  "24_hotel": 400,
   "25_pusat_grosir_tekstil": 500,
 
   // 7. Sektor Hiburan & Seni
-  "26_bioskop": 150,
-  "27_gedung_teater": 100,
+  "26_bioskop": 200,
+  "27_gedung_teater": 150,
 };
 
 /**

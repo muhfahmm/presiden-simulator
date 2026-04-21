@@ -66,7 +66,7 @@ export default function BudgetDetailModal({ isOpen, onClose, countryData, buildi
             </div>
             <div>
               <h2 className="text-2xl font-black text-white tracking-tighter italic uppercase">Rincian Anggaran Negara</h2>
-               <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em]">National Fiscal Transparency Report</p>
+              <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em]">National Fiscal Transparency Report</p>
             </div>
           </div>
           <div className="flex items-center gap-4">

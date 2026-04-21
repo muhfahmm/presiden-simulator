@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { 
-  X, Sparkles, Music, Trophy, Users, ShieldCheck, 
-  Coins, TrendingUp, Clock, CheckCircle2, AlertCircle, Globe, 
+import {
+  X, Sparkles, Music, Trophy, Users, ShieldCheck,
+  Coins, TrendingUp, Clock, CheckCircle2, AlertCircle, Globe,
   Calendar, BarChart3, History, Eye, Landmark, Ship, Info
 } from "lucide-react";
 import { DATA_ACARA, acaraStorage, Acara } from "./acaraStorage";
@@ -42,7 +42,7 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
     const success = acaraStorage.executeAcara(acara.id, gameDate);
     if (success) {
       happinessStorage.addDirectHappiness(
-        acara.happinessBoost, 
+        acara.happinessBoost,
         `Berhasil menyelenggarakan ${acara.name}. Rakyat merasa sangat antusias dan bangga!`
       );
       setSelectedAcara(null);
@@ -61,14 +61,14 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
 
   // Filter acara berdasarkan kategori
   const categories = ["Semua", "Budaya", "Olahraga", "Sosial", "Militer"];
-  const filteredAcara = selectedCategory && selectedCategory !== "Semua" 
+  const filteredAcara = selectedCategory && selectedCategory !== "Semua"
     ? DATA_ACARA.filter(a => a.category === selectedCategory)
     : DATA_ACARA;
 
   return (
     <div className="absolute inset-0 bg-stone-900/40 z-50 flex items-center justify-center animate-in fade-in duration-300 p-6">
       <div className="bg-[#f3e9d8] border border-amber-800/20 rounded-[32px] w-full max-w-4xl max-h-[85vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
-        
+
         {/* Subtle Accents */}
         <div className="absolute top-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent blur-sm"></div>
         <div className="absolute -top-24 -left-24 w-64 h-64 bg-amber-600/5 rounded-full blur-[80px]"></div>
@@ -111,11 +111,10 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest whitespace-nowrap transition-all border ${
-                      (selectedCategory === cat || (!selectedCategory && cat === "Semua"))
+                    className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest whitespace-nowrap transition-all border ${(selectedCategory === cat || (!selectedCategory && cat === "Semua"))
                         ? 'bg-amber-800 text-white shadow-sm border-amber-800'
                         : 'bg-amber-800/5 text-amber-900/50 border-amber-800/10 hover:bg-amber-800/10'
-                    }`}
+                      }`}
                   >
                     {cat}
                   </button>
@@ -123,7 +122,7 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
               </div>
               <h3 className="text-[12px] font-black text-amber-950 uppercase tracking-[0.15em] leading-none italic">Program Tersedia</h3>
             </div>
-            
+
             <div className="flex-1 overflow-y-auto no-scrollbar p-3 space-y-2">
               {filteredAcara.map((acara) => {
                 const cooldown = acaraStorage.getCooldownStatus(acara.id, gameDate);
@@ -135,20 +134,18 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
                     key={acara.id}
                     onClick={() => !isLocked && setSelectedAcara(acara)}
                     disabled={isLocked}
-                    className={`w-full p-3 rounded-xl transition-all border ${
-                      selectedAcara?.id === acara.id
+                    className={`w-full p-3 rounded-xl transition-all border ${selectedAcara?.id === acara.id
                         ? 'bg-white shadow-sm border-amber-800/20'
                         : isLocked
                           ? 'opacity-40 cursor-not-allowed border-transparent'
                           : 'hover:bg-white/40 border-transparent cursor-pointer'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-start gap-2.5">
-                      <div className={`p-1.5 rounded-lg text-lg shrink-0 ${
-                        selectedAcara?.id === acara.id
+                      <div className={`p-1.5 rounded-lg text-lg shrink-0 ${selectedAcara?.id === acara.id
                           ? 'bg-amber-800 text-white'
                           : 'bg-amber-800/10 text-amber-900/60'
-                      }`}>
+                        }`}>
                         {acara.icon}
                       </div>
                       <div className="flex-1 text-left min-w-0">
@@ -176,11 +173,11 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
           {/* Area Utama - Detail Acara */}
           <div className="flex-1 bg-[#f3e9d8] p-8 lg:p-12 overflow-y-auto relative no-scrollbar">
             <div className="max-w-3xl mx-auto space-y-8">
-              
+
               {selectedAcara ? (() => {
                 const activeStatus = acaraStorage.getActiveStatus(selectedAcara.id, gameDate);
                 const canAfford = currentBudget >= selectedAcara.cost;
-                
+
                 return (
                   <>
                     {/* Header Detail */}
@@ -204,7 +201,7 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
                           Rp {selectedAcara.cost.toLocaleString()}
                         </div>
                       </div>
-                      
+
                       <div className="p-5 rounded-[2rem] bg-[#e7d9c1] border border-amber-800/10 flex flex-col items-center shadow-inner">
                         <div className="text-[9px] font-black text-amber-900/40 uppercase tracking-widest mb-1">Impact Rating</div>
                         <div className="text-2xl font-black italic text-emerald-700">
@@ -221,7 +218,7 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
                           <span className="text-[10px] font-black text-emerald-900">{Math.round(activeStatus.progress)}%</span>
                         </div>
                         <div className="h-2 w-full bg-emerald-800/10 rounded-full overflow-hidden">
-                          <div 
+                          <div
                             className="h-full bg-emerald-600 shadow-sm transition-all duration-1000"
                             style={{ width: `${activeStatus.progress}%` }}
                           />
@@ -231,21 +228,20 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
 
                     {/* Action Block */}
                     <div className="space-y-4 pt-4">
-                      <button 
+                      <button
                         disabled={currentBudget < selectedAcara.cost || activeStatus.isActive}
                         onClick={() => handleExecute(selectedAcara)}
-                        className={`w-full font-black py-5 rounded-2xl shadow-sm transition-all active:scale-95 uppercase text-[11px] tracking-[0.2em] italic border ${
-                          activeStatus.isActive
+                        className={`w-full font-black py-5 rounded-2xl shadow-sm transition-all active:scale-95 uppercase text-[11px] tracking-[0.2em] italic border ${activeStatus.isActive
                             ? 'bg-emerald-800/10 text-emerald-700 border-emerald-800/20'
                             : currentBudget < selectedAcara.cost
                               ? 'bg-stone-300 text-stone-500 border-transparent cursor-not-allowed'
                               : 'bg-amber-800 hover:bg-amber-700 text-white border-amber-800 shadow-lg'
-                        }`}
+                          }`}
                       >
                         {activeStatus.isActive ? "Acara Masih Berjalan" : currentBudget < selectedAcara.cost ? "Kas Tidak Mencukupi" : "Tanda Tangan Kebijakan"}
                       </button>
-                      
-                      <button 
+
+                      <button
                         onClick={() => setSelectedAcara(null)}
                         className="w-full text-amber-900/40 hover:text-amber-950 font-black py-2 rounded-xl transition-all cursor-pointer text-[10px] uppercase tracking-widest"
                       >
@@ -254,13 +250,13 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
                     </div>
 
                     <div className="p-5 bg-amber-800/5 rounded-2xl border border-amber-800/10 flex items-start gap-3">
-                       <Info size={14} className="text-amber-700 shrink-0 mt-0.5" />
-                       <p className="text-[10px] text-amber-950/60 font-bold leading-relaxed italic">
-                        {activeStatus.isActive 
+                      <Info size={14} className="text-amber-700 shrink-0 mt-0.5" />
+                      <p className="text-[10px] text-amber-950/60 font-bold leading-relaxed italic">
+                        {activeStatus.isActive
                           ? `Selesai pada: ${acaraStorage.getEndDate(formatGameDate(gameDate), selectedAcara.durationDays)}`
                           : `Program berdurasi ${selectedAcara.durationDays} hari dengan cooldown perulangan ${selectedAcara.cooldownDays} hari.`
                         }
-                       </p>
+                      </p>
                     </div>
                   </>
                 );

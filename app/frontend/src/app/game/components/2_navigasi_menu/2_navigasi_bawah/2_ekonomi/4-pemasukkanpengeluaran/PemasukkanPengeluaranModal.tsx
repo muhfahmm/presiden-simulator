@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, BarChart3, TrendingUp, TrendingDown, Landmark, PieChart, Coins, Shield, Zap, Building2, Activity, Info, Wallet, ArrowRight, Hammer, Users, Eye, EyeOff, ChevronLeft, Car, Home, Search } from "lucide-react"
+import { X, BarChart3, TrendingUp, TrendingDown, Landmark, PieChart, Coins, Shield, Zap, Building2, Activity, Info, Wallet, ArrowRight, Users, Eye, EyeOff, ChevronLeft, Car, Home, Search } from "lucide-react"
 import { countries } from "@/app/database/data/negara/benua/index"
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index"
 import { gameStorage } from "@/app/game/gamestorage"
@@ -9,14 +9,14 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage"
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage"
 
-import { 
-  KAPASITAS_LISTRIK_METADATA, 
-  mineralKritisRate, 
-  produkIndustriRate, 
-  komoditasPanganRate, 
-  produksiMiliter, 
-  infrastrukturRate,
-  sosialRate 
+import {
+   KAPASITAS_LISTRIK_METADATA,
+   mineralKritisRate,
+   produkIndustriRate,
+   komoditasPanganRate,
+   produksiMiliter,
+   infrastrukturRate,
+   sosialRate
 } from "@/app/database/data/semua_fitur_negara"
 
 import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMaintenance, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic"
@@ -30,418 +30,416 @@ import { calculateGoldMineRevenue } from "@/app/game/components/1_navbar/3_kas_n
 import { calculateTempatUmumRevenue, calculateTempatUmumMaintenance, getTempatUmumRevenueBreakdown, getTempatUmumMaintenanceBreakdown, getTempatUmumUnitCount, getDetailedTempatUmumBreakdown } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/logic/TempatUmumRevenueLogic"
 
 interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+   isOpen: boolean;
+   onClose: () => void;
 }
 
 export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalProps) {
-  const session = gameStorage.getSession();
-  const initialCountry = countries.find((c: CountryData) => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
+   const session = gameStorage.getSession();
+   const initialCountry = countries.find((c: CountryData) => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
 
-  const [currentBudget, setCurrentBudget] = useState<number>(0);
-  const [expandedItem, setExpandedItem] = useState<string | null>(null);
-  const [expData, setExpData] = useState(() => expenseStorage.getData(initialCountry.name_en, initialCountry));
-  const [incData, setIncData] = useState(incomeStorage.getData());
-  const [searchQuery, setSearchQuery] = useState("");
-  
-  // Visibility toggles for sections
-  const [showDomestic, setShowDomestic] = useState(true);
-  const [showTrade, setShowTrade] = useState(true);
-  const [showServices, setShowServices] = useState(true);
+   const [currentBudget, setCurrentBudget] = useState<number>(0);
+   const [expandedItem, setExpandedItem] = useState<string | null>(null);
+   const [expData, setExpData] = useState(() => expenseStorage.getData(initialCountry.name_en, initialCountry));
+   const [incData, setIncData] = useState(incomeStorage.getData());
+   const [searchQuery, setSearchQuery] = useState("");
 
-  useEffect(() => {
-    const update = () => {
+   // Visibility toggles for sections
+   const [showDomestic, setShowDomestic] = useState(true);
+   const [showTrade, setShowTrade] = useState(true);
+   const [showServices, setShowServices] = useState(true);
+
+   useEffect(() => {
+      const update = () => {
+         if (isOpen) {
+            setCurrentBudget(budgetStorage.getBudget());
+         }
+      };
+
+      const updateExpense = () => { if (isOpen) setExpData(expenseStorage.getData(initialCountry.name_en, initialCountry)); };
+      const updateIncome = () => { if (isOpen) setIncData(incomeStorage.getData()); };
+
       if (isOpen) {
-        setCurrentBudget(budgetStorage.getBudget());
+         update();
+         updateExpense();
+         updateIncome();
+         window.addEventListener('budget_storage_updated', update);
+         window.addEventListener('expense_storage_updated', updateExpense);
+         window.addEventListener('income_storage_updated', updateIncome);
       }
-    };
+      return () => {
+         window.removeEventListener('budget_storage_updated', update);
+         window.removeEventListener('expense_storage_updated', updateExpense);
+         window.removeEventListener('income_storage_updated', updateIncome);
+      };
+   }, [isOpen]);
 
-    const updateExpense = () => { if (isOpen) setExpData(expenseStorage.getData(initialCountry.name_en, initialCountry)); };
-    const updateIncome = () => { if (isOpen) setIncData(incomeStorage.getData()); };
+   if (!isOpen) return null;
 
-    if (isOpen) {
-      update();
-      updateExpense();
-      updateIncome();
-      window.addEventListener('budget_storage_updated', update);
-      window.addEventListener('expense_storage_updated', updateExpense);
-      window.addEventListener('income_storage_updated', updateIncome);
-    }
-    return () => {
-      window.removeEventListener('budget_storage_updated', update);
-      window.removeEventListener('expense_storage_updated', updateExpense);
-      window.removeEventListener('income_storage_updated', updateIncome);
-    };
-  }, [isOpen]);
+   // 1. Revenue â€” dynamic iteration same as PajakModal
+   const savedTaxes = taxStorage.getTaxes(initialCountry.name_en) || initialCountry.pajak;
+   const TRADE_KEYS = new Set(["bea_cukai", "transit_sekutu", "transit_non_sekutu", "tarif_ekspor", "tarif_impor"]);
+   const autoLabel = (key: string) => key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+   const allTaxKeys = Object.keys(savedTaxes as any);
+   const dynamicDomestic = allTaxKeys.filter(k => !TRADE_KEYS.has(k)).map(k => ({ id: k, label: autoLabel(k) }));
+   const dynamicTrade = allTaxKeys.filter(k => TRADE_KEYS.has(k)).map(k => ({ id: k, label: autoLabel(k) }));
 
-  if (!isOpen) return null;
+   const activeDomesticRevenue = dynamicDomestic.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0) / 365;
+   const activeTradeRevenue = dynamicTrade.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0) / 365;
 
-  // 1. Revenue â€” dynamic iteration same as PajakModal
-  const savedTaxes = taxStorage.getTaxes(initialCountry.name_en) || initialCountry.pajak;
-  const TRADE_KEYS = new Set(["bea_cukai", "transit_sekutu", "transit_non_sekutu", "tarif_ekspor", "tarif_impor"]);
-  const autoLabel = (key: string) => key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-  const allTaxKeys = Object.keys(savedTaxes as any);
-  const dynamicDomestic = allTaxKeys.filter(k => !TRADE_KEYS.has(k)).map(k => ({ id: k, label: autoLabel(k) }));
-  const dynamicTrade = allTaxKeys.filter(k => TRADE_KEYS.has(k)).map(k => ({ id: k, label: autoLabel(k) }));
+   // 2. Expenses
+   const buildingData = buildingStorage.getData();
 
-  const activeDomesticRevenue = dynamicDomestic.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0) / 365;
-  const activeTradeRevenue = dynamicTrade.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0) / 365;
+   const goldRevenue = calculateGoldMineRevenue(buildingData.buildingDeltas, initialCountry);
+   const serviceRevenue = calculateTempatUmumRevenue(buildingData.buildingDeltas, initialCountry);
 
-  // 2. Expenses
-  const buildingData = buildingStorage.getData();
+   // 3. PBB IMPACTS (Integrated multipliers)
+   const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(initialCountry.name_en);
 
-  const goldRevenue = calculateGoldMineRevenue(buildingData.buildingDeltas, initialCountry);
-  const serviceRevenue = calculateTempatUmumRevenue(buildingData.buildingDeltas, initialCountry);
+   const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue;
+   const isProtestan = religionStorage.getCurrentReligion(initialCountry.religion) === "Protestan";
 
-  // 3. PBB IMPACTS (Integrated multipliers)
-  const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(initialCountry.name_en);
-  
-  const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue;
-  const isProtestan = religionStorage.getCurrentReligion(initialCountry.religion) === "Protestan";
-  
-  // Apply Tax Sanction (-25%) & Trade Embargo impacts
-  const adjustedTradeRevenue = activeTradeRevenue * pbbMultipliers.trade * pbbMultipliers.tax;
-  const adjustedDomesticRevenue = activeDomesticRevenue * pbbMultipliers.tax;
-  
-  const dailyTaxRevenueAdjusted = adjustedDomesticRevenue + adjustedTradeRevenue;
-  const economicGrowthBonus = isProtestan ? dailyTaxRevenueAdjusted * PROTESTAN_GROWTH_BONUS : 0;
+   // Apply Tax Sanction (-25%) & Trade Embargo impacts
+   const adjustedTradeRevenue = activeTradeRevenue * pbbMultipliers.trade * pbbMultipliers.tax;
+   const adjustedDomesticRevenue = activeDomesticRevenue * pbbMultipliers.tax;
 
-  const incomeStatusColor = pbbImpactLogic.getStatusColor(pbbMultipliers.impactLevel, 'text-emerald-400');
+   const dailyTaxRevenueAdjusted = adjustedDomesticRevenue + adjustedTradeRevenue;
+   const economicGrowthBonus = isProtestan ? dailyTaxRevenueAdjusted * PROTESTAN_GROWTH_BONUS : 0;
 
-  // Breakdown functions for UI
-  const serviceBreakdown = getTempatUmumRevenueBreakdown(buildingData.buildingDeltas, initialCountry);
-  const maintenanceBreakdown = getTempatUmumMaintenanceBreakdown(buildingData.buildingDeltas, initialCountry);
-  const serviceUnitCount = getTempatUmumUnitCount(buildingData.buildingDeltas, initialCountry);
-  const serviceDetailedBreakdown = getDetailedTempatUmumBreakdown(buildingData.buildingDeltas, initialCountry);
+   const incomeStatusColor = pbbImpactLogic.getStatusColor(pbbMultipliers.impactLevel, 'text-emerald-400');
 
-  const getSatisfaction = (mult: number) => {
-    if (mult <= 2.0) { // Backward compatibility
-       if (mult <= 0.5) return 25;
-       if (mult <= 1.0) return 50;
-       if (mult <= 1.5) return 75;
-       return 100;
-    }
-    return mult; // Direct percentage (10-100)
-  };
-  const avgSatisfaction = 100; // Placeholder until new happiness system is implemented
+   // Breakdown functions for UI
+   const serviceBreakdown = getTempatUmumRevenueBreakdown(buildingData.buildingDeltas, initialCountry);
+   const serviceUnitCount = getTempatUmumUnitCount(buildingData.buildingDeltas, initialCountry);
+   const serviceDetailedBreakdown = getDetailedTempatUmumBreakdown(buildingData.buildingDeltas, initialCountry);
 
-  const allMetadata = [
-    ...Object.values(KAPASITAS_LISTRIK_METADATA),
-    ...Object.values(mineralKritisRate),
-    ...Object.values(produkIndustriRate),
-    ...Object.values(komoditasPanganRate),
-    ...Object.values(infrastrukturRate),
-    ...Object.values(sosialRate),
-    ...produksiMiliter
-  ];
+   const getSatisfaction = (mult: number) => {
+      if (mult <= 2.0) { // Backward compatibility
+         if (mult <= 0.5) return 25;
+         if (mult <= 1.0) return 50;
+         if (mult <= 1.5) return 75;
+         return 100;
+      }
+      return mult; // Direct percentage (10-100)
+   };
+   const avgSatisfaction = 100; // Placeholder until new happiness system is implemented
+
+   const allMetadata = [
+      ...Object.values(KAPASITAS_LISTRIK_METADATA),
+      ...Object.values(mineralKritisRate),
+      ...Object.values(produkIndustriRate),
+      ...Object.values(komoditasPanganRate),
+      ...Object.values(infrastrukturRate),
+      ...Object.values(sosialRate),
+      ...produksiMiliter
+   ];
 
 
 
-  const breakdown = calculateBudgetBreakdown(initialCountry, buildingData.buildingDeltas);
-  const rawDailyIncome = (breakdown.totalAnnualRevenue / breakdown.details.happinessImpact) / 365;
-  const totalDailyIncome = rawDailyIncome; // Show potential raw income
-  const totalDailyExpense = (breakdown.totalAnnualExpense / 365) + (totalDailyIncome * (1 - breakdown.details.happinessImpact));
+   const breakdown = calculateBudgetBreakdown(initialCountry, buildingData.buildingDeltas);
+   const rawDailyIncome = (breakdown.totalAnnualRevenue / breakdown.details.happinessImpact) / 365;
+   const totalDailyIncome = rawDailyIncome; // Show potential raw income
+   const totalDailyExpense = (breakdown.totalAnnualExpense / 365) + (totalDailyIncome * (1 - breakdown.details.happinessImpact));
 
-  // 3. Final Balance
-  const netDailySurplus = breakdown.dailyDelta;
-  const surplusPercentage = totalDailyIncome > 0 ? (netDailySurplus / totalDailyIncome) * 100 : 0;
-  
-  const expenseItems = [
+   // 3. Final Balance
+   const netDailySurplus = breakdown.dailyDelta;
+   const surplusPercentage = totalDailyIncome > 0 ? (netDailySurplus / totalDailyIncome) * 100 : 0;
+
+   const expenseItems = [
       ...(breakdown.expenses.debtInterest > 0 ? [{ id: "debt", label: "Bunga Hutang Luar Negeri", value: breakdown.expenses.debtInterest / 365, icon: Landmark, color: "text-rose-500", desc: "Biaya bunga atas pinjaman dana internasional." }] : []),
-      ...(breakdown.expenses.maintenance > 0 ? [{ id: "maintenance", label: "Pemeliharaan Fasilitas Umum", value: breakdown.expenses.maintenance, icon: Hammer, color: "text-rose-500", desc: "Biaya pemeliharaan harian untuk infrastruktur, pendidikan, dan kesehatan." }] : []),
       ...(breakdown.expenses.priceSubsidies > 0 ? [{ id: "subsidy", label: "Subsidi Harga Pasar", value: breakdown.expenses.priceSubsidies / 365, icon: TrendingDown, color: "text-rose-500", desc: "Biaya subsidi untuk menstabilkan harga bahan pokok dan energi." }] : []),
       ...(breakdown.details.societalPenalty > 0 ? [{ id: "homeless", label: "Beban Sosial & Tunawisma", value: breakdown.details.societalPenalty, icon: Home, color: "text-rose-500", desc: "Kerugian dan beban akibat tingkat tunawisma dan krisis perumahan." }] : []),
       ...(breakdown.details.happinessImpact < 1.0 ? [{ id: "unrest", label: "Inefisiensi Kepemimpinan", value: totalDailyIncome * (1 - breakdown.details.happinessImpact), icon: Users, color: "text-amber-500", desc: "Potensi pendapatan yang hilang akibat penurunan kepuasan publik." }] : [])
-  ];
+   ];
 
-  return (
-    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
-        
-        {/* Glow Effects */}
-        <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent blur-sm"></div>
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]"></div>
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
+   return (
+      <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
+         <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
 
-        {/* Header (Synchronized with EnergiModal) */}
-        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
-           <div className="flex items-center gap-3">
-              <div className="p-2 bg-purple-500/10 rounded-xl">
-                 <BarChart3 className="h-6 w-6 text-purple-500" />
-              </div>
-              <div>
-                 <h2 className="text-2xl font-bold text-white tracking-tight">Pemasukkan & Pengeluaran</h2>
-                 <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">Treasury & National Fiscal Management</p>
-              </div>
-           </div>
-           <div className="flex items-center gap-4">
-              <div className={`p-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-white flex items-center gap-3 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all ${pbbMultipliers.impactLevel !== 'clear' ? 'border-amber-500/30 ring-1 ring-amber-500/20' : ''}`}>
-                 <Activity className={`h-6 w-6 ${pbbMultipliers.impactLevel === 'embargoed' ? 'text-rose-500' : pbbMultipliers.impactLevel === 'sanctioned' ? 'text-amber-500' : 'text-emerald-500'}`} />
-                 <span className="text-[10px] font-black text-zinc-300 uppercase tracking-widest">
-                   Kesehatan Fiskal: 
-                   <span className={`ml-1 ${pbbMultipliers.impactLevel === 'embargoed' ? 'text-rose-500' : pbbMultipliers.impactLevel === 'sanctioned' ? 'text-amber-500 font-black' : 'text-emerald-500'}`}>
-                     {pbbMultipliers.impactLevel === 'embargoed' ? 'Kritis (Embargo)' : pbbMultipliers.impactLevel === 'sanctioned' ? 'Terbatas (Sanksi)' : 'Optimis'}
-                   </span>
-                 </span>
-              </div>
-              <button
-                 onClick={onClose}
-                 className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
-              >
-                 <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
-                 <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
-              </button>
-           </div>
-        </div>
-        
-        <div className="flex-1 overflow-y-auto p-10 no-scrollbar space-y-8 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.03),transparent_40%)]">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-             <div className="bg-zinc-900/40 border border-zinc-800 p-8 rounded-3xl flex flex-col gap-6 relative group overflow-hidden transition-all hover:bg-zinc-900/60 shadow-lg">
-                 <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><TrendingUp className="h-10 w-10 text-blue-400" /></div>
-                <div>
-                   <span className="text-xs font-black text-zinc-500 uppercase tracking-widest block mb-2">Total Kas Negara</span>
-                   <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-black text-white tracking-tight">{Math.round(currentBudget).toLocaleString('id-ID')}</span>
-                      {netDailySurplus !== 0 && (
-                         <span className={`text-sm font-black px-2 py-0.5 rounded-md ${netDailySurplus > 0 ? 'text-emerald-400 bg-emerald-500/10' : 'text-rose-400 bg-rose-500/10'}`}>
-                            {netDailySurplus > 0 ? '+' : ''}{Math.round(netDailySurplus).toLocaleString('id-ID')}
-                         </span>
-                      )}
-                   </div>
-                </div>
-                <div className="pt-4 border-t border-zinc-800 flex justify-between items-center">
-                   <span className="text-[13px] font-bold text-zinc-500 uppercase">Status</span>
-                   <span className="text-xs font-black text-blue-400 uppercase tracking-widest italic">Liquid</span>
-                </div>
-             </div>
-             <div className="bg-zinc-900/40 border border-zinc-800 p-8 rounded-3xl flex flex-col gap-6 relative group overflow-hidden transition-all hover:bg-zinc-900/60 shadow-lg">
-                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><PieChart className="h-10 w-10 text-blue-400" /></div>
-                <div>
-                   <span className="text-xs font-black text-zinc-500 uppercase tracking-widest block mb-2">Pendapatan Pajak</span>
-                   <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-black text-blue-400 tracking-tight">{Math.round(breakdown.dailyTaxRevenue).toLocaleString('id-ID')}</span>
-                      <span className="text-sm font-bold text-zinc-500 uppercase">/ Hari</span>
-                   </div>
-                </div>
-                <div className="pt-4 border-t border-zinc-800 flex justify-between items-center">
-                   <span className="text-[13px] font-bold text-zinc-500 uppercase">Konteks</span>
-                   <span className="text-xs font-black text-blue-400 uppercase tracking-widest italic">{initialCountry.name_id} v.1</span>
-                </div>
-             </div>
-          </div>
+            {/* Glow Effects */}
+            <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent blur-sm"></div>
+            <div className="absolute -top-24 -left-24 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]"></div>
+            <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-             {/* KOLOM 1: PENDAPATAN */}
-             <div className="bg-zinc-900/30 border border-zinc-800 rounded-[2rem] p-8 space-y-8 backdrop-blur-sm">
-                <div className="flex items-center justify-between">
-                   <h3 className="text-xl font-black text-white uppercase tracking-tighter italic flex items-center gap-3">
-                      <div className={`p-2 rounded-lg border ${pbbMultipliers.impactLevel !== 'clear' ? 'bg-amber-500/10 border-amber-500/20' : 'bg-emerald-500/10 border-emerald-500/20'}`}>
-                         <TrendingUp size={18} className={pbbMultipliers.impactLevel !== 'clear' ? 'text-amber-400' : 'text-emerald-400'} />
-                      </div>
-                      Pendapatan Harian
-                   </h3>
-                    <div className="flex items-center gap-2">
-                       <span className={`text-xs font-black ${incomeStatusColor}`}>+{Math.round(totalDailyIncome).toLocaleString('id-ID')}</span>
-                       {pbbMultipliers.impactLevel !== 'clear' && (
-                          <span className={`text-[10px] font-black italic px-1.5 py-0.5 rounded-md border animate-pulse ${pbbMultipliers.impactLevel === 'embargoed' ? 'text-rose-500 border-rose-500/30 bg-rose-500/10' : 'text-amber-500 border-amber-500/30 bg-amber-500/10'}`}>
-                             -{Math.round((1 - pbbMultipliers.tax) * 100)}%
-                          </span>
-                       )}
-                    </div>
-                </div>
-                                 <div className="space-y-4 max-h-[400px] overflow-y-auto no-scrollbar pr-2">
-                    {/* Domestic Taxes — dynamic */}
-                    {dynamicDomestic.length > 0 && (
-                    <div className="space-y-3">
-                       <div className="flex items-center justify-between px-1">
-                          <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block">Domestic Fiscal</span>
-                          <button 
-                             onClick={() => setShowDomestic(!showDomestic)}
-                             className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-all cursor-pointer group/btn"
-                             title={showDomestic ? "Sembunyikan" : "Tampilkan"}
-                          >
-                             {showDomestic ? <Eye size={14} className="group-hover/btn:scale-110 transition-transform" /> : <EyeOff size={14} className="group-hover/btn:scale-110 transition-transform" />}
-                          </button>
-                       </div>
-                       
-                       <div className={`space-y-3 overflow-hidden transition-all duration-700 ease-in-out ${showDomestic ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
-                          {dynamicDomestic.map((tax) => (
-                             <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
-                                <div className="flex items-center gap-3">
-                                   <Coins size={14} className="text-purple-400" />
-                                   <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{tax.label}</span>
-                                </div>
-                                <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
-                             </div>
-                          ))}
-                       </div>
-                    </div>
-                    )}
+            {/* Header (Synchronized with EnergiModal) */}
+            <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
+               <div className="flex items-center gap-3">
+                  <div className="p-2 bg-purple-500/10 rounded-xl">
+                     <BarChart3 className="h-6 w-6 text-purple-500" />
+                  </div>
+                  <div>
+                     <h2 className="text-2xl font-bold text-white tracking-tight">Pemasukkan & Pengeluaran</h2>
+                     <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">Treasury & National Fiscal Management</p>
+                  </div>
+               </div>
+               <div className="flex items-center gap-4">
+                  <div className={`p-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-white flex items-center gap-3 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all ${pbbMultipliers.impactLevel !== 'clear' ? 'border-amber-500/30 ring-1 ring-amber-500/20' : ''}`}>
+                     <Activity className={`h-6 w-6 ${pbbMultipliers.impactLevel === 'embargoed' ? 'text-rose-500' : pbbMultipliers.impactLevel === 'sanctioned' ? 'text-amber-500' : 'text-emerald-500'}`} />
+                     <span className="text-[10px] font-black text-zinc-300 uppercase tracking-widest">
+                        Kesehatan Fiskal:
+                        <span className={`ml-1 ${pbbMultipliers.impactLevel === 'embargoed' ? 'text-rose-500' : pbbMultipliers.impactLevel === 'sanctioned' ? 'text-amber-500 font-black' : 'text-emerald-500'}`}>
+                           {pbbMultipliers.impactLevel === 'embargoed' ? 'Kritis (Embargo)' : pbbMultipliers.impactLevel === 'sanctioned' ? 'Terbatas (Sanksi)' : 'Optimis'}
+                        </span>
+                     </span>
+                  </div>
+                  <button
+                     onClick={onClose}
+                     className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
+                  >
+                     <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+                     <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+                  </button>
+               </div>
+            </div>
 
-                    {/* Trade Taxes — dynamic */}
-                    {dynamicTrade.length > 0 && (
-                    <div className="space-y-3 mt-6">
-                       <div className="flex items-center justify-between px-1">
-                          <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block">Trade &amp; Logistics</span>
-                          <button 
-                             onClick={() => setShowTrade(!showTrade)}
-                             className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-all cursor-pointer group/btn"
-                             title={showTrade ? "Sembunyikan" : "Tampilkan"}
-                          >
-                             {showTrade ? <Eye size={14} className="group-hover/btn:scale-110 transition-transform" /> : <EyeOff size={14} className="group-hover/btn:scale-110 transition-transform" />}
-                          </button>
-                       </div>
+            <div className="flex-1 overflow-y-auto p-10 no-scrollbar space-y-8 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.03),transparent_40%)]">
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-zinc-900/40 border border-zinc-800 p-8 rounded-3xl flex flex-col gap-6 relative group overflow-hidden transition-all hover:bg-zinc-900/60 shadow-lg">
+                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><TrendingUp className="h-10 w-10 text-blue-400" /></div>
+                     <div>
+                        <span className="text-xs font-black text-zinc-500 uppercase tracking-widest block mb-2">Total Kas Negara</span>
+                        <div className="flex items-baseline gap-2">
+                           <span className="text-3xl font-black text-white tracking-tight">{Math.round(currentBudget).toLocaleString('id-ID')}</span>
+                           {netDailySurplus !== 0 && (
+                              <span className={`text-sm font-black px-2 py-0.5 rounded-md ${netDailySurplus > 0 ? 'text-emerald-400 bg-emerald-500/10' : 'text-rose-400 bg-rose-500/10'}`}>
+                                 {netDailySurplus > 0 ? '+' : ''}{Math.round(netDailySurplus).toLocaleString('id-ID')}
+                              </span>
+                           )}
+                        </div>
+                     </div>
+                     <div className="pt-4 border-t border-zinc-800 flex justify-between items-center">
+                        <span className="text-[13px] font-bold text-zinc-500 uppercase">Status</span>
+                        <span className="text-xs font-black text-blue-400 uppercase tracking-widest italic">Liquid</span>
+                     </div>
+                  </div>
+                  <div className="bg-zinc-900/40 border border-zinc-800 p-8 rounded-3xl flex flex-col gap-6 relative group overflow-hidden transition-all hover:bg-zinc-900/60 shadow-lg">
+                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><PieChart className="h-10 w-10 text-blue-400" /></div>
+                     <div>
+                        <span className="text-xs font-black text-zinc-500 uppercase tracking-widest block mb-2">Pendapatan Pajak</span>
+                        <div className="flex items-baseline gap-2">
+                           <span className="text-3xl font-black text-blue-400 tracking-tight">{Math.round(breakdown.dailyTaxRevenue).toLocaleString('id-ID')}</span>
+                           <span className="text-sm font-bold text-zinc-500 uppercase">/ Hari</span>
+                        </div>
+                     </div>
+                     <div className="pt-4 border-t border-zinc-800 flex justify-between items-center">
+                        <span className="text-[13px] font-bold text-zinc-500 uppercase">Konteks</span>
+                        <span className="text-xs font-black text-blue-400 uppercase tracking-widest italic">{initialCountry.name_id} v.1</span>
+                     </div>
+                  </div>
+               </div>
 
-                       <div className={`space-y-3 overflow-hidden transition-all duration-700 ease-in-out ${showTrade ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
-                          {dynamicTrade.map((tax) => (
-                             <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
-                                <div className="flex items-center gap-3">
-                                   <Landmark size={14} className="text-amber-400" />
-                                   <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{tax.label}</span>
-                                </div>
-                                <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
-                             </div>
-                          ))}
-
-                          {/* INJECTED: Sektor Komersial & Retail (Synchronized) */}
-                          <div className="pt-2">
-                            <div className="bg-zinc-950/50 border border-emerald-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-emerald-500/40 transition-all">
-                              <div className="flex items-center gap-3">
-                                <div className="p-1.5 bg-emerald-500/10 rounded-lg"><Building2 size={14} className="text-emerald-400" /></div>
-                                <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Komersial & Retail (Sync)</span>
-                              </div>
-                              <span className={`text-[13px] font-black ${serviceBreakdown.komersial > 0 ? 'text-emerald-400' : 'text-zinc-600'}`}>+{serviceBreakdown.komersial.toLocaleString('id-ID')}</span>
-                            </div>
-                            {serviceDetailedBreakdown.filter((d: any) => d.sector === 'komersial').map((item: any) => (
-                              <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
-                                <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
-                                <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
-                              </div>
-                            ))}
-                          </div>
-                       </div>
-                    </div>
-                    )}
-
-                    {/* Resources & Production Income */}
-                    {(() => {
-                      const baseGoldMine = parseInt((initialCountry.sektor_ekstraksi as any)?.emas) || 0;
-                      const builtGoldMine = buildingData.buildingDeltas["1_tambang_emas"] || 0;
-                      const totalGoldMineCount = baseGoldMine + builtGoldMine;
-                      const ortodoksBonus = religionStorage.getCurrentReligion(initialCountry.religion) === "Kristen Ortodoks" ? 0.1 : 0;
-                      return (
-                        <div className="space-y-2 mt-6">
-                           <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Resource & Production Revenue</span>
-                           <div className="bg-zinc-950/50 border border-amber-500/20 p-4 rounded-2xl flex justify-between items-center group hover:border-amber-500/40 transition-all shadow-[0_0_15px_rgba(245,158,11,0.05)]">
-                              <div className="flex items-center gap-3">
-                                 <div className="p-1.5 bg-amber-500/10 rounded-lg"><Coins size={14} className={totalGoldMineCount > 0 ? "text-amber-400" : "text-zinc-600"} /></div>
-                                 <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Total Tambang Emas ({totalGoldMineCount} Unit)</span>
-                              </div>
-                              <span className={`text-[13px] font-black ${totalGoldMineCount > 0 ? "text-amber-500" : "text-zinc-600"}`}>+{Math.round(goldRevenue * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
+               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* KOLOM 1: PENDAPATAN */}
+                  <div className="bg-zinc-900/30 border border-zinc-800 rounded-[2rem] p-8 space-y-8 backdrop-blur-sm">
+                     <div className="flex items-center justify-between">
+                        <h3 className="text-xl font-black text-white uppercase tracking-tighter italic flex items-center gap-3">
+                           <div className={`p-2 rounded-lg border ${pbbMultipliers.impactLevel !== 'clear' ? 'bg-amber-500/10 border-amber-500/20' : 'bg-emerald-500/10 border-emerald-500/20'}`}>
+                              <TrendingUp size={18} className={pbbMultipliers.impactLevel !== 'clear' ? 'text-amber-400' : 'text-emerald-400'} />
                            </div>
-                           
-                           {baseGoldMine > 0 && (
-                              <div className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
-                                <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">Aset Bawaan Negara ({baseGoldMine} Unit)</span>
-                                <span className="text-[11px] font-bold text-zinc-400">+{Math.round(baseGoldMine * 150 * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
-                              </div>
-                           )}
-                           {builtGoldMine > 0 && (
-                              <div className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
-                                <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">Aset Tambahan / Proyek Baru ({builtGoldMine} Unit)</span>
-                                <span className="text-[11px] font-bold text-zinc-400">+{Math.round(builtGoldMine * 150 * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
-                              </div>
-                           )}
-                           {ortodoksBonus > 0 && totalGoldMineCount > 0 && (
-                              <div className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-amber-500/20">
-                                <span className="text-[11px] font-bold text-amber-500/70 uppercase tracking-wider italic">Bonus Produksi Ortodoks (+10%)</span>
-                                <span className="text-[11px] font-black text-amber-500">+{Math.round((baseGoldMine + builtGoldMine) * 150 * ortodoksBonus * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
-                              </div>
+                           Pendapatan Harian
+                        </h3>
+                        <div className="flex items-center gap-2">
+                           <span className={`text-xs font-black ${incomeStatusColor}`}>+{Math.round(totalDailyIncome).toLocaleString('id-ID')}</span>
+                           {pbbMultipliers.impactLevel !== 'clear' && (
+                              <span className={`text-[10px] font-black italic px-1.5 py-0.5 rounded-md border animate-pulse ${pbbMultipliers.impactLevel === 'embargoed' ? 'text-rose-500 border-rose-500/30 bg-rose-500/10' : 'text-amber-500 border-amber-500/30 bg-amber-500/10'}`}>
+                                 -{Math.round((1 - pbbMultipliers.tax) * 100)}%
+                              </span>
                            )}
                         </div>
-                      );
-                    })()}
-
-                    {/* Services & Commercial Income Breakdown (Always Visible) */}
-                    <div className="space-y-3 mt-6">
-                      <div className="flex items-center justify-between px-1">
-                         <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block">Service & Commercial Sectors</span>
-                         <button 
-                            onClick={() => setShowServices(!showServices)}
-                            className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-all cursor-pointer group/btn"
-                            title={showServices ? "Sembunyikan" : "Tampilkan"}
-                         >
-                            {showServices ? <Eye size={14} className="group-hover/btn:scale-110 transition-transform" /> : <EyeOff size={14} className="group-hover/btn:scale-110 transition-transform" />}
-                         </button>
-                      </div>
-                      
-                      <div className={`space-y-3 overflow-hidden transition-all duration-700 ease-in-out ${showServices ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
-                        {/* Sektor Olahraga */}
-                        <div className="space-y-2">
-                          <div className="bg-zinc-950/50 border border-cyan-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-cyan-500/40 transition-all">
-                            <div className="flex items-center gap-3">
-                               <div className="p-1.5 bg-cyan-500/10 rounded-lg"><Activity size={14} className="text-cyan-400" /></div>
-                               <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Olahraga & Rekreasi ({serviceUnitCount.olahraga} Unit)</span>
-                            </div>
-                            <span className={`text-[13px] font-black ${serviceBreakdown.olahraga > 0 ? 'text-cyan-400' : 'text-zinc-600'}`}>+{serviceBreakdown.olahraga.toLocaleString('id-ID')}</span>
-                          </div>
-                          {serviceDetailedBreakdown.filter((d: any) => d.sector === 'olahraga').map((item: any) => (
-                            <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
-                              <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
-                              <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Sektor Hiburan */}
-                        <div className="space-y-2">
-                          <div className="bg-zinc-950/50 border border-purple-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-purple-500/40 transition-all">
-                            <div className="flex items-center gap-3">
-                               <div className="p-1.5 bg-purple-500/10 rounded-lg"><PieChart size={14} className="text-purple-400" /></div>
-                               <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Hiburan & Seni ({serviceUnitCount.hiburan} Unit)</span>
-                            </div>
-                            <span className={`text-[13px] font-black ${serviceBreakdown.hiburan > 0 ? 'text-purple-400' : 'text-zinc-600'}`}>+{serviceBreakdown.hiburan.toLocaleString('id-ID')}</span>
-                          </div>
-                          {serviceDetailedBreakdown.filter((d: any) => d.sector === 'hiburan').map((item: any) => (
-                            <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
-                              <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
-                              <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Protestant Economic Growth Bonus */}
-                        {isProtestan && economicGrowthBonus > 0 && (
-                          <div className="space-y-2 mt-4">
-                            <div className="bg-indigo-500/5 border border-indigo-500/20 p-4 rounded-2xl flex justify-between items-center group hover:border-indigo-500/40 transition-all shadow-[0_0_15px_rgba(99,102,241,0.05)]">
-                              <div className="flex items-center gap-3">
-                                <div className="p-1.5 bg-indigo-500/10 rounded-lg"><TrendingUp size={14} className="text-indigo-400" /></div>
-                                <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight italic">Pertumbuhan Ekonomi (Protestan)</span>
+                     </div>
+                     <div className="space-y-4 max-h-[400px] overflow-y-auto no-scrollbar pr-2">
+                        {/* Domestic Taxes — dynamic */}
+                        {dynamicDomestic.length > 0 && (
+                           <div className="space-y-3">
+                              <div className="flex items-center justify-between px-1">
+                                 <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block">Domestic Fiscal</span>
+                                 <button
+                                    onClick={() => setShowDomestic(!showDomestic)}
+                                    className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-all cursor-pointer group/btn"
+                                    title={showDomestic ? "Sembunyikan" : "Tampilkan"}
+                                 >
+                                    {showDomestic ? <Eye size={14} className="group-hover/btn:scale-110 transition-transform" /> : <EyeOff size={14} className="group-hover/btn:scale-110 transition-transform" />}
+                                 </button>
                               </div>
-                              <span className="text-[13px] font-black text-indigo-400">+{Math.round(economicGrowthBonus).toLocaleString('id-ID')}</span>
-                            </div>
-                            <div className="px-4 py-1.5 ml-4 border-l border-indigo-500/30">
-                              <p className="text-[10px] text-zinc-500 italic uppercase font-medium">Bonus 5% dari pendapatan fiskal harian.</p>
-                            </div>
-                          </div>
+
+                              <div className={`space-y-3 overflow-hidden transition-all duration-700 ease-in-out ${showDomestic ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+                                 {dynamicDomestic.map((tax) => (
+                                    <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
+                                       <div className="flex items-center gap-3">
+                                          <Coins size={14} className="text-purple-400" />
+                                          <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{tax.label}</span>
+                                       </div>
+                                       <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
+                                    </div>
+                                 ))}
+                              </div>
+                           </div>
                         )}
-                      </div>
-                    </div>
-                 </div>
-              </div>
 
-             {/* KOLOM 2: PENGELUARAN */}
-             <div className="bg-zinc-900/30 border border-zinc-800 rounded-[2rem] p-8 space-y-8 backdrop-blur-sm shadow-xl relative overflow-hidden">
-                <div className="flex items-center justify-between">
-                   <h3 className="text-xl font-black text-white uppercase tracking-tighter italic flex items-center gap-3">
-                      <div className="p-2 bg-red-500/10 rounded-lg border border-red-500/20"><TrendingDown size={18} className="text-red-400" /></div>
-                      Pengeluaran Harian
-                   </h3>
-                   <span className="text-xs font-black text-red-400">-{Math.round(totalDailyExpense).toLocaleString('id-ID')}</span>
-                </div>
-                
-                  <div className="space-y-3 max-h-[400px] overflow-y-auto no-scrollbar pr-2">
-                      {expenseItems.map((item: any, i: number) => (
+                        {/* Trade Taxes — dynamic */}
+                        {dynamicTrade.length > 0 && (
+                           <div className="space-y-3 mt-6">
+                              <div className="flex items-center justify-between px-1">
+                                 <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block">Trade &amp; Logistics</span>
+                                 <button
+                                    onClick={() => setShowTrade(!showTrade)}
+                                    className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-all cursor-pointer group/btn"
+                                    title={showTrade ? "Sembunyikan" : "Tampilkan"}
+                                 >
+                                    {showTrade ? <Eye size={14} className="group-hover/btn:scale-110 transition-transform" /> : <EyeOff size={14} className="group-hover/btn:scale-110 transition-transform" />}
+                                 </button>
+                              </div>
+
+                              <div className={`space-y-3 overflow-hidden transition-all duration-700 ease-in-out ${showTrade ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+                                 {dynamicTrade.map((tax) => (
+                                    <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
+                                       <div className="flex items-center gap-3">
+                                          <Landmark size={14} className="text-amber-400" />
+                                          <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{tax.label}</span>
+                                       </div>
+                                       <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
+                                    </div>
+                                 ))}
+
+                                 {/* INJECTED: Sektor Komersial & Retail (Synchronized) */}
+                                 <div className="pt-2">
+                                    <div className="bg-zinc-950/50 border border-emerald-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-emerald-500/40 transition-all">
+                                       <div className="flex items-center gap-3">
+                                          <div className="p-1.5 bg-emerald-500/10 rounded-lg"><Building2 size={14} className="text-emerald-400" /></div>
+                                          <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Komersial & Retail (Sync)</span>
+                                       </div>
+                                       <span className={`text-[13px] font-black ${serviceBreakdown.komersial > 0 ? 'text-emerald-400' : 'text-zinc-600'}`}>+{serviceBreakdown.komersial.toLocaleString('id-ID')}</span>
+                                    </div>
+                                    {serviceDetailedBreakdown.filter((d: any) => d.sector === 'komersial').map((item: any) => (
+                                       <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
+                                          <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
+                                          <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
+                                       </div>
+                                    ))}
+                                 </div>
+                              </div>
+                           </div>
+                        )}
+
+                        {/* Resources & Production Income */}
+                        {(() => {
+                           const baseGoldMine = parseInt((initialCountry.sektor_ekstraksi as any)?.emas) || 0;
+                           const builtGoldMine = buildingData.buildingDeltas["1_tambang_emas"] || 0;
+                           const totalGoldMineCount = baseGoldMine + builtGoldMine;
+                           const ortodoksBonus = religionStorage.getCurrentReligion(initialCountry.religion) === "Kristen Ortodoks" ? 0.1 : 0;
+                           return (
+                              <div className="space-y-2 mt-6">
+                                 <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Resource & Production Revenue</span>
+                                 <div className="bg-zinc-950/50 border border-amber-500/20 p-4 rounded-2xl flex justify-between items-center group hover:border-amber-500/40 transition-all shadow-[0_0_15px_rgba(245,158,11,0.05)]">
+                                    <div className="flex items-center gap-3">
+                                       <div className="p-1.5 bg-amber-500/10 rounded-lg"><Coins size={14} className={totalGoldMineCount > 0 ? "text-amber-400" : "text-zinc-600"} /></div>
+                                       <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Total Tambang Emas ({totalGoldMineCount} Unit)</span>
+                                    </div>
+                                    <span className={`text-[13px] font-black ${totalGoldMineCount > 0 ? "text-amber-500" : "text-zinc-600"}`}>+{Math.round(goldRevenue * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
+                                 </div>
+
+                                 {baseGoldMine > 0 && (
+                                    <div className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
+                                       <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">Aset Bawaan Negara ({baseGoldMine} Unit)</span>
+                                       <span className="text-[11px] font-bold text-zinc-400">+{Math.round(baseGoldMine * 150 * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
+                                    </div>
+                                 )}
+                                 {builtGoldMine > 0 && (
+                                    <div className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
+                                       <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">Aset Tambahan / Proyek Baru ({builtGoldMine} Unit)</span>
+                                       <span className="text-[11px] font-bold text-zinc-400">+{Math.round(builtGoldMine * 150 * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
+                                    </div>
+                                 )}
+                                 {ortodoksBonus > 0 && totalGoldMineCount > 0 && (
+                                    <div className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-amber-500/20">
+                                       <span className="text-[11px] font-bold text-amber-500/70 uppercase tracking-wider italic">Bonus Produksi Ortodoks (+10%)</span>
+                                       <span className="text-[11px] font-black text-amber-500">+{Math.round((baseGoldMine + builtGoldMine) * 150 * ortodoksBonus * pbbMultipliers.tax * pbbMultipliers.resource).toLocaleString('id-ID')}</span>
+                                    </div>
+                                 )}
+                              </div>
+                           );
+                        })()}
+
+                        {/* Services & Commercial Income Breakdown (Always Visible) */}
+                        <div className="space-y-3 mt-6">
+                           <div className="flex items-center justify-between px-1">
+                              <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block">Service & Commercial Sectors</span>
+                              <button
+                                 onClick={() => setShowServices(!showServices)}
+                                 className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-all cursor-pointer group/btn"
+                                 title={showServices ? "Sembunyikan" : "Tampilkan"}
+                              >
+                                 {showServices ? <Eye size={14} className="group-hover/btn:scale-110 transition-transform" /> : <EyeOff size={14} className="group-hover/btn:scale-110 transition-transform" />}
+                              </button>
+                           </div>
+
+                           <div className={`space-y-3 overflow-hidden transition-all duration-700 ease-in-out ${showServices ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+                              {/* Sektor Olahraga */}
+                              <div className="space-y-2">
+                                 <div className="bg-zinc-950/50 border border-cyan-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-cyan-500/40 transition-all">
+                                    <div className="flex items-center gap-3">
+                                       <div className="p-1.5 bg-cyan-500/10 rounded-lg"><Activity size={14} className="text-cyan-400" /></div>
+                                       <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Olahraga & Rekreasi ({serviceUnitCount.olahraga} Unit)</span>
+                                    </div>
+                                    <span className={`text-[13px] font-black ${serviceBreakdown.olahraga > 0 ? 'text-cyan-400' : 'text-zinc-600'}`}>+{serviceBreakdown.olahraga.toLocaleString('id-ID')}</span>
+                                 </div>
+                                 {serviceDetailedBreakdown.filter((d: any) => d.sector === 'olahraga').map((item: any) => (
+                                    <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
+                                       <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
+                                       <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
+                                    </div>
+                                 ))}
+                              </div>
+
+                              {/* Sektor Hiburan */}
+                              <div className="space-y-2">
+                                 <div className="bg-zinc-950/50 border border-purple-500/10 p-4 rounded-2xl flex justify-between items-center group hover:border-purple-500/40 transition-all">
+                                    <div className="flex items-center gap-3">
+                                       <div className="p-1.5 bg-purple-500/10 rounded-lg"><PieChart size={14} className="text-purple-400" /></div>
+                                       <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Sektor Hiburan & Seni ({serviceUnitCount.hiburan} Unit)</span>
+                                    </div>
+                                    <span className={`text-[13px] font-black ${serviceBreakdown.hiburan > 0 ? 'text-purple-400' : 'text-zinc-600'}`}>+{serviceBreakdown.hiburan.toLocaleString('id-ID')}</span>
+                                 </div>
+                                 {serviceDetailedBreakdown.filter((d: any) => d.sector === 'hiburan').map((item: any) => (
+                                    <div key={item.key} className="flex justify-between items-center px-4 py-1.5 ml-4 border-l border-zinc-900">
+                                       <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">{item.label} ({item.count} x {item.rate.toLocaleString('id-ID')})</span>
+                                       <span className="text-[11px] font-bold text-zinc-400">+{item.total.toLocaleString('id-ID')}</span>
+                                    </div>
+                                 ))}
+                              </div>
+
+                              {/* Protestant Economic Growth Bonus */}
+                              {isProtestan && economicGrowthBonus > 0 && (
+                                 <div className="space-y-2 mt-4">
+                                    <div className="bg-indigo-500/5 border border-indigo-500/20 p-4 rounded-2xl flex justify-between items-center group hover:border-indigo-500/40 transition-all shadow-[0_0_15px_rgba(99,102,241,0.05)]">
+                                       <div className="flex items-center gap-3">
+                                          <div className="p-1.5 bg-indigo-500/10 rounded-lg"><TrendingUp size={14} className="text-indigo-400" /></div>
+                                          <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight italic">Pertumbuhan Ekonomi (Protestan)</span>
+                                       </div>
+                                       <span className="text-[13px] font-black text-indigo-400">+{Math.round(economicGrowthBonus).toLocaleString('id-ID')}</span>
+                                    </div>
+                                    <div className="px-4 py-1.5 ml-4 border-l border-indigo-500/30">
+                                       <p className="text-[10px] text-zinc-500 italic uppercase font-medium">Bonus 5% dari pendapatan fiskal harian.</p>
+                                    </div>
+                                 </div>
+                              )}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  {/* KOLOM 2: PENGELUARAN */}
+                  <div className="bg-zinc-900/30 border border-zinc-800 rounded-[2rem] p-8 space-y-8 backdrop-blur-sm shadow-xl relative overflow-hidden">
+                     <div className="flex items-center justify-between">
+                        <h3 className="text-xl font-black text-white uppercase tracking-tighter italic flex items-center gap-3">
+                           <div className="p-2 bg-red-500/10 rounded-lg border border-red-500/20"><TrendingDown size={18} className="text-red-400" /></div>
+                           Pengeluaran Harian
+                        </h3>
+                        <span className="text-xs font-black text-red-400">-{Math.round(totalDailyExpense).toLocaleString('id-ID')}</span>
+                     </div>
+
+                     <div className="space-y-3 max-h-[400px] overflow-y-auto no-scrollbar pr-2">
+                        {expenseItems.map((item: any, i: number) => (
                            <div key={i} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl group transition-all hover:border-zinc-800 relative">
                               <div className="flex justify-between items-center mb-1">
                                  <div className="flex items-center gap-3">
@@ -463,147 +461,116 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                               )}
                            </div>
                         ))}
-                  </div>
+                     </div>
 
-                  {/* ABSOLUTE OVERLAY MENU DETAILS (Menutup Pendapatan & Pengeluaran) */}
-                  <div className={`absolute inset-0 bg-zinc-950/98 border border-zinc-800 rounded-[2rem] p-8 shadow-2xl transition-all duration-500 ease-in-out backdrop-blur-3xl z-30 flex flex-col ${expandedItem ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'}`}>
-                     <div className="flex items-center justify-between border-b border-zinc-900 pb-4 mb-6">
-                        <div className="flex items-center gap-4">
-                           <button onClick={() => setExpandedItem(null)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-all cursor-pointer">
-                              <ChevronLeft size={14} />
-                           </button>
-                            <div>
-                               <h3 className="text-xl font-black text-white uppercase tracking-tighter italic">
-                                  {expenseItems.find((item: any) => item.id === expandedItem)?.label || "Detail Kebijakan & Manajemen"}
-                               </h3>
-                              <p className="text-xs text-zinc-500 uppercase tracking-widest font-bold">Kustomisasi Anggaran Proyeksi</p>
+                     {/* ABSOLUTE OVERLAY MENU DETAILS (Menutup Pendapatan & Pengeluaran) */}
+                     <div className={`absolute inset-0 bg-zinc-950/98 border border-zinc-800 rounded-[2rem] p-8 shadow-2xl transition-all duration-500 ease-in-out backdrop-blur-3xl z-30 flex flex-col ${expandedItem ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'}`}>
+                        <div className="flex items-center justify-between border-b border-zinc-900 pb-4 mb-6">
+                           <div className="flex items-center gap-4">
+                              <button onClick={() => setExpandedItem(null)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-all cursor-pointer">
+                                 <ChevronLeft size={14} />
+                              </button>
+                              <div>
+                                 <h3 className="text-xl font-black text-white uppercase tracking-tighter italic">
+                                    {expenseItems.find((item: any) => item.id === expandedItem)?.label || "Detail Kebijakan & Manajemen"}
+                                 </h3>
+                                 <p className="text-xs text-zinc-500 uppercase tracking-widest font-bold">Kustomisasi Anggaran Proyeksi</p>
+                              </div>
                            </div>
+                        </div>
+
+                        <div className="flex-1 overflow-y-auto no-scrollbar space-y-6">
+                           {expandedItem === 'unrest' ? (
+                              <div className="space-y-6">
+                                 <div className="bg-amber-500/10 border border-amber-500/20 p-6 rounded-3xl space-y-4">
+                                    <div className="flex items-center gap-3">
+                                       <Users className="h-6 w-6 text-amber-500" />
+                                       <h4 className="text-sm font-black text-amber-400 uppercase tracking-widest">Kalkulasi Inefisiensi Kepuasan</h4>
+                                    </div>
+                                    <p className="text-[13px] text-amber-500/70 leading-relaxed font-medium">Berdasarkan mekanika simulasi, penurunan kepuasan publik di bawah 100% akan menyebabkan inefisiensi pada total perputaran ekonomi nasional harian akibat ketidakstabilan sipil dan perlambatan rantai pasok.</p>
+
+                                    <div className="pt-4 border-t border-amber-500/20 space-y-3">
+                                       <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
+                                          <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Potensi Maksimal Kasar</span>
+                                          <span className="text-sm font-black text-emerald-400">{Math.round(totalDailyIncome).toLocaleString('id-ID')} / Hari</span>
+                                       </div>
+                                       <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
+                                          <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Tingkat Kepuasan Publik</span>
+                                          <span className="text-sm font-black text-amber-400">{breakdown.details.satisfaction.toFixed(1)}%</span>
+                                       </div>
+                                       <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
+                                          <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Tingkat Efisiensi Ekonomi</span>
+                                          <span className="text-sm font-black text-amber-400">{Math.round(breakdown.details.happinessImpact * 100)}%</span>
+                                       </div>
+                                       <div className="flex justify-between items-center bg-rose-500/10 p-3 rounded-xl border border-rose-500/20 shadow-[0_0_15px_rgba(225,29,72,0.1)]">
+                                          <span className="text-xs font-black text-rose-400 uppercase tracking-wider items-center flex gap-2"><TrendingDown size={14} className="text-rose-500" /> Potensi Hilang Berjalan</span>
+                                          <span className="text-sm font-black text-rose-500">{Math.round(totalDailyIncome * (1 - breakdown.details.happinessImpact)).toLocaleString('id-ID')} / Hari</span>
+                                       </div>
+                                    </div>
+                                 </div>
+
+                                 <div className="bg-zinc-950/50 border border-zinc-900 p-6 rounded-3xl">
+                                    <h4 className="text-xs font-black text-zinc-500 uppercase tracking-widest mb-4">Saran Manajemen Strategis</h4>
+                                    <ul className="space-y-3">
+                                       <li className="text-[13px] text-zinc-400 flex items-start gap-2">
+                                          <span className="text-amber-500 mt-0.5">•</span>
+                                          Tingkatkan kepuasan drastis dengan membangun Fasilitas Umum (Hiburan, Komersial, Olahraga) yang disukai banyak rakyat.
+                                       </li>
+                                       <li className="text-[13px] text-zinc-400 flex items-start gap-2">
+                                          <span className="text-amber-500 mt-0.5">•</span>
+                                          Tinjau dan sesuaikan Pajak Domestik agar daya beli warga meningkat, hal ini membalikkan siklus ketidakpuasan.
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           ) : expandedItem ? (
+                              <div className="flex flex-col items-center justify-center h-full gap-3">
+                                 <Info size={24} className="text-zinc-600" />
+                                 <p className="text-xs text-zinc-500 italic">Rincian statis tidak memiliki kontrol manajemen saat ini.</p>
+                              </div>
+                           ) : null}
                         </div>
                      </div>
 
-                     <div className="flex-1 overflow-y-auto no-scrollbar space-y-6">
-                        {expandedItem === 'maintenance' ? (
-                           <div className="space-y-6">
-                              <div className="bg-rose-500/10 border border-rose-500/20 p-6 rounded-3xl space-y-4">
-                                 <div className="flex items-center gap-3">
-                                    <Hammer className="h-6 w-6 text-rose-500" />
-                                    <h4 className="text-sm font-black text-rose-400 uppercase tracking-widest">Rincian Pemeliharaan Fasilitas</h4>
-                                 </div>
-                                 <div className="pt-4 border-t border-rose-500/20 space-y-3">
-                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
-                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Infrastruktur</span>
-                                       <span className="text-sm font-black text-rose-400">-{maintenanceBreakdown.infrastruktur.toLocaleString('id-ID')}</span>
-                                    </div>
-                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
-                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Pendidikan</span>
-                                       <span className="text-sm font-black text-rose-400">-{maintenanceBreakdown.pendidikan.toLocaleString('id-ID')}</span>
-                                    </div>
-                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
-                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Kesehatan</span>
-                                       <span className="text-sm font-black text-rose-400">-{maintenanceBreakdown.kesehatan.toLocaleString('id-ID')}</span>
-                                    </div>
-                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
-                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Hukum & Keamanan</span>
-                                       <span className="text-sm font-black text-rose-400">-{maintenanceBreakdown.hukum.toLocaleString('id-ID')}</span>
-                                    </div>
-                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900 font-bold">
-                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Hunian & Pemukiman</span>
-                                       <span className="text-sm font-black text-rose-400">-{maintenanceBreakdown.hunian.toLocaleString('id-ID')}</span>
-                                    </div>
-                                 </div>
-                              </div>
+                     {/* Future Projection / Summary Card */}
+                     <div className="mt-6 bg-zinc-950/80 border border-zinc-800 p-6 rounded-3xl space-y-4">
+                        <div className="flex justify-between items-end">
+                           <span className="text-xs font-black text-zinc-500 uppercase tracking-widest">Kesehatan Arus Kas</span>
+                           <span className={`text-lg font-black ${netDailySurplus >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                              {Math.round(surplusPercentage)}% Surplus
+                           </span>
+                        </div>
+                        <div className="h-2 w-full bg-zinc-900 rounded-full overflow-hidden">
+                           <div className={`h-full transition-all duration-1000 ${netDailySurplus >= 0 ? 'bg-emerald-500' : 'bg-red-500'}`} style={{ width: `${Math.max(5, Math.min(100, Math.abs(surplusPercentage)))}%` }} />
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                           <div className="flex flex-col">
+                              <span className="text-xs text-zinc-500 uppercase font-bold">Proyeksi Lusa</span>
+                              <span className="text-xs font-black text-zinc-200">{(currentBudget + (netDailySurplus * 2)).toLocaleString('id-ID')}</span>
                            </div>
-                        ) : expandedItem === 'unrest' ? (
-                           <div className="space-y-6">
-                              <div className="bg-amber-500/10 border border-amber-500/20 p-6 rounded-3xl space-y-4">
-                                 <div className="flex items-center gap-3">
-                                    <Users className="h-6 w-6 text-amber-500" />
-                                    <h4 className="text-sm font-black text-amber-400 uppercase tracking-widest">Kalkulasi Inefisiensi Kepuasan</h4>
-                                 </div>
-                                 <p className="text-[13px] text-amber-500/70 leading-relaxed font-medium">Berdasarkan mekanika simulasi, penurunan kepuasan publik di bawah 100% akan menyebabkan inefisiensi pada total perputaran ekonomi nasional harian akibat ketidakstabilan sipil dan perlambatan rantai pasok.</p>
-                                 
-                                 <div className="pt-4 border-t border-amber-500/20 space-y-3">
-                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
-                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Potensi Maksimal Kasar</span>
-                                       <span className="text-sm font-black text-emerald-400">{Math.round(totalDailyIncome).toLocaleString('id-ID')} / Hari</span>
-                                    </div>
-                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
-                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Tingkat Kepuasan Publik</span>
-                                       <span className="text-sm font-black text-amber-400">{breakdown.details.satisfaction.toFixed(1)}%</span>
-                                    </div>
-                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
-                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Tingkat Efisiensi Ekonomi</span>
-                                       <span className="text-sm font-black text-amber-400">{Math.round(breakdown.details.happinessImpact * 100)}%</span>
-                                    </div>
-                                    <div className="flex justify-between items-center bg-rose-500/10 p-3 rounded-xl border border-rose-500/20 shadow-[0_0_15px_rgba(225,29,72,0.1)]">
-                                       <span className="text-xs font-black text-rose-400 uppercase tracking-wider items-center flex gap-2"><TrendingDown size={14} className="text-rose-500" /> Potensi Hilang Berjalan</span>
-                                       <span className="text-sm font-black text-rose-500">{Math.round(totalDailyIncome * (1 - breakdown.details.happinessImpact)).toLocaleString('id-ID')} / Hari</span>
-                                    </div>
-                                 </div>
-                              </div>
-                              
-                              <div className="bg-zinc-950/50 border border-zinc-900 p-6 rounded-3xl">
-                                 <h4 className="text-xs font-black text-zinc-500 uppercase tracking-widest mb-4">Saran Manajemen Strategis</h4>
-                                 <ul className="space-y-3">
-                                   <li className="text-[13px] text-zinc-400 flex items-start gap-2">
-                                      <span className="text-amber-500 mt-0.5">•</span> 
-                                      Tingkatkan kepuasan drastis dengan membangun Fasilitas Umum (Hiburan, Komersial, Olahraga) yang disukai banyak rakyat.
-                                   </li>
-                                   <li className="text-[13px] text-zinc-400 flex items-start gap-2">
-                                      <span className="text-amber-500 mt-0.5">•</span> 
-                                      Tinjau dan sesuaikan Pajak Domestik agar daya beli warga meningkat, hal ini membalikkan siklus ketidakpuasan.
-                                   </li>
-                                 </ul>
-                              </div>
+                           <div className="flex flex-col items-end">
+                              <span className="text-xs text-zinc-500 uppercase font-bold">Saldo Mingguan</span>
+                              <span className="text-xs font-black text-zinc-200">{(currentBudget + (netDailySurplus * 7)).toLocaleString('id-ID')}</span>
                            </div>
-                        ) : expandedItem ? (
-                           <div className="flex flex-col items-center justify-center h-full gap-3">
-                              <Info size={24} className="text-zinc-600" />
-                              <p className="text-xs text-zinc-500 italic">Rincian statis tidak memiliki kontrol manajemen saat ini.</p>
-                           </div>
-                        ) : null}
+                        </div>
                      </div>
                   </div>
-               
-                    {/* Future Projection / Summary Card */}
-                   <div className="mt-6 bg-zinc-950/80 border border-zinc-800 p-6 rounded-3xl space-y-4">
-                      <div className="flex justify-between items-end">
-                         <span className="text-xs font-black text-zinc-500 uppercase tracking-widest">Kesehatan Arus Kas</span>
-                         <span className={`text-lg font-black ${netDailySurplus >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                            {Math.round(surplusPercentage)}% Surplus
-                         </span>
-                      </div>
-                      <div className="h-2 w-full bg-zinc-900 rounded-full overflow-hidden">
-                         <div className={`h-full transition-all duration-1000 ${netDailySurplus >= 0 ? 'bg-emerald-500' : 'bg-red-500'}`} style={{ width: `${Math.max(5, Math.min(100, Math.abs(surplusPercentage)))}%` }} />
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                         <div className="flex flex-col">
-                            <span className="text-xs text-zinc-500 uppercase font-bold">Proyeksi Lusa</span>
-                            <span className="text-xs font-black text-zinc-200">{(currentBudget + (netDailySurplus * 2)).toLocaleString('id-ID')}</span>
-                         </div>
-                         <div className="flex flex-col items-end">
-                            <span className="text-xs text-zinc-500 uppercase font-bold">Saldo Mingguan</span>
-                            <span className="text-xs font-black text-zinc-200">{(currentBudget + (netDailySurplus * 7)).toLocaleString('id-ID')}</span>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-        
-        <div className="px-10 py-6 bg-zinc-900/30 border-t border-zinc-900 flex items-center justify-between backdrop-blur-3xl">
-           <div className="flex items-center gap-3">
-              <Info size={14} className="text-zinc-500" />
-              <p className="text-xs text-zinc-500 font-medium italic">Seluruh kalkulasi anggaran adalah proyeksi berbasis real-time data ekonomi nasional dan kebijakan fiskal aktif.</p>
-           </div>
-           <div className="flex items-center gap-6">
-              <div className="flex flex-col items-end">
-                 <span className="text-[13px] font-bold text-zinc-500 uppercase tracking-widest">Daily Net Change</span>
-                 <span className={`text-xs font-black ${netDailySurplus >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>{netDailySurplus >= 0 ? '+' : ''}{Math.round(netDailySurplus).toLocaleString('id-ID')}</span>
-              </div>
-           </div>
-        </div>
+               </div>
+            </div>
+
+            <div className="px-10 py-6 bg-zinc-900/30 border-t border-zinc-900 flex items-center justify-between backdrop-blur-3xl">
+               <div className="flex items-center gap-3">
+                  <Info size={14} className="text-zinc-500" />
+                  <p className="text-xs text-zinc-500 font-medium italic">Seluruh kalkulasi anggaran adalah proyeksi berbasis real-time data ekonomi nasional dan kebijakan fiskal aktif.</p>
+               </div>
+               <div className="flex items-center gap-6">
+                  <div className="flex flex-col items-end">
+                     <span className="text-[13px] font-bold text-zinc-500 uppercase tracking-widest">Daily Net Change</span>
+                     <span className={`text-xs font-black ${netDailySurplus >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>{netDailySurplus >= 0 ? '+' : ''}{Math.round(netDailySurplus).toLocaleString('id-ID')}</span>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
-  )
+   )
 }

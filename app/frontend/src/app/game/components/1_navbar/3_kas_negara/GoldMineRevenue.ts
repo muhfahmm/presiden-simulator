@@ -3,7 +3,7 @@
  * Each '1_tambang_emas' generates 150 in national budget per game day.
  */
 
-export const REVENUE_PER_GOLD_MINE = 150;
+export const REVENUE_PER_GOLD_MINE = 10;
 
 /**
  * Calculates the total revenue from all active gold mines (Base + Built).

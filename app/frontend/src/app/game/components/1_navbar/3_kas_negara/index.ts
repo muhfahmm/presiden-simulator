@@ -22,20 +22,20 @@ export const budgetStorage = {
   // Get all budget data, with migration fallback
   getData: (): BudgetData => {
     if (typeof window === 'undefined') return { anggaran: 0, cumulativeProduction: {} };
-    
+
     const stored = localStorage.getItem(BUDGET_STORAGE_KEY);
     const session = gameStorage.getSession() as any;
     const countryName = session?.country || localStorage.getItem("selectedCountry");
 
     // 1. If we have a session but data is missing or corrupted, initialize from DB
     if (countryName) {
-      const countryData = countries.find(c => 
-        c.name_en === countryName || 
-        c.name_id === countryName || 
+      const countryData = countries.find(c =>
+        c.name_en === countryName ||
+        c.name_id === countryName ||
         c.name_id.toLowerCase() === countryName.toLowerCase() ||
         c.name_en.toLowerCase() === countryName.toLowerCase()
       ) || countries[0];
-      
+
       const dbBudget = typeof countryData.anggaran === 'number' ? countryData.anggaran : 1240;
 
       if (stored) {
@@ -79,7 +79,7 @@ export const budgetStorage = {
   saveData: (data: BudgetData) => {
     if (typeof window === 'undefined') return;
     localStorage.setItem(BUDGET_STORAGE_KEY, JSON.stringify(data));
-    
+
     // Dispatch event for UI updates
     window.dispatchEvent(new Event('budget_storage_updated'));
   },
@@ -109,7 +109,7 @@ export const budgetStorage = {
   updateCumulativeProduction: (deltas: Record<string, number>, gameDate?: Date) => {
     const data = budgetStorage.getData();
     if (!data.cumulativeProduction) data.cumulativeProduction = {};
-    
+
     Object.entries(deltas).forEach(([key, amount]) => {
       const current = data.cumulativeProduction[key] || 0;
       data.cumulativeProduction[key] = current + amount;
@@ -118,7 +118,7 @@ export const budgetStorage = {
     if (gameDate) {
       data.lastProcessedDate = gameDate.toISOString();
     }
-    
+
     budgetStorage.saveData(data);
   }
 };
