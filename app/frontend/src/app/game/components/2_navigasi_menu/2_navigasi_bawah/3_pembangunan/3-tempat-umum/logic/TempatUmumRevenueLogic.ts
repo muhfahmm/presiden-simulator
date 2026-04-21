@@ -16,13 +16,13 @@ export const REVENUE_RATES: Record<string, number> = {
   "22_gokart_circuit": 300,
 
   // 6. Sektor Komersial & Retail (3 jenis)
-  "23_pusat_belanja": 3500,
-  "24_hotel": 2800,
-  "25_pusat_grosir_tekstil": 2200,
+  "23_pusat_belanja": 1750,
+  "24_hotel": 1400,
+  "25_pusat_grosir_tekstil": 1100,
 
   // 7. Sektor Hiburan & Seni (2 jenis)
-  "26_bioskop": 1100,
-  "27_gedung_teater": 900,
+  "26_bioskop": 550,
+  "27_gedung_teater": 450,
 };
 
 /**
