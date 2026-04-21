@@ -140,7 +140,7 @@ def simulate_trade_agreement_proposals(input_data):
         events.append({
             "type": "AI_TRADE_AGREEMENT_PROPOSAL",
             "source": proposer["country"],
-            "subject": f"tawaran kemitraan: dari {country_name}",
+            "subject": f"Tawaran Kemitraan Dagang: dari {country_name}",
             "content": (
                 f"Pemerintah {country_name} mengajak kemitraan perdagangan dengan negara kita "
                 f"untuk membuka akses pasar {commodities_text}."

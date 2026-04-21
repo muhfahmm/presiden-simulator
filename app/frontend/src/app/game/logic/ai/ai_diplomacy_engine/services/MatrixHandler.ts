@@ -1,4 +1,4 @@
-import { countries as centersData } from "@/app/database/data/negara/benua/index";
+import { countries as centersData } from "@/app/pilih_negara/data/negara/benua/index";
 
 export const RELATION_MATRIX_KEY = 'em_global_relation_matrix';
 
@@ -66,7 +66,7 @@ export const hardClearMatrix = () => {
 /**
  * Normalisasi ID Negara
  */
-const normalizeId = (name: string): string => {
+export const normalizeId = (name: string): string => {
     if (!name) return "";
     const cleanName = name.toLowerCase().trim();
     const found = centersData.find(c => 
@@ -87,7 +87,7 @@ const isDefaultNeutral = (entry: RelationEntry): boolean => {
 /**
  * Mendapatkan ID User yang sedang login
  */
-const getNormalizedUser = (): string => {
+export const getNormalizedUser = (): string => {
     const sessionRaw = localStorage.getItem("game_session");
     let userCountry = "Indonesia";
     try {
@@ -103,7 +103,7 @@ const getNormalizedUser = (): string => {
 let allRelations: any = null;
 const getAllRelations = async () => {
     if (allRelations) return allRelations;
-    const module = await import("@/app/database/data/database_hubungan_antar_negara");
+    const module = await import("@/app/pilih_negara/data/database_hubungan_antar_negara");
     allRelations = module.allRelations;
     return allRelations;
 };
@@ -122,6 +122,73 @@ export const initializeMatrixData = async () => {
         console.log("[AI-MATRIX] Initializing Database Sync...");
         const matrix: RelationMatrix = {};
         const database = await getAllRelations();
+        
+        // --- ADDED: DATABASE TRADE SYNC ---
+        const userCountryRaw = localStorage.getItem('selected_country') || "Indonesia";
+        const userCountryData = centersData.find((c: any) => 
+            c.name_id === userCountryRaw || 
+            c.name_en === userCountryRaw || 
+            (c as any).id === userCountryRaw
+        ) || centersData[0];
+
+        const { getInitialAgreements } = await import("@/app/pilih_negara/data/database_mitra_perdagangan/agreementsRegistry");
+        const defaultAgreements = getInitialAgreements(userCountryData.name_en, userCountryData.name_id || userCountryData.name_en);
+        
+        const activeTradePartners = new Set(
+            defaultAgreements
+                .filter(a => a.type === 'Perdagangan' && a.status === 'Aktif')
+                .map(a => normalizeId(a.mitra))
+        );
+        
+        // --- EMERGENCY MIGRATION: FINAL AUTO-ACTIVATION (v4) ---
+        const MIGRATION_VERSION = "em_matrix_v5_final_sync"; 
+        if (existing && existing !== "{}" && localStorage.getItem(MIGRATION_VERSION) !== "true") {
+            try {
+                const existingMatrix: RelationMatrix = JSON.parse(existing);
+                let migrationChanged = false;
+                
+                // Specific Blacklist for countries user mentioned as "annoying" ghosts
+                const manualBlacklist = new Set(["belarus", "republik_afrika_tengah", "maldives", "turkmenistan", "lebanon", "panama", "tanjung_verde"]);
+
+                Object.keys(existingMatrix).forEach(srcId => {
+                    Object.keys(existingMatrix[srcId]).forEach(trgId => {
+                        const entry = existingMatrix[srcId][trgId];
+                        const involvesUser = srcId === normalizedUser || trgId === normalizedUser;
+                        
+                        if (involvesUser) {
+                            const partnerId = srcId === normalizedUser ? trgId : srcId;
+                            const isOfficial = activeTradePartners.has(partnerId);
+                            const isBlacklisted = manualBlacklist.has(partnerId);
+                            
+                            // 1. Force Activate Official Partners
+                            if (isOfficial && entry.t === 0) {
+                                console.log(`[AI-MATRIX] Force activating official partner: ${partnerId}`);
+                                entry.t = 1;
+                                migrationChanged = true;
+                            }
+                            
+                            // 2. Force Deactivate Ghost/Blacklisted Partners
+                            if ((!isOfficial || isBlacklisted) && entry.t === 1) {
+                                console.log(`[AI-MATRIX] Wiping ghost trade partner: ${partnerId}`);
+                                entry.t = 0; 
+                                migrationChanged = true;
+                            }
+                        }
+                    });
+                });
+
+                if (migrationChanged) {
+                    console.log("[AI-MATRIX] 🚨 Emergency Migration v4: Matrix synchronized with official database.");
+                    saveGlobalRelationMatrix(existingMatrix);
+                    const freshData = localStorage.getItem(RELATION_MATRIX_KEY);
+                    if (freshData) inMemoryMatrix = JSON.parse(freshData);
+                }
+                localStorage.setItem(MIGRATION_VERSION, "true");
+            } catch (e) {
+                console.error("Migration failed", e);
+            }
+        }
+        // -------------------------------------------------------
 
         Object.keys(database).forEach(rawSourceId => {
             const sourceId = normalizeId(rawSourceId);
@@ -135,26 +202,27 @@ export const initializeMatrixData = async () => {
                     let score = rel.relation !== undefined ? rel.relation : 50;
                     
                     if (targetId === normalizedUser && !isFirstDay) {
-                        // Get the stored score for [source] seeing [target (user)]
                         score = getRelationScore(normalizedUser, score, sourceId);
                     }
                     
                     if (sourceId === normalizedUser && !isFirstDay) {
-                        // Get the stored score for [user] seeing [target]
                         score = getRelationScore(targetId, score, normalizedUser);
                     }
                     
+                    // --- REFINED: SYNC TRADE STATUS WITH DATABASE ---
+                    const isDefaultPartner = 
+                        (sourceId === normalizedUser && activeTradePartners.has(targetId)) ||
+                        (targetId === normalizedUser && activeTradePartners.has(sourceId));
+
                     const entry: RelationEntry = {
                         s: score,
                         e: score >= 60 ? 1 : 0,
                         p: score >= 70 ? 1 : 0,
                         a: score >= 85 ? 1 : 0,
-                        t: score >= 65 ? 1 : 0
+                        t: isDefaultPartner ? 1 : 0 // Set trade status from database, not score
                     };
+                    // ------------------------------------------------
 
-                    // HANYA simpan jika bukan netral murni (Sparse Matrix Optimization)
-                    // Pengecualian: Selalu simpan hubungan yang melibatkan USER (baik sebagai Source maupun Target) 
-                    // agar seluruh 206 negara bisa ter-update secara dinamis dari perspektif pemain.
                     const involvesUser = sourceId === normalizedUser || targetId === normalizedUser;
                     if (!isDefaultNeutral(entry) || involvesUser) {
                         matrix[sourceId][targetId] = entry;
@@ -187,12 +255,16 @@ export const saveGlobalRelationMatrix = (matrix: RelationMatrix) => {
                 // 1. Jika melibatkan USER (Source atau Target), WAJIB SIMPAN (Agar angka tidak stuck)
                 const involvesUser = sourceId === normalizedUser || targetId === normalizedUser;
                 
-                // 2. Jika antar NPC, hanya simpan jika:
+                // 2. KHUSUS MITRA DAGANG RESMI (DATABASE): Jangan hapus meskipun score netral
+                // Ini mencegah AI mengirim tawaran kemitraan ganda
+                const isOfficialPartner = involvesUser && entry.t === 1;
+
+                // 3. Jika antar NPC, hanya simpan jika:
                 //    - Skor ekstrim (< 35 atau > 65)
                 //    - Punya status (Embassy, Pact, Alliance, Trade)
                 const isSignificantNpcRelation = entry.s < 35 || entry.s > 65 || entry.e === 1 || entry.p === 1 || entry.a === 1 || entry.t === 1;
 
-                if (involvesUser || isSignificantNpcRelation) {
+                if (involvesUser || isSignificantNpcRelation || isOfficialPartner) {
                     prunedTargets[targetId] = entry;
                     hasContent = true;
                 }

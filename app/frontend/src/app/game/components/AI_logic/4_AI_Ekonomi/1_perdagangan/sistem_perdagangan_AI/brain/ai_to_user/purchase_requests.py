@@ -188,7 +188,7 @@ def simulate_purchase_requests(input_data):
         events.append({
             "type": "AI_TRADE_PURCHASE_REQUEST",
             "source": buyer["country"],
-            "subject": f"tawaran ekspor: {commodity_label} dari {country_name}",
+            "subject": f"Permintaan Ekspor: {commodity_label} ke {country_name}",
             "content": (
                 f"{country_name} ingin membeli {request_amount:,} unit {commodity_label} "
                 f"dengan harga premium {purchase_price:,}/unit (+{premium}%)."

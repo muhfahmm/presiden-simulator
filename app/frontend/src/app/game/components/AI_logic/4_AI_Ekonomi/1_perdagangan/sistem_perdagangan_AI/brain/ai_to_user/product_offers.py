@@ -190,7 +190,7 @@ def simulate_product_offers(input_data):
         events.append({
             "type": "AI_TRADE_PRODUCT_OFFER",
             "source": offerer["country"],
-            "subject": f"tawaran impor: {commodity_label} dari {country_name}",
+            "subject": f"Tawaran Impor: {commodity_label} dari {country_name}",
             "content": (
                 f"{country_name} menawarkan {amount:,} unit {commodity_label} "
                 f"dengan harga {offer_price:,}/unit (Diskon {discount}%)."

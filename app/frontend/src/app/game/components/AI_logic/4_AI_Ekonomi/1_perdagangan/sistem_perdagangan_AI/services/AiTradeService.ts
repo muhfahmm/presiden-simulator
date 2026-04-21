@@ -3,7 +3,7 @@
  * Jembatan antara Frontend (TypeScript) dan Otak AI (Python).
  * Dipanggil setiap hari game dari timeStorage.
  */
-import { getGlobalRelationMatrix, saveGlobalRelationMatrix } from '@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler';
+import { getGlobalRelationMatrix, saveGlobalRelationMatrix, normalizeId, getNormalizedUser } from '@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler';
 import { tradeStorage as diplomaticTradeStorage } from '@/app/game/components/modals/2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage';
 import { inboxStorage } from '@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage';
 import { newsStorage as globalNewsStorage } from '@/app/game/components/sidemenu/1_berita/newsStorage';
@@ -236,9 +236,37 @@ export const AiTradeService = {
                     } else {
                         // Check Weekly Inbox Limit (2 per week for trade category)
                         if (inboxStorage.canAddWeekly(event.category || 'trade', gameDate)) {
+                            // --- EMERGENCY GUARD: REJECT GHOST OFFERS ---
+                            const isTransactionalDeal = event.category === 'trade' && 
+                                ['AI_TRADE_PRODUCT_OFFER', 'AI_TRADE_PURCHASE_REQUEST', 'AI_TRADE_CONTRACT_PROPOSAL'].includes(event.type);
+                            
+                            if (isTransactionalDeal) {
+                                const srcId = normalizeId(event.source || '');
+                                const userKey = getNormalizedUser();
+                                
+                                // Whitelist Fallback from Database
+                                const sessionRaw = localStorage.getItem("game_session");
+                                let userCountryRaw = "Indonesia";
+                                try { if(sessionRaw) userCountryRaw = JSON.parse(sessionRaw).country || userCountryRaw; } catch(e) {}
+                                const userCountryData = countries.find((c: any) => c.name_id === userCountryRaw || c.name_en === userCountryRaw) || countries[0];
+                                const defaultAgreements = getInitialAgreements(userCountryData.name_en, userCountryData.name_id || userCountryData.name_en);
+                                
+                                const isOfficialPartner = defaultAgreements.some(a => 
+                                    a.type === 'Perdagangan' && a.status === 'Aktif' && normalizeId(a.mitra) === srcId
+                                );
+
+                                const isMatrixPartner = matrix[srcId]?.[userKey]?.t === 1 || matrix[userKey]?.[srcId]?.t === 1;
+
+                                if (!isOfficialPartner && !isMatrixPartner) {
+                                    console.warn(`[AI-TRADE] Rejected offer from non-partner: ${event.source}`);
+                                    return; // SKIP adding to inbox
+                                }
+                            }
+                            // --------------------------------------------
+
                             // Tawaran/request ke user → masuk Inbox
                             const safeSource = (event.source || 'Negara').toUpperCase();
-                            const isEmbassy = event.type === 'AI_EMBASSY_PROPOSAL' || event.category === 'embassy';
+                            const isEmbassy = event.type === 'AI_EMBASSY_PROPOSAL' || event.type === 'AI_TRADE_AGREEMENT_PROPOSAL' || event.category === 'embassy';
                             
                             let proposalLabel = 'PROPOSAL';
                             let metadata: { type: string, id: string } | undefined = undefined;
@@ -270,7 +298,7 @@ export const AiTradeService = {
                             
                             inboxStorage.addMessage({
                                 source: isEmbassy ? `Kementerian Luar Negeri (${safeSource})` : `Kementerian Perdagangan (${safeSource})`,
-                                category: (event.category as any) || 'trade',
+                                category: isEmbassy ? 'embassy' : ((event.category as any) || 'trade'),
                                 isProposal: true,
                                 proposalLabel: proposalLabel,
                                 subject: event.subject,

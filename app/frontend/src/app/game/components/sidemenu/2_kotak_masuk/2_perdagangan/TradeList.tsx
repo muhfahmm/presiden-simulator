@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Mail } from 'lucide-react';
 import { InboxItem } from '../inboxStorage';
 import { InboxCard } from '../shared/InboxCard';
+import { getGlobalRelationMatrix, getNormalizedUser, normalizeId } from '@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler';
+import { getInitialAgreements } from '@/app/pilih_negara/data/database_mitra_perdagangan/agreementsRegistry';
+import { countries as centersData } from '@/app/pilih_negara/data/negara/benua/index';
 
 interface TradeListProps {
   messages: InboxItem[];
@@ -20,33 +23,67 @@ export const TradeList: React.FC<TradeListProps> = ({
   tradePartners,
   searchTerm
 }) => {
-  const filteredMessages = messages
+  const filteredMessages = useMemo(() => {
+    // 1. Get current matrix and user info for strict filtering
+    const matrix = getGlobalRelationMatrix();
+    const userKey = getNormalizedUser();
+
+    // 2. Fetch official database partners as a whitelist fallback
+    const sessionRaw = localStorage.getItem("game_session");
+    let userCountryRaw = "Indonesia";
+    try {
+        if(sessionRaw) userCountryRaw = JSON.parse(sessionRaw).country || userCountryRaw;
+    } catch(e) {}
+    
+    const userCountryData = centersData.find((c: any) => 
+        c.name_id === userCountryRaw || c.name_en === userCountryRaw
+    ) || centersData[0];
+
+    const defaultAgreements = getInitialAgreements(userCountryData.name_en, userCountryData.name_id || userCountryData.name_en);
+    const officialPartnersSet = new Set(
+        defaultAgreements
+            .filter(a => a.type === 'Perdagangan' && a.status === 'Aktif')
+            .map(a => normalizeId(a.mitra))
+    );
+
+    return messages
     .filter(msg => msg.category === 'trade')
     .filter(msg => {
-      // System messages always pass (e.g. "Aktivasi Hub Perdagangan")
-      if (msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO') return true;
-      if (!msg.isProposal && !msg.source.includes('(')) return true;
-      
-      // ALWAYS allow agreement/partnership proposals from non-partners (critical for bootstrapping trade)
       const subj = msg.subject.toLowerCase();
-      const isPartnership = subj.includes('kemitraan') || subj.includes('perjanjian') || (msg.proposalLabel && msg.proposalLabel.toLowerCase().includes('kemitraan'));
+      const label = msg.proposalLabel || '';
       
-      // Also allow all trade proposals for now to ensure baseline offers are visible
-      if (msg.isProposal && (isPartnership || msg.category === 'trade')) return true;
+      // Basic type filters
+      const isExport = label === 'Proposal Permintaan Beli' || subj.includes('ekspor') || subj.includes('jual');
+      const isImport = label === 'Proposal Tawaran Produk' || subj.includes('impor') || subj.includes('beli');
+      const isPartnership = label.includes('Kemitraan') || subj.includes('kemitraan') || subj.includes('perjanjian dagang');
+      const isActivation = subj.includes('aktivasi');
+      const isContract = subj.includes('kontrak');
+      
+      if (!isExport && !isImport && !isActivation && !isPartnership) return false;
+      if (isContract) return false;
 
-      // Transaction offers with metadata always pass (from AI Python)
-      if (msg.metadata) return true;
+      // Exception for system activation messages
+      if (isActivation) return true;
+
+      // Extract country name from source (e.g. "Kementerian Perdagangan (MALAYSIA)")
+      const match = msg.source.match(/\(([^)]+)\)/);
+      const countryRaw = match ? match[1] : msg.source;
       
-      // Check if the source country is an active trade partner
-      const countryMatch = msg.source.match(/\(([^)]+)\)/);
-      if (!countryMatch) return true;
-      const sourceCountry = countryMatch[1].trim().toLowerCase();
-      return tradePartners.includes(sourceCountry);
+      // Clean up the extraction (handle cases like "Dinas Keuangan (Jepang)")
+      const cleanCountry = countryRaw.replace(/^[^(]*\(/, '').replace(/\)[^)]*$/, '').trim();
+      const partnerId = normalizeId(cleanCountry);
+      
+      // DOUBLE CHECK: Matrix OR Database Whitelist
+      const isOfficial = Array.from(officialPartnersSet).some(id => id === partnerId);
+      const isMatrixPartner = matrix[partnerId]?.[userKey]?.t === 1 || matrix[userKey]?.[partnerId]?.t === 1;
+      
+      return isOfficial || isMatrixPartner;
     })
     .filter(msg => 
       msg.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 
       msg.source.toLowerCase().includes(searchTerm.toLowerCase())
     );
+  }, [messages, searchTerm]);
 
   if (filteredMessages.length === 0) {
     return (
