@@ -9,7 +9,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     satuan: "MW",
     deskripsi: "PLTN (Fisi Nuklir)",
     waktu_pembangunan: 360,
-    biaya_pembangunan: 93750000, // Reduced from 125M
+    biaya_pembangunan: 10000000, // Reduced to 10M
     lowongan_kerja: 2500,
     konsumsi_listrik: 0,
     konsumsi_uranium: 5
@@ -21,7 +21,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     satuan: "MW",
     deskripsi: "PLTA (Hidroelektrik)",
     waktu_pembangunan: 180,
-    biaya_pembangunan: 26250000, // Reduced from 35M
+    biaya_pembangunan: 5000000, // Reduced to 5M
     lowongan_kerja: 800,
     konsumsi_listrik: 0
   },
@@ -32,7 +32,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     satuan: "MW",
     deskripsi: "PLTS (Panel Surya)",
     waktu_pembangunan: 45,
-    biaya_pembangunan: 6000000, // Reduced from 8M
+    biaya_pembangunan: 2000000, // Reduced to 2M
     lowongan_kerja: 200,
     konsumsi_listrik: 0
   },
@@ -43,7 +43,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     satuan: "MW",
     deskripsi: "PLTU (Tenaga Uap)",
     waktu_pembangunan: 120,
-    biaya_pembangunan: 18750000, // Reduced from 25M
+    biaya_pembangunan: 3000000, // Reduced to 3M
     lowongan_kerja: 1500,
     konsumsi_listrik: 0
   },
@@ -54,7 +54,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     satuan: "MW",
     deskripsi: "PLTG (Gas Alam)",
     waktu_pembangunan: 90,
-    biaya_pembangunan: 13500000, // Reduced from 18M
+    biaya_pembangunan: 3000000, // Reduced to 3M
     lowongan_kerja: 1000,
     konsumsi_listrik: 0
   },
@@ -65,7 +65,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     satuan: "MW",
     deskripsi: "PLTB (Angin)",
     waktu_pembangunan: 60,
-    biaya_pembangunan: 9000000, // Reduced from 12M
+    biaya_pembangunan: 1500000, // Reduced to 1.5M
     lowongan_kerja: 150,
     konsumsi_listrik: 0
   }

@@ -17,7 +17,7 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
 import { getBuildingRequirement, MaterialRequirement } from "../1-produksi/MaterialRequirement";
-import { REVENUE_RATES, getTempatUmumRevenueBreakdown } from "./logic/TempatUmumRevenueLogic";
+import { REVENUE_RATES, MAINTENANCE_RATES, getTempatUmumRevenueBreakdown, getTempatUmumMaintenanceBreakdown } from "./logic/TempatUmumRevenueLogic";
 import { getNationalHealthImpact } from "@/app/game/data/layanan_publik/kesehatan/healthLogic";
 import { getNationalSecurityImpact } from "@/app/game/data/layanan_publik/keamanan/securityLogic";
 // import HunianPemukiman from "./HunianPemukiman";
@@ -541,7 +541,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
                       {group.title} 
                       <span className="text-cyan-400 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span>
                     </h3>
-                    {['olahraga', 'komersial', 'hiburan'].includes(group.id) && (
+                    {['olahraga', 'komersial', 'hiburan'].includes(group.id) ? (
                       <div className="flex items-center gap-6 mt-1 flex-wrap">
                         <div className="flex items-center gap-1.5">
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">Pendapatan:</span>
@@ -550,6 +550,17 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
                         <div className="flex items-center gap-1.5 border-l border-zinc-800 pl-4">
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">Total Pendapatan Kas:</span>
                           <span className="text-[10px] font-black text-emerald-400 italic">Rp { (getTempatUmumRevenueBreakdown(buildingDeltas, currentData) as any)[group.id]?.toLocaleString('id-ID') } / hari</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-6 mt-1 flex-wrap">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">Biaya Pemeliharaan:</span>
+                          <span className="text-[10px] font-black text-rose-500 italic">-{ (getTempatUmumMaintenanceBreakdown(buildingDeltas, currentData) as any)[group.id === 'olahraga' || group.id === 'komersial' || group.id === 'hiburan' ? '' : group.id]?.toLocaleString('id-ID') } / hari</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 border-l border-zinc-800 pl-4">
+                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">Total Beban Anggaran:</span>
+                          <span className="text-[10px] font-black text-rose-400 italic">Rp { (getTempatUmumMaintenanceBreakdown(buildingDeltas, currentData) as any)[group.id === 'olahraga' || group.id === 'komersial' || group.id === 'hiburan' ? '' : group.id]?.toLocaleString('id-ID') } / hari</span>
                         </div>
                       </div>
                     )}
@@ -643,6 +654,12 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
                   <div className="flex items-center gap-3 mb-5 px-1">
                     <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>
                     <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title} <span className="text-cyan-400 ml-3 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span></h3>
+                    <div className="flex items-center gap-6 ml-6">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter italic">Beban Operasional:</span>
+                        <span className="text-[10px] font-black text-rose-500 italic">-{ (getTempatUmumMaintenanceBreakdown(buildingDeltas, currentData) as any)["hunian"]?.toLocaleString('id-ID') } / hari</span>
+                      </div>
+                    </div>
                     <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
                     <button onClick={() => toggleSector(group.id)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95">
                       {collapsedSectors.has(group.id) ? <EyeOff size={16} /> : <Eye size={16} className="text-cyan-400" />}
@@ -960,6 +977,27 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
                 </div>
                 <span className="text-[11px] font-bold text-emerald-400/70 uppercase">
                   Total Pendapatan Kas: {(item.count * REVENUE_RATES[item.key]).toLocaleString('id-ID')} / hari
+                </span>
+              </div>
+            </>
+          )}
+
+          {MAINTENANCE_RATES[item.key] > 0 && (
+            <>
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                  <TrendingDown size={12} className="text-rose-500/90" />
+                </div>
+                <span className="text-[12px] font-bold text-rose-500/80">
+                  Biaya Pemeliharaan: -{MAINTENANCE_RATES[item.key].toLocaleString('id-ID')} / hari
+                </span>
+              </div>
+              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                  <Activity size={12} className="text-rose-400/70" />
+                </div>
+                <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+                  Total Biaya Harian: -{(item.count * MAINTENANCE_RATES[item.key]).toLocaleString('id-ID')} / hari
                 </span>
               </div>
             </>

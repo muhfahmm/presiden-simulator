@@ -4,7 +4,7 @@ import { incomeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_
 import { expenseStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
 import { priceStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 import { calculateGoldMineRevenue } from "@/app/game/components/1_navbar/3_kas_negara/GoldMineRevenue";
-import { calculateTempatUmumRevenue } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/logic/TempatUmumRevenueLogic";
+import { calculateTempatUmumRevenue, calculateTempatUmumMaintenance } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/logic/TempatUmumRevenueLogic";
 import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/religionStorage";
 import { PROTESTAN_GROWTH_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/2_protestan/1_plus/plus";
 import { ideologyStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/ideologyStorage";
@@ -255,7 +255,7 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
 
   // 2. Expenses & Penalties
   const expData = expenseStorage.getData(countryData.name_en, countryData);
-  const maintenanceExpense = 0;
+  const maintenanceExpense = calculateTempatUmumMaintenance(buildingDeltas, countryData);
   const militaryExpense = 0; 
 
   // Price Subsidies Logic

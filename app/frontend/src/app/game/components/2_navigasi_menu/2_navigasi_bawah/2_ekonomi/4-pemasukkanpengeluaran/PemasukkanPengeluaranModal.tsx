@@ -27,7 +27,7 @@ import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { PROTESTAN_GROWTH_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/2_protestan/1_plus/plus";
 import { expenseStorage } from "./pengeluaran/ExpenseStorage"
 import { calculateGoldMineRevenue } from "@/app/game/components/1_navbar/3_kas_negara/GoldMineRevenue"
-import { calculateTempatUmumRevenue, getTempatUmumRevenueBreakdown, getTempatUmumUnitCount, getDetailedTempatUmumBreakdown } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/logic/TempatUmumRevenueLogic"
+import { calculateTempatUmumRevenue, calculateTempatUmumMaintenance, getTempatUmumRevenueBreakdown, getTempatUmumMaintenanceBreakdown, getTempatUmumUnitCount, getDetailedTempatUmumBreakdown } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/logic/TempatUmumRevenueLogic"
 
 interface ModalProps {
   isOpen: boolean;
@@ -110,6 +110,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
 
   // Breakdown functions for UI
   const serviceBreakdown = getTempatUmumRevenueBreakdown(buildingData.buildingDeltas, initialCountry);
+  const maintenanceBreakdown = getTempatUmumMaintenanceBreakdown(buildingData.buildingDeltas, initialCountry);
   const serviceUnitCount = getTempatUmumUnitCount(buildingData.buildingDeltas, initialCountry);
   const serviceDetailedBreakdown = getDetailedTempatUmumBreakdown(buildingData.buildingDeltas, initialCountry);
 
@@ -146,10 +147,11 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   const surplusPercentage = totalDailyIncome > 0 ? (netDailySurplus / totalDailyIncome) * 100 : 0;
   
   const expenseItems = [
-     ...(breakdown.expenses.debtInterest > 0 ? [{ id: "debt", label: "Bunga Hutang Luar Negeri", value: breakdown.expenses.debtInterest / 365, icon: Landmark, color: "text-rose-500", desc: "Biaya bunga atas pinjaman dana internasional." }] : []),
-     ...(breakdown.expenses.priceSubsidies > 0 ? [{ id: "subsidy", label: "Subsidi Harga Pasar", value: breakdown.expenses.priceSubsidies / 365, icon: TrendingDown, color: "text-rose-500", desc: "Biaya subsidi untuk menstabilkan harga bahan pokok dan energi." }] : []),
-     ...(breakdown.details.societalPenalty > 0 ? [{ id: "homeless", label: "Beban Sosial & Tunawisma", value: breakdown.details.societalPenalty, icon: Home, color: "text-rose-500", desc: "Kerugian dan beban akibat tingkat tunawisma dan krisis perumahan." }] : []),
-     ...(breakdown.details.happinessImpact < 1.0 ? [{ id: "unrest", label: "Inefisiensi Kepemimpinan", value: totalDailyIncome * (1 - breakdown.details.happinessImpact), icon: Users, color: "text-amber-500", desc: "Potensi pendapatan yang hilang akibat penurunan kepuasan publik." }] : [])
+      ...(breakdown.expenses.debtInterest > 0 ? [{ id: "debt", label: "Bunga Hutang Luar Negeri", value: breakdown.expenses.debtInterest / 365, icon: Landmark, color: "text-rose-500", desc: "Biaya bunga atas pinjaman dana internasional." }] : []),
+      ...(breakdown.expenses.maintenance > 0 ? [{ id: "maintenance", label: "Pemeliharaan Fasilitas Umum", value: breakdown.expenses.maintenance, icon: Hammer, color: "text-rose-500", desc: "Biaya pemeliharaan harian untuk infrastruktur, pendidikan, dan kesehatan." }] : []),
+      ...(breakdown.expenses.priceSubsidies > 0 ? [{ id: "subsidy", label: "Subsidi Harga Pasar", value: breakdown.expenses.priceSubsidies / 365, icon: TrendingDown, color: "text-rose-500", desc: "Biaya subsidi untuk menstabilkan harga bahan pokok dan energi." }] : []),
+      ...(breakdown.details.societalPenalty > 0 ? [{ id: "homeless", label: "Beban Sosial & Tunawisma", value: breakdown.details.societalPenalty, icon: Home, color: "text-rose-500", desc: "Kerugian dan beban akibat tingkat tunawisma dan krisis perumahan." }] : []),
+      ...(breakdown.details.happinessImpact < 1.0 ? [{ id: "unrest", label: "Inefisiensi Kepemimpinan", value: totalDailyIncome * (1 - breakdown.details.happinessImpact), icon: Users, color: "text-amber-500", desc: "Potensi pendapatan yang hilang akibat penurunan kepuasan publik." }] : [])
   ];
 
   return (
@@ -480,7 +482,38 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                      </div>
 
                      <div className="flex-1 overflow-y-auto no-scrollbar space-y-6">
-                        {expandedItem === 'unrest' ? (
+                        {expandedItem === 'maintenance' ? (
+                           <div className="space-y-6">
+                              <div className="bg-rose-500/10 border border-rose-500/20 p-6 rounded-3xl space-y-4">
+                                 <div className="flex items-center gap-3">
+                                    <Hammer className="h-6 w-6 text-rose-500" />
+                                    <h4 className="text-sm font-black text-rose-400 uppercase tracking-widest">Rincian Pemeliharaan Fasilitas</h4>
+                                 </div>
+                                 <div className="pt-4 border-t border-rose-500/20 space-y-3">
+                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
+                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Infrastruktur</span>
+                                       <span className="text-sm font-black text-rose-400">-{maintenanceBreakdown.infrastruktur.toLocaleString('id-ID')}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
+                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Pendidikan</span>
+                                       <span className="text-sm font-black text-rose-400">-{maintenanceBreakdown.pendidikan.toLocaleString('id-ID')}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
+                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Kesehatan</span>
+                                       <span className="text-sm font-black text-rose-400">-{maintenanceBreakdown.kesehatan.toLocaleString('id-ID')}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900">
+                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Hukum & Keamanan</span>
+                                       <span className="text-sm font-black text-rose-400">-{maintenanceBreakdown.hukum.toLocaleString('id-ID')}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center bg-zinc-950/50 p-3 rounded-xl border border-zinc-900 font-bold">
+                                       <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Hunian & Pemukiman</span>
+                                       <span className="text-sm font-black text-rose-400">-{maintenanceBreakdown.hunian.toLocaleString('id-ID')}</span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        ) : expandedItem === 'unrest' ? (
                            <div className="space-y-6">
                               <div className="bg-amber-500/10 border border-amber-500/20 p-6 rounded-3xl space-y-4">
                                  <div className="flex items-center gap-3">

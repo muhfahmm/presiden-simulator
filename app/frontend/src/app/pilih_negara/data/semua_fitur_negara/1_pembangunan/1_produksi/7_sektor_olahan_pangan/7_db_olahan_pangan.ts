@@ -9,7 +9,7 @@ export const olahanPanganRate = {
     produksi: 250000,
     satuan: "LITER",
     waktu_pembangunan: 7,
-    biaya_pembangunan: 15000000, // Reduced from 20M
+    biaya_pembangunan: 1500000, // Reduced to 1.5M
     lowongan_kerja: 4500,
     konsumsi_listrik: 35
   },
@@ -20,7 +20,7 @@ export const olahanPanganRate = {
     produksi: 45000,
     satuan: "TON",
     waktu_pembangunan: 20,
-    biaya_pembangunan: 48750000, // Reduced from 65M
+    biaya_pembangunan: 5500000, // Reduced to 5.5M
     lowongan_kerja: 8000,
     konsumsi_listrik: 95
   },
@@ -31,7 +31,7 @@ export const olahanPanganRate = {
     produksi: 150000,
     satuan: "UNIT",
     waktu_pembangunan: 7,
-    biaya_pembangunan: 13500000, // Reduced from 18M
+    biaya_pembangunan: 1400000, // Reduced to 1.4M
     lowongan_kerja: 3500,
     konsumsi_listrik: 42
   },
@@ -42,7 +42,7 @@ export const olahanPanganRate = {
     produksi: 12000,
     satuan: "TON",
     waktu_pembangunan: 30,
-    biaya_pembangunan: 56250000, // Reduced from 75M
+    biaya_pembangunan: 6000000, // Reduced to 6M
     lowongan_kerja: 6500,
     konsumsi_listrik: 120
   },
@@ -53,7 +53,7 @@ export const olahanPanganRate = {
     produksi: 550000,
     satuan: "UNIT",
     waktu_pembangunan: 15,
-    biaya_pembangunan: 33750000, // Reduced from 45M
+    biaya_pembangunan: 3500000, // Reduced to 3.5M
     lowongan_kerja: 7500,
     konsumsi_listrik: 85
   },
@@ -64,7 +64,7 @@ export const olahanPanganRate = {
     produksi: 95000,
     satuan: "TON",
     waktu_pembangunan: 20,
-    biaya_pembangunan: 41250000, // Reduced from 55M
+    biaya_pembangunan: 4500000, // Reduced to 4.5M
     lowongan_kerja: 6000,
     konsumsi_listrik: 75
   },
@@ -75,7 +75,7 @@ export const olahanPanganRate = {
     produksi: 180000,
     satuan: "LITER",
     waktu_pembangunan: 10,
-    biaya_pembangunan: 26250000, // Reduced from 35M
+    biaya_pembangunan: 2800000, // Reduced to 2.8M
     lowongan_kerja: 5000,
     konsumsi_listrik: 60
   },
@@ -86,7 +86,7 @@ export const olahanPanganRate = {
     produksi: 85000,
     satuan: "TON",
     waktu_pembangunan: 10,
-    biaya_pembangunan: 18750000, // Reduced from 25M
+    biaya_pembangunan: 2000000, // Reduced to 2M
     lowongan_kerja: 4500,
     konsumsi_listrik: 55
   },
@@ -97,7 +97,7 @@ export const olahanPanganRate = {
     produksi: 25000,
     satuan: "TON",
     waktu_pembangunan: 10,
-    biaya_pembangunan: 24000000, // Reduced from 32M
+    biaya_pembangunan: 2500000, // Reduced to 2.5M
     lowongan_kerja: 5500,
     konsumsi_listrik: 65
   },
@@ -108,7 +108,7 @@ export const olahanPanganRate = {
     produksi: 35000,
     satuan: "KG",
     waktu_pembangunan: 7,
-    biaya_pembangunan: 11250000, // Reduced from 15M
+    biaya_pembangunan: 1200000, // Reduced to 1.2M
     lowongan_kerja: 4000,
     konsumsi_listrik: 45
   }
