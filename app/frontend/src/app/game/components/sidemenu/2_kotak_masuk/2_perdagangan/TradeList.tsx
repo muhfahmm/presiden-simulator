@@ -49,35 +49,21 @@ export const TradeList: React.FC<TradeListProps> = ({
     return messages
     .filter(msg => msg.category === 'trade')
     .filter(msg => {
+      // Basic type filters
       const subj = msg.subject.toLowerCase();
       const label = msg.proposalLabel || '';
       
-      // Basic type filters
       const isExport = label === 'Proposal Permintaan Beli' || subj.includes('ekspor') || subj.includes('jual');
       const isImport = label === 'Proposal Tawaran Produk' || subj.includes('impor') || subj.includes('beli');
       const isPartnership = label.includes('Kemitraan') || subj.includes('kemitraan') || subj.includes('perjanjian dagang');
       const isActivation = subj.includes('aktivasi');
       const isContract = subj.includes('kontrak');
       
-      if (!isExport && !isImport && !isActivation && !isPartnership) return false;
+      // We allow all trade category messages that were not blocked at storage level
+      // except for certain special types if needed.
       if (isContract) return false;
-
-      // Exception for system activation messages
-      if (isActivation) return true;
-
-      // Extract country name from source (e.g. "Kementerian Perdagangan (MALAYSIA)")
-      const match = msg.source.match(/\(([^)]+)\)/);
-      const countryRaw = match ? match[1] : msg.source;
       
-      // Clean up the extraction (handle cases like "Dinas Keuangan (Jepang)")
-      const cleanCountry = countryRaw.replace(/^[^(]*\(/, '').replace(/\)[^)]*$/, '').trim();
-      const partnerId = normalizeId(cleanCountry);
-      
-      // DOUBLE CHECK: Matrix OR Database Whitelist
-      const isOfficial = Array.from(officialPartnersSet).some(id => id === partnerId);
-      const isMatrixPartner = matrix[partnerId]?.[userKey]?.t === 1 || matrix[userKey]?.[partnerId]?.t === 1;
-      
-      return isOfficial || isMatrixPartner;
+      return isExport || isImport || isActivation || isPartnership;
     })
     .filter(msg => 
       msg.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 

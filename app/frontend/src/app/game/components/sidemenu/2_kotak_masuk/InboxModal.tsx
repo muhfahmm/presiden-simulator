@@ -9,9 +9,9 @@ import {
 } from 'lucide-react';
 import { inboxStorage, InboxItem } from './inboxStorage';
 import { embassyStorage } from '../../modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage';
-import { getInitialAgreements } from '@/app/database/data/database_mitra_perdagangan/agreementsRegistry';
-import { countries as centersData } from '@/app/database/data/negara/benua/index';
-import { getGlobalRelationMatrix, getNormalizedUser, normalizeId } from '../../../logic/ai/ai_diplomacy_engine/services/MatrixHandler';
+import { getInitialAgreements } from '@/app/pilih_negara/data/database_mitra_perdagangan/agreementsRegistry';
+import { countries as centersData } from '@/app/pilih_negara/data/negara/benua/index';
+import { getGlobalRelationMatrix, getNormalizedUser, normalizeId } from '@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler';
 import { relationStorage } from '../../modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage';
 import { unSecurityCouncilStorage } from '../../2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage';
 
@@ -77,44 +77,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
 
       if (msg.category === 'finance') counts.finance++;
       else if (msg.category === 'trade') {
-        const matrix = getGlobalRelationMatrix();
-        const userKey = getNormalizedUser();
-        const subj = msg.subject.toLowerCase();
-        const label = msg.proposalLabel || '';
-        const isExport = label === 'Proposal Permintaan Beli' || subj.includes('ekspor');
-        const isImport = label === 'Proposal Tawaran Produk' || subj.includes('impor');
-        const isActivation = subj.includes('aktivasi');
-        const isContract = subj.includes('kontrak');
-        
-        if ((isExport || isImport || isActivation) && !isContract) {
-          if (isActivation) {
-            counts.trade++;
-          } else {
-            const match = msg.source.match(/\(([^)]+)\)/);
-            const countryRaw = match ? match[1] : msg.source;
-            const partnerId = normalizeId(countryRaw);
-            
-            // 2. Fetch official database partners as a whitelist fallback
-            const sessionRaw = localStorage.getItem("game_session");
-            let userCountryRaw = "Indonesia";
-            try {
-                if(sessionRaw) userCountryRaw = JSON.parse(sessionRaw).country || userCountryRaw;
-            } catch(e) {}
-            
-            const userCountryData = centersData.find((c: any) => 
-                c.name_id === userCountryRaw || c.name_en === userCountryRaw
-            ) || centersData[0];
-
-            const defaultAgreements = getInitialAgreements(userCountryData.name_en, userCountryData.name_id || userCountryData.name_en);
-            const isOfficialPartner = defaultAgreements.some(a => 
-                a.type === 'Perdagangan' && a.status === 'Aktif' && normalizeId(a.mitra) === partnerId
-            );
-
-            const isMatrixPartner = matrix[partnerId]?.[userKey]?.t === 1 || matrix[userKey]?.[partnerId]?.t === 1;
-            
-            if (isOfficialPartner || isMatrixPartner) counts.trade++;
-          }
-        }
+        counts.trade++;
       }
       else if (msg.category === 'embassy') counts.embassy++;
       else if (msg.category === 'pact') counts.pact++;
