@@ -5,7 +5,8 @@ import {
   X, 
   Mail, 
   Building2, 
-  Search
+  Search,
+  Trash2
 } from 'lucide-react';
 import { inboxStorage, InboxItem } from './inboxStorage';
 import { embassyStorage } from '../../modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage';
@@ -168,15 +169,29 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
              </div>
           </div>
           
-          <div className="relative group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-600 group-hover:text-zinc-400 transition-colors" />
-            <input 
-              type="text" 
-              placeholder="CARI PESAN..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-zinc-950/50 border border-zinc-800 rounded-2xl pl-12 pr-6 py-2.5 text-[11px] font-bold text-white placeholder:text-zinc-700 focus:outline-none focus:border-zinc-700 w-80 transition-all"
-            />
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => {
+                if (confirm('APAKAH ANDA YAKIN INGIN MENGHAPUS SELURUH PESAN?')) {
+                  inboxStorage.clear();
+                  setMessages([]); // Local state update
+                }
+              }}
+              className="flex items-center gap-2 bg-rose-600/10 border border-rose-500/30 hover:bg-rose-600 hover:text-white text-rose-500 px-5 py-2.5 rounded-full transition-all duration-300 group/del"
+            >
+              <Trash2 className="h-4 w-4 group-hover/del:animate-bounce" />
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] italic">Hapus Semua</span>
+            </button>
+            <div className="relative group">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-600 group-hover:text-zinc-400 transition-colors" />
+              <input 
+                type="text" 
+                placeholder="CARI PESAN..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="bg-zinc-950/50 border border-zinc-800 rounded-2xl pl-12 pr-6 py-2.5 text-[11px] font-bold text-white placeholder:text-zinc-700 focus:outline-none focus:border-zinc-700 w-64 transition-all"
+              />
+            </div>
           </div>
         </div>
 

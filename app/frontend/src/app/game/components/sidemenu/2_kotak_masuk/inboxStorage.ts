@@ -20,7 +20,10 @@ const MAX_INBOX_MESSAGES = 10000; // Increased to effectively unlimited per user
 
 export const inboxStorage = {
   clear: () => {
-    if (typeof window !== "undefined") localStorage.removeItem("em_inbox_data");
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("em_inbox_data");
+      window.dispatchEvent(new Event('inbox_updated'));
+    }
   },
   getStorageKey: () => {
     return "em_inbox_data";

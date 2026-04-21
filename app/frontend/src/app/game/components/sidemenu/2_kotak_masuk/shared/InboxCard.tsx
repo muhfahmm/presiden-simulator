@@ -1,6 +1,6 @@
 import React from 'react';
-import { ChevronRight, CheckCircle2 } from 'lucide-react';
-import { InboxItem } from '../inboxStorage';
+import { ChevronRight, CheckCircle2, Trash2 } from 'lucide-react';
+import { inboxStorage, InboxItem } from '../inboxStorage';
 import { getCategoryTheme } from './CategoryTheme';
 import { ImpactBars } from './ImpactBars';
 
@@ -91,7 +91,20 @@ export const InboxCard: React.FC<InboxCardProps> = ({
             <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-widest mt-0.5">{msg.source}</p>
           </div>
         </div>
-        <ChevronRight className={`h-5 w-5 text-zinc-700 transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`} />
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              if (confirm('HAPUS PESAN INI?')) {
+                inboxStorage.deleteMessage(msg.id);
+              }
+            }}
+            className="p-2 rounded-full hover:bg-rose-500/20 text-zinc-700 hover:text-rose-500 transition-all opacity-0 group-hover:opacity-100"
+          >
+            <Trash2 className="h-4 w-4" />
+          </button>
+          <ChevronRight className={`h-5 w-5 text-zinc-700 transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`} />
+        </div>
       </div>
 
       {isExpanded && (
