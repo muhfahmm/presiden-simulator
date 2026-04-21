@@ -1366,9 +1366,10 @@ func handleUpdatePolicy(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var req struct {
-		Taxes      map[string]float64 `json:"taxes"`
-		PriceIndex float64            `json:"priceIndex"`
-		Buildings  map[string]int     `json:"buildings"`
+		Taxes       map[string]float64 `json:"taxes"`
+		PriceIndex  float64            `json:"priceIndex"`
+		Buildings   map[string]int     `json:"buildings"`
+		DailyIncome float64            `json:"dailyIncome"`
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -1385,6 +1386,10 @@ func handleUpdatePolicy(w http.ResponseWriter, r *http.Request) {
 	}
 	if req.Buildings != nil {
 		core.GlobalState.Player.Buildings = req.Buildings
+	}
+	if req.DailyIncome != 0 {
+		core.GlobalState.Player.DailyIncome = req.DailyIncome
+		fmt.Printf("[POLICY] DailyIncome updated to: %.2f\n", req.DailyIncome)
 	}
 	core.GlobalState.Mu.Unlock()
 

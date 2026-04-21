@@ -238,6 +238,7 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
           taxes: simplifiedTaxes,
           priceIndex: breakdown.details.priceMultiplier,
           buildings: buildingData.buildingDeltas,
+          dailyIncome: breakdown.dailyDelta,
           religion: social.religion,
           ideology: social.ideology,
           housingCapacity: social.housingCapacity,
