@@ -7,13 +7,13 @@
 
 export const REVENUE_RATES: Record<string, number> = {
   // 5. Sektor Olahraga & Rekreasi (7 jenis)
-  "16_kolam_renang": 350,
-  "17_sirkuit_balap": 800,
-  "18_stadium_int": 950,
-  "19_gym_center": 450,
-  "20_lapangan_golf": 900,
-  "21_esports_arena": 850,
-  "22_gokart_circuit": 600,
+  "16_kolam_renang": 175,
+  "17_sirkuit_balap": 400,
+  "18_stadium_int": 475,
+  "19_gym_center": 225,
+  "20_lapangan_golf": 450,
+  "21_esports_arena": 425,
+  "22_gokart_circuit": 300,
 
   // 6. Sektor Komersial & Retail (3 jenis)
   "23_pusat_belanja": 3500,

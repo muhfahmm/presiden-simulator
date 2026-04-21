@@ -1,4 +1,4 @@
-export const INITIAL_GAME_DATE = new Date(Date.UTC(2026, 0, 1)); // 1 Januari 2026 UTC
+export const INITIAL_GAME_DATE = new Date(); // Sesuaikan dengan tanggal real life saat ini
 const DATE_STORAGE_KEY = "em_game_date";
 
 export function formatGameDate(date: Date): string {

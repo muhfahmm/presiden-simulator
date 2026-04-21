@@ -72,12 +72,13 @@ func init() {
 		"Yordania", "Yunani", 
 	}
 
+	now := time.Now()
 	core.GlobalState = core.SimulationState{
-		GameDate:          time.Date(2026, 1, 1, 0, 0, 0, 0, time.UTC).Format("2006-01-02"),
+		GameDate:          now.Format("2006-01-02"),
 		IsPaused:          true,
 		Speed:             1,
 		News:              []core.NewsItem{},
-		Inbox:             server_inbox.GetInitialInboxBatch("01 Jan 2026"),
+		Inbox:             server_inbox.GetInitialInboxBatch(now.Format("02 Jan 2006")),
 		DayCounter:        0,
 		Player:            core.PlayerState{},
 		NPCStates:         make(map[string]*core.NPCNationState),
@@ -1192,12 +1193,12 @@ func handleReset(w http.ResponseWriter, r *http.Request) {
 
 	core.GlobalState.Mu.Lock()
 	core.GlobalState.IsPaused = true // Force pause immediately
-	core.GlobalState.GameDate = time.Date(2026, 1, 1, 0, 0, 0, 0, time.UTC).Format("2006-01-02")
+	core.GlobalState.GameDate = time.Now().Format("2006-01-02")
 	core.GlobalState.DayCounter = 0
 	
 	// Nuclear wipe of complex objects
 	core.GlobalState.News = []core.NewsItem{}
-	core.GlobalState.Inbox = server_inbox.GetInitialInboxBatch("01 Jan 2026")
+	core.GlobalState.Inbox = server_inbox.GetInitialInboxBatch(time.Now().Format("02 Jan 2006"))
 	
 	// CRITICAL: Re-initialize AI states to defaults properly via Python
 	core.GlobalState.NPCStates = nil 
@@ -1297,8 +1298,8 @@ func handleInitPlayer(w http.ResponseWriter, r *http.Request) {
 		server_hubungan.CatchUpDriftLocked(init.DayCounter)
 	} else if core.GlobalState.DayCounter == 0 {
 		fmt.Printf("[GO] Detected Day 0. Discarding poisoned budget (%.2f). FORCING Sovereignty.\n", init.Budget)
-		// Ensure we start exactly at Jan 1 2026
-		core.GlobalState.GameDate = "2026-01-01"
+		// Ensure we start exactly at current date
+		core.GlobalState.GameDate = time.Now().Format("2006-01-02")
 		core.GlobalState.DayCounter = 0
 		core.GlobalState.IsPaused = true
 		

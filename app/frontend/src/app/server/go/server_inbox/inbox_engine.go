@@ -119,7 +119,7 @@ func GetInitialInboxBatch(dateStr string) []core.InboxItem {
 			ID:            "init-finance",
 			Sender:        "Kementerian Keuangan",
 			Subject:       "Sistem Pelaporan Keuangan Aktif",
-			Content:       "Pusat monitoring keuangan negara telah diaktifkan. Laporan performa ekonomi makro, kebijakan moneter, dan proyeksi fiskal akan dikirimkan secara komprehensif setiap awal bulan (Bulanan). Laporan pertama akan diterbitkan pada 1 Februari 2026.",
+			Content:       fmt.Sprintf("Pusat monitoring keuangan negara telah diaktifkan. Laporan performa ekonomi makro, kebijakan moneter, dan proyeksi fiskal akan dikirimkan secara komprehensif setiap awal bulan (Bulanan). Laporan pertama akan diterbitkan pada %s.", time.Date(time.Now().Year(), time.Now().Month()+1, 1, 0, 0, 0, 0, time.Local).Format("01 Jan 2006")),
 			Timestamp:     time.Now().UnixMilli(),
 			Priority:      "high",
 			Category:      "finance",
