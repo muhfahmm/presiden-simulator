@@ -42,6 +42,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
    const [expandedItem, setExpandedItem] = useState<string | null>(null);
    const [expData, setExpData] = useState(() => expenseStorage.getData(initialCountry.name_en, initialCountry));
    const [incData, setIncData] = useState(incomeStorage.getData());
+   const [buildingData, setBuildingData] = useState(() => buildingStorage.getData());
    const [searchQuery, setSearchQuery] = useState("");
 
    // Visibility toggles for sections
@@ -58,19 +59,25 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
 
       const updateExpense = () => { if (isOpen) setExpData(expenseStorage.getData(initialCountry.name_en, initialCountry)); };
       const updateIncome = () => { if (isOpen) setIncData(incomeStorage.getData()); };
+      const updateBuildings = () => { if (isOpen) setBuildingData(buildingStorage.getData()); };
 
       if (isOpen) {
          update();
          updateExpense();
          updateIncome();
+         updateBuildings();
          window.addEventListener('budget_storage_updated', update);
          window.addEventListener('expense_storage_updated', updateExpense);
          window.addEventListener('income_storage_updated', updateIncome);
+         window.addEventListener('building_storage_updated', updateBuildings);
+         window.addEventListener('tax_updated', updateBuildings);
       }
       return () => {
          window.removeEventListener('budget_storage_updated', update);
          window.removeEventListener('expense_storage_updated', updateExpense);
          window.removeEventListener('income_storage_updated', updateIncome);
+         window.removeEventListener('building_storage_updated', updateBuildings);
+         window.removeEventListener('tax_updated', updateBuildings);
       };
    }, [isOpen]);
 
@@ -88,7 +95,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
    const activeTradeRevenue = dynamicTrade.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0) / 365;
 
    // 2. Expenses
-   const buildingData = buildingStorage.getData();
+   // buildingData is now reactive state
 
    const goldRevenue = calculateGoldMineRevenue(buildingData.buildingDeltas, initialCountry);
    const serviceRevenue = calculateTempatUmumRevenue(buildingData.buildingDeltas, initialCountry);
@@ -195,35 +202,35 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
             <div className="flex-1 overflow-y-auto p-10 no-scrollbar space-y-8 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.03),transparent_40%)]">
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-zinc-900/40 border border-zinc-800 p-8 rounded-3xl flex flex-col gap-6 relative group overflow-hidden transition-all hover:bg-zinc-900/60 shadow-lg">
-                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><TrendingUp className="h-10 w-10 text-blue-400" /></div>
+                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><Wallet className="h-10 w-10 text-emerald-400" /></div>
                      <div>
                         <span className="text-xs font-black text-zinc-500 uppercase tracking-widest block mb-2">Total Kas Negara</span>
                         <div className="flex items-baseline gap-2">
                            <span className="text-3xl font-black text-white tracking-tight">{Math.round(currentBudget).toLocaleString('id-ID')}</span>
-                           {netDailySurplus !== 0 && (
-                              <span className={`text-sm font-black px-2 py-0.5 rounded-md ${netDailySurplus > 0 ? 'text-emerald-400 bg-emerald-500/10' : 'text-rose-400 bg-rose-500/10'}`}>
-                                 {netDailySurplus > 0 ? '+' : ''}{Math.round(netDailySurplus).toLocaleString('id-ID')}
-                              </span>
-                           )}
+                           <span className="text-xs font-black text-zinc-500 uppercase tracking-widest ml-1">EM</span>
                         </div>
                      </div>
                      <div className="pt-4 border-t border-zinc-800 flex justify-between items-center">
-                        <span className="text-[13px] font-bold text-zinc-500 uppercase">Status</span>
-                        <span className="text-xs font-black text-blue-400 uppercase tracking-widest italic">Liquid</span>
+                        <span className="text-[13px] font-bold text-zinc-500 uppercase italic">Likuiditas Nasional</span>
+                        <span className="text-xs font-black text-emerald-400 uppercase tracking-widest italic tracking-tighter">Stable</span>
                      </div>
                   </div>
                   <div className="bg-zinc-900/40 border border-zinc-800 p-8 rounded-3xl flex flex-col gap-6 relative group overflow-hidden transition-all hover:bg-zinc-900/60 shadow-lg">
                      <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><PieChart className="h-10 w-10 text-blue-400" /></div>
                      <div>
-                        <span className="text-xs font-black text-zinc-500 uppercase tracking-widest block mb-2">Pendapatan Pajak</span>
+                        <span className="text-xs font-black text-zinc-500 uppercase tracking-widest block mb-2">Pertumbuhan Bersih Harian</span>
                         <div className="flex items-baseline gap-2">
-                           <span className="text-3xl font-black text-blue-400 tracking-tight">{Math.round(breakdown.dailyTaxRevenue).toLocaleString('id-ID')}</span>
-                           <span className="text-sm font-bold text-zinc-500 uppercase">/ Hari</span>
+                           <span className={`text-3xl font-black tracking-tight ${netDailySurplus >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+                              {netDailySurplus > 0 ? '+' : ''}{Math.round(netDailySurplus).toLocaleString('id-ID')}
+                           </span>
+                           <span className="text-sm font-bold text-zinc-500 uppercase italic ml-1">EM / Hari</span>
                         </div>
                      </div>
                      <div className="pt-4 border-t border-zinc-800 flex justify-between items-center">
-                        <span className="text-[13px] font-bold text-zinc-500 uppercase">Konteks</span>
-                        <span className="text-xs font-black text-blue-400 uppercase tracking-widest italic">{initialCountry.name_id} v.1</span>
+                        <span className="text-[13px] font-bold text-zinc-500 uppercase italic">Kesehatan Arus Kas</span>
+                        <span className={`text-xs font-black uppercase tracking-widest italic ${netDailySurplus >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+                           {netDailySurplus >= 0 ? 'Surplus' : 'Defisit'}
+                        </span>
                      </div>
                   </div>
                </div>
@@ -236,7 +243,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                            <div className={`p-2 rounded-lg border ${pbbMultipliers.impactLevel !== 'clear' ? 'bg-amber-500/10 border-amber-500/20' : 'bg-emerald-500/10 border-emerald-500/20'}`}>
                               <TrendingUp size={18} className={pbbMultipliers.impactLevel !== 'clear' ? 'text-amber-400' : 'text-emerald-400'} />
                            </div>
-                           Pendapatan Harian
+                           Pendapatan Kotor Harian
                         </h3>
                         <div className="flex items-center gap-2">
                            <span className={`text-xs font-black ${incomeStatusColor}`}>+{Math.round(totalDailyIncome).toLocaleString('id-ID')}</span>

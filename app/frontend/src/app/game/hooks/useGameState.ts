@@ -41,6 +41,24 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
   const [showWelcome, setShowWelcome] = useState(true);
   const [selectedCountrySDA, setSelectedCountrySDA] = useState<{ name: string; flag: string; resources: any } | null>(null);
   const serverConnected = useRef(false);
+ 
+  // ═══════════════════════════════════════════════════════
+  // LOCAL AUTHORITATIVE CALCULATION
+  // This ensures the Navbar always matches the Modal exactly
+  // ═══════════════════════════════════════════════════════
+  const updateLocalDelta = useCallback(() => {
+    const session = gameStorage.getSession();
+    const countryName = session?.country || "Indonesia";
+    const currentCountry = countries.find(c => c.name_id === countryName || c.name_en === countryName);
+    if (!currentCountry) return;
+
+    const buildingData = buildingStorage.getData();
+    const breakdown = calculateBudgetBreakdown(currentCountry, buildingData.buildingDeltas);
+    
+    console.log(`[SYNC] Updating local budget delta: ${breakdown.dailyDelta.toFixed(2)}`);
+    setBudgetDelta(breakdown.dailyDelta);
+    budgetDeltaStorage.setDelta(breakdown.dailyDelta);
+  }, []);
 
   useEffect(() => {
     setIsMounted(true);
@@ -131,47 +149,30 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
     }).then(res => {
       if (!res.ok) throw new Error(`Server returned ${res.status}`);
       return res.json();
-    }).then(data => {
-      // Server returns current state (either freshly initialized or existing)
-      // New structure: { player: {...}, relationships: {...} }
-      const serverPlayer = data?.player;
-      const serverRelationships = data?.relationships;
-
-      if (serverPlayer?.initialized) {
-        serverConnected.current = true;
-        setBudget(serverPlayer.budget);
-        setBudgetDelta(serverPlayer.dailyIncome);
-        setPopulation(Math.round(serverPlayer.population));
-        setPopulationDelta(Math.round(serverPlayer.populationDelta));
-        setHappiness({ global: serverPlayer.happiness });
-        setStability(serverPlayer.stability);
-        // Sync to localStorage
-        budgetStorage.setBudgetDirect(serverPlayer.budget);
-        populationStorage.setPopulationDirect(Math.round(serverPlayer.population));
-        stabilityStorage.setStabilityDirect(serverPlayer.stability);
-        
-        // SYNC RELATIONSHIPS IMMEDIATELY
-        if (serverRelationships) {
-           window.dispatchEvent(new CustomEvent("relation_matrix_sync", { detail: serverRelationships }));
-        }
-
-        console.log("[GAME] Synced with Go Server. Budget:", serverPlayer.budget, "Relationships Synced.");
-      }
     }).catch(() => {
       console.warn("[GAME] Go Server offline — using localStorage fallback.");
     });
     
+    // listeners are setup below
+
     // Inbox Unread Count Listener
     const updateInboxCount = () => setUnreadCount(inboxStorage.getUnreadCount());
     updateInboxCount(); 
     window.addEventListener('inbox_updated', updateInboxCount);
 
+    // Storage update listeners for instant UI sync
+    window.addEventListener('tax_updated', updateLocalDelta);
+    window.addEventListener('building_storage_updated', updateLocalDelta);
+    window.addEventListener('price_updated', updateLocalDelta);
+
+    // Initial check
+    updateLocalDelta();
+
     // ═══════════════════════════════════════════════════════
     // SSE LISTENER: Consume player state from Go Server
-    // Updates on EVERY game day tick from the server
     // ═══════════════════════════════════════════════════════
     let lastStorageSync = 0;
-    const STORAGE_THROTTLE_MS = 500; // Only write localStorage every 500ms
+    const STORAGE_THROTTLE_MS = 500;
 
     const handleServerSync = (e: Event) => {
       const data = (e as CustomEvent).detail;
@@ -180,15 +181,17 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
       serverConnected.current = true;
       const p = data.player;
       
-      // Update React state immediately (for smooth UI)
+      // Update primary stats from server
       setBudget(p.budget);
-      setBudgetDelta(p.dailyIncome);
       setPopulation(Math.round(p.population));
       setPopulationDelta(Math.round(p.populationDelta));
       setHappiness({ global: Math.round(p.happiness * 10) / 10 });
       setStability(Math.round(p.stability * 10) / 10);
 
-      // Real-time Relationship Sync
+      // Note: We DO NOT set budgetDelta here from the server echo
+      // because we want the calculated UI value to be instantaneous.
+      // However, we can use it to verify sync in logs if needed.
+
       if (data.relationships) {
         window.dispatchEvent(new CustomEvent("relation_matrix_sync", { detail: data.relationships }));
       }
@@ -251,6 +254,9 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
     window.addEventListener('building_storage_updated', syncPolicies);
 
     return () => {
+      window.removeEventListener('tax_updated', updateLocalDelta);
+      window.removeEventListener('building_storage_updated', updateLocalDelta);
+      window.removeEventListener('price_updated', updateLocalDelta);
       window.removeEventListener('inbox_updated', updateInboxCount);
       window.removeEventListener('happiness_critical', handleCritical);
       window.removeEventListener('happiness_gameover', handleGameOver);
@@ -259,7 +265,7 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
       window.removeEventListener('price_updated', syncPolicies);
       window.removeEventListener('building_storage_updated', syncPolicies);
     };
-  }, [setActiveMenu]);
+  }, [setActiveMenu, updateLocalDelta]);
 
   return {
     approval, setApproval,

@@ -10,9 +10,11 @@ import MapContainer from "../map-system/components/MapContainer";
 import { countries } from "./data/negara/benua/index";
 import { gameStorage } from "../game/gamestorage";
 import { taxStorage } from "../game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
+import { buildingStorage } from "../game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
+import { populationStorage } from "../game/components/1_navbar/2_populasi";
+import { budgetStorage } from "../game/components/1_navbar/3_kas_negara";
 import { CountryData } from "./data/semua_fitur_negara";
-import { calculateGoldMineRevenue } from "../game/components/1_navbar/3_kas_negara/GoldMineRevenue";
-import { calculateTempatUmumRevenue } from "../game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/logic/TempatUmumRevenueLogic";
+import { calculateBudgetBreakdown } from "../game/data/economy/BudgetDeltaLogic";
 import { motion, useSpring, useTransform } from "framer-motion";
 
 function AnimatedNumber({ value }: { value: number }) {
@@ -82,11 +84,10 @@ export default function DatabasePage() {
   const isInternalSelection = useRef(false);
   const hasSelection = !!selectedData;
 
-  const currentTaxes = hasSelection ? (taxStorage.getTaxes(selectedCountry) || selectedData?.pajak || {}) : {};
-  const summedTaxes = Object.values(currentTaxes as any).reduce((sum: number, v: any) => sum + ((v as any)?.pendapatan || 0), 0) / 365;
-  const goldRevenue = hasSelection ? calculateGoldMineRevenue({}, baseData) : 0;
-  const serviceRevenue = hasSelection ? calculateTempatUmumRevenue({}, baseData) : 0;
-  const totalPendapatanPajak = summedTaxes + goldRevenue + serviceRevenue;
+  // Use authoritative logic to ensure sync with game UI
+  const currentBuildings = buildingStorage.getData().buildingDeltas || {};
+  const breakdown = calculateBudgetBreakdown(baseData, currentBuildings);
+  const totalPendapatanPajak = breakdown.dailyDelta;
 
   const currentData: CountryData = baseData;
 
@@ -117,9 +118,23 @@ export default function DatabasePage() {
 
           <div className="flex items-center gap-4">
             <StatItem label="Ibukota" value={hasSelection ? currentData.capital : "-"} icon={<Landmark size={14} className="text-amber-800" />} />
-            <StatItem label="Populasi" value={hasSelection ? currentData.jumlah_penduduk : "-"} icon={<Users size={14} className="text-amber-800" />} />
-            <StatItem label="Kas Negara" value={hasSelection ? currentData.anggaran : "-"} icon={<Coins size={14} className="text-amber-700" />} />
-            <StatItem label="Pendapatan/Hari" value={hasSelection ? `+${Math.round(totalPendapatanPajak).toLocaleString('id-ID')}` : "-"} icon={<TrendingUp size={14} className="text-emerald-800" />} />
+            <StatItem 
+              label="Populasi" 
+              value={hasSelection ? (currentData.name_en === "Indonesia" ? populationStorage.getPopulation().toLocaleString('id-ID') : currentData.jumlah_penduduk) : "-"} 
+              icon={<Users size={14} className="text-amber-800" />} 
+            />
+            <StatItem 
+              label="Kas Negara" 
+              value={hasSelection ? (currentData.name_en === "Indonesia" ? budgetStorage.getBudget().toLocaleString('id-ID') : currentData.anggaran) : "-"} 
+              suffix=" EM" 
+              icon={<Landmark size={14} className="text-amber-700" />} 
+            />
+            <StatItem 
+              label="Pendapatan/Hari" 
+              value={hasSelection ? `+${Math.round(totalPendapatanPajak).toLocaleString('id-ID')}` : "-"} 
+              suffix=" EM" 
+              icon={<TrendingUp size={14} className="text-emerald-800" />} 
+            />
             <StatItem label="Total Negara" value={`${countries.length}`} icon={<Globe size={14} className="text-teal-800" />} />
           </div>
         </div>
@@ -444,7 +459,7 @@ export default function DatabasePage() {
   );
 }
 
-function StatItem({ icon, label, value }: { icon: React.ReactNode, label: string, value: string | number }) {
+function StatItem({ icon, label, value, suffix }: { icon: React.ReactNode, label: string, value: string | number, suffix?: string }) {
   const displayValue = typeof value === 'number' ? <AnimatedNumber value={value} /> : value;
 
   return (
@@ -455,8 +470,8 @@ function StatItem({ icon, label, value }: { icon: React.ReactNode, label: string
       <div className="flex flex-col overflow-hidden">
         <span className="text-[10px] text-amber-900/60 font-bold uppercase tracking-wider leading-none mb-0.5 truncate">{label}</span>
         <span className="font-black text-amber-950 text-xs leading-tight italic flex gap-1 truncate">
-          {label === "Kas Negara" && typeof value === 'number' && <span>Rp</span>}
           {displayValue}
+          {value !== "-" && suffix && <span className="ml-0.5 opacity-60 not-italic">{suffix}</span>}
         </span>
       </div>
     </div>

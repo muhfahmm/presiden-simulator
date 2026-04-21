@@ -31,10 +31,11 @@ interface StatusBadgeProps {
   value: string | number;
   delta?: number;
   deltaColor?: string;
+  suffix?: string;
   onClick?: () => void;
 }
 
-function StatusBadge({ icon, label, value, delta, deltaColor, onClick }: StatusBadgeProps) {
+function StatusBadge({ icon, label, value, delta, deltaColor, suffix, onClick }: StatusBadgeProps) {
   return (
     <div
       onClick={onClick}
@@ -47,6 +48,7 @@ function StatusBadge({ icon, label, value, delta, deltaColor, onClick }: StatusB
         <div className="flex items-center gap-1.5">
           <p className="text-xs font-black text-amber-950 italic tracking-wide">
             {typeof value === 'number' ? <AnimatedNumber value={value} /> : value}
+            {suffix && <span className="ml-1 text-[10px] opacity-70 not-italic uppercase font-bold">{suffix}</span>}
           </p>
           {delta !== undefined && delta !== 0 && (
             <span className={`text-[9px] font-black px-1 rounded-sm ${deltaColor ? deltaColor : (delta > 0 ? 'text-emerald-800 bg-emerald-500/10' : 'text-rose-800 bg-rose-500/10')}`}>
@@ -132,6 +134,7 @@ export default function GameNavbar({
             label="Kas Negara"
             value={budget}
             delta={budgetDelta}
+            suffix="EM"
           />
           <StatusBadge
             icon={<Shield className="h-4 w-4 text-green-500" />}
