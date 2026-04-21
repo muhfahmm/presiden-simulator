@@ -14,5 +14,5 @@ export const indonesiaAgreements = [
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" }
-    
+
 ];
