@@ -32,9 +32,7 @@ let lastNewsCount = 0;
 let lastInboxCount = 0;
 let sseRetryTimeout: NodeJS.Timeout | null = null;
 
-// Trade AI daily trigger — tracks last processed game date to fire once per day
-let lastTradeProcessedDate = "";
-let tradeProcessTimeout: NodeJS.Timeout | null = null;
+
 
 export const newsStorage = {
   getNews: (): NewsItem[] => {
@@ -183,24 +181,7 @@ export const newsStorage = {
               }
             }
 
-            // === TRADE AI DAILY TRIGGER ===
-            // Fire AiTradeService.processDaily() once per game day change
-            if (data.gameDate && data.gameDate !== lastTradeProcessedDate && !data.isPaused) {
-              lastTradeProcessedDate = data.gameDate;
-              
-              // Debounce: wait 5s after date change to avoid rapid-fire during speed 3x
-              if (tradeProcessTimeout) clearTimeout(tradeProcessTimeout);
-              tradeProcessTimeout = setTimeout(async () => {
-                try {
-                  const { AiTradeService } = await import(
-                    '@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/services/AiTradeService'
-                  );
-                  AiTradeService.processDaily();
-                } catch (e) {
-                  // Silent fail — don't crash SSE loop
-                }
-              }, 5000);
-            }
+
           } catch (e) {
             // Silent parse error
           }
