@@ -1,4 +1,5 @@
 import { gameStorage } from "@/app/game/gamestorage";
+import { getInitialAgreements } from "@/app/pilih_negara/data/database_mitra_perdagangan/agreementsRegistry";
 
 export interface InboxItem {
   id: string;
@@ -30,9 +31,80 @@ export const inboxStorage = {
     if (typeof window === 'undefined') return [];
     try {
       const data = localStorage.getItem(key);
-      return data ? JSON.parse(data) : [];
+      const parsed = data ? JSON.parse(data) : [];
+      
+      // Auto-prune non-whitelisted items whenever messages are retrieved
+      // only if we are in a trade tab context or just occasionally
+      return parsed;
     } catch {
       return [];
+    }
+  },
+
+  /**
+   * Checks if a trade message's source country is in the player's official partner whitelist.
+   */
+  isTradeWhitelisted: (source: string, subject?: string): boolean => {
+    if (typeof window === 'undefined') return true;
+    
+    // 1. Get current player's country from localStorage / game_session
+    const sessionRaw = localStorage.getItem("game_session");
+    let playerCountry = "Indonesia";
+    try {
+        if(sessionRaw) playerCountry = JSON.parse(sessionRaw).country || playerCountry;
+    } catch(e) {}
+    
+    // Fallback to selectedCountry if session failed
+    if (!playerCountry || playerCountry === "Indonesia") {
+        playerCountry = localStorage.getItem("selectedCountry") || localStorage.getItem("selected_country") || "Indonesia";
+    }
+    
+    // 2. Load official agreements for this country
+    const officialPartners = getInitialAgreements(playerCountry, playerCountry);
+    
+    if (!officialPartners || officialPartners.length === 0) return true;
+
+    // 3. Extract partner country name from source OR subject
+    let identifiedPartner = "";
+    const sourceMatch = source.match(/\(([^)]+)\)/);
+    if (sourceMatch) {
+        identifiedPartner = sourceMatch[1].trim();
+    } else if (subject) {
+        // Try extracting from subject like "tawaran impor: Beras dari Thailand"
+        const subjParts = subject.split(" dari ");
+        if (subjParts.length > 1) {
+            identifiedPartner = subjParts[subjParts.length - 1].trim();
+        }
+    }
+
+    if (!identifiedPartner) return true;
+
+    // 4. Check against whitelist
+    const isWhitelisted = officialPartners.some(p => 
+      p.mitra.toLowerCase() === identifiedPartner.toLowerCase() ||
+      identifiedPartner.toLowerCase().includes(p.mitra.toLowerCase())
+    );
+
+    return isWhitelisted;
+  },
+
+  /**
+   * Remove any trade messages that are no longer in the whitelist (e.g. after a restart or country change)
+   */
+  pruneNonWhitelisted: () => {
+    if (typeof window === 'undefined') return;
+    const messages = inboxStorage.getMessages();
+    const filtered = messages.filter(msg => {
+        if (msg.category === 'trade') {
+            return inboxStorage.isTradeWhitelisted(msg.source, msg.subject);
+        }
+        return true;
+    });
+
+    if (filtered.length !== messages.length) {
+        const key = inboxStorage.getStorageKey();
+        localStorage.setItem(key, JSON.stringify(filtered));
+        window.dispatchEvent(new Event('inbox_updated'));
     }
   },
   
@@ -41,6 +113,15 @@ export const inboxStorage = {
     if (typeof window === 'undefined') return;
     
     const messages = inboxStorage.getMessages();
+
+    // WHITELIST FILTER: If trade, check if source is from a valid partner
+    if (msg.category === 'trade') {
+      if (!inboxStorage.isTradeWhitelisted(msg.source, msg.subject)) {
+        console.log(`[INBOX] Blocked trade message from non-partner: ${msg.source} / ${msg.subject}`);
+        return; 
+      }
+    }
+
     const newMessage: InboxItem = {
       ...msg,
       id: Date.now().toString() + Math.random().toString(36).substring(2, 9),
@@ -173,7 +254,13 @@ export const inboxStorage = {
       priority: si.priority || "low",
       category: si.category || "general",
       timestamp: si.timestamp * 1000 || Date.now()
-    }));
+    })).filter(item => {
+      // Apply Whitelist filter during sync as well
+      if (item.category === 'trade') {
+        return inboxStorage.isTradeWhitelisted(item.source, item.subject);
+      }
+      return true;
+    });
 
     // Merge logic: deduplicate by ID and preserve local 'read' status
     const uniqueMap = new Map();
@@ -203,6 +290,9 @@ export const inboxStorage = {
       localStorage.setItem(key, JSON.stringify(limited));
       // Dispatch update event so SideMenu red dot appears
       window.dispatchEvent(new Event('inbox_updated'));
+      
+      // NEW: Prune any old garbage if the player has changed or whitelist updated
+      inboxStorage.pruneNonWhitelisted();
     } catch (e) {
       console.error("Failed to sync inbox from server", e);
     }

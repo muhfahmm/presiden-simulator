@@ -5,7 +5,7 @@ import (
 	"time"
 	"emserver/core"
 	finance "emserver/server_inbox/1_keuangan"
-
+	"emserver/server_inbox/2_perdagangan"
 	embassy "emserver/server_inbox/3_kedutaan"
 	pact "emserver/server_inbox/4_pakta"
 	alliance "emserver/server_inbox/5_aliansi"
@@ -33,7 +33,18 @@ func ProcessInboxDay(date time.Time) {
 	if isWeeklyBatchDay {
 		fmt.Printf("[INBOX] Day %d — Generating trade & diplomatic batch (Inbox size before: %d)\n", day, len(core.GlobalState.Inbox))
 
+		// 2a. Randomized Trade Sub-batches (Summing to roughly 6-15)
+		tAg := core.Rng.Intn(3)+1
+		tIm := core.Rng.Intn(4)+2
+		tEx := core.Rng.Intn(4)+2
+		tCo := core.Rng.Intn(2)+1
+		tTotal := tAg + tIm + tEx + tCo
+		fmt.Printf("[INBOX] Trade Sub-batches: %d (Ag:%d, Im:%d, Ex:%d, Co:%d)\n", tTotal, tAg, tIm, tEx, tCo)
 
+		trade.GenerateAgreementBatch(dateStr, tAg) 
+		trade.GenerateImportBatch(dateStr, tIm)    
+		trade.GenerateExportBatch(dateStr, tEx)    
+		trade.GenerateContractBatch(dateStr, tCo)  
 
 		// 2b. Randomized Diplomatic Batches (5-15 each)
 		eCount := core.Rng.Intn(11) + 5

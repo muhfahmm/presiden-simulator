@@ -29,8 +29,9 @@ export const AiDiplomacyService = {
         const normalizedUser = userCountry.toLowerCase().trim();
         
         try {
-            // Ambil data negara ditiadakan karena mesin trade sudah dihapus
-            const countriesData = {};
+            // Ambil data negara untuk mencocokkan mitra dagang
+            const { collectCountriesData } = await import('@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/services/AiTradeService');
+            const countriesData = collectCountriesData() || {};
 
             const response = await fetch('/api/game/diplomacy/ai-global/drift', {
                 method: 'POST',
@@ -124,6 +125,7 @@ export const AiDiplomacyService = {
                     const type = event.type || "";
                     const isGlobalNews = type === 'GLOBAL_NEWS';
                     const isGrant = type === 'NPC_GRANT_TO_USER';
+                    const isTrade = type === 'USER_TRADE_OFFER';
                     const isPact = type === 'USER_PACT_OFFER';
                     const isAlliance = type === 'USER_ALLIANCE_OFFER';
                     const isEmbassy = type === 'USER_EMBASSY_OFFER' || type === 'USER_EMBASSY_ACCEPTED' || type === 'USER_EMBASSY_REJECTED';
@@ -144,6 +146,7 @@ export const AiDiplomacyService = {
                     } else {
                         // Check Weekly Limit: Max 2 per category per week
                         const category = isGrant ? 'finance' : 
+                                         isTrade ? 'trade' : 
                                          isPact ? 'pact' :
                                          isAlliance ? 'alliance' : 
                                          isEmbassy ? 'embassy' : 'intelligence';
@@ -152,12 +155,13 @@ export const AiDiplomacyService = {
                             const safeSource = (event.source || "Negara").toUpperCase();
                             inboxStorage.addMessage({
                                 source: isGrant ? `Dinas Keuangan (${safeSource})` : 
+                                        isTrade ? `Kementerian Perdagangan (${safeSource})` :
                                         isPact ? `Kementerian Pertahanan (${safeSource})` :
                                         isAlliance ? `Markas Besar Aliansi (${safeSource})` :
                                         isEmbassy ? `Kementerian Luar Negeri (${safeSource})` :
                                         `Intelijen (${safeSource})`,
                                 category: category,
-                                isProposal: isGrant || isPact || isAlliance || isEmbassy,
+                                isProposal: isGrant || isTrade || isPact || isAlliance || isEmbassy,
                                 subject: isEmbassy ? event.subject : `[DUNIA] ${event.subject}`,
                                 content: event.content,
                                 time: formatGameDate(gameDate),
