@@ -21,8 +21,8 @@ export const REVENUE_RATES: Record<string, number> = {
   "25_pusat_grosir_tekstil": 550,
 
   // 7. Sektor Hiburan & Seni (2 jenis)
-  "26_bioskop": 275,
-  "27_gedung_teater": 225,
+  "26_bioskop": 150,
+  "27_gedung_teater": 100,
 };
 
 /**
