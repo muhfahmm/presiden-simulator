@@ -19,8 +19,28 @@ export class TradeMapEngine extends BaseMapEngine {
     
     // Subscribe to time storage for animation sync
     timeStorage.subscribe((date, paused, speed) => {
+      const oldDate = this.gameState.gameDate;
       this.gameState = { gameDate: date, isPaused: paused, speed: speed };
-      (this as any)._lastUpdateRealTime = performance.now(); // Track when date was updated
+      
+      const now = performance.now();
+      const prevUpdate = (this as any)._lastUpdateRealTime;
+      
+      if (oldDate && date.getTime() !== oldDate.getTime() && prevUpdate) {
+        // Measure how long it actually took for the game clock to advance
+        const realDelta = now - prevUpdate;
+        const gameDelta = date.getTime() - oldDate.getTime();
+        const daysAdvanced = gameDelta / (24 * 60 * 60 * 1000);
+        
+        if (daysAdvanced > 0 && speed > 0) {
+          // Estimate real-time ms per 1 game day at 1x speed
+          const estimate = (realDelta / daysAdvanced) * speed;
+          if (estimate > 1000 && estimate < 60000) {
+            (this as any)._realMsPerDay = estimate;
+          }
+        }
+      }
+
+      (this as any)._lastUpdateRealTime = now;
       this.requestRender(); 
     });
   }
@@ -132,11 +152,16 @@ export class TradeMapEngine extends BaseMapEngine {
       const parseSafe = (d: any) => {
         if (!d) return 0;
         const dt = new Date(d);
-        if (!isNaN(dt.getTime())) return dt.getTime();
+        if (!isNaN(dt.getTime())) {
+          // Normalize to start of day to prevent hourly offsets from causing "jumps"
+          dt.setHours(0, 0, 0, 0);
+          return dt.getTime();
+        }
         if (typeof d === 'string' && d.includes('-')) {
           const p = d.split('-');
           if (p.length === 3) {
             const dt2 = new Date(`${p[2]}-${p[1]}-${p[0]}`); 
+            dt2.setHours(0, 0, 0, 0);
             if (!isNaN(dt2.getTime())) return dt2.getTime();
           }
         }
@@ -144,24 +169,48 @@ export class TradeMapEngine extends BaseMapEngine {
       };
 
       const gameStart = parseSafe(tx.startDate || tx.timestamp);
-      const gameNow = this.gameState.gameDate.getTime();
+      const gameNowDt = new Date(this.gameState.gameDate);
+      gameNowDt.setHours(0, 0, 0, 0);
+      const gameNow = gameNowDt.getTime();
       
-      // Interpolation logic: 1 game day = ~12 seconds at 1x speed
-      const GAME_MS_PER_REAL_MS = (MS_PER_DAY / 12000) * this.gameState.speed;
-      const realTimeSinceUpdate = performance.now() - ((this as any)._lastUpdateRealTime || performance.now());
-      const interpolation = this.gameState.isPaused ? 0 : (realTimeSinceUpdate * GAME_MS_PER_REAL_MS);
+      // Calculate target progress based purely on current game date
+      const targetProgress = Math.min(1, Math.max(0, (gameNow - gameStart) / totalGameMs));
+      
+      // INITIALIZATION: Start at the current target
+      if ((tx as any)._visualProgress === undefined) {
+        (tx as any)._visualProgress = targetProgress;
+      }
 
-      const elapsedGameMs = (gameNow - gameStart) + interpolation;
-      const progress = Math.min(1, Math.max(0, elapsedGameMs / totalGameMs));
-      const rawProgress = progress; // For consistency in cleanup check
+      // SMOOTH CHASING LOGIC:
+      // We don't jump to the target. Instead, we move towards it smoothly.
+      // This absorbs jumps in the server clock and server lag.
+      const diff = targetProgress - (tx as any)._visualProgress;
       
-      if (rawProgress >= 1) {
-        // Automatically cleanup finished transactions from storage
-        // We use setTimeout to avoid state updates during render
+      if (this.gameState.isPaused) {
+        // Stop moving when paused
+      } else if (diff > 0) {
+        // If we are behind the game date, catch up smoothly.
+        // The catch-up speed is proportional to simulation speed.
+        const frameRateFactor = (deltaTime || 16.6) / 16.6;
+        const baseCatchUpSpeed = 0.0001; // Base speed per frame at 1x
+        const catchUpSpeed = baseCatchUpSpeed * this.gameState.speed * frameRateFactor;
+        
+        // We move a bit faster if the difference is large, but limited to a smooth flow
+        const moveAmount = Math.max(catchUpSpeed, diff * 0.05 * frameRateFactor);
+        (tx as any)._visualProgress += Math.min(diff, moveAmount);
+      } else if (diff < -0.1) {
+        // If we are way ahead (e.g. game date reset), snap back
+        (tx as any)._visualProgress = targetProgress;
+      }
+
+      const progress = (tx as any)._visualProgress;
+      
+      // Cleanup check
+      if (progress >= 1 && !(tx as any)._cleanupRequested) {
+        (tx as any)._cleanupRequested = true;
         setTimeout(() => {
           tradeStorage.removeTransaction(tx.id);
-        }, 100);
-        return;
+        }, 1000); 
       }
 
       const { pixels } = data;
@@ -209,14 +258,14 @@ export class TradeMapEngine extends BaseMapEngine {
       // SMOOTH ROTATION (Inertia)
       if ((tx as any)._prevAngle === undefined) (tx as any)._prevAngle = targetAngle;
       
-      let diff = targetAngle - (tx as any)._prevAngle;
-      while (diff > Math.PI) diff -= Math.PI * 2;
-      while (diff < -Math.PI) diff += Math.PI * 2;
+      let angleDiff = targetAngle - (tx as any)._prevAngle;
+      while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+      while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
       
       // Lerp factor normalized to 60fps (0.15 at 60fps)
       const frameRateFactor = deltaTime / (1000 / 60);
       const lerpFactor = Math.min(1, 0.15 * (frameRateFactor || 1)); 
-      const smoothedAngle = (tx as any)._prevAngle + diff * lerpFactor;
+      const smoothedAngle = (tx as any)._prevAngle + angleDiff * lerpFactor;
       (tx as any)._prevAngle = smoothedAngle;
 
       this.ctx.save();
