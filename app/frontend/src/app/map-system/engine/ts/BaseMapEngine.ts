@@ -35,6 +35,11 @@ export abstract class BaseMapEngine {
   protected needsUpdate: boolean = false;
   protected isLoopRunning: boolean = false;
 
+  // Caching System
+  private staticCache: HTMLCanvasElement | null = null;
+  private staticCtx: CanvasRenderingContext2D | null = null;
+  private isCacheDirty: boolean = true;
+
   // Transformation State
   protected scale: number = 1;
   protected offsetX: number = 0;
@@ -49,7 +54,16 @@ export abstract class BaseMapEngine {
     this.width = width;
     this.height = height;
     this.projector = new Projector(width, height);
+    this.initCache();
     this.startRenderLoop();
+  }
+
+  private initCache() {
+    if (typeof document === 'undefined') return;
+    this.staticCache = document.createElement('canvas');
+    this.staticCache.width = this.width;
+    this.staticCache.height = this.height;
+    this.staticCtx = this.staticCache.getContext('2d');
   }
 
   private startRenderLoop() {
@@ -57,8 +71,8 @@ export abstract class BaseMapEngine {
     this.isLoopRunning = true;
     const loop = () => {
       if (this.needsUpdate) {
-        this.executeRender();
         this.needsUpdate = false;
+        this.executeRender();
       }
       this.animationFrameId = requestAnimationFrame(loop);
     };
@@ -76,30 +90,41 @@ export abstract class BaseMapEngine {
     this.needsUpdate = true;
   }
 
+  public invalidateCache() {
+    this.isCacheDirty = true;
+    this.requestRender();
+  }
+
   public setData(data: GeoJsonData) {
     this.data = data;
+    this.invalidateCache();
   }
 
   public setCountries(countries: any[]) {
     this.countries = countries;
-    this.requestRender();
+    this.invalidateCache();
   }
 
   public setRelations(relations: any[]) {
     this.relations = relations;
-    this.requestRender();
+    this.invalidateCache();
   }
 
   public setSelectedCountry(name: string | null, code: string | null = null) {
-    this.selectedCountryName = name;
-    this.selectedCountryCode = code;
+    if (this.selectedCountryName !== name || this.selectedCountryCode !== code) {
+        this.selectedCountryName = name;
+        this.selectedCountryCode = code;
+        this.invalidateCache();
+    }
   }
 
   public setTransform(scale: number, offsetX: number, offsetY: number) {
-    this.scale = scale;
-    this.offsetX = offsetX;
-    this.offsetY = offsetY;
-    this.requestRender();
+    if (this.scale !== scale || this.offsetX !== offsetX || this.offsetY !== offsetY) {
+        this.scale = scale;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        this.invalidateCache();
+    }
   }
 
   public render() {
@@ -109,27 +134,51 @@ export abstract class BaseMapEngine {
   protected executeRender() {
     if (!this.data) return;
 
-    // 1. Reset transform to draw background (Global)
+    // 1. Update Static Cache if Dirty
+    if (this.isCacheDirty || !this.staticCache || this.staticCache.width !== this.width || this.staticCache.height !== this.height) {
+      this.renderToCache();
+      this.isCacheDirty = false;
+    }
+
+    // 2. Clear Main Canvas
     this.ctx.setTransform(1, 0, 0, 1, 0, 0);
-    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    this.ctx.clearRect(0, 0, this.width, this.height);
 
-    // 2. Clear background with solid color
-    this.ctx.fillStyle = '#070b14'; // Universal dark theme
-    this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    // 3. Draw Cached Background Map
+    if (this.staticCache) {
+      this.ctx.drawImage(this.staticCache, 0, 0);
+    }
 
-    // 3. Draw Water/Environment (Optional: Subclasses can override this)
+    // 4. Draw Specialized Overlays (Dynamic Layer)
+    this.ctx.setTransform(this.scale, 0, 0, this.scale, this.offsetX, this.offsetY);
+    this.drawOverlays();
+  }
+
+  private renderToCache() {
+    if (!this.staticCtx || !this.data || !this.staticCache) return;
+    
+    const sctx = this.staticCtx;
+    sctx.setTransform(1, 0, 0, 1, 0, 0);
+    sctx.clearRect(0, 0, this.width, this.height);
+
+    // Background
+    sctx.fillStyle = '#070b14';
+    sctx.fillRect(0, 0, this.width, this.height);
+
+    // Custom Background (e.g. Ocean)
+    const originalCtx = this.ctx;
+    this.ctx = sctx; // Temporarily swap ctx for drawBackground/drawFeature
     this.drawBackground();
 
-    // 4. Apply Global Transform for Map Elements
-    this.ctx.setTransform(this.scale, 0, 0, this.scale, this.offsetX, this.offsetY);
+    // Map Transform
+    sctx.setTransform(this.scale, 0, 0, this.scale, this.offsetX, this.offsetY);
 
-    // 5. Draw Country Polygons
+    // Countries
     for (const feature of this.data.features) {
       this.drawFeature(feature);
     }
 
-    // 6. Draw Specialized Overlays (Implemented by sub-classes)
-    this.drawOverlays();
+    this.ctx = originalCtx; // Restore original ctx
   }
 
   // Hook for subclasses to draw custom backgrounds (like ocean textures)
@@ -201,7 +250,13 @@ export abstract class BaseMapEngine {
   }
 
   public resize(width: number, height: number) {
+    this.width = width;
+    this.height = height;
+    if (this.staticCache) {
+      this.staticCache.width = width;
+      this.staticCache.height = height;
+    }
     this.projector.updateDimensions(width, height);
-    this.requestRender();
+    this.invalidateCache();
   }
 }

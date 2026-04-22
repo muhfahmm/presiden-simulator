@@ -9,7 +9,7 @@ export class TradeMapEngine extends BaseMapEngine {
   public activeTransactions: any[] = [];
   
   private txAccumulatedTime: Record<number, number> = {};
-  private lastTimestamp: number = Date.now();
+  private lastTimestamp: number = 0;
   private activeRoutesCache: Record<number, { pts: Point[], pixels: { x: number, y: number }[] }> = {};
   private gameState = timeStorage.getState();
 
@@ -83,15 +83,21 @@ export class TradeMapEngine extends BaseMapEngine {
     });
 
     // 2. Update time for animations
-    const now = Date.now();
-    const deltaTime = now - this.lastTimestamp;
+    const now = performance.now();
+    const deltaTime = this.lastTimestamp === 0 ? 0 : now - this.lastTimestamp;
     this.lastTimestamp = now;
 
+    // Handle Resize Invalidation (If projector dimensions don't match cache, clear it)
+    // We can just check if width/height changed since last draw
+    if ((this as any)._lastW !== this.width || (this as any)._lastH !== this.height) {
+        this.activeRoutesCache = {};
+        (this as any)._lastW = this.width;
+        (this as any)._lastH = this.height;
+    }
+
     if (!this.gameState.isPaused) {
-      this.activeTransactions.forEach(tx => {
-        const current = this.txAccumulatedTime[tx.id] || 0;
-        this.txAccumulatedTime[tx.id] = current + (deltaTime * this.gameState.speed);
-      });
+      // Just request render if not paused to keep smoothedAngle moving towards target
+      this.requestRender();
     }
 
     // 3. Draw Routes and Planes
@@ -115,72 +121,90 @@ export class TradeMapEngine extends BaseMapEngine {
       this.ctx.strokeStyle = tx.type === 'buy' ? "rgba(239, 68, 68, 0.3)" : "rgba(16, 185, 129, 0.3)";
       this.ctx.stroke();
 
-      // --- NEW SMOOTH ANIMATION LOGIC ---
-      const duration = 45000; // 45 seconds total flight at 1x speed
-      const elapsed = this.txAccumulatedTime[tx.id] || 0;
-      const progress = Math.min(1, Math.max(0, elapsed / duration));
+      // --- HIGH PRECISION GAME-TIME SYNCHRONIZED ANIMATION ---
+      const totalDays = tx.totalDays || 10;
+      const totalGameMs = totalDays * 24 * 60 * 60 * 1000;
       
-      if (elapsed >= duration) {
-        delete this.txAccumulatedTime[tx.id];
+      const gameStart = new Date(tx.startDate || tx.timestamp).getTime();
+      const gameNow = this.gameState.gameDate.getTime();
+      
+      const elapsedGameMs = gameNow - gameStart;
+      const rawProgress = Math.min(1, Math.max(0, elapsedGameMs / totalGameMs));
+      
+      // Apply Cubic Ease-Out for smooth landing
+      const progress = 1 - Math.pow(1 - rawProgress, 3);
+      
+      if (rawProgress >= 1) {
+        // We can't delete from activeTransactions here as it's passed from props,
+        // but we can just not draw it or the system will eventually remove it.
         return;
       }
 
       const { pixels } = data;
       
-      // 1. Calculate distances for constant speed movement
-      let segmentDistances: number[] = [];
-      let totalDistance = 0;
-      for (let i = 0; i < pixels.length - 1; i++) {
-        const d = Math.sqrt(Math.pow(pixels[i+1].x - pixels[i].x, 2) + Math.pow(pixels[i+1].y - pixels[i].y, 2));
-        segmentDistances.push(d);
-        totalDistance += d;
-      }
-
-      // 2. Find current position based on total distance progress
-      const targetDistance = progress * totalDistance;
-      let currentDistance = 0;
-      let curSeg = 0;
-      
-      for (let i = 0; i < segmentDistances.length; i++) {
-        if (currentDistance + segmentDistances[i] >= targetDistance) {
-          curSeg = i;
-          break;
+      // Calculate distances once if not present in cache
+      if (!(data as any).lengths) {
+        (data as any).lengths = [];
+        (data as any).totalLen = 0;
+        for (let i = 0; i < pixels.length - 1; i++) {
+          const d = Math.sqrt(Math.pow(pixels[i+1].x - pixels[i].x, 2) + Math.pow(pixels[i+1].y - pixels[i].y, 2));
+          (data as any).lengths.push(d);
+          (data as any).totalLen += d;
         }
-        currentDistance += segmentDistances[i];
       }
 
-      const segProg = segmentDistances[curSeg] > 0 
-        ? (targetDistance - currentDistance) / segmentDistances[curSeg]
-        : 0;
+      const totalLen = (data as any).totalLen;
+      const targetDist = progress * totalLen;
+      
+      // Helper to get point and angle at distance
+      const getPointAtDist = (d: number) => {
+        let curDist = 0;
+        for (let i = 0; i < (data as any).lengths.length; i++) {
+          const segLen = (data as any).lengths[i];
+          if (curDist + segLen >= d || i === (data as any).lengths.length - 1) {
+            const ratio = segLen > 0 ? (d - curDist) / segLen : 0;
+            const p1 = pixels[i], p2 = pixels[i+1];
+            return {
+              x: p1.x + (p2.x - p1.x) * ratio,
+              y: p1.y + (p2.y - p1.y) * ratio,
+              idx: i
+            };
+          }
+          curDist += segLen;
+        }
+        return { x: pixels[pixels.length-1].x, y: pixels[pixels.length-1].y, idx: pixels.length-2 };
+      };
 
-      const p1 = pixels[curSeg], p2 = pixels[curSeg + 1];
-      const curX = p1.x + (p2.x - p1.x) * segProg;
-      const curY = p1.y + (p2.y - p1.y) * segProg;
+      const pos = getPointAtDist(targetDist);
+      
+      // Calculate Angle using Tangent (look ahead)
+      const lookAhead = 5; // Further lookahead for smoother tangent
+      const posAhead = getPointAtDist(Math.min(totalLen, targetDist + lookAhead));
+      const targetAngle = Math.atan2(posAhead.y - pos.y, posAhead.x - pos.x);
 
-      // 3. Smooth Rotation Interpolation
-      // We look at the current segment angle and the next one (if exists)
-      const currentAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
-      let targetAngle = currentAngle;
-
-      // If we are nearing the end of the segment, start rotating towards the next segment
-      const ROTATION_SMOOTH_THRESHOLD = 0.8; // Start turning at 80% of segment
-      if (segProg > ROTATION_SMOOTH_THRESHOLD && curSeg < segmentDistances.length - 1) {
-        const p3 = pixels[curSeg + 2];
-        const nextAngle = Math.atan2(p3.y - p2.y, p3.x - p2.x);
-        
-        // Find shortest path between angles
-        let diff = nextAngle - currentAngle;
-        while (diff > Math.PI) diff -= Math.PI * 2;
-        while (diff < -Math.PI) diff += Math.PI * 2;
-        
-        const rotationProg = (segProg - ROTATION_SMOOTH_THRESHOLD) / (1 - ROTATION_SMOOTH_THRESHOLD);
-        targetAngle = currentAngle + diff * rotationProg;
-      }
+      // SMOOTH ROTATION (Inertia)
+      // We store the previous angle and lerp towards the target
+      if ((tx as any)._prevAngle === undefined) (tx as any)._prevAngle = targetAngle;
+      
+      let diff = targetAngle - (tx as any)._prevAngle;
+      while (diff > Math.PI) diff -= Math.PI * 2;
+      while (diff < -Math.PI) diff += Math.PI * 2;
+      
+      // Lerp factor (adjust for "weight" of the plane)
+      const lerpFactor = 0.15; 
+      const smoothedAngle = (tx as any)._prevAngle + diff * lerpFactor;
+      (tx as any)._prevAngle = smoothedAngle;
 
       this.ctx.save();
-      this.ctx.translate(curX, curY);
-      this.ctx.rotate(targetAngle);
+      this.ctx.translate(pos.x, pos.y);
+      this.ctx.rotate(smoothedAngle);
       this.ctx.fillStyle = "#ffffff";
+      
+      // Add a subtle drop shadow for depth
+      this.ctx.shadowBlur = 4 / this.scale;
+      this.ctx.shadowColor = "rgba(0,0,0,0.5)";
+      this.ctx.shadowOffsetY = 2 / this.scale;
+      
       this.drawPlaneIcon();
       this.ctx.restore();
     });

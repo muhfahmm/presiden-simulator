@@ -112,14 +112,14 @@ const smoothPath = (points: Point[]): Point[] => {
     
     smoothed.push(p1);
     
-    // Only smooth long segments (more than 15 degrees)
+    // Only smooth long segments (more than 2 degrees)
     const dist = Math.sqrt(Math.pow(p2.lon - p1.lon, 2) + Math.pow(p2.lat - p1.lat, 2));
-    if (dist > 15) {
-      const steps = Math.floor(dist / 5); // One point every 5 degrees
+    if (dist > 2) {
+      const steps = Math.max(2, Math.floor(dist / 1)); // One point every 1 degree
       for (let s = 1; s < steps; s++) {
         const t = s / steps;
         
-        // Simple spherical interpolation (Lerp for now, but with a "bulge" for curvature)
+        // Simple spherical interpolation (Lerp with a "bulge" for curvature)
         let lon = p1.lon + (p2.lon - p1.lon) * t;
         let lat = p1.lat + (p2.lat - p1.lat) * t;
         

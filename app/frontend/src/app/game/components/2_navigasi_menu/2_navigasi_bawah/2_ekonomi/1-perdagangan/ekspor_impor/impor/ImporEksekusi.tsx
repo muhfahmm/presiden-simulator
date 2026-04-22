@@ -153,7 +153,8 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
             commodity: selectedName,
             amount: quantity,
             unit: getUnit(selectedKey),
-            totalDays: parseInt(shipTimeData.final.split("-")[1]?.split(" ")[0] || shipTimeData.final.split(" ")[0]) || 10
+            totalDays: parseInt(shipTimeData.final.split("-")[1]?.split(" ")[0] || shipTimeData.final.split(" ")[0]) || 10,
+            startDate: getStoredGameDate()
         });
     }
 

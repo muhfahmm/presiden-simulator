@@ -84,7 +84,8 @@ export const tradeStorage = {
     commodity?: string,
     amount?: number,
     unit?: string,
-    totalDays?: number
+    totalDays?: number,
+    startDate?: string | Date // Synchronized with game time
   }) => {
     if (typeof window === 'undefined') return;
     const txs = tradeStorage.getActiveTransactions();
@@ -95,7 +96,8 @@ export const tradeStorage = {
         source: normalize(tx.source),
         dest: normalize(tx.dest),
         id: Date.now() + Math.floor(Math.random() * 1000000), 
-        timestamp: Date.now() 
+        timestamp: Date.now(),
+        startDate: tx.startDate || new Date().toISOString()
     };
     const updated = [...txs, newTx];
     localStorage.setItem(TRANSACTIONS_KEY, JSON.stringify(updated));
