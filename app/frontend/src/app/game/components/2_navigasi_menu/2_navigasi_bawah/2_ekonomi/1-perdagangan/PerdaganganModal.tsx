@@ -879,7 +879,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                   </div>
                 </div>
               ) : (
-                activeMenu === "Menu:Perdagangan:ekspor_eksekusi" ? (
+                tradeType === "ekspor_eksekusi" ? (
                   <EksporEksekusi
                     selectedKey={selectedKey}
                     selectedName={selectedName}
@@ -895,7 +895,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     INITIAL_GAME_DATE={INITIAL_GAME_DATE}
                     selectedTradePartner={selectedTradePartner}
                   />
-                ) : activeMenu === "Menu:Perdagangan:impor_eksekusi" ? (
+                ) : tradeType === "impor_eksekusi" ? (
                   <ImporEksekusi
                     selectedKey={selectedKey}
                     selectedName={selectedName}
@@ -954,6 +954,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                     budgetData={budgetData}
                     baseKeyMapping={baseKeyMapping}
                     currentCountryName={currentCountry.name_en}
+                    selectedTradePartner={selectedTradePartner}
                   />
                 ) : (
                   <ImporHalaman
@@ -975,7 +976,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 )
               )}
 
-              {!(activeMenu === "Menu:Perdagangan:ekspor_eksekusi" || activeMenu === "Menu:Perdagangan:impor_eksekusi") && (
+              {!(tradeType === "ekspor_eksekusi" || tradeType === "impor_eksekusi") && (
                 <div className="space-y-6 pt-8 border-t border-zinc-900/80">
                   <div className="flex items-center justify-between">
                     <h3 className="text-[11px] font-black text-white uppercase tracking-[0.3em] italic">DAFTAR MITRA DAGANG INTERNASIONAL</h3>

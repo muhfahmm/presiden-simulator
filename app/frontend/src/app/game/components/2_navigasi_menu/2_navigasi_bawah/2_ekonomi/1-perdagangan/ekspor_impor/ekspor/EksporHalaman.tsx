@@ -19,6 +19,7 @@ interface EksporHalamanProps {
   budgetData: any;
   baseKeyMapping: any;
   currentCountryName?: string;
+  selectedTradePartner: string | null;
 }
 
 export const EksporHalaman: React.FC<EksporHalamanProps> = ({
@@ -35,7 +36,8 @@ export const EksporHalaman: React.FC<EksporHalamanProps> = ({
   setActiveChartTab,
   budgetData,
   baseKeyMapping,
-  currentCountryName
+  currentCountryName,
+  selectedTradePartner
 }) => {
   const pbbMultipliers = currentCountryName ? pbbImpactLogic.getCountryMultipliers(currentCountryName) : pbbImpactLogic.getDefaults();
   const statusColor = pbbImpactLogic.getStatusColor(pbbMultipliers.impactLevel, 'text-emerald-400');
@@ -122,7 +124,7 @@ export const EksporHalaman: React.FC<EksporHalamanProps> = ({
           </div>
           <button 
             disabled={selectedUnits === 0}
-            onClick={() => setActiveMenu(`Menu:Perdagangan:ekspor_eksekusi`)} 
+            onClick={() => setActiveMenu(`Menu:Perdagangan:ekspor_eksekusi:${selectedTradePartner}`)} 
             className={`px-10 py-5 font-black uppercase text-[12px] tracking-[0.2em] rounded-2xl transition-all whitespace-nowrap ${
               selectedUnits === 0 
               ? "bg-zinc-800 text-zinc-500 cursor-not-allowed opacity-50 shadow-none" 
