@@ -168,9 +168,9 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
 
 
   const handleConfirm = () => {
-    budgetStorage.updateBudget(totalValue);
+    // budgetStorage.updateBudget(totalValue); // MOVED TO ARRIVAL LOGIC
     
-    // REDUCE DOMESTIC STOCK
+    // REDUCE DOMESTIC STOCK IMMEDIATELY (Goods leave the warehouse)
     budgetStorage.updateCumulativeProduction({ [stockKey]: -quantity });
     
     const shipTimeData = calculateShippingTime(selectedTradePartner);
@@ -187,14 +187,14 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
       shippingTime: shipTimeData.final
     });
 
-    // Add to Inbox
+    // Add to Inbox (Update message to reflect shipping status)
     const gameDate = getStoredGameDate();
     inboxStorage.addMessage({
       source: "Kementerian Perdagangan",
-      subject: `Ekspor ${selectedName} ke ${selectedTradePartner || "Mitra"} Berhasil`,
+      subject: `Pengiriman Ekspor ${selectedName} Dimulai`,
       priority: 'medium',
       time: `${String(gameDate.getDate()).padStart(2, '0')}-${String(gameDate.getMonth() + 1).padStart(2, '0')}-${gameDate.getFullYear()}`,
-      content: `Transaksi ekspor ${quantity.toLocaleString('id-ID')} ${getUnit(selectedKey)} ${selectedName} telah berhasil diselesaikan.\n\nDetail:\n- Pendapatan: +${totalValue.toLocaleString('id-ID')}\n- Mitra Dagang: ${selectedTradePartner || "Mitra Internasional"}\n- Estimasi Pengiriman: ${shipTimeData.final}`
+      content: `Barang ekspor sebanyak ${quantity.toLocaleString('id-ID')} ${getUnit(selectedKey)} ${selectedName} sedang dalam perjalanan ke ${selectedTradePartner || "Mitra"}.\n\nDetail:\n- Nilai Transaksi: +${totalValue.toLocaleString('id-ID')} (Diterima saat tiba)\n- Estimasi Tiba: ${shipTimeData.final}`
     });
 
     // Add animated transaction line to the map
@@ -204,7 +204,9 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
             dest: selectedTradePartner,
             type: 'sell',
             commodity: selectedName,
+            commodityKey: stockKey, // Use the storage key for production
             amount: quantity,
+            totalValue: totalValue, // Store value for arrival
             unit: getUnit(selectedKey),
             totalDays: parseInt(shipTimeData.final.split("-")[1]?.split(" ")[0] || shipTimeData.final.split(" ")[0]) || 10,
             startDate: getStoredGameDate()

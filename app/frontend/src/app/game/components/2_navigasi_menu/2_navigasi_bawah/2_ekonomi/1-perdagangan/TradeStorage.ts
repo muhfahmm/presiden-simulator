@@ -83,7 +83,9 @@ export const tradeStorage = {
     dest: string, 
     type: 'buy' | 'sell',
     commodity?: string,
+    commodityKey?: string,
     amount?: number,
+    totalValue?: number,
     unit?: string,
     totalDays?: number,
     startDate?: string | Date // Synchronized with game time
@@ -114,6 +116,29 @@ export const tradeStorage = {
   removeTransaction: (id: number) => {
     if (typeof window === 'undefined') return;
     const txs = tradeStorage.getActiveTransactions();
+    const tx = txs.find(t => t.id === id);
+    
+    if (tx && tx.totalValue) {
+      const { budgetStorage } = require("@/app/game/components/1_navbar/3_kas_negara");
+      
+      if (tx.type === 'sell') {
+        // Export Arrival: Add money (Payment received on delivery)
+        budgetStorage.updateBudget(tx.totalValue);
+        console.log(`[TRADE] Export arrived at ${tx.dest}. Payment of ${tx.totalValue} received.`);
+      } else if (tx.type === 'buy') {
+        // Import Arrival: Deduct money and add stock
+        budgetStorage.updateBudget(-tx.totalValue);
+        
+        if (tx.commodityKey) {
+          // Use the commodityKey to add stock (inventory increases on arrival)
+          const stockChange: Record<string, number> = {};
+          stockChange[tx.commodityKey] = tx.amount || 0;
+          budgetStorage.updateCumulativeProduction(stockChange);
+        }
+        console.log(`[TRADE] Import arrived from ${tx.source}. Payment of ${tx.totalValue} deducted. Stock added.`);
+      }
+    }
+
     const updated = txs.filter(t => t.id !== id);
     localStorage.setItem(TRANSACTIONS_KEY, JSON.stringify(updated));
     window.dispatchEvent(new CustomEvent('trade_storage_updated'));

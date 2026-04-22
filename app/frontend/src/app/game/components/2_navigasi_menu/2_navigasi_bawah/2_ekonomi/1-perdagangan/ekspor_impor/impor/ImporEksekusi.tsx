@@ -28,6 +28,62 @@ interface ImporEksekusiProps {
   getStoredGameDate: () => Date;
 }
 
+// Helper to map selected commodity keys to their production storage keys
+const getStockKey = (selectedKey: string) => {
+  const map: Record<string, string> = {
+    // Minerals
+    emas: "1_tambang_emas", 
+    uranium: "2_tambang_uranium", 
+    batu_bara: "3_tambang_batu_bara", 
+    minyak_bumi: "4_sumur_minyak", 
+    gas_alam: "5_sumur_gas", 
+    garam: "6_tambang_garam", 
+    nikel: "7_tambang_nikel", 
+    litium: "8_tambang_litium", 
+    tembaga: "9_tambang_tembaga", 
+    aluminium: "10_tambang_aluminium", 
+    logam_tanah_jarang: "11_tambang_ltj", 
+    bijih_besi: "12_tambang_bijih_besi",
+    
+    // Industrial / Manufactured
+    semikonduktor: "1_pabrik_elektronik",
+    mobil: "2_pabrik_mobil",
+    sepeda_motor: "3_pabrik_motor",
+    smelter: "4_smelter",
+    semen_beton: "5_pabrik_semen",
+    kayu: "6_penggergajian_kayu",
+    
+    // Food Processing
+    air_mineral: "1_pabrik_air_mineral",
+    gula: "2_pabrik_gula",
+    roti: "3_pabrik_roti",
+    pengolahan_daging: "4_pabrik_pengolahan_daging",
+    mie_instan: "5_pabrik_mie_instan",
+    minyak_goreng: "6_pabrik_minyak_goreng",
+    farmasi: "1_pabrik_farmasi",
+    
+    // Livestock (Peternakan)
+    ayam_unggas: "1_peternakan_unggas", 
+    sapi_perah: "2_peternakan_sapi_perah", 
+    sapi_potong: "3_peternakan_sapi_potong", 
+    domba_kambing: "4_peternakan_domba_kambing",
+    
+    // Fisheries (Perikanan)
+    udang_kerang: "1_tambak_udang", 
+    ikan: "2_budidaya_ikan_tawar",
+    
+    // Agriculture (Agrikultur)
+    padi: "1_sawah_padi", 
+    gandum_jagung: "2_ladang_gandum", 
+    sayur_umbi: "4_ladang_umbi", 
+    kedelai: "5_ladang_kedelai", 
+    kelapa_sawit: "6_perkebunan_sawit", 
+    kopi_teh_kakao: "8_perkebunan_kopi",
+    tebu: "10_perkebunan_tebu"
+  };
+  return map[selectedKey] || selectedKey;
+};
+
 export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({ 
   selectedKey, selectedName, selectedUnits, getProductionRate, getUnit, basePrice, 
   setActiveMenu, budgetData: initialBudgetData, activeCountryData, currentCountry, selectedTradePartner,
@@ -115,7 +171,7 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
   const handleConfirm = () => {
     if (isBudgetInsufficient) return;
     
-    budgetStorage.updateBudget(-totalCost);
+    // budgetStorage.updateBudget(-totalCost); // MOVED TO ARRIVAL LOGIC
     
     // TRACK PARTNER STOCK REDUCTION
     importStockStorage.addImport(selectedTradePartner, selectedKey, quantity);
@@ -134,14 +190,14 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
       shippingTime: shipTimeData.final
     });
 
-    // Add to Inbox
+    // Add to Inbox (Update message to reflect shipping status)
     const gameDate = getStoredGameDate();
     inboxStorage.addMessage({
       source: "Kementerian Perdagangan",
-      subject: `Impor ${selectedName} dari ${selectedTradePartner || "Mitra"} Berhasil`,
+      subject: `Pemesanan Impor ${selectedName} Dimulai`,
       priority: 'medium',
       time: `${String(gameDate.getDate()).padStart(2, '0')}-${String(gameDate.getMonth() + 1).padStart(2, '0')}-${gameDate.getFullYear()}`,
-      content: `Transaksi impor ${quantity.toLocaleString('id-ID')} ${getUnit(selectedKey)} ${selectedName} telah berhasil diselesaikan.\n\nDetail:\n- Pengeluaran: -${totalCost.toLocaleString('id-ID')}\n- Mitra Dagang: ${selectedTradePartner || "Mitra Internasional"}\n- Estimasi Pengiriman: ${shipTimeData.final}`
+      content: `Barang impor sebanyak ${quantity.toLocaleString('id-ID')} ${getUnit(selectedKey)} ${selectedName} telah dipesan dari ${selectedTradePartner || "Mitra"}.\n\nDetail:\n- Nilai Transaksi: -${totalCost.toLocaleString('id-ID')} (Dibayar saat tiba)\n- Estimasi Tiba: ${shipTimeData.final}`
     });
 
     // Add animated transaction line to the map
@@ -151,7 +207,9 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
             dest: currentCountry.name_id,
             type: 'buy',
             commodity: selectedName,
+            commodityKey: getStockKey(selectedKey), // Use the storage key for inventory
             amount: quantity,
+            totalValue: totalCost, // Store cost for arrival
             unit: getUnit(selectedKey),
             totalDays: parseInt(shipTimeData.final.split("-")[1]?.split(" ")[0] || shipTimeData.final.split(" ")[0]) || 10,
             startDate: getStoredGameDate()
@@ -355,8 +413,8 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
                  <CheckCircle2 size={32} className="text-green-500 animate-in zoom-in-50 duration-500" />
               </div>
               <div className="text-center">
-                 <h4 className="text-lg font-black text-white uppercase tracking-widest italic">Impor Berhasil</h4>
-                 <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mt-1">Saldo negara telah diperbarui</p>
+                 <h4 className="text-lg font-black text-white uppercase tracking-widest italic">Pemesanan Berhasil</h4>
+                 <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mt-1">Kapal sedang dalam perjalanan</p>
               </div>
            </div>
         </div>
