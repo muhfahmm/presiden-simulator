@@ -2,6 +2,7 @@ import { BaseMapEngine, GeoJsonFeature, CONTINENT_COLORS } from './BaseMapEngine
 import { calculateTradeRoute, Point, getHubForCountry } from '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/jalur_perdagangan/2_rute/tradeRoutes';
 import { internationalHubs } from '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/jalur_perdagangan/3_hub/hubs';
 import { timeStorage } from '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage';
+import { tradeStorage } from '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/TradeStorage';
 
 export class TradeMapEngine extends BaseMapEngine {
   public playerCountryName: string | null = null;
@@ -19,6 +20,8 @@ export class TradeMapEngine extends BaseMapEngine {
     // Subscribe to time storage for animation sync
     timeStorage.subscribe((date, paused, speed) => {
       this.gameState = { gameDate: date, isPaused: paused, speed: speed };
+      (this as any)._lastUpdateRealTime = performance.now(); // Track when date was updated
+      this.requestRender(); 
     });
   }
 
@@ -122,21 +125,44 @@ export class TradeMapEngine extends BaseMapEngine {
       this.ctx.stroke();
 
       // --- HIGH PRECISION GAME-TIME SYNCHRONIZED ANIMATION ---
-      const totalDays = tx.totalDays || 10;
-      const totalGameMs = totalDays * 24 * 60 * 60 * 1000;
+      const totalDays = Number(tx.totalDays) || 10;
+      const MS_PER_DAY = 24 * 60 * 60 * 1000;
+      const totalGameMs = totalDays * MS_PER_DAY;
       
-      const gameStart = new Date(tx.startDate || tx.timestamp).getTime();
+      const parseSafe = (d: any) => {
+        if (!d) return 0;
+        const dt = new Date(d);
+        if (!isNaN(dt.getTime())) return dt.getTime();
+        if (typeof d === 'string' && d.includes('-')) {
+          const p = d.split('-');
+          if (p.length === 3) {
+            const dt2 = new Date(`${p[2]}-${p[1]}-${p[0]}`); 
+            if (!isNaN(dt2.getTime())) return dt2.getTime();
+          }
+        }
+        return 0;
+      };
+
+      const gameStart = parseSafe(tx.startDate || tx.timestamp);
       const gameNow = this.gameState.gameDate.getTime();
       
-      const elapsedGameMs = gameNow - gameStart;
+      // Interpolation logic: 1 game day = ~12 seconds at 1x speed
+      const GAME_MS_PER_REAL_MS = (MS_PER_DAY / 12000) * this.gameState.speed;
+      const realTimeSinceUpdate = performance.now() - ((this as any)._lastUpdateRealTime || performance.now());
+      const interpolation = this.gameState.isPaused ? 0 : (realTimeSinceUpdate * GAME_MS_PER_REAL_MS);
+
+      const elapsedGameMs = (gameNow - gameStart) + interpolation;
       const rawProgress = Math.min(1, Math.max(0, elapsedGameMs / totalGameMs));
       
       // Apply Cubic Ease-Out for smooth landing
       const progress = 1 - Math.pow(1 - rawProgress, 3);
       
       if (rawProgress >= 1) {
-        // We can't delete from activeTransactions here as it's passed from props,
-        // but we can just not draw it or the system will eventually remove it.
+        // Automatically cleanup finished transactions from storage
+        // We use setTimeout to avoid state updates during render
+        setTimeout(() => {
+          tradeStorage.removeTransaction(tx.id);
+        }, 100);
         return;
       }
 
@@ -183,15 +209,15 @@ export class TradeMapEngine extends BaseMapEngine {
       const targetAngle = Math.atan2(posAhead.y - pos.y, posAhead.x - pos.x);
 
       // SMOOTH ROTATION (Inertia)
-      // We store the previous angle and lerp towards the target
       if ((tx as any)._prevAngle === undefined) (tx as any)._prevAngle = targetAngle;
       
       let diff = targetAngle - (tx as any)._prevAngle;
       while (diff > Math.PI) diff -= Math.PI * 2;
       while (diff < -Math.PI) diff += Math.PI * 2;
       
-      // Lerp factor (adjust for "weight" of the plane)
-      const lerpFactor = 0.15; 
+      // Lerp factor normalized to 60fps (0.15 at 60fps)
+      const frameRateFactor = deltaTime / (1000 / 60);
+      const lerpFactor = Math.min(1, 0.15 * (frameRateFactor || 1)); 
       const smoothedAngle = (tx as any)._prevAngle + diff * lerpFactor;
       (tx as any)._prevAngle = smoothedAngle;
 

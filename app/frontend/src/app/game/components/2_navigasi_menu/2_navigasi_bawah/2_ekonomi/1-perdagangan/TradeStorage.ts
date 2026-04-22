@@ -97,7 +97,7 @@ export const tradeStorage = {
         dest: normalize(tx.dest),
         id: Date.now() + Math.floor(Math.random() * 1000000), 
         timestamp: Date.now(),
-        startDate: tx.startDate || new Date().toISOString()
+        startDate: tx.startDate || getStoredGameDate()
     };
     const updated = [...txs, newTx];
     localStorage.setItem(TRANSACTIONS_KEY, JSON.stringify(updated));

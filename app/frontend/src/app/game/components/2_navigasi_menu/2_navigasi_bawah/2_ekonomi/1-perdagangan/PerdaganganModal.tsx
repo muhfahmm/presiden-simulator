@@ -4,7 +4,7 @@ import {
   Cpu, Car, Bike, Construction, TreePine, Droplet, Cookie, Croissant, Pill, FlaskConical, Beef, Soup,
   Bird, Milk, Leaf, Shell, Fish, Sprout, Utensils, Apple, Bean, Layers, Mountain, Gem, Waves, Flame,
   Battery, Droplets, Box, Pickaxe, Radio, Coffee, Carrot, Eye, ChevronRight, Plus,
-  Target, Shield, Sword, Navigation, Ban, History as HistoryIcon, Newspaper, ChevronLeft, Sparkles
+  Target, Shield, Sword, Navigation, Ban, History as HistoryIcon, Newspaper, ChevronLeft, Sparkles, Trash2
 } from "lucide-react"
 import { AddTradePartnerModal } from "./mitra_dagang_internasional/AddTradePartnerModal"
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index"
@@ -529,6 +529,18 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 </span>
               </div>
             </div>
+            <button 
+              onClick={() => {
+                if (confirm("Hapus semua jalur perdagangan yang sedang aktif?")) {
+                  tradeStorage.clearTransactions();
+                }
+              }}
+              className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-red-500 transition-all cursor-pointer group shadow-inner active:scale-95 flex items-center gap-2"
+              title="Bersihkan Semua Jalur Aktif"
+            >
+              <Trash2 className="h-5 w-5" />
+              <span className="text-[9px] font-black uppercase tracking-widest hidden lg:inline">Bersihkan Jalur</span>
+            </button>
             <button className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group shadow-[0_0_15px_rgba(59,130,246,0.1)] active:scale-95">
               <Ship className="h-6 w-6 text-blue-500 group-hover:scale-110 transition-transform" />
             </button>
