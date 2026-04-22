@@ -543,7 +543,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
           {/* Mitra Dagang Sidebar */}
           <div className="w-[320px] border-r border-zinc-900 bg-zinc-950/50 flex flex-col backdrop-blur-sm">
             <div className="p-6 border-b border-zinc-900/80 shrink-0">
-              <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">Mitra Dagang</h3>
+              <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">Mitra Dagang ({activePartnersList.filter((a: any) => a.status === 'Aktif' || !a.status || a.status !== 'Rejected').length})</h3>
               <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic mt-1">Negara Tujuan / Sumber</p>
             </div>
             <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent p-4 space-y-1.5">

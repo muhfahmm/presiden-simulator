@@ -96,6 +96,9 @@ export function useGamePath(path: string[]) {
       if (detail) initialMenu = `Menu:Diplomasi:${detail}`;
       else initialMenu = "Menu:Diplomasi";
     }
+    else if (subMenu === 'kedutaan-besar') {
+      initialMenu = "Menu:KedutaanBesar";
+    }
     else initialMenu = "Geopolitik";
   } else if (category === 'kementrian') {
     if (subMenu === 'kementrian-dashboard') initialMenu = "Dashboard:Kementerian";
@@ -214,6 +217,7 @@ export function useGamePath(path: string[]) {
       "Menu:TingkatHubungan": "/game/geopolitik/tingkat-hubungan",
       "Menu:Bantuan": "/game/geopolitik/bantuan",
       "Menu:Diplomasi": "/game/geopolitik/diplomasi",
+      "Menu:KedutaanBesar": "/game/geopolitik/kedutaan-besar",
       "Geopolitik": "/game/geopolitik",
       "Kementerian": "/game/kementrian",
       "Dashboard:Kementerian": "/game/kementrian/kementrian-dashboard",
