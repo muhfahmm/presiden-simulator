@@ -236,31 +236,54 @@ export const AiTradeService = {
                     } else {
                         // Check Weekly Inbox Limit (2 per week for trade category)
                         if (inboxStorage.canAddWeekly(event.category || 'trade', gameDate)) {
-                            // --- EMERGENCY GUARD: REJECT GHOST OFFERS ---
+                            // --- RELATIONSHIP CHECKING ---
+                            const srcId = normalizeId(event.source || '');
+                            const userKey = getNormalizedUser();
+                            
+                            // Whitelist Fallback from Database
+                            const sessionRaw = localStorage.getItem("game_session");
+                            let userCountryRaw = "Indonesia";
+                            try { if(sessionRaw) userCountryRaw = JSON.parse(sessionRaw).country || userCountryRaw; } catch(e) {}
+                            const userCountryData = countries.find((c: any) => c.name_id === userCountryRaw || c.name_en === userCountryRaw) || countries[0];
+                            const defaultAgreements = getInitialAgreements(userCountryData.name_en, userCountryData.name_id || userCountryData.name_en);
+                            
+                            const isOfficialPartner = defaultAgreements.some(a => 
+                                (a.type.toLowerCase() === 'perdagangan' || a.type.toLowerCase() === 'trade') && 
+                                (a.status.toLowerCase() === 'aktif' || a.status.toLowerCase() === 'active') && 
+                                normalizeId(a.mitra) === srcId
+                            );
+
+                            const matrixEntry = matrix[srcId]?.[userKey] || matrix[userKey]?.[srcId];
+                            const isMatrixPartner = matrixEntry?.t === 1;
+                            const isAlreadyPartner = isOfficialPartner || isMatrixPartner;
+                            const isAlreadyConnected = isAlreadyPartner || matrixEntry?.e === 1;
+
+                            // DEBUG: Log checks for specific problematic countries
+                            if (srcId === 'jepang' || srcId === 'japan') {
+                                console.log(`[AI-TRADE-DEBUG] Japan Check: Official=${isOfficialPartner}, Matrix=${isMatrixPartner}, Type=${event.type}`);
+                            }
+
+                            // 1. Transactional Deals (Buy/Sell/Contract) -> ONLY allow if ALREADY a partner
                             const isTransactionalDeal = event.category === 'trade' && 
                                 ['AI_TRADE_PRODUCT_OFFER', 'AI_TRADE_PURCHASE_REQUEST', 'AI_TRADE_CONTRACT_PROPOSAL'].includes(event.type);
                             
-                            if (isTransactionalDeal) {
-                                const srcId = normalizeId(event.source || '');
-                                const userKey = getNormalizedUser();
-                                
-                                // Whitelist Fallback from Database
-                                const sessionRaw = localStorage.getItem("game_session");
-                                let userCountryRaw = "Indonesia";
-                                try { if(sessionRaw) userCountryRaw = JSON.parse(sessionRaw).country || userCountryRaw; } catch(e) {}
-                                const userCountryData = countries.find((c: any) => c.name_id === userCountryRaw || c.name_en === userCountryRaw) || countries[0];
-                                const defaultAgreements = getInitialAgreements(userCountryData.name_en, userCountryData.name_id || userCountryData.name_en);
-                                
-                                const isOfficialPartner = defaultAgreements.some(a => 
-                                    a.type === 'Perdagangan' && a.status === 'Aktif' && normalizeId(a.mitra) === srcId
-                                );
+                            if (isTransactionalDeal && !isAlreadyPartner) {
+                                console.warn(`[AI-TRADE] Rejected trade offer from non-partner: ${event.source}`);
+                                return; // SKIP
+                            }
 
-                                const isMatrixPartner = matrix[srcId]?.[userKey]?.t === 1 || matrix[userKey]?.[srcId]?.t === 1;
+                            // 2. Partnership Proposal -> ONLY allow if NOT a partner yet
+                            const isPartnershipProposal = event.type === 'AI_TRADE_AGREEMENT_PROPOSAL';
+                            if (isPartnershipProposal && isAlreadyPartner) {
+                                console.log(`[AI-TRADE] Blocked redundant partnership proposal from active partner: ${event.source}`);
+                                return; // SKIP
+                            }
 
-                                if (!isOfficialPartner && !isMatrixPartner) {
-                                    console.warn(`[AI-TRADE] Rejected offer from non-partner: ${event.source}`);
-                                    return; // SKIP adding to inbox
-                                }
+                            // 3. Embassy Proposal -> ONLY allow if NO embassy/trade yet
+                            const isEmbassyProposal = event.type === 'AI_EMBASSY_PROPOSAL';
+                            if (isEmbassyProposal && isAlreadyConnected) {
+                                console.log(`[AI-TRADE] Blocked redundant embassy proposal from connected country: ${event.source}`);
+                                return; // SKIP
                             }
                             // --------------------------------------------
 
