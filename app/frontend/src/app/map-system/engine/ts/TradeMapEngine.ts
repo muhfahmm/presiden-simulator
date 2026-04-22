@@ -45,8 +45,17 @@ export class TradeMapEngine extends BaseMapEngine {
     });
   }
 
+  public clear() {
+    this.activeTransactions = [];
+    this.activeRoutesCache = {};
+    this.requestRender();
+  }
+
   public setTransactions(transactions: any[]) {
     this.activeTransactions = transactions;
+    if (transactions.length === 0) {
+      this.clear();
+    }
     this.requestRender();
   }
 
@@ -124,6 +133,24 @@ export class TradeMapEngine extends BaseMapEngine {
     }
 
     // 3. Draw Routes and Planes
+    const parseSafe = (d: any) => {
+      if (!d) return 0;
+      const dt = new Date(d);
+      if (!isNaN(dt.getTime())) {
+        dt.setHours(0, 0, 0, 0);
+        return dt.getTime();
+      }
+      if (typeof d === 'string' && d.includes('-')) {
+        const p = d.split('-');
+        if (p.length === 3) {
+          const dt2 = new Date(`${p[2]}-${p[1]}-${p[0]}`); 
+          dt2.setHours(0, 0, 0, 0);
+          if (!isNaN(dt2.getTime())) return dt2.getTime();
+        }
+      }
+      return 0;
+    };
+
     this.activeTransactions.forEach(tx => {
       if (!this.activeRoutesCache[tx.id]) {
         const sHub = getHubForCountry(tx.source), dHub = getHubForCountry(tx.dest);
@@ -149,25 +176,6 @@ export class TradeMapEngine extends BaseMapEngine {
       const MS_PER_DAY = 24 * 60 * 60 * 1000;
       const totalGameMs = totalDays * MS_PER_DAY;
       
-      const parseSafe = (d: any) => {
-        if (!d) return 0;
-        const dt = new Date(d);
-        if (!isNaN(dt.getTime())) {
-          // Normalize to start of day to prevent hourly offsets from causing "jumps"
-          dt.setHours(0, 0, 0, 0);
-          return dt.getTime();
-        }
-        if (typeof d === 'string' && d.includes('-')) {
-          const p = d.split('-');
-          if (p.length === 3) {
-            const dt2 = new Date(`${p[2]}-${p[1]}-${p[0]}`); 
-            dt2.setHours(0, 0, 0, 0);
-            if (!isNaN(dt2.getTime())) return dt2.getTime();
-          }
-        }
-        return 0;
-      };
-
       const gameStart = parseSafe(tx.startDate || tx.timestamp);
       const gameNowDt = new Date(this.gameState.gameDate);
       gameNowDt.setHours(0, 0, 0, 0);
@@ -181,29 +189,36 @@ export class TradeMapEngine extends BaseMapEngine {
         (tx as any)._visualProgress = targetProgress;
       }
 
-      // SMOOTH CHASING LOGIC:
-      // We don't jump to the target. Instead, we move towards it smoothly.
-      // This absorbs jumps in the server clock and server lag.
-      const diff = targetProgress - (tx as any)._visualProgress;
-      
-      if (this.gameState.isPaused) {
-        // Stop moving when paused
-      } else if (diff > 0) {
-        // If we are behind the game date, catch up smoothly.
-        // The catch-up speed is proportional to simulation speed.
+      const diff = targetProgress - ((tx as any)._visualProgress || 0);
+
+      // SMOOTH CONTINUOUS MOVEMENT:
+      // We maintain a "Cruising Velocity" so the plane never stops between date updates.
+      if (!this.gameState.isPaused) {
         const frameRateFactor = (deltaTime || 16.6) / 16.6;
-        const baseCatchUpSpeed = 0.0001; // Base speed per frame at 1x
-        const catchUpSpeed = baseCatchUpSpeed * this.gameState.speed * frameRateFactor;
         
-        // We move a bit faster if the difference is large, but limited to a smooth flow
-        const moveAmount = Math.max(catchUpSpeed, diff * 0.05 * frameRateFactor);
-        (tx as any)._visualProgress += Math.min(diff, moveAmount);
+        // 1. Calculate Nominal Speed (How much progress we should make per frame)
+        // Assumption: 1 game day = ~12 seconds at 1x speed. 
+        const dayInRealMs = 12000; 
+        const nominalVelocity = ((deltaTime || 16.6) / dayInRealMs) * (1 / totalDays) * this.gameState.speed;
+        
+        (tx as any)._visualProgress += nominalVelocity;
+
+        // 2. Soft-Sync Logic:
+        // We compare our visual position with the official game date (targetProgress).
+        // If we are drifting too far, we gently pull the plane back into sync.
+        
+        // If we are more than 0.1 days ahead/behind, apply correction
+        const threshold = (1 / totalDays) * 0.1; 
+        if (Math.abs(diff) > threshold) {
+          // Gently lerp towards the target (pulling force)
+          (tx as any)._visualProgress += diff * 0.02 * frameRateFactor;
+        }
       } else if (diff < -0.1) {
-        // If we are way ahead (e.g. game date reset), snap back
+        // If the game date reset completely, snap the plane back
         (tx as any)._visualProgress = targetProgress;
       }
 
-      const progress = (tx as any)._visualProgress;
+      const progress = Math.min(1, Math.max(0, (tx as any)._visualProgress));
       
       // Cleanup check
       if (progress >= 1 && !(tx as any)._cleanupRequested) {
@@ -250,21 +265,27 @@ export class TradeMapEngine extends BaseMapEngine {
 
       const pos = getPointAtDist(targetDist);
       
-      // Calculate Angle using Tangent (look ahead)
-      const lookAhead = 5; // Further lookahead for smoother tangent
-      const posAhead = getPointAtDist(Math.min(totalLen, targetDist + lookAhead));
-      const targetAngle = Math.atan2(posAhead.y - pos.y, posAhead.x - pos.x);
+      // --- DIRECTION & ROTATION (Physics) ---
+      let targetAngle = 0;
+      const lookAhead = 5;
+      if (targetDist + lookAhead <= totalLen) {
+        const pAhead = getPointAtDist(targetDist + lookAhead);
+        targetAngle = Math.atan2(pAhead.y - pos.y, pAhead.x - pos.x);
+      } else {
+        const pBehind = getPointAtDist(Math.max(0, targetDist - lookAhead));
+        targetAngle = Math.atan2(pos.y - pBehind.y, pos.x - pBehind.x);
+      }
 
-      // SMOOTH ROTATION (Inertia)
+      // Smooth Rotation (Inertia)
       if ((tx as any)._prevAngle === undefined) (tx as any)._prevAngle = targetAngle;
       
       let angleDiff = targetAngle - (tx as any)._prevAngle;
       while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
       while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
       
-      // Lerp factor normalized to 60fps (0.15 at 60fps)
-      const frameRateFactor = deltaTime / (1000 / 60);
-      const lerpFactor = Math.min(1, 0.15 * (frameRateFactor || 1)); 
+      // Normalized to 60fps
+      const frameFactor = Math.max(0.1, (deltaTime || 16.6) / 16.6);
+      const lerpFactor = Math.min(1, 0.15 * frameFactor); 
       const smoothedAngle = (tx as any)._prevAngle + angleDiff * lerpFactor;
       (tx as any)._prevAngle = smoothedAngle;
 

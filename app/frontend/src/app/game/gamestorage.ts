@@ -329,7 +329,7 @@ export const gameStorage = {
       const key = localStorage.key(i);
       if (key) {
         allKeys.push(key);
-        if (key.startsWith('em_') || key === 'game_taxes') {
+        if (key.startsWith('em_') || key === 'game_taxes' || key === 'active_trade_transactions' || key === 'game_trades') {
           keysToRemove.add(key);
         }
       }
