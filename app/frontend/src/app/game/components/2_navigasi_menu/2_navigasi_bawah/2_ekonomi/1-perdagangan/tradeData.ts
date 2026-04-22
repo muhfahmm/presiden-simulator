@@ -172,3 +172,38 @@ export const getNationalLogisticsMultiplier = () => {
     importDiscount: Math.min(0.5, totalDiscount) // Capped at 50% discount
   };
 };
+
+/**
+ * Calculates the shipping duration based on regional distance and logistics multiplier.
+ * Replicates the logic from manual trade execution for global consistency.
+ */
+export const calculateShippingDays = (partner: string | null): number => {
+    const logistics = getNationalLogisticsMultiplier();
+    const speedupMultiplier = 1 - (logistics.shippingSpeedup / 100);
+
+    if (!partner) return Math.max(1, Math.floor(5 * speedupMultiplier));
+    
+    // Base ranges [min, max]
+    let baseRange = [10, 15];
+    const asean = ["Singapura", "Malaysia", "Thailand", "Filipina", "Brunei", "Vietnam", "Laos", "Kamboja", "Myanmar", "Timor Leste"];
+    
+    const partnerClean = partner.trim();
+    
+    if (asean.includes(partnerClean)) {
+        baseRange = [2, 3];
+    } else {
+        // Asia check
+        const { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } = require("@/app/database/data/negara/benua/index");
+        
+        if (asiaCountries.some((c: any) => c.name_id === partnerClean || c.name_en === partnerClean)) baseRange = [5, 7];
+        else if (oceaniaCountries.some((c: any) => c.name_id === partnerClean || c.name_en === partnerClean)) baseRange = [7, 10];
+        else if (eropaCountries.some((c: any) => c.name_id === partnerClean || c.name_en === partnerClean)) baseRange = [14, 20];
+        else if (afrikaCountries.some((c: any) => c.name_id === partnerClean || c.name_en === partnerClean)) baseRange = [18, 25];
+        else if (naCountries.some((c: any) => c.name_id === partnerClean || c.name_en === partnerClean)) baseRange = [21, 28];
+        else if (saCountries.some((c: any) => c.name_id === partnerClean || c.name_en === partnerClean)) baseRange = [25, 35];
+    }
+    
+    // Use the middle of the range as the base for the animation duration
+    const baseDays = (baseRange[0] + baseRange[1]) / 2;
+    return Math.max(1, Math.floor(baseDays * speedupMultiplier));
+};

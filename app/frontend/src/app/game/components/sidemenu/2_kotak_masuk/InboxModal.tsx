@@ -98,6 +98,8 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
 
   const handleAction = (msg: InboxItem, action: 'accept' | 'decline') => {
     const { AiTradeService } = require("../../AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/services/AiTradeService");
+    const { tradeStorage } = require("../../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/TradeStorage");
+    const { budgetStorage } = require("../../1_navbar/3_kas_negara");
 
     if (action === 'accept') {
         if (msg.metadata) {
@@ -132,6 +134,59 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
             } else {
                 alert("Gagal memproses transaksi. Pastikan saldo atau stok mencukupi.");
             }
+        } else if (msg.category === 'trade') {
+            // HEURISTIC PARSING for legacy/server messages
+            const content = msg.content || "";
+            const subj = msg.subject.toLowerCase();
+            
+            // Extract Country (e.g., Malaysia, China)
+            const countryMatch = msg.subject.match(/DARI\s+([A-Z\s]+)/i) || msg.subject.match(/KE\s+([A-Z\s]+)/i);
+            const country = countryMatch ? countryMatch[1].trim() : "Mitra";
+            
+            // Extract Commodity
+            const commodityMatch = msg.subject.match(/:\s+([A-Z\s]+)\s+DARI/i) || content.match(/produk\s+([A-Z\s]+)\s+kita/i);
+            const commodity = commodityMatch ? commodityMatch[1].trim() : "Komoditas";
+            
+            // Extract Amount
+            const amountMatch = content.match(/berjumlah\s+([\d.]+)/i);
+            const amount = amountMatch ? parseInt(amountMatch[1].replace(/\./g, '')) : 0;
+            
+            // Extract Total Value
+            const valueMatch = content.match(/pendapatan:\s+([\d.]+)/i) || content.match(/biaya:\s+([\d.]+)/i);
+            const totalValue = valueMatch ? parseInt(valueMatch[1].replace(/\./g, '')) : 0;
+
+            const isExport = subj.includes('ekspor') || content.includes('membeli');
+            const type = isExport ? 'sell' : 'buy';
+            
+            const session = localStorage.getItem('game_session');
+            const userCountry = session ? JSON.parse(session).country : "Indonesia";
+
+            const { timeStorage } = require("../../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage");
+            const gameDate = timeStorage.getState().gameDate;
+
+            // Helper to normalize country name
+            const normalizeCountry = (name: string) => {
+                return name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+            };
+
+            const { calculateShippingDays } = require("../../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/tradeData");
+            const duration = calculateShippingDays(normalizeCountry(country));
+
+            // Trigger Map Animation & Delayed Settlement
+            tradeStorage.addTransaction({
+                source: isExport ? normalizeCountry(userCountry) : normalizeCountry(country),
+                dest: isExport ? normalizeCountry(country) : normalizeCountry(userCountry),
+                type: type,
+                commodity: commodity,
+                amount: amount,
+                totalValue: totalValue,
+                totalDays: duration,
+                startDate: gameDate
+            });
+
+            inboxStorage.markAsRead(msg.id);
+            setMessages(inboxStorage.getMessages());
+            alert(`Ratifikasi Berhasil! Pengiriman ${commodity} sedang diproses. Estimasi tiba: ${duration} Hari.`);
         } else {
             // Fallback for simple messages
             inboxStorage.markAsRead(msg.id);

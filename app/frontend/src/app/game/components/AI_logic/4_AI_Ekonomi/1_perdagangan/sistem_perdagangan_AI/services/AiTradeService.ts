@@ -334,7 +334,7 @@ export const AiTradeService = {
 
     /**
      * User menerima tawaran produk dari AI.
-     * AI menjual komoditas ke user → uang user berkurang, stok bertambah.
+     * AI menjual komoditas ke user → uang user berkurang, stok bertambah SAAT TIBA.
      */
     acceptProductOffer(offerId: string) {
         const offers = aiTradeOfferStorage.getOffers();
@@ -342,64 +342,47 @@ export const AiTradeService = {
         if (!offer || offer.status !== 'pending') return false;
 
         const totalCost = offer.amount * offer.pricePerUnit;
-        const currentBudget = budgetStorage.getBudget();
+        const budgetData = budgetStorage.getData();
 
-        if (totalCost > currentBudget) return false;
-
-        // --- NPC STOCK DEDUCTION ---
-        // Find which building key to deduct from
-        const buildingKeys = TradeToBuildingKeyMap[offer.commodity];
-        if (buildingKeys && buildingKeys.length > 0) {
-            // Find NPC english name
-            const countryEntry = countries.find(c => c.name_id?.toLowerCase() === offer.country.toLowerCase() || c.name_en?.toLowerCase() === offer.country.toLowerCase());
-            if (countryEntry && countryEntry.name_en) {
-               const npcName = countryEntry.name_en;
-               const currentStocks = aiProductionStorage.getStocks(npcName);
-               let amountToDeduct = offer.amount;
-               const deductionRecord: Record<string, number> = {};
-               
-               for (const bKey of buildingKeys) {
-                   const available = currentStocks[bKey] || 0;
-                   if (available > 0) {
-                       const deduct = Math.min(available, amountToDeduct);
-                       deductionRecord[bKey] = deduct;
-                       amountToDeduct -= deduct;
-                   }
-                   if (amountToDeduct <= 0) break;
-               }
-
-               if (amountToDeduct <= 0) {
-                   aiProductionStorage.deductStocks(npcName, deductionRecord);
-                   console.log(`[Trade] Deducted ${offer.amount} of ${offer.commodity} from ${npcName}`);
-               } else {
-                   console.warn(`[Trade] NPC ${npcName} does not have enough physical stock of ${offer.commodity} to fulfill offer! Proceeding anyway...`);
-                   // In a realistic scenario, we should prevent the trade, but for robust simulation we allow it and just drain what we can
-                   aiProductionStorage.deductStocks(npcName, deductionRecord);
-               }
-            }
-        }
-
-        // Kurangi uang user
-        budgetStorage.updateBudget(-totalCost);
+        if (totalCost > budgetData.anggaran) return false;
 
         // Update status
         aiTradeOfferStorage.updateStatus(offerId, 'accepted');
 
-        // Tambahkan animasi transaksi di peta
+        // Tambahkan animasi transaksi di peta dengan DELAYED SETTLEMENT
         const session = gameStorage.getSession();
+        const userCountry = session?.country || 'Indonesia';
+        
+        // Map commodity to storage key
+        const { getStockKey } = require("@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ekspor_impor/impor/ImporEksekusi");
+        const stockKey = getStockKey(offer.commodity);
+
+        // Helper to normalize country name (MALAYSIA -> Malaysia)
+        const normalizeCountry = (name: string) => {
+            return name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        };
+
+        const { calculateShippingDays } = require("@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/tradeData");
+        const duration = calculateShippingDays(normalizeCountry(offer.countryLabel || offer.country));
+
         tradeStorage.addTransaction({
-            source: offer.country,
-            dest: session?.country || 'Indonesia',
+            source: normalizeCountry(offer.countryLabel || offer.country),
+            dest: normalizeCountry(userCountry),
             type: 'buy',
             commodity: offer.commodityLabel,
-            amount: offer.amount
+            commodityKey: stockKey,
+            amount: offer.amount,
+            totalValue: totalCost, // Settled on arrival
+            unit: getCommodityUnit(offer.commodity),
+            totalDays: duration,
+            startDate: timeStorage.getState().gameDate
         });
 
-        // Kirim notifikasi
+        // Kirim notifikasi status pengiriman
         inboxStorage.addMessage({
             source: 'Kementerian Perdagangan',
-            subject: `Impor ${offer.commodityLabel} dari ${offer.countryLabel} — DITERIMA`,
-            content: `Anda telah menerima tawaran impor ${offer.amount.toLocaleString('id-ID')} unit ${offer.commodityLabel} dari ${offer.countryLabel} dengan total biaya ${totalCost.toLocaleString('id-ID')}.`,
+            subject: `Pemesanan Impor ${offer.commodityLabel} dari ${offer.countryLabel} Dimulai`,
+            content: `Anda telah menyetujui tawaran impor ${offer.amount.toLocaleString('id-ID')} unit ${offer.commodityLabel} dari ${offer.countryLabel}.\n\nLogistik sedang diproses. Pembayaran sebesar -${totalCost.toLocaleString('id-ID')} akan diselesaikan saat kiriman tiba.\n\nEstimasi Tiba: ${duration} Hari`,
             time: formatGameDate(timeStorage.getState().gameDate),
             priority: 'medium'
         });
@@ -413,7 +396,7 @@ export const AiTradeService = {
             pricePerUnit: offer.pricePerUnit,
             totalPrice: totalCost,
             partner: offer.countryLabel,
-            shippingTime: "5-15 Hari"
+            shippingTime: `${duration} Hari`
         });
 
         return true;
@@ -421,7 +404,7 @@ export const AiTradeService = {
 
     /**
      * User menerima permintaan pembelian dari AI.
-     * AI membeli komoditas dari user → uang user bertambah, stok berkurang.
+     * AI membeli komoditas dari user → uang user bertambah, stok berkurang SAAT TIBA.
      */
     acceptPurchaseRequest(requestId: string) {
         const offers = aiTradeOfferStorage.getOffers();
@@ -429,31 +412,56 @@ export const AiTradeService = {
         if (!request || request.status !== 'pending') return false;
 
         const totalRevenue = request.amount * request.pricePerUnit;
+        
+        // Map commodity to storage key for stock deduction
+        const { getStockKey } = require("@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ekspor_impor/impor/ImporEksekusi");
+        const stockKey = getStockKey(request.commodity);
 
-        // Tambah uang user
-        budgetStorage.updateBudget(totalRevenue);
+        // Check if user has enough stock to sell
+        const budgetData = budgetStorage.getData();
+        const userStock = budgetData.cumulativeProduction?.[stockKey] || 0;
+        
+        if (userStock < request.amount) {
+            console.warn(`[AI-TRADE] Insufficient stock of ${request.commodity} (${userStock} < ${request.amount})`);
+            return false;
+        }
 
-        // Kurangi stok user (jika ada tracking)
-        // budgetStorage.updateCumulativeProduction({ [stockKey]: -request.amount });
+        // Deduct stock immediately (since it's leaving the country)
+        budgetStorage.updateCumulativeProduction({ [stockKey]: -request.amount });
 
         // Update status
         aiTradeOfferStorage.updateStatus(requestId, 'accepted');
 
-        // Tambahkan animasi transaksi di peta
+        // Tambahkan animasi transaksi di peta dengan DELAYED SETTLEMENT
         const session = gameStorage.getSession();
+        const userCountry = session?.country || 'Indonesia';
+
+        // Helper to normalize country name
+        const normalizeCountry = (name: string) => {
+            return name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        };
+
+        const { calculateShippingDays } = require("@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/tradeData");
+        const duration = calculateShippingDays(normalizeCountry(request.countryLabel || request.country));
+
         tradeStorage.addTransaction({
-            source: session?.country || 'Indonesia',
-            dest: request.country,
+            source: normalizeCountry(userCountry),
+            dest: normalizeCountry(request.countryLabel || request.country),
             type: 'sell',
             commodity: request.commodityLabel,
-            amount: request.amount
+            commodityKey: stockKey,
+            amount: request.amount,
+            totalValue: totalRevenue, // Paid on arrival
+            unit: getCommodityUnit(request.commodity),
+            totalDays: duration,
+            startDate: timeStorage.getState().gameDate
         });
 
         // Kirim notifikasi
         inboxStorage.addMessage({
             source: 'Kementerian Perdagangan',
-            subject: `Ekspor ${request.commodityLabel} ke ${request.countryLabel} — BERHASIL`,
-            content: `Anda telah menjual ${request.amount.toLocaleString('id-ID')} unit ${request.commodityLabel} ke ${request.countryLabel} dengan pendapatan +${totalRevenue.toLocaleString('id-ID')}.`,
+            subject: `Pengiriman Ekspor ${request.commodityLabel} ke ${request.countryLabel} Dimulai`,
+            content: `Anda telah menyetujui permintaan beli ${request.amount.toLocaleString('id-ID')} unit ${request.commodityLabel} oleh ${request.countryLabel}.\n\nBarang telah dikirim. Pendapatan sebesar +${totalRevenue.toLocaleString('id-ID')} akan diterima saat barang sampai di tujuan.\n\nEstimasi Tiba: ${duration} Hari`,
             time: formatGameDate(timeStorage.getState().gameDate),
             priority: 'medium'
         });
@@ -467,7 +475,7 @@ export const AiTradeService = {
             pricePerUnit: request.pricePerUnit,
             totalPrice: totalRevenue,
             partner: request.countryLabel,
-            shippingTime: "Instan (AI Pickup)"
+            shippingTime: `${duration} Hari`
         });
 
         return true;

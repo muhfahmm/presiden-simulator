@@ -29,7 +29,7 @@ interface ImporEksekusiProps {
 }
 
 // Helper to map selected commodity keys to their production storage keys
-const getStockKey = (selectedKey: string) => {
+export const getStockKey = (selectedKey: string) => {
   const map: Record<string, string> = {
     // Minerals
     emas: "1_tambang_emas", 
