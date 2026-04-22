@@ -94,7 +94,48 @@ export const calculateTradeRoute = (start: { lon: number, lat: number }, end: { 
 
   path.push({ name: "End", lon: end.lon, lat: end.lat });
   
-  return path;
+  // NEW: Smooth the path with intermediate points to create "Great Circle" curvature effect
+  return smoothPath(path);
+};
+
+/**
+ * Adds intermediate points between waypoints to create a curved effect for long segments.
+ */
+const smoothPath = (points: Point[]): Point[] => {
+  if (points.length < 2) return points;
+  
+  const smoothed: Point[] = [];
+  
+  for (let i = 0; i < points.length - 1; i++) {
+    const p1 = points[i];
+    const p2 = points[i+1];
+    
+    smoothed.push(p1);
+    
+    // Only smooth long segments (more than 15 degrees)
+    const dist = Math.sqrt(Math.pow(p2.lon - p1.lon, 2) + Math.pow(p2.lat - p1.lat, 2));
+    if (dist > 15) {
+      const steps = Math.floor(dist / 5); // One point every 5 degrees
+      for (let s = 1; s < steps; s++) {
+        const t = s / steps;
+        
+        // Simple spherical interpolation (Lerp for now, but with a "bulge" for curvature)
+        let lon = p1.lon + (p2.lon - p1.lon) * t;
+        let lat = p1.lat + (p2.lat - p1.lat) * t;
+        
+        // Add a slight "bulge" towards the north/south depending on the hemisphere
+        // to simulate the Great Circle look on a Mercator-ish projection
+        const bulgeFactor = Math.sin(t * Math.PI) * (dist * 0.15);
+        const direction = p1.lat > 0 ? 1 : -1;
+        lat += bulgeFactor * direction;
+        
+        smoothed.push({ name: `Waypoint ${i}-${s}`, lon, lat });
+      }
+    }
+  }
+  
+  smoothed.push(points[points.length - 1]);
+  return smoothed;
 };
 
 
