@@ -643,13 +643,18 @@ export const AiTradeService = {
             }
         }
 
+        // ALWAYS Sync with Embassy Storage when accepted to unlock UI
+        try {
+            const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+            embassyStorage.updateEmbassyStatus(countryName, 'completed');
+            console.log(`[DIPLOMACY] Syncing Embassy for ${countryName} -> completed`);
+        } catch (e) {
+            console.error("[DIPLOMACY] Failed to sync embassyStorage", e);
+        }
+
         if (matrixChanged) {
             saveGlobalRelationMatrix(matrix);
             
-            // Sync with Embassy Storage to unlock UI
-            const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
-            embassyStorage.updateEmbassyStatus(countryName, 'completed');
-
             // Tambahkan notifikasi konfirmasi
             inboxStorage.addMessage({
                 source: 'Kementerian Luar Negeri',
@@ -661,7 +666,8 @@ export const AiTradeService = {
 
             return true;
         }
-        return false;
+        
+        // If matrix didn't change (maybe already e=1), still return true because user clicked accept
+        return true;
     }
 };
-

@@ -118,19 +118,32 @@ export const InboxCard: React.FC<InboxCardProps> = ({
             <ImpactBars source={msg.source} subject={msg.subject} content={msg.content} />
             {looksLikeProposal && (
               <div className="mt-8 flex items-center gap-4 pt-6 border-t border-zinc-900">
-                <button 
-                  onClick={() => handleAction(msg, 'accept')}
-                  className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white py-4 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all cursor-pointer flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(16,185,129,0.2)] active:scale-[0.98]"
-                >
-                  <CheckCircle2 className="h-5 w-5" />
-                  Terima & Ratifikasi
-                </button>
-                <button 
-                  onClick={() => handleAction(msg, 'decline')}
-                  className="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-400 py-4 px-8 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all cursor-pointer active:scale-[0.98]"
-                >
-                  Tolak Proposal
-                </button>
+                {msg.status ? (
+                  <div className={`flex-1 py-5 rounded-2xl font-black text-[12px] uppercase tracking-[0.3em] flex items-center justify-center gap-3 border italic ${
+                    msg.status === 'accepted' 
+                      ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/30 shadow-[inset_0_0_20px_rgba(16,185,129,0.05)]' 
+                      : 'bg-rose-500/10 text-rose-500 border-rose-500/30 shadow-[inset_0_0_20px_rgba(244,63,94,0.05)]'
+                  }`}>
+                    <div className={`h-2 w-2 rounded-full animate-pulse ${msg.status === 'accepted' ? 'bg-emerald-500' : 'bg-rose-500'}`}></div>
+                    {msg.status === 'accepted' ? 'Proposal Diterima & Diratifikasi' : 'Proposal Telah Ditolak'}
+                  </div>
+                ) : (
+                  <>
+                    <button 
+                      onClick={() => handleAction(msg, 'accept')}
+                      className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white py-4 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all cursor-pointer flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(16,185,129,0.2)] active:scale-[0.98]"
+                    >
+                      <CheckCircle2 className="h-5 w-5" />
+                      Terima & Ratifikasi
+                    </button>
+                    <button 
+                      onClick={() => handleAction(msg, 'decline')}
+                      className="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-400 py-4 px-8 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all cursor-pointer active:scale-[0.98]"
+                    >
+                      Tolak Proposal
+                    </button>
+                  </>
+                )}
               </div>
             )}
           </div>

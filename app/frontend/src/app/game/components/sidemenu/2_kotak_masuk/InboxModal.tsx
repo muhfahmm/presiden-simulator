@@ -148,7 +148,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
             }
             
             if (success || type === 'trade_contract') {
-                inboxStorage.markAsRead(msg.id);
+                inboxStorage.updateMessageStatus(msg.id, 'accepted');
                 setMessages(inboxStorage.getMessages());
             } else {
                 alert("Gagal memproses transaksi. Pastikan saldo atau stok mencukupi.");
@@ -203,12 +203,12 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
                 startDate: gameDate
             });
 
-            inboxStorage.markAsRead(msg.id);
+            inboxStorage.updateMessageStatus(msg.id, 'accepted');
             setMessages(inboxStorage.getMessages());
             alert(`Ratifikasi Berhasil! Pengiriman ${commodity} sedang diproses. Estimasi tiba: ${duration} Hari.`);
         } else {
             // Fallback for simple messages
-            inboxStorage.markAsRead(msg.id);
+            inboxStorage.updateMessageStatus(msg.id, 'accepted');
             setMessages(inboxStorage.getMessages());
         }
     } else {
@@ -228,7 +228,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
                     break;
             }
         }
-        inboxStorage.markAsRead(msg.id);
+        inboxStorage.updateMessageStatus(msg.id, 'rejected');
         setMessages(inboxStorage.getMessages());
         console.log(`[INBOX] Declined: ${msg.subject}`);
     }

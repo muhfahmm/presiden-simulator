@@ -11,6 +11,7 @@ export interface InboxItem {
   category?: 'finance' | 'trade' | 'pact' | 'alliance' | 'embassy' | 'intelligence' | 'general' | 'defense' | 'diplomacy';
   isProposal?: boolean;
   proposalLabel?: string;
+  status?: 'pending' | 'accepted' | 'rejected';
   metadata?: any;
   timestamp: number;
   content?: string;
@@ -67,9 +68,20 @@ export const inboxStorage = {
              if (subjMatch && subjMatch[1] !== 'Negara') rawCountry = subjMatch[1];
           }
           
-          // Format name to Title Case (e.g. AFRIKA SELATAN -> Afrika Selatan)
+          // Format name to Title Case
           const country = String(rawCountry || "Negara").toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
           
+          // AUTO-HEAL: If already accepted, ensure embassy storage is synced
+          if (msg.status === 'accepted' && rawCountry && rawCountry !== 'Negara') {
+             try {
+                const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+                if (embassyStorage.getEmbassyStatus(rawCountry) !== 'completed') {
+                   console.log(`[INBOX] Auto-healing embassy status for ${rawCountry}`);
+                   embassyStorage.updateEmbassyStatus(rawCountry, 'completed');
+                }
+             } catch (e) {}
+          }
+
           return { ...msg, subject: `tawaran pembangunan kedubes (${country})` };
         }
         return msg;
@@ -262,6 +274,15 @@ export const inboxStorage = {
         console.error("Failed to update inbox read status", e);
       }
     }
+  },
+
+  updateMessageStatus: (id: string, status: 'accepted' | 'rejected') => {
+    const key = inboxStorage.getStorageKey();
+    if (typeof window === 'undefined') return;
+    const messages = inboxStorage.getMessages();
+    const updated = messages.map(m => m.id === id ? { ...m, status, read: true } : m);
+    localStorage.setItem(key, JSON.stringify(updated));
+    window.dispatchEvent(new Event('inbox_updated'));
   },
   
   getUnreadCount: (): number => {
