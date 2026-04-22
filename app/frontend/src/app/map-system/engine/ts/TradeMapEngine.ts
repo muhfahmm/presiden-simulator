@@ -152,10 +152,8 @@ export class TradeMapEngine extends BaseMapEngine {
       const interpolation = this.gameState.isPaused ? 0 : (realTimeSinceUpdate * GAME_MS_PER_REAL_MS);
 
       const elapsedGameMs = (gameNow - gameStart) + interpolation;
-      const rawProgress = Math.min(1, Math.max(0, elapsedGameMs / totalGameMs));
-      
-      // Apply Cubic Ease-Out for smooth landing
-      const progress = 1 - Math.pow(1 - rawProgress, 3);
+      const progress = Math.min(1, Math.max(0, elapsedGameMs / totalGameMs));
+      const rawProgress = progress; // For consistency in cleanup check
       
       if (rawProgress >= 1) {
         // Automatically cleanup finished transactions from storage
