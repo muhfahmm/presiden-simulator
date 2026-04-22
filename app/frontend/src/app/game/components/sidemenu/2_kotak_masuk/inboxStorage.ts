@@ -35,11 +35,15 @@ export const inboxStorage = {
     if (typeof window === 'undefined') return [];
     try {
       const data = localStorage.getItem(key);
-      const parsed = data ? JSON.parse(data) : [];
+      const parsed: InboxItem[] = data ? JSON.parse(data) : [];
       
-      // Auto-prune non-whitelisted items whenever messages are retrieved
-      // only if we are in a trade tab context or just occasionally
-      return parsed;
+      // Auto-filter redundant or non-whitelisted items whenever messages are retrieved
+      return parsed.filter(msg => {
+        if (msg.category === 'trade' || msg.category === 'embassy') {
+          return inboxStorage.isTradeWhitelisted(msg.source, msg.subject);
+        }
+        return true;
+      });
     } catch {
       return [];
     }
@@ -47,48 +51,60 @@ export const inboxStorage = {
 
   /**
    * Checks if a trade message's source country is in the player's official partner whitelist.
+   * Also handles redundancy filtering: if already a partner, don't show "Partnership" proposals.
    */
   isTradeWhitelisted: (source: string, subject?: string): boolean => {
     if (typeof window === 'undefined') return true;
     
-    // 1. Get current player's country from localStorage / game_session
+    // 1. Get current player's country
     const sessionRaw = localStorage.getItem("game_session");
     let playerCountry = "Indonesia";
     try {
         if(sessionRaw) playerCountry = JSON.parse(sessionRaw).country || playerCountry;
     } catch(e) {}
     
-    // Fallback to selectedCountry if session failed
     if (!playerCountry || playerCountry === "Indonesia") {
         playerCountry = localStorage.getItem("selectedCountry") || localStorage.getItem("selected_country") || "Indonesia";
     }
     
-    // 2. Load official agreements for this country
+    // 2. Load official agreements
     const officialPartners = getInitialAgreements(playerCountry, playerCountry);
-    
-    if (!officialPartners || officialPartners.length === 0) return true;
+    const isActuallyPartner = (partnerName: string) => {
+        return officialPartners.some(p => 
+            p.mitra.toLowerCase() === partnerName.toLowerCase() ||
+            partnerName.toLowerCase().includes(p.mitra.toLowerCase())
+        );
+    };
 
-    // 3. Extract partner country name from source OR subject
+    // 3. Identify partner from source/subject
     let identifiedPartner = "";
     const sourceMatch = source.match(/\(([^)]+)\)/);
     if (sourceMatch) {
         identifiedPartner = sourceMatch[1].trim();
     } else if (subject) {
-        // Try extracting from subject like "tawaran impor: Beras dari Thailand"
         const subjParts = subject.split(" dari ");
-        if (subjParts.length > 1) {
-            identifiedPartner = subjParts[subjParts.length - 1].trim();
-        }
+        if (subjParts.length > 1) identifiedPartner = subjParts[subjParts.length - 1].trim();
     }
 
     if (!identifiedPartner) return true;
 
-    // 4. Check against whitelist
-    const isWhitelisted = officialPartners.some(p => 
-      p.mitra.toLowerCase() === identifiedPartner.toLowerCase() ||
-      identifiedPartner.toLowerCase().includes(p.mitra.toLowerCase())
-    );
+    // 4. Redundancy Logic: If it's a partnership/embassy proposal
+    const lowerSubj = (subject || "").toLowerCase();
+    const isProposal = lowerSubj.includes("kemitraan") || lowerSubj.includes("kedutaan") || lowerSubj.includes("perjanjian");
+    
+    const isWhitelisted = isActuallyPartner(identifiedPartner);
 
+    if (isProposal) {
+        // If ALREADY a partner, REJECT the proposal (redundant)
+        if (isWhitelisted) {
+            console.log(`[INBOX] Filtering redundant proposal from existing partner: ${identifiedPartner}`);
+            return false;
+        }
+        // Allow proposals from NEW potential partners
+        return true;
+    }
+
+    // 5. For regular trade (buy/sell), ONLY allow if whitelisted
     return isWhitelisted;
   },
 
