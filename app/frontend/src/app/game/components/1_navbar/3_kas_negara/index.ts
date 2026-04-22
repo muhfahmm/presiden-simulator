@@ -1,6 +1,7 @@
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 
 const BUDGET_STORAGE_KEY = "em_budget_data";
 
@@ -110,12 +111,47 @@ export const budgetStorage = {
     const data = budgetStorage.getData();
     if (!data.cumulativeProduction) data.cumulativeProduction = {};
 
+    // 1. Manual Deltas (e.g. from Exports or Imports)
     Object.entries(deltas).forEach(([key, amount]) => {
       const current = data.cumulativeProduction[key] || 0;
       data.cumulativeProduction[key] = current + amount;
     });
 
-    if (gameDate) {
+    // 2. Automatic Daily Production (on Tick)
+    if (gameDate && data.lastProcessedDate) {
+      const lastDate = new Date(data.lastProcessedDate);
+      
+      // Calculate how many FULL days have passed
+      const diffTime = gameDate.getTime() - lastDate.getTime();
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+      if (diffDays >= 1) {
+        console.log(`[PRODUCTION] Processing ${diffDays} days of production...`);
+        
+        const session = gameStorage.getSession();
+        const countryName = session?.country || "Indonesia";
+        const countryData = countries.find(c => c.name_id === countryName || c.name_en === countryName);
+        
+        if (countryData) {
+          const { calculateDailyProduction } = require("@/app/game/data/economy/ProductionLogic");
+          const buildingDeltas = buildingStorage.getBuildingDeltas() || {};
+          const dailyProduction = calculateDailyProduction(countryData, buildingDeltas);
+
+          // Add production for each elapsed day
+          for (let i = 0; i < diffDays; i++) {
+            Object.entries(dailyProduction).forEach(([key, amount]) => {
+              const current = data.cumulativeProduction[key] || 0;
+              data.cumulativeProduction[key] = current + (amount as number);
+            });
+          }
+          
+          // Advance last processed date by the number of days processed
+          const newProcessedDate = new Date(lastDate);
+          newProcessedDate.setDate(newProcessedDate.getDate() + diffDays);
+          data.lastProcessedDate = newProcessedDate.toISOString();
+        }
+      }
+    } else if (gameDate) {
       data.lastProcessedDate = gameDate.toISOString();
     }
 
