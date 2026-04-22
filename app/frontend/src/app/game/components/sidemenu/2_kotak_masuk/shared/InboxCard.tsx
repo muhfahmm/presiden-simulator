@@ -35,6 +35,8 @@ export const InboxCard: React.FC<InboxCardProps> = ({
     msg.subject
   );
 
+  const looksLikeProposal = msg.isProposal || (msg.category === 'trade' && (msg.subject.toLowerCase().includes('tawaran') || msg.subject.toLowerCase().includes('permintaan') || msg.subject.toLowerCase().includes('proposal')));
+
   return (
     <div 
       className={`group relative border rounded-[32px] overflow-hidden transition-all duration-300 ${
@@ -67,7 +69,7 @@ export const InboxCard: React.FC<InboxCardProps> = ({
               </span>
               <span className="text-[10px] text-zinc-500 font-medium">{msg.time}</span>
               {!msg.read && <div className="h-1.5 w-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>}
-              {msg.isProposal && (
+              {(msg.isProposal || looksLikeProposal) && (
                 <span className={`text-[9px] font-black px-2 py-0.5 rounded-md border animate-pulse ${
                   isExport ? 'bg-emerald-500 text-black border-emerald-300' : 
                   isImport ? 'bg-rose-500 text-black border-rose-300' : 
@@ -113,10 +115,8 @@ export const InboxCard: React.FC<InboxCardProps> = ({
             <p className="text-zinc-300 text-sm leading-relaxed font-medium whitespace-pre-line">
               {msg.content}
             </p>
-
             <ImpactBars source={msg.source} subject={msg.subject} content={msg.content} />
-
-            {msg.isProposal && (
+            {looksLikeProposal && (
               <div className="mt-8 flex items-center gap-4 pt-6 border-t border-zinc-900">
                 <button 
                   onClick={() => handleAction(msg, 'accept')}

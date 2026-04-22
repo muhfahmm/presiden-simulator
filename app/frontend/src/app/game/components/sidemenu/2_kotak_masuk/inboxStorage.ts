@@ -287,6 +287,9 @@ export const inboxStorage = {
       read: si.read || false,
       priority: si.priority || "low",
       category: si.category || "general",
+      isProposal: si.is_proposal || si.isProposal || (si.category === 'trade' && (si.subject.toLowerCase().includes('tawaran') || si.subject.toLowerCase().includes('permintaan'))),
+      proposalLabel: si.proposal_label || si.proposalLabel || (si.category === 'trade' ? 'PROPOSAL' : undefined),
+      metadata: si.metadata || undefined,
       timestamp: si.timestamp * 1000 || Date.now()
     })).filter(item => {
       // Apply Whitelist filter during sync as well

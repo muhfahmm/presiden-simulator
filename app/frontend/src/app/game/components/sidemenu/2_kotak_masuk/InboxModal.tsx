@@ -97,11 +97,63 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
   if (!isOpen) return null;
 
   const handleAction = (msg: InboxItem, action: 'accept' | 'decline') => {
+    const { AiTradeService } = require("../../AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/services/AiTradeService");
+
     if (action === 'accept') {
-        inboxStorage.markAsRead(msg.id);
-        setMessages(inboxStorage.getMessages());
-        console.log(`[INBOX] Accepted: ${msg.subject}`);
+        if (msg.metadata) {
+            const { type, id } = msg.metadata;
+            console.log(`[INBOX] Processing Acceptance: ${type} - ${id}`);
+            
+            let success = false;
+            switch (type) {
+                case 'product_offer':
+                    success = AiTradeService.acceptProductOffer(id);
+                    break;
+                case 'purchase_request':
+                    success = AiTradeService.acceptPurchaseRequest(id);
+                    break;
+                case 'trade_contract':
+                    AiTradeService.acceptContract(id);
+                    success = true;
+                    break;
+                case 'trade_agreement':
+                    success = AiTradeService.acceptTradeAgreement(id);
+                    break;
+                case 'embassy':
+                    success = AiTradeService.acceptEmbassyProposal(id);
+                    break;
+                default:
+                    console.warn(`[INBOX] Unknown action type: ${type}`);
+            }
+            
+            if (success || type === 'trade_contract') {
+                inboxStorage.markAsRead(msg.id);
+                setMessages(inboxStorage.getMessages());
+            } else {
+                alert("Gagal memproses transaksi. Pastikan saldo atau stok mencukupi.");
+            }
+        } else {
+            // Fallback for simple messages
+            inboxStorage.markAsRead(msg.id);
+            setMessages(inboxStorage.getMessages());
+        }
     } else {
+        // Decline Logic
+        if (msg.metadata) {
+            const { type, id } = msg.metadata;
+            switch (type) {
+                case 'product_offer':
+                case 'purchase_request':
+                    AiTradeService.rejectOffer(id);
+                    break;
+                case 'trade_contract':
+                    AiTradeService.rejectContract(id);
+                    break;
+                case 'trade_agreement':
+                    AiTradeService.rejectTradeAgreement(id);
+                    break;
+            }
+        }
         inboxStorage.markAsRead(msg.id);
         setMessages(inboxStorage.getMessages());
         console.log(`[INBOX] Declined: ${msg.subject}`);
