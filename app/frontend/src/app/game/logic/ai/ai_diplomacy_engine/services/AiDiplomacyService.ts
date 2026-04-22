@@ -162,6 +162,7 @@ export const AiDiplomacyService = {
                                         `Intelijen (${safeSource})`,
                                 category: category,
                                 isProposal: isGrant || isTrade || isPact || isAlliance || isEmbassy,
+                                metadata: { type: category, id: event.source }, // Add metadata for action handling
                                 subject: isEmbassy ? event.subject : `[DUNIA] ${event.subject}`,
                                 content: event.content,
                                 time: formatGameDate(gameDate),

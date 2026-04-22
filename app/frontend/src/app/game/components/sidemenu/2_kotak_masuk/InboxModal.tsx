@@ -106,6 +106,8 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
             const { type, id } = msg.metadata;
             console.log(`[INBOX] Processing Acceptance: ${type} - ${id}`);
             
+            const { AiDiplomacyService } = require("../../../logic/ai/ai_diplomacy_engine/services/AiDiplomacyService");
+            
             let success = false;
             switch (type) {
                 case 'product_offer':
@@ -119,10 +121,27 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
                     success = true;
                     break;
                 case 'trade_agreement':
+                case 'trade': // Fallback for AiDiplomacyService category
                     success = AiTradeService.acceptTradeAgreement(id);
                     break;
                 case 'embassy':
                     success = AiTradeService.acceptEmbassyProposal(id);
+                    break;
+                case 'pact':
+                case 'alliance':
+                    // Check if embassy exists first
+                    const matrix = getGlobalRelationMatrix();
+                    const npcKey = normalizeId(id);
+                    const userKey = getNormalizedUser();
+                    const hasEmbassy = matrix[npcKey]?.[userKey]?.e === 1 || matrix[userKey]?.[npcKey]?.e === 1;
+
+                    if (!hasEmbassy) {
+                        alert(`DIBUTUHKAN KEDUTAAN! Anda harus membangun kedutaan besar terlebih dahulu dengan ${id} sebelum dapat menandatangani ${type === 'pact' ? 'Pakta Non-Agresi' : 'Aliansi Pertahanan'}.`);
+                        return; // Stop processing
+                    }
+                    
+                    AiDiplomacyService.finalizeTreaty(id, type);
+                    success = true;
                     break;
                 default:
                     console.warn(`[INBOX] Unknown action type: ${type}`);
