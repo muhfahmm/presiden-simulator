@@ -16,7 +16,8 @@ export interface InboxItem {
   content?: string;
 }
 
-const MAX_INBOX_MESSAGES = 10000; // Increased to effectively unlimited per user request
+const MAX_INBOX_MESSAGES = 500; // Increased but capped at a safe limit to prevent QuotaExceededError
+const CONTENT_TRIM_THRESHOLD = 50; // Trim content for messages older than this to save space
 
 export const inboxStorage = {
   clear: () => {
@@ -92,6 +93,20 @@ export const inboxStorage = {
   },
 
   /**
+   * More aggressive cleanup for absolute emergencies
+   */
+  emergencyCleanup: () => {
+    if (typeof window === 'undefined') return;
+    const messages = inboxStorage.getMessages();
+    // Keep only the 20 most recent messages and clear the rest
+    const emergencyList = messages.slice(0, 20);
+    const key = inboxStorage.getStorageKey();
+    localStorage.setItem(key, JSON.stringify(emergencyList));
+    window.dispatchEvent(new Event('inbox_updated'));
+    console.warn("[INBOX] Emergency cleanup performed due to storage pressure.");
+  },
+
+  /**
    * Remove any trade messages that are no longer in the whitelist (e.g. after a restart or country change)
    */
   pruneNonWhitelisted: () => {
@@ -109,6 +124,18 @@ export const inboxStorage = {
         localStorage.setItem(key, JSON.stringify(filtered));
         window.dispatchEvent(new Event('inbox_updated'));
     }
+  },
+
+  /**
+   * Trims the body content of older messages to save space
+   */
+  trimOldMessages: (msgs: InboxItem[]): InboxItem[] => {
+    return msgs.map((m, index) => {
+        if (index >= CONTENT_TRIM_THRESHOLD && m.content && m.content.length > 100) {
+            return { ...m, content: (m.content.substring(0, 50) + "... [Isi pesan lama dihapus otomatis untuk menghemat ruang]") };
+        }
+        return m;
+    });
   },
   
   addMessage: (msg: Omit<InboxItem, 'id' | 'read' | 'timestamp'>) => {
@@ -132,21 +159,25 @@ export const inboxStorage = {
       timestamp: Date.now()
     };
     
+    // Trim content for very old messages to save space
+    const trimmedMessages = inboxStorage.trimOldMessages(messages);
+    
     // Insert at the beginning so newest is first
-    messages.unshift(newMessage);
+    trimmedMessages.unshift(newMessage);
     
     // Limit total messages to prevent QuotaExceededError
-    const limitedMessages = messages.slice(0, MAX_INBOX_MESSAGES);
+    const limitedMessages = trimmedMessages.slice(0, MAX_INBOX_MESSAGES);
     
     try {
       localStorage.setItem(key, JSON.stringify(limitedMessages));
     } catch (e) {
       console.warn("Inbox storage full, attempting emergency trim", e);
       try {
-        // First attempt: keep only latest 20
-        localStorage.setItem(key, JSON.stringify(limitedMessages.slice(0, 20)));
+        // First attempt: keep only latest 50 and trim them
+        const emergency = trimmedMessages.slice(0, 50);
+        localStorage.setItem(key, JSON.stringify(emergency));
       } catch (e2) {
-        console.warn("Emergency trim to 20 failed, attempting aggressive cleanup", e2);
+        console.warn("Emergency trim to 50 failed, attempting aggressive cleanup", e2);
         try {
           // Second attempt: clear entire inbox and save new message only
           localStorage.removeItem(key);

@@ -1,4 +1,5 @@
 import { countries as centersData } from "@/app/pilih_negara/data/negara/benua/index";
+import { inboxStorage } from '@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage';
 
 export const RELATION_MATRIX_KEY = 'em_global_relation_matrix';
 
@@ -280,7 +281,11 @@ export const saveGlobalRelationMatrix = (matrix: RelationMatrix) => {
             localStorage.setItem(RELATION_MATRIX_KEY, json);
             // console.log(`[AI-MATRIX] Saved Sparse Matrix. Size: ${(json.length / 1024).toFixed(2)} KB`);
         } catch (e) {
-            console.error("Critical Quota Error in Matrix Storage", e);
+            console.error("Critical Quota Error in Matrix Storage, attempting emergency cleanup", e);
+            // If we hit a quota error, proactively clean up the inbox to make space for next time
+            if (typeof window !== 'undefined') {
+                inboxStorage.emergencyCleanup();
+            }
         }
     }
 };
