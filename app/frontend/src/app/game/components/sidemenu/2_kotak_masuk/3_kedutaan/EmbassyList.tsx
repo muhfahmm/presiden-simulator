@@ -22,14 +22,6 @@ export const EmbassyList: React.FC<EmbassyListProps> = ({
 }) => {
   const filteredMessages = messages
     .filter(msg => (msg.category === 'embassy' || msg.category === 'diplomacy'))
-    .filter(msg => {
-      // Only show proposals (AI offering to User)
-      const isProposal = msg.isProposal || 
-                        msg.subject.toLowerCase().includes('tawaran') || 
-                        msg.subject.toLowerCase().includes('permintaan') ||
-                        msg.subject.toLowerCase().includes('proposal');
-      return isProposal;
-    })
     .filter(msg => 
       msg.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 
       msg.source.toLowerCase().includes(searchTerm.toLowerCase())

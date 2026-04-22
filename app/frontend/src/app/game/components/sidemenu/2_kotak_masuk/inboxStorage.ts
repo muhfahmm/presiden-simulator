@@ -30,14 +30,14 @@ export const inboxStorage = {
   getStorageKey: () => {
     return "em_inbox_data";
   },
-  
+
   getMessages: (): InboxItem[] => {
     const key = inboxStorage.getStorageKey();
     if (typeof window === 'undefined') return [];
     try {
       const data = localStorage.getItem(key);
       const parsed: InboxItem[] = data ? JSON.parse(data) : [];
-      
+
       // Auto-filter redundant or non-whitelisted items whenever messages are retrieved
       return parsed.filter(msg => {
         // 1. Whitelist filter for trade
@@ -48,33 +48,33 @@ export const inboxStorage = {
         // AGGRESSIVE COUNTRY EXTRACTION for redundancy checks
         let country = msg.metadata?.id || msg.metadata?.country;
         if (!country) {
-            const subjectMatch = msg.subject.match(/\(([^)]+)\)$/);
-            if (subjectMatch) country = subjectMatch[1];
+          const subjectMatch = msg.subject.match(/\(([^)]+)\)$/);
+          if (subjectMatch) country = subjectMatch[1];
         }
         if (!country) {
-            const sourceMatch = msg.source.match(/\(([^)]+)\)/);
-            if (sourceMatch) country = sourceMatch[1];
+          const sourceMatch = msg.source.match(/\(([^)]+)\)/);
+          if (sourceMatch) country = sourceMatch[1];
         }
 
         // 2. Redundancy filter for Embassy Proposals
         if (msg.category === 'embassy' && msg.isProposal && country) {
-            try {
-                const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
-                if (embassyStorage.getEmbassyStatus(country) === 'completed') {
-                    // console.log(`[INBOX] Filtering redundant embassy proposal from ${country}`);
-                    return false; 
-                }
-            } catch (e) {}
+          try {
+            const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+            if (embassyStorage.getEmbassyStatus(country) === 'completed') {
+              // console.log(`[INBOX] Filtering redundant embassy proposal from ${country}`);
+              return false;
+            }
+          } catch (e) { }
         }
 
         // 3. Embassy requirement filter for advanced proposals (Pacts/Alliances)
         const isAdvancedProposal = msg.isProposal && ['trade', 'pact', 'alliance', 'defense', 'diplomacy'].includes(msg.category || '');
         if (isAdvancedProposal && country) {
-            try {
-                const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
-                const status = embassyStorage.getEmbassyStatus(country);
-                if (status !== 'completed') return false; 
-            } catch (e) {}
+          try {
+            const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+            const status = embassyStorage.getEmbassyStatus(country);
+            if (status !== 'completed') return false;
+          } catch (e) { }
         }
 
         return true;
@@ -83,7 +83,7 @@ export const inboxStorage = {
         if (msg.category === 'embassy' && msg.isProposal) {
           // 1. Try Metadata
           let rawCountry = msg.metadata?.id || msg.metadata?.country;
-          
+
           // 2. Try Source Regex
           if (!rawCountry || rawCountry === 'Negara') {
             const countryMatch = msg.source.match(/\(([^)]+)\)/);
@@ -98,22 +98,22 @@ export const inboxStorage = {
 
           // 4. LAST RESORT: Try current subject (it might contain the name if not yet overwritten)
           if (!rawCountry || rawCountry === 'Negara') {
-             const subjMatch = msg.subject.match(/\(([^)]+)\)/);
-             if (subjMatch && subjMatch[1] !== 'Negara') rawCountry = subjMatch[1];
+            const subjMatch = msg.subject.match(/\(([^)]+)\)/);
+            if (subjMatch && subjMatch[1] !== 'Negara') rawCountry = subjMatch[1];
           }
-          
+
           // Format name to Title Case
           const country = String(rawCountry || "Negara").toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-          
+
           // AUTO-HEAL: If already accepted, ensure embassy storage is synced
           if (msg.status === 'accepted' && rawCountry && rawCountry !== 'Negara') {
-             try {
-                const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
-                if (embassyStorage.getEmbassyStatus(rawCountry) !== 'completed') {
-                   console.log(`[INBOX] Auto-healing embassy status for ${rawCountry}`);
-                   embassyStorage.updateEmbassyStatus(rawCountry, 'completed');
-                }
-             } catch (e) {}
+            try {
+              const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+              if (embassyStorage.getEmbassyStatus(rawCountry) !== 'completed') {
+                console.log(`[INBOX] Auto-healing embassy status for ${rawCountry}`);
+                embassyStorage.updateEmbassyStatus(rawCountry, 'completed');
+              }
+            } catch (e) { }
           }
 
           return { ...msg, subject: `tawaran pembangunan kedubes (${country})` };
@@ -131,35 +131,35 @@ export const inboxStorage = {
    */
   isTradeWhitelisted: (source: string, subject?: string): boolean => {
     if (typeof window === 'undefined') return true;
-    
+
     // 1. Get current player's country
     const sessionRaw = localStorage.getItem("game_session");
     let playerCountry = "Indonesia";
     try {
-        if(sessionRaw) playerCountry = JSON.parse(sessionRaw).country || playerCountry;
-    } catch(e) {}
-    
+      if (sessionRaw) playerCountry = JSON.parse(sessionRaw).country || playerCountry;
+    } catch (e) { }
+
     if (!playerCountry || playerCountry === "Indonesia") {
-        playerCountry = localStorage.getItem("selectedCountry") || localStorage.getItem("selected_country") || "Indonesia";
+      playerCountry = localStorage.getItem("selectedCountry") || localStorage.getItem("selected_country") || "Indonesia";
     }
-    
+
     // 2. Load official agreements
     const officialPartners = getInitialAgreements(playerCountry, playerCountry);
     const isActuallyPartner = (partnerName: string) => {
-        return officialPartners.some(p => 
-            p.mitra.toLowerCase() === partnerName.toLowerCase() ||
-            partnerName.toLowerCase().includes(p.mitra.toLowerCase())
-        );
+      return officialPartners.some(p =>
+        p.mitra.toLowerCase() === partnerName.toLowerCase() ||
+        partnerName.toLowerCase().includes(p.mitra.toLowerCase())
+      );
     };
 
     // 3. Identify partner from source/subject
     let identifiedPartner = "";
     const sourceMatch = source.match(/\(([^)]+)\)/);
     if (sourceMatch) {
-        identifiedPartner = sourceMatch[1].trim();
+      identifiedPartner = sourceMatch[1].trim();
     } else if (subject) {
-        const subjParts = subject.split(" dari ");
-        if (subjParts.length > 1) identifiedPartner = subjParts[subjParts.length - 1].trim();
+      const subjParts = subject.split(" dari ");
+      if (subjParts.length > 1) identifiedPartner = subjParts[subjParts.length - 1].trim();
     }
 
     if (!identifiedPartner) return true;
@@ -167,17 +167,17 @@ export const inboxStorage = {
     // 4. Redundancy Logic: If it's a partnership/embassy proposal
     const lowerSubj = (subject || "").toLowerCase();
     const isProposal = lowerSubj.includes("kemitraan") || lowerSubj.includes("kedutaan") || lowerSubj.includes("perjanjian");
-    
+
     const isWhitelisted = isActuallyPartner(identifiedPartner);
 
     if (isProposal) {
-        // If ALREADY a partner, REJECT the proposal (redundant)
-        if (isWhitelisted) {
-            console.log(`[INBOX] Filtering redundant proposal from existing partner: ${identifiedPartner}`);
-            return false;
-        }
-        // Allow proposals from NEW potential partners
-        return true;
+      // If ALREADY a partner, REJECT the proposal (redundant)
+      if (isWhitelisted) {
+        console.log(`[INBOX] Filtering redundant proposal from existing partner: ${identifiedPartner}`);
+        return false;
+      }
+      // Allow proposals from NEW potential partners
+      return true;
     }
 
     // 5. For regular trade (buy/sell), ONLY allow if whitelisted
@@ -205,16 +205,16 @@ export const inboxStorage = {
     if (typeof window === 'undefined') return;
     const messages = inboxStorage.getMessages();
     const filtered = messages.filter(msg => {
-        if (msg.category === 'trade') {
-            return inboxStorage.isTradeWhitelisted(msg.source, msg.subject);
-        }
-        return true;
+      if (msg.category === 'trade') {
+        return inboxStorage.isTradeWhitelisted(msg.source, msg.subject);
+      }
+      return true;
     });
 
     if (filtered.length !== messages.length) {
-        const key = inboxStorage.getStorageKey();
-        localStorage.setItem(key, JSON.stringify(filtered));
-        window.dispatchEvent(new Event('inbox_updated'));
+      const key = inboxStorage.getStorageKey();
+      localStorage.setItem(key, JSON.stringify(filtered));
+      window.dispatchEvent(new Event('inbox_updated'));
     }
   },
 
@@ -223,80 +223,80 @@ export const inboxStorage = {
    */
   trimOldMessages: (msgs: InboxItem[]): InboxItem[] => {
     return msgs.map((m, index) => {
-        if (index >= CONTENT_TRIM_THRESHOLD && m.content && m.content.length > 100) {
-            return { ...m, content: (m.content.substring(0, 50) + "... [Isi pesan lama dihapus otomatis untuk menghemat ruang]") };
-        }
-        return m;
+      if (index >= CONTENT_TRIM_THRESHOLD && m.content && m.content.length > 100) {
+        return { ...m, content: (m.content.substring(0, 50) + "... [Isi pesan lama dihapus otomatis untuk menghemat ruang]") };
+      }
+      return m;
     });
   },
-  
+
   addMessage: (msg: Omit<InboxItem, 'id' | 'read' | 'timestamp'>) => {
     const key = inboxStorage.getStorageKey();
     if (typeof window === 'undefined') return;
-    
+
     const messages = inboxStorage.getMessages();
 
     // WHITELIST FILTER: If trade, check if source is from a valid partner
     if (msg.category === 'trade') {
       if (!inboxStorage.isTradeWhitelisted(msg.source, msg.subject)) {
         console.log(`[INBOX] Blocked trade message from non-partner: ${msg.source} / ${msg.subject}`);
-        return; 
+        return;
       }
     }
 
     // EMBASSY REQUIREMENT: Trade, Pacts, and Alliances require an active embassy
     const needsEmbassy = msg.isProposal && ['trade', 'pact', 'alliance', 'defense', 'diplomacy'].includes(msg.category || '');
     if (needsEmbassy) {
-        // AGGRESSIVE COUNTRY EXTRACTION
-        let country = msg.metadata?.id || msg.metadata?.country;
-        
-        // Try Subject Regex (e.g. "DEKLARASI ZONA PERDAMAIAN (KAMBOJA)")
-        if (!country) {
-            const subjectMatch = msg.subject.match(/\(([^)]+)\)$/);
-            if (subjectMatch) country = subjectMatch[1];
-        }
+      // AGGRESSIVE COUNTRY EXTRACTION
+      let country = msg.metadata?.id || msg.metadata?.country;
 
-        // Try Source Regex
-        if (!country) {
-            const sourceMatch = msg.source.match(/\(([^)]+)\)/);
-            if (sourceMatch) country = sourceMatch[1];
-        }
+      // Try Subject Regex (e.g. "DEKLARASI ZONA PERDAMAIAN (KAMBOJA)")
+      if (!country) {
+        const subjectMatch = msg.subject.match(/\(([^)]+)\)$/);
+        if (subjectMatch) country = subjectMatch[1];
+      }
 
-        if (country) {
-            try {
-                const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
-                const hasEmbassy = embassyStorage.getEmbassyStatus(country) === 'completed';
-                if (!hasEmbassy) {
-                    console.log(`[INBOX] BLOCKED: ${msg.category} proposal from ${country} requires an embassy first!`);
-                    return; // REJECT THE MESSAGE
-                }
-            } catch (e) {
-                console.error("[INBOX] Embassy check failed", e);
-            }
+      // Try Source Regex
+      if (!country) {
+        const sourceMatch = msg.source.match(/\(([^)]+)\)/);
+        if (sourceMatch) country = sourceMatch[1];
+      }
+
+      if (country) {
+        try {
+          const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+          const hasEmbassy = embassyStorage.getEmbassyStatus(country) === 'completed';
+          if (!hasEmbassy) {
+            console.log(`[INBOX] BLOCKED: ${msg.category} proposal from ${country} requires an embassy first!`);
+            return; // REJECT THE MESSAGE
+          }
+        } catch (e) {
+          console.error("[INBOX] Embassy check failed", e);
         }
+      }
     }
 
     // REDUNDANCY FILTER: Embassy proposals from existing partners
     if (msg.category === 'embassy' && msg.isProposal) {
-        let country = msg.metadata?.id || msg.metadata?.country;
-        if (!country) {
-            const subjectMatch = msg.subject.match(/\(([^)]+)\)$/);
-            if (subjectMatch) country = subjectMatch[1];
-        }
-        if (!country) {
-            const sourceMatch = msg.source.match(/\(([^)]+)\)/);
-            if (sourceMatch) country = sourceMatch[1];
-        }
+      let country = msg.metadata?.id || msg.metadata?.country;
+      if (!country) {
+        const subjectMatch = msg.subject.match(/\(([^)]+)\)$/);
+        if (subjectMatch) country = subjectMatch[1];
+      }
+      if (!country) {
+        const sourceMatch = msg.source.match(/\(([^)]+)\)/);
+        if (sourceMatch) country = sourceMatch[1];
+      }
 
-        if (country) {
-            try {
-                const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
-                if (embassyStorage.getEmbassyStatus(country) === 'completed') {
-                    console.log(`[INBOX] Blocked redundant embassy proposal from ${country}`);
-                    return; 
-                }
-            } catch (e) {}
-        }
+      if (country) {
+        try {
+          const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+          if (embassyStorage.getEmbassyStatus(country) === 'completed') {
+            console.log(`[INBOX] Blocked redundant embassy proposal from ${country}`);
+            return;
+          }
+        } catch (e) { }
+      }
     }
 
     const newMessage: InboxItem = {
@@ -305,16 +305,16 @@ export const inboxStorage = {
       read: false,
       timestamp: Date.now()
     };
-    
+
     // Trim content for very old messages to save space
     const trimmedMessages = inboxStorage.trimOldMessages(messages);
-    
+
     // Insert at the beginning so newest is first
     trimmedMessages.unshift(newMessage);
-    
+
     // Limit total messages to prevent QuotaExceededError
     const limitedMessages = trimmedMessages.slice(0, MAX_INBOX_MESSAGES);
-    
+
     try {
       localStorage.setItem(key, JSON.stringify(limitedMessages));
     } catch (e) {
@@ -334,19 +334,19 @@ export const inboxStorage = {
         }
       }
     }
-    
+
     // Dispatch custom events to notify components
     window.dispatchEvent(new Event('inbox_updated'));
     window.dispatchEvent(new CustomEvent('new_inbox_message', { detail: newMessage }));
   },
-  
+
   markAsRead: (id: string) => {
     const key = inboxStorage.getStorageKey();
     if (typeof window === 'undefined') return;
-    
+
     const messages = inboxStorage.getMessages();
     let changed = false;
-    
+
     const updated = messages.map(m => {
       if (m.id === id && !m.read) {
         changed = true;
@@ -354,7 +354,7 @@ export const inboxStorage = {
       }
       return m;
     });
-    
+
     if (changed) {
       try {
         localStorage.setItem(key, JSON.stringify(updated));
@@ -373,18 +373,18 @@ export const inboxStorage = {
     localStorage.setItem(key, JSON.stringify(updated));
     window.dispatchEvent(new Event('inbox_updated'));
   },
-  
+
   getUnreadCount: (): number => {
     return inboxStorage.getMessages().filter(m => !m.read).length;
   },
-  
+
   deleteMessage: (id: string) => {
     const key = inboxStorage.getStorageKey();
     if (typeof window === 'undefined') return;
-    
+
     const messages = inboxStorage.getMessages();
     const updated = messages.filter(m => m.id !== id);
-    
+
     try {
       localStorage.setItem(key, JSON.stringify(updated));
       window.dispatchEvent(new Event('inbox_updated'));
@@ -400,10 +400,10 @@ export const inboxStorage = {
   canAddWeekly: (category: string, gameDate: Date): boolean => {
     const WEEKLY_LIMIT = 5; // Increased to 5 for better trade experience
     const weekId = `IW${Math.floor(gameDate.getTime() / (7 * 24 * 60 * 60 * 1000))}`;
-    
+
     if (!(window as any)._inboxWeeklyCounters) (window as any)._inboxWeeklyCounters = {};
     const counters = (window as any)._inboxWeeklyCounters;
-    
+
     if (!counters[weekId]) counters[weekId] = {};
     if (!counters[weekId][category]) counters[weekId][category] = 0;
 
@@ -417,10 +417,10 @@ export const inboxStorage = {
     const weekId = `IW${Math.floor(gameDate.getTime() / (7 * 24 * 60 * 60 * 1000))}`;
     if (!(window as any)._inboxWeeklyCounters) (window as any)._inboxWeeklyCounters = {};
     const counters = (window as any)._inboxWeeklyCounters;
-    
+
     if (!counters[weekId]) counters[weekId] = {};
     if (!counters[weekId][category]) counters[weekId][category] = 0;
-    
+
     counters[weekId][category]++;
   },
 
@@ -432,7 +432,7 @@ export const inboxStorage = {
 
     const key = inboxStorage.getStorageKey();
     const current = inboxStorage.getMessages();
-    
+
     // Map server items to our internal format
     const mapped: InboxItem[] = serverInbox.map(si => ({
       id: si.id || `sv-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
@@ -457,10 +457,10 @@ export const inboxStorage = {
 
     // Merge logic: deduplicate by ID and preserve local 'read' status
     const uniqueMap = new Map();
-    
+
     // Process local items first
     current.forEach(item => uniqueMap.set(item.id, item));
-    
+
     // Process server items
     mapped.forEach(serverItem => {
       if (uniqueMap.has(serverItem.id)) {
@@ -475,7 +475,7 @@ export const inboxStorage = {
     // Sort by most recent first
     const sorted = Array.from(uniqueMap.values())
       .sort((a: any, b: any) => b.timestamp - a.timestamp);
-    
+
     // Limit storage
     const limited = sorted.slice(0, MAX_INBOX_MESSAGES);
 
@@ -483,7 +483,7 @@ export const inboxStorage = {
       localStorage.setItem(key, JSON.stringify(limited));
       // Dispatch update event so SideMenu red dot appears
       window.dispatchEvent(new Event('inbox_updated'));
-      
+
       // NEW: Prune any old garbage if the player has changed or whitelist updated
       inboxStorage.pruneNonWhitelisted();
     } catch (e) {
