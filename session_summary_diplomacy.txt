@@ -1,0 +1,40 @@
+# SESSION SUMMARY: DIPLOMACY & INBOX STABILIZATION PROJECT
+Date: 2026-04-22
+
+## 1. Inbox Title Standardization (Title Case Enforcement)
+- All embassy-related proposals are now forced to have a uniform subject: "tawaran pembangunan kedubes (Nama Negara)".
+- Implemented "Aggressive Country Extraction": The system extracts country names from Metadata, then Subject (regex), then Source (regex), and finally Message Content (fallback).
+- Added Title Case helper: Converts "AFRIKA SELATAN" to "Afrika Selatan" for professional UI presentation.
+
+## 2. Diplomatic Prerequisites (Embassy-First Logic)
+- Centralized validation in `inboxStorage.addMessage` and `getMessages`.
+- Advanced proposals (Pacts, Alliances, Trade Agreements, Defense) are BLOCKED if a formal embassy does not exist with the proposing country.
+- Prevents "wild" AI proposals from nations that haven't established a diplomatic presence.
+
+## 3. Decision Feedback & Card Stabilization
+- Added `status` field (`pending`, `accepted`, `rejected`) to `InboxItem`.
+- When a user accepts or declines:
+    - Action buttons are replaced by a permanent status label.
+    - Green label: "Proposal Diterima & Diratifikasi".
+    - Red label: "Proposal Telah Ditolak".
+    - Decision cards become non-interactive to prevent double actions.
+
+## 4. System Synchronization & Service Updates
+- `AiTradeService.acceptEmbassyProposal`: Now correctly updates `embassyStorage` to 'completed' and dispatches events to unlock the UI immediately.
+- `AiDiplomacyService.finalizeTreaty`: Synchronized to follow the same protocol.
+- Integrated "Auto-Heal" logic: Every time the inbox opens, it checks if previously accepted proposals are correctly synced with the embassy registry (Fixes issues like the Egypt/Mesir menu stay-locked bug).
+
+## 5. Redundancy & Whitelist Filtering
+- Added a redundancy filter for Embassy proposals: If a country already has an active embassy (e.g., USA/Amerika Serikat from initial data), duplicate proposals are blocked.
+- Fixed a bug where existing partners were still sending "build embassy" requests.
+
+## 6. Technical & Build Stabilizations
+- Fixed "Module not found" build errors by switching from relative paths to Absolute Path Aliases (`@/app/...`) in dynamic `require` calls.
+- Preserved original data integrity by moving display-forcing logic to the retrieval layer (`getMessages`) rather than overwriting storage in `addMessage`.
+
+## Key Files Modified:
+- `inboxStorage.ts`: Central logic for filtering, cleaning, labeling, and status tracking.
+- `InboxModal.tsx`: Action handling and status updates.
+- `InboxCard.tsx`: UI rendering for status labels and buttons.
+- `AiTradeService.ts`: NPC embassy proposal logic and synchronization.
+- `AiDiplomacyService.ts`: Treaty finalization and metadata injection.
