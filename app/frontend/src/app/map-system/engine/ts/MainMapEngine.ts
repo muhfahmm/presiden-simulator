@@ -75,7 +75,7 @@ export class MainMapEngine extends BaseMapEngine {
       const lat = country.lat !== undefined ? country.lat : country.latitude;
       const lon = country.lon !== undefined ? country.lon : country.longitude;
       const capitalName = country.capital || country.ibukota;
-
+      
       if (lat === undefined || lon === undefined) continue;
       const { x, y } = this.projector.project(Number(lon), Number(lat));
 
