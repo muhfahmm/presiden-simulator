@@ -646,6 +646,10 @@ export const AiTradeService = {
         if (matrixChanged) {
             saveGlobalRelationMatrix(matrix);
             
+            // Sync with Embassy Storage to unlock UI
+            const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+            embassyStorage.updateEmbassyStatus(countryName, 'completed');
+
             // Tambahkan notifikasi konfirmasi
             inboxStorage.addMessage({
                 source: 'Kementerian Luar Negeri',

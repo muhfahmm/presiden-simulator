@@ -106,7 +106,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
             const { type, id } = msg.metadata;
             console.log(`[INBOX] Processing Acceptance: ${type} - ${id}`);
             
-            const { AiDiplomacyService } = require("../../../logic/ai/ai_diplomacy_engine/services/AiDiplomacyService");
+            const { AiDiplomacyService } = require("@/app/game/logic/ai/ai_diplomacy_engine/services/AiDiplomacyService");
             
             let success = false;
             switch (type) {
