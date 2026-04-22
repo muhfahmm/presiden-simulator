@@ -324,7 +324,7 @@ export const AiTradeService = {
                                 category: isEmbassy ? 'embassy' : ((event.category as any) || 'trade'),
                                 isProposal: true,
                                 proposalLabel: proposalLabel,
-                                subject: event.subject,
+                                subject: isEmbassy ? "tawaran pembangunan kedubes" : event.subject,
                                 content: event.content,
                                 time: formatGameDate(gameDate),
                                 priority: event.priority || 'medium',

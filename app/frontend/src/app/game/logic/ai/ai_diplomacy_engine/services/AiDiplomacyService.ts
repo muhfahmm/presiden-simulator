@@ -153,6 +153,8 @@ export const AiDiplomacyService = {
 
                         if (inboxStorage.canAddWeekly(category, gameDate)) {
                             const safeSource = (event.source || "Negara").toUpperCase();
+                            const isEmbassyProposal = isEmbassy && (event.type === 'USER_EMBASSY_OFFER' || event.type === 'AI_EMBASSY_PROPOSAL');
+                            
                             inboxStorage.addMessage({
                                 source: isGrant ? `Dinas Keuangan (${safeSource})` : 
                                         isTrade ? `Kementerian Perdagangan (${safeSource})` :
@@ -162,8 +164,8 @@ export const AiDiplomacyService = {
                                         `Intelijen (${safeSource})`,
                                 category: category,
                                 isProposal: isGrant || isTrade || isPact || isAlliance || isEmbassy,
-                                metadata: { type: category, id: event.source }, // Add metadata for action handling
-                                subject: isEmbassy ? event.subject : `[DUNIA] ${event.subject}`,
+                                metadata: { type: category, id: event.source },
+                                subject: isEmbassyProposal ? "tawaran pembangunan kedubes" : (isEmbassy ? event.subject : `[DUNIA] ${event.subject}`),
                                 content: event.content,
                                 time: formatGameDate(gameDate),
                                 priority: (isGrant || isPact || isAlliance || isEmbassy) ? 'high' : 'medium'

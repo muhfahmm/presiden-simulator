@@ -43,6 +43,36 @@ export const inboxStorage = {
           return inboxStorage.isTradeWhitelisted(msg.source, msg.subject);
         }
         return true;
+      }).map(msg => {
+        // FORCE TITLE REMASTRY: Ensure all embassy proposals have the exact title requested
+        if (msg.category === 'embassy' && msg.isProposal) {
+          // 1. Try Metadata
+          let rawCountry = msg.metadata?.id || msg.metadata?.country;
+          
+          // 2. Try Source Regex
+          if (!rawCountry || rawCountry === 'Negara') {
+            const countryMatch = msg.source.match(/\(([^)]+)\)/);
+            if (countryMatch) rawCountry = countryMatch[1];
+          }
+
+          // 3. EMERGENCY RECOVERY: Try Content (if already overwritten by previous bug)
+          if (!rawCountry || rawCountry === 'Negara') {
+            const contentMatch = msg.content?.match(/dengan\s+([A-Z\s]{3,20})/i);
+            if (contentMatch) rawCountry = contentMatch[1].trim();
+          }
+
+          // 4. LAST RESORT: Try current subject (it might contain the name if not yet overwritten)
+          if (!rawCountry || rawCountry === 'Negara') {
+             const subjMatch = msg.subject.match(/\(([^)]+)\)/);
+             if (subjMatch && subjMatch[1] !== 'Negara') rawCountry = subjMatch[1];
+          }
+          
+          // Format name to Title Case (e.g. AFRIKA SELATAN -> Afrika Selatan)
+          const country = String(rawCountry || "Negara").toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+          
+          return { ...msg, subject: `tawaran pembangunan kedubes (${country})` };
+        }
+        return msg;
       });
     } catch {
       return [];
