@@ -40,9 +40,43 @@ export const inboxStorage = {
       
       // Auto-filter redundant or non-whitelisted items whenever messages are retrieved
       return parsed.filter(msg => {
+        // 1. Whitelist filter for trade
         if (msg.category === 'trade' || msg.category === 'embassy') {
-          return inboxStorage.isTradeWhitelisted(msg.source, msg.subject);
+          if (!inboxStorage.isTradeWhitelisted(msg.source, msg.subject)) return false;
         }
+
+        // AGGRESSIVE COUNTRY EXTRACTION for redundancy checks
+        let country = msg.metadata?.id || msg.metadata?.country;
+        if (!country) {
+            const subjectMatch = msg.subject.match(/\(([^)]+)\)$/);
+            if (subjectMatch) country = subjectMatch[1];
+        }
+        if (!country) {
+            const sourceMatch = msg.source.match(/\(([^)]+)\)/);
+            if (sourceMatch) country = sourceMatch[1];
+        }
+
+        // 2. Redundancy filter for Embassy Proposals
+        if (msg.category === 'embassy' && msg.isProposal && country) {
+            try {
+                const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+                if (embassyStorage.getEmbassyStatus(country) === 'completed') {
+                    // console.log(`[INBOX] Filtering redundant embassy proposal from ${country}`);
+                    return false; 
+                }
+            } catch (e) {}
+        }
+
+        // 3. Embassy requirement filter for advanced proposals (Pacts/Alliances)
+        const isAdvancedProposal = msg.isProposal && ['trade', 'pact', 'alliance', 'defense', 'diplomacy'].includes(msg.category || '');
+        if (isAdvancedProposal && country) {
+            try {
+                const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+                const status = embassyStorage.getEmbassyStatus(country);
+                if (status !== 'completed') return false; 
+            } catch (e) {}
+        }
+
         return true;
       }).map(msg => {
         // FORCE TITLE REMASTRY: Ensure all embassy proposals have the exact title requested
@@ -208,6 +242,61 @@ export const inboxStorage = {
         console.log(`[INBOX] Blocked trade message from non-partner: ${msg.source} / ${msg.subject}`);
         return; 
       }
+    }
+
+    // EMBASSY REQUIREMENT: Trade, Pacts, and Alliances require an active embassy
+    const needsEmbassy = msg.isProposal && ['trade', 'pact', 'alliance', 'defense', 'diplomacy'].includes(msg.category || '');
+    if (needsEmbassy) {
+        // AGGRESSIVE COUNTRY EXTRACTION
+        let country = msg.metadata?.id || msg.metadata?.country;
+        
+        // Try Subject Regex (e.g. "DEKLARASI ZONA PERDAMAIAN (KAMBOJA)")
+        if (!country) {
+            const subjectMatch = msg.subject.match(/\(([^)]+)\)$/);
+            if (subjectMatch) country = subjectMatch[1];
+        }
+
+        // Try Source Regex
+        if (!country) {
+            const sourceMatch = msg.source.match(/\(([^)]+)\)/);
+            if (sourceMatch) country = sourceMatch[1];
+        }
+
+        if (country) {
+            try {
+                const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+                const hasEmbassy = embassyStorage.getEmbassyStatus(country) === 'completed';
+                if (!hasEmbassy) {
+                    console.log(`[INBOX] BLOCKED: ${msg.category} proposal from ${country} requires an embassy first!`);
+                    return; // REJECT THE MESSAGE
+                }
+            } catch (e) {
+                console.error("[INBOX] Embassy check failed", e);
+            }
+        }
+    }
+
+    // REDUNDANCY FILTER: Embassy proposals from existing partners
+    if (msg.category === 'embassy' && msg.isProposal) {
+        let country = msg.metadata?.id || msg.metadata?.country;
+        if (!country) {
+            const subjectMatch = msg.subject.match(/\(([^)]+)\)$/);
+            if (subjectMatch) country = subjectMatch[1];
+        }
+        if (!country) {
+            const sourceMatch = msg.source.match(/\(([^)]+)\)/);
+            if (sourceMatch) country = sourceMatch[1];
+        }
+
+        if (country) {
+            try {
+                const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+                if (embassyStorage.getEmbassyStatus(country) === 'completed') {
+                    console.log(`[INBOX] Blocked redundant embassy proposal from ${country}`);
+                    return; 
+                }
+            } catch (e) {}
+        }
     }
 
     const newMessage: InboxItem = {
