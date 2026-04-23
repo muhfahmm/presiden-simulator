@@ -77,7 +77,7 @@ export const PlaneDetailCard: React.FC<PlaneDetailCardProps> = ({
         top: 0
       }}
     >
-      <div className="bg-zinc-950/98 border border-emerald-500/40 backdrop-blur-3xl p-6 rounded-[2.5rem] shadow-[0_40px_100px_rgba(0,0,0,0.9),0_0_50px_rgba(16,185,129,0.2)] w-[320px] relative group pointer-events-auto overflow-hidden">
+      <div className="bg-zinc-950/98 border border-emerald-500/40 p-6 rounded-[2.5rem] shadow-[0_40px_100px_rgba(0,0,0,0.9),0_0_50px_rgba(16,185,129,0.2)] w-[320px] relative group pointer-events-auto overflow-hidden">
         <div className="absolute -inset-1 bg-gradient-to-br from-emerald-500/30 to-blue-600/30 blur-2xl opacity-40 group-hover:opacity-100 transition-opacity duration-1000"></div>
         <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_2px,transparent_2px)] bg-[size:100%_4px] pointer-events-none opacity-50"></div>
 

@@ -135,7 +135,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
 
   const isModalActive = activeMenu.startsWith("Komando Pertahanan");
   const isOtherModalOpen = activeMenu.startsWith("CountryModal:") || 
-                           (activeMenu.startsWith("Menu:") && !["Menu:Kelistrikan", "Menu:Perminyakan", "Menu:Uranium"].includes(activeMenu)) || 
+                           (activeMenu.startsWith("Menu:") && !["Menu:Kelistrikan", "Menu:Perminyakan", "Menu:Uranium", "Menu:Perdagangan", "Menu:Pajak", "Menu:Hutang", "Menu:Budget", "Menu:Harga"].some(m => activeMenu.startsWith(m))) || 
                            (activeMenu.startsWith("Dashboard:") && !["Dashboard:Kepuasan", "Dashboard:Populasi"].includes(activeMenu)) ||
                            (activeMenu.startsWith("Action:") && !["Action:NaikkanKepuasan"].includes(activeMenu));
 

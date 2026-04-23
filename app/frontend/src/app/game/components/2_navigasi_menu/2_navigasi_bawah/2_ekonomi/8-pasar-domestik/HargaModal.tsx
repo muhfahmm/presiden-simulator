@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { X, Tag, ShoppingCart, Zap, Fuel, Pill, GraduationCap, AlertCircle, TrendingDown, TrendingUp, Droplets, Wheat, Beef, Droplet, Package, Egg, Users } from "lucide-react";
+import { X, Tag, ShoppingCart, Zap, Fuel, Pill, GraduationCap, AlertCircle, TrendingDown, TrendingUp, Droplets, Wheat, Beef, Droplet, Package, Egg, Users, ArrowRightLeft, FileText, Landmark, BarChart3 } from "lucide-react";
 import { priceStorage, PriceData } from "./priceStorage";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 
@@ -9,9 +9,11 @@ import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 interface HargaModalProps {
   isOpen: boolean;
   onClose: () => void;
+  activeMenu?: string;
+  setActiveMenu?: (menu: string) => void;
 }
 
-export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
+export default function HargaModal({ isOpen, onClose, activeMenu, setActiveMenu }: HargaModalProps) {
   const [harga, setPrices] = useState<PriceData>(priceStorage.getData());
   const [isMounted, setIsMounted] = useState(false);
 
@@ -187,8 +189,8 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
   };
 
   return (
-    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+    <div className="absolute inset-0 bg-black/60 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
+      <div className="bg-zinc-950/90 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
 
         {/* Glow Effects */}
         <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent blur-sm"></div>
@@ -203,7 +205,7 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white tracking-tight">Kebijakan Harga Rakyat</h2>
-              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Sovereignty &amp; Inflation Control</p>
+              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Sovereignty & Inflation Control</p>
             </div>
           </div>
           <button
@@ -213,6 +215,40 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
               <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
               <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
             </button>
+        </div>
+
+        {/* Unified Navigation Tabs */}
+        <div className="px-6 py-2 bg-zinc-900/40 border-b border-zinc-800 flex gap-2 relative z-10">
+          <button 
+            onClick={() => setActiveMenu?.("Menu:Perdagangan")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu?.startsWith("Menu:Perdagangan") ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <ArrowRightLeft size={16} /> Perdagangan
+          </button>
+          <button 
+            onClick={() => setActiveMenu?.("Menu:Pajak")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Pajak" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <FileText size={16} /> Pajak
+          </button>
+          <button 
+            onClick={() => setActiveMenu?.("Menu:Hutang")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Hutang" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <Landmark size={16} /> Hutang
+          </button>
+          <button 
+            onClick={() => setActiveMenu?.("Menu:Budget")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Budget" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <BarChart3 size={16} /> Budget
+          </button>
+          <button 
+            onClick={() => setActiveMenu?.("Menu:Harga")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Harga" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <Tag size={16} /> Harga
+          </button>
         </div>
 
         {/* Dashboard Summary Bar */}

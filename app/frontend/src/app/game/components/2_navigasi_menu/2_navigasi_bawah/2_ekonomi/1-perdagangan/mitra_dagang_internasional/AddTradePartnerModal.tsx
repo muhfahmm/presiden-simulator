@@ -39,7 +39,7 @@ export const AddTradePartnerModal: React.FC<AddTradePartnerModalProps> = ({
   }).sort((a, b) => a.name_id.localeCompare(b.name_id));
 
   return (
-    <div className="fixed inset-0 bg-black/90 z-[120] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-300">
+    <div className="fixed inset-0 bg-black/90 z-[120] flex items-center justify-center p-4 animate-in fade-in duration-300">
       <div className="bg-zinc-950 border border-zinc-800 w-full max-w-xl rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col max-h-[70vh]">
         {/* Header */}
         <div className="p-8 border-b border-zinc-900 bg-zinc-900/10 flex items-center justify-between">

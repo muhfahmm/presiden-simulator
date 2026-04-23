@@ -95,7 +95,7 @@ export const ImporHalaman: React.FC<ImporHalamanProps> = ({
 
       <div className="space-y-6 pt-4">
         <div className="flex flex-wrap items-center justify-between gap-6">
-          <div className="flex items-center gap-1 bg-zinc-900/50 p-1.5 rounded-2xl border border-zinc-900/50 backdrop-blur-md">
+          <div className="flex items-center gap-1 bg-zinc-900/50 p-1.5 rounded-2xl border border-zinc-900/50">
             {["1w", "1m", "3m", "6m", "1y", "3y", "5y"].map(tf => (
               <button key={tf} onClick={() => setSelectedTimeframe(tf)} className={`px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer ${selectedTimeframe === tf ? 'bg-blue-600 text-white' : 'text-zinc-500 hover:text-white hover:bg-zinc-800'}`}>{tf}</button>
             ))}

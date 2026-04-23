@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react"
 import {
-  X, ArrowRightLeft, TrendingUp, TrendingDown, Globe, Ship, Landmark, BarChart3,
+  X, ArrowRightLeft, TrendingUp, TrendingDown, Globe, Ship, Landmark, BarChart3, FileText, Tag,
   Cpu, Car, Bike, Construction, TreePine, Droplet, Cookie, Croissant, Pill, FlaskConical, Beef, Soup,
   Bird, Milk, Leaf, Shell, Fish, Sprout, Utensils, Apple, Bean, Layers, Mountain, Gem, Waves, Flame,
   Battery, Droplets, Box, Pickaxe, Radio, Coffee, Carrot, Eye, ChevronRight, Plus,
@@ -495,8 +495,8 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   if (!isOpen) return null;
 
   return (
-    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+    <div className="absolute inset-0 bg-black/60 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
+      <div className="bg-zinc-950/90 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
 
         {/* Glow Effects */}
         <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent blur-sm"></div>
@@ -544,16 +544,53 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
             <button className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group shadow-[0_0_15px_rgba(59,130,246,0.1)] active:scale-95">
               <Ship className="h-6 w-6 text-blue-500 group-hover:scale-110 transition-transform" />
             </button>
-            <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
-              <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
-              <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+            <button
+               onClick={onClose}
+               className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
+            >
+               <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+               <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
             </button>
           </div>
         </div>
 
+        {/* Unified Navigation Tabs */}
+        <div className="px-6 py-2 bg-zinc-900/40 border-b border-zinc-800 flex gap-2 relative z-10">
+          <button 
+            onClick={() => setActiveMenu("Menu:Perdagangan")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu.startsWith("Menu:Perdagangan") ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <ArrowRightLeft size={16} /> Perdagangan
+          </button>
+          <button 
+            onClick={() => setActiveMenu("Menu:Pajak")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Pajak" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <FileText size={16} /> Pajak
+          </button>
+          <button 
+            onClick={() => setActiveMenu("Menu:Hutang")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Hutang" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <Landmark size={16} /> Hutang
+          </button>
+          <button 
+            onClick={() => setActiveMenu("Menu:Budget")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Budget" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <BarChart3 size={16} /> Budget
+          </button>
+          <button 
+            onClick={() => setActiveMenu("Menu:Harga")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Harga" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <Tag size={16} /> Harga
+          </button>
+        </div>
+
         <div className="flex-1 flex overflow-hidden relative z-10">
           {/* Mitra Dagang Sidebar */}
-          <div className="w-[320px] border-r border-zinc-900 bg-zinc-950/50 flex flex-col backdrop-blur-sm">
+          <div className="w-[320px] border-r border-zinc-900 bg-zinc-950/50 flex flex-col">
             <div className="p-6 border-b border-zinc-900/80 shrink-0">
               <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">Mitra Dagang ({activePartnersList.filter((a: any) => a.status === 'Aktif' || !a.status || a.status !== 'Rejected').length})</h3>
               <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic mt-1">Negara Tujuan / Sumber</p>
@@ -583,7 +620,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
           </div>
 
           {/* Commodities Sidebar */}
-          <div className="w-[320px] border-r border-zinc-900 bg-zinc-950/50 flex flex-col backdrop-blur-sm">
+          <div className="w-[320px] border-r border-zinc-900 bg-zinc-950/50 flex flex-col">
             <div className="p-6 border-b border-zinc-900/80 shrink-0">
               <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic text-center">
                 {selectedTradePartner ? `Daftar Komoditas ${selectedTradePartner}` : 
@@ -785,10 +822,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
           </div>
 
           {/* Main Content Area */}
-          <div className="flex-1 bg-zinc-950 p-8 lg:p-16 overflow-y-auto relative scrollbar-thin scrollbar-thumb-zinc-800">
+          <div className="flex-1 bg-zinc-950/40 p-8 lg:p-16 overflow-y-auto relative scrollbar-thin scrollbar-thumb-zinc-800">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none"></div>
             <div className="max-w-4xl mx-auto space-y-12">
-              <div className="flex items-center gap-2 bg-zinc-900/50 p-1.5 rounded-3xl border border-zinc-800/50 backdrop-blur-xl w-fit">
+              <div className="flex items-center gap-2 bg-zinc-900/50 p-1.5 rounded-3xl border border-zinc-800/50 w-fit">
                 <button
                   onClick={() => {
                     const countryPart = selectedTradePartner ? `:${selectedTradePartner}` : "";
@@ -848,7 +885,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
               </div>
 
               {/* Logistics Efficiency Summary Card */}
-              <div className="p-6 rounded-[2rem] bg-zinc-950/40 border border-zinc-800/50 backdrop-blur-md relative overflow-hidden group hover:border-blue-500/30 transition-all duration-700 shadow-2xl">
+              <div className="p-6 rounded-[2rem] bg-zinc-950/40 border border-zinc-800/50 relative overflow-hidden group hover:border-blue-500/30 transition-all duration-700 shadow-2xl">
                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                    <Navigation className="h-24 w-24 text-blue-500" />
                 </div>

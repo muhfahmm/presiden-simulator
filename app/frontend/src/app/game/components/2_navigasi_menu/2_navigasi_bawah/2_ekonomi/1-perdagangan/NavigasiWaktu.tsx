@@ -20,7 +20,7 @@ export default function NavigasiWaktu() {
   if (!isMounted) return null;
 
   return (
-    <div className="flex items-center gap-4 px-4 py-2 bg-black/40 rounded-2xl border border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300">
+    <div className="flex items-center gap-4 px-4 py-2 bg-black/40 rounded-2xl border border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] transition-all duration-300">
       {/* Date Display */}
       <div className="flex items-center gap-3 px-3 py-1.5 bg-zinc-950/40 rounded-xl border border-white/5 group hover:border-cyan-500/30 transition-all duration-300 cursor-default">
         <Calendar size={16} className="text-cyan-400 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.5)] transition-all" />

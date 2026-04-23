@@ -91,19 +91,27 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <PajakModal
         isOpen={activeMenu === "Menu:Pajak"}
         onClose={() => setActiveMenu("Ekonomi")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
       />
       <HutangModal
         isOpen={activeMenu === "Menu:Hutang"}
         onClose={() => setActiveMenu("Ekonomi")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
       />
       <PemasukkanPengeluaranModal
         isOpen={activeMenu === "Menu:Budget"}
         onClose={() => setActiveMenu("Ekonomi")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
       />
 
       <HargaModal
         isOpen={activeMenu === "Menu:Harga"}
         onClose={() => setActiveMenu("Ekonomi")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
       />
       <ProduksiHubV3
         isOpen={activeMenu === "Menu:Produksi"}

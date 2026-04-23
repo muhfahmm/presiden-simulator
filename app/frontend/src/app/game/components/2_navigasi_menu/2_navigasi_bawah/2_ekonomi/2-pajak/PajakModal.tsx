@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, FileText, Scale, Coins, Smile, Meh, Frown, Angry, AlertCircle, TrendingUp, RefreshCw, Wallet, Globe, Shield, ShieldAlert, Info, Users } from "lucide-react"
+import { X, FileText, Scale, Coins, Smile, Meh, Frown, Angry, AlertCircle, TrendingUp, RefreshCw, Wallet, Globe, Shield, ShieldAlert, Info, Users, ArrowRightLeft, Landmark, BarChart3, Tag } from "lucide-react"
 import { countries } from "@/app/database/data/negara/benua/index"
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index"
 import { gameStorage } from "@/app/game/gamestorage"
@@ -15,9 +15,11 @@ import { AlertTriangle } from "lucide-react"
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  activeMenu?: string;
+  setActiveMenu?: (menu: string) => void;
 }
 
-export default function PajakModal({ isOpen, onClose }: ModalProps) {
+export default function PajakModal({ isOpen, onClose, activeMenu, setActiveMenu }: ModalProps) {
   const session = gameStorage.getSession();
   const initialCountry = countries.find((c: CountryData) => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
   
@@ -207,7 +209,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
     const isTrade = tradeTaxes.some(t => t.key === item.key);
     
     return (
-      <div key={item.key} className={`bg-zinc-900/40 border ${isTrade ? 'border-amber-500/10 hover:border-amber-500/30' : 'border-zinc-800/80 hover:border-green-500/30'} p-6 rounded-3xl group transition-all flex flex-col gap-6 relative overflow-hidden backdrop-blur-md`}>
+      <div key={item.key} className={`bg-zinc-900/40 border ${isTrade ? 'border-amber-500/10 hover:border-amber-500/30' : 'border-zinc-800/80 hover:border-green-500/30'} p-6 rounded-3xl group transition-all flex flex-col gap-6 relative overflow-hidden`}>
         <div className={`absolute -top-10 -right-10 w-32 h-32 bg-white/5 blur-3xl rounded-full ${isTrade ? 'group-hover:bg-amber-500/5' : 'group-hover:bg-green-500/5'} transition-colors`}></div>
         <div className="flex justify-between items-start relative z-10">
           <div className="flex flex-col">
@@ -268,8 +270,8 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
   };
 
   return (
-    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+    <div className="absolute inset-0 bg-black/60 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
+      <div className="bg-zinc-950/90 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
         
         {/* Glow Effects */}
         <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent blur-sm"></div>
@@ -301,6 +303,40 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
                  <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
               </button>
            </div>
+        </div>
+
+        {/* Unified Navigation Tabs */}
+        <div className="px-6 py-2 bg-zinc-900/40 border-b border-zinc-800 flex gap-2 relative z-10">
+          <button 
+            onClick={() => setActiveMenu?.("Menu:Perdagangan")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu?.startsWith("Menu:Perdagangan") ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <ArrowRightLeft size={16} /> Perdagangan
+          </button>
+          <button 
+            onClick={() => setActiveMenu?.("Menu:Pajak")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Pajak" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <FileText size={16} /> Pajak
+          </button>
+          <button 
+            onClick={() => setActiveMenu?.("Menu:Hutang")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Hutang" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <Landmark size={16} /> Hutang
+          </button>
+          <button 
+            onClick={() => setActiveMenu?.("Menu:Budget")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Budget" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <BarChart3 size={16} /> Budget
+          </button>
+          <button 
+            onClick={() => setActiveMenu?.("Menu:Harga")}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Harga" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+          >
+            <Tag size={16} /> Harga
+          </button>
         </div>
         
         <div className="px-10 py-6 bg-zinc-900/10 border-b border-zinc-900 flex items-center justify-between">

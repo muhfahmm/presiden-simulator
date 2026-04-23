@@ -562,7 +562,7 @@ export const TradePriceChart: React.FC<TradePriceChartProps> = ({
 
       {isFullscreen && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-12 animate-in fade-in zoom-in-95 duration-300">
-          <div className="absolute inset-0 bg-black/90 backdrop-blur-xl" onClick={() => setIsFullscreen(false)}></div>
+          <div className="absolute inset-0 bg-black/90" onClick={() => setIsFullscreen(false)}></div>
           
           <div className="relative w-full max-w-7xl h-[70vh] bg-zinc-950 border border-zinc-800 rounded-[3rem] shadow-[0_30px_100px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col">
             <div className="flex items-center justify-between p-8 border-b border-zinc-900">

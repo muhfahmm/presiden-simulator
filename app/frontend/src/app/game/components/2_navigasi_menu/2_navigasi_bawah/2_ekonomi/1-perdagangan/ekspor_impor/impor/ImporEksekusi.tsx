@@ -407,7 +407,7 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
 
       {/* Mini Success Modal - Centered */}
       {showSuccess && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center backdrop-blur-sm animate-in fade-in duration-300">
+        <div className="absolute inset-0 z-50 flex items-center justify-center animate-in fade-in duration-300">
            <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col items-center gap-4 animate-in zoom-in-95 duration-300">
               <div className="w-16 h-16 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center">
                  <CheckCircle2 size={32} className="text-green-500 animate-in zoom-in-50 duration-500" />

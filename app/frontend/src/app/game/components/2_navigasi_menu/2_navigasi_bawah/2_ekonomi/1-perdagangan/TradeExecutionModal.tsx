@@ -144,7 +144,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
 
   return (
     <>
-      <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 backdrop-blur-3xl animate-in fade-in duration-500">
+      <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 animate-in fade-in duration-500">
         <div className="absolute inset-0 bg-black/60" onClick={onClose}></div>
         
         <div className="bg-zinc-950 border border-zinc-800/50 w-full max-w-2xl rounded-[3.5rem] overflow-hidden relative shadow-[0_50px_100px_rgba(0,0,0,0.8)] animate-in zoom-in-95 slide-in-from-bottom-10 duration-500">
@@ -442,7 +442,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
 
       {/* Success Modal Overlay - Rendered via Portal for absolute top-level visibility */}
       {successData && typeof document !== 'undefined' && createPortal(
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-500">
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 animate-in fade-in duration-500">
           <div className="absolute inset-0 bg-black/40" onClick={() => { setSuccessData(null); onClose(); }}></div>
           <div 
             className="bg-zinc-950 border border-zinc-800/80 w-full max-md rounded-[2.5rem] overflow-hidden relative shadow-[0_40px_80px_rgba(0,0,0,0.9)] animate-in zoom-in-95 duration-500 p-8 flex flex-col items-center text-center gap-6"
@@ -481,7 +481,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
 
       {/* Budget Error Modal Overlay - Rendered via Portal for absolute top-level visibility */}
       {budgetErrorData && typeof document !== 'undefined' && createPortal(
-        <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-300">
+        <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4 animate-in fade-in duration-300">
           <div className="absolute inset-0 bg-black/70" onClick={() => setBudgetErrorData(null)}></div>
           <div 
             className="bg-zinc-950 border border-zinc-800/80 w-full max-md rounded-[2.5rem] overflow-hidden relative shadow-[0_40px_80px_rgba(239,68,68,0.3)] animate-in zoom-in-95 duration-500 p-8 flex flex-col items-center text-center gap-6"

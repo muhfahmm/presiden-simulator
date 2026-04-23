@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, BarChart3, TrendingUp, TrendingDown, Landmark, PieChart, Coins, Shield, Zap, Building2, Activity, Info, Wallet, ArrowRight, Users, Eye, EyeOff, ChevronLeft, Car, Home, Search } from "lucide-react"
+import { X, BarChart3, TrendingUp, TrendingDown, Landmark, PieChart, Coins, Shield, Zap, Building2, Activity, Info, Wallet, ArrowRight, Users, Eye, EyeOff, ChevronLeft, Car, Home, Search, ArrowRightLeft, FileText, Tag } from "lucide-react"
 import { countries } from "@/app/database/data/negara/benua/index"
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index"
 import { gameStorage } from "@/app/game/gamestorage"
@@ -32,9 +32,11 @@ import { calculateTempatUmumRevenue, calculateTempatUmumMaintenance, getTempatUm
 interface ModalProps {
    isOpen: boolean;
    onClose: () => void;
+   activeMenu?: string;
+   setActiveMenu?: (menu: string) => void;
 }
 
-export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalProps) {
+export default function PemasukkanPengeluaranModal({ isOpen, onClose, activeMenu, setActiveMenu }: ModalProps) {
    const session = gameStorage.getSession();
    const initialCountry = countries.find((c: CountryData) => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
 
@@ -160,8 +162,8 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
    ];
 
    return (
-      <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
-         <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+      <div className="absolute inset-0 bg-black/60 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
+         <div className="bg-zinc-950/90 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
 
             {/* Glow Effects */}
             <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent blur-sm"></div>
@@ -197,6 +199,40 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                      <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
                   </button>
                </div>
+            </div>
+
+            {/* Unified Navigation Tabs */}
+            <div className="px-6 py-2 bg-zinc-900/40 border-b border-zinc-800 flex gap-2 relative z-10">
+              <button 
+                onClick={() => setActiveMenu?.("Menu:Perdagangan")}
+                className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu?.startsWith("Menu:Perdagangan") ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+              >
+                <ArrowRightLeft size={16} /> Perdagangan
+              </button>
+              <button 
+                onClick={() => setActiveMenu?.("Menu:Pajak")}
+                className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Pajak" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+              >
+                <FileText size={16} /> Pajak
+              </button>
+              <button 
+                onClick={() => setActiveMenu?.("Menu:Hutang")}
+                className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Hutang" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+              >
+                <Landmark size={16} /> Hutang
+              </button>
+              <button 
+                onClick={() => setActiveMenu?.("Menu:Budget")}
+                className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Budget" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+              >
+                <BarChart3 size={16} /> Budget
+              </button>
+              <button 
+                onClick={() => setActiveMenu?.("Menu:Harga")}
+                className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Harga" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+              >
+                <Tag size={16} /> Harga
+              </button>
             </div>
 
             <div className="flex-1 overflow-y-auto p-10 no-scrollbar space-y-8 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.03),transparent_40%)]">
@@ -237,7 +273,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
 
                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* KOLOM 1: PENDAPATAN */}
-                  <div className="bg-zinc-900/30 border border-zinc-800 rounded-[2rem] p-8 space-y-8 backdrop-blur-sm">
+                  <div className="bg-zinc-900/30 border border-zinc-800 rounded-[2rem] p-8 space-y-8">
                      <div className="flex items-center justify-between">
                         <h3 className="text-xl font-black text-white uppercase tracking-tighter italic flex items-center gap-3">
                            <div className={`p-2 rounded-lg border ${pbbMultipliers.impactLevel !== 'clear' ? 'bg-amber-500/10 border-amber-500/20' : 'bg-emerald-500/10 border-emerald-500/20'}`}>
@@ -436,7 +472,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                   </div>
 
                   {/* KOLOM 2: PENGELUARAN */}
-                  <div className="bg-zinc-900/30 border border-zinc-800 rounded-[2rem] p-8 space-y-8 backdrop-blur-sm shadow-xl relative overflow-hidden">
+                  <div className="bg-zinc-900/30 border border-zinc-800 rounded-[2rem] p-8 space-y-8 shadow-xl relative overflow-hidden">
                      <div className="flex items-center justify-between">
                         <h3 className="text-xl font-black text-white uppercase tracking-tighter italic flex items-center gap-3">
                            <div className="p-2 bg-red-500/10 rounded-lg border border-red-500/20"><TrendingDown size={18} className="text-red-400" /></div>
@@ -471,7 +507,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                      </div>
 
                      {/* ABSOLUTE OVERLAY MENU DETAILS (Menutup Pendapatan & Pengeluaran) */}
-                     <div className={`absolute inset-0 bg-zinc-950/98 border border-zinc-800 rounded-[2rem] p-8 shadow-2xl transition-all duration-500 ease-in-out backdrop-blur-3xl z-30 flex flex-col ${expandedItem ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'}`}>
+                     <div className={`absolute inset-0 bg-zinc-950/98 border border-zinc-800 rounded-[2rem] p-8 shadow-2xl transition-all duration-500 ease-in-out z-30 flex flex-col ${expandedItem ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'}`}>
                         <div className="flex items-center justify-between border-b border-zinc-900 pb-4 mb-6">
                            <div className="flex items-center gap-4">
                               <button onClick={() => setExpandedItem(null)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-all cursor-pointer">
@@ -565,7 +601,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                </div>
             </div>
 
-            <div className="px-10 py-6 bg-zinc-900/30 border-t border-zinc-900 flex items-center justify-between backdrop-blur-3xl">
+            <div className="px-10 py-6 bg-zinc-900/30 border-t border-zinc-900 flex items-center justify-between">
                <div className="flex items-center gap-3">
                   <Info size={14} className="text-zinc-500" />
                   <p className="text-xs text-zinc-500 font-medium italic">Seluruh kalkulasi anggaran adalah proyeksi berbasis real-time data ekonomi nasional dan kebijakan fiskal aktif.</p>
