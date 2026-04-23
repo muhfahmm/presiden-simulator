@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { X, Globe, Shield, Gavel, Crown } from "lucide-react"
+import { X, Globe, Shield, Gavel, Crown, History } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 
@@ -9,8 +9,9 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import PemungutanSuaraTab from "./1_pemungutan_suara/PemungutanSuaraTab";
 import DewanKeamananTab from "./2_dewan_keamanan/DewanKeamananTab";
 import SuaraPBBTab from "./3_suara_pbb/SuaraPBBTab";
+import HistoriTab from "./4_histori/HistoriTab";
 
-type Tab = "pemungutan_suara" | "dewan_keamanan" | "suara_PBB";
+type Tab = "pemungutan_suara" | "dewan_keamanan" | "suara_PBB" | "histori";
 
 interface PBBModalProps {
   isOpen: boolean;
@@ -28,17 +29,17 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
       if (activeMenu.endsWith(":pemungutan_suara")) setActiveTab("pemungutan_suara");
       else if (activeMenu.endsWith(":dewan_keamanan")) setActiveTab("dewan_keamanan");
       else if (activeMenu.endsWith(":suara_PBB")) setActiveTab("suara_PBB");
+      else if (activeMenu.endsWith(":histori")) setActiveTab("histori");
       else if (activeMenu === "Menu:PBB") setActiveTab("pemungutan_suara");
     }
   }, [activeMenu]);
 
   useEffect(() => {
+    const userCountryName = localStorage.getItem('selected_country');
     const session = gameStorage.getSession();
-    if (session) {
-      const countryName = session.country || localStorage.getItem("selectedCountry") || "Indonesia";
-      const data = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
-      setCurrentData(data);
-    }
+    const countryName = userCountryName || session?.country || "Indonesia";
+    const data = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
+    setCurrentData(data);
   }, [isOpen]);
 
   if (!isOpen || !currentData) return null;
@@ -67,7 +68,7 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
           <div className="flex-1 flex items-center gap-6">
             <div>
               <h2 className="text-xl font-black text-white tracking-tight italic uppercase">Markas Besar PBB</h2>
-              <p className="text-[10px] text-zinc-500 font-medium uppercase tracking-widest">United Nations Headquarters • New York</p>
+              <p className="text-[10px] text-zinc-500 font-medium uppercase tracking-widest">Markas Besar Perserikatan Bangsa-Bangsa • New York</p>
             </div>
           </div>
 
@@ -90,8 +91,21 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
               ))}
             </div>
 
-            {/* Separator / Additional Actions */}
+            {/* Separator */}
             <div className="h-8 w-px bg-zinc-800 mx-1" />
+
+            {/* Separate Histori Tab */}
+            <button
+              onClick={() => handleTabChange("histori")}
+              className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer border ${
+                activeTab === "histori"
+                  ? "bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-500/20"
+                  : "bg-zinc-900 border-zinc-800 text-zinc-500 hover:text-zinc-300 hover:border-zinc-700"
+              }`}
+            >
+              <History className="h-3.5 w-3.5" />
+              Histori
+            </button>
           </div>
 
           {/* Close Button */}
@@ -102,9 +116,10 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
         </div>
 
         {/* Tab Content */}
-        {activeTab === "pemungutan_suara" && <PemungutanSuaraTab />}
+        {activeTab === "pemungutan_suara" && <PemungutanSuaraTab currentData={currentData} />}
         {activeTab === "dewan_keamanan" && <DewanKeamananTab />}
         {activeTab === "suara_PBB" && <SuaraPBBTab currentData={currentData} />}
+        {activeTab === "histori" && <HistoriTab />}
       </div>
     </div>
   )

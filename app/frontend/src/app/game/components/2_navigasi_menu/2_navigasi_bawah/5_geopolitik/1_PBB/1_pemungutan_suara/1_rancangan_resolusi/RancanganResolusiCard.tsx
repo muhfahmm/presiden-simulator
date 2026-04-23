@@ -29,7 +29,7 @@ export const rancanganResolusiMenu: ResolutionMenu = {
   glowColor: "shadow-cyan-500/10",
   items: [
     { 
-      name: "Larangan Perang (Anti-War)", 
+      name: "Larangan Perang", 
       description: "Kesepakatan kolektif antar negara anggota PBB untuk menghentikan seluruh agresi militer aktif.",
       effect: "Membekukan menu Serang Negara. Jika dilanggar, Diplomatic Standing anjlok -50 poin dan otomatis memicu Sanksi Ekonomi."
     },

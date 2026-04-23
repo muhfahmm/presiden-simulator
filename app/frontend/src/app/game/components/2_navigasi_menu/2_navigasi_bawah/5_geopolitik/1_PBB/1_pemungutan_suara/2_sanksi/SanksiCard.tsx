@@ -29,7 +29,7 @@ export const sanksiMenu: SanksiMenu = {
   glowColor: "shadow-amber-500/10",
   items: [
     { 
-      name: "Sanksi Ekonomi (Economic Sanction)", 
+      name: "Sanksi Ekonomi", 
       description: "Pembatasan akses keuangan dan pembekuan aset negara di bank internasional.",
       effect: "Penurunan Pajak & Daily Revenue sebesar 25%. Biaya pembangunan gedung baru naik 15% karena kesulitan modal."
     },

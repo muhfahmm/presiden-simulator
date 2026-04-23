@@ -1,0 +1,93 @@
+
+import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
+import { unVotingStorage, ActiveVoting } from "../unVotingStorage";
+import { simulateUNVote } from "../votingLogic";
+import { terapkanPenaltiDiterima } from "../dampak_hubungan/penaltiDiterima";
+import { terapkanPenaltiDitolak } from "../dampak_hubungan/penaltiDitolak";
+
+/**
+ * Logika Pengembang Waktu Pemungutan Suara (30 Hari)
+ * Memonitor setiap perubahan tanggal di in-game navbar.
+ */
+export const initVotingTimer = (userCountry: string) => {
+  if (typeof window === 'undefined') return;
+
+  // Berlangganan ke perubahan waktu game
+  timeStorage.subscribe((currentDate, isPaused) => {
+    if (isPaused) return; // Berhenti jika game di-pause
+
+    let currentState = unVotingStorage.getData();
+    const activeVotings = currentState.activeVotings;
+    
+    if (activeVotings.length === 0) return;
+
+    let hasChanges = false;
+    const updatedActiveVotings: ActiveVoting[] = [];
+
+    activeVotings.forEach((vote: ActiveVoting) => {
+      const start = new Date(vote.startDate);
+      const end = new Date(vote.endDate);
+      const now = new Date(currentDate);
+
+      const totalDuration = end.getTime() - start.getTime();
+      const elapsed = now.getTime() - start.getTime();
+      const newProgress = Math.min(100, Math.max(0, (elapsed / totalDuration) * 100));
+      
+      if (newProgress !== vote.progress) {
+        vote.progress = newProgress;
+        hasChanges = true;
+      }
+
+      if (now >= end) {
+        hasChanges = true;
+        const result = simulateUNVote(vote.targetCountry, userCountry, vote.category);
+        const REQUIRED_VOTES = 138;
+        const isPassed = result.yes >= REQUIRED_VOTES;
+
+        // Tambahkan ke Histori via storage method
+        unVotingStorage.addHistoryItem({
+          category: vote.category,
+          name: vote.name,
+          description: vote.description,
+          effect: vote.effect,
+          durationLabel: vote.durationLabel,
+          targetCountry: vote.targetCountry,
+          status: isPassed ? 'DITERIMA' : 'DITOLAK'
+        });
+
+        console.log(`[PBB] Berhasil memindahkan "${vote.name}" ke histori.`);
+
+        if (isPassed) {
+          terapkanPenaltiDiterima(vote.targetCountry, userCountry);
+        } else {
+          terapkanPenaltiDitolak(vote.targetCountry, userCountry);
+        }
+
+        const loadNews = async () => {
+          try {
+            const { newsStorage } = await import("@/app/game/components/sidemenu/1_berita/newsStorage");
+            newsStorage.addNews({
+              source: "Sekretariat PBB",
+              subject: `HASIL SIDANG: ${vote.name.toUpperCase()}`,
+              content: `Sidang Umum PBB telah selesai. Resolusi dinyatakan ${isPassed ? 'DITERIMA' : 'DITOLAK'}. \n\nDetail Suara: \n- Mendukung: ${result.yes} \n- Menentang: ${result.no} \n- Abstain: ${result.abstain} \n\n${isPassed ? 'Dampak strategis dan perubahan hubungan diplomatik telah diterapkan.' : 'Hubungan diplomatik sedikit menurun karena kegagalan resolusi.'}`,
+              priority: isPassed ? 'high' : 'medium',
+              category: 'diplomacy',
+              time: currentDate.toLocaleDateString('id-ID')
+            });
+          } catch (e) {}
+        };
+        loadNews();
+      } else {
+        updatedActiveVotings.push(vote);
+      }
+    });
+
+    if (hasChanges) {
+      const latestState = unVotingStorage.getData();
+      unVotingStorage.saveData({
+        ...latestState,
+        activeVotings: updatedActiveVotings
+      });
+    }
+  });
+};

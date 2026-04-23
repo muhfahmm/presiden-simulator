@@ -1,60 +1,130 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { RancanganResolusiCard } from "./1_rancangan_resolusi/RancanganResolusiCard";
 import { SanksiCard } from "./2_sanksi/SanksiCard";
 import { EmbargoCard } from "./3_embargo/EmbargoCard";
+import { VoteVisualization } from "./VoteVisualization";
+import { unSecurityCouncilStorage } from "../2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
+import { unVotingStorage, VotingHistoryItem, ActiveVoting } from "./logika_pemungutan_suara/unVotingStorage";
+import { CountryTargetSelector } from "./CountryTargetSelector";
+import { ActiveVotingsList } from "./ActiveVotingsList";
 
-export default function PemungutanSuaraTab() {
-  const [selectedItem, setSelectedItem] = useState<{ category: string, name: string, description: string, effect: string } | null>(null);
+interface PemungutanSuaraTabProps {
+  currentData?: any;
+}
 
-  const handleSelectItem = (item: { category: string, name: string, description: string, effect: string } | null) => {
-    if (selectedItem && item && selectedItem.name === item.name) {
+export default function PemungutanSuaraTab({ currentData }: PemungutanSuaraTabProps) {
+  const [selectedItem, setSelectedItem] = useState<{ category: string, name: string, description: string, effect: string, targetCountry?: string } | null>(null);
+  const [isUNSCMember, setIsUNSCMember] = useState(false);
+  const [activeResolutions, setActiveResolutions] = useState<VotingHistoryItem[]>([]);
+  const [activeVotings, setActiveVotings] = useState<ActiveVoting[]>([]);
+  const [showTargetSelector, setShowTargetSelector] = useState(false);
+
+  // Ambil nama negara user secara dinamis
+  const userCountryName = useMemo(() => {
+    if (typeof window === "undefined") return "";
+    return currentData?.name_id || currentData?.name_en || localStorage.getItem('selected_country') || "";
+  }, [currentData]);
+
+  useEffect(() => {
+    if (!userCountryName) return;
+
+    const unscData = unSecurityCouncilStorage.getData();
+    const isMember = unscData.members.some(m => m.name.toLowerCase() === userCountryName.toLowerCase());
+    setIsUNSCMember(isMember);
+
+    const votingData = unVotingStorage.getData();
+    setActiveResolutions(votingData.votingHistory);
+    setActiveVotings(votingData.activeVotings);
+
+    const handleUpdate = () => {
+      const updatedData = unVotingStorage.getData();
+      setActiveResolutions(updatedData.votingHistory);
+      setActiveVotings(updatedData.activeVotings);
+    };
+    window.addEventListener("un_voting_updated", handleUpdate);
+    return () => window.removeEventListener("un_voting_updated", handleUpdate);
+  }, [currentData, userCountryName]);
+
+  const handleSelectItem = (item: any | null) => {
+    if (!item) {
       setSelectedItem(null);
+      return;
+    }
+
+    // Toggle off if already selected (considering target suffix)
+    const currentBaseName = selectedItem?.name.split(" (")[0];
+    if (currentBaseName === item.name) {
+      setSelectedItem(null);
+      return;
+    }
+
+    // Deteksi apakah kategori membutuhkan target negara (Sanksi atau Embargo)
+    const categoryLower = item.category.toLowerCase();
+    const isTargetNeeded = categoryLower.includes("sanksi") || categoryLower.includes("embargo");
+
+    if (isTargetNeeded) {
+      // Set langsung tanpa memunculkan modal di awal
+      setSelectedItem({
+        ...item,
+        targetCountry: undefined // Belum ada target
+      });
     } else {
       setSelectedItem(item);
     }
   };
 
+  const handleTargetSelect = (countryName: string) => {
+    if (selectedItem) {
+      const updatedItem = {
+        ...selectedItem,
+        name: `${selectedItem.name.split(" (")[0]} (${countryName})`,
+        targetCountry: countryName,
+        description: `${selectedItem.description.split(" Tindakan ini")[0]} Tindakan ini ditujukan khusus untuk ${countryName}.`
+      };
+      setSelectedItem(updatedItem);
+    }
+    setShowTargetSelector(false);
+  };
+
+  const handleEditTarget = () => {
+    if (!selectedItem) return;
+    setShowTargetSelector(true);
+  };
+
   return (
-    <div className="flex-1 overflow-y-auto p-8 animate-in fade-in duration-300 flex flex-col gap-10 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
-      {/* SECTION 1: Resolution Selection Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 shrink-0">
-        <RancanganResolusiCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />
-        <SanksiCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />
-        <EmbargoCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />
+    <div className="flex-1 relative overflow-y-auto overflow-x-hidden p-8 animate-in fade-in duration-300 flex flex-col gap-10 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
+      
+      {/* SECTION 2: Selection Cards */}
+      <div className="flex flex-col gap-4">
+        <h4 className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em]">Ajukan Resolusi Baru</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 shrink-0">
+          <RancanganResolusiCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />
+          <SanksiCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />
+          <EmbargoCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />
+        </div>
       </div>
 
-      {/* Selection Detail (Optional Prototype View) */}
-      {selectedItem && (
-        <div className="mt-4 p-8 rounded-[32px] bg-zinc-900/50 border border-zinc-800/50 animate-in slide-in-from-bottom duration-500">
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[10px] font-black text-cyan-400 uppercase tracking-widest">
-                {selectedItem.category}
-              </span>
-              <h3 className="text-xl font-black text-white uppercase italic">{selectedItem.name}</h3>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
-              <div className="flex flex-col gap-2">
-                <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Deskripsi</span>
-                <p className="text-sm text-zinc-300 leading-relaxed">{selectedItem.description}</p>
-              </div>
-              <div className="flex flex-col gap-2 p-4 rounded-2xl bg-zinc-950/50 border border-zinc-800/30">
-                <span className="text-[10px] font-black text-rose-400 uppercase tracking-widest flex items-center gap-2">
-                  <div className="h-1 w-3 bg-rose-500 rounded-full" />
-                  Efek Geopolitik
-                </span>
-                <p className="text-xs text-zinc-400 leading-relaxed italic">{selectedItem.effect}</p>
-              </div>
-            </div>
+      {/* SECTION 2.5: Active Votings */}
+      <ActiveVotingsList votings={activeVotings} />
 
-            <div className="mt-6 flex justify-end">
-              <button className="px-6 py-2.5 rounded-xl bg-zinc-800 border border-zinc-700 text-zinc-400 text-[10px] font-black uppercase tracking-widest cursor-not-allowed opacity-50">
-                Fitur Voting Segera Hadir
-              </button>
-            </div>
-          </div>
-        </div>
+      {/* Country Target Selector Modal */}
+      {showTargetSelector && (
+        <CountryTargetSelector 
+          userCountry={userCountryName}
+          onSelect={handleTargetSelect}
+          onClose={() => setShowTargetSelector(false)}
+        />
+      )}
+
+      {/* Voting Visualization Section */}
+      {selectedItem && (
+        <VoteVisualization 
+          userCountry={userCountryName}
+          isUNSCMember={isUNSCMember}
+          selectedItem={selectedItem}
+          onClose={() => setSelectedItem(null)}
+          onEditTarget={handleEditTarget}
+        />
       )}
     </div>
   );

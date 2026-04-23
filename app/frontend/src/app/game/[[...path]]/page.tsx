@@ -65,10 +65,17 @@ export default function GamePage() {
     initAiDiplomacy();
     // Connect to Go Server SSE stream for real-time news & state sync
     newsStorage.connectSSE();
+    
+    // Inisialisasi Logika PBB di background (tetap jalan meski modal tutup)
+    if (userCountry) {
+      const { initVotingTimer } = require("../components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/1_pemungutan_suara/logika_pemungutan_suara/pengembangan_waktu/votingTimerLogic");
+      initVotingTimer(userCountry);
+    }
+
     return () => {
       newsStorage.disconnectSSE();
     };
-  }, []);
+  }, [userCountry]);
 
   // Sync Modal with activeMenu (URL)
   useEffect(() => {

@@ -29,22 +29,22 @@ export const embargoMenu: EmbargoMenu = {
   glowColor: "shadow-rose-500/10",
   items: [
     { 
-      name: "Embargo Ekonomi (Total Trade)", 
+      name: "Embargo Ekonomi", 
       description: "Pemutusan total seluruh jalur perdagangan ekspor dan impor dengan dunia luar.",
       effect: "Daily Revenue dari jalur perdagangan anjlok hingga 80%. Penurunan Approval Rating warga sebesar 2% per hari akibat kelangkaan barang konsumsi."
     },
     { 
-      name: "Embargo Penjualan Teknologi (Tech)", 
+      name: "Embargo Penjualan Teknologi", 
       description: "Larangan pengiriman komponen mikrochip, perangkat lunak, dan data riset dari luar negeri.",
       effect: "Waktu produksi di Cyber Defense dan Program Luar Angkasa melambat 50%. Biaya riset teknologi baru naik 100%."
     },
     { 
-      name: "Embargo Penjualan Sumber Daya (Resource)", 
+      name: "Embargo Penjualan Sumber Daya", 
       description: "Pemblokiran akses pasar internasional untuk menjual komoditas mentah dalam negeri.",
       effect: "Pendapatan harian dari Tambang & Rig Minyak turun 60%. Stok bahan baku industri menumpuk namun tidak bernilai uang."
     },
     { 
-      name: "Embargo Senjata (Arms Embargo)", 
+      name: "Embargo Senjata", 
       description: "Larangan total impor senjata, suku cadang alutsista, dan amunisi dari manufaktur global.",
       effect: "Produksi di Armada Tempur melambat 40%. Amunisi harian berkurang 10% setiap kali melakukan operasi militer tanpa adanya suplai baru."
     },

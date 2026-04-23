@@ -79,7 +79,11 @@ export function useGamePath(path: string[]) {
   } else if (category === 'geopolitik') {
     if (subMenu === 'PBB') {
       const pbbTab = path[2];
-      if (pbbTab === 'pemungutan_suara') initialMenu = "Menu:PBB:pemungutan_suara";
+      if (pbbTab === 'pemungutan_suara') {
+        const pbbSubTab = path[3];
+        if (pbbSubTab === 'histori_pemungutan') initialMenu = "Menu:PBB:histori";
+        else initialMenu = "Menu:PBB:pemungutan_suara";
+      }
       else if (pbbTab === 'dewan_keamanan') initialMenu = "Menu:PBB:dewan_keamanan";
       else if (pbbTab === 'suara_PBB') initialMenu = "Menu:PBB:suara_PBB";
       else initialMenu = "Menu:PBB";
@@ -206,6 +210,7 @@ export function useGamePath(path: string[]) {
       "Menu:PBB:pemungutan_suara": "/game/geopolitik/PBB/pemungutan_suara",
       "Menu:PBB:dewan_keamanan": "/game/geopolitik/PBB/dewan_keamanan",
       "Menu:PBB:suara_PBB": "/game/geopolitik/PBB/suara_PBB",
+      "Menu:PBB:histori": "/game/geopolitik/PBB/pemungutan_suara/histori_pemungutan",
       "Menu:OrganisasiInternasional": "/game/geopolitik/organisasi-internasional",
       "Menu:TingkatHubungan": "/game/geopolitik/tingkat-hubungan",
       "Menu:Bantuan": "/game/geopolitik/bantuan",
