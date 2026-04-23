@@ -57,8 +57,8 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
   };
 
   return (
-    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[36px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col">
+    <div className="absolute inset-0 bg-black/60 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
+      <div className="bg-zinc-950/90 border border-zinc-800 rounded-[36px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col animate-in zoom-in-95 duration-500">
         {/* Header */}
         <div className="px-8 py-5 border-b border-zinc-800/50 flex items-center gap-4 bg-zinc-900/30">
           <div className="p-2 bg-cyan-500/10 rounded-xl border border-cyan-500/10">

@@ -138,6 +138,10 @@ export function useGamePath(path: string[]) {
       initialMenu = "Menu:Riset";
     }
 
+  } else if (category === 'sosial_budaya') {
+    if (subMenu === 'agama') initialMenu = "Menu:Agama";
+    else if (subMenu === 'ideologi') initialMenu = "Menu:Ideologi";
+    else initialMenu = "Sosial & Budaya";
   } else if (category === 'agama') {
 
     const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
@@ -161,20 +165,6 @@ export function useGamePath(path: string[]) {
        else initialMenu = `Komando Pertahanan:PerbandinganMisi:${target}`;
     }
     else initialMenu = "Komando Pertahanan:PerbandinganMisi";
-  } else if (category === 'ideologi') {
-    const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-
-    if (subMenu && subMenu.endsWith("_effects")) {
-      const ideology = capitalize(subMenu.replace("_effects", ""));
-      const effectType = path[2]; 
-      if (effectType) {
-        initialMenu = `Menu:Ideologi:${ideology}:${effectType}`;
-      } else {
-        initialMenu = `Menu:Ideologi:${ideology}`;
-      }
-    } else {
-      initialMenu = "Menu:Ideologi";
-    }
   } else if (category === 'produksi_konsumsi') {
     if (subMenu === 'grid-nasional') initialMenu = "Menu:Kelistrikan";
     else if (subMenu === 'perminyakan') initialMenu = "Menu:Perminyakan";
@@ -243,8 +233,9 @@ export function useGamePath(path: string[]) {
       "Action:NaikkanKepuasan": "/game/kepuasan/naikkan",
       "Dashboard:Populasi": "/game/kependudukan",
       "Dashboard:Budget": "/game/anggaran/dashboard",
-      "Menu:Agama": "/game/agama",
-      "Menu:Ideologi": "/game/ideologi",
+      "Menu:Agama": "/game/sosial_budaya/agama",
+      "Menu:Ideologi": "/game/sosial_budaya/ideologi",
+      "Sosial & Budaya": "/game/sosial_budaya",
       "ProduksiKonsumsi": "/game/produksi_konsumsi",
       "Menu:Kelistrikan": "/game/produksi_konsumsi/grid-nasional",
       "Menu:Perminyakan": "/game/produksi_konsumsi/perminyakan",
@@ -305,7 +296,7 @@ export function useGamePath(path: string[]) {
       const parts = activeMenu.split(":");
       const religion = parts[2];
       const effectType = parts[3];
-      targetPath = `/game/agama/${religion.toLowerCase()}_effects`;
+      targetPath = `/game/sosial_budaya/agama/${religion.toLowerCase()}_effects`;
       if (effectType) {
         targetPath += `/${effectType.toLowerCase()}`;
       }
@@ -316,7 +307,7 @@ export function useGamePath(path: string[]) {
       const parts = activeMenu.split(":");
       const ideology = parts[2];
       const effectType = parts[3];
-      targetPath = `/game/ideologi/${ideology.toLowerCase()}_effects`;
+      targetPath = `/game/sosial_budaya/ideologi/${ideology.toLowerCase()}_effects`;
       if (effectType) {
         targetPath += `/${effectType.toLowerCase()}`;
       }
