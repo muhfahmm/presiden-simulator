@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import {
   X, Sparkles, Music, Trophy, Users, ShieldCheck,
   Coins, TrendingUp, Clock, CheckCircle2, AlertCircle, Globe,
-  Calendar, BarChart3, History, Eye, Landmark, Ship, Info
+  Calendar, BarChart3, History, Eye, Landmark, Ship, Info, Smile
 } from "lucide-react";
 import { DATA_ACARA, acaraStorage, Acara } from "./acaraStorage";
 import { happinessStorage } from "../happinessStorage";
@@ -14,9 +14,10 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 interface AcaraModalProps {
   isOpen: boolean;
   onClose: () => void;
+  setActiveMenu: (menu: string) => void;
 }
 
-export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
+export default function AcaraModal({ isOpen, onClose, setActiveMenu }: AcaraModalProps) {
   const [selectedAcara, setSelectedAcara] = useState<Acara | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [history, setHistory] = useState(acaraStorage.getHistory());
@@ -101,6 +102,22 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
               <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
             </button>
           </div>
+        </div>
+
+        {/* Unified Navigation Tabs */}
+        <div className="px-6 py-2 bg-zinc-900/40 border-b border-zinc-800 flex gap-2 relative z-10">
+          <button 
+            onClick={() => setActiveMenu("Dashboard:Kepuasan")}
+            className="px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"
+          >
+            <Smile size={16} /> Statistik Kepuasan
+          </button>
+          <button 
+            onClick={() => setActiveMenu("Action:NaikkanKepuasan")}
+            className="px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all bg-zinc-100 text-zinc-950 shadow-lg cursor-default"
+          >
+            <Sparkles size={16} /> Naikkan Kepuasan
+          </button>
         </div>
 
         <div className="flex-1 flex overflow-hidden relative z-10">

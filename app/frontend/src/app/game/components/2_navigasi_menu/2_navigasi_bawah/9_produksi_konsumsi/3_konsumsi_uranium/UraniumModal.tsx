@@ -81,21 +81,21 @@ export default function UraniumModal({ isOpen, onClose, setActiveMenu }: Uranium
         <div className="px-6 py-2 bg-zinc-900/40 border-b border-zinc-800 flex gap-2 relative z-10">
           <button 
             onClick={() => setActiveMenu("Menu:Kelistrikan")}
-            className="px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 transition-all text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"
+            className="px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"
           >
-            <Bolt size={14} /> Kelistrikan
+            <Bolt size={16} /> Kelistrikan
           </button>
           <button 
             onClick={() => setActiveMenu("Menu:Perminyakan")}
-            className="px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 transition-all text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"
+            className="px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"
           >
-            <Droplet size={14} /> Perminyakan
+            <Droplet size={16} /> Perminyakan
           </button>
           <button 
             onClick={() => setActiveMenu("Menu:Uranium")}
-            className="px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 transition-all bg-zinc-100 text-zinc-950 shadow-lg cursor-default"
+            className="px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all bg-zinc-100 text-zinc-950 shadow-lg cursor-default"
           >
-            <Radiation size={14} /> Uranium
+            <Radiation size={16} /> Uranium
           </button>
         </div>
 

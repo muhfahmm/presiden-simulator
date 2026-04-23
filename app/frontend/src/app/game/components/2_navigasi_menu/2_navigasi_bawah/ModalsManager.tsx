@@ -139,6 +139,7 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <AcaraModal
         isOpen={activeMenu === "Action:NaikkanKepuasan"}
         onClose={() => setActiveMenu("Kepuasan")}
+        setActiveMenu={setActiveMenu}
       />
       <PertahananModal
         isOpen={activeMenu.startsWith("Komando Pertahanan")}
@@ -242,6 +243,7 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <KepuasanModal
         isOpen={activeMenu === "Dashboard:Kepuasan"}
         onClose={() => setActiveMenu("Kepuasan")}
+        setActiveMenu={setActiveMenu}
       />
       <PopulasiModal
         isOpen={activeMenu === "Dashboard:Populasi"}

@@ -5,7 +5,7 @@ import {
   X, Users, Info, Smile, ShoppingCart, Receipt, CalendarDays, Flame, Activity,
   Zap, Target, Eye, Building2, Briefcase, GraduationCap, Home, HeartPulse,
   Shield, Globe, Coins, Droplets, Navigation, Truck, Ship, Plane, TrainFront,
-  AlertCircle, CheckCircle2
+  AlertCircle, CheckCircle2, Sparkles
 } from "lucide-react";
 import { happinessStorage, HappinessStats } from "./happinessStorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
@@ -17,10 +17,10 @@ import { AiHunianService } from "../../../AI_logic/2_AI_Populasi/2_kebutuhan_hun
 interface KepuasanModalProps {
   isOpen: boolean;
   onClose: () => void;
-  happiness: number;
+  setActiveMenu: (menu: string) => void;
 }
 
-export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
+export default function KepuasanModal({ isOpen, onClose, setActiveMenu }: KepuasanModalProps) {
   const [stats, setStats] = useState<HappinessStats>(() => happinessStorage.getStats());
   const [liveImpacts, setLiveImpacts] = useState(() => happinessStorage.getLiveImpacts());
 
@@ -116,16 +116,32 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30 relative z-10">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-indigo-500/10 rounded-xl border border-indigo-500/20">
-              <Smile className="h-6 w-6 text-indigo-500" />
+              <Smile className="h-6 w-6 text-indigo-400" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white tracking-tight leading-none uppercase">Statistik Kepuasan</h2>
+              <h2 className="text-2xl font-bold text-white tracking-tight leading-none uppercase">Pusat Kepuasan Nasional</h2>
               <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-1">National Sentiment Analysis</p>
             </div>
           </div>
           <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
             <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
             <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+          </button>
+        </div>
+
+        {/* Unified Navigation Tabs */}
+        <div className="px-6 py-2 bg-zinc-900/40 border-b border-zinc-800 flex gap-2 relative z-10">
+          <button 
+            onClick={() => setActiveMenu("Dashboard:Kepuasan")}
+            className="px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all bg-zinc-100 text-zinc-950 shadow-lg cursor-default"
+          >
+            <Smile size={16} /> Statistik Kepuasan
+          </button>
+          <button 
+            onClick={() => setActiveMenu("Action:NaikkanKepuasan")}
+            className="px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"
+          >
+            <Sparkles size={16} /> Naikkan Kepuasan
           </button>
         </div>
 
