@@ -635,7 +635,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         {/* Energy Dashboard Summary (Standardized) */}
         <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
+
             <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 transition-all hover:bg-zinc-900/80 shadow-lg">
               <div className="p-3 bg-cyan-500/10 rounded-xl">
                 <Zap className="h-6 w-6 text-cyan-500" />

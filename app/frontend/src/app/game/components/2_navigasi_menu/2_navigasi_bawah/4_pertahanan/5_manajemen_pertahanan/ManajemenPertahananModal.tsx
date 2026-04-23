@@ -85,7 +85,7 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
   const currentDataWithDeltas = JSON.parse(JSON.stringify(currentData));
   Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
     if (typeof deltaValue !== 'number') return;
-    
+
     // Sektor Listrik
     if (KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA]) {
       const dataKey = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA].dataKey;
@@ -117,7 +117,7 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
         // 1. Calculate total cost
         const unitCost = Number(confirmBuild.biaya_pembangunan || 0);
         const totalCost = unitCost * quantity;
-        
+
         // 2. Check for Financial Sufficiency
         const currentBalance = budgetStorage.getBudget();
         const isMoneyShort = currentBalance < totalCost;
@@ -217,7 +217,7 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       {/* Insufficient Resources Modal */}
-      <JikaUangKurang 
+      <JikaUangKurang
         isOpen={isInsufficientFundsModalOpen}
         onClose={() => setIsInsufficientFundsModalOpen(false)}
         requiredAmount={requiredAmount}
@@ -327,7 +327,7 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
         {confirmBuild && (
           <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
             <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[40px] shadow-2xl max-w-4xl w-full mx-4 flex flex-col gap-6 animate-in zoom-in-95 max-h-[90vh]">
-              
+
               {/* Header: Icon & Title (Full Width) */}
               <div className="flex items-center gap-6 shrink-0 border-b border-zinc-800/50 pb-6">
                 <div className="p-4 bg-cyan-500/10 rounded-3xl border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
@@ -342,7 +342,7 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
               {/* Main Content: 2-Column Grid Area */}
               <div className="flex-1 overflow-y-auto no-scrollbar py-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  
+
                   {/* Column 1: Stats & Info */}
                   <div className="space-y-6">
                     <div className="flex flex-col gap-3">
@@ -368,8 +368,8 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
                         </div>
                         {confirmBuild.kapasitas > 0 && (
                           <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group col-span-2">
-                             <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Kapasitas Strategis</span>
-                             <span className="text-xl font-black text-cyan-400">{confirmBuild.kapasitas.toLocaleString('id-ID')} {confirmBuild.satuan_kapasitas}/UNIT</span>
+                            <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Kapasitas Strategis</span>
+                            <span className="text-xl font-black text-cyan-400">{confirmBuild.kapasitas.toLocaleString('id-ID')} {confirmBuild.satuan_kapasitas}/UNIT</span>
                           </div>
                         )}
                       </div>
@@ -378,7 +378,7 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
                     <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
                       <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian Seluruh Unit</span>
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
-                         {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
+                        {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
                       </p>
                     </div>
                   </div>
@@ -435,23 +435,23 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
         <div className={`absolute top-0 right-0 bottom-0 w-80 bg-zinc-950 border-l border-zinc-800 z-[110] transform transition-transform duration-500 ease-in-out shadow-2xl ${showQueue ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="p-6 h-full flex flex-col">
             <div className="flex items-center justify-between mb-8">
-               <div className="flex items-center gap-2"><Clock size={16} className="text-cyan-500" /><h3 className="text-sm font-black text-white uppercase tracking-widest">Antrean Pembangunan</h3></div>
-               <button onClick={() => setShowQueue(false)} className="p-2 hover:bg-zinc-900 rounded-lg text-zinc-500"><X size={16} /></button>
+              <div className="flex items-center gap-2"><Clock size={16} className="text-cyan-500" /><h3 className="text-sm font-black text-white uppercase tracking-widest">Antrean Pembangunan</h3></div>
+              <button onClick={() => setShowQueue(false)} className="p-2 hover:bg-zinc-900 rounded-lg text-zinc-500"><X size={16} /></button>
             </div>
             <div className="flex-1 overflow-y-auto space-y-4 no-scrollbar">
-               {activeConstructions.length === 0 ? (
-                 <div className="flex flex-col items-center justify-center h-40 opacity-20 text-center"><Building size={40} className="mb-4" /><p className="text-[10px] font-black uppercase tracking-widest">Tidak ada antrean</p></div>
-               ) : (
-                 activeConstructions.map((item, idx) => {
-                   const progress = calculateConstructionProgress(item.startDate, item.endDate, getStoredGameDate().getTime());
-                   return (
-                     <div key={idx} className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-4 space-y-3">
-                        <div className="flex justify-between items-center relative z-10"><h4 className="text-xs font-black text-white">{item.label}</h4><span className="text-[10px] font-bold text-cyan-400">{progress.percentage}%</span></div>
-                        <div className="h-1.5 w-full bg-zinc-950 rounded-full mt-2 overflow-hidden border border-zinc-800/50"><div className={`h-full ${progress.colorClass}`} style={{ width: `${progress.percentage}%` }} /></div>
-                     </div>
-                   );
-                 })
-               )}
+              {activeConstructions.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-40 opacity-20 text-center"><Building size={40} className="mb-4" /><p className="text-[10px] font-black uppercase tracking-widest">Tidak ada antrean</p></div>
+              ) : (
+                activeConstructions.map((item, idx) => {
+                  const progress = calculateConstructionProgress(item.startDate, item.endDate, getStoredGameDate().getTime());
+                  return (
+                    <div key={idx} className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-4 space-y-3">
+                      <div className="flex justify-between items-center relative z-10"><h4 className="text-xs font-black text-white">{item.label}</h4><span className="text-[10px] font-bold text-cyan-400">{progress.percentage}%</span></div>
+                      <div className="h-1.5 w-full bg-zinc-950 rounded-full mt-2 overflow-hidden border border-zinc-800/50"><div className={`h-full ${progress.colorClass}`} style={{ width: `${progress.percentage}%` }} /></div>
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
         </div>
@@ -496,23 +496,23 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
   };
 
   const STORAGE_MAP: Record<string, { units: string[], label: string, ratio: Record<string, number> }> = {
-    hangar_tank: { 
-      units: ["tank", "apc", "tactical"], 
+    hangar_tank: {
+      units: ["tank", "apc", "tactical"],
       label: "Armada Lapis Baja",
       ratio: { tank: 50, apc: 100, tactical: 200 }
     },
-    gudang_senjata: { 
-      units: ["artileri", "rocket", "sam"], 
+    gudang_senjata: {
+      units: ["artileri", "rocket", "sam"],
       label: "Sistem Senjata Berat",
       ratio: { artileri: 50, rocket: 30, sam: 20 }
     },
-    pangkalan_udara: { 
-      units: ["stealth_jet", "interceptor", "bomber", "heli_attack", "recon_plane", "uav", "kamikaze", "transport"], 
+    pangkalan_udara: {
+      units: ["stealth_jet", "interceptor", "bomber", "heli_attack", "recon_plane", "uav", "kamikaze", "transport"],
       label: "Armada Udara",
       ratio: { stealth_jet: 50, interceptor: 50, bomber: 50, heli_attack: 50, recon_plane: 50, uav: 50, kamikaze: 50, transport: 50 }
     },
-    pangkalan_laut: { 
-      units: ["carrier", "destroyer", "corvette", "submarine", "reg_sub", "mine_ship", "logistics"], 
+    pangkalan_laut: {
+      units: ["carrier", "destroyer", "corvette", "submarine", "reg_sub", "mine_ship", "logistics"],
       label: "Armada Laut",
       ratio: { carrier: 20, destroyer: 20, corvette: 20, submarine: 20, reg_sub: 20, mine_ship: 20, logistics: 20 }
     },
@@ -521,10 +521,10 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
   const storageInfo = STORAGE_MAP[item.dataKey];
 
   const getEffectiveUnitCount = (uKey: string, groupId: string, dbKey: string) => {
-     const base = (currentData.armada_militer as any)[groupId]?.[dbKey] || (currentData.armada_militer as any)[dbKey] || 0;
-     const delta = (buildingStorage.getData().buildingDeltas[uKey] as number) || 0;
-     const deduction = playerDeductions[uKey] || 0;
-     return (typeof base === 'number' ? base : 0) + delta - deduction;
+    const base = (currentData.armada_militer as any)[groupId]?.[dbKey] || (currentData.armada_militer as any)[dbKey] || 0;
+    const delta = (buildingStorage.getData().buildingDeltas[uKey] as number) || 0;
+    const deduction = playerDeductions[uKey] || 0;
+    return (typeof base === 'number' ? base : 0) + delta - deduction;
   };
 
   return (
@@ -541,223 +541,223 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
                 {activeDetail === 'operasional' ? <Activity size={18} /> : <Archive size={18} />}
               </div>
               <div>
-                 <h5 className="text-[14px] font-black text-white uppercase tracking-wider italic">
-                    {activeDetail === 'operasional' ? 'Detail Operasional' : 'Detail Kapasitas'}
-                 </h5>
-                 <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">
-                    {activeDetail === 'operasional' ? 'Spesifikasi & Biaya' : 'Logistik Armada'}
-                 </p>
+                <h5 className="text-[14px] font-black text-white uppercase tracking-wider italic">
+                  {activeDetail === 'operasional' ? 'Detail Operasional' : 'Detail Kapasitas'}
+                </h5>
+                <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">
+                  {activeDetail === 'operasional' ? 'Spesifikasi & Biaya' : 'Logistik Armada'}
+                </p>
               </div>
             </div>
             <button onClick={() => setActiveDetail(null)} className="p-2.5 hover:bg-zinc-800/80 rounded-xl text-zinc-500 hover:text-white transition-all cursor-pointer border border-transparent hover:border-zinc-700">
-               <X size={20} />
+              <X size={20} />
             </button>
           </div>
 
           <div className="space-y-4 flex-1 overflow-y-auto no-scrollbar pr-1">
-             <div className="flex flex-col gap-1.5 p-4 rounded-2xl bg-zinc-900/50 border border-zinc-800/30">
-                <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] opacity-60">Nama Bangunan</span>
-                <h4 className="text-xl font-black text-amber-400 uppercase italic leading-tight tracking-tight">{item.label}</h4>
-             </div>
+            <div className="flex flex-col gap-1.5 p-4 rounded-2xl bg-zinc-900/50 border border-zinc-800/30">
+              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] opacity-60">Nama Bangunan</span>
+              <h4 className="text-xl font-black text-amber-400 uppercase italic leading-tight tracking-tight">{item.label}</h4>
+            </div>
 
-             {activeDetail === 'operasional' ? (
-                <div className="grid gap-2">
+            {activeDetail === 'operasional' ? (
+              <div className="grid gap-2">
 
-                   {item.konsumsi_listrik > 0 && (
-                      <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                         <div className="flex items-center gap-2.5">
-                            <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
-                            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
-                         </div>
-                         <span className="text-[14px] font-black text-amber-500">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
+                {item.konsumsi_listrik > 0 && (
+                  <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
+                      <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
+                    </div>
+                    <span className="text-[14px] font-black text-amber-500">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
+                  </div>
+                )}
+
+
+              </div>
+            ) : (
+              <div className="grid gap-2">
+                {storageInfo && (
+                  <div className="flex flex-col gap-3 p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20">
+                    <div className="flex items-center justify-between border-b border-amber-500/10 pb-2 mb-1">
+                      <div className="flex items-center gap-2.5">
+                        <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500">
+                          <Archive size={12} />
+                        </div>
+                        <span className="text-[10px] font-black text-amber-500 uppercase tracking-widest">{storageInfo.label}</span>
                       </div>
-                   )}
+                      <span className="text-[10px] font-bold text-zinc-500 uppercase italic">Kapasitas Unit</span>
+                    </div>
 
+                    <div className="space-y-3">
+                      {storageInfo.units.map(uKey => {
+                        const dbKey = Object.entries(MILITARY_KEY_MAP).find(([_, short]) => short === uKey)?.[0] || uKey;
+                        const groupId = ["tank", "apc", "tactical", "artileri", "rocket", "sam"].includes(uKey) ? "darat" :
+                          ["carrier", "destroyer", "corvette", "submarine", "reg_sub", "mine_ship", "logistics"].includes(uKey) ? "laut" : "udara";
 
-                </div>
-             ) : (
-                <div className="grid gap-2">
-                   {storageInfo && (
-                      <div className="flex flex-col gap-3 p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20">
-                         <div className="flex items-center justify-between border-b border-amber-500/10 pb-2 mb-1">
-                            <div className="flex items-center gap-2.5">
-                               <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500">
-                                  <Archive size={12} />
-                               </div>
-                               <span className="text-[10px] font-black text-amber-500 uppercase tracking-widest">{storageInfo.label}</span>
+                        const totalUnitCount = getEffectiveUnitCount(uKey, groupId, dbKey);
+                        const maxCapacity = (item.count || 0) * (storageInfo.ratio[uKey] || 1);
+                        const usagePrc = maxCapacity > 0 ? Math.min(100, Math.round((totalUnitCount / maxCapacity) * 100)) : 0;
+
+                        return (
+                          <div key={uKey} className="space-y-1.5">
+                            <div className="flex justify-between items-center text-[10px]">
+                              <span className="font-bold text-zinc-300">{UNIT_LABELS[uKey] || uKey}</span>
+                              <span className={`font-black ${totalUnitCount >= maxCapacity ? 'text-rose-500' : 'text-amber-400'}`}>
+                                {totalUnitCount.toLocaleString('id-ID')} / {maxCapacity.toLocaleString('id-ID')}
+                              </span>
                             </div>
-                            <span className="text-[10px] font-bold text-zinc-500 uppercase italic">Kapasitas Unit</span>
-                         </div>
-                         
-                         <div className="space-y-3">
-                            {storageInfo.units.map(uKey => {
-                               const dbKey = Object.entries(MILITARY_KEY_MAP).find(([_, short]) => short === uKey)?.[0] || uKey;
-                               const groupId = ["tank", "apc", "tactical", "artileri", "rocket", "sam"].includes(uKey) ? "darat" : 
-                                              ["carrier", "destroyer", "corvette", "submarine", "reg_sub", "mine_ship", "logistics"].includes(uKey) ? "laut" : "udara";
-                               
-                               const totalUnitCount = getEffectiveUnitCount(uKey, groupId, dbKey);
-                               const maxCapacity = (item.count || 0) * (storageInfo.ratio[uKey] || 1);
-                               const usagePrc = maxCapacity > 0 ? Math.min(100, Math.round((totalUnitCount / maxCapacity) * 100)) : 0;
-
-                               return (
-                                  <div key={uKey} className="space-y-1.5">
-                                     <div className="flex justify-between items-center text-[10px]">
-                                        <span className="font-bold text-zinc-300">{UNIT_LABELS[uKey] || uKey}</span>
-                                        <span className={`font-black ${totalUnitCount >= maxCapacity ? 'text-rose-500' : 'text-amber-400'}`}>
-                                           {totalUnitCount.toLocaleString('id-ID')} / {maxCapacity.toLocaleString('id-ID')}
-                                        </span>
-                                     </div>
-                                     <div className="h-1 w-full bg-zinc-950 rounded-full overflow-hidden border border-zinc-800/30">
-                                        <div 
-                                           className={`h-full transition-all duration-700 ${totalUnitCount >= maxCapacity ? 'bg-rose-500' : 'bg-amber-500/60'}`}
-                                           style={{ width: `${usagePrc}%` }}
-                                        />
-                                     </div>
-                                  </div>
-                               );
-                            })}
-                         </div>
-                      </div>
-                   )}
-                </div>
-             )}
+                            <div className="h-1 w-full bg-zinc-950 rounded-full overflow-hidden border border-zinc-800/30">
+                              <div
+                                className={`h-full transition-all duration-700 ${totalUnitCount >= maxCapacity ? 'bg-rose-500' : 'bg-amber-500/60'}`}
+                                style={{ width: `${usagePrc}%` }}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           <button onClick={() => setActiveDetail(null)} className="mt-6 w-full py-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-zinc-800 hover:text-white transition-all cursor-pointer active:scale-[0.98] shadow-lg">
-             Kembali
+            Kembali
           </button>
         </div>
       )}
 
       {/* Card header */}
       <div className="flex items-start justify-between relative z-10">
-          <div className="flex gap-2">
-            <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform relative">
-               <item.icon className={`h-5 w-5 ${progress ? 'text-white' : 'text-cyan-500'} shadow-[0_0_10px_rgba(6,182,212,0.3)]`} />
-            </div>
+        <div className="flex gap-2">
+          <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform relative">
+            <item.icon className={`h-5 w-5 ${progress ? 'text-white' : 'text-cyan-500'} shadow-[0_0_10px_rgba(6,182,212,0.3)]`} />
+          </div>
 
-            {/* Tombol Operasional */}
+          {/* Tombol Operasional */}
+          <div className="relative group/tooltip">
+            <button
+              onClick={() => setActiveDetail(activeDetail === "operasional" ? null : "operasional")}
+              className={`p-2.5 rounded-xl border transition-all cursor-pointer ${activeDetail === "operasional" ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'}`}
+            >
+              <Activity size={16} />
+            </button>
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-zinc-900 border border-zinc-700 rounded-lg whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 pointer-events-none transition-all z-50 shadow-2xl scale-95 group-hover/tooltip:scale-100">
+              <span className="text-[9px] font-black text-cyan-400 uppercase tracking-[0.2em]">Detail Operasional</span>
+            </div>
+          </div>
+
+          {/* Tombol Kapasitas */}
+          {storageInfo && (
             <div className="relative group/tooltip">
-               <button
-                  onClick={() => setActiveDetail(activeDetail === "operasional" ? null : "operasional")}
-                  className={`p-2.5 rounded-xl border transition-all cursor-pointer ${activeDetail === "operasional" ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'}`}
-               >
-                  <Activity size={16} />
-               </button>
-               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-zinc-900 border border-zinc-700 rounded-lg whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 pointer-events-none transition-all z-50 shadow-2xl scale-95 group-hover/tooltip:scale-100">
-                  <span className="text-[9px] font-black text-cyan-400 uppercase tracking-[0.2em]">Detail Operasional</span>
-               </div>
+              <button
+                onClick={() => setActiveDetail(activeDetail === "kapasitas" ? null : "kapasitas")}
+                className={`p-2.5 rounded-xl border transition-all cursor-pointer ${activeDetail === "kapasitas" ? 'bg-amber-500/20 border-amber-500/50 text-amber-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-amber-400 hover:border-amber-500/30'}`}
+              >
+                <Archive size={16} />
+              </button>
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-zinc-900 border border-zinc-700 rounded-lg whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 pointer-events-none transition-all z-50 shadow-2xl scale-95 group-hover/tooltip:scale-100">
+                <span className="text-[9px] font-black text-amber-500 uppercase tracking-[0.2em]">Detail Kapasitas</span>
+              </div>
             </div>
-
-            {/* Tombol Kapasitas */}
-            {storageInfo && (
-               <div className="relative group/tooltip">
-                  <button
-                     onClick={() => setActiveDetail(activeDetail === "kapasitas" ? null : "kapasitas")}
-                     className={`p-2.5 rounded-xl border transition-all cursor-pointer ${activeDetail === "kapasitas" ? 'bg-amber-500/20 border-amber-500/50 text-amber-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-amber-400 hover:border-amber-500/30'}`}
-                  >
-                     <Archive size={16} />
-                  </button>
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-zinc-900 border border-zinc-700 rounded-lg whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 pointer-events-none transition-all z-50 shadow-2xl scale-95 group-hover/tooltip:scale-100">
-                     <span className="text-[9px] font-black text-amber-500 uppercase tracking-[0.2em]">Detail Kapasitas</span>
-                  </div>
-               </div>
-            )}
-         </div>
-         <div className="flex flex-col items-end gap-1">
-            <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
-               Infra Pertahanan
-            </div>
-            <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-               Terbangun: {item.count.toLocaleString('id-ID')} Unit {item.konsumsi_listrik > 0 && `(${(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW)`}
-            </div>
-         </div>
+          )}
+        </div>
+        <div className="flex flex-col items-end gap-1">
+          <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
+            Infra Pertahanan
+          </div>
+          <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
+            Terbangun: {item.count.toLocaleString('id-ID')} Unit {item.konsumsi_listrik > 0 && `(${(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW)`}
+          </div>
+        </div>
       </div>
 
       {/* Card body */}
       <div className="flex-1 flex flex-col relative z-10 mt-1">
-         <h4 className="text-[17px] font-black text-zinc-100 tracking-tight group-hover:text-amber-400 transition-colors uppercase italic leading-tight mb-3">
-            {item.label}
-         </h4>
+        <h4 className="text-[17px] font-black text-zinc-100 tracking-tight group-hover:text-amber-400 transition-colors uppercase italic leading-tight mb-3">
+          {item.label}
+        </h4>
 
-            <div className="flex flex-col gap-2">
-               <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-rose-500/10 rounded-lg">
-                     <Zap size={12} className="text-rose-500/90" />
-                  </div>
-                  <span className="text-[12px] font-bold text-rose-500/80">
-                     Konsumsi: {item.konsumsi_listrik?.toLocaleString('id-ID')} MW/bangunan
-                  </span>
-               </div>
-               <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
-                  <div className="p-1.5 bg-rose-500/5 rounded-lg">
-                     <Activity size={12} className="text-rose-400/70" />
-                  </div>
-                  <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                     Total Konsumsi Listrik: {(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW
-                  </span>
-               </div>
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 bg-rose-500/10 rounded-lg">
+              <Zap size={12} className="text-rose-500/90" />
             </div>
+            <span className="text-[12px] font-bold text-rose-500/80">
+              Konsumsi: {item.konsumsi_listrik?.toLocaleString('id-ID')} MW/bangunan
+            </span>
+          </div>
+          <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+            <div className="p-1.5 bg-rose-500/5 rounded-lg">
+              <Activity size={12} className="text-rose-400/70" />
+            </div>
+            <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+              Total Konsumsi Listrik: {(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW
+            </span>
+          </div>
+        </div>
 
-            {item.kapasitas > 0 && (
-               <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-cyan-500/10 rounded-lg">
-                     <Truck size={12} className="text-cyan-400" />
-                  </div>
-                  <span className="text-[12px] font-bold text-cyan-400/90 italic">
-                     Kapasitas: {item.kapasitas.toLocaleString('id-ID')} {item.satuan_kapasitas}/unit
-                  </span>
-               </div>
-            )}
+        {item.kapasitas > 0 && (
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 bg-cyan-500/10 rounded-lg">
+              <Truck size={12} className="text-cyan-400" />
+            </div>
+            <span className="text-[12px] font-bold text-cyan-400/90 italic">
+              Kapasitas: {item.kapasitas.toLocaleString('id-ID')} {item.satuan_kapasitas}/unit
+            </span>
+          </div>
+        )}
 
 
 
-            {!progress && (
-               <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-zinc-800/50 rounded-lg">
-                     <Clock size={12} className="text-zinc-500" />
-                  </div>
-                  <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.waktu_pembangunan} Hari</span>
-               </div>
-            )}
-         </div>
+        {!progress && (
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 bg-zinc-800/50 rounded-lg">
+              <Clock size={12} className="text-zinc-500" />
+            </div>
+            <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.waktu_pembangunan} Hari</span>
+          </div>
+        )}
+      </div>
 
       {/* Build button / progress */}
       <div className="mt-auto pt-4 relative z-10">
-         {progress ? (
-            <div className="space-y-3 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
-               <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-zinc-400">
-                  <span className="flex items-center gap-1.5">
-                     <Loader2 size={12} className={`animate-spin ${progress.isWaiting ? 'text-zinc-600' : 'text-cyan-400'}`} />
-                     {getStatusText(progress.percentage, progress.isWaiting)}
-                  </span>
-                  <span className={progress.colorClass.replace('bg-', 'text-')}>{progress.percentage}%</span>
-               </div>
-               <div className="h-2 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/30 p-0.5">
-                  <div
-                     className={`h-full transition-all duration-1000 ${progress.colorClass} rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]`}
-                     style={{ width: `${progress.percentage}%` }}
-                  />
-               </div>
-               <div className="flex justify-between items-center text-[9px] font-bold text-zinc-500 uppercase tracking-tighter italic opacity-70">
-                  <span className="flex items-center gap-1"><Clock size={10} /> ESTIMASI:</span>
-                  <span className="text-zinc-400">{formatGameDate(new Date(construction.endDate))}</span>
-               </div>
+        {progress ? (
+          <div className="space-y-3 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
+            <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-zinc-400">
+              <span className="flex items-center gap-1.5">
+                <Loader2 size={12} className={`animate-spin ${progress.isWaiting ? 'text-zinc-600' : 'text-cyan-400'}`} />
+                {getStatusText(progress.percentage, progress.isWaiting)}
+              </span>
+              <span className={progress.colorClass.replace('bg-', 'text-')}>{progress.percentage}%</span>
             </div>
-         ) : (
-            <div className="flex items-center justify-between gap-4">
-               <div className="flex flex-col">
-                  <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
-                  <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya_pembangunan?.toLocaleString('id-ID')}</span>
-               </div>
-               <button
-                  onClick={(e) => { e.stopPropagation(); onBuild(item); }}
-                  className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20"
-               >
-                  Bangun
-               </button>
+            <div className="h-2 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/30 p-0.5">
+              <div
+                className={`h-full transition-all duration-1000 ${progress.colorClass} rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]`}
+                style={{ width: `${progress.percentage}%` }}
+              />
             </div>
-         )}
+            <div className="flex justify-between items-center text-[9px] font-bold text-zinc-500 uppercase tracking-tighter italic opacity-70">
+              <span className="flex items-center gap-1"><Clock size={10} /> ESTIMASI:</span>
+              <span className="text-zinc-400">{formatGameDate(new Date(construction.endDate))}</span>
+            </div>
+          </div>
+        ) : (
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col">
+              <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
+              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya_pembangunan?.toLocaleString('id-ID')}</span>
+            </div>
+            <button
+              onClick={(e) => { e.stopPropagation(); onBuild(item); }}
+              className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20"
+            >
+              Bangun
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )

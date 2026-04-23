@@ -8,11 +8,11 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/negara/benua/index";
-import { 
-  armadaPolisiRate, 
-  armadaMiliterRate, 
-  intelijenRate, 
-  pertahananRate, 
+import {
+  armadaPolisiRate,
+  armadaMiliterRate,
+  intelijenRate,
+  pertahananRate,
   pabrikMiliterRate,
   mineralKritisRate,
   manufakturRate,
@@ -99,18 +99,18 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
     sektor_komersial: { ...currentData.sektor_komersial || {} },
     sektor_hiburan: { ...currentData.sektor_hiburan || {} },
     hunian: { ...currentData.hunian || {} },
-    armada_militer: { 
+    armada_militer: {
       ...currentData.armada_militer || {},
       darat: { ...currentData.armada_militer?.darat || {} },
       laut: { ...currentData.armada_militer?.laut || {} },
       udara: { ...currentData.armada_militer?.udara || {} },
     },
-    armada_kepolisian: { 
+    armada_kepolisian: {
       ...currentData.armada_kepolisian || {},
       armada_polisi: { ...currentData.armada_kepolisian?.armada_polisi || {} }
     },
     sektor_pertahanan: { ...currentData.sektor_pertahanan || {} },
-    militer_strategis: { 
+    militer_strategis: {
       ...currentData.militer_strategis || {},
       intel_radar: { ...currentData.militer_strategis?.intel_radar || {} }
     },
@@ -120,7 +120,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
 
   Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
     if (typeof deltaValue !== 'number' || deltaValue === 0) return;
-    
+
     if (KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA]) {
       const dataKey = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA].dataKey;
       (currentDataWithDeltas.sektor_listrik as any)[dataKey] = ((currentDataWithDeltas.sektor_listrik as any)[dataKey] || 0) + deltaValue;
@@ -171,7 +171,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
       (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
     }
     else if ((hunianRate as any)[key]) {
-      const dataKey = key; 
+      const dataKey = key;
       (currentDataWithDeltas.hunian as any)[dataKey] = ((currentDataWithDeltas.hunian as any)[dataKey] || 0) + deltaValue;
     }
     else if ((armadaMiliterRate as any)[key]) {
@@ -209,35 +209,35 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
       icon: Search,
       color: "text-cyan-400",
       items: [
-        { 
-          ...intelijenRate["sistem_satelit"], 
+        {
+          ...intelijenRate["sistem_satelit"],
           key: "sistem_satelit",
-          groupId: "infra", 
-          icon: Satellite, 
+          groupId: "infra",
+          icon: Satellite,
           cost: intelijenRate["sistem_satelit"].biaya_pembangunan,
           biaya_pembangunan: intelijenRate["sistem_satelit"].biaya_pembangunan,
           waktu_pembangunan: intelijenRate["sistem_satelit"].waktu_pembangunan,
-          count: (currentData.militer_strategis?.intel_radar?.sistem_satelit || 0) + ((buildingDeltas["sistem_satelit"] as number) || 0) 
+          count: (currentData.militer_strategis?.intel_radar?.sistem_satelit || 0) + ((buildingDeltas["sistem_satelit"] as number) || 0)
         },
-        { 
-          ...intelijenRate["jaringan_radar"], 
+        {
+          ...intelijenRate["jaringan_radar"],
           key: "jaringan_radar",
-          groupId: "infra", 
-          icon: Radar, 
+          groupId: "infra",
+          icon: Radar,
           cost: intelijenRate["jaringan_radar"].biaya_pembangunan,
           biaya_pembangunan: intelijenRate["jaringan_radar"].biaya_pembangunan,
           waktu_pembangunan: intelijenRate["jaringan_radar"].waktu_pembangunan,
-          count: (currentData.militer_strategis?.intel_radar?.jaringan_radar || 0) + ((buildingDeltas["jaringan_radar"] as number) || 0) 
+          count: (currentData.militer_strategis?.intel_radar?.jaringan_radar || 0) + ((buildingDeltas["jaringan_radar"] as number) || 0)
         },
-        { 
-          ...intelijenRate["operasi_siber"], 
+        {
+          ...intelijenRate["operasi_siber"],
           key: "operasi_siber",
-          groupId: "infra", 
-          icon: Cpu, 
+          groupId: "infra",
+          icon: Cpu,
           cost: intelijenRate["operasi_siber"].biaya_pembangunan,
           biaya_pembangunan: intelijenRate["operasi_siber"].biaya_pembangunan,
           waktu_pembangunan: intelijenRate["operasi_siber"].waktu_pembangunan,
-          count: (currentData.militer_strategis?.intel_radar?.operasi_siber || 0) + ((buildingDeltas["operasi_siber"] as number) || 0) 
+          count: (currentData.militer_strategis?.intel_radar?.operasi_siber || 0) + ((buildingDeltas["operasi_siber"] as number) || 0)
         }
       ]
     },
@@ -268,7 +268,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
       // 1. Calculate total cost
       const unitCost = Number(confirmBuild.biaya_pembangunan || confirmBuild.cost || 0);
       const totalCost = unitCost * quantity;
-      
+
       // 2. Check for Financial Sufficiency
       const currentBalance = budgetStorage.getBudget();
       const isMoneyShort = currentBalance < totalCost;
@@ -338,7 +338,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       {/* Insufficient Resources Modal */}
-      <JikaUangKurang 
+      <JikaUangKurang
         isOpen={isInsufficientFundsModalOpen}
         onClose={() => setIsInsufficientFundsModalOpen(false)}
         requiredAmount={requiredAmount}
@@ -424,7 +424,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
                       {group.items.map((item: any, idx: number) => {
                         const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
-                        
+
                         return (
                           <BuildingCard
                             key={item.key || idx}
@@ -447,7 +447,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
         {confirmBuild && (
           <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
             <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[40px] shadow-2xl max-w-4xl w-full mx-4 flex flex-col gap-6 animate-in zoom-in-95 max-h-[90vh]">
-              
+
               {/* Header: Icon & Title (Full Width) */}
               <div className="flex items-center gap-6 shrink-0 border-b border-zinc-800/50 pb-6">
                 <div className="p-4 bg-cyan-500/10 rounded-3xl border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
@@ -462,7 +462,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
               {/* Main Content: 2-Column Grid Area */}
               <div className="flex-1 overflow-y-auto no-scrollbar py-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  
+
                   {/* Column 1: Stats & Info */}
                   <div className="space-y-6">
                     <div className="flex flex-col gap-3">
@@ -494,7 +494,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
                     <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
                       <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian Seluruh Unit</span>
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
-                         {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
+                        {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
                       </p>
                     </div>
                   </div>
@@ -630,11 +630,11 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
                 </>
               ) : (
                 <div className="flex flex-col gap-2 p-4 rounded-2xl bg-zinc-900/80 border border-zinc-800/50">
-                   <div className="flex items-center gap-2 mb-2">
-                     <Info size={14} className="text-cyan-400" />
-                     <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Status Strategis Nasional</span>
-                   </div>
-                   <p className="text-xs text-zinc-400 leading-relaxed font-medium">Berdasarkan direktif Komando Tertinggi, status ini mencerminkan kesiapan intelijen negara terhadap ancaman luar dan dalam negeri.</p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Info size={14} className="text-cyan-400" />
+                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Status Strategis Nasional</span>
+                  </div>
+                  <p className="text-xs text-zinc-400 leading-relaxed font-medium">Berdasarkan direktif Komando Tertinggi, status ini mencerminkan kesiapan intelijen negara terhadap ancaman luar dan dalam negeri.</p>
                 </div>
               )}
             </div>
@@ -676,30 +676,30 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
 
         {isStatusOnly ? (
           <div className="flex flex-col gap-4 flex-1 justify-center items-center bg-zinc-950/20 rounded-3xl border border-zinc-800/30 p-4">
-             <span className={`text-3xl font-black ${item.color || 'text-white'} tracking-tighter`}>{item.value}</span>
-             <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] text-center">Status Terkini</span>
+            <span className={`text-3xl font-black ${item.color || 'text-white'} tracking-tighter`}>{item.value}</span>
+            <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] text-center">Status Terkini</span>
           </div>
         ) : (
           <div className="flex flex-col gap-2.5 flex-1">
 
             {item.konsumsi_listrik > 0 && (
               <div className="flex flex-col gap-2">
-                 <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 bg-rose-500/10 rounded-lg">
-                       <Zap size={12} className="text-rose-500/90" />
-                    </div>
-                    <span className="text-[12px] font-bold text-rose-500/80">
-                       Konsumsi: {item.konsumsi_listrik} MW/bangunan
-                    </span>
-                 </div>
-                 <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
-                    <div className="p-1.5 bg-rose-500/5 rounded-lg">
-                       <Activity size={12} className="text-rose-400/70" />
-                    </div>
-                    <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                       Total Konsumsi Listrik: {(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW
-                    </span>
-                 </div>
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                    <Zap size={12} className="text-rose-500/90" />
+                  </div>
+                  <span className="text-[12px] font-bold text-rose-500/80">
+                    Konsumsi: {item.konsumsi_listrik} MW/bangunan
+                  </span>
+                </div>
+                <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                  <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                    <Activity size={12} className="text-rose-400/70" />
+                  </div>
+                  <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+                    Total Konsumsi Listrik: {(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW
+                  </span>
+                </div>
               </div>
             )}
 
@@ -757,7 +757,7 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
           )
         ) : (
           <div className="w-full py-3.5 rounded-2xl bg-zinc-900/50 border border-zinc-800/80 text-center">
-             <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] animate-pulse">Monitoring Strategis Aktif</span>
+            <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] animate-pulse">Monitoring Strategis Aktif</span>
           </div>
         )}
       </div>

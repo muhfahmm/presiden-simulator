@@ -18,11 +18,11 @@ import { calculateUraniumMetrics } from "../../9_produksi_konsumsi/3_konsumsi_ur
 import { religionStorage } from "../../6_sosial_budaya/1_agama/religionStorage";
 import { BUDDHA_RECRUITMENT_PENALTY } from "../../6_sosial_budaya/1_agama/logic/6_buddha/2_minus/minus";
 import { TAOISME_MILITARY_MODERNIZATION_PENALTY } from "../../6_sosial_budaya/1_agama/logic/10_taoisme/2_minus/minus";
-import { 
-  armadaPolisiRate, 
-  armadaMiliterRate, 
-  intelijenRate, 
-  pertahananRate, 
+import {
+  armadaPolisiRate,
+  armadaMiliterRate,
+  intelijenRate,
+  pertahananRate,
   pabrikMiliterRate,
   mineralKritisRate,
   manufakturRate,
@@ -35,11 +35,11 @@ import {
   sosialRate,
   hunianRate
 } from "@/app/database/data/semua_fitur_negara";
-import { 
+import {
   TANK_POWER_PER_UNIT, APC_POWER_PER_UNIT, ARTILLERY_POWER_PER_UNIT, ROCKET_POWER_PER_UNIT, SAM_POWER_PER_UNIT, TACTICAL_POWER_PER_UNIT,
   CARRIER_POWER_PER_UNIT, NUCLEAR_CARRIER_POWER_PER_UNIT, DESTROYER_POWER_PER_UNIT, CORVETTE_POWER_PER_UNIT, SUBMARINE_POWER_PER_UNIT, REGULAR_SUB_POWER_PER_UNIT, MINE_SHIP_POWER_PER_UNIT, LOGISTICS_POWER_PER_UNIT,
   STEALTH_POWER_PER_UNIT, INTERCEPTOR_POWER_PER_UNIT, BOMBER_POWER_PER_UNIT, ATTACK_HELI_POWER_PER_UNIT, RECON_POWER_PER_UNIT, UAV_POWER_PER_UNIT, KAMIKAZE_POWER_PER_UNIT, TRANSPORT_POWER_PER_UNIT,
-  INFANTRY_POWER_PER_UNIT, calculateTotalMilitaryPower 
+  INFANTRY_POWER_PER_UNIT, calculateTotalMilitaryPower
 } from "./kekuatanmiliter";
 import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
 import { playerMilitaryStorage } from "../../../../modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
@@ -77,20 +77,20 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
       .map(c => {
         // Untuk negara user, kita gunakan buildingDeltas juga agar real-time saat dipesan
         const isUserCountry = c.name_id === currentData?.name_id || c.name_en === currentData?.name_en;
-        
+
         // Gabungkan armada statis dengan bantuan (aid deltas) dan building deltas (hanya untuk user)
         const countryAid = aidData[c.name_en.toLowerCase()] || aidData[c.name_id.toLowerCase()] || {};
         const playerDeltas = isUserCountry ? buildingStorage.getData().buildingDeltas : {};
-        
+
         // Convert countryAid keys to database paths if needed?
         // calculateTotalMilitaryPower handles deltas as a record of unitKey -> count
         // buildingStorage uses short keys (tank), but militaryAidStorage uses base unit names (tank_tempur_utama)
         // Let's create a combined delta object
         const finalDeltas: Record<string, number> = { ...playerDeltas };
-        
+
         // Apply received aid
         Object.entries(countryAid).forEach(([unit, count]) => {
-           finalDeltas[unit] = (finalDeltas[unit] || 0) + count;
+          finalDeltas[unit] = (finalDeltas[unit] || 0) + count;
         });
 
         // Apply sent aid deductions (only for player)
@@ -172,7 +172,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
   }, [isOpen]);
 
   const buildingData = buildingStorage.getData();
-  
+
   // PBB Impacts
   const pbbMultipliers = pbbImpactLogic.getCountryMultipliers(currentData?.name_en || "Indonesia");
   const pbbStatusColor = pbbImpactLogic.getStatusColor(pbbMultipliers.impactLevel);
@@ -190,7 +190,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
     gudang_senjata: { storageKey: "gudang_senjata", ratio: 1, label: "Kapasitas Gudang Senjata", icon: Archive, isCumulative: true },
     pangkalan_udara: { storageKey: "pangkalan_udara", ratio: 1, label: "Kapasitas Pangkalan Udara", icon: Archive, isCumulative: true },
     pangkalan_laut: { storageKey: "pangkalan_laut", ratio: 1, label: "Kapasitas Pangkalan Laut", icon: Archive, isCumulative: true },
-    
+
     // AIR STORAGE (Cumulative)
     stealth_jet: { storageKey: "pangkalan_udara", ratio: 50, label: "Pangkalan Udara", icon: Plane, isCumulative: true },
     interceptor: { storageKey: "pangkalan_udara", ratio: 50, label: "Pangkalan Udara", icon: Plane, isCumulative: true },
@@ -213,7 +213,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
 
   const buildingDeltas = buildingStorage.getData()?.buildingDeltas || {};
   const playerDeductions = playerMilitaryStorage.getDeductions();
-  
+
   // LOGIKA SINKRONISASI HANGAR TANK
   const TANKS_PER_HANGAR = 50;
   const baseHangars = currentData.sektor_pertahanan?.hangar_tank || 0;
@@ -248,7 +248,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
           { ...armadaMiliterRate["5_roket_peluncur"], groupId: "darat", icon: Rocket, count: (currentData.armada_militer.darat.sistem_peluncur_roket || 0) + ((effectiveDeltas["rocket"] as number) || 0), power: ROCKET_POWER_PER_UNIT },
           { ...armadaMiliterRate["6_misil_sam"], groupId: "darat", icon: ShieldAlert, count: (currentData.armada_militer.darat.pertahanan_udara_mobile || 0) + ((effectiveDeltas["sam"] as number) || 0), power: SAM_POWER_PER_UNIT },
           { ...armadaMiliterRate["7_kendaraan_taktis"], groupId: "darat", icon: Car, count: (currentData.armada_militer.darat.kendaraan_taktis || 0) + ((effectiveDeltas["tactical"] as number) || 0), power: TACTICAL_POWER_PER_UNIT },
-          
+
           // ARMADA LAUT
           { ...armadaMiliterRate["8_kapal_induk"], groupId: "laut", icon: Ship, count: (currentData.armada_militer.laut.kapal_induk || 0) + ((effectiveDeltas["carrier"] as number) || 0), power: CARRIER_POWER_PER_UNIT },
           { ...armadaMiliterRate["8b_kapal_induk_nuklir"], groupId: "laut", icon: Waves, count: (currentData.armada_militer.laut.kapal_induk_nuklir || 0) + ((effectiveDeltas["nuclear_carrier"] as number) || 0), power: NUCLEAR_CARRIER_POWER_PER_UNIT },
@@ -258,7 +258,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
           { ...armadaMiliterRate["12_kapal_selam_reguler"], groupId: "laut", icon: RadioTower, count: (currentData.armada_militer.laut.kapal_selam_regular || 0) + ((effectiveDeltas["reg_sub"] as number) || 0), power: REGULAR_SUB_POWER_PER_UNIT },
           { ...armadaMiliterRate["13_penyapu_ranjau"], groupId: "laut", icon: Ship, count: (currentData.armada_militer.laut.kapal_ranjau || 0) + ((effectiveDeltas["mine_ship"] as number) || 0), power: MINE_SHIP_POWER_PER_UNIT },
           { ...armadaMiliterRate["14_kapal_logistik"], groupId: "laut", icon: Truck, count: (currentData.armada_militer.laut.kapal_logistik || 0) + ((effectiveDeltas["logistics"] as number) || 0), power: LOGISTICS_POWER_PER_UNIT },
-          
+
           // ARMADA UDARA
           { ...armadaMiliterRate["15_jet_tempur_siluman"], groupId: "udara", icon: Plane, count: (currentData.armada_militer.udara.jet_tempur_siluman || 0) + ((effectiveDeltas["stealth_jet"] as number) || 0), power: STEALTH_POWER_PER_UNIT },
           { ...armadaMiliterRate["16_jet_pencegat"], groupId: "udara", icon: Plane, count: (currentData.armada_militer.udara.jet_tempur_interceptor || 0) + ((effectiveDeltas["interceptor"] as number) || 0), power: INTERCEPTOR_POWER_PER_UNIT },
@@ -270,7 +270,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
           { ...armadaMiliterRate["22_transport_udara"], groupId: "udara", icon: Truck, count: (currentData.armada_militer.udara.pesawat_angkut || 0) + ((effectiveDeltas["transport"] as number) || 0), power: TRANSPORT_POWER_PER_UNIT }
         ].map(unit => {
           const config = STORAGE_CONFIG[unit.key];
-          
+
           // Map Indonesian to English keys for BuildingCard compatibility
           const translatedUnit = {
             ...unit,
@@ -289,8 +289,8 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
           let storageUsed = unit.count;
           if (config.isCumulative) {
             const dbKey = Object.entries(MILITARY_KEY_MAP).find(([_, short]) => short === unit.key)?.[0] || unit.key;
-            const baseCount = (currentData.armada_militer as any)[unit.groupId]?.[dbKey] || 
-                             (currentData.armada_militer as any)[dbKey] || 0;
+            const baseCount = (currentData.armada_militer as any)[unit.groupId]?.[dbKey] ||
+              (currentData.armada_militer as any)[dbKey] || 0;
             const deltaCount = (effectiveDeltas[unit.key] as number) || 0;
             storageUsed = (typeof baseCount === 'number' ? baseCount : 0) + (typeof deltaCount === 'number' ? deltaCount : 0);
           }
@@ -309,7 +309,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
   }, [currentData, effectiveDeltas, buildingDeltas]);
 
 
-   if (!isOpen || !currentData) return null;
+  if (!isOpen || !currentData) return null;
 
 
 
@@ -331,18 +331,18 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
     sektor_komersial: { ...currentData.sektor_komersial || {} },
     sektor_hiburan: { ...currentData.sektor_hiburan || {} },
     hunian: { ...currentData.hunian || {} },
-    armada_militer: { 
+    armada_militer: {
       ...currentData.armada_militer || {},
       darat: { ...currentData.armada_militer?.darat || {} },
       laut: { ...currentData.armada_militer?.laut || {} },
       udara: { ...currentData.armada_militer?.udara || {} },
     },
-    armada_kepolisian: { 
+    armada_kepolisian: {
       ...currentData.armada_kepolisian || {},
       armada_polisi: { ...currentData.armada_kepolisian?.armada_polisi || {} }
     },
     sektor_pertahanan: { ...currentData.sektor_pertahanan || {} },
-    militer_strategis: { 
+    militer_strategis: {
       ...currentData.militer_strategis || {},
       intel_radar: { ...currentData.militer_strategis?.intel_radar || {} }
     },
@@ -352,7 +352,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
 
   Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
     if (typeof deltaValue !== 'number' || deltaValue === 0) return;
-    
+
     if (KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA]) {
       const dataKey = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA].dataKey;
       (currentDataWithDeltas.sektor_listrik as any)[dataKey] = ((currentDataWithDeltas.sektor_listrik as any)[dataKey] || 0) + deltaValue;
@@ -403,7 +403,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
       (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
     }
     else if ((hunianRate as any)[key]) {
-      const dataKey = key; 
+      const dataKey = key;
       (currentDataWithDeltas.hunian as any)[dataKey] = ((currentDataWithDeltas.hunian as any)[dataKey] || 0) + deltaValue;
     }
     else if ((armadaMiliterRate as any)[key]) {
@@ -449,7 +449,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
       const unitCost = Number(confirmBuild.biaya_pembangunan || confirmBuild.biaya || 0);
       const effectiveUnitCost = Math.ceil(unitCost * pbbMultipliers.buildCost);
       const totalCost = effectiveUnitCost * quantity;
-      
+
       // 2. Check for Financial Sufficiency
       const currentBalance = budgetStorage.getBudget();
       const isMoneyShort = currentBalance < totalCost;
@@ -490,7 +490,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
       let recruitmentTimeMult = 1.0;
       if (currentReligion === "Buddha") recruitmentTimeMult = BUDDHA_RECRUITMENT_PENALTY;
       if (currentReligion === "Taoisme") recruitmentTimeMult = TAOISME_MILITARY_MODERNIZATION_PENALTY;
-      
+
       // Apply PBB Arms Embargo
       const finalBuildTime = Math.ceil(confirmBuild.waktu_pembangunan * recruitmentTimeMult / pbbMultipliers.armsSpeed);
 
@@ -527,7 +527,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       {/* Insufficient Resources Modal */}
-      <JikaUangKurang 
+      <JikaUangKurang
         isOpen={isInsufficientFundsModalOpen}
         onClose={() => setIsInsufficientFundsModalOpen(false)}
         requiredAmount={requiredAmount}
@@ -553,21 +553,19 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
             <div className="bg-zinc-950 p-1.5 rounded-2xl border border-zinc-800 flex items-center gap-1 shadow-inner">
               <button
                 onClick={() => setActiveTab("nasional")}
-                className={`px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all cursor-pointer ${
-                  activeTab === "nasional"
+                className={`px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all cursor-pointer ${activeTab === "nasional"
                     ? "bg-cyan-600 text-white shadow-lg shadow-cyan-900/40"
                     : "text-zinc-500 hover:text-white"
-                }`}
+                  }`}
               >
                 Armada Nasional
               </button>
               <button
                 onClick={() => setActiveTab("global")}
-                className={`px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all cursor-pointer ${
-                  activeTab === "global"
+                className={`px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all cursor-pointer ${activeTab === "global"
                     ? "bg-rose-600 text-white shadow-lg shadow-rose-900/40"
                     : "text-zinc-500 hover:text-white"
-                }`}
+                  }`}
               >
                 Peringkat Global
               </button>
@@ -588,7 +586,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
 
         {/* Strength Badges Strip */}
         {(() => {
-        const power = calculateTotalMilitaryPower(currentData.armada_militer, effectiveDeltas, currentData.religion);
+          const power = calculateTotalMilitaryPower(currentData.armada_militer, effectiveDeltas, currentData.religion);
 
           const badges = [
             { label: "Armada Darat", value: power.darat, icon: Truck, accent: "text-amber-400", glow: "shadow-[0_0_18px_rgba(251,191,36,0.15)]", border: "border-amber-500/20", bg: "bg-amber-500/5" },
@@ -678,7 +676,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
                         {group.items.map((item: any, idx: number) => {
                           const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
                           const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
-                          
+
                           const subGroupLabels: Record<string, string> = {
                             darat: "Armada Darat Nasional",
                             laut: "Armada Maritim & Laut",
@@ -778,17 +776,15 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
                   return (
                     <div
                       key={country.id}
-                      className={`flex items-center justify-between p-5 rounded-[24px] border transition-all hover:bg-zinc-900/80 group ${
-                        country.isUser 
-                          ? "bg-cyan-500/10 border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.15)] ring-1 ring-cyan-500/20" 
+                      className={`flex items-center justify-between p-5 rounded-[24px] border transition-all hover:bg-zinc-900/80 group ${country.isUser
+                          ? "bg-cyan-500/10 border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.15)] ring-1 ring-cyan-500/20"
                           : "bg-zinc-900/40 border-zinc-800/50 hover:border-zinc-700/50"
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-6">
                         {/* Rank Circle */}
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-black text-lg shadow-inner border ${
-                          country.isUser ? "bg-cyan-950 text-cyan-400 border-cyan-800" : "bg-zinc-950 text-zinc-400 border-zinc-800"
-                        }`}>
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-black text-lg shadow-inner border ${country.isUser ? "bg-cyan-950 text-cyan-400 border-cyan-800" : "bg-zinc-950 text-zinc-400 border-zinc-800"
+                          }`}>
                           {rank}
                         </div>
 
@@ -823,7 +819,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
                         </div>
 
                         {!country.isUser && (
-                          <button 
+                          <button
                             onClick={() => setSelectedActionCountry(country)}
                             className="p-3 rounded-xl bg-rose-600/10 border border-rose-500/30 text-rose-500 hover:bg-rose-600 hover:text-white transition-all cursor-pointer shadow-lg active:scale-90 group"
                             title="UMUMKAN PERANG"
@@ -852,7 +848,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
         {confirmBuild && (
           <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
             <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[40px] shadow-2xl max-w-4xl w-full mx-4 flex flex-col gap-6 animate-in zoom-in-95 max-h-[90vh]">
-              
+
               {/* Header: Icon & Title (Full Width) */}
               <div className="flex items-center gap-6 shrink-0 border-b border-zinc-800/50 pb-6">
                 <div className="p-4 bg-cyan-500/10 rounded-3xl border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
@@ -867,7 +863,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
               {/* Main Content: 2-Column Grid Area */}
               <div className="flex-1 overflow-y-auto no-scrollbar py-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  
+
                   {/* Column 1: Stats & Info */}
                   <div className="space-y-6">
                     <div className="flex flex-col gap-3">
@@ -877,20 +873,20 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
                           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Biaya Satuan</span>
                           <span className="text-xl font-black text-amber-500 tracking-tight">{(Number(confirmBuild.biaya || confirmBuild.biaya_pembangunan || 0)).toLocaleString('id-ID')}</span>
                         </div>
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>
-                          <div className="flex items-center gap-1.5">
-                            <Clock size={14} className="text-cyan-500" />
-                            <span className="text-xl font-black text-white tracking-tight">
-                              {(() => {
-                                const currentReligion = religionStorage.getCurrentReligion(currentData.religion);
-                                let mult = 1.0;
-                                if (currentReligion === "Buddha") mult = BUDDHA_RECRUITMENT_PENALTY;
-                                if (currentReligion === "Taoisme") mult = TAOISME_MILITARY_MODERNIZATION_PENALTY;
-                                
-                                return Math.ceil(confirmBuild.waktu_pembangunan * mult).toLocaleString('id-ID');
-                              })()} Hari
-                            </span>
-                          </div>
+                        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Waktu Satuan</span>
+                        <div className="flex items-center gap-1.5">
+                          <Clock size={14} className="text-cyan-500" />
+                          <span className="text-xl font-black text-white tracking-tight">
+                            {(() => {
+                              const currentReligion = religionStorage.getCurrentReligion(currentData.religion);
+                              let mult = 1.0;
+                              if (currentReligion === "Buddha") mult = BUDDHA_RECRUITMENT_PENALTY;
+                              if (currentReligion === "Taoisme") mult = TAOISME_MILITARY_MODERNIZATION_PENALTY;
+
+                              return Math.ceil(confirmBuild.waktu_pembangunan * mult).toLocaleString('id-ID');
+                            })()} Hari
+                          </span>
+                        </div>
                         {confirmBuild.consumption > 0 && confirmBuild.dataKey === 'barak' && (
                           <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                             <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Energi Beban</span>
@@ -924,15 +920,15 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
                     <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
                       <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian Seluruh Unit</span>
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
-                         {(() => {
-                            const currentReligion = religionStorage.getCurrentReligion(currentData.religion);
-                            let mult = 1.0;
-                            if (currentReligion === "Buddha") mult = BUDDHA_RECRUITMENT_PENALTY;
-                            if (currentReligion === "Taoisme") mult = TAOISME_MILITARY_MODERNIZATION_PENALTY;
-                            
-                            const val = Math.ceil(confirmBuild.waktu_pembangunan * mult);
-                            return formatGameDate(addDays(getStoredGameDate(), val * quantity));
-                         })()}
+                        {(() => {
+                          const currentReligion = religionStorage.getCurrentReligion(currentData.religion);
+                          let mult = 1.0;
+                          if (currentReligion === "Buddha") mult = BUDDHA_RECRUITMENT_PENALTY;
+                          if (currentReligion === "Taoisme") mult = TAOISME_MILITARY_MODERNIZATION_PENALTY;
+
+                          const val = Math.ceil(confirmBuild.waktu_pembangunan * mult);
+                          return formatGameDate(addDays(getStoredGameDate(), val * quantity));
+                        })()}
                       </p>
                     </div>
                   </div>
@@ -1016,7 +1012,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-[150] flex items-center justify-center p-4 overflow-hidden">
           <div className="bg-zinc-900 border border-zinc-800 rounded-[40px] w-full max-w-2xl max-h-[90vh] p-8 shadow-2xl scale-in-center animate-in zoom-in duration-300 flex flex-col relative overflow-hidden">
             <div className="absolute top-0 right-0 p-8">
-              <button 
+              <button
                 onClick={() => setSelectedActionCountry(null)}
                 className="p-3 bg-zinc-950/50 hover:bg-zinc-900 rounded-2xl border border-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer"
               >
@@ -1096,7 +1092,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
             </div>
 
             <div className="mt-8 pt-6 border-t border-zinc-800/50">
-              <button 
+              <button
                 onClick={() => setSelectedActionCountry(null)}
                 className="w-full py-4 rounded-2xl bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-black uppercase tracking-[0.3em] transition-all cursor-pointer shadow-lg active:scale-[0.98]"
               >
@@ -1277,22 +1273,22 @@ function BuildingCard({ item, onBuild, construction, tankCapacity, hasUraniumMin
 
           {item.konsumsi_listrik > 0 && (
             <div className="flex flex-col gap-2">
-               <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-rose-500/10 rounded-lg">
-                     <Zap size={12} className="text-rose-500/90" />
-                  </div>
-                  <span className="text-[12px] font-bold text-rose-500/80">
-                     Konsumsi: {item.konsumsi_listrik?.toLocaleString('id-ID')} MW/bangunan
-                  </span>
-               </div>
-               <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
-                  <div className="p-1.5 bg-rose-500/5 rounded-lg">
-                     <Activity size={12} className="text-rose-400/70" />
-                  </div>
-                  <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                     Total Konsumsi Listrik: {(item.count * (item.konsumsi_listrik || 0)).toLocaleString('id-ID')} MW
-                  </span>
-               </div>
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                  <Zap size={12} className="text-rose-500/90" />
+                </div>
+                <span className="text-[12px] font-bold text-rose-500/80">
+                  Konsumsi: {item.konsumsi_listrik?.toLocaleString('id-ID')} MW/bangunan
+                </span>
+              </div>
+              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                  <Activity size={12} className="text-rose-400/70" />
+                </div>
+                <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+                  Total Konsumsi Listrik: {(item.count * (item.konsumsi_listrik || 0)).toLocaleString('id-ID')} MW
+                </span>
+              </div>
             </div>
           )}
 

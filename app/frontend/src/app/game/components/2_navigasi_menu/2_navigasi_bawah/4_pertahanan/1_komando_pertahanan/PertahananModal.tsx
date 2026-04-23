@@ -16,7 +16,7 @@ interface ModalProps {
 
 export default function PertahananModal({ isOpen, onClose, activeMenu, setActiveMenu, preselectedTarget, data }: ModalProps) {
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
-  
+
   if (!isOpen || !data) return null;
 
   const management = data.sektor_pertahanan;
@@ -97,7 +97,7 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
             </button>
           </div>
         </div>
-        
+
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
           <div className="space-y-12">
@@ -111,7 +111,7 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
                     {collapsedSectors.has(group.id) ? <EyeOff size={16} /> : <Eye size={16} className="text-cyan-400" />}
                   </button>
                 </div>
-                
+
                 <div className={`grid transition-all duration-700 ease-in-out ${!collapsedSectors.has(group.id) ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
                   <div className="overflow-hidden">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
@@ -133,26 +133,26 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
                               {item.label}
                             </h4>
                             <div className="flex flex-col gap-4 flex-1 justify-center items-center bg-zinc-950/20 rounded-3xl border border-zinc-800/30 p-4">
-                               <span className={`text-3xl font-black ${item.color} tracking-tighter`}>{item.value}</span>
-                               <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em] text-center">{item.desc}</span>
+                              <span className={`text-3xl font-black ${item.color} tracking-tighter`}>{item.value}</span>
+                              <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em] text-center">{item.desc}</span>
                             </div>
                           </div>
-                          
-                          <div 
+
+                          <div
                             className="mt-2 w-full py-2 rounded-xl bg-zinc-900/50 border border-zinc-800/80 text-center group-hover:border-red-500/20 transition-all cursor-pointer hover:bg-zinc-800"
                             onClick={() => {
-                               if (item.label === "Misi Serangan") {
-                                  // Modul Pertempuran telah dihapus sementara
-                                  console.log("Misi Serangan dinonaktifkan");
-                               }
-                               if (item.label === "Program Nuklir") {
-                                  setActiveMenu("Komando Pertahanan:Program Nuklir");
-                               }
+                              if (item.label === "Misi Serangan") {
+                                // Modul Pertempuran telah dihapus sementara
+                                console.log("Misi Serangan dinonaktifkan");
+                              }
+                              if (item.label === "Program Nuklir") {
+                                setActiveMenu("Komando Pertahanan:Program Nuklir");
+                              }
                             }}
                           >
-                             <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em] group-hover:text-red-500 transition-colors">
-                               {item.btnLabel || "Sangat Siaga"}
-                             </span>
+                            <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em] group-hover:text-red-500 transition-colors">
+                              {item.btnLabel || "Sangat Siaga"}
+                            </span>
                           </div>
                         </div>
                       ))}
@@ -165,10 +165,10 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
         </div>
       </div>
 
-      <ProgramNuklirModal 
-        isOpen={activeMenu === "Komando Pertahanan:Program Nuklir"} 
-        onClose={() => setActiveMenu("Komando Pertahanan")} 
-        data={data} 
+      <ProgramNuklirModal
+        isOpen={activeMenu === "Komando Pertahanan:Program Nuklir"}
+        onClose={() => setActiveMenu("Komando Pertahanan")}
+        data={data}
       />
     </div>
   )

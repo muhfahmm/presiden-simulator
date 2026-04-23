@@ -8,11 +8,11 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/negara/benua/index";
-import { 
-  armadaPolisiRate, 
-  armadaMiliterRate, 
-  intelijenRate, 
-  pertahananRate, 
+import {
+  armadaPolisiRate,
+  armadaMiliterRate,
+  intelijenRate,
+  pertahananRate,
   pabrikMiliterRate,
   mineralKritisRate,
   manufakturRate,
@@ -99,18 +99,18 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
     sektor_komersial: { ...currentData.sektor_komersial || {} },
     sektor_hiburan: { ...currentData.sektor_hiburan || {} },
     hunian: { ...currentData.hunian || {} },
-    armada_militer: { 
+    armada_militer: {
       ...currentData.armada_militer || {},
       darat: { ...currentData.armada_militer?.darat || {} },
       laut: { ...currentData.armada_militer?.laut || {} },
       udara: { ...currentData.armada_militer?.udara || {} },
     },
-    armada_kepolisian: { 
+    armada_kepolisian: {
       ...currentData.armada_kepolisian || {},
       armada_polisi: { ...currentData.armada_kepolisian?.armada_polisi || {} }
     },
     sektor_pertahanan: { ...currentData.sektor_pertahanan || {} },
-    militer_strategis: { 
+    militer_strategis: {
       ...currentData.militer_strategis || {},
       intel_radar: { ...currentData.militer_strategis?.intel_radar || {} }
     },
@@ -120,7 +120,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
 
   Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
     if (typeof deltaValue !== 'number' || deltaValue === 0) return;
-    
+
     if (KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA]) {
       const dataKey = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA].dataKey;
       (currentDataWithDeltas.sektor_listrik as any)[dataKey] = ((currentDataWithDeltas.sektor_listrik as any)[dataKey] || 0) + deltaValue;
@@ -171,7 +171,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
     }
     else if ((hunianRate as any)[key]) {
-      const dataKey = key; 
+      const dataKey = key;
       (currentDataWithDeltas.hunian as any)[dataKey] = ((currentDataWithDeltas.hunian as any)[dataKey] || 0) + deltaValue;
     }
     else if ((armadaMiliterRate as any)[key]) {
@@ -261,7 +261,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       // 1. Calculate total cost
       const unitCost = Number(confirmBuild.biaya_pembangunan || 0);
       const totalCost = unitCost * quantity;
-      
+
       // 2. Check for Financial Sufficiency
       const currentBalance = budgetStorage.getBudget();
       const isMoneyShort = currentBalance < totalCost;
@@ -331,7 +331,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       {/* Insufficient Resources Modal */}
-      <JikaUangKurang 
+      <JikaUangKurang
         isOpen={isInsufficientFundsModalOpen}
         onClose={() => setIsInsufficientFundsModalOpen(false)}
         requiredAmount={requiredAmount}
@@ -419,7 +419,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
                       {group.items.map((item: any, idx: number) => {
                         const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
                         const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
-                        
+
                         const subGroupLabels: Record<string, string> = {
                           komando: "Komando Strategis & Pendidikan",
                           wilayah: "Unit Pelayanan Wilayah",
@@ -460,7 +460,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
         {confirmBuild && (
           <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
             <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[40px] shadow-2xl max-w-4xl w-full mx-4 flex flex-col gap-6 animate-in zoom-in-95 max-h-[90vh]">
-              
+
               {/* Header: Icon & Title (Full Width) */}
               <div className="flex items-center gap-6 shrink-0 border-b border-zinc-800/50 pb-6">
                 <div className="p-4 bg-cyan-500/10 rounded-3xl border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
@@ -475,7 +475,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
               {/* Main Content: 2-Column Grid Area */}
               <div className="flex-1 overflow-y-auto no-scrollbar py-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  
+
                   {/* Column 1: Stats & Info */}
                   <div className="space-y-6">
                     <div className="flex flex-col gap-3">
@@ -507,7 +507,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
                     <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
                       <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian Seluruh Unit</span>
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
-                         {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
+                        {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
                       </p>
                     </div>
                   </div>
@@ -597,13 +597,12 @@ function BuildingCard({ item, onBuild, construction }: any) {
 
 
   return (
-    <div className={`group relative flex flex-col p-6 rounded-[32px] border transition-all duration-300 overflow-hidden ${
-      progress 
-        ? "bg-cyan-500/5 border-cyan-500/30 shadow-[0_0_40px_rgba(6,182,212,0.1)] ring-1 ring-cyan-500/10" 
+    <div className={`group relative flex flex-col p-6 rounded-[32px] border transition-all duration-300 overflow-hidden ${progress
+        ? "bg-cyan-500/5 border-cyan-500/30 shadow-[0_0_40px_rgba(6,182,212,0.1)] ring-1 ring-cyan-500/10"
         : "bg-zinc-900/40 border-zinc-800/50 hover:bg-zinc-900/60 hover:border-zinc-700/50 shadow-xl"
-    } h-full min-h-[440px]`}>
+      } h-full min-h-[440px]`}>
       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
-      
+
       {progress && (
         <div className="absolute top-0 left-0 bottom-0 bg-cyan-500/5 transition-all duration-1000" style={{ width: `${progress.percentage}%` }} />
       )}
@@ -675,22 +674,22 @@ function BuildingCard({ item, onBuild, construction }: any) {
 
             {item.konsumsi_listrik > 0 && (
               <div className="flex flex-col gap-2">
-                 <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 bg-rose-500/10 rounded-lg">
-                       <Zap size={12} className="text-rose-500/90" />
-                    </div>
-                    <span className="text-[12px] font-bold text-rose-500/80">
-                       Konsumsi: {item.konsumsi_listrik.toLocaleString('id-ID')} MW/bangunan
-                    </span>
-                 </div>
-                 <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
-                    <div className="p-1.5 bg-rose-500/5 rounded-lg">
-                       <Activity size={12} className="text-rose-400/70" />
-                    </div>
-                    <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                       Total Konsumsi Listrik: {(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW
-                    </span>
-                 </div>
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                    <Zap size={12} className="text-rose-500/90" />
+                  </div>
+                  <span className="text-[12px] font-bold text-rose-500/80">
+                    Konsumsi: {item.konsumsi_listrik.toLocaleString('id-ID')} MW/bangunan
+                  </span>
+                </div>
+                <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                  <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                    <Activity size={12} className="text-rose-400/70" />
+                  </div>
+                  <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+                    Total Konsumsi Listrik: {(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW
+                  </span>
+                </div>
               </div>
             )}
 
@@ -733,8 +732,8 @@ function BuildingCard({ item, onBuild, construction }: any) {
                 <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
                 <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya_pembangunan?.toLocaleString('id-ID')}</span>
               </div>
-              <button 
-                onClick={(e) => { e.stopPropagation(); onBuild(item); }} 
+              <button
+                onClick={(e) => { e.stopPropagation(); onBuild(item); }}
                 className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.15em] shadow-[0_10px_20px_rgba(8,145,178,0.2)] hover:bg-cyan-500 hover:shadow-[0_15px_30px_rgba(8,145,178,0.3)] hover:-translate-y-0.5 transition-all cursor-pointer active:scale-95 border border-cyan-400/20"
               >
                 Bangun

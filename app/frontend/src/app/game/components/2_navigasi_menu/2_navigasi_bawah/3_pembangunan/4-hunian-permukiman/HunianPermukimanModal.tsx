@@ -93,11 +93,11 @@ export default function HunianPermukimanModal({ isOpen, onClose }: ModalProps) {
   const totalMansion = (currentData.hunian?.mansion || 0) + (buildingDeltas['mansion'] || 0);
 
   const totalHousingCapacity = (totalSubsidi * (hunianRate.rumah_subsidi.kapasitas)) +
-                                (totalApartemen * (hunianRate.apartemen.kapasitas)) +
-                                (totalMansion * (hunianRate.mansion.kapasitas));
-                                
+    (totalApartemen * (hunianRate.apartemen.kapasitas)) +
+    (totalMansion * (hunianRate.mansion.kapasitas));
+
   const isHousingShortage = totalHousingCapacity < population;
-  
+
   const demandSubsidi = population > 0 ? Math.min(100, Math.max(0, (1 - (totalSubsidi * hunianRate.rumah_subsidi.kapasitas) / (population * 0.7))) * 100) : 0;
   const demandApartemen = population > 0 ? Math.min(100, Math.max(0, (1 - (totalApartemen * hunianRate.apartemen.kapasitas) / (population * 0.25))) * 100) : 0;
   const demandMansion = population > 0 ? Math.min(100, Math.max(0, (1 - (totalMansion * hunianRate.mansion.kapasitas) / (population * 0.05))) * 100) : 0;
@@ -180,8 +180,8 @@ export default function HunianPermukimanModal({ isOpen, onClose }: ModalProps) {
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
-        
-        <JikaUangKurang 
+
+        <JikaUangKurang
           isOpen={isInsufficientFundsModalOpen}
           onClose={() => setIsInsufficientFundsModalOpen(false)}
           requiredAmount={requiredAmount}
@@ -214,121 +214,121 @@ export default function HunianPermukimanModal({ isOpen, onClose }: ModalProps) {
 
         {/* Housing Demand Indicators */}
         <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50 flex items-center gap-8">
-            <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Subsidi Bar */}
-              <div className="flex flex-col gap-1.5">
-                <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-wider italic">
-                  <span className="text-zinc-500">Subsidi</span>
-                  <span className={`${demandSubsidi > 80 ? 'text-rose-500 animate-pulse' : 'text-zinc-400'}`}>{demandSubsidi.toFixed(0)}%</span>
-                </div>
-                <div className="h-2 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden shadow-inner">
-                  <div className={`h-full rounded-full transition-all duration-500 ${demandSubsidi > 80 ? 'bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.4)]' : 'bg-emerald-500'}`} style={{ width: `${demandSubsidi}%` }} />
-                </div>
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Subsidi Bar */}
+            <div className="flex flex-col gap-1.5">
+              <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-wider italic">
+                <span className="text-zinc-500">Subsidi</span>
+                <span className={`${demandSubsidi > 80 ? 'text-rose-500 animate-pulse' : 'text-zinc-400'}`}>{demandSubsidi.toFixed(0)}%</span>
               </div>
-              
-              {/* Apartemen Bar */}
-              <div className="flex flex-col gap-1.5">
-                <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-wider italic">
-                  <span className="text-zinc-500">Apartemen</span>
-                  <span className={`${demandApartemen > 80 ? 'text-amber-500 animate-pulse' : 'text-zinc-400'}`}>{demandApartemen.toFixed(0)}%</span>
-                </div>
-                <div className="h-2 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden shadow-inner">
-                  <div className={`h-full rounded-full transition-all duration-500 ${demandApartemen > 80 ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.4)]' : 'bg-emerald-500'}`} style={{ width: `${demandApartemen}%` }} />
-                </div>
-              </div>
-              
-              {/* Mansion Bar */}
-              <div className="flex flex-col gap-1.5">
-                <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-wider italic">
-                  <span className="text-zinc-500">Mansion</span>
-                  <span className={`${demandMansion > 80 ? 'text-purple-500 animate-pulse' : 'text-zinc-400'}`}>{demandMansion.toFixed(0)}%</span>
-                </div>
-                <div className="h-2 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden shadow-inner">
-                  <div className={`h-full rounded-full transition-all duration-500 ${demandMansion > 80 ? 'bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.4)]' : 'bg-emerald-500'}`} style={{ width: `${demandMansion}%` }} />
-                </div>
+              <div className="h-2 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden shadow-inner">
+                <div className={`h-full rounded-full transition-all duration-500 ${demandSubsidi > 80 ? 'bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.4)]' : 'bg-emerald-500'}`} style={{ width: `${demandSubsidi}%` }} />
               </div>
             </div>
+
+            {/* Apartemen Bar */}
+            <div className="flex flex-col gap-1.5">
+              <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-wider italic">
+                <span className="text-zinc-500">Apartemen</span>
+                <span className={`${demandApartemen > 80 ? 'text-amber-500 animate-pulse' : 'text-zinc-400'}`}>{demandApartemen.toFixed(0)}%</span>
+              </div>
+              <div className="h-2 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden shadow-inner">
+                <div className={`h-full rounded-full transition-all duration-500 ${demandApartemen > 80 ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.4)]' : 'bg-emerald-500'}`} style={{ width: `${demandApartemen}%` }} />
+              </div>
+            </div>
+
+            {/* Mansion Bar */}
+            <div className="flex flex-col gap-1.5">
+              <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-wider italic">
+                <span className="text-zinc-500">Mansion</span>
+                <span className={`${demandMansion > 80 ? 'text-purple-500 animate-pulse' : 'text-zinc-400'}`}>{demandMansion.toFixed(0)}%</span>
+              </div>
+              <div className="h-2 w-full bg-zinc-950 rounded-full border border-white/5 overflow-hidden shadow-inner">
+                <div className={`h-full rounded-full transition-all duration-500 ${demandMansion > 80 ? 'bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.4)]' : 'bg-emerald-500'}`} style={{ width: `${demandMansion}%` }} />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
-            <div className="space-y-12">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-1 mb-8">
-                <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between shadow-lg">
-                  <div>
-                    <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Total Kebutuhan Rumah</p>
-                    <p className="text-xl font-black text-rose-400">{population.toLocaleString('id-ID')} <span className="text-xs text-rose-500/50">Jiwa</span></p>
-                  </div>
-                  <div className="p-3 bg-rose-500/10 rounded-xl border border-rose-500/20"><Users size={20} className="text-rose-500" /></div>
+          <div className="space-y-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-1 mb-8">
+              <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between shadow-lg">
+                <div>
+                  <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Total Kebutuhan Rumah</p>
+                  <p className="text-xl font-black text-rose-400">{population.toLocaleString('id-ID')} <span className="text-xs text-rose-500/50">Jiwa</span></p>
                 </div>
-                
-                <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between shadow-lg">
-                  <div>
-                    <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Total Kapasitas Tersedia</p>
-                    <p className="text-xl font-black text-emerald-400">{totalHousingCapacity.toLocaleString('id-ID')} <span className="text-xs text-emerald-500/50">Jiwa</span></p>
-                  </div>
-                  <div className="p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20"><Home size={20} className="text-emerald-500" /></div>
-                </div>
-
-                <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between shadow-lg">
-                  <div>
-                    <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Neraca Hunian (Surplus)</p>
-                    <p className={`text-xl font-black ${totalHousingCapacity - population >= 0 ? 'text-cyan-400' : 'text-red-400'}`}>{(totalHousingCapacity - population) > 0 ? '+' : ''}{(totalHousingCapacity - population).toLocaleString('id-ID')} <span className="text-xs opacity-50">Jiwa</span></p>
-                  </div>
-                  <div className={`p-3 rounded-xl border ${totalHousingCapacity - population >= 0 ? 'bg-cyan-500/10 border-cyan-500/20' : 'bg-red-500/10 border-red-500/20'}`}>
-                    <Activity size={20} className={totalHousingCapacity - population >= 0 ? 'text-cyan-500' : 'text-red-500'} />
-                  </div>
-                </div>
+                <div className="p-3 bg-rose-500/10 rounded-xl border border-rose-500/20"><Users size={20} className="text-rose-500" /></div>
               </div>
 
-              {hunianGroups.map((group) => (
-                <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-                  <div className="flex items-center gap-3 mb-5 px-1">
-                    <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>
-                    <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title}</h3>
-                    <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
+              <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between shadow-lg">
+                <div>
+                  <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Total Kapasitas Tersedia</p>
+                  <p className="text-xl font-black text-emerald-400">{totalHousingCapacity.toLocaleString('id-ID')} <span className="text-xs text-emerald-500/50">Jiwa</span></p>
+                </div>
+                <div className="p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20"><Home size={20} className="text-emerald-500" /></div>
+              </div>
+
+              <div className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl flex items-center justify-between shadow-lg">
+                <div>
+                  <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Neraca Hunian (Surplus)</p>
+                  <p className={`text-xl font-black ${totalHousingCapacity - population >= 0 ? 'text-cyan-400' : 'text-red-400'}`}>{(totalHousingCapacity - population) > 0 ? '+' : ''}{(totalHousingCapacity - population).toLocaleString('id-ID')} <span className="text-xs opacity-50">Jiwa</span></p>
+                </div>
+                <div className={`p-3 rounded-xl border ${totalHousingCapacity - population >= 0 ? 'bg-cyan-500/10 border-cyan-500/20' : 'bg-red-500/10 border-red-500/20'}`}>
+                  <Activity size={20} className={totalHousingCapacity - population >= 0 ? 'text-cyan-500' : 'text-red-500'} />
+                </div>
+              </div>
+            </div>
+
+            {hunianGroups.map((group) => (
+              <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+                <div className="flex items-center gap-3 mb-5 px-1">
+                  <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>
+                  <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title}</h3>
+                  <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
+                  {group.items.map((item: any, idx: number) => {
+                    const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
+                    return (
+                      <BuildingCard
+                        key={item.key || idx}
+                        item={item}
+                        onBuild={handleBuildRequest}
+                        construction={currentConstruction}
+                        cumulative={Math.max(0, population - totalHousingCapacity)}
+                        isShortage={isHousingShortage}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+
+            {/* AI Strategic Advice */}
+            {(() => {
+              const thinking = aiThinkingStorage.getLatest(currentCountryCode);
+              if (!thinking) return null;
+              return (
+                <div className="mt-8 p-8 bg-amber-500/5 border border-amber-500/20 rounded-[2.5rem] relative overflow-hidden group shadow-xl">
+                  <div className="absolute -right-10 -bottom-10 opacity-5 group-hover:scale-110 transition-transform duration-1000">
+                    <Brain size={250} className="text-amber-500" />
                   </div>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
-                    {group.items.map((item: any, idx: number) => {
-                      const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
-                      return (
-                        <BuildingCard
-                          key={item.key || idx}
-                          item={item}
-                          onBuild={handleBuildRequest}
-                          construction={currentConstruction}
-                          cumulative={Math.max(0, population - totalHousingCapacity)}
-                          isShortage={isHousingShortage}
-                        />
-                      );
-                    })}
+                  <div className="relative z-10 flex items-start gap-6">
+                    <div className="p-4 bg-amber-500/10 rounded-2xl border border-amber-500/20 shadow-lg">
+                      <Brain size={28} className="text-amber-500 animate-pulse" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-[10px] font-black text-amber-500 uppercase tracking-[0.2em] italic mb-2">AI Strategic Brain</h4>
+                      <p className="text-lg font-bold text-zinc-300 leading-relaxed tracking-tight italic">"{thinking.reason}"</p>
+                    </div>
                   </div>
                 </div>
-              ))}
-
-              {/* AI Strategic Advice */}
-              {(() => {
-                const thinking = aiThinkingStorage.getLatest(currentCountryCode);
-                if (!thinking) return null;
-                return (
-                  <div className="mt-8 p-8 bg-amber-500/5 border border-amber-500/20 rounded-[2.5rem] relative overflow-hidden group shadow-xl">
-                    <div className="absolute -right-10 -bottom-10 opacity-5 group-hover:scale-110 transition-transform duration-1000">
-                      <Brain size={250} className="text-amber-500" />
-                    </div>
-                    <div className="relative z-10 flex items-start gap-6">
-                      <div className="p-4 bg-amber-500/10 rounded-2xl border border-amber-500/20 shadow-lg">
-                        <Brain size={28} className="text-amber-500 animate-pulse" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-[10px] font-black text-amber-500 uppercase tracking-[0.2em] italic mb-2">AI Strategic Brain</h4>
-                        <p className="text-lg font-bold text-zinc-300 leading-relaxed tracking-tight italic">"{thinking.reason}"</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })()}
-            </div>
+              );
+            })()}
+          </div>
         </div>
 
         {/* Confirmation Modal Overlay */}
@@ -337,7 +337,7 @@ export default function HunianPermukimanModal({ isOpen, onClose }: ModalProps) {
             <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[40px] shadow-2xl max-w-4xl w-full mx-4 flex flex-col gap-6 animate-in zoom-in-95">
               <div className="flex items-center gap-6 border-b border-zinc-800/50 pb-6">
                 <div className="p-4 bg-cyan-500/10 rounded-3xl border border-cyan-500/20 shadow-lg font-black italic">
-                   <confirmBuild.icon size={40} className="text-cyan-500" />
+                  <confirmBuild.icon size={40} className="text-cyan-500" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-3xl font-black text-white uppercase italic tracking-tighter leading-none">Konfirmasi?</h3>
@@ -366,7 +366,7 @@ export default function HunianPermukimanModal({ isOpen, onClose }: ModalProps) {
                   <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
                     <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian</span>
                     <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
-                       {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
+                      {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
                     </p>
                   </div>
                 </div>
@@ -396,7 +396,7 @@ export default function HunianPermukimanModal({ isOpen, onClose }: ModalProps) {
           <div className={`bg-zinc-950/95 border-l border-zinc-800 w-full max-w-sm h-full shadow-2xl flex flex-col transition-transform duration-500 ${showQueue ? 'translate-x-0' : 'translate-x-full'}`} onClick={e => e.stopPropagation()}>
             <div className="p-6 border-b border-zinc-800 flex justify-between items-center"><h3 className="text-lg font-bold text-white tracking-tight italic uppercase font-black tracking-widest">Antrean Pembangunan</h3><button onClick={() => setShowQueue(false)} className="cursor-pointer hover:bg-zinc-800 p-2 rounded-xl transition-all"><X className="h-5 w-5 text-zinc-400" /></button></div>
             <div className="flex-1 overflow-y-auto p-6 space-y-4 no-scrollbar">
-              {activeConstructions.length === 0 ? <p className="text-zinc-500 text-center font-bold uppercase tracking-widest mt-10 italic">Antrean Kosong</p> : 
+              {activeConstructions.length === 0 ? <p className="text-zinc-500 text-center font-bold uppercase tracking-widest mt-10 italic">Antrean Kosong</p> :
                 activeConstructions.map((item, idx) => {
                   const progress = calculateConstructionProgress(item.startDate, item.endDate, getStoredGameDate().getTime());
                   if (!progress) return null;
@@ -451,25 +451,25 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
             </div>
 
             <div className="flex flex-col gap-3 p-4 rounded-2xl bg-cyan-500/5 border border-cyan-500/20 shadow-lg">
-               <p className="text-sm font-black text-white italic leading-relaxed">{item.deskripsi}</p>
+              <p className="text-sm font-black text-white italic leading-relaxed">{item.deskripsi}</p>
             </div>
 
             <div className="grid gap-2">
-                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 group/row hover:border-pink-500/30 transition-all">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-pink-500/10 rounded-xl text-pink-500 border border-pink-500/20"><Zap size={14} /></div>
-                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Beban Energi</span>
-                  </div>
-                  <span className="text-[15px] font-black text-pink-500 tabular-nums">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
+              <div className="flex items-center justify-between p-3.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 group/row hover:border-pink-500/30 transition-all">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-pink-500/10 rounded-xl text-pink-500 border border-pink-500/20"><Zap size={14} /></div>
+                  <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                 </div>
+                <span className="text-[15px] font-black text-pink-500 tabular-nums">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
+              </div>
 
-                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 group/row hover:border-cyan-500/30 transition-all">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-cyan-500/10 rounded-xl text-cyan-500 border border-cyan-500/20"><Users size={14} /></div>
-                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Kapasitas Hunian</span>
-                  </div>
-                  <span className="text-[15px] font-black text-cyan-400 tabular-nums">{item.kapasitas?.toLocaleString('id-ID')} Jiwa</span>
+              <div className="flex items-center justify-between p-3.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 group/row hover:border-cyan-500/30 transition-all">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-cyan-500/10 rounded-xl text-cyan-500 border border-cyan-500/20"><Users size={14} /></div>
+                  <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Kapasitas Hunian</span>
                 </div>
+                <span className="text-[15px] font-black text-cyan-400 tabular-nums">{item.kapasitas?.toLocaleString('id-ID')} Jiwa</span>
+              </div>
             </div>
           </div>
 
@@ -494,15 +494,15 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
       <div className="flex-1 flex flex-col relative z-10 mt-1">
         <h4 className="text-[17px] font-black text-zinc-100 group-hover:text-amber-400 transition-colors uppercase italic mb-3">{item.label}</h4>
         <div className="flex flex-col gap-2.5 flex-1 justify-center">
-            <div className="flex items-center gap-2.5">
-              <Zap size={12} className="text-amber-500" /><span className="text-[12px] font-bold text-amber-500/80">Konsumsi: {item.konsumsi_listrik.toLocaleString('id-ID')} MW/unit</span>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <Users size={12} className="text-blue-400" /><span className="text-[12px] font-bold text-blue-400/80">Kapasitas: {item.kapasitas.toLocaleString('id-ID')} Jiwa/unit</span>
-            </div>
-            <div className="flex items-center gap-2.5 italic opacity-60">
-              <Clock size={12} className="text-zinc-500" /><span className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest">Waktu: {item.time || item.waktu_pembangunan} Hari</span>
-            </div>
+          <div className="flex items-center gap-2.5">
+            <Zap size={12} className="text-amber-500" /><span className="text-[12px] font-bold text-amber-500/80">Konsumsi: {item.konsumsi_listrik.toLocaleString('id-ID')} MW/unit</span>
+          </div>
+          <div className="flex items-center gap-2.5">
+            <Users size={12} className="text-blue-400" /><span className="text-[12px] font-bold text-blue-400/80">Kapasitas: {item.kapasitas.toLocaleString('id-ID')} Jiwa/unit</span>
+          </div>
+          <div className="flex items-center gap-2.5 italic opacity-60">
+            <Clock size={12} className="text-zinc-500" /><span className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest">Waktu: {item.time || item.waktu_pembangunan} Hari</span>
+          </div>
         </div>
 
         <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
@@ -516,14 +516,14 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
       <div className="mt-auto pt-4 relative z-10">
         {progress ? (
           <div className="space-y-2 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
-             <div className="flex justify-between text-[10px] font-black text-cyan-400 uppercase tracking-tighter italic"><span>PROSES BANGUN:</span><span>{progress.percentage}%</span></div>
-             <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/50 shadow-inner"><div className={`h-full ${progress.colorClass} rounded-full`} style={{ width: `${progress.percentage}%` }} /></div>
-             <div className="text-[9px] font-bold text-zinc-600 uppercase italic tracking-tighter text-right">E.T.A: {formatGameDate(new Date(construction.endDate))}</div>
+            <div className="flex justify-between text-[10px] font-black text-cyan-400 uppercase tracking-tighter italic"><span>PROSES BANGUN:</span><span>{progress.percentage}%</span></div>
+            <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/50 shadow-inner"><div className={`h-full ${progress.colorClass} rounded-full`} style={{ width: `${progress.percentage}%` }} /></div>
+            <div className="text-[9px] font-bold text-zinc-600 uppercase italic tracking-tighter text-right">E.T.A: {formatGameDate(new Date(construction.endDate))}</div>
           </div>
         ) : (
           <div className="flex items-center justify-between gap-4">
-             <div className="flex flex-col"><span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span><span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya_pembangunan?.toLocaleString('id-ID')}</span></div>
-             <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-lg hover:bg-cyan-500 hover:shadow-cyan-500/20 cursor-pointer active:scale-95 border border-cyan-400/20 transition-all">Bangun</button>
+            <div className="flex flex-col"><span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span><span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya_pembangunan?.toLocaleString('id-ID')}</span></div>
+            <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-lg hover:bg-cyan-500 hover:shadow-cyan-500/20 cursor-pointer active:scale-95 border border-cyan-400/20 transition-all">Bangun</button>
           </div>
         )}
       </div>

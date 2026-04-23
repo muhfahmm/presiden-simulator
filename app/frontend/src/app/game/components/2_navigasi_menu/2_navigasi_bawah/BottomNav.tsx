@@ -134,10 +134,10 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
   if (isTemporarilyHidden) return null;
 
   const isModalActive = activeMenu.startsWith("Komando Pertahanan");
-  const isOtherModalOpen = activeMenu.startsWith("CountryModal:") || 
-                           (activeMenu.startsWith("Menu:") && !["Menu:Kelistrikan", "Menu:Perminyakan", "Menu:Uranium", "Menu:Perdagangan", "Menu:Pajak", "Menu:Hutang", "Menu:Budget", "Menu:Harga"].some(m => activeMenu.startsWith(m))) || 
-                           (activeMenu.startsWith("Dashboard:") && !["Dashboard:Kepuasan", "Dashboard:Populasi"].includes(activeMenu)) ||
-                           (activeMenu.startsWith("Action:") && !["Action:NaikkanKepuasan"].includes(activeMenu));
+  const isOtherModalOpen = activeMenu.startsWith("CountryModal:") ||
+    (activeMenu.startsWith("Menu:") && !["Menu:Kelistrikan", "Menu:Perminyakan", "Menu:Uranium", "Menu:Perdagangan", "Menu:Pajak", "Menu:Hutang", "Menu:Budget", "Menu:Harga"].some(m => activeMenu.startsWith(m))) ||
+    (activeMenu.startsWith("Dashboard:") && !["Dashboard:Kepuasan", "Dashboard:Populasi"].includes(activeMenu)) ||
+    (activeMenu.startsWith("Action:") && !["Action:NaikkanKepuasan"].includes(activeMenu));
 
   return (
     <div className={`absolute bottom-12 left-1/2 -translate-x-1/2 w-max max-w-[95vw] transition-all duration-500 ${isOtherModalOpen ? 'z-0 opacity-50' : 'z-[100] opacity-100'

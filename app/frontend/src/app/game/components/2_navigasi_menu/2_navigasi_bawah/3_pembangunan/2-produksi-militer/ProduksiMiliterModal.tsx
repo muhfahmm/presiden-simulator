@@ -20,8 +20,8 @@ import JikaMaterialKurang from "../jika_material_kurang";
 import { getBuildingRequirement } from "../1-produksi/MaterialRequirement";
 import { Layers, Hammer, TreePine, AlertTriangle } from "lucide-react";
 import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic";
-import { 
-  calculateTotalInfantry, 
+import {
+  calculateTotalInfantry,
   calculateInfantryPower,
   calculatePrisonCapacity,
   calculateArmoryCapacity,
@@ -232,8 +232,8 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
     }
     // 11. Pabrik Militer
     else if (pabrikMiliterRate[key as keyof typeof pabrikMiliterRate]) {
-       const dataKey = pabrikMiliterRate[key as keyof typeof pabrikMiliterRate].dataKey;
-       if (dataKey) (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
+      const dataKey = pabrikMiliterRate[key as keyof typeof pabrikMiliterRate].dataKey;
+      if (dataKey) (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
     }
   });
 
@@ -261,7 +261,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
         // 1. Calculate total cost with PBB Sanction (+15%)
         const effectiveUnitCost = Math.ceil(confirmBuild.cost * pbbMultipliers.buildCost);
         const totalCost = effectiveUnitCost * quantity;
-        
+
         // 2. Check for Financial Sufficiency
         const currentBalance = budgetStorage.getBudget();
         const isMoneyShort = currentBalance < totalCost;
@@ -301,7 +301,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
         for (let i = 0; i < quantity; i++) {
           // Apply PBB Arms Embargo (0.6x speed = 1.67x time)
           const effectiveBuildTime = Math.ceil(confirmBuild.waktu_pembangunan / pbbMultipliers.armsSpeed);
-          
+
           const currentEnd = addDays(new Date(currentStart), effectiveBuildTime).getTime();
           const newItem = buildingStorage.addToQueue({
             buildingKey: confirmBuild.key,
@@ -346,19 +346,19 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
       icon: Factory,
       color: "text-purple-500",
       items: Object.entries(pabrikMiliterRate).map(([key, val]: [string, any]) => ({
-          key: val.key,
-          dataKey: val.dataKey,
-          groupId: val.groupId,
-          label: val.label,
-          icon: getMilitaryIcon(val.dataKey),
-          desc: val.deskripsi,
-          cost: val.biaya_pembangunan,
-          buildTime: val.waktu_pembangunan,
-          lowongan_kerja: val.lowongan_kerja,
-          count: Number(currentData.pabrik_militer?.[val.dataKey as keyof typeof currentData.pabrik_militer] || 0) + ((buildingDeltas[val.dataKey] as number) || 0),
-          consumption: val.konsumsi_listrik || 0,
-          tarif: val.produksi || 0,
-          unit: val.satuan || "Unit"
+        key: val.key,
+        dataKey: val.dataKey,
+        groupId: val.groupId,
+        label: val.label,
+        icon: getMilitaryIcon(val.dataKey),
+        desc: val.deskripsi,
+        cost: val.biaya_pembangunan,
+        buildTime: val.waktu_pembangunan,
+        lowongan_kerja: val.lowongan_kerja,
+        count: Number(currentData.pabrik_militer?.[val.dataKey as keyof typeof currentData.pabrik_militer] || 0) + ((buildingDeltas[val.dataKey] as number) || 0),
+        consumption: val.konsumsi_listrik || 0,
+        tarif: val.produksi || 0,
+        unit: val.satuan || "Unit"
       }))
     }
   ];
@@ -366,9 +366,9 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
-        
+
         {/* Insufficient Funds / Both Modal */}
-        <JikaUangKurang 
+        <JikaUangKurang
           isOpen={isInsufficientFundsModalOpen}
           onClose={() => setIsInsufficientFundsModalOpen(false)}
           requiredAmount={requiredAmount}
@@ -377,7 +377,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
         />
 
 
-        
+
         {/* Header */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
@@ -447,7 +447,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
                       {group.items.map((item: any, idx: number) => {
                         const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
                         const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
-                        
+
                         const subGroupLabels: Record<string, string> = {
                           darat: "Armada Darat Nasional",
                           laut: "Armada Maritim & Laut",
@@ -491,7 +491,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
         {confirmBuild && (
           <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
             <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[40px] shadow-2xl max-w-4xl w-full mx-4 flex flex-col gap-6 animate-in zoom-in-95 max-h-[90vh]">
-              
+
               {/* Header: Icon & Title (Full Width) */}
               <div className="flex items-center gap-6 shrink-0 border-b border-zinc-800/50 pb-6">
                 <div className="p-4 bg-cyan-500/10 rounded-3xl border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
@@ -506,7 +506,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
               {/* Main Content: 2-Column Grid Area */}
               <div className="flex-1 overflow-y-auto no-scrollbar py-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  
+
                   {/* Column 1: Stats & Info */}
                   <div className="space-y-6">
                     <div className="flex flex-col gap-3">
@@ -543,8 +543,8 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
                         )}
                         {confirmBuild.tarif > 0 && (
                           <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group col-span-2">
-                             <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Produksi Strategis</span>
-                             <span className="text-xl font-black text-amber-400">+{confirmBuild.tarif.toLocaleString('id-ID')} {confirmBuild.unit}/HARI</span>
+                            <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-none">Produksi Strategis</span>
+                            <span className="text-xl font-black text-amber-400">+{confirmBuild.tarif.toLocaleString('id-ID')} {confirmBuild.unit}/HARI</span>
                           </div>
                         )}
                       </div>
@@ -553,7 +553,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
                     <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
                       <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian Seluruh Unit</span>
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
-                         {formatGameDate(addDays(getStoredGameDate(), Math.ceil(confirmBuild.buildTime / pbbMultipliers.armsSpeed) * quantity))}
+                        {formatGameDate(addDays(getStoredGameDate(), Math.ceil(confirmBuild.buildTime / pbbMultipliers.armsSpeed) * quantity))}
                       </p>
                     </div>
                   </div>
@@ -744,30 +744,30 @@ function BuildingCard({ item, onBuild, construction, cumulative, countryCode }: 
               <div className="p-1.5 bg-amber-500/10 rounded-lg">
                 <TrendingUp size={12} className={pbbMultipliers.armsSpeed < 1 ? 'text-rose-500 animate-pulse' : 'text-amber-500'} />
               </div>
-               <span className={`text-[12px] font-bold ${pbbMultipliers.armsSpeed < 1 ? 'text-rose-500' : 'text-amber-500/90'}`}>
-                 Produksi: +{Math.floor(item.tarif).toLocaleString('id-ID')} {item.unit}/unit
-               </span>
+              <span className={`text-[12px] font-bold ${pbbMultipliers.armsSpeed < 1 ? 'text-rose-500' : 'text-amber-500/90'}`}>
+                Produksi: +{Math.floor(item.tarif).toLocaleString('id-ID')} {item.unit}/unit
+              </span>
             </div>
           )}
 
           {((item.consumption ?? 0) >= 0) && (
             <div className="flex flex-col gap-2">
-               <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-rose-500/10 rounded-lg">
-                     <Zap size={12} className="text-rose-500/90" />
-                  </div>
-                   <span className="text-[12px] font-bold text-rose-500/80">
-                     Konsumsi: {Math.max(item.consumption || 0, 1).toLocaleString('id-ID')} MW/bangunan
-                   </span>
-               </div>
-               <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
-                  <div className="p-1.5 bg-rose-500/5 rounded-lg">
-                     <Activity size={12} className="text-rose-400/70" />
-                  </div>
-                  <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                     Total Konsumsi Listrik: {(item.count * Math.max(item.consumption, 1)).toLocaleString('id-ID')} MW
-                  </span>
-               </div>
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                  <Zap size={12} className="text-rose-500/90" />
+                </div>
+                <span className="text-[12px] font-bold text-rose-500/80">
+                  Konsumsi: {Math.max(item.consumption || 0, 1).toLocaleString('id-ID')} MW/bangunan
+                </span>
+              </div>
+              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                  <Activity size={12} className="text-rose-400/70" />
+                </div>
+                <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+                  Total Konsumsi Listrik: {(item.count * Math.max(item.consumption, 1)).toLocaleString('id-ID')} MW
+                </span>
+              </div>
             </div>
           )}
 

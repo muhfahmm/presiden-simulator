@@ -278,4 +278,3 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
     </>
   );
 }
-

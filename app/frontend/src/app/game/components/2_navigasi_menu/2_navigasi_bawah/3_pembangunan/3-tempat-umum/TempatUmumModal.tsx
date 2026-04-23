@@ -175,8 +175,8 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
       }
     }
     else if (pabrikMiliterRate[key as keyof typeof pabrikMiliterRate]) {
-       const dataKey = pabrikMiliterRate[key as keyof typeof pabrikMiliterRate].dataKey;
-       if (dataKey) (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
+      const dataKey = pabrikMiliterRate[key as keyof typeof pabrikMiliterRate].dataKey;
+      if (dataKey) (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
     }
   });
 
@@ -342,8 +342,8 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
-        
-        <JikaUangKurang 
+
+        <JikaUangKurang
           isOpen={isInsufficientFundsModalOpen}
           onClose={() => setIsInsufficientFundsModalOpen(false)}
           requiredAmount={requiredAmount}
@@ -405,61 +405,61 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
           <div className="space-y-12">
             {publicGroups.map((group) => (
-            <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <div className="flex items-center gap-3 mb-5 px-1 font-black">
-                <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>
-                <div className="flex flex-col flex-1">
-                  <h3 className="text-xl font-black text-white uppercase tracking-widest italic flex items-center gap-3">
-                    {group.title} 
-                    <span className="text-cyan-400 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span>
-                  </h3>
+              <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+                <div className="flex items-center gap-3 mb-5 px-1 font-black">
+                  <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>
+                  <div className="flex flex-col flex-1">
+                    <h3 className="text-xl font-black text-white uppercase tracking-widest italic flex items-center gap-3">
+                      {group.title}
+                      <span className="text-cyan-400 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span>
+                    </h3>
+                  </div>
+                  <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50 hidden lg:block"></div>
+                  <button onClick={() => toggleSector(group.id)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95">
+                    {collapsedSectors.has(group.id) ? <EyeOff size={16} /> : <Eye size={16} className="text-cyan-400" />}
+                  </button>
                 </div>
-                <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50 hidden lg:block"></div>
-                <button onClick={() => toggleSector(group.id)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95">
-                  {collapsedSectors.has(group.id) ? <EyeOff size={16} /> : <Eye size={16} className="text-cyan-400" />}
-                </button>
-              </div>
-              <div className={`grid transition-all duration-700 ease-in-out ${!collapsedSectors.has(group.id) ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
-                <div className="overflow-hidden">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
-                    {group.items.map((item: any, idx: number) => {
-                      const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
-                      const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
-                      const subGroupLabels: Record<string, string> = {
-                        pendidikan: "Pendidikan & Riset",
-                        kesehatan: "Layanan Kesehatan",
-                        olahraga: "Sektor Olahraga",
-                        komersial: "Fasilitas Komersial",
-                        hukum: "Hukum, Pertahanan & Keamanan",
-                        infra_darat: "Infrastruktur Darat & Logistik",
-                        perkeretaapian: "Sistem Perkeretaapian Nasional",
-                        maritim_udara: "Hub Maritim & Dirgantara"
-                      };
-                      const showSubHeader = item.groupId && item.groupId !== prevGroupId;
-                      return (
-                        <Fragment key={item.key || idx}>
-                          {showSubHeader && subGroupLabels[item.groupId] && (
-                            <div className="col-span-full mt-6 mb-2 flex items-center gap-4">
-                              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-800 to-zinc-800"></div>
-                              <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] whitespace-nowrap bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full shadow-xl">
-                                {subGroupLabels[item.groupId]}
-                              </span>
-                              <div className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-800 to-zinc-800"></div>
-                            </div>
-                          )}
-                          <BuildingCard
-                            item={item}
-                            onBuild={handleBuildRequest}
-                            construction={currentConstruction}
-                            cumulative={0}
-                          />
-                        </Fragment>
-                      );
-                    })}
+                <div className={`grid transition-all duration-700 ease-in-out ${!collapsedSectors.has(group.id) ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
+                  <div className="overflow-hidden">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
+                      {group.items.map((item: any, idx: number) => {
+                        const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
+                        const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
+                        const subGroupLabels: Record<string, string> = {
+                          pendidikan: "Pendidikan & Riset",
+                          kesehatan: "Layanan Kesehatan",
+                          olahraga: "Sektor Olahraga",
+                          komersial: "Fasilitas Komersial",
+                          hukum: "Hukum, Pertahanan & Keamanan",
+                          infra_darat: "Infrastruktur Darat & Logistik",
+                          perkeretaapian: "Sistem Perkeretaapian Nasional",
+                          maritim_udara: "Hub Maritim & Dirgantara"
+                        };
+                        const showSubHeader = item.groupId && item.groupId !== prevGroupId;
+                        return (
+                          <Fragment key={item.key || idx}>
+                            {showSubHeader && subGroupLabels[item.groupId] && (
+                              <div className="col-span-full mt-6 mb-2 flex items-center gap-4">
+                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-800 to-zinc-800"></div>
+                                <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] whitespace-nowrap bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full shadow-xl">
+                                  {subGroupLabels[item.groupId]}
+                                </span>
+                                <div className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-800 to-zinc-800"></div>
+                              </div>
+                            )}
+                            <BuildingCard
+                              item={item}
+                              onBuild={handleBuildRequest}
+                              construction={currentConstruction}
+                              cumulative={0}
+                            />
+                          </Fragment>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             ))}
           </div>
         </div>
@@ -470,7 +470,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
             <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-[40px] shadow-2xl max-w-4xl w-full mx-4 flex flex-col gap-6 animate-in zoom-in-95 max-h-[90vh]">
               <div className="flex items-center gap-6 shrink-0 border-b border-zinc-800/50 pb-6">
                 <div className="p-4 bg-cyan-500/10 rounded-3xl border border-cyan-500/20 shadow-lg font-black italic">
-                   <confirmBuild.icon size={40} className="text-cyan-500" />
+                  <confirmBuild.icon size={40} className="text-cyan-500" />
                 </div>
                 <div className="flex-1 text-left">
                   <h3 className="text-3xl font-black text-white uppercase tracking-tighter italic leading-none">Konfirmasi Bangun?</h3>
@@ -493,7 +493,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
                     <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-5 text-center shadow-inner">
                       <span className="text-[10px] font-bold text-cyan-500/60 uppercase tracking-widest italic">Estimasi Penyelesaian</span>
                       <p className="text-lg font-black text-white mt-1 uppercase italic tracking-wider">
-                         {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
+                        {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
                       </p>
                     </div>
                   </div>
@@ -522,7 +522,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
           <div className={`bg-zinc-950/95 border-l border-zinc-800 w-full max-w-sm h-full shadow-2xl flex flex-col transition-transform duration-500 ${showQueue ? 'translate-x-0' : 'translate-x-full'}`} onClick={e => e.stopPropagation()}>
             <div className="p-6 border-b border-zinc-800 flex justify-between items-center"><h3 className="text-lg font-black text-white italic uppercase tracking-widest leading-none">Antrean Pembangunan</h3><button onClick={() => setShowQueue(false)}><X className="h-5 w-5 text-zinc-400" /></button></div>
             <div className="flex-1 overflow-y-auto p-6 space-y-4 no-scrollbar">
-              {activeConstructions.length === 0 ? <p className="text-zinc-500 text-center font-bold uppercase tracking-widest mt-10 italic">Antrean Kosong</p> : 
+              {activeConstructions.length === 0 ? <p className="text-zinc-500 text-center font-bold uppercase tracking-widest mt-10 italic">Antrean Kosong</p> :
                 activeConstructions.map((item, idx) => {
                   const progress = calculateConstructionProgress(item.startDate, item.endDate, getStoredGameDate().getTime());
                   if (!progress) return null;
@@ -570,18 +570,18 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
               <h4 className="text-xl font-black text-amber-400 uppercase italic tracking-tighter leading-tight">{item.label}</h4>
             </div>
             <div className="flex flex-col gap-3 p-4 rounded-2xl bg-cyan-500/5 border border-cyan-500/20 shadow-lg">
-               <p className="text-sm font-black text-white italic leading-relaxed">{item.efek || "Fasilitas Publik Strategis"}</p>
+              <p className="text-sm font-black text-white italic leading-relaxed">{item.efek || "Fasilitas Publik Strategis"}</p>
             </div>
             <div className="grid gap-2">
-                {item.konsumsi_listrik > 0 && (
-                  <div className="flex items-center justify-between p-3.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 group/row hover:border-pink-500/30 transition-all">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-pink-500/10 rounded-xl text-pink-500 border border-pink-500/20"><Zap size={14} /></div>
-                      <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Beban Energi</span>
-                    </div>
-                    <span className="text-[15px] font-black text-pink-500 tabular-nums">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
+              {item.konsumsi_listrik > 0 && (
+                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 group/row hover:border-pink-500/30 transition-all">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-pink-500/10 rounded-xl text-pink-500 border border-pink-500/20"><Zap size={14} /></div>
+                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                   </div>
-                )}
+                  <span className="text-[15px] font-black text-pink-500 tabular-nums">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
+                </div>
+              )}
             </div>
           </div>
           <button onClick={() => setShowDetail(false)} className="mt-6 w-full py-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-zinc-800 transition-all cursor-pointer shadow-lg active:scale-95">Kembali</button>
@@ -602,14 +602,14 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
       <div className="flex-1 flex flex-col relative z-10 mt-1">
         <h4 className="text-[17px] font-black text-zinc-100 group-hover:text-amber-400 transition-colors uppercase italic mb-3 leading-tight">{item.label}</h4>
         <div className="flex flex-col gap-2.5 flex-1 justify-center">
-            {item.consumption > 0 && (
-              <div className="flex items-center gap-2.5">
-                <Zap size={12} className="text-amber-500" /><span className="text-[12px] font-bold text-amber-500/80">Konsumsi: {item.consumption.toLocaleString('id-ID')} MW/unit</span>
-              </div>
-            )}
-            <div className="flex items-center gap-2.5 italic opacity-60">
-              <Clock size={12} className="text-zinc-500" /><span className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest">Waktu: {item.buildTime?.toLocaleString('id-ID')} Hari</span>
+          {item.consumption > 0 && (
+            <div className="flex items-center gap-2.5">
+              <Zap size={12} className="text-amber-500" /><span className="text-[12px] font-bold text-amber-500/80">Konsumsi: {item.consumption.toLocaleString('id-ID')} MW/unit</span>
             </div>
+          )}
+          <div className="flex items-center gap-2.5 italic opacity-60">
+            <Clock size={12} className="text-zinc-500" /><span className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest">Waktu: {item.buildTime?.toLocaleString('id-ID')} Hari</span>
+          </div>
         </div>
         <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
           <div className="flex justify-between items-baseline gap-2">
@@ -621,14 +621,14 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
       <div className="mt-auto pt-4 relative z-10">
         {progress ? (
           <div className="space-y-2 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50 shadow-inner">
-             <div className="flex justify-between text-[10px] font-black text-cyan-400 uppercase tracking-tighter italic"><span>PROSES BANGUN:</span><span>{progress.percentage}%</span></div>
-             <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/50"><div className={`h-full ${progress.colorClass} rounded-full`} style={{ width: `${progress.percentage}%` }} /></div>
-             <div className="text-[9px] font-bold text-zinc-600 uppercase italic tracking-tighter text-right">E.T.A: {formatGameDate(new Date(construction.endDate))}</div>
+            <div className="flex justify-between text-[10px] font-black text-cyan-400 uppercase tracking-tighter italic"><span>PROSES BANGUN:</span><span>{progress.percentage}%</span></div>
+            <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/50"><div className={`h-full ${progress.colorClass} rounded-full`} style={{ width: `${progress.percentage}%` }} /></div>
+            <div className="text-[9px] font-bold text-zinc-600 uppercase italic tracking-tighter text-right">E.T.A: {formatGameDate(new Date(construction.endDate))}</div>
           </div>
         ) : (
           <div className="flex items-center justify-between gap-4">
-             <div className="flex flex-col"><span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span><span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost?.toLocaleString('id-ID')}</span></div>
-             <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-lg hover:bg-cyan-500 transition-all cursor-pointer active:scale-95 border border-cyan-400/20">Bangun</button>
+            <div className="flex flex-col"><span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span><span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost?.toLocaleString('id-ID')}</span></div>
+            <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-lg hover:bg-cyan-500 transition-all cursor-pointer active:scale-95 border border-cyan-400/20">Bangun</button>
           </div>
         )}
       </div>
