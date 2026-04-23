@@ -53,7 +53,7 @@ export const happinessStorage = {
   saveStats: (stats: HappinessStats) => {
     if (typeof window === 'undefined') return;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
-    window.dispatchEvent(new Event("happiness_updated"));
+    setTimeout(() => window.dispatchEvent(new Event("happiness_updated")), 0);
   },
 
   /**
@@ -108,9 +108,9 @@ export const happinessStorage = {
 
     // Check for Critical and Game Over states
     if (newValue === 0) {
-      window.dispatchEvent(new CustomEvent('happiness_gameover'));
+      setTimeout(() => window.dispatchEvent(new CustomEvent('happiness_gameover')), 0);
     } else if (newValue <= 10) {
-      window.dispatchEvent(new CustomEvent('happiness_critical'));
+      setTimeout(() => window.dispatchEvent(new CustomEvent('happiness_critical')), 0);
     }
   },
 

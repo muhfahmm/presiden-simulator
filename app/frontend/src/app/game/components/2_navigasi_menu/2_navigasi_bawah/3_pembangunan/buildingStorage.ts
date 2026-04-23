@@ -39,7 +39,7 @@ export const buildingStorage = {
     localStorage.setItem(BUILDING_STORAGE_KEY, JSON.stringify(data));
     
     // Dispatch event for UI updates
-    window.dispatchEvent(new Event('building_storage_updated'));
+    setTimeout(() => window.dispatchEvent(new Event('building_storage_updated')), 0);
   },
 
   getQueue: (): ConstructionItem[] => {

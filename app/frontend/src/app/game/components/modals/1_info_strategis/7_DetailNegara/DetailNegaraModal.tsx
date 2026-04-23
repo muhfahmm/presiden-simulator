@@ -1336,10 +1336,10 @@ function SimpleGridSection({ title, data, buildingDeltas, completionDates = {}, 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {sortedItems.map((entry: any) => {
           const [key, val] = entry;
-          const delta = buildingDeltas[key] || Object.entries(buildingDeltas).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1] || 0;
+          const cleanKey = key.replace(/^\d+_/, '');
+          const delta = buildingDeltas[key] || buildingDeltas[cleanKey] || Object.entries(buildingDeltas).find(([k]) => k.replace(/^\d+_/, '') === cleanKey)?.[1] || 0;
           const total = (typeof val === 'number' ? val : Number(val?.toString().replace(/\./g, '') || 0)) + Number(delta);
           
-          const cleanKey = key.replace(/^\d+_/, '');
           const elementId = 
             type === 'infrastruktur' ? `infra_${cleanKey}` : 
             type === 'sosial' ? `sosial_${cleanKey}` : 
@@ -1408,7 +1408,7 @@ function SimpleGridSection({ title, data, buildingDeltas, completionDates = {}, 
                         return q.buildingKey === key || normalizedQKey === key;
                       }).reduce((acc: number, curr: any) => acc + (Number(curr.quantity) || 1), 0) || 0;
                       
-                      const compDate = completionDates[key] || Object.entries(completionDates).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1];
+                      const compDate = completionDates[key] || completionDates[cleanKey] || Object.entries(completionDates).find(([k]) => k.replace(/^\d+_/, '') === cleanKey)?.[1];
                       const hasRecentDelta = delta > 0 && isWithin7Days(compDate, currentGameDate);
                       const isBuilding = inProgress > 0;
                       
@@ -1426,7 +1426,7 @@ function SimpleGridSection({ title, data, buildingDeltas, completionDates = {}, 
                     })()}
                   </span>
                   {(() => {
-                    const compDate = completionDates[key] || Object.entries(completionDates).find(([k]) => k.replace(/^\d+_/, '') === key)?.[1];
+                    const compDate = completionDates[key] || completionDates[cleanKey] || Object.entries(completionDates).find(([k]) => k.replace(/^\d+_/, '') === cleanKey)?.[1];
                     if (delta > 0 && isWithin7Days(compDate, currentGameDate)) {
                       return (
                         <span className="text-[10px] font-black text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded-md border border-emerald-500/20">

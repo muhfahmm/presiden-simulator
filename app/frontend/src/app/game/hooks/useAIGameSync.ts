@@ -8,6 +8,7 @@ import { aiHappinessStorage } from "@/app/game/components/modals/1_info_strategi
 
 import { countries } from "@/app/database/data/negara/benua/index";
 import { EksekutorPertahananAI } from "../components/AI_logic/6_AI_pertahanan/sistem_tindakan_respon/EksekutorPertahananAI";
+import { EksekutorPembangunanAI } from "../components/AI_logic/5_AI_Pembangunan/sistem_tindakan_respon/EksekutorPembangunanAI";
 import { PusatKeputusanPertahanan } from "../components/AI_logic/6_AI_pertahanan/pusat_keputusan_pertahanan/PusatKeputusanPertahanan";
 
 /**
@@ -84,9 +85,12 @@ export function useAIGameSync() {
         aiHappinessStorage.dailyDecay(dateStr, userCountry);
       } catch (e) { /* silent */ }
 
-      // 4. AI Defense Logic
+      // 4. AI Construction & Defense Completion
       try {
-        // A. Check for completed defense projects
+        // A. Check for completed BUILDING projects (was missing — caused AI counts to never increment)
+        EksekutorPembangunanAI.checkCompletion(gameDate);
+
+        // B. Check for completed DEFENSE projects
         EksekutorPertahananAI.checkCompletion(gameDate);
 
         // B. Process a batch of NPCs for defense thinking

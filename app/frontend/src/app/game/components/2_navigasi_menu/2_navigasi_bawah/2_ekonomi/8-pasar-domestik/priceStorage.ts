@@ -76,7 +76,7 @@ export const priceStorage = {
       ...data,
       lastUpdated: Date.now()
     }));
-    window.dispatchEvent(new Event('price_updated'));
+    setTimeout(() => window.dispatchEvent(new Event('price_updated')), 0);
   },
 
   updatePrice: (key: keyof Omit<PriceData, 'lastUpdated'>, value: number) => {

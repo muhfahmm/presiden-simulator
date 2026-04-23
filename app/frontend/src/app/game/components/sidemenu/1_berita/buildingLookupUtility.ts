@@ -55,11 +55,12 @@ export const DATA_KEY_TO_SECTOR: Record<string, string> = {
   bandara: "infrastruktur.bandara",
   helipad: "infrastruktur.helipad",
   // --- PENDIDIKAN ---
-  paud: "pendidikan.paud",
-  sekolah_dasar: "pendidikan.sekolah_dasar",
-  sekolah_menengah: "pendidikan.sekolah_menengah",
-  sekolah_lanjutan: "pendidikan.sekolah_lanjutan",
+  prasekolah: "pendidikan.prasekolah",
+  dasar: "pendidikan.dasar",
+  menengah: "pendidikan.menengah",
+  lanjutan: "pendidikan.lanjutan",
   universitas: "pendidikan.universitas",
+  lembaga_pendidikan: "pendidikan.lembaga_pendidikan",
   laboratorium: "pendidikan.laboratorium",
   observatorium: "pendidikan.observatorium",
   pusat_penelitian: "pendidikan.pusat_penelitian",
@@ -201,6 +202,28 @@ export const DATA_KEY_TO_SECTOR: Record<string, string> = {
   bunker_komando: "militer_strategis.bunker_komando",
   pusat_komando_wilayah: "militer_strategis.pusat_komando_wilayah",
   pabrik_amunisi: "pabrik_militer.pabrik_amunisi",
+};
+
+// Helper to map sectorPath to UI Tab ID
+export const getTabForSector = (path: string): string => {
+  if (!path) return 'produksi';
+  if (path.includes('sektor_listrik') || path.includes('sektor_ekstraksi') || path.includes('sektor_manufaktur') || 
+      path.includes('sektor_peternakan') || path.includes('sektor_agrikultur') || path.includes('sektor_perikanan') || 
+      path.includes('sektor_olahan_pangan') || path.includes('sektor_farmasi')) return 'produksi';
+  
+  if (path.includes('pabrik_militer')) return 'militer';
+  
+  if (path.includes('infrastruktur') || path.includes('pendidikan') || path.includes('kesehatan') || 
+      path.includes('hukum') || path.includes('sektor_olahraga') || path.includes('sektor_komersial') || 
+      path.includes('sektor_hiburan')) return 'layanan_publik';
+      
+  if (path.includes('hunian')) return 'hunian_sosial';
+      
+  if (path.includes('intelijen') || path.includes('militer_strategis')) return 'intelijen';
+  if (path.includes('armada_militer')) return 'armada_militer';
+  if (path.includes('armada_kepolisian')) return 'armada_polisi';
+  
+  return 'produksi';
 };
 
 export const BUILDING_NAME_LOOKUP: Record<string, { dataKey: string; sectorPath: string }> = (() => {

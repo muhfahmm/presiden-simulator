@@ -12,12 +12,12 @@ import (
 )
 
 // ProcessNewsDay coordinates daily international news generation
-func ProcessNewsDay(date time.Time) {
+func ProcessNewsDay(date time.Time) bool {
 	dateStr := date.Format("02 Jan 2006")
 	day := core.GlobalState.DayCounter
 
 	// 1. Pembangunan (Daily progress) - Already active via ProcessDaily
-	pembangunan.ProcessDaily(dateStr)
+	changed := pembangunan.ProcessDaily(dateStr)
 
 	// --- BATCH NEWS GENERATION (5-15 items per tab) ---
 	// Trigger strictly on the 1st of the month (Day 1 for Finance)
@@ -48,4 +48,6 @@ func ProcessNewsDay(date time.Time) {
 		keuangan.GenerateFlashNews(dateStr)
 		perdagangan.GenerateFlashNews(dateStr)
 	}
+
+	return changed
 }

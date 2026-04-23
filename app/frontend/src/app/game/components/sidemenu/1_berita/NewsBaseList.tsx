@@ -86,15 +86,22 @@ export const NewsBaseList = ({
   };
 
   const detectNavigationTargets = (item: NewsItem) => {
-    const textToSearch = (item.source + " " + item.subject + " " + item.content).toLowerCase();
-    let targetCountry = null;
-    for (const country of countries) {
-      const nameId = country.name_id.toLowerCase();
-      const regexId = new RegExp(`\\b${nameId.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b`, 'i');
-      if (regexId.test(textToSearch)) { targetCountry = country; break; }
+    const details = detectConstructionDetails(item.subject, item.content, item.source);
+    if (!details.country) return null;
+    
+    // If it's a construction news, use the detected building
+    if (details.building) {
+      const { getTabForSector } = require('./buildingLookupUtility');
+      const tab = getTabForSector(details.building.sectorPath);
+      return { 
+        country: details.country, 
+        tab: tab, 
+        buildingKey: details.building.dataKey 
+      };
     }
-    if (!targetCountry) return null;
-    return { country: targetCountry, sector: 'produksi' }; // Simplified for now
+
+    // Fallback for other categories (default to produksi)
+    return { country: details.country, tab: 'produksi', buildingKey: 'emas' };
   };
 
   const filtered = news.filter(item => {
@@ -129,8 +136,20 @@ export const NewsBaseList = ({
                 onClick={() => setExpandedId(isExpanded ? null : item.id)}
               >
                 <div className="flex items-center gap-6">
-                  <div className={`p-4 rounded-2xl bg-zinc-950 border ${theme.border} ${theme.text} ${theme.glow}`}>
-                    {theme.icon}
+                  <div className="relative">
+                    <div className={`p-4 rounded-2xl bg-zinc-950 border ${theme.border} ${theme.text} ${theme.glow}`}>
+                      {theme.icon}
+                    </div>
+                    {/* Green +X badge for construction news */}
+                    {item.category === 'construction' && (() => {
+                      const qtyMatch = item.content.match(/(\d+)\s*unit/i) || item.content.match(/(\d+)\s*proyek/i);
+                      const qty = qtyMatch ? parseInt(qtyMatch[1]) : 1;
+                      return (
+                        <div className="absolute -top-2 -right-2 min-w-[28px] h-7 flex items-center justify-center px-1.5 bg-emerald-500 text-black rounded-full shadow-[0_0_12px_rgba(16,185,129,0.6)] border-2 border-zinc-950 animate-in zoom-in duration-300">
+                          <span className="text-[11px] font-black leading-none">+{qty}</span>
+                        </div>
+                      );
+                    })()}
                   </div>
                   <div>
                     <div className="flex items-center gap-3">
@@ -175,12 +194,21 @@ export const NewsBaseList = ({
                           if (!targets) return null;
                           return (
                             <button
-                              onClick={() => {
-                                onClose();
-                                const countryId = targets.country.name_id.toLowerCase();
-                                setActiveMenu(`CountryModal:${countryId}:info_strategis:detail_lengkap:produksi:emas`);
-                                router.push(`/game/${countryId}/info_strategis/detail_lengkap/produksi/emas`);
-                              }}
+                                onClick={() => {
+                                  onClose();
+                                  const countryNameId = targets.country.name_id;
+                                  const countrySlug = countryNameId.toLowerCase().replace(/ /g, '_');
+                                  const tab = targets.tab || 'produksi';
+                                  const key = targets.buildingKey || 'emas';
+                                  
+                                  console.log(`[NEWS NAVIGATION] Target: ${countryNameId} (${countrySlug}), Tab: ${tab}, Key: ${key}`);
+                                  
+                                  // Update state with precise name_id for internal lookup
+                                  setActiveMenu(`CountryModal:${countryNameId.toLowerCase()}:info_strategis:detail_lengkap:${tab}:${key}`);
+                                  
+                                  // Use URL-friendly slug for the browser address
+                                  router.push(`/game/${countrySlug}/info_strategis/detail_lengkap/${tab}/${key}`);
+                                }}
                               className="flex items-center gap-2 group/btn cursor-pointer py-2 px-4 bg-amber-500/10 hover:bg-amber-500 border border-amber-500/30 hover:border-amber-400 rounded-xl transition-all"
                             >
                               <TrendingUp size={14} className="text-amber-500 group-hover/btn:text-black transition-colors" />

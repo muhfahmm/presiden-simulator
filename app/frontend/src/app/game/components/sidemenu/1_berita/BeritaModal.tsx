@@ -57,14 +57,13 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
     return () => window.removeEventListener('news_updated', handleUpdate);
   }, [isOpen]);
 
-  // Calculate unread counts per category
-  const unreadCounts = useMemo(() => {
+  // Calculate total counts per category (resets weekly with news)
+  const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {
       all: 0, pembangunan: 0, keuangan: 0, perdagangan: 0, kedutaan: 0, pakta: 0, aliansi: 0
     };
 
     news.forEach(item => {
-      if (item.read) return;
       counts.all++;
 
       const subj = item.subject.toLowerCase();
@@ -183,7 +182,7 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
               { id: 'aliansi', label: 'aliansi' }
             ].map((tab) => {
               const isActive = filter === tab.id;
-              const unread = unreadCounts[tab.id];
+              const count = categoryCounts[tab.id];
 
               return (
                 <button
@@ -197,14 +196,14 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
                 >
                   <span className="text-[11px] font-black uppercase tracking-[0.15em] italic relative z-10">{tab.label}</span>
                   
-                  {/* Emerald Badge Style */}
+                  {/* +X Badge */}
                   <div className={`flex items-center justify-center min-w-[32px] px-2 py-1 rounded-full transition-all duration-300 ${
                     isActive 
                     ? 'bg-emerald-500 text-zinc-900 shadow-[0_0_20px_rgba(16,185,129,0.4)]' 
-                    : unread > 0 ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' : 'opacity-0'
+                    : count > 0 ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' : 'opacity-0'
                   }`}>
                       <span className="text-[10px] font-black italic tabular-nums leading-none">
-                        {unread}
+                        +{count}
                       </span>
                   </div>
 

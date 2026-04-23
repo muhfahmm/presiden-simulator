@@ -105,8 +105,8 @@ func parseTypeScriptBuildings(content []byte, defaultSector string) []core.Build
 	
 	// Find all potential building blocks: "key": { ... } or key: { ... }
 	// Find all potential building blocks: "key": { ... } or key: { ... }
-	// Modified to be non-greedy to handle nested structures correctly
-	blockPattern := regexp.MustCompile(`(?s)(?:"?([\w_]+)"?):\s*\{(.+?)\}\s*,\s*[\r\n]`)
+	// Modified to make the trailing comma optional to handle the last item in an object
+	blockPattern := regexp.MustCompile(`(?s)(?:"?([\w_]+)"?):\s*\{(.+?)\}\s*,?\s*[\r\n]`)
 	matches := blockPattern.FindAllStringSubmatch(contentStr, -1)
 	
 	for _, match := range matches {
@@ -226,6 +226,8 @@ func loadBuildingsFromTypeScript() error {
 		loadedCount += len(buildings)
 		fmt.Printf("[GO] Loaded %d buildings from %s\n", len(buildings), dbFile.path)
 	}
+	fmt.Printf("[GO] Building database initialized. Loaded %d unique building types across all sectors.\n", len(core.BuildingTypes))
+
 	
 	// Load Pertahanan sectors
 	pertahananFiles := []struct {
@@ -434,21 +436,16 @@ func simulationEngine() {
 		// 2. Process Player Nation (Calculates Happiness, Stability, Budget)
 		processPlayerDay(nextDate)
 		
-		// Capture snapshot for SSE while locked
-		isMajorUpdate := len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen
-		isWeeklySync := core.GlobalState.DayCounter%7 == 0 || core.GlobalState.DayCounter < 2
-		
-		var snapshot []byte
-		if isWeeklySync {
-			snapshot = createSnapshot()
-		} else if isMajorUpdate {
-			snapshot = createMajorUpdateSnapshot()
-		} else {
-			snapshot = createPlayerSnapshot()
+		// ─── WEEKLY NEWS RESET (every 7 days) ───
+		if core.GlobalState.DayCounter > 1 && core.GlobalState.DayCounter%7 == 0 {
+			prevNewsCount := len(core.GlobalState.News)
+			core.GlobalState.News = []core.NewsItem{}
+			fmt.Printf("[GO] Weekly news reset: cleared %d items (Day %d)\n", prevNewsCount, core.GlobalState.DayCounter)
 		}
+
 		// 3. Process NPC & Global Simulation (CRITICAL: Called INSIDE Lock for thread-safety)
 		processNPCDay(nextDate)
-		server_berita.ProcessNewsDay(nextDate)
+		constructionChanged := server_berita.ProcessNewsDay(nextDate)
 		
 		// Quarterly Polyglot Workers (Spawns background goroutine, doesn't need lock)
 		if core.GlobalState.DayCounter%30 == 0 {
@@ -460,6 +457,19 @@ func simulationEngine() {
 
 		// Update Relationships
 		server_hubungan.UpdateDailyRelationsLocked()
+
+		// 4. Capture snapshot for SSE AFTER all processing (so news/buildings are included)
+		isMajorUpdate := len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen || constructionChanged
+		isWeeklySync := core.GlobalState.DayCounter%7 == 0 || core.GlobalState.DayCounter < 2
+		
+		var snapshot []byte
+		if isWeeklySync {
+			snapshot = createSnapshot()
+		} else if isMajorUpdate {
+			snapshot = createMajorUpdateSnapshot()
+		} else {
+			snapshot = createPlayerSnapshot()
+		}
 
 		core.GlobalState.Mu.Unlock()
 
@@ -473,6 +483,9 @@ func simulationEngine() {
 			// Update this atomicaly if needed, or rely on loop context
 			core.GlobalState.Mu.Lock()
 			core.GlobalState.LastProcessedMonth = nextDate.Month()
+
+			// (News reset moved to weekly — see above)
+
 			core.GlobalState.Mu.Unlock()
 			
 			oldMonth := nextDate.Month() - 1
@@ -683,12 +696,14 @@ func runAIBatch() {
 	for _, res := range results {
 		if res["decision"] == "EXECUTE" {
 			nation := res["nation"].(string)
-			// Apply building logic to NPC (simplified for now)
-			if buildings, ok := core.GlobalState.NPCBuildingLevels[nation]; ok {
-				key := res["building_key"].(string)
-				buildings[key]++
-				fmt.Printf("[GO] [AI BATCH] %s executed: %s\n", nation, key)
+			// Apply building logic to NPC
+			if core.GlobalState.NPCBuildingLevels[nation] == nil {
+				core.GlobalState.NPCBuildingLevels[nation] = make(map[string]int)
 			}
+			buildings := core.GlobalState.NPCBuildingLevels[nation]
+			key := res["building_key"].(string)
+			buildings[key]++
+			fmt.Printf("[GO] [AI BATCH] %s executed: %s\n", nation, key)
 		}
 	}
 	fmt.Printf("[GO] [AI BATCH] Cycle complete. Processed %d decisions.\n", len(results))
@@ -964,6 +979,7 @@ type SyncPayload struct {
 	Inbox          []core.InboxItem                `json:"inbox,omitempty"`
 	Player         core.PlayerState                `json:"player"`
 	NPCStates      map[string]*core.NPCNationState `json:"npcStates,omitempty"`
+	NpcBuildingLevels map[string]map[string]int    `json:"npcBuildingLevels,omitempty"`
 	Relationships  map[string]map[string]*core.Relationship `json:"relationships,omitempty"`
 	VisualDelta    map[string]float64              `json:"visualDelta,omitempty"` // ID -> Heatmap from MapEngine
 	ResetTriggered bool                            `json:"resetTriggered,omitempty"`
@@ -986,6 +1002,7 @@ func createSnapshot() []byte {
 		Inbox:      core.GlobalState.Inbox,
 		Player:     core.GlobalState.Player,
 		NPCStates:  core.GlobalState.NPCStates,
+		NpcBuildingLevels: core.GlobalState.NPCBuildingLevels,
 		Relationships: core.GlobalState.Relationships,
 		VisualDelta:   map_engine.GlobalVisualState.GetHeatmap(),
 	}
@@ -1030,6 +1047,7 @@ func createMajorUpdateSnapshot() []byte {
 		News:       getRecentNews(core.GlobalState.News, 20),
 		Inbox:      getRecentInbox(core.GlobalState.Inbox, 10),
 		Player:     core.GlobalState.Player,
+		NpcBuildingLevels: core.GlobalState.NPCBuildingLevels,
 	}
 	data, _ := json.Marshal(payload)
 	return data

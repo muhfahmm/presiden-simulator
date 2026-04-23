@@ -89,7 +89,7 @@ export const stabilityStorage = {
       }
     }
     
-    window.dispatchEvent(new Event('stability_updated'));
+    setTimeout(() => window.dispatchEvent(new Event('stability_updated')), 0);
   },
 
   getStability: (): number => {

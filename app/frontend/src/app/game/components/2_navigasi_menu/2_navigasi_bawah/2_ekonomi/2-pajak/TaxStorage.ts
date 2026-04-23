@@ -9,7 +9,7 @@ export const taxStorage = {
     const allTaxes = taxStorage.getAllTaxes();
     allTaxes[countryName] = pajak;
     localStorage.setItem(TAX_STORAGE_KEY, JSON.stringify(allTaxes));
-    window.dispatchEvent(new Event('tax_updated'));
+    setTimeout(() => window.dispatchEvent(new Event('tax_updated')), 0);
   },
 
   getTaxes: (countryName: string): any | null => {

@@ -8,7 +8,7 @@ import { DATA_ACARA, acaraStorage } from "@/app/game/components/2_navigasi_menu/
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
-import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import { getStoredGameDate, formatGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { aiThinkingStorage } from "../../global_event/aiThinkingStorage";
 
 const STORAGE_KEY_PENALTY = "em_ai_housing_penalty_data";
@@ -126,7 +126,7 @@ export class AiHunianService {
       source: "BIN / KEMENDAGRI",
       subject: "DARURAT NASIONAL: KRISIS DAN REVOLUSI SOSIAL!",
       content: "Ketidakpuasan rakyat memuncak. Pemberontakan besar terjadi di pusat-pusat kota menuntut perbaikan fasilitas hunian dan kesejahteraan hidup.",
-      time: getStoredGameDate().toDateString(),
+      time: formatGameDate(currentGameDate),
       priority: "high",
       category: "global"
     });

@@ -82,7 +82,7 @@ export const budgetStorage = {
     localStorage.setItem(BUDGET_STORAGE_KEY, JSON.stringify(data));
 
     // Dispatch event for UI updates
-    window.dispatchEvent(new Event('budget_storage_updated'));
+    setTimeout(() => window.dispatchEvent(new Event('budget_storage_updated')), 0);
   },
 
   getBudget: (): number => {

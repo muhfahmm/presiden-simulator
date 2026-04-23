@@ -71,7 +71,7 @@ export const populationStorage = {
     localStorage.setItem("em_population_version", "2");
     
     // Dispatch event for UI updates
-    window.dispatchEvent(new Event('population_updated'));
+    setTimeout(() => window.dispatchEvent(new Event('population_updated')), 0);
   },
 
   // Helper dedicated to fetching from country file data

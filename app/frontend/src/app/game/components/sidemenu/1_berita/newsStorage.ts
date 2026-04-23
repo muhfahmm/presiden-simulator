@@ -3,6 +3,7 @@ import { detectConstructionDetails } from "./buildingLookupUtility";
 import { aiBuildingStorage } from "../../AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiDefenseStorage } from "../../AI_logic/6_AI_pertahanan/antarmuka_data_pertahanan/AIDefenseStorage";
 import { inboxStorage } from "../2_kotak_masuk/inboxStorage";
+import { formatGameDate, getStoredGameDate } from "../../1_navbar/5_navigasi_waktu/gameTime";
 
 export interface NewsItem {
   id: string;
@@ -64,8 +65,17 @@ export const newsStorage = {
    * Sync news from Go Server SSE stream.
    * This replaces the old fetch-inside-getNews pattern.
    */
-  syncFromServer: (serverNews: any[]) => {
+  syncFromServer: (serverNews: any[], currentGameDate?: string) => {
     if (typeof window === "undefined" || !Array.isArray(serverNews)) return;
+    
+    // Monthly reset: if server sends empty news, clear local cache
+    if (serverNews.length === 0) {
+      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify([]));
+      return;
+    }
+
+    // Import helper if needed (though it's better to pass it in)
+    const fallbackDate = currentGameDate || formatGameDate(getStoredGameDate());
 
     // Map server news to our format
     const mapped: NewsItem[] = serverNews.map((sn: any) => ({
@@ -73,7 +83,7 @@ export const newsStorage = {
       source: sn.source || "Server",
       subject: sn.subject || "",
       content: sn.content || "",
-      time: sn.time || new Date(sn.timestamp).toLocaleDateString("id-ID"),
+      time: sn.time || fallbackDate || new Date(sn.timestamp || Date.now()).toLocaleDateString("id-ID"),
       read: sn.read || false,
       priority: sn.priority || "low",
       category: sn.category || "global",
@@ -120,7 +130,7 @@ export const newsStorage = {
       try {
         sseSource = new EventSource("http://127.0.0.1:8081/api/game/sync");
 
-        sseSource.onmessage = (event) => {
+        sseSource.onmessage = async (event) => {
           try {
             const data = JSON.parse(event.data);
             
@@ -132,7 +142,44 @@ export const newsStorage = {
               const currentCount = data.news.length;
               if (currentCount !== lastNewsCount) {
                 lastNewsCount = currentCount;
-                newsStorage.syncFromServer(data.news);
+                newsStorage.syncFromServer(data.news, data.gameDate);
+              }
+            }
+
+            // Sync NPC building levels from Go server (authoritative)
+            if (data.npcBuildingLevels && typeof data.npcBuildingLevels === 'object') {
+              try {
+                const { aiBuildingStorage } = await import(
+                  '@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage'
+                );
+                // Write each country's building deltas from the Go server
+                for (const [countryName, buildings] of Object.entries(data.npcBuildingLevels as Record<string, Record<string, number>>)) {
+                  if (buildings && typeof buildings === 'object') {
+                    const existing = aiBuildingStorage.getData(countryName);
+                    let hasChanges = false;
+                    for (const [buildingKey, count] of Object.entries(buildings)) {
+                      const prevCount = existing.buildingDeltas[buildingKey] || 0;
+                      if (prevCount !== count) {
+                        existing.buildingDeltas[buildingKey] = count;
+                        if (prevCount < count) {
+                          existing.completionDates[buildingKey] = data.gameDate;
+                        }
+                        hasChanges = true;
+                      }
+                    }
+                    if (hasChanges) {
+                      aiBuildingStorage.saveCountryData(
+                        countryName,
+                        buildings, // Use the authoritative Go server count
+                        existing.constructionQueue,
+                        existing.completionDates
+                      );
+                      console.log(`[SSE] Syncing ${countryName}: Progress detected.`);
+                    }
+                  }
+                }
+              } catch (e) {
+                // Silent — don't break SSE loop
               }
             }
 
@@ -252,6 +299,7 @@ export const newsStorage = {
       ...news,
       id: Math.random().toString(36).substr(2, 9),
       read: false,
+      time: news.time || formatGameDate(getStoredGameDate()),
       timestamp: Date.now()
     };
     
@@ -343,6 +391,11 @@ export const newsStorage = {
         if (isAI && country && building) {
           const countryKey = country.name_en;
           
+          // Extract quantity from news text (e.g., "pembangunan 4 unit" or "pengadaan 4 unit")
+          const fullText = `${item.subject} ${item.content}`;
+          const qtyMatch = fullText.match(/(?:pembangunan|pengadaan|memulai pembangunan|membangun)\s+(\d+)\s+unit/i);
+          const quantity = qtyMatch ? parseInt(qtyMatch[1], 10) : 1;
+
           // Apply effect based on sector
           if (building.sectorPath.includes('armada_militer') || 
               building.sectorPath.includes('armada_kepolisian') || 
@@ -350,11 +403,11 @@ export const newsStorage = {
               building.sectorPath.includes('intelijen') ||
               building.sectorPath.includes('militer_strategis') ||
               building.sectorPath.includes('pabrik_militer')) {
-            aiDefenseStorage.incrementDefenseCount(countryKey, building.dataKey, 1);
-            console.log(`[AI EFFECT] Instant Defense for ${countryKey}: ${building.dataKey}`);
+            aiDefenseStorage.incrementDefenseCount(countryKey, building.dataKey, quantity);
+            console.log(`[AI EFFECT] Instant Defense for ${countryKey}: ${building.dataKey} x${quantity}`);
           } else {
-            aiBuildingStorage.incrementBuildingCount(countryKey, building.dataKey, 1);
-            console.log(`[AI EFFECT] Instant Building for ${countryKey}: ${building.dataKey}`);
+            aiBuildingStorage.incrementBuildingCount(countryKey, building.dataKey, quantity);
+            console.log(`[AI EFFECT] Instant Building for ${countryKey}: ${building.dataKey} x${quantity}`);
           }
 
           processedIds.add(item.id);
