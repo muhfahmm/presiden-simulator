@@ -77,8 +77,8 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
   };
 
   return (
-    <div className="absolute inset-0 bg-black/95 z-[70] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-500">
-      <div className="bg-zinc-950 border border-red-500/20 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-[0_0_100px_rgba(239,68,68,0.1)] flex flex-col relative animate-in zoom-in-95 duration-500">
+    <div className="absolute inset-0 bg-black/60 z-50 flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-300">
+      <div className="bg-zinc-950/90 border border-red-500/20 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-[0_0_100px_rgba(239,68,68,0.1)] flex flex-col relative animate-in zoom-in-95 duration-500">
         {/* Header */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
