@@ -131,11 +131,11 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
 
     // Normalize
     const classes = [
-      { label: "Kaum Elit", percent: Math.max(0.2, elite), color: "bg-amber-500", text: "text-amber-400", bg: "bg-amber-500/10", icon: BadgeDollarSign },
-      { label: "Menengah Atas", percent: Math.max(1, upMid), color: "bg-sky-500", text: "text-sky-400", bg: "bg-sky-500/10", icon: Landmark },
-      { label: "Kelas Menengah", percent: Math.max(5, mid), color: "bg-emerald-500", text: "text-emerald-400", bg: "bg-emerald-500/10", icon: Briefcase },
-      { label: "Kelas Pekerja", percent: Math.max(10, work), color: "bg-zinc-500", text: "text-zinc-400", bg: "bg-zinc-500/10", icon: Gavel },
-      { label: "Masyarakat Miskin", percent: Math.max(1, poor), color: "bg-rose-500", text: "text-rose-400", bg: "bg-rose-500/10", icon: ShieldAlert }
+      { label: "Kaum Elit", percent: Math.max(0.2, elite), color: "bg-amber-700", text: "text-amber-950", bg: "bg-amber-800/10", icon: BadgeDollarSign },
+      { label: "Menengah Atas", percent: Math.max(1, upMid), color: "bg-blue-700", text: "text-blue-950", bg: "bg-blue-800/10", icon: Landmark },
+      { label: "Kelas Menengah", percent: Math.max(5, mid), color: "bg-emerald-700", text: "text-emerald-950", bg: "bg-emerald-800/10", icon: Briefcase },
+      { label: "Kelas Pekerja", percent: Math.max(10, work), color: "bg-stone-700", text: "text-stone-950", bg: "bg-stone-800/10", icon: Gavel },
+      { label: "Masyarakat Miskin", percent: Math.max(1, poor), color: "bg-rose-700", text: "text-rose-950", bg: "bg-rose-800/10", icon: ShieldAlert }
     ];
 
     const total = classes.reduce((sum, c) => sum + c.percent, 0);
@@ -258,13 +258,13 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
                 {socialClasses.map((item, i) => {
                   const Icon = item.icon;
                   return (
-                    <div key={i} className="flex flex-col gap-2 p-3 rounded-2xl bg-amber-800/5 border border-amber-800/10">
+                    <div key={i} className="flex flex-col gap-2 p-3 rounded-2xl bg-amber-800/5 border border-amber-800/10 group hover:bg-amber-800/10 transition-all">
                       <div className="flex justify-between items-center text-[9px] font-black uppercase tracking-wider">
-                        <span className={`flex items-center gap-2 ${item.text.replace('text-', 'text-amber-')}`}><Icon size={14} /> {item.label}</span>
-                        <span className="text-amber-950 italic">{item.percent}%</span>
+                        <span className={`flex items-center gap-2 ${item.text}`}><Icon size={14} /> {item.label}</span>
+                        <span className={`${item.text} italic`}>{item.percent}%</span>
                       </div>
-                      <div className="h-1 w-full bg-amber-800/10 rounded-full overflow-hidden">
-                        <div className={`h-full ${item.color.replace('bg-', 'bg-amber-')} opacity-60 transition-all duration-1000`} style={{ width: `${item.percent}%` }} />
+                      <div className="h-1.5 w-full bg-amber-800/10 rounded-full overflow-hidden border border-amber-800/5">
+                        <div className={`h-full ${item.color} transition-all duration-1000 shadow-sm`} style={{ width: `${item.percent}%` }} />
                       </div>
                     </div>
                   );
