@@ -106,7 +106,7 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
 
   return (
     <div className="absolute inset-0 bg-stone-900/40 z-50 flex items-center justify-center animate-in fade-in duration-300 p-6">
-        <div className="bg-[#f3e9d8] border border-amber-800/20 rounded-[32px] w-full max-w-4xl max-h-[85vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+      <div className="bg-[#f3e9d8] border border-amber-800/20 rounded-[32px] w-full max-w-4xl max-h-[85vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
 
         {/* Subtle Accents */}
         <div className="absolute top-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent blur-sm"></div>
@@ -119,8 +119,8 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
               <Smile className="h-5 w-5 text-amber-800" />
             </div>
             <div>
-              <h2 className="text-xl font-black text-amber-950 tracking-tight leading-none italic uppercase">Rating Kepuasan</h2>
-              <p className="text-[9px] text-amber-900/60 font-bold uppercase tracking-widest mt-1">Laporan Sentimen Publik Nasional</p>
+              <h2 className="text-xl font-black text-amber-950 tracking-tight leading-none italic uppercase">Statistik Kepuasan</h2>
+              <p className="text-[9px] text-amber-900/60 font-bold uppercase tracking-widest mt-1">Analisis Kebijakan & Sentimen Rakyat</p>
             </div>
           </div>
           <button onClick={onClose} className="p-2 rounded-xl bg-amber-800/10 hover:bg-rose-500/20 text-amber-900/60 hover:text-rose-700 transition-all cursor-pointer border border-amber-800/10 group">
@@ -275,15 +275,6 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
           </div>
         </div>
 
-        {/* Action button */}
-        <div className="p-4 border-t border-amber-800/10 bg-[#dcc7a1]/40 relative z-20">
-          <button
-            onClick={onClose}
-            className="w-full py-3 bg-amber-800 hover:bg-amber-700 text-white font-black text-xs uppercase tracking-[0.2em] rounded-xl transition-all active:scale-95 shadow-lg space-x-2 border border-amber-900/20"
-          >
-            Selesai Analisis
-          </button>
-        </div>
       </div>
     </div>
   );

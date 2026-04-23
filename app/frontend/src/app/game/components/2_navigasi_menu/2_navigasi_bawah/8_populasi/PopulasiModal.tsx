@@ -105,7 +105,7 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
     const isKapitalisme = currentIdeology === "Kapitalisme";
     const isKomunisme = currentIdeology === "Komunisme";
     const effectiveGini = isKapitalisme ? gini * 1.15 : isKomunisme ? gini * 0.75 : gini;
-    
+
     // AI Social Impact Adjustment
     const povertyMultiplier = SocialCareService.getPovertyMultiplier();
 
@@ -381,7 +381,7 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
                     <p className="text-xs font-black text-zinc-500 uppercase tracking-[0.3em] mt-2 italic">Harapan Hidup (THN)</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center justify-between p-5 rounded-3xl bg-zinc-950/50 border border-zinc-800">
                   <div className="flex flex-col">
                     <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 italic">Status Nasional</p>
@@ -409,7 +409,7 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
                     <p className="text-xs font-black text-zinc-500 uppercase tracking-[0.3em] mt-2 italic">Tingkat Keamanan (/100)</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center justify-between p-5 rounded-3xl bg-zinc-950/50 border border-zinc-800">
                   <div className="flex flex-col">
                     <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 italic">Status Keamanan</p>

@@ -112,8 +112,8 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
                     className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest whitespace-nowrap transition-all border ${(selectedCategory === cat || (!selectedCategory && cat === "Semua"))
-                        ? 'bg-amber-800 text-white shadow-sm border-amber-800'
-                        : 'bg-amber-800/5 text-amber-900/50 border-amber-800/10 hover:bg-amber-800/10'
+                      ? 'bg-amber-800 text-white shadow-sm border-amber-800'
+                      : 'bg-amber-800/5 text-amber-900/50 border-amber-800/10 hover:bg-amber-800/10'
                       }`}
                   >
                     {cat}
@@ -135,16 +135,16 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
                     onClick={() => !isLocked && setSelectedAcara(acara)}
                     disabled={isLocked}
                     className={`w-full p-3 rounded-xl transition-all border ${selectedAcara?.id === acara.id
-                        ? 'bg-white shadow-sm border-amber-800/20'
-                        : isLocked
-                          ? 'opacity-40 cursor-not-allowed border-transparent'
-                          : 'hover:bg-white/40 border-transparent cursor-pointer'
+                      ? 'bg-white shadow-sm border-amber-800/20'
+                      : isLocked
+                        ? 'opacity-40 cursor-not-allowed border-transparent'
+                        : 'hover:bg-white/40 border-transparent cursor-pointer'
                       }`}
                   >
                     <div className="flex items-start gap-2.5">
                       <div className={`p-1.5 rounded-lg text-lg shrink-0 ${selectedAcara?.id === acara.id
-                          ? 'bg-amber-800 text-white'
-                          : 'bg-amber-800/10 text-amber-900/60'
+                        ? 'bg-amber-800 text-white'
+                        : 'bg-amber-800/10 text-amber-900/60'
                         }`}>
                         {acara.icon}
                       </div>
@@ -232,10 +232,10 @@ export default function AcaraModal({ isOpen, onClose }: AcaraModalProps) {
                         disabled={currentBudget < selectedAcara.cost || activeStatus.isActive}
                         onClick={() => handleExecute(selectedAcara)}
                         className={`w-full font-black py-5 rounded-2xl shadow-sm transition-all active:scale-95 uppercase text-[11px] tracking-[0.2em] italic border ${activeStatus.isActive
-                            ? 'bg-emerald-800/10 text-emerald-700 border-emerald-800/20'
-                            : currentBudget < selectedAcara.cost
-                              ? 'bg-stone-300 text-stone-500 border-transparent cursor-not-allowed'
-                              : 'bg-amber-800 hover:bg-amber-700 text-white border-amber-800 shadow-lg'
+                          ? 'bg-emerald-800/10 text-emerald-700 border-emerald-800/20'
+                          : currentBudget < selectedAcara.cost
+                            ? 'bg-stone-300 text-stone-500 border-transparent cursor-not-allowed'
+                            : 'bg-amber-800 hover:bg-amber-700 text-white border-amber-800 shadow-lg'
                           }`}
                       >
                         {activeStatus.isActive ? "Acara Masih Berjalan" : currentBudget < selectedAcara.cost ? "Kas Tidak Mencukupi" : "Tanda Tangan Kebijakan"}
