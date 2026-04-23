@@ -57,7 +57,7 @@ export const inboxStorage = {
         }
 
         // 2. Redundancy filter for Embassy Proposals
-        if (msg.category === 'embassy' && msg.isProposal && country) {
+        if (msg.category === 'embassy' && msg.isProposal && country && !msg.status) {
           try {
             const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
             if (embassyStorage.getEmbassyStatus(country) === 'completed') {

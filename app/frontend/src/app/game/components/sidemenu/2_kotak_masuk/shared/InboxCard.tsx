@@ -70,14 +70,30 @@ export const InboxCard: React.FC<InboxCardProps> = ({
               <span className="text-[10px] text-zinc-500 font-medium">{msg.time}</span>
               {!msg.read && <div className="h-1.5 w-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>}
               {(msg.isProposal || looksLikeProposal) && (
-                <span className={`text-[9px] font-black px-2 py-0.5 rounded-md border animate-pulse ${
+                <span className={`text-[9px] font-black px-2 py-0.5 rounded-md border animate-pulse transition-colors duration-500 ${
+                  msg.status === 'accepted' ? 'bg-emerald-500 text-black border-emerald-300 animate-none' :
+                  msg.status === 'rejected' ? 'bg-rose-500 text-black border-rose-300 animate-none' :
                   isExport ? 'bg-emerald-500 text-black border-emerald-300' : 
                   isImport ? 'bg-rose-500 text-black border-rose-300' : 
                   isTransactionOffer ? 'bg-indigo-500 text-black border-indigo-300' : 
                   isPartnerOffer ? 'bg-amber-500 text-black border-amber-300' : 
                   'bg-amber-500/10 text-amber-500 border-amber-500/20'
                 }`}>
-                  {msg.proposalLabel || 'PROPOSAL'}
+                  {(() => {
+                    if (msg.status === 'accepted' || msg.status === 'rejected') {
+                      const cat = (() => {
+                        const c = msg.category || 'general';
+                        const subj = (msg.subject || '').toLowerCase();
+                        if (c === 'defense' || c === 'pact') return subj.includes('aliansi') ? 'aliansi' : 'pakta';
+                        if (c === 'diplomacy' || c === 'embassy') return 'kedutaan';
+                        if (c === 'finance') return 'keuangan';
+                        if (c === 'trade') return 'perdagangan';
+                        return c;
+                      })();
+                      return `PROPOSAL ${cat.toUpperCase()} DI ${msg.status === 'accepted' ? 'TERIMA' : 'TOLAK'}`;
+                    }
+                    return msg.proposalLabel || 'PROPOSAL';
+                  })()}
                 </span>
               )}
             </div>
