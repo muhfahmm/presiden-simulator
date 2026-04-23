@@ -178,8 +178,8 @@ export const unVotingStorage = {
       targetCountry: randomTarget,
       proposer: randomCountry,
       durationLabel: "30 Hari",
-      startDate: gameDate.toLocaleDateString('id-ID'),
-      endDate: new Date(gameDate.getTime() + 30 * 24 * 60 * 60 * 1000).toLocaleDateString('id-ID')
+      startDate: gameDate.toISOString(),
+      endDate: new Date(gameDate.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString()
     });
 
     localStorage.setItem("em_un_last_ai_resolution_day", dayKey);

@@ -53,25 +53,21 @@ export const simulateUNVote = (
       return;
     }
 
-    // 2. Negara yang sedang disanksi/diembargo juga menolak (solidaritas)
-    if (sanctionedCountries.includes(countryName)) {
-      opponents.push(countryName);
+    // 2. Tentukan Abstain (5-10%)
+    const randAbstain = Math.random();
+    if (randAbstain < 0.07) { // 7% chance abstain
+      abstainers.push(countryName);
       return;
     }
 
-    // 3. Negara dengan hubungan diplomatik (kedutaan) mendukung
+    // 3. Logika Hubungan Diplomatik (Kedubes)
+    // Jika punya kedubes (hubungan diplomatik), maka MENOLAK resolusi
+    // Jika TIDAK punya kedubes, maka SETUJU dengan resolusi
     const embassyStatus = embassyStorage.getEmbassyStatus(countryName);
     if (embassyStatus === 'completed') {
-      supporters.push(countryName);
-      return;
-    }
-
-    // 4. Negara tanpa kedutaan bisa Menolak atau Abstain
-    const rand = Math.random();
-    if (rand < 0.88) {
       opponents.push(countryName);
     } else {
-      abstainers.push(countryName);
+      supporters.push(countryName);
     }
   });
 

@@ -43,9 +43,15 @@ export const initVotingTimer = (userCountry: string) => {
 
       if (now >= end) {
         hasChanges = true;
-        const result = simulateUNVote(vote.targetCountry, userCountry, vote.category);
+        
+        // Gunakan hasil AI yang sudah disimpan + suara user
+        const aiResults = vote.finalResults || { yes: 0, no: 0, abstain: 0 };
+        const finalYes = aiResults.yes + (vote.userVote === 'SETUJU' ? 1 : 0);
+        const finalNo = aiResults.no + (vote.userVote === 'TOLAK' ? 1 : 0);
+        const finalAbstain = 207 - (finalYes + finalNo);
+
         const REQUIRED_VOTES = 138;
-        const isPassed = result.yes >= REQUIRED_VOTES;
+        const isPassed = finalYes >= REQUIRED_VOTES;
 
         // Tambahkan ke Histori via storage method
         unVotingStorage.addHistoryItem({
@@ -57,9 +63,9 @@ export const initVotingTimer = (userCountry: string) => {
           targetCountry: vote.targetCountry,
           status: isPassed ? 'DITERIMA' : 'DITOLAK',
           results: {
-            yes: result.yes,
-            no: result.no,
-            abstain: result.abstain
+            yes: finalYes,
+            no: finalNo,
+            abstain: finalAbstain
           }
         });
 
@@ -77,7 +83,7 @@ export const initVotingTimer = (userCountry: string) => {
             newsStorage.addNews({
               source: "Sekretariat PBB",
               subject: `HASIL SIDANG: ${vote.name.toUpperCase()}`,
-              content: `Sidang Umum PBB telah selesai. Resolusi dinyatakan ${isPassed ? 'DITERIMA' : 'DITOLAK'}. \n\nDetail Suara: \n- Mendukung: ${result.yes} \n- Menentang: ${result.no} \n- Abstain: ${result.abstain} \n\n${isPassed ? 'Dampak strategis dan perubahan hubungan diplomatik telah diterapkan.' : 'Hubungan diplomatik sedikit menurun karena kegagalan resolusi.'}`,
+              content: `Sidang Umum PBB telah selesai. Resolusi dinyatakan ${isPassed ? 'DITERIMA' : 'DITOLAK'}. \n\nDetail Suara: \n- Mendukung: ${finalYes} \n- Menentang: ${finalNo} \n- Abstain: ${finalAbstain} \n\n${isPassed ? 'Dampak strategis dan perubahan hubungan diplomatik telah diterapkan.' : 'Hubungan diplomatik sedikit menurun karena kegagalan resolusi.'}`,
               priority: isPassed ? 'high' : 'medium',
               category: 'diplomacy',
               time: currentDate.toLocaleDateString('id-ID')

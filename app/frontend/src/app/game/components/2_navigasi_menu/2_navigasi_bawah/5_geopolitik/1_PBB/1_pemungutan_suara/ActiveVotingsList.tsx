@@ -15,136 +15,123 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
     <div className="flex flex-col gap-4">
       <h4 className="text-[10px] font-black text-cyan-500 uppercase tracking-[0.3em]">Sidang PBB Sedang Berlangsung</h4>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {votings.map((vote) => (
-          <div 
-            key={vote.id}
-            className="p-5 rounded-[32px] bg-zinc-900/40 border border-zinc-800/50 relative overflow-hidden group hover:border-cyan-500/30 transition-all"
-          >
-            {/* Progress Background */}
+        {votings.map((vote) => {
+          // Calculate Live Stats
+          const progress = vote.progress / 100;
+          const liveYes = Math.floor((vote.finalResults?.yes || 0) * progress) + (vote.userVote === 'SETUJU' ? 1 : 0);
+          const liveNo = Math.floor((vote.finalResults?.no || 0) * progress) + (vote.userVote === 'TOLAK' ? 1 : 0);
+          const liveAbstain = Math.floor((vote.finalResults?.abstain || 0) * progress) + (vote.userVote === 'ABSTAIN' ? 1 : 0);
+          
+          const totalVoted = liveYes + liveNo + liveAbstain;
+
+          return (
             <div 
-              className="absolute bottom-0 left-0 h-1 bg-cyan-500/20 transition-all duration-1000" 
-              style={{ width: `${vote.progress}%` }} 
-            />
-            
-            <div className="flex justify-between items-start mb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-zinc-950 border border-zinc-800">
-                  <Loader2 className="h-4 w-4 text-cyan-400 animate-spin" />
+              key={vote.id}
+              className="p-5 rounded-[32px] bg-zinc-900/40 border border-zinc-800/50 relative overflow-hidden group hover:border-cyan-500/30 transition-all"
+            >
+              {/* Progress Background */}
+              <div 
+                className="absolute bottom-0 left-0 h-1 bg-cyan-500/20 transition-all duration-1000" 
+                style={{ width: `${vote.progress}%` }} 
+              />
+              
+              <div className="flex justify-between items-start mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-xl bg-zinc-950 border border-zinc-800">
+                    <Loader2 className="h-4 w-4 text-cyan-400 animate-spin" />
+                  </div>
+                  <div>
+                    <h5 className="text-[10px] font-black text-white uppercase tracking-tight leading-none mb-1">{vote.name}</h5>
+                    <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-widest">{vote.category}</span>
+                  </div>
                 </div>
-                <div>
-                  <h5 className="text-[10px] font-black text-white uppercase tracking-tight leading-none mb-1">{vote.name}</h5>
-                  <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-widest">{vote.category}</span>
-                </div>
-              </div>
-              <div className="flex flex-col items-end">
-                <span className="text-[10px] font-black text-cyan-400">{Math.floor(vote.progress)}%</span>
-                <span className="text-[7px] font-bold text-zinc-600 uppercase tracking-tighter">Progres Sidang</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-2 mb-4">
-              {(() => {
-                // Fallback jika finalResults belum ada (sidang lama)
-                let res = vote.finalResults;
-                if (!res) {
-                   try {
-                     const { simulateUNVote } = require("./logika_pemungutan_suara/votingLogic");
-                     const userCountry = (typeof window !== 'undefined' ? localStorage.getItem('selected_country') : "") || "Indonesia";
-                     res = simulateUNVote(vote.targetCountry, userCountry, vote.category);
-                   } catch (e) {
-                     res = { yes: 0, no: 0, abstain: 0 };
-                   }
-                }
-                
-                // Pastikan res tidak null sebelum akses properti
-                const safeRes = res || { yes: 0, no: 0, abstain: 0 };
-                const yes = Math.floor(safeRes.yes * (vote.progress / 100));
-                const no = Math.floor(safeRes.no * (vote.progress / 100));
-                const abstain = 207 - (yes + no);
-
-                return (
-                  <>
-                    <div className="p-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center">
-                      <p className="text-[7px] font-black text-emerald-500 uppercase tracking-tighter mb-0.5">Setuju</p>
-                      <p className="text-xs font-black text-white">{yes}</p>
-                    </div>
-                    <div className="p-2 rounded-xl bg-rose-500/5 border border-rose-500/10 text-center">
-                      <p className="text-[7px] font-black text-rose-500 uppercase tracking-tighter mb-0.5">Tolak</p>
-                      <p className="text-xs font-black text-white">{no}</p>
-                    </div>
-                    <div className="p-2 rounded-xl bg-zinc-500/5 border border-zinc-500/10 text-center">
-                      <p className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter mb-0.5">Abstain</p>
-                      <p className="text-xs font-black text-white">{abstain}</p>
-                    </div>
-                  </>
-                );
-              })()}
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 py-4 border-t border-white/5">
-              <div className="flex flex-col gap-1">
-                <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Negara Target</span>
-                <div className="flex items-center gap-2">
-                   <Globe className="h-3 w-3 text-zinc-500" />
-                   <span className="text-[10px] font-black text-zinc-300 uppercase">{vote.targetCountry}</span>
+                <div className="flex flex-col items-end">
+                  <span className="text-[10px] font-black text-cyan-400">{Math.floor(vote.progress)}%</span>
+                  <span className="text-[7px] font-bold text-zinc-600 uppercase tracking-tighter">{totalVoted}/207 Negara Telah Memilih</span>
                 </div>
               </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Pengusul</span>
-                <div className="flex items-center gap-2">
-                   <div className="h-3 w-3 rounded-full bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-[6px] font-black text-cyan-400">AI</div>
-                   <span className="text-[10px] font-black text-zinc-300 uppercase">{vote.proposer || "Anggota PBB"}</span>
+
+              {/* LIVE VOTING COUNTS */}
+              <div className="grid grid-cols-3 gap-2 mb-4">
+                <div className="p-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center">
+                  <p className="text-[7px] font-black text-emerald-500 uppercase tracking-tighter mb-0.5">Setuju</p>
+                  <p className="text-xs font-black text-white">{liveYes}</p>
+                </div>
+                <div className="p-2 rounded-xl bg-rose-500/5 border border-rose-500/10 text-center">
+                  <p className="text-[7px] font-black text-rose-500 uppercase tracking-tighter mb-0.5">Tolak</p>
+                  <p className="text-xs font-black text-white">{liveNo}</p>
+                </div>
+                <div className="p-2 rounded-xl bg-zinc-500/5 border border-zinc-500/10 text-center">
+                  <p className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter mb-0.5">Abstain</p>
+                  <p className="text-xs font-black text-white">{liveAbstain}</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 py-4 border-t border-white/5">
+                <div className="flex flex-col gap-1">
+                  <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Negara Target</span>
+                  <div className="flex items-center gap-2">
+                     <Globe className="h-3 w-3 text-zinc-500" />
+                     <span className="text-[10px] font-black text-zinc-300 uppercase">{vote.targetCountry}</span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Pengusul</span>
+                  <div className="flex items-center gap-2">
+                     <div className="h-3 w-3 rounded-full bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-[6px] font-black text-cyan-400">AI</div>
+                     <span className="text-[10px] font-black text-zinc-300 uppercase">{vote.proposer || "Anggota PBB"}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Voting Buttons for User */}
+              <div className="mt-2 pt-4 border-t border-white/5">
+                <p className="text-[8px] font-black text-zinc-500 uppercase tracking-widest mb-3 text-center">Berikan Suara Anda</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <button 
+                    onClick={() => {
+                      const { unVotingStorage } = require("./logika_pemungutan_suara/unVotingStorage");
+                      unVotingStorage.castUserVote(vote.id, 'SETUJU');
+                    }}
+                    className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border ${
+                      vote.userVote === 'SETUJU' 
+                      ? "bg-emerald-500 border-emerald-400 text-white shadow-lg shadow-emerald-500/20 scale-105" 
+                      : "bg-emerald-500/5 border-emerald-500/10 text-emerald-500 hover:bg-emerald-500/10"
+                    }`}
+                  >
+                    Setuju
+                  </button>
+                  <button 
+                    onClick={() => {
+                      const { unVotingStorage } = require("./logika_pemungutan_suara/unVotingStorage");
+                      unVotingStorage.castUserVote(vote.id, 'TOLAK');
+                    }}
+                    className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border ${
+                      vote.userVote === 'TOLAK' 
+                      ? "bg-rose-500 border-rose-400 text-white shadow-lg shadow-rose-500/20 scale-105" 
+                      : "bg-rose-500/5 border-rose-500/10 text-rose-500 hover:bg-rose-500/10"
+                    }`}
+                  >
+                    Tolak
+                  </button>
+                  <button 
+                    onClick={() => {
+                      const { unVotingStorage } = require("./logika_pemungutan_suara/unVotingStorage");
+                      unVotingStorage.castUserVote(vote.id, 'ABSTAIN');
+                    }}
+                    className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border ${
+                      vote.userVote === 'ABSTAIN' 
+                      ? "bg-zinc-700 border-zinc-600 text-white shadow-lg shadow-zinc-500/20 scale-105" 
+                      : "bg-zinc-500/5 border-zinc-500/10 text-zinc-400 hover:bg-zinc-500/10"
+                    }`}
+                  >
+                    Abstain
+                  </button>
                 </div>
               </div>
             </div>
-
-            {/* Voting Buttons for User */}
-            <div className="mt-2 pt-4 border-t border-white/5">
-              <p className="text-[8px] font-black text-zinc-500 uppercase tracking-widest mb-3 text-center">Berikan Suara Anda</p>
-              <div className="grid grid-cols-3 gap-2">
-                <button 
-                  onClick={() => {
-                    const { unVotingStorage } = require("./logika_pemungutan_suara/unVotingStorage");
-                    unVotingStorage.castUserVote(vote.id, 'SETUJU');
-                  }}
-                  className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border ${
-                    vote.userVote === 'SETUJU' 
-                    ? "bg-emerald-500 border-emerald-400 text-white shadow-lg shadow-emerald-500/20 scale-105" 
-                    : "bg-emerald-500/5 border-emerald-500/10 text-emerald-500 hover:bg-emerald-500/10"
-                  }`}
-                >
-                  Setuju
-                </button>
-                <button 
-                  onClick={() => {
-                    const { unVotingStorage } = require("./logika_pemungutan_suara/unVotingStorage");
-                    unVotingStorage.castUserVote(vote.id, 'TOLAK');
-                  }}
-                  className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border ${
-                    vote.userVote === 'TOLAK' 
-                    ? "bg-rose-500 border-rose-400 text-white shadow-lg shadow-rose-500/20 scale-105" 
-                    : "bg-rose-500/5 border-rose-500/10 text-rose-500 hover:bg-rose-500/10"
-                  }`}
-                >
-                  Tolak
-                </button>
-                <button 
-                  onClick={() => {
-                    const { unVotingStorage } = require("./logika_pemungutan_suara/unVotingStorage");
-                    unVotingStorage.castUserVote(vote.id, 'ABSTAIN');
-                  }}
-                  className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border ${
-                    vote.userVote === 'ABSTAIN' 
-                    ? "bg-zinc-700 border-zinc-600 text-white shadow-lg shadow-zinc-500/20 scale-105" 
-                    : "bg-zinc-500/5 border-zinc-500/10 text-zinc-400 hover:bg-zinc-500/10"
-                  }`}
-                >
-                  Abstain
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
