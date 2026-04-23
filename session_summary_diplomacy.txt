@@ -1,40 +1,145 @@
 # SESSION SUMMARY: DIPLOMACY & INBOX STABILIZATION PROJECT
-Date: 2026-04-22
+# Date: 2026-04-22 to 2026-04-23
 
-## 1. Inbox Title Standardization (Title Case Enforcement)
+## ============================================================
+## SESSION 1: INBOX TITLE STANDARDIZATION & STATUS TRACKING
+## ============================================================
+
+### 1. Inbox Title Standardization (Title Case Enforcement)
 - All embassy-related proposals are now forced to have a uniform subject: "tawaran pembangunan kedubes (Nama Negara)".
 - Implemented "Aggressive Country Extraction": The system extracts country names from Metadata, then Subject (regex), then Source (regex), and finally Message Content (fallback).
 - Added Title Case helper: Converts "AFRIKA SELATAN" to "Afrika Selatan" for professional UI presentation.
+- Logic lives in: inboxStorage.getMessages() as a view-transform layer (does NOT modify storage).
 
-## 2. Diplomatic Prerequisites (Embassy-First Logic)
-- Centralized validation in `inboxStorage.addMessage` and `getMessages`.
-- Advanced proposals (Pacts, Alliances, Trade Agreements, Defense) are BLOCKED if a formal embassy does not exist with the proposing country.
-- Prevents "wild" AI proposals from nations that haven't established a diplomatic presence.
-
-## 3. Decision Feedback & Card Stabilization
-- Added `status` field (`pending`, `accepted`, `rejected`) to `InboxItem`.
+### 2. Decision Feedback & Card Stabilization
+- Added `status` field (`pending`, `accepted`, `rejected`) to `InboxItem` interface in inboxStorage.ts.
+- Added `updateMessageStatus(id, status)` method to inboxStorage object.
 - When a user accepts or declines:
     - Action buttons are replaced by a permanent status label.
     - Green label: "Proposal Diterima & Diratifikasi".
     - Red label: "Proposal Telah Ditolak".
     - Decision cards become non-interactive to prevent double actions.
+- InboxModal.tsx: handleAction now calls updateMessageStatus instead of markAsRead.
+- InboxCard.tsx: Renders different UI based on msg.status field.
 
-## 4. System Synchronization & Service Updates
-- `AiTradeService.acceptEmbassyProposal`: Now correctly updates `embassyStorage` to 'completed' and dispatches events to unlock the UI immediately.
-- `AiDiplomacyService.finalizeTreaty`: Synchronized to follow the same protocol.
-- Integrated "Auto-Heal" logic: Every time the inbox opens, it checks if previously accepted proposals are correctly synced with the embassy registry (Fixes issues like the Egypt/Mesir menu stay-locked bug).
+### 3. System Synchronization & Service Updates
+- AiTradeService.acceptEmbassyProposal: Now ALWAYS updates embassyStorage to 'completed' (moved outside the if(matrixChanged) block). Dispatches events to unlock UI immediately.
+- AiDiplomacyService.finalizeTreaty: Synchronized to follow the same protocol.
+- Integrated "Auto-Heal" logic in inboxStorage.getMessages(): Every time inbox opens, checks if previously accepted proposals are correctly synced with embassy registry.
 
-## 5. Redundancy & Whitelist Filtering
-- Added a redundancy filter for Embassy proposals: If a country already has an active embassy (e.g., USA/Amerika Serikat from initial data), duplicate proposals are blocked.
-- Fixed a bug where existing partners were still sending "build embassy" requests.
+### 4. Build Stabilizations
+- Fixed "Module not found" build errors by switching from relative paths to Absolute Path Aliases (@/app/...) in dynamic require calls.
+- Files affected: AiTradeService.ts, InboxModal.tsx
 
-## 6. Technical & Build Stabilizations
-- Fixed "Module not found" build errors by switching from relative paths to Absolute Path Aliases (`@/app/...`) in dynamic `require` calls.
-- Preserved original data integrity by moving display-forcing logic to the retrieval layer (`getMessages`) rather than overwriting storage in `addMessage`.
+## ============================================================
+## SESSION 2: DIPLOMATIC PREREQUISITES & EMBASSY-FIRST LOGIC
+## ============================================================
 
-## Key Files Modified:
-- `inboxStorage.ts`: Central logic for filtering, cleaning, labeling, and status tracking.
-- `InboxModal.tsx`: Action handling and status updates.
-- `InboxCard.tsx`: UI rendering for status labels and buttons.
-- `AiTradeService.ts`: NPC embassy proposal logic and synchronization.
-- `AiDiplomacyService.ts`: Treaty finalization and metadata injection.
+### 5. Embassy-First Validation (Triple-Layer Filter)
+Three independent filter layers enforce the embassy requirement:
+
+#### Layer 1: getMessages() Filter (Display Layer)
+- Location: inboxStorage.ts, getMessages() method
+- Aggressive country extraction from: metadata -> subject regex -> source regex
+- Embassy category proposals are EXEMPTED from the check (to allow building new embassies)
+- Advanced proposals (trade, pact, alliance, defense) from countries without embassies are filtered out
+- Redundancy filter: Embassy proposals from countries already having embassies are also removed
+
+#### Layer 2: addMessage() Filter (Insertion Layer)  
+- Location: inboxStorage.ts, addMessage() method
+- Same aggressive extraction and embassy check
+- Blocks proposals at insertion time so they never enter localStorage
+- Also includes redundancy filter for existing embassy partners
+
+#### Layer 3: syncFromServer() Filter (Server Sync Layer)
+- Location: inboxStorage.ts, syncFromServer() method
+- Applies embassy requirement when Go backend pushes inbox data via SSE
+- Prevents server-originated proposals from bypassing client-side rules
+
+### 6. EmbassyList.tsx Fix
+- Removed overly restrictive isProposal filter that was hiding all informational messages
+- Now displays ALL embassy/diplomacy category messages (informational + proposals), matching other tabs
+
+### 7. Redundancy Filter
+- Embassy proposals from countries that ALREADY have active embassies (like Amerika Serikat from initial database) are automatically blocked
+- Prevents duplicate "build embassy" requests
+
+## ============================================================
+## SESSION 3: AI PROPOSAL ENGINE CREATION
+## ============================================================
+
+### 8. Python AI Brain Scripts (ALL NEW)
+Created all missing Python AI scripts that the route.ts tries to execute:
+
+#### global_drift.py
+- Simulates daily relationship score changes between ALL nations
+- Embassy/pact/alliance provide positive score stabilization bonuses
+
+#### active_actions/improve_relations.py
+- NPCs with embassies gradually improve relations with user
+
+#### npc_to_user/tingkatkan_hubungan.py
+- NPCs with embassies + high relations can grant financial aid (2% daily chance)
+
+#### npc_to_user/1_pakta_non_agresi.py [CRITICAL]
+- ONLY generates pact proposals from countries with ACTIVE EMBASSY (e=1)
+- Must NOT already have a pact (p=1)
+- Relation score must be >= 45
+- Picks 0-2 random eligible countries per day
+- Uses variety of pact templates (10 titles, 5 content variations)
+
+#### npc_to_user/2_aliansi_pertahanan.py [CRITICAL]
+- ONLY generates alliance proposals from countries with BOTH embassy (e=1) AND pact (p=1)
+- Must NOT already have an alliance (a=1)
+- Relation score must be >= 60
+- Picks 0-1 random eligible country per day
+- Enforces diplomatic progression: Embassy -> Pact -> Alliance
+
+#### npc_to_user/3_perjanjian_dagang.py
+- ONLY generates trade proposals from countries with ACTIVE EMBASSY (e=1)
+- Must NOT already have a trade deal (t=1)
+- Relation score must be >= 50
+
+#### npc_to_user/5_tawaran_kedutaan.py
+- ONLY generates embassy proposals from countries WITHOUT existing embassy (e!=1)
+- Relation score must be >= 40
+- Picks 0-2 from top 10 eligible countries
+
+#### npc_to_npc/1_kedutaan_besar.py
+- Simulates AI countries building embassies with each other (0.5% daily chance)
+- Generates GLOBAL_NEWS events for the news feed
+
+## ============================================================
+## KEY FILES REFERENCE
+## ============================================================
+
+### Frontend Storage & Logic:
+- inboxStorage.ts: Central filtering, cleaning, labeling, status tracking (3-layer filter)
+- InboxModal.tsx: Action handling (accept/decline) and status updates
+- InboxCard.tsx: UI rendering for status labels and action buttons
+- EmbassyList.tsx: Embassy tab message list component
+
+### AI Services:
+- AiTradeService.ts: NPC embassy proposal logic and embassyStorage sync
+- AiDiplomacyService.ts: Treaty finalization, daily drift orchestration, event routing
+
+### AI Python Brain:
+- brain/global_drift.py: Relationship score simulation
+- brain/active_actions/improve_relations.py: NPC relation improvement
+- brain/npc_to_user/tingkatkan_hubungan.py: Financial grants
+- brain/npc_to_user/1_pakta_non_agresi.py: Pact proposals (EMBASSY REQUIRED)
+- brain/npc_to_user/2_aliansi_pertahanan.py: Alliance proposals (EMBASSY + PACT REQUIRED)
+- brain/npc_to_user/3_perjanjian_dagang.py: Trade proposals (EMBASSY REQUIRED)
+- brain/npc_to_user/5_tawaran_kedutaan.py: Embassy proposals (NO EXISTING EMBASSY)
+- brain/npc_to_npc/1_kedutaan_besar.py: NPC-to-NPC embassy building
+
+### Route Handler:
+- ai_diplomacy_engine/routes/route.ts: Orchestrates all Python scripts sequentially
+
+## ============================================================
+## DIPLOMATIC PROGRESSION CHAIN
+## ============================================================
+1. Embassy (Kedutaan Besar) - Foundation of all diplomatic relations
+2. Trade Agreement (Perjanjian Dagang) - Requires Embassy
+3. Non-Aggression Pact (Pakta Non-Agresi) - Requires Embassy
+4. Defense Alliance (Aliansi Pertahanan) - Requires Embassy + Pact

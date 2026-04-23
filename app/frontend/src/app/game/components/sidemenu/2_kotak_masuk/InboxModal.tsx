@@ -140,7 +140,8 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
                         return; // Stop processing
                     }
                     
-                    AiDiplomacyService.finalizeTreaty(id, type);
+                    const durationYears = msg.metadata?.durationYears || 5;
+                    AiDiplomacyService.finalizeTreaty(id, type, durationYears);
                     success = true;
                     break;
                 default:

@@ -31,8 +31,22 @@ export default function DiplomacyTab({
   useEffect(() => {
     const updateStatus = () => {
       setEmbassyStatus(embassyStorage.getEmbassyStatus(targetCountry));
-      setNonAggressionStatus(nonAggressionStorage.getStatus(targetCountry));
-      setAliansiStatus(aliansiStorage.getStatus(targetCountry));
+      
+      // Check primary key, then fallback to space-based variant for legacy data
+      const spaceVariant = targetCountry.replace(/_/g, ' ');
+      
+      let pactStatus = nonAggressionStorage.getStatus(targetCountry);
+      if (pactStatus === 'none' && spaceVariant !== targetCountry) {
+        pactStatus = nonAggressionStorage.getStatus(spaceVariant);
+      }
+      setNonAggressionStatus(pactStatus);
+      
+      let allianceStatus = aliansiStorage.getStatus(targetCountry);
+      if (allianceStatus === 'none' && spaceVariant !== targetCountry) {
+        allianceStatus = aliansiStorage.getStatus(spaceVariant);
+      }
+      setAliansiStatus(allianceStatus);
+      
       setTradeStatus(tradeStorage.getTradeStatus(userCountry, targetCountry));
     };
 
@@ -81,27 +95,27 @@ export default function DiplomacyTab({
         />
         <ActionCard 
           icon={
-            nonAggressionStatus === 'active' ? <Handshake className="h-4 w-4 text-indigo-400" /> :
+            nonAggressionStatus === 'active' ? <Handshake className="h-4 w-4 text-amber-400" /> :
             <Handshake className="h-4 w-4" />
           } 
           label={
             nonAggressionStatus === 'active' ? "PAKTA AKTIF" : "Pakta Non-Agresi"
           }
           bg={
-            nonAggressionStatus === 'active' ? "from-indigo-900/40 to-zinc-900" : "from-indigo-900/20 to-zinc-900"
+            nonAggressionStatus === 'active' ? "from-amber-700/40 to-zinc-900" : "from-indigo-900/20 to-zinc-900"
           } 
           disabled={embassyStatus !== 'completed'}
           onClick={() => setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:pakta_non_agresi`)}
         />
         <ActionCard 
           icon={
-            aliansiStatus === 'active' ? <Shield className="h-4 w-4 text-teal-400" /> : <Shield className="h-4 w-4" />
+            aliansiStatus === 'active' ? <Shield className="h-4 w-4 text-amber-400" /> : <Shield className="h-4 w-4" />
           } 
           label={
             aliansiStatus === 'active' ? "ALIANSI AKTIF" : "Aliansi Pertahanan"
           }
           bg={
-            aliansiStatus === 'active' ? "from-teal-900/40 to-zinc-900" : "from-teal-900/20 to-zinc-900"
+            aliansiStatus === 'active' ? "from-amber-700/40 to-zinc-900" : "from-teal-900/20 to-zinc-900"
           } 
           disabled={embassyStatus !== 'completed'}
           onClick={() => setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:aliansi_pertahanan`)}

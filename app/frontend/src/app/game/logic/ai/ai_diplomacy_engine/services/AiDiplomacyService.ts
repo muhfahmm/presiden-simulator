@@ -1,4 +1,4 @@
-import { getGlobalRelationMatrix, saveGlobalRelationMatrix } from './MatrixHandler';
+import { getGlobalRelationMatrix, saveGlobalRelationMatrix, normalizeId } from './MatrixHandler';
 import { inboxStorage } from '@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage';
 import { newsStorage } from '@/app/game/components/sidemenu/1_berita/newsStorage';
 import { budgetStorage } from '@/app/game/components/1_navbar/3_kas_negara';
@@ -164,8 +164,14 @@ export const AiDiplomacyService = {
                                         `Intelijen (${safeSource})`,
                                 category: category,
                                 isProposal: isGrant || isTrade || isPact || isAlliance || isEmbassy,
-                                metadata: { type: category, id: event.source },
-                                subject: isEmbassyProposal ? "tawaran pembangunan kedubes" : (isEmbassy ? event.subject : `[DUNIA] ${event.subject}`),
+                                metadata: { 
+                                    type: category, 
+                                    id: event.source,
+                                    durationYears: event.durationYears || undefined
+                                },
+                                subject: isEmbassyProposal ? "tawaran pembangunan kedubes" : 
+                                         (isPact || isAlliance) ? event.subject :
+                                         isEmbassy ? event.subject : `[DUNIA] ${event.subject}`,
                                 content: event.content,
                                 time: formatGameDate(gameDate),
                                 priority: (isGrant || isPact || isAlliance || isEmbassy) ? 'high' : 'medium'
@@ -240,12 +246,17 @@ export const AiDiplomacyService = {
     /**
      * Menyelesaikan perjanjian (Aliansi/Pakta/Dagang/Kedubes) setelah disetujui User.
      */
-    finalizeTreaty(targetCountry: string, type: 'pact' | 'alliance' | 'trade' | 'embassy') {
+    finalizeTreaty(targetCountry: string, type: 'pact' | 'alliance' | 'trade' | 'embassy', durationYears?: number) {
         const userCountryRaw = localStorage.getItem('selected_country') || "Indonesia";
         const matrix = getGlobalRelationMatrix();
         
-        // Cari kunci negara
-        const countryKey = Object.keys(matrix).find(k => k.toLowerCase() === targetCountry.toLowerCase()) || targetCountry;
+        // NORMALIZE the country ID to match matrix keys (e.g., "Amerika Serikat" -> "amerika_serikat")
+        const normalizedTarget = normalizeId(targetCountry);
+        
+        // Cari kunci negara (try normalized first, then raw)
+        const countryKey = Object.keys(matrix).find(k => k.toLowerCase() === normalizedTarget) 
+                        || Object.keys(matrix).find(k => k.toLowerCase() === targetCountry.toLowerCase()) 
+                        || normalizedTarget;
         
         if (!matrix[countryKey]) matrix[countryKey] = {};
         const npcRelations = matrix[countryKey];
@@ -259,15 +270,35 @@ export const AiDiplomacyService = {
 
         const rel = npcRelations[playerKeyInNpc];
 
+        // Calculate date range
+        const gameDate = timeStorage.getState().gameDate;
+        const startDate = new Date(gameDate).toISOString();
+        const endDate = new Date(gameDate);
+        endDate.setFullYear(endDate.getFullYear() + (durationYears || 5));
+        const endDateStr = endDate.toISOString();
+
+        // Use normalizedTarget for ALL storage operations to ensure consistency with DiplomacyTab lookups
         if (type === 'embassy') {
             rel.e = 1;
-            embassyStorage.updateEmbassyStatus(targetCountry, 'completed');
+            embassyStorage.updateEmbassyStatus(normalizedTarget, 'completed');
         } else if (type === 'pact') {
             rel.p = 1;
-            nonAggressionStorage.updateSimpleStatus(targetCountry, 'active');
+            nonAggressionStorage.updateStatus(normalizedTarget, { 
+                status: 'active',
+                startDate: startDate,
+                endDate: endDateStr,
+                durationYears: durationYears || 5,
+                rules: { ceasefire: true, dmz: true }
+            });
         } else if (type === 'alliance') {
             rel.a = 1;
-            aliansiStorage.updateStatus(targetCountry, { status: 'active' });
+            aliansiStorage.updateStatus(normalizedTarget, { 
+                status: 'active',
+                startDate: startDate,
+                endDate: endDateStr,
+                durationYears: durationYears || 5,
+                perks: { militaryAid: true, jointExercise: true, intelSharing: true }
+            });
         } else if (type === 'trade') {
             rel.t = 1;
         }

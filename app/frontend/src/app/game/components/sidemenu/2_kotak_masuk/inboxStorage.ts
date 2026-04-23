@@ -118,6 +118,37 @@ export const inboxStorage = {
 
           return { ...msg, subject: `tawaran pembangunan kedubes (${country})` };
         }
+
+        // TITLE REMASTERY: Pact proposals
+        if (msg.category === 'pact' && msg.isProposal) {
+          let rawCountry = msg.metadata?.id || msg.metadata?.country;
+          if (!rawCountry) { const m = msg.subject.match(/\(([^)]+)\)$/); if (m) rawCountry = m[1]; }
+          if (!rawCountry) { const m = msg.source.match(/\(([^)]+)\)/); if (m) rawCountry = m[1]; }
+          const country = String(rawCountry || "Negara").toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+          const dur = msg.metadata?.durationYears || 5;
+          // Auto-heal content if duration not mentioned (case-insensitive)
+          let content = msg.content || "";
+          if (!content.toLowerCase().includes('tahun')) {
+            content = `📋 Durasi Pakta: ${dur} Tahun\n\n${content}`;
+          }
+          return { ...msg, subject: `tawaran pakta non agresi ${dur} tahun (${country})`, content };
+        }
+
+        // TITLE REMASTERY: Alliance proposals
+        if (msg.category === 'alliance' && msg.isProposal) {
+          let rawCountry = msg.metadata?.id || msg.metadata?.country;
+          if (!rawCountry) { const m = msg.subject.match(/\(([^)]+)\)$/); if (m) rawCountry = m[1]; }
+          if (!rawCountry) { const m = msg.source.match(/\(([^)]+)\)/); if (m) rawCountry = m[1]; }
+          const country = String(rawCountry || "Negara").toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+          const dur = msg.metadata?.durationYears || 5;
+          // Auto-heal content if duration not mentioned (case-insensitive)
+          let content = msg.content || "";
+          if (!content.toLowerCase().includes('tahun')) {
+            content = `🛡️ Durasi Aliansi: ${dur} Tahun\n\n${content}`;
+          }
+          return { ...msg, subject: `tawaran aliansi pertahanan ${dur} tahun (${country})`, content };
+        }
+
         return msg;
       });
     } catch {
@@ -368,10 +399,17 @@ export const inboxStorage = {
   updateMessageStatus: (id: string, status: 'accepted' | 'rejected') => {
     const key = inboxStorage.getStorageKey();
     if (typeof window === 'undefined') return;
-    const messages = inboxStorage.getMessages();
-    const updated = messages.map(m => m.id === id ? { ...m, status, read: true } : m);
-    localStorage.setItem(key, JSON.stringify(updated));
-    window.dispatchEvent(new Event('inbox_updated'));
+    // READ RAW DATA from localStorage, NOT getMessages() which applies transforms
+    const stored = localStorage.getItem(key);
+    if (!stored) return;
+    try {
+      const rawMessages = JSON.parse(stored);
+      const updated = rawMessages.map((m: any) => m.id === id ? { ...m, status, read: true } : m);
+      localStorage.setItem(key, JSON.stringify(updated));
+      window.dispatchEvent(new Event('inbox_updated'));
+    } catch (e) {
+      console.error('Failed to update message status', e);
+    }
   },
 
   getUnreadCount: (): number => {
@@ -382,10 +420,13 @@ export const inboxStorage = {
     const key = inboxStorage.getStorageKey();
     if (typeof window === 'undefined') return;
 
-    const messages = inboxStorage.getMessages();
-    const updated = messages.filter(m => m.id !== id);
+    // READ RAW DATA from localStorage, NOT getMessages() which applies transforms
+    const stored = localStorage.getItem(key);
+    if (!stored) return;
 
     try {
+      const rawMessages = JSON.parse(stored);
+      const updated = rawMessages.filter((m: any) => m.id !== id);
       localStorage.setItem(key, JSON.stringify(updated));
       window.dispatchEvent(new Event('inbox_updated'));
     } catch (e) {
@@ -450,8 +491,31 @@ export const inboxStorage = {
     })).filter(item => {
       // Apply Whitelist filter during sync as well
       if (item.category === 'trade') {
-        return inboxStorage.isTradeWhitelisted(item.source, item.subject);
+        if (!inboxStorage.isTradeWhitelisted(item.source, item.subject)) return false;
       }
+
+      // Embassy requirement for server-synced proposals
+      const isEmbassyCategory = item.category === 'embassy' || (item.category === 'diplomacy' && item.subject.toLowerCase().includes('kedutaan'));
+      const needsEmbassyCheck = item.isProposal && !isEmbassyCategory && ['trade', 'pact', 'alliance', 'defense', 'diplomacy'].includes(item.category || '');
+      
+      if (needsEmbassyCheck) {
+        let country = item.metadata?.id || item.metadata?.country;
+        if (!country) {
+          const subjectMatch = item.subject.match(/\(([^)]+)\)$/);
+          if (subjectMatch) country = subjectMatch[1];
+        }
+        if (!country) {
+          const sourceMatch = item.source.match(/\(([^)]+)\)/);
+          if (sourceMatch) country = sourceMatch[1];
+        }
+        if (country) {
+          try {
+            const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
+            if (embassyStorage.getEmbassyStatus(country) !== 'completed') return false;
+          } catch (e) {}
+        }
+      }
+
       return true;
     });
 

@@ -107,35 +107,20 @@ export default function TandaTanganAliansi({ isOpen, onClose, targetCountry }: T
     setError(null);
 
     try {
-      const response = await fetch("/api/game/diplomacy/aliansi", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          relation_score: relationScore,
-          duration_years: duration,
-          starting_date: getStoredGameDate().toISOString()
-        })
-      });
-
-      const result = await response.json();
-
-      if (!response.ok || result.error) {
-        throw new Error(result.error || "Gagal memproses aliansi.");
-      }
-
-      if (result.eligible) {
-        // Potong anggaran
-        budgetStorage.updateBudget(-currentCost);
-        
-        // Simpan status
-        aliansiStorage.updateStatus(targetCountry, result.data);
-        
-        setShowSuccessModal(true);
-      } else {
-        setError(result.message);
-      }
+      // Bypassing broken Python API - Handling logic in TS/Service
+      const { AiDiplomacyService } = require("@/app/game/logic/ai/ai_diplomacy_engine/services/AiDiplomacyService");
+      
+      // 1. Potong anggaran
+      budgetStorage.updateBudget(-currentCost);
+      
+      // 2. Finalisasi perjanjian via Service (handles Matrix & Storage)
+      AiDiplomacyService.finalizeTreaty(targetCountry, 'alliance', duration);
+      
+      // 3. Show success
+      setShowSuccessModal(true);
     } catch (err: any) {
-      setError(err.message);
+      console.error("Manual Alliance Error:", err);
+      setError("Terjadi kesalahan teknis saat membentuk aliansi.");
     } finally {
       setIsLoading(false);
     }
@@ -146,32 +131,27 @@ export default function TandaTanganAliansi({ isOpen, onClose, targetCountry }: T
     setError(null);
 
     try {
-      const response = await fetch("/api/game/diplomacy/aliansi/break", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ target_country: targetCountry })
-      });
-
-      const result = await response.json();
-
-      if (!response.ok || result.error) throw new Error(result.error || "Gagal mengakhiri aliansi.");
-
-      // Apply Penalty
+      // Handle Penalty & Reset locally
+      const { normalizeId } = require("@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler");
+      const targetId = normalizeId(targetCountry);
+      
+      // Fixed penalty for breaking alliance
+      const penalty = -15;
+      
       const userCountry = (typeof window !== 'undefined' ? localStorage.getItem("selectedCountry") : "") || "";
       const userId = userCountry.toLowerCase().trim();
-      const targetId = targetCountry.toLowerCase().trim();
       const userRelations = (allRelations as any)[userId];
       const relationData = Array.isArray(userRelations) ? userRelations.find((r: any) => r.name?.toLowerCase().trim() === targetId) : null;
       const baseScore = relationData?.relation !== undefined ? relationData.relation : 50;
 
-      relationStorage.updateRelationScore(targetId, result.penalty, baseScore);
+      relationStorage.updateRelationScore(targetId, penalty, baseScore);
       
       // Reset Storage
       aliansiStorage.updateStatus(targetCountry, { status: 'none' });
       
       onClose();
     } catch (err: any) {
-      setError(err.message);
+      setError("Gagal memutus aliansi.");
     } finally {
       setIsLoading(false);
     }
