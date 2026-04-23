@@ -220,7 +220,7 @@ export const initializeMatrixData = async () => {
                         e: score >= 60 ? 1 : 0,
                         p: score >= 70 ? 1 : 0,
                         a: score >= 85 ? 1 : 0,
-                        t: isDefaultPartner ? 1 : 0 // Set trade status from database, not score
+                        t: isDefaultPartner ? 1 : 0
                     };
                     // ------------------------------------------------
 
