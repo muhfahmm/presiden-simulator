@@ -109,7 +109,22 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
             const { AiDiplomacyService } = require("@/app/game/logic/ai/ai_diplomacy_engine/services/AiDiplomacyService");
             
             let success = false;
-            switch (type) {
+            
+            // SMART TYPE DETECTION: If metadata.type doesn't match standard types,
+            // use the message category and subject to determine the correct type
+            let effectiveType = type;
+            const subjectLower = (msg.subject || '').toLowerCase();
+            if (msg.category === 'pact' || (msg.category === 'defense' && subjectLower.includes('pakta'))) {
+                effectiveType = 'pact';
+            } else if (msg.category === 'alliance' || (msg.category === 'defense' && subjectLower.includes('aliansi'))) {
+                effectiveType = 'alliance';
+            } else if (msg.category === 'embassy' || msg.category === 'diplomacy') {
+                effectiveType = 'embassy';
+            }
+            
+            console.log(`[INBOX] Effective type: ${effectiveType} (original: ${type})`);
+            
+            switch (effectiveType) {
                 case 'product_offer':
                     success = AiTradeService.acceptProductOffer(id);
                     break;
@@ -136,16 +151,17 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
                     const hasEmbassy = matrix[npcKey]?.[userKey]?.e === 1 || matrix[userKey]?.[npcKey]?.e === 1;
 
                     if (!hasEmbassy) {
-                        alert(`DIBUTUHKAN KEDUTAAN! Anda harus membangun kedutaan besar terlebih dahulu dengan ${id} sebelum dapat menandatangani ${type === 'pact' ? 'Pakta Non-Agresi' : 'Aliansi Pertahanan'}.`);
+                        alert(`DIBUTUHKAN KEDUTAAN! Anda harus membangun kedutaan besar terlebih dahulu dengan ${id} sebelum dapat menandatangani ${effectiveType === 'pact' ? 'Pakta Non-Agresi' : 'Aliansi Pertahanan'}.`);
                         return; // Stop processing
                     }
                     
                     const durationYears = msg.metadata?.durationYears || 5;
-                    AiDiplomacyService.finalizeTreaty(id, type, durationYears);
+                    AiDiplomacyService.finalizeTreaty(id, effectiveType, durationYears);
+                    console.log(`[INBOX] ✅ Treaty finalized: ${effectiveType} with ${id} for ${durationYears} years`);
                     success = true;
                     break;
                 default:
-                    console.warn(`[INBOX] Unknown action type: ${type}`);
+                    console.warn(`[INBOX] Unknown action type: ${effectiveType}`);
             }
             
             if (success || type === 'trade_contract') {
@@ -208,7 +224,33 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
             setMessages(inboxStorage.getMessages());
             alert(`Ratifikasi Berhasil! Pengiriman ${commodity} sedang diproses. Estimasi tiba: ${duration} Hari.`);
         } else {
-            // Fallback for simple messages
+            // Fallback for messages without metadata
+            const subj = (msg.subject || '').toLowerCase();
+            const cat = msg.category || '';
+            
+            // Detect pact/alliance from category or subject
+            const isPactMsg = cat === 'pact' || (cat === 'defense' && subj.includes('pakta'));
+            const isAllianceMsg = cat === 'alliance' || (cat === 'defense' && subj.includes('aliansi'));
+            
+            if (isPactMsg || isAllianceMsg) {
+                // Extract country name from title: "TAWARAN PAKTA NON AGRESI 5 TAHUN (THAILAND)" or "PAKTA BERBAGI INTELIJEN (THAILAND)"
+                const countryMatch = msg.subject.match(/\(([^)]+)\)$/);
+                const sourceMatch = msg.source.match(/\(([^)]+)\)/);
+                const countryName = countryMatch?.[1] || sourceMatch?.[1] || "";
+                
+                if (countryName) {
+                    const { AiDiplomacyService } = require("@/app/game/logic/ai/ai_diplomacy_engine/services/AiDiplomacyService");
+                    const treatyType = isPactMsg ? 'pact' : 'alliance';
+                    
+                    // Extract duration from title if present (e.g., "5 TAHUN")
+                    const durMatch = msg.subject.match(/(\d+)\s*tahun/i);
+                    const duration = durMatch ? parseInt(durMatch[1]) : 5;
+                    
+                    AiDiplomacyService.finalizeTreaty(countryName, treatyType, duration);
+                    console.log(`[INBOX] ✅ Fallback treaty: ${treatyType} with ${countryName} for ${duration} years`);
+                }
+            }
+            
             inboxStorage.updateMessageStatus(msg.id, 'accepted');
             setMessages(inboxStorage.getMessages());
         }
