@@ -21,6 +21,14 @@ export default function KedutaanBesarModal({
   setActiveMenu 
 }: KedutaanBesarModalProps) {
   const [searchQuery, setSearchQuery] = React.useState("");
+  const [refreshKey, setRefreshKey] = React.useState(0);
+
+  // Listen for embassy storage changes to refresh the list in real-time
+  React.useEffect(() => {
+    const handleEmbassyUpdate = () => setRefreshKey(k => k + 1);
+    window.addEventListener('embassy_status_updated', handleEmbassyUpdate);
+    return () => window.removeEventListener('embassy_status_updated', handleEmbassyUpdate);
+  }, []);
 
   // Filter countries with completed embassies
   const activeEmbassies = useMemo(() => {
@@ -43,7 +51,8 @@ export default function KedutaanBesarModal({
           currentScore
         };
       });
-  }, [searchQuery]);
+  }, [searchQuery, refreshKey]);
+
 
   const stats = useMemo(() => {
     const totalMaintenance = activeEmbassies.reduce((sum, e) => sum + e.maintenance, 0);
