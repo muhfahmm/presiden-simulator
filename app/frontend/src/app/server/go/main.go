@@ -436,12 +436,8 @@ func simulationEngine() {
 		// 2. Process Player Nation (Calculates Happiness, Stability, Budget)
 		processPlayerDay(nextDate)
 		
-		// ─── WEEKLY NEWS RESET (every 7 days) ───
-		if core.GlobalState.DayCounter > 1 && core.GlobalState.DayCounter%7 == 0 {
-			prevNewsCount := len(core.GlobalState.News)
-			core.GlobalState.News = []core.NewsItem{}
-			fmt.Printf("[GO] Weekly news reset: cleared %d items (Day %d)\n", prevNewsCount, core.GlobalState.DayCounter)
-		}
+		// ─── MONTHLY NEWS RESET CHECK ───
+		checkMonthlyNewsReset(nextDate)
 
 		// 3. Process NPC & Global Simulation (CRITICAL: Called INSIDE Lock for thread-safety)
 		processNPCDay(nextDate)
@@ -480,13 +476,7 @@ func simulationEngine() {
 
 		// Check for Month Change (Quarterly Detection)
 		if nextDate.Month() != core.GlobalState.LastProcessedMonth {
-			// Update this atomicaly if needed, or rely on loop context
-			core.GlobalState.Mu.Lock()
-			core.GlobalState.LastProcessedMonth = nextDate.Month()
-
-			// (News reset moved to weekly — see above)
-
-			core.GlobalState.Mu.Unlock()
+			// (News reset now handled by checkMonthlyNewsReset called at start of tick)
 			
 			oldMonth := nextDate.Month() - 1
 			if oldMonth == 0 { oldMonth = 12 }
@@ -613,6 +603,32 @@ func calculatePlayerHappiness() {
 	if p.Happiness > 100 { p.Happiness = 100 }
 	if p.Happiness < 1 { p.Happiness = 1 }
 	p.Happiness = math.Round(p.Happiness*100) / 100
+}
+
+func checkMonthlyNewsReset(date time.Time) {
+	// 1. TRIM: Always keep it under 300 to prevent lag
+	if len(core.GlobalState.News) > 300 {
+		core.GlobalState.News = core.GlobalState.News[:300]
+	}
+
+	// 2. MONTHLY RESET: Clear if month changes
+	if date.Month() != core.GlobalState.LastProcessedMonth && core.GlobalState.DayCounter > 0 {
+		prevNewsCount := len(core.GlobalState.News)
+		core.GlobalState.News = []core.NewsItem{}
+		core.GlobalState.LastProcessedMonth = date.Month()
+
+		core.AddNewsItemLocked(
+			"Lembaga Intelijen Global",
+			"Edisi Baru: Ringkasan Global Bulanan",
+			fmt.Sprintf("Seluruh arsip berita internasional telah diarsipkan. Memulai pemantauan baru untuk bulan %s %d.",
+				date.Month().String(), date.Year()),
+			"global",
+			"high",
+			date.Format("02 Jan 2006"),
+		)
+
+		fmt.Printf("[GO] Monthly news reset: cleared %d items (Transition to %s)\n", prevNewsCount, date.Month().String())
+	}
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -1030,22 +1046,13 @@ func createMajorUpdateSnapshot() []byte {
 	lastBroadcastNewsLen = len(core.GlobalState.News)
 	lastBroadcastInboxLen = len(core.GlobalState.Inbox)
 
-	getRecentNews := func(arr []core.NewsItem, n int) []core.NewsItem {
-		if len(arr) <= n { return arr }
-		return arr[len(arr)-n:]
-	}
-	getRecentInbox := func(arr []core.InboxItem, n int) []core.InboxItem {
-		if len(arr) <= n { return arr }
-		return arr[len(arr)-n:]
-	}
-
 	payload := SyncPayload{
 		GameDate:   core.GlobalState.GameDate,
 		IsPaused:   core.GlobalState.IsPaused,
 		Speed:      core.GlobalState.Speed,
 		DayCounter: core.GlobalState.DayCounter,
-		News:       getRecentNews(core.GlobalState.News, 20),
-		Inbox:      getRecentInbox(core.GlobalState.Inbox, 10),
+		News:       core.GlobalState.News,
+		Inbox:      core.GlobalState.Inbox,
 		Player:     core.GlobalState.Player,
 		NpcBuildingLevels: core.GlobalState.NPCBuildingLevels,
 	}
@@ -1306,17 +1313,22 @@ func handleInitPlayer(w http.ResponseWriter, r *http.Request) {
 	if core.GlobalState.Player.PriceIndex == 0 { core.GlobalState.Player.PriceIndex = 1.0 }
 
 	// Sync Clock & Budget Authority
-	// CRITICAL FIX: Only catch up if the server itself isn't at Day 0 (Reset state).
-	if init.DayCounter > 0 && core.GlobalState.DayCounter > 0 {
+	// If server is at Day 0 (just started), it MUST sync with the client's day to maintain continuity
+	if init.DayCounter > 0 {
 		core.GlobalState.GameDate = init.GameDate
 		core.GlobalState.DayCounter = init.DayCounter
 		fmt.Printf("[GO] Synced Clock to Client: %s (Day %d)\n", init.GameDate, init.DayCounter)
 		
-		// Immediately fast-forward any missed weekly drifts
+		// Check for Monthly Reset immediately after sync
+		if d, err := time.Parse("2006-01-02", init.GameDate); err == nil {
+			checkMonthlyNewsReset(d)
+		}
+		
+		// Fast-forward any missed weekly drifts
 		server_hubungan.CatchUpDriftLocked(init.DayCounter)
 	} else if core.GlobalState.DayCounter == 0 {
-		fmt.Printf("[GO] Detected Day 0. Discarding poisoned budget (%.2f). FORCING Sovereignty.\n", init.Budget)
-		// Ensure we start exactly at current date
+		// Only happens if both are at Day 0
+		fmt.Printf("[GO] Both at Day 0. Initializing baseline.\n")
 		core.GlobalState.GameDate = time.Now().Format("2006-01-02")
 		core.GlobalState.DayCounter = 0
 		core.GlobalState.IsPaused = true

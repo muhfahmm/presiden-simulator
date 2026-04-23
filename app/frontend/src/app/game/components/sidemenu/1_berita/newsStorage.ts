@@ -21,8 +21,8 @@ const NEWS_STORAGE_KEY = "em_global_news_v1";
 const NEWS_WEEK_KEY = "em_news_week_id";
 const NEWS_EFFECTS_KEY = "em_news_effects_processed";
 const DAILY_LIMIT = 10;
-const WEEKLY_AI_LIMIT = 10; // User request: Max 10 AI news per week (excluding construction)
-// News limits removed per user request to allow infinite history
+const WEEKLY_AI_LIMIT = 20; 
+// News list is reset every 1st of the month by the Go server to keep history lightweight.
 
 const dailyCounters: Record<string, Record<string, number>> = {};
 let weeklyCounters: Record<string, number> = {}; // weekId -> count
@@ -90,21 +90,9 @@ export const newsStorage = {
       timestamp: sn.timestamp || Date.now(),
     }));
 
-    // Get ALL existing news (Server + Local)
-    const current = newsStorage.getNews();
-    
-    // Merge: incoming server items first, then current history
-    const rawMerged = [...mapped, ...current];
-    
-    // Deduplicate the merged list strictly by ID
-    const uniqueMap = new Map();
-    rawMerged.forEach(item => {
-      if (item && item.id) uniqueMap.set(item.id, item);
-    });
-    
-    // Sort: most recent first
-    const merged = Array.from(uniqueMap.values())
-      .sort((a: any, b: any) => b.timestamp - a.timestamp);
+    // OVERWRITE: Server is now the absolute authority for news.
+    // This ensures that when the server resets every week, the frontend follows.
+    const merged = mapped.sort((a: any, b: any) => b.timestamp - a.timestamp);
 
     try {
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(merged));
@@ -137,14 +125,14 @@ export const newsStorage = {
             // ALWAYS dispatch player state immediately (lightweight)
             window.dispatchEvent(new CustomEvent("game_state_sync", { detail: data }));
 
-            // Sync news less frequently (only when news count changes)
-            if (data.news && Array.isArray(data.news)) {
-              const currentCount = data.news.length;
-              if (currentCount !== lastNewsCount) {
-                lastNewsCount = currentCount;
-                newsStorage.syncFromServer(data.news, data.gameDate);
+              // Sync news (Always sync if count changes or if server sends an empty list to handle weekly reset)
+              if (data.news && Array.isArray(data.news)) {
+                const currentCount = data.news.length;
+                if (currentCount !== lastNewsCount || currentCount === 0) {
+                  lastNewsCount = currentCount;
+                  newsStorage.syncFromServer(data.news, data.gameDate);
+                }
               }
-            }
 
             // Sync NPC building levels from Go server (authoritative)
             if (data.npcBuildingLevels && typeof data.npcBuildingLevels === 'object') {
@@ -345,32 +333,12 @@ export const newsStorage = {
   },
 
   /**
-   * Limit AI News to 10 per week (excluding construction).
-   * Also handles "Weekly Update" (Clears news if week changes).
+   * Limit AI News frequency.
    */
   canAddWeekly: (category: string, gameDate: Date): boolean => {
-    const weekId = `W${Math.floor(gameDate.getTime() / (7 * 24 * 60 * 60 * 1000))}`;
-    
-    // Check for Weekly Rotation
-    const lastWeekId = localStorage.getItem(NEWS_WEEK_KEY);
-    if (lastWeekId && lastWeekId !== weekId) {
-      // User request: "jika sudah seminggu maka akan terupdate" -> clear news
-      newsStorage.clear();
-      // Reset counters for the new week
-      weeklyCounters = {};
-      console.log(`[News Storage] Weekly update detected (${lastWeekId} -> ${weekId}). Clearing list.`);
-    }
-    localStorage.setItem(NEWS_WEEK_KEY, weekId);
-
-    if (category === 'construction') return true; // Pembangunan dikecualikan
-
-    if (!weeklyCounters[weekId]) weeklyCounters[weekId] = 0;
-
-    if (weeklyCounters[weekId] < WEEKLY_AI_LIMIT) {
-      weeklyCounters[weekId]++;
-      return true;
-    }
-    return false;
+    if (category === 'construction') return true; 
+    // This is now legacy code as Go server handles generation, but keeping for compatibility
+    return true;
   },
 
   /**
