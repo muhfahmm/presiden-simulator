@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { X, Activity, TrendingUp, TrendingDown, Info, Factory, Pickaxe, Eye, EyeOff, Truck, Ship, Plane, Zap, Package, Droplet, Bike, Car, Bus, Shield, Anchor, Crosshair, Target } from "lucide-react";
+import { X, Activity, TrendingUp, TrendingDown, Info, Factory, Pickaxe, Eye, EyeOff, Truck, Ship, Plane, Zap, Package, Droplet, Bike, Car, Bus, Shield, Anchor, Crosshair, Target, Bolt, Radiation } from "lucide-react";
 import { 
   mineralKritisRate,
   infrastrukturRate,
@@ -17,9 +17,10 @@ import { getVehicleData } from "@/app/database/data/database_kendaraan_bermotor"
 interface PerminyakanModalProps {
   isOpen: boolean;
   onClose: () => void;
+  setActiveMenu: (menu: string) => void;
 }
 
-export default function PerminyakanModal({ isOpen, onClose }: PerminyakanModalProps) {
+export default function PerminyakanModal({ isOpen, onClose, setActiveMenu }: PerminyakanModalProps) {
   const [showProduksi, setShowProduksi] = useState(true);
   const [showKonsumsi, setShowKonsumsi] = useState(true);
 
@@ -92,10 +93,10 @@ export default function PerminyakanModal({ isOpen, onClose }: PerminyakanModalPr
 
   // Armada Laut
   const consInduk = (armada.laut?.kapal_induk || 0) * (armadaMiliterRate["8_kapal_induk"]?.konsumsi_bahan_bakar || 0);
-  const consIndukNuklir = (armada.laut?.kapal_induk_nuklir || 0) * (armadaMiliterRate["8b_kapal_induk_nuklir"]?.konsumsi_bahan_bakar || 0);
+  const consIndukNuklir = 0; // Kapal Induk Nuklir tidak menggunakan BBM (Uranium)
   const consDestroyer = (armada.laut?.kapal_destroyer || 0) * (armadaMiliterRate["9_kapal_perusak"]?.konsumsi_bahan_bakar || 0);
   const consKorvet = (armada.laut?.kapal_korvet || 0) * (armadaMiliterRate["10_kapal_korvet"]?.konsumsi_bahan_bakar || 0);
-  const consSubN = (armada.laut?.kapal_selam_nuklir || 0) * (armadaMiliterRate["11_kapal_selam_nuklir"]?.konsumsi_bahan_bakar || 0);
+  const consSubN = 0; // Kapal Selam Nuklir tidak menggunakan BBM (Uranium)
   const consSubR = (armada.laut?.kapal_selam_regular || 0) * (armadaMiliterRate["12_kapal_selam_reguler"]?.konsumsi_bahan_bakar || 0);
   const consRanjau = (armada.laut?.kapal_ranjau || 0) * (armadaMiliterRate["13_penyapu_ranjau"]?.konsumsi_bahan_bakar || 0);
   const consLogLaut = (armada.laut?.kapal_logistik || 0) * (armadaMiliterRate["14_kapal_logistik"]?.konsumsi_bahan_bakar || 0);
@@ -117,361 +118,187 @@ export default function PerminyakanModal({ isOpen, onClose }: PerminyakanModalPr
   const surplus = totalProduction - totalConsumption;
 
   return (
-    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative">
-        
+    <div className="absolute inset-0 bg-black/60 z-50 flex items-center justify-center animate-in fade-in duration-300 p-6 backdrop-blur-sm">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+
+        {/* Subtle Accents */}
+        <div className="absolute top-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent blur-sm"></div>
+        <div className="absolute -top-24 -left-24 w-64 h-64 bg-amber-600/5 rounded-full blur-[80px]"></div>
+
         {/* Header Section */}
-        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
+        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30 relative z-10">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-amber-500/10 rounded-xl">
+            <div className="p-2 bg-amber-500/10 rounded-xl border border-amber-500/20">
               <Droplet className="h-6 w-6 text-amber-500" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white tracking-tight italic uppercase">Pusat Perminyakan Nasional</h2>
-              <div className="flex items-center gap-3 mt-0.5">
-                <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest">National Petroleum Control Center</p>
-                <div className="flex items-center gap-1.5 px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 rounded-md">
+              <h2 className="text-2xl font-bold text-white tracking-tight leading-none uppercase">Pusat Perminyakan Nasional</h2>
+              <div className="flex items-center gap-3 mt-1">
+                <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-1">National Petroleum Control Center</p>
+                <div className="flex items-center gap-1.5 px-2 py-0.5 bg-zinc-800 border border-zinc-700 rounded-md">
                    <Info size={10} className="text-amber-500" />
-                   <span className="text-[9px] text-amber-500/90 font-black tracking-wider uppercase">1 Barel = 159 Liter</span>
+                   <span className="text-[8px] text-zinc-400 font-black tracking-wider uppercase italic">1 Barel = 159 Liter</span>
                 </div>
               </div>
             </div>
           </div>
           <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
-              <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
-              <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
-            </button>
+            <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+            <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+          </button>
         </div>
 
-        {/* Live Dashboard Grid */}
-        <div className="px-8 py-8 bg-zinc-900/10 border-b border-zinc-800/50 space-y-6">
+        {/* Unified Navigation Tabs */}
+        <div className="px-6 py-2 bg-zinc-900/40 border-b border-zinc-800 flex gap-2 relative z-10">
+          <button 
+            onClick={() => setActiveMenu("Menu:Kelistrikan")}
+            className="px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 transition-all text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"
+          >
+            <Bolt size={14} /> Kelistrikan
+          </button>
+          <button 
+            onClick={() => setActiveMenu("Menu:Perminyakan")}
+            className="px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 transition-all bg-zinc-100 text-zinc-950 shadow-lg cursor-default"
+          >
+            <Droplet size={14} /> Perminyakan
+          </button>
+          <button 
+            onClick={() => setActiveMenu("Menu:Uranium")}
+            className="px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 transition-all text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"
+          >
+            <Radiation size={14} /> Uranium
+          </button>
+        </div>
 
-
-          {/* MAIN SUMMARY GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-[32px] flex items-center gap-6 group hover:bg-zinc-900 transition-all hover:border-amber-500/30 shadow-amber-500/10 shadow-lg">
-              <div className="p-4 bg-amber-500/10 rounded-2xl border border-amber-500/20">
-                <Package className="h-8 w-8 text-amber-500" />
+        {/* Dashboard Summary (Synchronized with ProduksiHub) */}
+        <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 transition-all hover:bg-zinc-900/80">
+              <div className="p-3 bg-amber-500/10 rounded-xl">
+                <Package className="h-6 w-6 text-amber-500" />
               </div>
               <div>
-                <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-[0.2em]">Total Produksi</p>
-                <p className="text-3xl font-black text-white leading-tight mt-1">
-                  {totalProduction.toLocaleString('id-ID')} <span className="text-xs text-zinc-600 font-normal ml-1">Barel /hari</span>
-                </p>
-                <p className="text-[10px] font-bold text-amber-500/80 mt-1 uppercase tracking-wider">
-                  {(totalProduction * literPerBarel).toLocaleString('id-ID')} <span className="opacity-70 ml-0.5">Liter /hari</span>
-                </p>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Total Produksi</p>
+                <p className="text-xl font-black text-white leading-tight">{totalProduction.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">BRL</span></p>
               </div>
             </div>
 
-            <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-[32px] flex items-center gap-6 group hover:bg-zinc-900 transition-all hover:border-rose-500/30 shadow-rose-500/10 shadow-lg">
-              <div className="p-4 bg-rose-500/10 rounded-2xl border border-rose-500/20">
-                <Activity className="h-8 w-8 text-rose-500" />
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 transition-all hover:bg-zinc-900/80">
+              <div className="p-3 bg-rose-500/10 rounded-xl">
+                <Activity className="h-6 w-6 text-rose-500" />
               </div>
               <div>
-                <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-[0.2em]">Total Konsumsi</p>
-                <p className="text-3xl font-black text-white leading-tight mt-1">
-                  {totalConsumption.toLocaleString('id-ID')} <span className="text-xs text-zinc-600 font-normal ml-1">Barel /hari</span>
-                </p>
-                <p className="text-[10px] font-bold text-rose-500/80 mt-1 uppercase tracking-wider">
-                  {(totalConsumption * literPerBarel).toLocaleString('id-ID')} <span className="opacity-70 ml-0.5">Liter /hari</span>
-                </p>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Total Konsumsi</p>
+                <p className="text-xl font-black text-white leading-tight">{totalConsumption.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">BRL</span></p>
               </div>
             </div>
 
-            <div className={`bg-zinc-900/50 border border-zinc-800 p-6 rounded-[32px] flex items-center gap-6 group hover:bg-zinc-900 transition-all ${surplus >= 0 ? "hover:border-emerald-500/30 shadow-emerald-500/10" : "hover:border-rose-600/30 shadow-rose-600/10"} shadow-lg relative overflow-hidden`}>
-              <div className={`p-4 rounded-2xl border ${surplus >= 0 ? "bg-emerald-500/10 border-emerald-500/20" : "bg-rose-500/10 border-rose-500/20"}`}>
-                {surplus >= 0 ? <TrendingUp className="h-8 w-8 text-emerald-500" /> : <TrendingDown className="h-8 w-8 text-rose-500" />}
+            <div className={`bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 relative overflow-hidden group transition-all hover:bg-zinc-900/80 ${surplus >= 0 ? "hover:border-emerald-500/30" : "hover:border-rose-500/30"}`}>
+              <div className={`p-3 rounded-xl ${surplus >= 0 ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>
+                {surplus >= 0 ? <TrendingUp className="h-6 w-6 text-emerald-500" /> : <TrendingDown className="h-6 w-6 text-rose-400" />}
               </div>
               <div className="relative z-10">
-                <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-[0.2em]">Neraca Perminyakan</p>
-                <p className={`text-3xl font-black leading-tight mt-1 ${surplus >= 0 ? "text-emerald-500" : "text-rose-500"}`}>
-                  {surplus.toLocaleString('id-ID')} <span className="text-xs font-normal ml-1 opacity-50">Barel /hari</span>
-                </p>
-                <p className={`text-[10px] font-bold mt-1 uppercase tracking-wider ${surplus >= 0 ? "text-emerald-500/80" : "text-rose-500/80"}`}>
-                  {(surplus * literPerBarel).toLocaleString('id-ID')} <span className="opacity-70 ml-0.5">Liter /hari</span>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Neraca Perminyakan</p>
+                <p className={`text-xl font-black leading-tight ${surplus >= 0 ? "text-emerald-400" : "text-rose-500"}`}>
+                  {surplus.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">BRL</span>
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Content Section */}
-        <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Premium Content Area */}
+        <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20 relative z-10">
+          <div className="space-y-12">
             
-            {/* Produksi Breakdown */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-3 px-2">
-                <div className="p-1.5 bg-amber-500/10 rounded-lg"><Pickaxe size={16} className="text-amber-500" /></div>
-                <h3 className="text-lg font-black text-white uppercase italic tracking-widest">Sektor Produksi Minyak</h3>
+            {/* Section: Sektor Ekstraksi Minyak */}
+            <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <div className="flex items-center gap-3 mb-5 px-1">
+                <div className="p-1.5 rounded-lg bg-zinc-900 border border-zinc-800">
+                  <Pickaxe className="h-4 w-4 text-amber-500" />
+                </div>
+                <h3 className="text-xl font-black text-white uppercase tracking-widest italic">1. Sektor Ekstraksi Minyak <span className="text-amber-500 ml-3 font-black lowercase italic text-xs tracking-normal bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">(1 Jenis Sumur)</span></h3>
                 <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
               </div>
 
-              <div className="bg-zinc-900/40 border border-zinc-800/50 p-6 rounded-3xl group hover:bg-zinc-900 transition-all">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 bg-amber-500/10 rounded-2xl text-amber-500">
-                      <Zap size={24} />
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-1 pb-4">
+                <div className="bg-zinc-900/40 border border-zinc-800 p-6 rounded-[2.5rem] flex flex-col gap-6 relative group overflow-hidden transition-all hover:bg-zinc-900/60 shadow-lg min-h-[220px]">
+                  <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity pointer-events-none">
+                    <Droplet className="h-24 w-24" />
+                  </div>
+                  
+                  <div className="flex items-start justify-between relative z-10">
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 rounded-2xl bg-zinc-950 border border-zinc-800 group-hover:scale-110 transition-transform duration-500 shadow-xl text-amber-500">
+                        <Zap size={22} />
+                      </div>
+                      <div className="p-2 bg-zinc-950/50 border border-zinc-800 rounded-xl">
+                        <Info className="h-4 w-4 text-zinc-600" />
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="text-white font-bold uppercase tracking-tight">Sumur Minyak Bumi</h4>
-                      <p className="text-xs text-zinc-500 font-medium uppercase">Ekstraksi SDA Minyak</p>
+                    <div className="bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-xl">
+                      <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest whitespace-nowrap">Aktif: {countOilWells} Unit</span>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-2xl font-black text-white">{totalProduction.toLocaleString('id-ID')} <span className="text-xs text-zinc-500 font-normal">Barel /hari</span></p>
-                    <p className="text-sm font-bold text-amber-500/80 mt-1 uppercase tracking-wider">
-                      {(totalProduction * literPerBarel).toLocaleString('id-ID')} <span className="opacity-70 ml-0.5 text-[10px]">Liter /hari</span>
-                    </p>
-                    <p className="text-[10px] text-amber-500 font-bold bg-amber-500/10 px-2 py-0.5 rounded-md mt-1 italic uppercase tracking-widest inline-block">{countOilWells} Units Active</p>
+
+                  <div className="space-y-1 relative z-10">
+                    <h4 className="text-sm font-black text-white uppercase tracking-tighter italic leading-tight group-hover:text-amber-400 transition-colors">Sumur Minyak Bumi</h4>
+                    <div className="flex flex-col gap-2 pt-3">
+                      <div className="flex items-center gap-2">
+                        <TrendingUp size={12} className="text-zinc-500" />
+                        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Output Harian Nasional</span>
+                      </div>
+                      <p className="text-2xl font-black text-white tracking-tight tabular-nums">
+                        {totalProduction.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-600 uppercase font-bold ml-1">BRL</span>
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="h-1.5 w-full bg-zinc-950 rounded-full overflow-hidden border border-zinc-800/50">
-                  <div className="h-full bg-amber-500/80 rounded-full" style={{ width: countOilWells > 0 ? '100%' : '0%' }}></div>
+
+                  <div className="mt-auto relative z-10">
+                    <div className="h-1.5 w-full bg-zinc-950 rounded-full overflow-hidden border border-zinc-900">
+                      <div className="h-full bg-amber-500 rounded-full shadow-[0_0_10px_rgba(245,158,11,0.4)] transition-all duration-1000" style={{ width: countOilWells > 0 ? '100%' : '0%' }} />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Konsumsi Breakdown */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-3 px-2">
-                <div className="p-1.5 bg-rose-500/10 rounded-lg"><Activity size={16} className="text-rose-500" /></div>
-                <h3 className="text-lg font-black text-white uppercase italic tracking-widest">Sektor Konsumsi</h3>
+            {/* Section: Alokasi Konsumsi BBM */}
+            <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 pt-8 border-t border-zinc-900/50">
+              <div className="flex items-center gap-3 mb-8 px-1">
+                <div className="p-1.5 rounded-lg bg-zinc-900 border border-zinc-800">
+                  <Activity className="h-4 w-4 text-rose-400" />
+                </div>
+                <h3 className="text-xl font-black text-white uppercase tracking-widest italic">2. Alokasi Konsumsi BBM Nasional</h3>
                 <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
               </div>
 
-              <div className="space-y-3">
-                <div className="bg-zinc-900/40 border border-zinc-800/50 p-4 rounded-3xl">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Truck size={18} className="text-rose-500" />
-                    <span className="text-sm font-bold text-white uppercase tracking-tight">Transportasi & Logistik</span>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-zinc-950/40 p-3 rounded-2xl border border-zinc-800/30 group hover:border-rose-500/30 transition-all">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Bike size={14} className="text-zinc-500 group-hover:text-rose-400" />
-                        <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Motor <span className="text-[8px] opacity-40 ml-1">({VEHICLE_CAPACITIES.RODA_2} Barel)</span></span>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  { label: "Sepeda Motor", val: consMotor, icon: Bike, color: "text-zinc-400", desc: "Transportasi Roda 2" },
+                  { label: "Kendaraan Pribadi", val: consCar, icon: Car, color: "text-zinc-400", desc: "Transportasi Roda 4" },
+                  { label: "Angkutan Logistik", val: consTruck, icon: Truck, color: "text-zinc-400", desc: "Rantai Pasok Nasional" },
+                  { label: "Transportasi Bus", val: consBus, icon: Bus, color: "text-zinc-400", desc: "Transportasi Publik" },
+                  { label: "Armada Militer", val: totalMilitaryConsumption, icon: Shield, color: "text-rose-400", desc: "Bahan Bakar Taktis" },
+                  { label: "Sektor Industri", val: industryConsumption, icon: Factory, color: "text-amber-400", desc: "Industri & Smelting" },
+                ].map((item, idx) => (
+                  <div key={idx} className="bg-zinc-900/30 border border-zinc-800/50 p-5 rounded-2xl flex items-center justify-between hover:bg-zinc-800/50 hover:border-rose-500/20 transition-all group">
+                    <div className="flex items-center gap-4">
+                      <div className={`p-2.5 bg-zinc-950 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform ${item.color}`}>
+                        <item.icon size={18} />
                       </div>
-                      <p className="text-lg font-black text-white leading-tight">{consMotor.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-600 font-normal">Barel /hari</span></p>
-                      <p className="text-[10px] font-bold text-rose-500/80 mt-1 uppercase tracking-wider">
-                        {consMotorLiter.toLocaleString('id-ID')} <span className="opacity-70 ml-0.5">Liter /hari</span>
-                      </p>
-                      <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1 opacity-80">{motorCount.toLocaleString('id-ID')} <span className="text-[8px] opacity-60">Unit</span></p>
+                      <div>
+                        <p className="text-[11px] text-zinc-100 font-black uppercase tracking-widest leading-none">{item.label}</p>
+                        <p className="text-[9px] text-zinc-600 mt-1.5 font-bold tracking-tighter uppercase">{item.desc}</p>
+                      </div>
                     </div>
-
-                    <div className="bg-zinc-950/40 p-3 rounded-2xl border border-zinc-800/30 group hover:border-rose-500/30 transition-all">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Car size={14} className="text-zinc-500 group-hover:text-rose-400" />
-                        <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Mobil <span className="text-[8px] opacity-40 ml-1">({VEHICLE_CAPACITIES.RODA_4} Barel)</span></span>
-                      </div>
-                      <p className="text-lg font-black text-white leading-tight">{consCar.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-600 font-normal">Barel /hari</span></p>
-                      <p className="text-[10px] font-bold text-rose-500/80 mt-1 uppercase tracking-wider">
-                        {consCarLiter.toLocaleString('id-ID')} <span className="opacity-70 ml-0.5">Liter /hari</span>
-                      </p>
-                      <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1 opacity-80">{carCount.toLocaleString('id-ID')} <span className="text-[8px] opacity-60">Unit</span></p>
-                    </div>
-
-                    <div className="bg-zinc-950/40 p-3 rounded-2xl border border-zinc-800/30 group hover:border-rose-500/30 transition-all">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Truck size={14} className="text-zinc-500 group-hover:text-rose-400" />
-                        <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Truk <span className="text-[8px] opacity-40 ml-1">({VEHICLE_CAPACITIES.TRUK} Barel)</span></span>
-                      </div>
-                      <p className="text-lg font-black text-white leading-tight">{consTruck.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-600 font-normal">Barel /hari</span></p>
-                      <p className="text-[10px] font-bold text-rose-500/80 mt-1 uppercase tracking-wider">
-                        {consTruckLiter.toLocaleString('id-ID')} <span className="opacity-70 ml-0.5">Liter /hari</span>
-                      </p>
-                      <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1 opacity-80">{truckCount.toLocaleString('id-ID')} <span className="text-[8px] opacity-60">Unit</span></p>
-                    </div>
-
-                    <div className="bg-zinc-950/40 p-3 rounded-2xl border border-zinc-800/30 group hover:border-rose-500/30 transition-all">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Bus size={14} className="text-zinc-500 group-hover:text-rose-400" />
-                        <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Bus <span className="text-[8px] opacity-40 ml-1">({VEHICLE_CAPACITIES.BUS} Barel)</span></span>
-                      </div>
-                      <p className="text-lg font-black text-white leading-tight">{consBus.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-600 font-normal">Barel /hari</span></p>
-                      <p className="text-[10px] font-bold text-rose-500/80 mt-1 uppercase tracking-wider">
-                        {consBusLiter.toLocaleString('id-ID')} <span className="opacity-70 ml-0.5">Liter /hari</span>
-                      </p>
-                      <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1 opacity-80">{busCount.toLocaleString('id-ID')} <span className="text-[8px] opacity-60">Unit</span></p>
+                    <div className="text-right">
+                      <p className="text-lg font-black text-white tabular-nums leading-none">{item.val.toLocaleString('id-ID')}</p>
+                      <p className="text-[10px] text-zinc-600 font-black uppercase tracking-widest mt-1">BRL</p>
                     </div>
                   </div>
-                </div>
-
-                {/* MILITARY SECTOR CONSUMPTION */}
-                <div className="bg-zinc-900/40 border border-zinc-800/50 p-4 rounded-3xl">
-                  <div className="flex items-center gap-3 mb-4 px-2">
-                    <Shield size={18} className="text-rose-500" />
-                    <span className="text-sm font-bold text-white uppercase tracking-tight">Sektor Pertahanan & Keamanan</span>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    {/* Armada Darat */}
-                    <div className="bg-zinc-950/40 p-4 rounded-3xl border border-zinc-800/30 group hover:border-rose-500/30 transition-all">
-                      <div className="flex items-center gap-3 mb-4">
-                        <Target size={20} className="text-zinc-500 group-hover:text-rose-400" />
-                        <span className="text-[11px] font-black text-rose-500 uppercase tracking-widest">Armada Darat</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-x-6 gap-y-2 mb-4">
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Barak Militer</span>
-                          <span className="font-bold text-white">{(armada.barak || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Main Battle Tank</span>
-                          <span className="font-bold text-white">{(armada.darat?.tank_tempur_utama || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>APC / IFV</span>
-                          <span className="font-bold text-white">{(armada.darat?.apc_ifv || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Artileri Berat</span>
-                          <span className="font-bold text-white">{(armada.darat?.artileri_berat || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>MLRS Rocket</span>
-                          <span className="font-bold text-white">{(armada.darat?.sistem_peluncur_roket || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Mobile SAM</span>
-                          <span className="font-bold text-white">{(armada.darat?.pertahanan_udara_mobile || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Kendaraan Taktis</span>
-                          <span className="font-bold text-white">{(armada.darat?.kendaraan_taktis || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                      </div>
-                      <div className="pt-2 border-t border-zinc-800/50">
-                        <p className="text-lg font-black text-white leading-tight">{consDarat.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-600 font-normal">Barel /hari</span></p>
-                        <p className="text-[10px] font-bold text-rose-500/80 mt-1 uppercase tracking-wider">
-                          {(consDarat * literPerBarel).toLocaleString('id-ID')} <span className="opacity-70 ml-0.5">Liter /hari</span>
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Armada Laut */}
-                    <div className="bg-zinc-950/40 p-4 rounded-3xl border border-zinc-800/30 group hover:border-rose-500/30 transition-all">
-                      <div className="flex items-center gap-3 mb-4">
-                        <Anchor size={20} className="text-zinc-500 group-hover:text-rose-400" />
-                        <span className="text-[11px] font-black text-rose-500 uppercase tracking-widest">Armada Laut</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-x-6 gap-y-2 mb-4">
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Kapal Induk</span>
-                          <span className="font-bold text-white">{(armada.laut?.kapal_induk || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Kapal Induk Nuklir</span>
-                          <span className="font-bold text-white">{(armada.laut?.kapal_induk_nuklir || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Kapal Destroyer</span>
-                          <span className="font-bold text-white">{(armada.laut?.kapal_destroyer || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Kapal Korvet</span>
-                          <span className="font-bold text-white">{(armada.laut?.kapal_korvet || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Kapal Selam Nuklir</span>
-                          <span className="font-bold text-white">{(armada.laut?.kapal_selam_nuklir || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Kapal Selam Reguler</span>
-                          <span className="font-bold text-white">{(armada.laut?.kapal_selam_regular || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Kapal Ranjau</span>
-                          <span className="font-bold text-white">{(armada.laut?.kapal_ranjau || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Kapal Logistik</span>
-                          <span className="font-bold text-white">{(armada.laut?.kapal_logistik || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                      </div>
-                      <div className="pt-2 border-t border-zinc-800/50">
-                        <p className="text-lg font-black text-white leading-tight">{consLaut.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-600 font-normal">Barel /hari</span></p>
-                        <p className="text-[10px] font-bold text-rose-500/80 mt-1 uppercase tracking-wider">
-                          {(consLaut * literPerBarel).toLocaleString('id-ID')} <span className="opacity-70 ml-0.5">Liter /hari</span>
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Armada Udara */}
-                    <div className="bg-zinc-950/40 p-4 rounded-3xl border border-zinc-800/30 group hover:border-rose-500/30 transition-all">
-                      <div className="flex items-center gap-3 mb-4">
-                        <Crosshair size={20} className="text-zinc-500 group-hover:text-rose-400" />
-                        <span className="text-[11px] font-black text-rose-500 uppercase tracking-widest">Armada Udara</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-x-6 gap-y-2 mb-4">
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Jet Stealth</span>
-                          <span className="font-bold text-white">{(armada.udara?.jet_tempur_siluman || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Jet Interceptor</span>
-                          <span className="font-bold text-white">{(armada.udara?.jet_tempur_interceptor || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Pesawat Pengebom</span>
-                          <span className="font-bold text-white">{(armada.udara?.pesawat_pengebom || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Helikopter Serang</span>
-                          <span className="font-bold text-white">{(armada.udara?.helikopter_serang || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Pesawat Pengintai</span>
-                          <span className="font-bold text-white">{(armada.udara?.pesawat_pengintai || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Drone UAV</span>
-                          <span className="font-bold text-white">{(armada.udara?.drone_intai_uav || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Drone Kamikaze</span>
-                          <span className="font-bold text-white">{(armada.udara?.drone_kamikaze || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                        <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Pesawat Angkut</span>
-                          <span className="font-bold text-white">{(armada.udara?.pesawat_angkut || 0).toLocaleString('id-ID')}</span>
-                        </div>
-                      </div>
-                      <div className="pt-2 border-t border-zinc-800/50">
-                        <p className="text-lg font-black text-white leading-tight">{consUdara.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-600 font-normal">Barel /hari</span></p>
-                        <p className="text-[10px] font-bold text-rose-500/80 mt-1 uppercase tracking-wider">
-                          {(consUdara * literPerBarel).toLocaleString('id-ID')} <span className="opacity-70 ml-0.5">Liter /hari</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-zinc-900/40 border border-zinc-800/50 p-4 rounded-3xl flex items-center justify-between group hover:bg-zinc-900/60 transition-all">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-zinc-950 rounded-xl border border-zinc-800/50"><Factory size={16} className="text-zinc-500 group-hover:text-rose-500" /></div>
-                    <div>
-                      <span className="text-sm font-bold text-white uppercase tracking-tight block leading-none">Industri Manufaktur</span>
-                      <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-medium mt-1 inline-block">Heavy Machine & Smelting</span>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-xl font-black text-white">{industryConsumption.toLocaleString('id-ID')} <span className="text-xs text-zinc-600 font-normal">Barel /hari</span></p>
-                    <p className="text-[10px] font-bold text-rose-500/80 mt-1 uppercase tracking-wider">
-                      {(industryConsumption * literPerBarel).toLocaleString('id-ID')} <span className="opacity-70 ml-0.5">Liter /hari</span>
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-zinc-900/20 border border-zinc-800/50 p-4 rounded-3xl flex items-center justify-between opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-not-allowed group">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-zinc-950 rounded-xl border border-zinc-800/50"><Plane size={16} className="text-zinc-500" /></div>
-                    <span className="text-sm font-bold text-zinc-400 uppercase tracking-tight">Aviasi & Penerbangan</span>
-                  </div>
-                  <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest italic bg-zinc-900 px-2 py-0.5 rounded-md">In Development</span>
-                </div>
+                ))}
               </div>
             </div>
 

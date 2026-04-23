@@ -598,15 +598,15 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
-        {/* Header */}
+        {/* Header (Synchronized with National Center) */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-purple-500/10 rounded-xl">
+            <div className="p-2 bg-purple-500/10 rounded-xl border border-purple-500/20">
               <Wrench className="h-6 w-6 text-purple-500" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white tracking-tight">Produksi Hub</h2>
-              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Production Hub</p>
+              <h2 className="text-2xl font-bold text-white tracking-tight leading-none uppercase">Produksi Hub</h2>
+              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-1">National Production Hub</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -632,10 +632,11 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           </div>
         </div>
 
-        {/* Dashboard Summary Listrik */}
+        {/* Energy Dashboard Summary (Standardized) */}
         <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
+            
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 transition-all hover:bg-zinc-900/80 shadow-lg">
               <div className="p-3 bg-cyan-500/10 rounded-xl">
                 <Zap className="h-6 w-6 text-cyan-500" />
               </div>
@@ -645,7 +646,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
               </div>
             </div>
 
-            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 transition-all hover:bg-zinc-900/80 shadow-lg">
               <div className="p-3 bg-rose-500/10 rounded-xl">
                 <Activity className="h-6 w-6 text-rose-500" />
               </div>
@@ -655,7 +656,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
               </div>
             </div>
 
-            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 relative overflow-hidden group">
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 transition-all hover:bg-zinc-900/80 shadow-lg relative overflow-hidden group">
               <div className={`p-3 rounded-xl ${surplus >= 0 ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>
                 {surplus >= 0 ? <TrendingUp className="h-6 w-6 text-emerald-500" /> : <TrendingDown className="h-6 w-6 text-rose-500" />}
               </div>

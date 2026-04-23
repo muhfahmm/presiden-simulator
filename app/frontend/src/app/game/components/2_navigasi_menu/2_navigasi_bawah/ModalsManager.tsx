@@ -121,10 +121,12 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <PerminyakanModal
         isOpen={activeMenu === "Menu:Perminyakan"}
         onClose={() => setActiveMenu("ProduksiKonsumsi")}
+        setActiveMenu={setActiveMenu}
       />
       <UraniumModal
         isOpen={activeMenu === "Menu:Uranium"}
         onClose={() => setActiveMenu("ProduksiKonsumsi")}
+        setActiveMenu={setActiveMenu}
       />
       <TempatUmumModal
         isOpen={activeMenu === "Menu:TempatUmum"}
