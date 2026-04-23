@@ -1,0 +1,31 @@
+# RENCANA PENGEMBANGAN SISTEM PEMUNGUTAN SUARA AI (206 NEGARA)
+
+## 1. TUJUAN
+Mengimplementasikan logika di mana 206 negara anggota PBB lainnya (selain pemain) dapat secara otomatis mengajukan resolusi, memberikan suara, dan bereaksi terhadap peristiwa global secara dinamis menggunakan Python.
+
+## 2. ARSITEKTUR USULAN
+- **Frontend (Next.js)**: Menampilkan visualisasi voting dan notifikasi resolusi baru dari AI.
+- **Backend (Python/FastAPI)**: Mesin utama yang mensimulasikan pemikiran 206 negara berdasarkan:
+  - Kepentingan Nasional (Ekonomi, Militer, Stabilitas).
+  - Hubungan Diplomatik (Aliansi, Rivalitas).
+  - Ideologi & Agama.
+
+## 3. KOMPONEN UTAMA (PYTHON)
+- `ResolutionGenerator.py`: Skrip untuk menentukan kapan dan jenis resolusi apa yang akan diajukan oleh negara AI tertentu.
+- `VoterLogic.py`: Algoritma pengambilan keputusan (Setuju/Tolak/Abstain) untuk setiap negara terhadap resolusi yang aktif.
+- `SentimentAnalyzer.py`: Menghitung dampak resolusi terhadap hubungan internasional setelah voting selesai.
+
+## 4. TAHAPAN PENGEMBANGAN
+1. [ ] **Inisialisasi Folder**: Membuat struktur folder `logika_pemungutan_suara_AI`.
+2. [ ] **Pembuatan Mock Data**: Menyiapkan daftar 206 negara dengan atribut dasar (Ideologi, Hubungan dengan Pemain).
+3. [ ] **Logika Trigger AI**: Menentukan interval waktu di mana negara AI akan mengajukan resolusi (misal: setiap 3-6 bulan game).
+4. [ ] **Integrasi Python**: Membuat jembatan antara State Frontend (localStorage/SSE) dengan skrip Python.
+5. [ ] **Visualisasi Real-time**: Memastikan voting AI muncul secara bertahap di UI agar terasa hidup.
+
+## 5. FITUR UNGGULAN
+- **Blok Voting**: Negara-negara dengan ideologi yang sama cenderung memilih secara bersamaan.
+- **Lobbying**: AI dapat mencoba "mempengaruhi" voting negara lain atau bahkan pemain.
+- **Veto Power**: Implementasi logika khusus untuk P5 (Anggota Tetap) jika resolusi sangat krusial.
+
+---
+*Catatan: Pengembangan ini akan memprioritaskan penggunaan Python untuk pemrosesan data berat dan logika AI yang kompleks.*

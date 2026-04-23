@@ -84,12 +84,55 @@ export default function SuaraPBBTab({ currentData }: SuaraPBBTabProps) {
                 <span className={`text-[11px] font-black w-8 text-right ${isMyCountry ? "text-cyan-400" : "text-zinc-600"}`}>#{i + 1}</span>
 
                 {/* Flag */}
-                <span className="text-xl">{country.flag}</span>
+                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-zinc-950 border border-zinc-800 overflow-hidden shadow-inner">
+                  {(() => {
+                    // Coba ambil ISO code dari emoji flag atau name
+                    const emoji = country.flag || "";
+                    let iso = "";
+                    
+                    if (emoji && emoji.length >= 2) {
+                      // Simple emoji to ISO conversion (regional indicator symbols)
+                      const codePoints = Array.from(emoji).map(c => c.codePointAt(0) || 0);
+                      if (codePoints.length >= 2 && codePoints[0] >= 0x1F1E6 && codePoints[0] <= 0x1F1FF) {
+                        iso = String.fromCodePoint(codePoints[0] - 0x1F1E6 + 65, codePoints[1] - 0x1F1E6 + 65).toLowerCase();
+                      }
+                    }
+
+                    // Fallback map untuk negara penting jika deteksi emoji gagal
+                    const fallbackMap: Record<string, string> = {
+                      "Amerika Serikat": "us", "Rusia": "ru", "China": "cn", "Inggris": "gb", "Prancis": "fr",
+                      "Indonesia": "id", "Jepang": "jp", "Jerman": "de", "India": "in", "Korea Selatan": "kr",
+                      "Pakistan": "pk", "Somalia": "so", "Panama": "pa", "Denmark": "dk", "Yunani": "gr",
+                      "Aljazair": "dz", "Guyana": "gy", "Sierra Leone": "sl", "Slovenia": "si"
+                    };
+
+                    if (!iso && fallbackMap[country.name_id]) iso = fallbackMap[country.name_id];
+
+                    if (iso) {
+                      return (
+                        <img 
+                          src={`https://flagcdn.com/w80/${iso}.png`}
+                          alt={country.name_id}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const parent = e.currentTarget.parentElement;
+                            if (parent) {
+                              e.currentTarget.style.display = 'none';
+                              parent.innerHTML = '<span class="text-xl">' + (country.flag || "🏳️") + '</span>';
+                            }
+                          }}
+                        />
+                      );
+                    }
+
+                    return <span className="text-xl">{country.flag || "🏳️"}</span>;
+                  })()}
+                </div>
 
                 {/* Name */}
                 <div className="flex-1 min-w-0">
                   <p className={`text-xs font-black uppercase tracking-tight truncate ${isMyCountry ? "text-white" : "text-zinc-300"}`}>{country.name_id}</p>
-                  <p className="text-[9px] text-zinc-600 font-medium uppercase tracking-wider">{country.name_en}</p>
+                  <p className="text-[9px] text-zinc-600 font-bold uppercase tracking-wider">{country.name_en}</p>
                 </div>
 
                 {/* Progress bar */}

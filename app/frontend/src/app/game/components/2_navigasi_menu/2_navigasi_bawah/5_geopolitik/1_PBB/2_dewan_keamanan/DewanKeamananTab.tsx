@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Crown, Users, Info, Calendar } from "lucide-react"
 import { unSecurityCouncilStorage, UNSCMember } from "./storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import { countries } from "@/app/database/data/negara/benua/index";
+import { Globe } from "lucide-react";
 
 export default function DewanKeamananTab() {
   const [members, setMembers] = useState<UNSCMember[]>([]);
@@ -88,7 +90,45 @@ export default function DewanKeamananTab() {
           <div className="p-4 flex flex-col gap-3">
             {permanentMembers.map((m, i) => (
               <div key={i} className="flex items-center gap-4 px-5 py-4 bg-zinc-900/60 border border-zinc-800/50 rounded-2xl group hover:border-amber-500/30 transition-all">
-                <span className="text-2xl">{m.flag}</span>
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-zinc-950 border border-zinc-800 overflow-hidden shadow-inner group-hover:border-amber-500/50 transition-colors">
+                  {(() => {
+                    const emoji = m.flag || countries.find(c => c.name_id === m.name || c.name_en === m.name)?.flag || "";
+                    let iso = "";
+                    
+                    if (emoji && emoji.length >= 2) {
+                      const codePoints = Array.from(emoji).map(c => c.codePointAt(0) || 0);
+                      if (codePoints.length >= 2 && codePoints[0] >= 0x1F1E6 && codePoints[0] <= 0x1F1FF) {
+                        iso = String.fromCodePoint(codePoints[0] - 0x1F1E6 + 65, codePoints[1] - 0x1F1E6 + 65).toLowerCase();
+                      }
+                    }
+
+                    const fallbackMap: Record<string, string> = {
+                      "Amerika Serikat": "us", "Rusia": "ru", "China": "cn", "Inggris": "gb", "Prancis": "fr",
+                      "Indonesia": "id", "Jepang": "jp", "Jerman": "de", "India": "in", "Korea Selatan": "kr"
+                    };
+
+                    if (!iso && fallbackMap[m.name]) iso = fallbackMap[m.name];
+
+                    if (iso) {
+                      return (
+                        <img 
+                          src={`https://flagcdn.com/w80/${iso}.png`} 
+                          alt={m.name} 
+                          className="w-full h-full object-cover" 
+                          onError={(e) => {
+                            const parent = e.currentTarget.parentElement;
+                            if (parent) {
+                              e.currentTarget.style.display = 'none';
+                              parent.innerHTML = '<span class="text-2xl">' + (m.flag || "🏳️") + '</span>';
+                            }
+                          }}
+                        />
+                      );
+                    }
+
+                    return <span className="text-2xl">{m.flag || "🏳️"}</span>;
+                  })()}
+                </div>
                 <div className="flex-1">
                   <p className="text-sm font-black text-white uppercase tracking-tight">{m.name}</p>
                   <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Anggota Sejak {m.termStart}</p>
@@ -118,7 +158,45 @@ export default function DewanKeamananTab() {
             {/* Active Members */}
             {nonPermanentMembers.map((m, i) => (
               <div key={i} className="flex items-center gap-4 px-5 py-3.5 bg-zinc-900/60 border border-zinc-800/50 rounded-2xl group hover:border-sky-500/30 transition-all relative">
-                <span className="text-2xl">{m.flag}</span>
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-zinc-950 border border-zinc-800 overflow-hidden shadow-inner group-hover:border-sky-500/50 transition-colors">
+                  {(() => {
+                    const emoji = m.flag || countries.find(c => c.name_id === m.name || c.name_en === m.name)?.flag || "";
+                    let iso = "";
+                    
+                    if (emoji && emoji.length >= 2) {
+                      const codePoints = Array.from(emoji).map(c => c.codePointAt(0) || 0);
+                      if (codePoints.length >= 2 && codePoints[0] >= 0x1F1E6 && codePoints[0] <= 0x1F1FF) {
+                        iso = String.fromCodePoint(codePoints[0] - 0x1F1E6 + 65, codePoints[1] - 0x1F1E6 + 65).toLowerCase();
+                      }
+                    }
+
+                    const fallbackMap: Record<string, string> = {
+                      "Pakistan": "pk", "Somalia": "so", "Panama": "pa", "Denmark": "dk", "Yunani": "gr",
+                      "Aljazair": "dz", "Guyana": "gy", "Sierra Leone": "sl", "Slovenia": "si", "Korea Selatan": "kr"
+                    };
+
+                    if (!iso && fallbackMap[m.name]) iso = fallbackMap[m.name];
+
+                    if (iso) {
+                      return (
+                        <img 
+                          src={`https://flagcdn.com/w80/${iso}.png`} 
+                          alt={m.name} 
+                          className="w-full h-full object-cover" 
+                          onError={(e) => {
+                            const parent = e.currentTarget.parentElement;
+                            if (parent) {
+                              e.currentTarget.style.display = 'none';
+                              parent.innerHTML = '<span class="text-2xl">' + (m.flag || "🏳️") + '</span>';
+                            }
+                          }}
+                        />
+                      );
+                    }
+
+                    return <span className="text-2xl">{m.flag || "🏳️"}</span>;
+                  })()}
+                </div>
                 <div className="flex-1">
                   <p className="text-sm font-black text-white uppercase tracking-tight">{m.name}</p>
                   <div className="flex items-center gap-2">
@@ -138,7 +216,38 @@ export default function DewanKeamananTab() {
             {/* Newly Elected (Waiting for Jan 1st) */}
             {newlyElected.map((m, i) => (
               <div key={`new-${i}`} className="flex items-center gap-4 px-5 py-3 border border-zinc-800/50 rounded-2xl group opacity-60 bg-zinc-950/20">
-                <span className="text-2xl grayscale">{m.flag}</span>
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-zinc-950 border border-zinc-800 overflow-hidden shadow-inner opacity-50">
+                  {(() => {
+                    const emoji = m.flag || countries.find(c => c.name_id === m.name || c.name_en === m.name)?.flag || "";
+                    let iso = "";
+                    
+                    if (emoji && emoji.length >= 2) {
+                      const codePoints = Array.from(emoji).map(c => c.codePointAt(0) || 0);
+                      if (codePoints.length >= 2 && codePoints[0] >= 0x1F1E6 && codePoints[0] <= 0x1F1FF) {
+                        iso = String.fromCodePoint(codePoints[0] - 0x1F1E6 + 65, codePoints[1] - 0x1F1E6 + 65).toLowerCase();
+                      }
+                    }
+
+                    if (iso) {
+                      return (
+                        <img 
+                          src={`https://flagcdn.com/w80/${iso}.png`} 
+                          alt={m.name} 
+                          className="w-full h-full object-cover grayscale" 
+                          onError={(e) => {
+                            const parent = e.currentTarget.parentElement;
+                            if (parent) {
+                              e.currentTarget.style.display = 'none';
+                              parent.innerHTML = '<span class="text-2xl grayscale">' + (m.flag || "🏳️") + '</span>';
+                            }
+                          }}
+                        />
+                      );
+                    }
+
+                    return <span className="text-2xl grayscale">{m.flag || "🏳️"}</span>;
+                  })()}
+                </div>
                 <div className="flex-1">
                   <p className="text-sm font-black text-zinc-400 uppercase tracking-tight">{m.name}</p>
                   <p className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest">Elected: Periode {m.termStart}–{m.termEnd}</p>

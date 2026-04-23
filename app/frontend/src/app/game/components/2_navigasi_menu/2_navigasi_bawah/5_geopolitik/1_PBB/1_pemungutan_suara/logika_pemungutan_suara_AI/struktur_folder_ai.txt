@@ -1,0 +1,24 @@
+# MAPPING STRUKTUR DIREKTORI AI VOTING
+
+FOLDER UTAMA: `/logika_pemungutan_suara_AI`
+
+/logika_pemungutan_suara_AI
+├── /dokumentasi
+│   ├── rencana_pengembangan_voting_ai.txt
+│   ├── peta_logika_ai.txt
+│   └── struktur_folder_ai.txt
+├── /data_simulator
+│   ├── mock_countries_206.json
+│   └── alignment_matrix.json
+├── /engine_python
+│   ├── main_ai_voter.py
+│   ├── resolution_factory.py
+│   └── /utils
+│       └── helpers.py
+└── /bridge_interface
+    ├── useAiVoting.ts
+    └── aiVotingApi.ts
+
+
+---
+*Mapping ini digunakan sebagai acuan baku dalam pengembangan sistem voting otomatis untuk 206 negara anggota.*

@@ -1,0 +1,35 @@
+# PETA TEKNIS INTEGRASI PYTHON - AI VOTING SYSTEM
+
+## 1. STRUKTUR DATA NEGARA (JSON/DB)
+Setiap dari 206 negara akan memiliki profil keputusan:
+{
+  "iso": "US",
+  "tendency": "Interventionist",
+  "alignment": { "Player": 75, "Rusia": 10, "China": 15 },
+  "priorities": ["Military", "Economy"]
+}
+
+## 2. FLOW LOGIKA PYTHON
+1. **Fetch State**: Skrip Python membaca data hubungan diplomatik terkini dari game (via API backend Go atau file state).
+2. **Decision Matrix**:
+   - Jika `targetCountry` adalah `Sekutu` -> Peluang `Setuju` +40%.
+   - Jika `resolusi` bertema `Sanksi Ekonomi` & Negara `Miskin` -> Peluang `Tolak` +30%.
+   - Jika `resolusi` bertema `Perang` -> Gunakan Veto (khusus P5).
+3. **Output**: Mengembalikan hasil voting kolektif ke sistem PBB di Frontend.
+
+## 3. INTEGRASI SKRIP
+Rencana pemanggilan skrip:
+- Python akan berjalan sebagai microservice atau dipanggil secara periodik oleh backend Go.
+- State sinkronisasi menggunakan Event Stream agar voting AI muncul satu per satu di layar pemain (efek real-time).
+
+## 4. TIPE RESOLUSI AI
+AI tidak hanya memilih, tapi juga mengusulkan:
+- **Resolusi Perdamaian**: Menghentikan perang antar AI.
+- **Bantuan Kemanusiaan**: Menambah stabilitas di wilayah konflik.
+- **Sanksi Global**: Menghukum negara yang memiliki skor "Reputasi Buruk".
+
+## 5. PENGEMBANGAN LANJUTAN
+Menggunakan Library Python seperti:
+- `pandas`: Untuk kalkulasi statistik voting 206 negara.
+- `numpy`: Untuk matriks pembobotan keputusan diplomatik.
+- `fastapi`: Jika ingin membuat service voting yang standalone.
