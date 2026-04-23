@@ -1,3 +1,11 @@
+import { pendidikanRate } from "./2_pendidikan";
+import { kesehatanRate } from "./3_kesehatan";
+import { hukumRate } from "./4_hukum";
+import { olahragaRate } from "./5_olahraga";
+import { komersialRate } from "./6_komersial";
+import { hiburanRate } from "./7_hiburan";
+import { infrastrukturRate as infraRate } from "./1_infrastruktur";
+
 export * from "./1_infrastruktur";
 export * from "./2_pendidikan";
 export * from "./3_kesehatan";
@@ -16,12 +24,12 @@ export interface SektorSosial {
 }
 
 export const sosialRate = {
-  ...require("./2_pendidikan").pendidikanRate,
-  ...require("./3_kesehatan").kesehatanRate,
-  ...require("./4_hukum").hukumRate,
-  ...require("./5_olahraga").olahragaRate,
-  ...require("./6_komersial").komersialRate,
-  ...require("./7_hiburan").hiburanRate
+  ...pendidikanRate,
+  ...kesehatanRate,
+  ...hukumRate,
+  ...olahragaRate,
+  ...komersialRate,
+  ...hiburanRate
 };
 
-export const infrastrukturRate = require("./1_infrastruktur").infrastrukturRate;
+export const infrastrukturRate = infraRate;

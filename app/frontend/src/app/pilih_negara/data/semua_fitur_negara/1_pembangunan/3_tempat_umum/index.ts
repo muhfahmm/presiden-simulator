@@ -10,7 +10,3 @@ export interface SektorSosial {
   hiburan?: import("./1_Layanan Publik/7_hiburan").SektorHiburan;
   hunian?: import("./2_hunian_permukiman").HunianData;
 }
-
-export const sosialRate = require("./1_Layanan Publik").sosialRate;
-export const infrastrukturRate = require("./1_Layanan Publik").infrastrukturRate;
-export const hunianRate = require("./2_hunian_permukiman").hunianRate;

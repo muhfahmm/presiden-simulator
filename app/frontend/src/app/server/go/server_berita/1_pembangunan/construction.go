@@ -126,7 +126,7 @@ func processWeeklyConstruction(dateStr string) bool {
 
 		core.AddNewsItemLocked(
 			fmt.Sprintf("Kantor Berita %s", nation),
-			fmt.Sprintf("Pembangunan Infrastruktur: %s", nation),
+			fmt.Sprintf("Pembangunan Infrastruktur %s: %s", building.Name, nation),
 			content,
 			"construction",
 			"medium",

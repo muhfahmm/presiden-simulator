@@ -8,11 +8,10 @@ import {
   TrendingUp, 
   Shield, 
   Zap,
-  Info,
   Calendar,
   X
 } from 'lucide-react';
-import { NewsItem, newsStorage } from './newsStorage';
+import { NewsItem } from './newsStorage';
 import { countries } from '@/app/database/data/negara/benua/index';
 import { useRouter } from 'next/navigation';
 import { 
@@ -73,11 +72,14 @@ export const NewsBaseList = ({
     const baseline = resolveNestedValue(country, building.sectorPath);
     const target = baseline + 1;
     const transitionText = `(${baseline} ke ${target})`;
-    const cleanSubject = item.subject.replace(/\s?\(\d+ ke \d+\)/g, '');
+    
+    // Transform subject to requested format: "Pembangunan Infrastruktur [nama infra]: [nama negara]"
+    const newSubject = `Pembangunan Infrastruktur ${building.label}: ${country.name_id}`;
+    
     const cleanContent = item.content.replace(/\s?\(\d+ ke \d+\)/g, '');
     return {
       ...item,
-      subject: cleanSubject,
+      subject: newSubject,
       content: cleanContent.replace(
         /proyek konstruksi ([\w\s\-\/()&]+?)(\s+di sektor|\.|$|\s)/i,
         `proyek konstruksi $1 ${transitionText}$2`
@@ -96,12 +98,13 @@ export const NewsBaseList = ({
       return { 
         country: details.country, 
         tab: tab, 
-        buildingKey: details.building.dataKey 
+        buildingKey: details.building.dataKey,
+        buildingLabel: details.building.label
       };
     }
 
     // Fallback for other categories (default to produksi)
-    return { country: details.country, tab: 'produksi', buildingKey: 'emas' };
+    return { country: details.country, tab: 'produksi', buildingKey: 'emas', buildingLabel: 'Produksi' };
   };
 
   const filtered = news.filter(item => {
@@ -178,17 +181,7 @@ export const NewsBaseList = ({
                     <p className="text-zinc-300 text-sm leading-relaxed font-medium whitespace-pre-line relative z-10 border-l-2 border-indigo-500/30 pl-6 py-2">
                       {item.content}
                     </p>
-                    <div className="mt-8 pt-6 border-t border-zinc-900 flex items-center justify-between">
-                       <div className="flex items-center gap-2 text-zinc-500 text-[10px] font-bold uppercase tracking-widest">
-                          <Info size={14} /> ID: INTEL-{item.id.toUpperCase()}
-                       </div>
-                        <button
-                           onClick={() => newsStorage.markAsRead(item.id)}
-                           className="text-[10px] font-black uppercase tracking-widest text-indigo-400 hover:text-indigo-300 transition-colors cursor-pointer"
-                        >
-                           Tandai Telah Dibaca
-                        </button>
-                        
+                    <div className="mt-8 pt-6 border-t border-zinc-900 flex items-center justify-end">
                         {(() => {
                           const targets = detectNavigationTargets(item);
                           if (!targets) return null;
@@ -213,7 +206,7 @@ export const NewsBaseList = ({
                             >
                               <TrendingUp size={14} className="text-amber-500 group-hover/btn:text-black transition-colors" />
                               <span className="text-[10px] font-black uppercase tracking-widest text-amber-500 group-hover/btn:text-black transition-colors">
-                                Lihat Detail Negara {targets.country.name_id}
+                                Lihat Detail {(targets as any).buildingLabel} - {targets.country.name_id}
                               </span>
                             </button>
                           );

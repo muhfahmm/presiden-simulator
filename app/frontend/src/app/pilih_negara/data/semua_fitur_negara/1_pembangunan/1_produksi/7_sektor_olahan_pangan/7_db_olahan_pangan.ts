@@ -5,6 +5,7 @@ export const olahanPanganRate = {
   "1_pabrik_air_mineral": {
     key: "1_pabrik_air_mineral",
     dataKey: "air_mineral",
+    label: "Pabrik Air Mineral",
     deskripsi: "Pabrik Air Mineral",
     produksi: 250000,
     satuan: "LITER",
@@ -16,6 +17,7 @@ export const olahanPanganRate = {
   "2_pabrik_gula": {
     key: "2_pabrik_gula",
     dataKey: "gula",
+    label: "Pabrik Gula",
     deskripsi: "Pabrik Gula",
     produksi: 45000,
     satuan: "TON",
@@ -27,6 +29,7 @@ export const olahanPanganRate = {
   "3_pabrik_roti": {
     key: "3_pabrik_roti",
     dataKey: "roti",
+    label: "Pabrik Roti",
     deskripsi: "Pabrik Roti",
     produksi: 150000,
     satuan: "UNIT",
@@ -38,6 +41,7 @@ export const olahanPanganRate = {
   "4_pabrik_pengolahan_daging": {
     key: "4_pabrik_pengolahan_daging",
     dataKey: "pengolahan_daging",
+    label: "Pabrik Pengolahan Daging",
     deskripsi: "Pabrik Pengolahan Daging",
     produksi: 12000,
     satuan: "TON",
@@ -49,6 +53,7 @@ export const olahanPanganRate = {
   "5_pabrik_mie_instan": {
     key: "5_pabrik_mie_instan",
     dataKey: "mie_instan",
+    label: "Pabrik Mie Instan",
     deskripsi: "Pabrik Mie Instan",
     produksi: 550000,
     satuan: "UNIT",
@@ -60,6 +65,7 @@ export const olahanPanganRate = {
   "6_pabrik_minyak_goreng": {
     key: "6_pabrik_minyak_goreng",
     dataKey: "minyak_goreng",
+    label: "Pabrik Minyak Goreng",
     deskripsi: "Pabrik Minyak Goreng",
     produksi: 95000,
     satuan: "TON",
@@ -71,6 +77,7 @@ export const olahanPanganRate = {
   "7_pabrik_pengolahan_susu": {
     key: "7_pabrik_pengolahan_susu",
     dataKey: "susu",
+    label: "Pabrik Pengolahan Susu",
     deskripsi: "Pabrik Pengolahan Susu",
     produksi: 180000,
     satuan: "LITER",
@@ -82,6 +89,7 @@ export const olahanPanganRate = {
   "8_pabrik_pakan_ternak": {
     key: "8_pabrik_pakan_ternak",
     dataKey: "pakan_ternak",
+    label: "Pabrik Pakan Ternak",
     deskripsi: "Pabrik Pakan Ternak",
     produksi: 85000,
     satuan: "TON",
@@ -93,6 +101,7 @@ export const olahanPanganRate = {
   "9_pabrik_pengalengan_ikan": {
     key: "9_pabrik_pengalengan_ikan",
     dataKey: "ikan_kaleng",
+    label: "Pabrik Pengalengan Ikan",
     deskripsi: "Pabrik Pengalengan Ikan",
     produksi: 25000,
     satuan: "TON",
@@ -104,6 +113,7 @@ export const olahanPanganRate = {
   "10_pabrik_pengolahan_kopi_teh": {
     key: "10_pabrik_pengolahan_kopi_teh",
     dataKey: "kopi_teh",
+    label: "Pabrik Pengolahan Kopi & Teh",
     deskripsi: "Pabrik Pengolahan Kopi & Teh",
     produksi: 35000,
     satuan: "KG",

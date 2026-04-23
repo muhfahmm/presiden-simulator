@@ -148,6 +148,9 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
             cleanActiveCard === 'rumah_sakit_daerah' ? 'rumah_sakit_kecil' :
             cleanActiveCard === 'rumah_sakit_pusat' ? 'rumah_sakit_besar' :
             cleanActiveCard === 'stadion_nasional' ? 'stadion' :
+            cleanActiveCard === 'esports_arena' ? 'esports_arena' :
+            cleanActiveCard === 'kejaksaan_court' ? 'kejaksaan_court' :
+            cleanActiveCard === 'legal_aid' ? 'legal_aid' :
             cleanActiveCard;
 
         let element = null;
@@ -171,10 +174,10 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
       let attempts = 0;
       const scrollInterval = setInterval(() => {
         attempts++;
-        if (scroll() || attempts > 5) {
+        if (scroll() || attempts > 15) { // Increased from 5 to 15
           clearInterval(scrollInterval);
         }
-      }, 250);
+      }, 300); // Increased from 250 to 300ms
 
       // Remove highlight after some time
       const clearTimer = setTimeout(() => {
@@ -324,10 +327,10 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
             <button
               key={s.id}
               onClick={() => setActiveMenu(`CountryModal:${countryEntry.name_id.toLowerCase()}:info_strategis:detail_lengkap:${s.id}`)}
-              className={`flex items-center gap-2.5 px-6 py-3 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all cursor-pointer ${
+              className={`flex items-center gap-2.5 px-6 py-3 rounded-2xl font-black uppercase text-[10px] tracking-[0.15em] transition-all cursor-pointer border ${
                 currentSector === s.id 
-                  ? "bg-amber-500 text-black shadow-[0_0_20px_rgba(245,158,11,0.2)]" 
-                  : "bg-zinc-900/50 text-zinc-500 hover:text-zinc-200 border border-zinc-800/50"
+                  ? "bg-zinc-800 text-white border-amber-500/50 shadow-[0_0_25px_rgba(245,158,11,0.15)] scale-[1.02]" 
+                  : "bg-zinc-950/40 text-zinc-300 hover:text-white border-zinc-800/60 hover:bg-zinc-900/60 hover:border-zinc-700"
               }`}
             >
               <s.icon size={16} />
@@ -1080,8 +1083,8 @@ function ProductionSection({ title, items, buildingDeltas, completionDates = {},
         v.key === key || 
         (v.key && v.key.replace(/^\d+_/, '') === key)
       );
-      if (entry && (entry as any).deskripsi) return (entry as any).deskripsi;
       if (entry && (entry as any).label) return (entry as any).label;
+      if (entry && (entry as any).deskripsi) return (entry as any).deskripsi;
     }
 
     return key.replace(/_/g, " ");
@@ -1287,8 +1290,8 @@ function SimpleGridSection({ title, data, buildingDeltas, completionDates = {}, 
         v.key === key || 
         (v.key && v.key.replace(/^\d+_/, '') === key)
       );
-      if (entry && (entry as any).deskripsi) return (entry as any).deskripsi;
       if (entry && (entry as any).label) return (entry as any).label;
+      if (entry && (entry as any).deskripsi) return (entry as any).deskripsi;
     }
     return key.replace(/_/g, " ");
   };

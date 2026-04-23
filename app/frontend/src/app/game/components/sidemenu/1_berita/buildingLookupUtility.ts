@@ -8,7 +8,7 @@ import { agrikulturRate } from '@/app/database/data/semua_fitur_negara/1_pembang
 import { perikananRate } from '@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/6_db_perikanan';
 import { olahanPanganRate } from '@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/7_db_olahan_pangan';
 import { farmasiRate } from '@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/8_db_farmasi';
-import { infrastrukturRate } from '@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur';
+import { sosialRate, infrastrukturRate, hunianRate } from '@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum';
 import { intelijenRate } from '@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen';
 import { armadaMiliterRate } from '@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer';
 import { armadaPolisiRate } from '@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi';
@@ -28,6 +28,8 @@ export const ALL_BUILDING_RATES: Record<string, any> = {
   ...(olahanPanganRate || {}),
   ...(farmasiRate || {}),
   ...(infrastrukturRate || {}),
+  ...(sosialRate || {}),
+  ...(hunianRate || {}),
   ...(intelijenRate || {}),
   ...(armadaMiliterRate || {}),
   ...(armadaPolisiRate || {}),
@@ -71,13 +73,12 @@ export const DATA_KEY_TO_SECTOR: Record<string, string> = {
   rumah_sakit_besar: "kesehatan.rumah_sakit_besar",
   pusat_diagnostik: "kesehatan.pusat_diagnostik",
   // --- HUKUM ---
-  pusat_bantuan_hukum: "hukum.pusat_bantuan_hukum",
-  pengadilan: "hukum.pengadilan",
-  kejaksaan: "hukum.kejaksaan",
+  legal_aid: "hukum.legal_aid",
+  kejaksaan_court: "hukum.kejaksaan_court",
   // --- OLAHRAGA ---
   stadion_nasional: "sektor_olahraga.stadion_nasional",
-  stadion_internasional: "sektor_olahraga.stadion_internasional",
-  arena_esports: "sektor_olahraga.arena_esports",
+  stadium_int: "sektor_olahraga.stadium_int",
+  esports_arena: "sektor_olahraga.esports_arena",
   // --- KOMERSIAL ---
   pusat_belanja: "sektor_komersial.pusat_belanja",
   hotel: "sektor_komersial.hotel",
@@ -93,6 +94,9 @@ export const DATA_KEY_TO_SECTOR: Record<string, string> = {
   sistem_satelit: "intelijen.sistem_satelit",
   jaringan_radar: "intelijen.jaringan_radar",
   operasi_siber: "intelijen.operasi_siber",
+  pusat_komando_strategis: "militer_strategis.pusat_komando_strategis",
+  bunker_komando: "militer_strategis.bunker_komando",
+  pusat_komando_wilayah: "militer_strategis.pusat_komando_wilayah",
   // --- ARMADA MILITER ---
   barak: "armada_militer.barak",
   tank_tempur_utama: "armada_militer.darat.tank_tempur_utama",
@@ -197,10 +201,7 @@ export const DATA_KEY_TO_SECTOR: Record<string, string> = {
   ikan_kaleng: "sektor_olahan_pangan.ikan_kaleng",
   // --- FARMASI ---
   farmasi: "sektor_farmasi.farmasi",
-  // --- STRATEGIS ---
-  pusat_komando_strategis: "militer_strategis.pusat_komando_strategis",
-  bunker_komando: "militer_strategis.bunker_komando",
-  pusat_komando_wilayah: "militer_strategis.pusat_komando_wilayah",
+  // --- MILITER ---
   pabrik_amunisi: "pabrik_militer.pabrik_amunisi",
 };
 
@@ -222,25 +223,31 @@ export const getTabForSector = (path: string): string => {
   if (path.includes('intelijen') || path.includes('militer_strategis')) return 'intelijen';
   if (path.includes('armada_militer')) return 'armada_militer';
   if (path.includes('armada_kepolisian')) return 'armada_polisi';
+  if (path.includes('sektor_pertahanan')) return 'manajemen_pertahanan';
   
   return 'produksi';
 };
 
-export const BUILDING_NAME_LOOKUP: Record<string, { dataKey: string; sectorPath: string }> = (() => {
-  const lookup: Record<string, { dataKey: string; sectorPath: string }> = {};
+export const BUILDING_NAME_LOOKUP: Record<string, { dataKey: string; sectorPath: string; label: string }> = (() => {
+  const lookup: Record<string, { dataKey: string; sectorPath: string; label: string }> = {};
 
-  for (const [, entry] of Object.entries(ALL_BUILDING_RATES)) {
+  for (const [entryKey, entry] of Object.entries(ALL_BUILDING_RATES)) {
     if (!entry || typeof entry !== 'object') continue;
-    const dataKey = entry.dataKey || '';
+    const dataKey = entry.dataKey || entryKey;
     const sectorPath = DATA_KEY_TO_SECTOR[dataKey] || '';
     if (!dataKey || !sectorPath) continue;
 
     // Register by label, deskripsi, and dataKey itself
     const names = [entry.label, entry.deskripsi, dataKey].filter(Boolean);
     for (const name of names) {
-      lookup[String(name).toLowerCase()] = { dataKey, sectorPath };
+      lookup[String(name).toLowerCase()] = { 
+        dataKey, 
+        sectorPath,
+        label: entry.label || entry.deskripsi || dataKey
+      };
     }
   }
+  console.log(`[BUILDING LOOKUP] Registered ${Object.keys(lookup).length} building names.`);
   return lookup;
 })();
 
@@ -257,26 +264,32 @@ export const resolveNestedValue = (obj: any, path: string): number => {
 
 export interface ConstructionDetection {
   country: any;
-  building: { dataKey: string; sectorPath: string } | null;
+  building: { dataKey: string; sectorPath: string; label?: string } | null;
   isAI: boolean;
 }
 
 export const detectConstructionDetails = (subject: string, content: string, source: string): ConstructionDetection => {
   const fullText = `${source} ${subject} ${content}`.toLowerCase();
 
-  // 1. Detect Country
+  // 1. Detect Country (Pick longest match to avoid partial name collisions)
   let foundCountry: any = null;
+  let longestCountryMatch = 0;
   for (const country of countries) {
     const nameId = country.name_id.toLowerCase();
     const nameEn = country.name_en.toLowerCase();
-    if (fullText.includes(nameId) || fullText.includes(nameEn)) {
+    
+    if (fullText.includes(nameId) && nameId.length > longestCountryMatch) {
       foundCountry = country;
-      break;
+      longestCountryMatch = nameId.length;
+    }
+    if (fullText.includes(nameEn) && nameEn.length > longestCountryMatch) {
+      foundCountry = country;
+      longestCountryMatch = nameEn.length;
     }
   }
 
   // 2. Detect Building
-  let matchedEntry: { dataKey: string; sectorPath: string } | null = null;
+  let matchedEntry: { dataKey: string; sectorPath: string; label?: string } | null = null;
   let longestMatch = 0;
 
   for (const [name, entry] of Object.entries(BUILDING_NAME_LOOKUP)) {
@@ -285,10 +298,16 @@ export const detectConstructionDetails = (subject: string, content: string, sour
       longestMatch = name.length;
     }
   }
-
+  
+  console.log(`[DETECTION] Text: "${fullText.substring(0, 50)}...", Country: ${foundCountry?.name_id || 'NONE'}, Building: ${matchedEntry?.label || 'NONE'}`);
+  
   return {
     country: foundCountry,
-    building: matchedEntry,
-    isAI: foundCountry && foundCountry.name_id !== "Indonesia" // Simple check
+    building: matchedEntry ? { 
+      dataKey: matchedEntry.dataKey, 
+      sectorPath: matchedEntry.sectorPath,
+      label: matchedEntry.label
+    } : null,
+    isAI: source.toLowerCase().includes('kantor berita')
   };
 };

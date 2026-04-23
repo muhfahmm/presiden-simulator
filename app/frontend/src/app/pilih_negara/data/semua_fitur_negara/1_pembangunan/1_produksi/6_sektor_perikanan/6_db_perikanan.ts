@@ -5,6 +5,7 @@ export const perikananRate = {
   "1_tambak_udang": {
     key: "1_tambak_udang",
     dataKey: "udang",
+    label: "Tambak Udang",
     deskripsi: "Tambang Udang Intensif",
     produksi: 75000,
     satuan: "KG",
@@ -16,6 +17,7 @@ export const perikananRate = {
   "2_budidaya_ikan_tawar": {
     key: "2_budidaya_ikan_tawar",
     dataKey: "ikan",
+    label: "Budidaya Ikan",
     deskripsi: "Budidaya Ikan Air Tawar",
     produksi: 120000,
     satuan: "KG",
@@ -27,6 +29,7 @@ export const perikananRate = {
   "3_budidaya_mutiara": {
     key: "3_budidaya_mutiara",
     dataKey: "mutiara",
+    label: "Budidaya Mutiara",
     deskripsi: "Budidaya Kerang & Mutiara",
     produksi: 15000,
     satuan: "GRAM",

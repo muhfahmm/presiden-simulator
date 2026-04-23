@@ -20,7 +20,7 @@ export const pertahananRate = {
     groupId: "pertahanan",
     label: "Penjara",
     deskripsi: "Lembaga Pemasyarakatan",
-    biaya_pembangunan: 41250000, // Reduced from 55M
+    biaya_pembangunan: 41250000,
     waktu_pembangunan: 15,
     lowongan_kerja: 200,
     kapasitas: 5000,
@@ -33,7 +33,7 @@ export const pertahananRate = {
     groupId: "pertahanan",
     label: "Gudang Senjata",
     deskripsi: "Penyimpanan Amunisi",
-    biaya_pembangunan: 26250000, // Reduced from 35M
+    biaya_pembangunan: 26250000,
     waktu_pembangunan: 30,
     lowongan_kerja: 100,
     kapasitas: 10000,
@@ -46,7 +46,7 @@ export const pertahananRate = {
     groupId: "pertahanan",
     label: "Hangar Tank",
     deskripsi: "Garasi Tempur",
-    biaya_pembangunan: 63750000, // Reduced from 85M
+    biaya_pembangunan: 63750000,
     waktu_pembangunan: 30,
     lowongan_kerja: 150,
     kapasitas: 50,
@@ -59,7 +59,7 @@ export const pertahananRate = {
     groupId: "pertahanan",
     label: "Pusat Komando",
     deskripsi: "Komando Tertinggi",
-    biaya_pembangunan: 187500000, // Reduced from 250M
+    biaya_pembangunan: 187500000,
     waktu_pembangunan: 120,
     lowongan_kerja: 250,
     kapasitas: 1,
@@ -72,7 +72,7 @@ export const pertahananRate = {
     groupId: "pertahanan",
     label: "Pangkalan Udara",
     deskripsi: "Fasilitas Dirgantara",
-    biaya_pembangunan: 337500000, // Reduced from 450M
+    biaya_pembangunan: 337500000,
     waktu_pembangunan: 60,
     lowongan_kerja: 500,
     kapasitas: 24,
@@ -85,7 +85,7 @@ export const pertahananRate = {
     groupId: "pertahanan",
     label: "Pangkalan Laut",
     deskripsi: "Fasilitas Maritim",
-    biaya_pembangunan: 412500000, // Reduced from 550M
+    biaya_pembangunan: 412500000,
     waktu_pembangunan: 120,
     lowongan_kerja: 450,
     kapasitas: 12,
@@ -96,9 +96,9 @@ export const pertahananRate = {
     key: "8_program_luar_angkasa",
     dataKey: "program_luar_angkasa",
     groupId: "pertahanan",
-    label: "Program luar angkasa",
+    label: "Program Luar Angkasa",
     deskripsi: "Program Satelit",
-    biaya_pembangunan: 937500000, // Reduced from 1.25B
+    biaya_pembangunan: 937500000,
     waktu_pembangunan: 120,
     lowongan_kerja: 800,
     konsumsi_listrik: 80
@@ -107,11 +107,11 @@ export const pertahananRate = {
     key: "9_pertahanan_siber",
     dataKey: "pertahanan_siber",
     groupId: "pertahanan",
-    label: "Cyber Defense",
+    label: "Pertahanan Siber",
     deskripsi: "Keamanan Digital",
-    biaya_pembangunan: 112500000, // Reduced from 150M
+    biaya_pembangunan: 112500000,
     waktu_pembangunan: 60,
     lowongan_kerja: 120,
     konsumsi_listrik: 50
-  }
+  },
 };
