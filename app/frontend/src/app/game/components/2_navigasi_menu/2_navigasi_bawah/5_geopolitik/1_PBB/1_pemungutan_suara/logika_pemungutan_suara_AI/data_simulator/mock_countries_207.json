@@ -1,0 +1,3107 @@
+[
+  {
+    "name": "Afganistan",
+    "ideology": "Sosialisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 88,
+      "Rusia": 74,
+      "China": 59,
+      "USA": 51
+    },
+    "priorities": [
+      "Stability",
+      "Military"
+    ]
+  },
+  {
+    "name": "Afrika Selatan",
+    "ideology": "Otoriter",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 61,
+      "Rusia": 35,
+      "China": 54,
+      "USA": 50
+    },
+    "priorities": [
+      "Military",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Albania",
+    "ideology": "Sosialisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 40,
+      "Rusia": 83,
+      "China": 61,
+      "USA": 54
+    },
+    "priorities": [
+      "Military",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Aljazair",
+    "ideology": "Teokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 49,
+      "Rusia": 49,
+      "China": 29,
+      "USA": 87
+    },
+    "priorities": [
+      "Environment",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Amerika Serikat",
+    "ideology": "Teokrasi",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 29,
+      "Rusia": 21,
+      "China": 71,
+      "USA": 50
+    },
+    "priorities": [
+      "Military",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Andorra",
+    "ideology": "Demokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 45,
+      "Rusia": 71,
+      "China": 81,
+      "USA": 40
+    },
+    "priorities": [
+      "Economy",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Angola",
+    "ideology": "Komunisme",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 11,
+      "Rusia": 66,
+      "China": 48,
+      "USA": 38
+    },
+    "priorities": [
+      "Stability",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Antigua Dan Barbuda",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 54,
+      "Rusia": 74,
+      "China": 41,
+      "USA": 60
+    },
+    "priorities": [
+      "Stability",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Arab Saudi",
+    "ideology": "Komunisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 84,
+      "Rusia": 26,
+      "China": 37,
+      "USA": 88
+    },
+    "priorities": [
+      "Military",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Argentina",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 17,
+      "Rusia": 50,
+      "China": 56,
+      "USA": 10
+    },
+    "priorities": [
+      "Environment",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Armenia",
+    "ideology": "Sosialisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 75,
+      "Rusia": 43,
+      "China": 89,
+      "USA": 67
+    },
+    "priorities": [
+      "Stability",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Australia",
+    "ideology": "Komunisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 13,
+      "Rusia": 23,
+      "China": 25,
+      "USA": 80
+    },
+    "priorities": [
+      "Military",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Austria",
+    "ideology": "Otoriter",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 86,
+      "Rusia": 66,
+      "China": 51,
+      "USA": 79
+    },
+    "priorities": [
+      "Military",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Azerbaijan",
+    "ideology": "Demokrasi",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 80,
+      "Rusia": 83,
+      "China": 36,
+      "USA": 54
+    },
+    "priorities": [
+      "Environment",
+      "Military"
+    ]
+  },
+  {
+    "name": "Bahama",
+    "ideology": "Teokrasi",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 29,
+      "Rusia": 26,
+      "China": 59,
+      "USA": 10
+    },
+    "priorities": [
+      "Human Rights",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Bahrain",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 82,
+      "Rusia": 48,
+      "China": 17,
+      "USA": 46
+    },
+    "priorities": [
+      "Economy",
+      "Military"
+    ]
+  },
+  {
+    "name": "Bangladesh",
+    "ideology": "Otoriter",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 58,
+      "Rusia": 14,
+      "China": 54,
+      "USA": 36
+    },
+    "priorities": [
+      "Military",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Barbados",
+    "ideology": "Otoriter",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 78,
+      "Rusia": 13,
+      "China": 48,
+      "USA": 15
+    },
+    "priorities": [
+      "Environment",
+      "Military"
+    ]
+  },
+  {
+    "name": "Belanda",
+    "ideology": "Komunisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 69,
+      "Rusia": 17,
+      "China": 23,
+      "USA": 30
+    },
+    "priorities": [
+      "Stability",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Belarus",
+    "ideology": "Sosialisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 43,
+      "Rusia": 20,
+      "China": 43,
+      "USA": 31
+    },
+    "priorities": [
+      "Military",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Belgia",
+    "ideology": "Teokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 51,
+      "Rusia": 83,
+      "China": 88,
+      "USA": 31
+    },
+    "priorities": [
+      "Military",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Belize",
+    "ideology": "Teokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 90,
+      "Rusia": 55,
+      "China": 65,
+      "USA": 88
+    },
+    "priorities": [
+      "Human Rights",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Benin",
+    "ideology": "Teokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 68,
+      "Rusia": 72,
+      "China": 58,
+      "USA": 66
+    },
+    "priorities": [
+      "Human Rights",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Bermuda",
+    "ideology": "Komunisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 60,
+      "Rusia": 83,
+      "China": 79,
+      "USA": 46
+    },
+    "priorities": [
+      "Technology",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Bhutan",
+    "ideology": "Sosialisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 15,
+      "Rusia": 13,
+      "China": 37,
+      "USA": 31
+    },
+    "priorities": [
+      "Economy",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Bolivia",
+    "ideology": "Demokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 24,
+      "Rusia": 55,
+      "China": 44,
+      "USA": 21
+    },
+    "priorities": [
+      "Stability",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Bosnia Dan Hercegovina",
+    "ideology": "Otoriter",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 81,
+      "Rusia": 25,
+      "China": 74,
+      "USA": 57
+    },
+    "priorities": [
+      "Stability",
+      "Military"
+    ]
+  },
+  {
+    "name": "Botswana",
+    "ideology": "Komunisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 25,
+      "Rusia": 39,
+      "China": 52,
+      "USA": 49
+    },
+    "priorities": [
+      "Stability",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Brazil",
+    "ideology": "Otoriter",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 68,
+      "Rusia": 80,
+      "China": 27,
+      "USA": 26
+    },
+    "priorities": [
+      "Human Rights",
+      "Military"
+    ]
+  },
+  {
+    "name": "Brunei",
+    "ideology": "Sosialisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 39,
+      "Rusia": 73,
+      "China": 30,
+      "USA": 75
+    },
+    "priorities": [
+      "Environment",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Bulgaria",
+    "ideology": "Otoriter",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 77,
+      "Rusia": 12,
+      "China": 25,
+      "USA": 21
+    },
+    "priorities": [
+      "Environment",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Burkina Faso",
+    "ideology": "Teokrasi",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 61,
+      "Rusia": 10,
+      "China": 61,
+      "USA": 22
+    },
+    "priorities": [
+      "Economy",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Burundi",
+    "ideology": "Demokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 61,
+      "Rusia": 56,
+      "China": 61,
+      "USA": 44
+    },
+    "priorities": [
+      "Human Rights",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Ceko",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 61,
+      "Rusia": 28,
+      "China": 66,
+      "USA": 14
+    },
+    "priorities": [
+      "Technology",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Chad",
+    "ideology": "Demokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 83,
+      "Rusia": 89,
+      "China": 28,
+      "USA": 34
+    },
+    "priorities": [
+      "Military",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Chile",
+    "ideology": "Sosialisme",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 17,
+      "Rusia": 87,
+      "China": 52,
+      "USA": 86
+    },
+    "priorities": [
+      "Technology",
+      "Environment"
+    ]
+  },
+  {
+    "name": "China",
+    "ideology": "Demokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 59,
+      "Rusia": 78,
+      "China": 52,
+      "USA": 28
+    },
+    "priorities": [
+      "Economy",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Costa Rica",
+    "ideology": "Demokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 63,
+      "Rusia": 34,
+      "China": 85,
+      "USA": 55
+    },
+    "priorities": [
+      "Economy",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Curacao",
+    "ideology": "Demokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 87,
+      "Rusia": 56,
+      "China": 11,
+      "USA": 12
+    },
+    "priorities": [
+      "Stability",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Denmark",
+    "ideology": "Teokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 67,
+      "Rusia": 66,
+      "China": 20,
+      "USA": 20
+    },
+    "priorities": [
+      "Technology",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Djibouti",
+    "ideology": "Otoriter",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 57,
+      "Rusia": 41,
+      "China": 82,
+      "USA": 82
+    },
+    "priorities": [
+      "Economy",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Dominika",
+    "ideology": "Demokrasi",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 64,
+      "Rusia": 51,
+      "China": 54,
+      "USA": 21
+    },
+    "priorities": [
+      "Economy",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Ekuador",
+    "ideology": "Otoriter",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 21,
+      "Rusia": 49,
+      "China": 56,
+      "USA": 79
+    },
+    "priorities": [
+      "Environment",
+      "Stability"
+    ]
+  },
+  {
+    "name": "El Salvador",
+    "ideology": "Komunisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 30,
+      "Rusia": 71,
+      "China": 58,
+      "USA": 28
+    },
+    "priorities": [
+      "Stability",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Eritrea",
+    "ideology": "Demokrasi",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 90,
+      "Rusia": 27,
+      "China": 18,
+      "USA": 48
+    },
+    "priorities": [
+      "Economy",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Estonia",
+    "ideology": "Sosialisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 46,
+      "Rusia": 72,
+      "China": 25,
+      "USA": 22
+    },
+    "priorities": [
+      "Military",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Eswatini",
+    "ideology": "Sosialisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 22,
+      "Rusia": 84,
+      "China": 61,
+      "USA": 27
+    },
+    "priorities": [
+      "Environment",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Ethiopia",
+    "ideology": "Otoriter",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 42,
+      "Rusia": 77,
+      "China": 26,
+      "USA": 64
+    },
+    "priorities": [
+      "Economy",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Fiji",
+    "ideology": "Sosialisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 77,
+      "Rusia": 10,
+      "China": 24,
+      "USA": 79
+    },
+    "priorities": [
+      "Environment",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Filipina",
+    "ideology": "Teokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 15,
+      "Rusia": 18,
+      "China": 58,
+      "USA": 73
+    },
+    "priorities": [
+      "Military",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Finlandia",
+    "ideology": "Sosialisme",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 79,
+      "Rusia": 62,
+      "China": 32,
+      "USA": 31
+    },
+    "priorities": [
+      "Economy",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Gabon",
+    "ideology": "Sosialisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 74,
+      "Rusia": 81,
+      "China": 21,
+      "USA": 78
+    },
+    "priorities": [
+      "Environment",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Gambia",
+    "ideology": "Sosialisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 77,
+      "Rusia": 68,
+      "China": 59,
+      "USA": 48
+    },
+    "priorities": [
+      "Human Rights",
+      "Military"
+    ]
+  },
+  {
+    "name": "Georgia",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 60,
+      "Rusia": 36,
+      "China": 72,
+      "USA": 87
+    },
+    "priorities": [
+      "Human Rights",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Ghana",
+    "ideology": "Otoriter",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 83,
+      "Rusia": 63,
+      "China": 59,
+      "USA": 40
+    },
+    "priorities": [
+      "Military",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Gibraltar",
+    "ideology": "Teokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 38,
+      "Rusia": 36,
+      "China": 18,
+      "USA": 35
+    },
+    "priorities": [
+      "Stability",
+      "Military"
+    ]
+  },
+  {
+    "name": "Greenland",
+    "ideology": "Demokrasi",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 17,
+      "Rusia": 79,
+      "China": 15,
+      "USA": 41
+    },
+    "priorities": [
+      "Stability",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Grenada",
+    "ideology": "Otoriter",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 12,
+      "Rusia": 55,
+      "China": 75,
+      "USA": 30
+    },
+    "priorities": [
+      "Human Rights",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Guam",
+    "ideology": "Komunisme",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 31,
+      "Rusia": 87,
+      "China": 33,
+      "USA": 75
+    },
+    "priorities": [
+      "Military",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Guatemala",
+    "ideology": "Demokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 26,
+      "Rusia": 41,
+      "China": 33,
+      "USA": 24
+    },
+    "priorities": [
+      "Stability",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Guiana Prancis",
+    "ideology": "Sosialisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 71,
+      "Rusia": 66,
+      "China": 46,
+      "USA": 85
+    },
+    "priorities": [
+      "Stability",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Guinea",
+    "ideology": "Teokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 71,
+      "Rusia": 51,
+      "China": 39,
+      "USA": 85
+    },
+    "priorities": [
+      "Human Rights",
+      "Military"
+    ]
+  },
+  {
+    "name": "Guinea Bissau",
+    "ideology": "Teokrasi",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 63,
+      "Rusia": 42,
+      "China": 56,
+      "USA": 70
+    },
+    "priorities": [
+      "Human Rights",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Guyana",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 55,
+      "Rusia": 81,
+      "China": 59,
+      "USA": 62
+    },
+    "priorities": [
+      "Economy",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Haiti",
+    "ideology": "Sosialisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 35,
+      "Rusia": 12,
+      "China": 64,
+      "USA": 71
+    },
+    "priorities": [
+      "Stability",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Honduras",
+    "ideology": "Demokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 60,
+      "Rusia": 68,
+      "China": 33,
+      "USA": 24
+    },
+    "priorities": [
+      "Stability",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Hong Kong",
+    "ideology": "Komunisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 11,
+      "Rusia": 55,
+      "China": 90,
+      "USA": 39
+    },
+    "priorities": [
+      "Economy",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Hungaria",
+    "ideology": "Otoriter",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 90,
+      "Rusia": 14,
+      "China": 72,
+      "USA": 40
+    },
+    "priorities": [
+      "Human Rights",
+      "Economy"
+    ]
+  },
+  {
+    "name": "India",
+    "ideology": "Komunisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 70,
+      "Rusia": 67,
+      "China": 26,
+      "USA": 69
+    },
+    "priorities": [
+      "Environment",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Indonesia",
+    "ideology": "Komunisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 62,
+      "Rusia": 23,
+      "China": 31,
+      "USA": 67
+    },
+    "priorities": [
+      "Environment",
+      "Military"
+    ]
+  },
+  {
+    "name": "Inggris",
+    "ideology": "Komunisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 36,
+      "Rusia": 17,
+      "China": 86,
+      "USA": 36
+    },
+    "priorities": [
+      "Technology",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Irak",
+    "ideology": "Sosialisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 88,
+      "Rusia": 45,
+      "China": 20,
+      "USA": 59
+    },
+    "priorities": [
+      "Stability",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Iran",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 85,
+      "Rusia": 74,
+      "China": 89,
+      "USA": 53
+    },
+    "priorities": [
+      "Environment",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Irlandia",
+    "ideology": "Teokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 14,
+      "Rusia": 71,
+      "China": 54,
+      "USA": 70
+    },
+    "priorities": [
+      "Economy",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Islandia",
+    "ideology": "Sosialisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 10,
+      "Rusia": 58,
+      "China": 43,
+      "USA": 21
+    },
+    "priorities": [
+      "Economy",
+      "Military"
+    ]
+  },
+  {
+    "name": "Israel",
+    "ideology": "Komunisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 71,
+      "Rusia": 81,
+      "China": 51,
+      "USA": 25
+    },
+    "priorities": [
+      "Technology",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Italia",
+    "ideology": "Komunisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 25,
+      "Rusia": 10,
+      "China": 13,
+      "USA": 67
+    },
+    "priorities": [
+      "Stability",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Jamaika",
+    "ideology": "Komunisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 28,
+      "Rusia": 23,
+      "China": 24,
+      "USA": 14
+    },
+    "priorities": [
+      "Military",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Jepang",
+    "ideology": "Komunisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 53,
+      "Rusia": 89,
+      "China": 81,
+      "USA": 77
+    },
+    "priorities": [
+      "Stability",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Jerman",
+    "ideology": "Demokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 10,
+      "Rusia": 34,
+      "China": 86,
+      "USA": 80
+    },
+    "priorities": [
+      "Human Rights",
+      "Military"
+    ]
+  },
+  {
+    "name": "Kamboja",
+    "ideology": "Komunisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 40,
+      "Rusia": 70,
+      "China": 20,
+      "USA": 59
+    },
+    "priorities": [
+      "Technology",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Kamerun",
+    "ideology": "Sosialisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 55,
+      "Rusia": 43,
+      "China": 31,
+      "USA": 18
+    },
+    "priorities": [
+      "Military",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Kanada",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 64,
+      "Rusia": 38,
+      "China": 10,
+      "USA": 22
+    },
+    "priorities": [
+      "Technology",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Kazakhstan",
+    "ideology": "Otoriter",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 60,
+      "Rusia": 12,
+      "China": 60,
+      "USA": 10
+    },
+    "priorities": [
+      "Human Rights",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Kenya",
+    "ideology": "Demokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 89,
+      "Rusia": 84,
+      "China": 54,
+      "USA": 29
+    },
+    "priorities": [
+      "Human Rights",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Kepulauan Faroe",
+    "ideology": "Otoriter",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 75,
+      "Rusia": 70,
+      "China": 67,
+      "USA": 62
+    },
+    "priorities": [
+      "Stability",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Kirgizstan",
+    "ideology": "Sosialisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 46,
+      "Rusia": 57,
+      "China": 15,
+      "USA": 46
+    },
+    "priorities": [
+      "Economy",
+      "Military"
+    ]
+  },
+  {
+    "name": "Kiribati",
+    "ideology": "Otoriter",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 69,
+      "Rusia": 41,
+      "China": 26,
+      "USA": 20
+    },
+    "priorities": [
+      "Economy",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Kolombia",
+    "ideology": "Komunisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 89,
+      "Rusia": 52,
+      "China": 44,
+      "USA": 17
+    },
+    "priorities": [
+      "Economy",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Komoro",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 68,
+      "Rusia": 84,
+      "China": 74,
+      "USA": 84
+    },
+    "priorities": [
+      "Environment",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Kongo",
+    "ideology": "Sosialisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 69,
+      "Rusia": 78,
+      "China": 34,
+      "USA": 11
+    },
+    "priorities": [
+      "Human Rights",
+      "Military"
+    ]
+  },
+  {
+    "name": "Korea Selatan",
+    "ideology": "Komunisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 45,
+      "Rusia": 65,
+      "China": 28,
+      "USA": 55
+    },
+    "priorities": [
+      "Military",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Korea Utara",
+    "ideology": "Otoriter",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 13,
+      "Rusia": 34,
+      "China": 64,
+      "USA": 55
+    },
+    "priorities": [
+      "Technology",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Kosovo",
+    "ideology": "Otoriter",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 44,
+      "Rusia": 85,
+      "China": 37,
+      "USA": 65
+    },
+    "priorities": [
+      "Technology",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Kroasia",
+    "ideology": "Teokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 63,
+      "Rusia": 54,
+      "China": 61,
+      "USA": 41
+    },
+    "priorities": [
+      "Economy",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Kuba",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 48,
+      "Rusia": 25,
+      "China": 17,
+      "USA": 31
+    },
+    "priorities": [
+      "Economy",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Kuwait",
+    "ideology": "Sosialisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 79,
+      "Rusia": 18,
+      "China": 90,
+      "USA": 88
+    },
+    "priorities": [
+      "Military",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Laos",
+    "ideology": "Komunisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 37,
+      "Rusia": 59,
+      "China": 29,
+      "USA": 12
+    },
+    "priorities": [
+      "Military",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Latvia",
+    "ideology": "Teokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 13,
+      "Rusia": 55,
+      "China": 42,
+      "USA": 25
+    },
+    "priorities": [
+      "Military",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Lebanon",
+    "ideology": "Otoriter",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 51,
+      "Rusia": 27,
+      "China": 12,
+      "USA": 74
+    },
+    "priorities": [
+      "Human Rights",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Lesotho",
+    "ideology": "Demokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 10,
+      "Rusia": 31,
+      "China": 49,
+      "USA": 53
+    },
+    "priorities": [
+      "Human Rights",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Liberia",
+    "ideology": "Otoriter",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 23,
+      "Rusia": 76,
+      "China": 16,
+      "USA": 42
+    },
+    "priorities": [
+      "Economy",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Libya",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 13,
+      "Rusia": 59,
+      "China": 39,
+      "USA": 72
+    },
+    "priorities": [
+      "Technology",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Liechtenstein",
+    "ideology": "Demokrasi",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 62,
+      "Rusia": 44,
+      "China": 79,
+      "USA": 82
+    },
+    "priorities": [
+      "Military",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Lithuania",
+    "ideology": "Sosialisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 82,
+      "Rusia": 20,
+      "China": 58,
+      "USA": 22
+    },
+    "priorities": [
+      "Technology",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Luksemburg",
+    "ideology": "Teokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 62,
+      "Rusia": 16,
+      "China": 77,
+      "USA": 89
+    },
+    "priorities": [
+      "Human Rights",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Madagaskar",
+    "ideology": "Sosialisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 42,
+      "Rusia": 36,
+      "China": 80,
+      "USA": 51
+    },
+    "priorities": [
+      "Stability",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Makau",
+    "ideology": "Teokrasi",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 87,
+      "Rusia": 64,
+      "China": 39,
+      "USA": 25
+    },
+    "priorities": [
+      "Human Rights",
+      "Military"
+    ]
+  },
+  {
+    "name": "Makedonia Utara",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 68,
+      "Rusia": 18,
+      "China": 34,
+      "USA": 52
+    },
+    "priorities": [
+      "Economy",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Malawi",
+    "ideology": "Sosialisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 26,
+      "Rusia": 32,
+      "China": 60,
+      "USA": 22
+    },
+    "priorities": [
+      "Technology",
+      "Military"
+    ]
+  },
+  {
+    "name": "Malaysia",
+    "ideology": "Otoriter",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 67,
+      "Rusia": 82,
+      "China": 70,
+      "USA": 21
+    },
+    "priorities": [
+      "Military",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Maldives",
+    "ideology": "Teokrasi",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 34,
+      "Rusia": 68,
+      "China": 56,
+      "USA": 31
+    },
+    "priorities": [
+      "Technology",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Mali",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 65,
+      "Rusia": 87,
+      "China": 75,
+      "USA": 27
+    },
+    "priorities": [
+      "Human Rights",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Malta",
+    "ideology": "Teokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 17,
+      "Rusia": 71,
+      "China": 41,
+      "USA": 20
+    },
+    "priorities": [
+      "Stability",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Maroko",
+    "ideology": "Otoriter",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 35,
+      "Rusia": 19,
+      "China": 72,
+      "USA": 25
+    },
+    "priorities": [
+      "Human Rights",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Marshall",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 62,
+      "Rusia": 10,
+      "China": 36,
+      "USA": 63
+    },
+    "priorities": [
+      "Technology",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Mauritania",
+    "ideology": "Sosialisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 89,
+      "Rusia": 40,
+      "China": 84,
+      "USA": 71
+    },
+    "priorities": [
+      "Environment",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Mauritius",
+    "ideology": "Komunisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 31,
+      "Rusia": 85,
+      "China": 74,
+      "USA": 24
+    },
+    "priorities": [
+      "Environment",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Meksiko",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 87,
+      "Rusia": 82,
+      "China": 35,
+      "USA": 87
+    },
+    "priorities": [
+      "Environment",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Mesir",
+    "ideology": "Sosialisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 86,
+      "Rusia": 45,
+      "China": 69,
+      "USA": 59
+    },
+    "priorities": [
+      "Environment",
+      "Military"
+    ]
+  },
+  {
+    "name": "Mikronesia",
+    "ideology": "Otoriter",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 88,
+      "Rusia": 27,
+      "China": 73,
+      "USA": 59
+    },
+    "priorities": [
+      "Economy",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Moldova",
+    "ideology": "Teokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 31,
+      "Rusia": 27,
+      "China": 90,
+      "USA": 56
+    },
+    "priorities": [
+      "Military",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Monako",
+    "ideology": "Komunisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 32,
+      "Rusia": 85,
+      "China": 58,
+      "USA": 39
+    },
+    "priorities": [
+      "Environment",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Mongolia",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 22,
+      "Rusia": 24,
+      "China": 52,
+      "USA": 85
+    },
+    "priorities": [
+      "Environment",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Montenegro",
+    "ideology": "Teokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 65,
+      "Rusia": 86,
+      "China": 25,
+      "USA": 18
+    },
+    "priorities": [
+      "Human Rights",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Mozambik",
+    "ideology": "Otoriter",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 39,
+      "Rusia": 77,
+      "China": 50,
+      "USA": 88
+    },
+    "priorities": [
+      "Stability",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Myanmar",
+    "ideology": "Komunisme",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 66,
+      "Rusia": 41,
+      "China": 76,
+      "USA": 33
+    },
+    "priorities": [
+      "Human Rights",
+      "Military"
+    ]
+  },
+  {
+    "name": "Namibia",
+    "ideology": "Komunisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 89,
+      "Rusia": 55,
+      "China": 77,
+      "USA": 35
+    },
+    "priorities": [
+      "Economy",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Nauru",
+    "ideology": "Teokrasi",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 47,
+      "Rusia": 54,
+      "China": 29,
+      "USA": 53
+    },
+    "priorities": [
+      "Economy",
+      "Military"
+    ]
+  },
+  {
+    "name": "Nepal",
+    "ideology": "Sosialisme",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 78,
+      "Rusia": 15,
+      "China": 29,
+      "USA": 62
+    },
+    "priorities": [
+      "Technology",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Niger",
+    "ideology": "Sosialisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 30,
+      "Rusia": 27,
+      "China": 81,
+      "USA": 46
+    },
+    "priorities": [
+      "Military",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Nigeria",
+    "ideology": "Sosialisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 87,
+      "Rusia": 45,
+      "China": 30,
+      "USA": 61
+    },
+    "priorities": [
+      "Human Rights",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Nikaragua",
+    "ideology": "Sosialisme",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 33,
+      "Rusia": 24,
+      "China": 86,
+      "USA": 14
+    },
+    "priorities": [
+      "Economy",
+      "Military"
+    ]
+  },
+  {
+    "name": "Norwegia",
+    "ideology": "Otoriter",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 47,
+      "Rusia": 16,
+      "China": 34,
+      "USA": 80
+    },
+    "priorities": [
+      "Human Rights",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Oman",
+    "ideology": "Otoriter",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 36,
+      "Rusia": 30,
+      "China": 36,
+      "USA": 50
+    },
+    "priorities": [
+      "Military",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Pakistan",
+    "ideology": "Demokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 46,
+      "Rusia": 61,
+      "China": 23,
+      "USA": 78
+    },
+    "priorities": [
+      "Technology",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Palau",
+    "ideology": "Sosialisme",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 54,
+      "Rusia": 33,
+      "China": 17,
+      "USA": 74
+    },
+    "priorities": [
+      "Military",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Palestina",
+    "ideology": "Otoriter",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 17,
+      "Rusia": 79,
+      "China": 73,
+      "USA": 49
+    },
+    "priorities": [
+      "Economy",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Panama",
+    "ideology": "Komunisme",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 87,
+      "Rusia": 17,
+      "China": 61,
+      "USA": 54
+    },
+    "priorities": [
+      "Environment",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Pantai Gading",
+    "ideology": "Demokrasi",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 51,
+      "Rusia": 26,
+      "China": 20,
+      "USA": 68
+    },
+    "priorities": [
+      "Economy",
+      "Military"
+    ]
+  },
+  {
+    "name": "Papua Nugini",
+    "ideology": "Otoriter",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 58,
+      "Rusia": 20,
+      "China": 61,
+      "USA": 10
+    },
+    "priorities": [
+      "Environment",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Paraguay",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 79,
+      "Rusia": 22,
+      "China": 37,
+      "USA": 27
+    },
+    "priorities": [
+      "Military",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Peru",
+    "ideology": "Otoriter",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 41,
+      "Rusia": 52,
+      "China": 59,
+      "USA": 43
+    },
+    "priorities": [
+      "Technology",
+      "Military"
+    ]
+  },
+  {
+    "name": "Polandia",
+    "ideology": "Teokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 53,
+      "Rusia": 52,
+      "China": 22,
+      "USA": 58
+    },
+    "priorities": [
+      "Economy",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Portugal",
+    "ideology": "Komunisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 73,
+      "Rusia": 48,
+      "China": 77,
+      "USA": 84
+    },
+    "priorities": [
+      "Stability",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Prancis",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 43,
+      "Rusia": 48,
+      "China": 36,
+      "USA": 55
+    },
+    "priorities": [
+      "Stability",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Puerto Rico",
+    "ideology": "Komunisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 83,
+      "Rusia": 76,
+      "China": 42,
+      "USA": 46
+    },
+    "priorities": [
+      "Human Rights",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Qatar",
+    "ideology": "Teokrasi",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 63,
+      "Rusia": 16,
+      "China": 80,
+      "USA": 67
+    },
+    "priorities": [
+      "Stability",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Republik Afrika Tengah",
+    "ideology": "Teokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 13,
+      "Rusia": 38,
+      "China": 66,
+      "USA": 36
+    },
+    "priorities": [
+      "Military",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Republik Demokratik Kongo",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 41,
+      "Rusia": 64,
+      "China": 19,
+      "USA": 44
+    },
+    "priorities": [
+      "Economy",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Republik Dominika",
+    "ideology": "Sosialisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 40,
+      "Rusia": 53,
+      "China": 22,
+      "USA": 36
+    },
+    "priorities": [
+      "Economy",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Republik Rumania",
+    "ideology": "Komunisme",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 30,
+      "Rusia": 53,
+      "China": 40,
+      "USA": 67
+    },
+    "priorities": [
+      "Technology",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Republik Serbia",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 34,
+      "Rusia": 55,
+      "China": 55,
+      "USA": 62
+    },
+    "priorities": [
+      "Environment",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Republik Sudan",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 10,
+      "Rusia": 74,
+      "China": 29,
+      "USA": 20
+    },
+    "priorities": [
+      "Human Rights",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Republik Tanzania",
+    "ideology": "Teokrasi",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 37,
+      "Rusia": 49,
+      "China": 38,
+      "USA": 35
+    },
+    "priorities": [
+      "Human Rights",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Republik Timor Leste",
+    "ideology": "Teokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 23,
+      "Rusia": 40,
+      "China": 47,
+      "USA": 49
+    },
+    "priorities": [
+      "Technology",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Republik Uganda",
+    "ideology": "Teokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 71,
+      "Rusia": 38,
+      "China": 30,
+      "USA": 50
+    },
+    "priorities": [
+      "Economy",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Republik Zambia",
+    "ideology": "Komunisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 34,
+      "Rusia": 68,
+      "China": 90,
+      "USA": 39
+    },
+    "priorities": [
+      "Human Rights",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Republik Zimbabwe",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 88,
+      "Rusia": 23,
+      "China": 30,
+      "USA": 51
+    },
+    "priorities": [
+      "Environment",
+      "Military"
+    ]
+  },
+  {
+    "name": "Rusia",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 81,
+      "Rusia": 83,
+      "China": 51,
+      "USA": 77
+    },
+    "priorities": [
+      "Human Rights",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Rwanda",
+    "ideology": "Komunisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 82,
+      "Rusia": 11,
+      "China": 71,
+      "USA": 40
+    },
+    "priorities": [
+      "Economy",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Saint Kitts Dan Nevis",
+    "ideology": "Komunisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 53,
+      "Rusia": 89,
+      "China": 11,
+      "USA": 46
+    },
+    "priorities": [
+      "Economy",
+      "Military"
+    ]
+  },
+  {
+    "name": "Saint Lucia",
+    "ideology": "Teokrasi",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 23,
+      "Rusia": 43,
+      "China": 41,
+      "USA": 20
+    },
+    "priorities": [
+      "Stability",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Saint Vincent Dan Grenadine",
+    "ideology": "Otoriter",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 31,
+      "Rusia": 46,
+      "China": 59,
+      "USA": 14
+    },
+    "priorities": [
+      "Human Rights",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Samoa",
+    "ideology": "Komunisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 33,
+      "Rusia": 48,
+      "China": 85,
+      "USA": 59
+    },
+    "priorities": [
+      "Military",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Samoa Amerika",
+    "ideology": "Otoriter",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 18,
+      "Rusia": 89,
+      "China": 25,
+      "USA": 36
+    },
+    "priorities": [
+      "Human Rights",
+      "Stability"
+    ]
+  },
+  {
+    "name": "San Marino",
+    "ideology": "Sosialisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 45,
+      "Rusia": 79,
+      "China": 47,
+      "USA": 48
+    },
+    "priorities": [
+      "Economy",
+      "Military"
+    ]
+  },
+  {
+    "name": "Sao Tome Dan Principe",
+    "ideology": "Teokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 88,
+      "Rusia": 58,
+      "China": 89,
+      "USA": 79
+    },
+    "priorities": [
+      "Technology",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Selandia Baru",
+    "ideology": "Demokrasi",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 84,
+      "Rusia": 27,
+      "China": 11,
+      "USA": 36
+    },
+    "priorities": [
+      "Technology",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Senegal",
+    "ideology": "Komunisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 61,
+      "Rusia": 66,
+      "China": 45,
+      "USA": 41
+    },
+    "priorities": [
+      "Human Rights",
+      "Military"
+    ]
+  },
+  {
+    "name": "Seychelles",
+    "ideology": "Demokrasi",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 46,
+      "Rusia": 82,
+      "China": 19,
+      "USA": 45
+    },
+    "priorities": [
+      "Environment",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Sierra Leone",
+    "ideology": "Otoriter",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 58,
+      "Rusia": 73,
+      "China": 16,
+      "USA": 11
+    },
+    "priorities": [
+      "Military",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Singapura",
+    "ideology": "Komunisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 47,
+      "Rusia": 11,
+      "China": 60,
+      "USA": 10
+    },
+    "priorities": [
+      "Military",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Siprus",
+    "ideology": "Otoriter",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 34,
+      "Rusia": 58,
+      "China": 24,
+      "USA": 68
+    },
+    "priorities": [
+      "Human Rights",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Slovenia",
+    "ideology": "Teokrasi",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 65,
+      "Rusia": 57,
+      "China": 38,
+      "USA": 23
+    },
+    "priorities": [
+      "Stability",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Slowakia",
+    "ideology": "Sosialisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 72,
+      "Rusia": 78,
+      "China": 22,
+      "USA": 66
+    },
+    "priorities": [
+      "Human Rights",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Somalia",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 32,
+      "Rusia": 69,
+      "China": 51,
+      "USA": 66
+    },
+    "priorities": [
+      "Economy",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Spanyol",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 84,
+      "Rusia": 25,
+      "China": 41,
+      "USA": 20
+    },
+    "priorities": [
+      "Human Rights",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Sri Lanka",
+    "ideology": "Otoriter",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 15,
+      "Rusia": 49,
+      "China": 51,
+      "USA": 40
+    },
+    "priorities": [
+      "Technology",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Sudan Selatan",
+    "ideology": "Otoriter",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 36,
+      "Rusia": 68,
+      "China": 78,
+      "USA": 13
+    },
+    "priorities": [
+      "Environment",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Suriah",
+    "ideology": "Otoriter",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 16,
+      "Rusia": 29,
+      "China": 89,
+      "USA": 84
+    },
+    "priorities": [
+      "Stability",
+      "Military"
+    ]
+  },
+  {
+    "name": "Suriname",
+    "ideology": "Otoriter",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 14,
+      "Rusia": 64,
+      "China": 87,
+      "USA": 58
+    },
+    "priorities": [
+      "Technology",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Swedia",
+    "ideology": "Demokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 15,
+      "Rusia": 19,
+      "China": 49,
+      "USA": 22
+    },
+    "priorities": [
+      "Stability",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Swiss",
+    "ideology": "Teokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 73,
+      "Rusia": 12,
+      "China": 16,
+      "USA": 16
+    },
+    "priorities": [
+      "Stability",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Tahiti",
+    "ideology": "Komunisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 42,
+      "Rusia": 78,
+      "China": 54,
+      "USA": 58
+    },
+    "priorities": [
+      "Technology",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Taiwan",
+    "ideology": "Sosialisme",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 74,
+      "Rusia": 45,
+      "China": 70,
+      "USA": 82
+    },
+    "priorities": [
+      "Military",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Tajikistan",
+    "ideology": "Teokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 12,
+      "Rusia": 70,
+      "China": 42,
+      "USA": 23
+    },
+    "priorities": [
+      "Technology",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Tanjung Verde",
+    "ideology": "Otoriter",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 20,
+      "Rusia": 41,
+      "China": 29,
+      "USA": 77
+    },
+    "priorities": [
+      "Military",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Thailand",
+    "ideology": "Sosialisme",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 21,
+      "Rusia": 61,
+      "China": 77,
+      "USA": 46
+    },
+    "priorities": [
+      "Economy",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Togo",
+    "ideology": "Otoriter",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 20,
+      "Rusia": 12,
+      "China": 60,
+      "USA": 58
+    },
+    "priorities": [
+      "Human Rights",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Tonga",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 71,
+      "Rusia": 89,
+      "China": 17,
+      "USA": 12
+    },
+    "priorities": [
+      "Economy",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Trinidad Dan Tobago",
+    "ideology": "Otoriter",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 81,
+      "Rusia": 70,
+      "China": 16,
+      "USA": 69
+    },
+    "priorities": [
+      "Stability",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Tunisia",
+    "ideology": "Demokrasi",
+    "tendency": "Interventionist",
+    "alignment": {
+      "Player": 34,
+      "Rusia": 15,
+      "China": 38,
+      "USA": 77
+    },
+    "priorities": [
+      "Environment",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Turki",
+    "ideology": "Demokrasi",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 28,
+      "Rusia": 30,
+      "China": 13,
+      "USA": 37
+    },
+    "priorities": [
+      "Stability",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Turkmenistan",
+    "ideology": "Sosialisme",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 47,
+      "Rusia": 80,
+      "China": 11,
+      "USA": 66
+    },
+    "priorities": [
+      "Military",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Tuvalu",
+    "ideology": "Teokrasi",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 54,
+      "Rusia": 72,
+      "China": 58,
+      "USA": 47
+    },
+    "priorities": [
+      "Stability",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Ukraina",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 69,
+      "Rusia": 36,
+      "China": 64,
+      "USA": 24
+    },
+    "priorities": [
+      "Military",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Uni Emirat Arab",
+    "ideology": "Sosialisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 86,
+      "Rusia": 36,
+      "China": 83,
+      "USA": 38
+    },
+    "priorities": [
+      "Economy",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Uruguay",
+    "ideology": "Sosialisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 78,
+      "Rusia": 75,
+      "China": 84,
+      "USA": 46
+    },
+    "priorities": [
+      "Stability",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Uzbekistan",
+    "ideology": "Teokrasi",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 26,
+      "Rusia": 18,
+      "China": 19,
+      "USA": 44
+    },
+    "priorities": [
+      "Human Rights",
+      "Stability"
+    ]
+  },
+  {
+    "name": "Vanuatu",
+    "ideology": "Sosialisme",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 19,
+      "Rusia": 88,
+      "China": 71,
+      "USA": 54
+    },
+    "priorities": [
+      "Stability",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Vatikan",
+    "ideology": "Demokrasi",
+    "tendency": "Expansionist",
+    "alignment": {
+      "Player": 65,
+      "Rusia": 82,
+      "China": 52,
+      "USA": 13
+    },
+    "priorities": [
+      "Stability",
+      "Technology"
+    ]
+  },
+  {
+    "name": "Venezuela",
+    "ideology": "Teokrasi",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 48,
+      "Rusia": 49,
+      "China": 50,
+      "USA": 87
+    },
+    "priorities": [
+      "Human Rights",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Vietnam",
+    "ideology": "Otoriter",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 76,
+      "Rusia": 39,
+      "China": 73,
+      "USA": 16
+    },
+    "priorities": [
+      "Stability",
+      "Environment"
+    ]
+  },
+  {
+    "name": "Yaman",
+    "ideology": "Otoriter",
+    "tendency": "Isolationist",
+    "alignment": {
+      "Player": 35,
+      "Rusia": 37,
+      "China": 38,
+      "USA": 74
+    },
+    "priorities": [
+      "Technology",
+      "Human Rights"
+    ]
+  },
+  {
+    "name": "Yordania",
+    "ideology": "Sosialisme",
+    "tendency": "Neutral",
+    "alignment": {
+      "Player": 24,
+      "Rusia": 66,
+      "China": 32,
+      "USA": 90
+    },
+    "priorities": [
+      "Military",
+      "Economy"
+    ]
+  },
+  {
+    "name": "Yunani",
+    "ideology": "Teokrasi",
+    "tendency": "Pacifist",
+    "alignment": {
+      "Player": 32,
+      "Rusia": 87,
+      "China": 20,
+      "USA": 50
+    },
+    "priorities": [
+      "Stability",
+      "Economy"
+    ]
+  }
+]

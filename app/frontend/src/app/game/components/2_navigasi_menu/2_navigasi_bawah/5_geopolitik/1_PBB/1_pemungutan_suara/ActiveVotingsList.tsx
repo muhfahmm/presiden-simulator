@@ -81,7 +81,7 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
               })()}
             </div>
 
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
+            <div className="grid grid-cols-2 gap-4 py-4 border-t border-white/5">
               <div className="flex flex-col gap-1">
                 <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Negara Target</span>
                 <div className="flex items-center gap-2">
@@ -90,11 +90,57 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Durasi Usulan</span>
+                <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Pengusul</span>
                 <div className="flex items-center gap-2">
-                   <Clock className="h-3 w-3 text-zinc-500" />
-                   <span className="text-[10px] font-black text-zinc-300 uppercase">{vote.durationLabel}</span>
+                   <div className="h-3 w-3 rounded-full bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-[6px] font-black text-cyan-400">AI</div>
+                   <span className="text-[10px] font-black text-zinc-300 uppercase">{vote.proposer || "Anggota PBB"}</span>
                 </div>
+              </div>
+            </div>
+
+            {/* Voting Buttons for User */}
+            <div className="mt-2 pt-4 border-t border-white/5">
+              <p className="text-[8px] font-black text-zinc-500 uppercase tracking-widest mb-3 text-center">Berikan Suara Anda</p>
+              <div className="grid grid-cols-3 gap-2">
+                <button 
+                  onClick={() => {
+                    const { unVotingStorage } = require("./logika_pemungutan_suara/unVotingStorage");
+                    unVotingStorage.castUserVote(vote.id, 'SETUJU');
+                  }}
+                  className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border ${
+                    vote.userVote === 'SETUJU' 
+                    ? "bg-emerald-500 border-emerald-400 text-white shadow-lg shadow-emerald-500/20 scale-105" 
+                    : "bg-emerald-500/5 border-emerald-500/10 text-emerald-500 hover:bg-emerald-500/10"
+                  }`}
+                >
+                  Setuju
+                </button>
+                <button 
+                  onClick={() => {
+                    const { unVotingStorage } = require("./logika_pemungutan_suara/unVotingStorage");
+                    unVotingStorage.castUserVote(vote.id, 'TOLAK');
+                  }}
+                  className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border ${
+                    vote.userVote === 'TOLAK' 
+                    ? "bg-rose-500 border-rose-400 text-white shadow-lg shadow-rose-500/20 scale-105" 
+                    : "bg-rose-500/5 border-rose-500/10 text-rose-500 hover:bg-rose-500/10"
+                  }`}
+                >
+                  Tolak
+                </button>
+                <button 
+                  onClick={() => {
+                    const { unVotingStorage } = require("./logika_pemungutan_suara/unVotingStorage");
+                    unVotingStorage.castUserVote(vote.id, 'ABSTAIN');
+                  }}
+                  className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border ${
+                    vote.userVote === 'ABSTAIN' 
+                    ? "bg-zinc-700 border-zinc-600 text-white shadow-lg shadow-zinc-500/20 scale-105" 
+                    : "bg-zinc-500/5 border-zinc-500/10 text-zinc-400 hover:bg-zinc-500/10"
+                  }`}
+                >
+                  Abstain
+                </button>
               </div>
             </div>
           </div>

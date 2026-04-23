@@ -96,7 +96,32 @@ export default function PemungutanSuaraTab({ currentData }: PemungutanSuaraTabPr
       
       {/* SECTION 2: Selection Cards */}
       <div className="flex flex-col gap-4">
-        <h4 className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em]">Ajukan Resolusi Baru</h4>
+        <div className="flex items-center justify-between">
+          <h4 className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em]">Ajukan Resolusi Baru</h4>
+          <button 
+            onClick={() => {
+              const countries = ["Amerika Serikat", "Rusia", "China", "Inggris", "Prancis", "Jepang", "Jerman"];
+              const randomCountry = countries[Math.floor(Math.random() * countries.length)];
+              const targets = ["Korea Utara", "Iran", "Suriah", "Israel", "Ukraina", "Taiwan"];
+              const randomTarget = targets[Math.floor(Math.random() * targets.length)];
+              
+              unVotingStorage.proposeAiResolution({
+                category: "Resolusi Keamanan",
+                name: "Gencatan Senjata Segera",
+                description: "Menuntut penghentian permusuhan dan penarikan pasukan dari wilayah konflik.",
+                effect: "Meningkatkan stabilitas global dan mengurangi ketegangan militer.",
+                targetCountry: randomTarget,
+                proposer: randomCountry,
+                durationLabel: "30 Hari",
+                startDate: new Date().toLocaleDateString('id-ID'),
+                endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toLocaleDateString('id-ID')
+              });
+            }}
+            className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[8px] font-black text-cyan-400 uppercase tracking-widest hover:bg-cyan-500/20 transition-all active:scale-95"
+          >
+            ⚡ Simulasikan Resolusi AI
+          </button>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 shrink-0">
           <RancanganResolusiCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />
           <SanksiCard selectedItem={selectedItem} onSelectItem={handleSelectItem} />

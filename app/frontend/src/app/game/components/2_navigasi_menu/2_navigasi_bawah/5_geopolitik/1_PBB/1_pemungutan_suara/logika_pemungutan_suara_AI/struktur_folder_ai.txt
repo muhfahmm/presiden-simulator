@@ -8,7 +8,7 @@ FOLDER UTAMA: `/logika_pemungutan_suara_AI`
 │   ├── peta_logika_ai.txt
 │   └── struktur_folder_ai.txt
 ├── /data_simulator
-│   ├── mock_countries_206.json
+│   ├── mock_countries_207.json
 │   └── alignment_matrix.json
 ├── /engine_python
 │   ├── main_ai_voter.py

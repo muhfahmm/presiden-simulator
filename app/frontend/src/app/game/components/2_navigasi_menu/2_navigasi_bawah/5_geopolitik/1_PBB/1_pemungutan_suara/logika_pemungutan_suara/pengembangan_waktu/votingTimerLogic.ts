@@ -16,6 +16,9 @@ export const initVotingTimer = (userCountry: string) => {
   timeStorage.subscribe((currentDate, isPaused) => {
     if (isPaused) return; // Berhenti jika game di-pause
 
+    // Cek apakah perlu memicu resolusi AI bulanan
+    unVotingStorage.checkMonthlyAiResolution(new Date(currentDate));
+
     let currentState = unVotingStorage.getData();
     const activeVotings = currentState.activeVotings;
     
