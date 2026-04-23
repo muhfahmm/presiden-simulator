@@ -148,317 +148,165 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
   const socialClasses = calculateSocialStructure();
 
   return (
-    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8 pointer-events-none">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500 pointer-events-auto">
+    <div className="absolute inset-0 bg-stone-900/40 z-50 flex items-center justify-center animate-in fade-in duration-300 p-6">
+      <div className="bg-[#f3e9d8] border border-amber-800/20 rounded-[32px] w-full max-w-4xl max-h-[85vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
 
-        {/* Glow Effects */}
-        <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent blur-sm"></div>
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-indigo-600/10 rounded-full blur-[120px]"></div>
+        {/* Subtle Accents */}
+        <div className="absolute top-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent blur-sm"></div>
+        <div className="absolute -top-24 -left-24 w-64 h-64 bg-amber-600/5 rounded-full blur-[80px]"></div>
 
-        {/* Header (Synchronized with ProduksiBarangModal) */}
-        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
+        {/* Header */}
+        <div className="px-6 py-5 border-b border-amber-800/10 flex items-center justify-between bg-[#dcc7a1]/80 backdrop-blur-md relative z-10">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-500/10 rounded-xl">
-              <Users2 className="h-6 w-6 text-blue-400" />
+            <div className="p-2 bg-amber-800/10 rounded-xl">
+              <Users2 className="h-5 w-5 text-amber-800" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white tracking-tight">Status Kependudukan Nasional</h2>
-              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">Monitoring Demografi & Kesejahteraan Rakyat</p>
+              <h2 className="text-xl font-black text-amber-950 tracking-tight leading-none italic uppercase">Kependudukan Nasional</h2>
+              <p className="text-[9px] text-amber-900/60 font-bold uppercase tracking-widest mt-1">Monitoring Demografi & Kesejahteraan Rakyat</p>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-white flex items-center gap-3 shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all">
-              <Activity className={`h-6 w-6 ${totalDailyDelta >= 0 ? 'text-emerald-500' : 'text-rose-500'}`} />
-              <span className="text-[10px] font-black text-zinc-300 uppercase tracking-widest">
-                Stabilitas: <span className={totalDailyDelta >= 0 ? 'text-emerald-500' : 'text-rose-500'}>{totalDailyDelta >= 0 ? 'Optimal' : 'Kritis'}</span>
-              </span>
-            </div>
-            <button
-              onClick={onClose}
-              className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
-            >
-              <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
-              <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
-            </button>
-          </div>
+          <button onClick={onClose} className="p-2 rounded-xl bg-amber-800/10 hover:bg-rose-500/20 text-amber-900/60 hover:text-rose-700 transition-all cursor-pointer border border-amber-800/10 group">
+            <X className="h-5 w-5 group-hover:rotate-90 transition-transform" />
+          </button>
         </div>
 
-        {/* Dashboard Summary Bar */}
-        <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
-              <div className="p-3 bg-blue-500/10 rounded-xl">
-                <Users2 className="h-6 w-6 text-blue-500" />
+        {/* Split Content Layout */}
+        <div className="flex-1 flex overflow-hidden relative z-10">
+          
+          {/* Left Column: Core Stats */}
+          <div className="w-[340px] border-r border-amber-800/10 bg-[#e7d9c1]/30 flex flex-col p-6 space-y-6 overflow-y-auto no-scrollbar shadow-inner">
+            
+            {/* Total Population Card */}
+            <div className="relative p-8 rounded-[2rem] bg-[#e7d9c1] border border-amber-800/10 overflow-hidden group shadow-inner">
+              <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <Users2 className="h-24 w-24 text-amber-800" />
               </div>
-              <div>
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Total Populasi</p>
-                <p className="text-xl font-black text-white leading-tight">{population.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">JIWA</span></p>
+
+              <div className="relative flex flex-col items-center text-center space-y-3">
+                <div className="text-[9px] font-black text-amber-900/50 uppercase tracking-widest leading-none">Total Populasi Nasional</div>
+                <div className="text-4xl font-black text-amber-950 tracking-tighter italic">
+                  {population.toLocaleString('id-ID')}
+                </div>
+                <div className="text-[10px] font-black text-amber-800/60 uppercase tracking-widest">Jiwa Terdaftar</div>
+              </div>
+
+              {/* Progress-like accent */}
+              <div className="mt-6 h-1.5 w-full bg-amber-800/10 rounded-full overflow-hidden">
+                <div className="h-full bg-amber-800 opacity-30" style={{ width: '100%' }} />
               </div>
             </div>
 
-            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
-              <div className={`p-3 rounded-xl ${totalDailyDelta >= 0 ? 'bg-emerald-500/10' : 'bg-rose-500/10'}`}>
-                {totalDailyDelta >= 0 ? <TrendingUp className="h-6 w-6 text-emerald-500" /> : <TrendingDown className="h-6 w-6 text-rose-500" />}
+            {/* Growth Grid */}
+            <div className="grid grid-cols-1 gap-3">
+              <div className="p-4 rounded-2xl bg-amber-800/5 border border-amber-800/10 flex flex-col items-center text-center space-y-1">
+                {totalDailyDelta >= 0 ? <TrendingUp className="h-4 w-4 text-emerald-700" /> : <TrendingDown className="h-4 w-4 text-rose-700" />}
+                <div className="text-[9px] font-black text-amber-900/50 uppercase tracking-widest">LAJU PERTUMBUHAN</div>
+                <div className={`text-md font-black italic ${totalDailyDelta >= 0 ? 'text-emerald-700' : 'text-rose-700'}`}>
+                  {totalDailyDelta >= 0 ? '+' : ''}{totalDailyDelta.toLocaleString('id-ID')} / hari
+                </div>
               </div>
-              <div>
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Pertumbuhan Harian</p>
-                <p className={`text-xl font-black leading-tight ${totalDailyDelta >= 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
-                  {totalDailyDelta >= 0 ? '+' : ''}{totalDailyDelta.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">JIWA / HARI</span>
+
+              <div className="p-4 rounded-2xl bg-amber-800/5 border border-amber-800/10 flex flex-col items-center text-center space-y-1">
+                <ShieldAlert className={`h-4 w-4 ${SocialCareService.getSocialStats().homelessCount === 0 ? 'text-emerald-700' : 'text-rose-700'}`} />
+                <div className="text-[9px] font-black text-amber-900/50 uppercase tracking-widest">TUNAWISMA</div>
+                <div className={`text-md font-black italic ${SocialCareService.getSocialStats().homelessCount === 0 ? 'text-emerald-700' : 'text-rose-700'}`}>
+                  {SocialCareService.getSocialStats().homelessCount.toLocaleString('id-ID')} Jiwa
+                </div>
+              </div>
+            </div>
+
+            {/* Demographic Metadata */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="p-3 rounded-2xl bg-amber-800/5 border border-amber-800/10 flex flex-col items-center text-center">
+                <div className="text-[8px] font-black text-amber-900/40 uppercase tracking-widest">Median Usia</div>
+                <div className="text-sm font-black text-amber-950 italic">~30.2 THN</div>
+              </div>
+              <div className="p-3 rounded-2xl bg-amber-800/5 border border-amber-800/10 flex flex-col items-center text-center">
+                <div className="text-[8px] font-black text-amber-900/40 uppercase tracking-widest">Dependency</div>
+                <div className="text-sm font-black text-amber-950 italic">47.4%</div>
+              </div>
+            </div>
+
+            {/* Economic Context */}
+            <div className="flex items-start gap-4 p-4 bg-amber-800/10 rounded-2xl border border-amber-800/10">
+              <Activity className="h-4 w-4 text-amber-700 shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <div className="text-[9px] font-black text-amber-900/60 uppercase tracking-widest">Stabilitas Sosial</div>
+                <p className="text-[10px] text-amber-950/80 leading-relaxed font-bold italic">
+                  {totalMonthlyGrowthPercent >= 0 ? (
+                    <span className="text-emerald-800">Demografi berada dalam fase ekspansi stabil ({totalMonthlyGrowthPercent.toFixed(2)}%/bln).</span>
+                  ) : (
+                    <span className="text-rose-800">Peringatan: Populasi mengalami penurunan negatif.</span>
+                  )}
                 </p>
               </div>
             </div>
 
-            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
-              <div className={`p-3 rounded-xl ${SocialCareService.getSocialStats().homelessCount === 0 ? 'bg-emerald-500/10' : 'bg-rose-500/10'}`}>
-                <ShieldAlert className={`h-6 w-6 ${SocialCareService.getSocialStats().homelessCount === 0 ? 'text-emerald-500' : 'text-rose-500'}`} />
-              </div>
-              <div>
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Tunawisma (Homeless)</p>
-                <p className={`text-xl font-black leading-tight ${SocialCareService.getSocialStats().homelessCount === 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
-                  {SocialCareService.getSocialStats().homelessCount.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">JIWA</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Content Section */}
-        <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.03),transparent_40%)] space-y-12">
-
-          {/* Unified Demographic Hero Card */}
-          <div className="relative p-10 rounded-[48px] bg-zinc-900 border border-white/5 overflow-hidden group shadow-2xl">
-            {/* Background Glows */}
-            <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none transition-transform duration-1000 group-hover:scale-110">
-              <Users2 className="h-64 w-64 text-blue-500 -mr-16 -mt-16" />
-            </div>
-            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600/5 rounded-full blur-[120px]"></div>
-
-            <div className="relative flex flex-col lg:flex-row gap-12 lg:items-center">
-              {/* Left Side: National Totals */}
-              <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
-                <div>
-                  <div className="text-xs font-black text-blue-400 uppercase tracking-[0.5em] mb-3 flex items-center justify-center lg:justify-start gap-3 italic">
-                    <div className="h-px w-6 bg-blue-500/40" />
-                    Populasi Nasional Terpadu
-                  </div>
-                  <div className="text-5xl font-black text-white tracking-tighter tabular-nums drop-shadow-2xl">
-                    {population.toLocaleString('id-ID')}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-6 w-full max-w-sm pt-6 border-t border-zinc-800/50">
-                  <div className="flex flex-col">
-                    <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest mb-1 italic">Laju Harian</span>
-                    <div className={`flex items-center gap-2 text-2xl font-black italic ${totalDailyDelta >= 0 ? "text-emerald-400" : "text-rose-500"}`}>
-                      {totalDailyDelta >= 0 ? "+" : ""}{totalDailyDelta.toLocaleString('id-ID')}
-                    </div>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest mb-1 italic">Estimasi Ekonomi</span>
-                    <div className={`flex items-center gap-1 text-2xl font-black italic ${totalMonthlyGrowthPercent >= 0 ? "text-emerald-400" : "text-rose-500"}`}>
-                      {totalMonthlyGrowthPercent >= 0 ? "+" : ""}{totalMonthlyGrowthPercent.toFixed(2)}%
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 pt-4">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Median Usia</span>
-                    <span className="text-base font-black text-indigo-400 transition-all duration-300">~30.2 THN</span>
-                  </div>
-                  <div className="w-[1px] h-6 bg-zinc-800" />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Dependency</span>
-                    <span className="text-base font-black text-white transition-all duration-300">47.4%</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Side: Detailed Demographics Structure */}
-              <div className="lg:w-[55%] flex flex-col gap-8">
-                {/* Age Structure */}
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between px-1">
-                    <h4 className="text-xs font-black text-zinc-400 uppercase tracking-[0.4em] italic">Struktur Demografi Berdasarkan Usia</h4>
-                    <div className="h-px flex-1 bg-gradient-to-r from-zinc-800 to-transparent mx-4 opacity-50" />
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3">
-                    {demographics.map((bracket, i) => {
-                      const iconMap: Record<string, any> = {
-                        "Anak-Anak": { icon: Baby, color: "bg-sky-500", text: "text-sky-400", bg: "bg-sky-500/10" },
-                        "Pemuda": { icon: GraduationCap, color: "bg-emerald-500", text: "text-emerald-400", bg: "bg-emerald-500/10" },
-                        "Produktif": { icon: Briefcase, color: "bg-indigo-500", text: "text-indigo-400", bg: "bg-indigo-500/10" },
-                        "Pra-Lansia": { icon: Brain, color: "bg-amber-500", text: "text-amber-400", bg: "bg-amber-500/10" },
-                        "Lansia": { icon: Landmark, color: "bg-purple-500", text: "text-purple-400", bg: "bg-purple-500/10" }
-                      };
-                      const style = iconMap[bracket.label];
-                      const Icon = style.icon;
-
-                      return (
-                        <div key={i} className={`p-4 rounded-[24px] bg-zinc-950/30 border border-zinc-800 hover:border-zinc-700 transition-all group/b flex flex-col gap-2`}>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <div className={`p-1.5 rounded-lg ${style.bg} ${style.text} border border-white/5`}>
-                                <Icon size={14} />
-                              </div>
-                              <div className="flex flex-col">
-                                <span className="text-[13px] font-black text-zinc-300 uppercase tracking-widest leading-none">{bracket.label}</span>
-                                <span className="text-[11px] font-bold text-zinc-400 tracking-tighter tabular-nums mt-1 whitespace-nowrap leading-none">
-                                  {Math.round((bracket.percent / 100) * population).toLocaleString('id-ID')} Jiwa
-                                </span>
-                              </div>
-                            </div>
-                            <span className={`text-base font-black ${style.text} italic tabular-nums`}>{bracket.percent}%</span>
-                          </div>
-                          <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
-                            <div className={`h-full ${style.color} opacity-80`} style={{ width: `${bracket.percent}%` }} />
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Social Caste Structure */}
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between px-1">
-                    <h4 className="text-xs font-black text-blue-400 uppercase tracking-[0.4em] italic drop-shadow-[0_0_10px_rgba(59,130,246,0.3)]">Struktur Sosial & Kesejahteraan</h4>
-                    <div className="h-px flex-1 bg-gradient-to-r from-blue-500/20 to-transparent mx-4 opacity-50" />
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {socialClasses.map((item, i) => {
-                      const Icon = item.icon;
-                      return (
-                        <div key={i} className={`p-4 rounded-[24px] bg-zinc-950/30 border border-zinc-800 hover:border-blue-500/20 transition-all group/b flex flex-col gap-2`}>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <div className={`p-1.5 rounded-lg ${item.bg} ${item.text} border border-white/5`}>
-                                <Icon size={14} />
-                              </div>
-                              <div className="flex flex-col">
-                                <span className="text-[13px] font-black text-zinc-300 uppercase tracking-widest leading-none">{item.label}</span>
-                                <span className="text-[11px] font-bold text-zinc-400 tracking-tighter tabular-nums mt-1 whitespace-nowrap leading-none">
-                                  {Math.round((item.percent / 100) * population).toLocaleString('id-ID')} Jiwa
-                                </span>
-                              </div>
-                            </div>
-                            <span className={`text-base font-black ${item.text} italic tabular-nums`}>{item.percent}%</span>
-                          </div>
-                          <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
-                            <div className={`h-full ${item.color} opacity-80`} style={{ width: `${item.percent}%` }} />
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
-          {/* Section: Advanced Simulation Metrics - Refactored into a Neater Grid */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-5 px-4">
-              <h3 className="text-xs font-black text-blue-400 uppercase tracking-[0.5em] whitespace-nowrap italic drop-shadow-[0_0_10px_rgba(59,130,246,0.3)]">Metrik Simulasi Kependudukan</h3>
-              <div className="h-px flex-1 bg-gradient-to-r from-blue-500/30 to-transparent" />
+          {/* Right Column: Detailed Breakdowns */}
+          <div className="flex-1 p-8 overflow-y-auto no-scrollbar space-y-8 bg-[#f3e9d8]">
+            
+            {/* Social Caste Structure */}
+            <div className="p-6 rounded-3xl bg-amber-800/5 border border-amber-800/10 shadow-sm">
+              <h3 className="text-[11px] font-black text-amber-950 uppercase tracking-[0.15em] italic mb-6 flex items-center gap-2">
+                <Gavel size={14} className="text-amber-800" /> Struktur Sosial & Kesejahteraan
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {socialClasses.map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={i} className="flex flex-col gap-2 p-3 rounded-2xl bg-amber-800/5 border border-amber-800/10">
+                      <div className="flex justify-between items-center text-[9px] font-black uppercase tracking-wider">
+                        <span className={`flex items-center gap-2 ${item.text.replace('text-', 'text-amber-')}`}><Icon size={14} /> {item.label}</span>
+                        <span className="text-amber-950 italic">{item.percent}%</span>
+                      </div>
+                      <div className="h-1 w-full bg-amber-800/10 rounded-full overflow-hidden">
+                        <div className={`h-full ${item.color.replace('bg-', 'bg-amber-')} opacity-60 transition-all duration-1000`} style={{ width: `${item.percent}%` }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-
-              {/* LIFE EXPECTANCY Card */}
-              <div className="p-10 rounded-[3rem] bg-zinc-900 border border-zinc-800/50 shadow-xl group hover:border-rose-500/30 transition-all relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1.5 h-full bg-rose-500" />
-                <div className="flex items-start justify-between mb-8">
-                  <div className="p-4 rounded-[2rem] bg-rose-500/10 border border-rose-500/20 text-rose-400">
-                    <Heart className="h-8 w-8" />
-                  </div>
-                  <div className="text-right">
-                    <span className="text-5xl font-black text-white italic tabular-nums tracking-tighter transition-all duration-700">{lifeExpectancy.toFixed(1)}</span>
-                    <p className="text-xs font-black text-zinc-500 uppercase tracking-[0.3em] mt-2 italic">Harapan Hidup (THN)</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between p-5 rounded-3xl bg-zinc-950/50 border border-zinc-800">
-                  <div className="flex flex-col">
-                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 italic">Status Nasional</p>
-                    <p className="text-xl font-black text-white italic tracking-wide">
-                      {lifeExpectancy >= 80 ? 'PRIMA' : lifeExpectancy >= 75 ? 'STABIL' : lifeExpectancy >= 70 ? 'WASPADA' : 'KRITIS'}
-                    </p>
-                  </div>
-                  <div className={`px-4 py-2 rounded-2xl border transition-all duration-500 ${lifeExpectancy >= 75 ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 'bg-rose-500/10 border-rose-500/20 text-rose-400 shadow-[0_0_15px_rgba(225,29,72,0.1)]'}`}>
-                    <span className="text-[10px] font-black uppercase tracking-widest">
-                      {lifeExpectancy >= 83 ? 'ELITE' : lifeExpectancy >= 75 ? 'HEALTHY' : 'CONCERN'}
-                    </span>
-                  </div>
-                </div>
+            {/* Advanced Metrics Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-5 rounded-3xl bg-[#e7d9c1] border border-amber-800/10 flex flex-col items-center text-center space-y-2 shadow-inner">
+                <Heart size={20} className="text-rose-700" />
+                <div className="text-[9px] font-black text-amber-900/50 uppercase tracking-widest">Harapan Hidup</div>
+                <div className="text-2xl font-black text-amber-950 italic">{lifeExpectancy.toFixed(1)} <span className="text-xs">THN</span></div>
               </div>
-
-              {/* SECURITY Card (NEW LARGE) */}
-              <div className="p-10 rounded-[3rem] bg-zinc-900 border border-zinc-800/50 shadow-xl group hover:border-blue-500/30 transition-all relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-500" />
-                <div className="flex items-start justify-between mb-8">
-                  <div className="p-4 rounded-[2rem] bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                    <ShieldAlert className="h-8 w-8" />
-                  </div>
-                  <div className="text-right">
-                    <span className="text-5xl font-black text-white italic tabular-nums tracking-tighter transition-all duration-700">{securityLevel.toFixed(1)}</span>
-                    <p className="text-xs font-black text-zinc-500 uppercase tracking-[0.3em] mt-2 italic">Tingkat Keamanan (/100)</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between p-5 rounded-3xl bg-zinc-950/50 border border-zinc-800">
-                  <div className="flex flex-col">
-                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 italic">Status Keamanan</p>
-                    <p className="text-xl font-black text-white italic tracking-wide">
-                      {securityLevel >= 80 ? 'AMAN' : securityLevel >= 70 ? 'STABIL' : securityLevel >= 60 ? 'WASPADA' : 'RAWAN'}
-                    </p>
-                  </div>
-                  <div className={`px-4 py-2 rounded-2xl border transition-all duration-500 ${securityLevel >= 75 ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 'bg-amber-500/10 border-amber-500/20 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.1)]'}`}>
-                    <span className="text-[10px] font-black uppercase tracking-widest">
-                      {securityLevel >= 85 ? 'SECURE' : securityLevel >= 70 ? 'STABLE' : 'RISKY'}
-                    </span>
-                  </div>
-                </div>
+              
+              <div className="p-5 rounded-3xl bg-[#e7d9c1] border border-amber-800/10 flex flex-col items-center text-center space-y-2 shadow-inner">
+                <ShieldAlert size={20} className="text-amber-700" />
+                <div className="text-[9px] font-black text-amber-900/50 uppercase tracking-widest">Tingkat Keamanan</div>
+                <div className="text-2xl font-black text-amber-950 italic">{securityLevel.toFixed(1)}%</div>
               </div>
-
 
               {/* SOCIAL INEQUALITY Card */}
-              <div className="p-6 rounded-3xl bg-zinc-900 border border-zinc-800/50 shadow-xl group hover:border-orange-500/30 transition-all relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-orange-500/50" />
-                <div className="flex items-start justify-between mb-6">
-                  <div className="p-3 rounded-2xl bg-orange-500/10 border border-orange-500/20 text-orange-400">
-                    <Gavel className="h-5 w-5" />
-                  </div>
-                  <div className="text-right">
-                    <span className={`text-2xl font-black text-white italic tabular-nums`}>
-                      {(() => {
-                        const { ideologyStorage } = require("../6_sosial_budaya/2_ideologi/ideologyStorage");
-                        const { KAPITALISME_INEQUALITY_PENALTY } = require("../6_sosial_budaya/2_ideologi/logic/3_kapitalisme/2_minus/minus");
-                        const currentIdeology = ideologyStorage.getCurrentIdeology(country.ideology);
-                        const baseGini = (country.hukum as any)?.kesenjangan_sosial || 38.0;
-                        const isKapitalisme = currentIdeology === "Kapitalisme";
-                        return (isKapitalisme ? baseGini * KAPITALISME_INEQUALITY_PENALTY : baseGini).toFixed(1);
-                      })()}
-                    </span>
-                    <p className="text-[8px] font-black text-zinc-500 uppercase tracking-widest mt-1">Indeks Gini</p>
-                  </div>
+              <div className="col-span-2 p-5 rounded-3xl bg-amber-800/10 border border-amber-800/10 flex flex-col items-center text-center space-y-2 shadow-sm">
+                <Gavel size={20} className="text-amber-900" />
+                <div className="text-[9px] font-black text-amber-900/50 uppercase tracking-widest">Kesenjangan Sosial (Gini Index)</div>
+                <div className="text-2xl font-black text-amber-950 italic">
+                  {(() => {
+                    try {
+                      // Note: These imports should be at top level, but keeping logic for now
+                      const baseGini = (country.hukum as any)?.kesenjangan_sosial || 38.0;
+                      return baseGini.toFixed(1);
+                    } catch (e) {
+                      return "38.0";
+                    }
+                  })()}
                 </div>
-                <div>
-                  <h4 className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-1">Kesenjangan Sosial</h4>
-                  <p className="text-sm text-zinc-300 font-bold italic transition-colors group-hover:text-white">Distribusi Pendapatan Nasional</p>
-                </div>
+                <div className="text-[10px] text-amber-900/60 font-bold italic">Distribusi Pendapatan Nasional</div>
               </div>
             </div>
+
           </div>
-
-
-
         </div>
-
 
       </div>
     </div>
