@@ -10,42 +10,38 @@ import { CountryData } from "@/app/database/data/semua_fitur_negara"
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  activeMenu: string;
+  setActiveMenu: (menu: string) => void;
   countryData?: CountryData;
 }
 
-export default function KementerianModal({ isOpen, onClose, countryData }: ModalProps) {
+export default function KementerianModal({ isOpen, onClose, activeMenu, setActiveMenu, countryData }: ModalProps) {
   const [ministries, setMinistries] = useState<Ministry[]>([]);
   
-  // Use effect to initialize or synchronize ministries
+  // Consolidated effect to initialize ministries and synchronize tabs
   useEffect(() => {
     if (isOpen) {
+      // 1. Sync Ministries
       if (countryData?.kementerian?.kabinet) {
-        // Convert Record<number, Ministry> to Ministry[] and sort by ID
         const kabinetArray = Object.values(countryData.kementerian.kabinet).sort((a, b) => a.id - b.id);
         setMinistries(kabinetArray);
       } else {
         const defaultArray = Object.values(DEFAULT_INITIAL_KEMENTERIAN).sort((a, b) => a.id - b.id);
         setMinistries(defaultArray);
       }
-    }
-  }, [isOpen, countryData]);
-  const [selectingFor, setSelectingFor] = useState<number | null>(null);
-  const [showInfoId, setShowInfoId] = useState<number | null>(null);
-  const [activeTab, setActiveTab] = useState<"kabinet" | "undang-undang">("kabinet");
 
-  useEffect(() => {
-    if (isOpen) {
-      const path = window.location.pathname;
-      if (path.includes("undang_undang")) {
+      // 2. Sync Active Tab
+      if (activeMenu === "Dashboard:Kementerian:undang-undang") {
         setActiveTab("undang-undang");
-      } else if (path.includes("kabinet_pemerintahan")) {
-        setActiveTab("kabinet");
       } else {
-        // Default to kabinet but keep the generic URL if that's where we entered from
         setActiveTab("kabinet");
       }
     }
-  }, [isOpen]);
+  }, [isOpen, countryData, activeMenu]);
+
+  const [selectingFor, setSelectingFor] = useState<number | null>(null);
+  const [showInfoId, setShowInfoId] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<"kabinet" | "undang-undang">("kabinet");
 
   if (!isOpen) return null;
 
@@ -58,9 +54,6 @@ export default function KementerianModal({ isOpen, onClose, countryData }: Modal
 
   const handleReshuffle = (ministryId: number) => {
     setSelectingFor(ministryId);
-    const slug = ID_TO_SLUG[ministryId] || ministryId;
-    // Push state for URL path synchronization
-    window.history.pushState({}, '', `/game/kementrian/${slug}`);
   };
 
   const selectCandidate = (candidate: Ministry) => {
@@ -88,13 +81,13 @@ export default function KementerianModal({ isOpen, onClose, countryData }: Modal
         }
         : m
     ));
-    window.history.pushState({}, '', '/game/kementrian/kabinet_pemerintahan');
+    setSelectingFor(null);
   };
 
   const handleTabChange = (tab: "kabinet" | "undang-undang") => {
     setActiveTab(tab);
-    const path = tab === "kabinet" ? "kabinet_pemerintahan" : "undang_undang";
-    window.history.pushState({}, '', `/game/kementrian/${path}`);
+    const newMenu = tab === "kabinet" ? "Dashboard:Kementerian:kabinet" : "Dashboard:Kementerian:undang-undang";
+    setActiveMenu(newMenu);
   };
 
   const getCandidates = () => {
@@ -106,8 +99,8 @@ export default function KementerianModal({ isOpen, onClose, countryData }: Modal
   };
 
   return (
-    <div className="absolute inset-0 bg-black/85 z-[1000] flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8 overflow-hidden font-sans">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+    <div className="absolute inset-0 bg-black/60 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8 overflow-hidden font-sans">
+      <div className="bg-zinc-950/90 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
         {/* Header - Compact */}
         <div className="px-6 py-4 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-4">

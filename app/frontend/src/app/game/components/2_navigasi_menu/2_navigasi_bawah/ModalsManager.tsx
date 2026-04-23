@@ -210,8 +210,10 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         onClose={() => setActiveMenu("Geopolitik")}
       />
       <KementerianModal
-        isOpen={activeMenu === "Dashboard:Kementerian"}
+        isOpen={activeMenu.startsWith("Dashboard:Kementerian")}
         onClose={() => setActiveMenu("Kementerian")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
         countryData={countryData}
       />
       <AgamaModal

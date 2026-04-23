@@ -52,6 +52,7 @@ export function useGamePath(path: string[]) {
     if (subMenu === 'produksi') initialMenu = "Menu:Produksi";
     else if (subMenu === 'produksi-militer') initialMenu = "Menu:ProduksiMiliter";
     else if (subMenu === 'tempat-umum') initialMenu = "Menu:TempatUmum";
+    else if (subMenu === 'hunian_permukiman' || subMenu === 'hunian-permukiman') initialMenu = "Menu:HunianPermukiman";
     else initialMenu = "Pembangunan";
   } else if (category === 'pertahanan') {
     if (subMenu === 'komando-pertahanan') {
@@ -101,7 +102,8 @@ export function useGamePath(path: string[]) {
     }
     else initialMenu = "Geopolitik";
   } else if (category === 'kementrian') {
-    if (subMenu === 'kementrian-dashboard') initialMenu = "Dashboard:Kementerian";
+    if (subMenu === 'kabinet_pemerintahan' || subMenu === 'kementrian-dashboard') initialMenu = "Dashboard:Kementerian:kabinet";
+    else if (subMenu === 'undang_undang') initialMenu = "Dashboard:Kementerian:undang-undang";
     else initialMenu = "Kementerian";
   } else if (category === 'kepuasan') {
     if (subMenu === 'dashboard' || subMenu === 'statistik_kepuasan') initialMenu = "Dashboard:Kepuasan";
@@ -190,6 +192,7 @@ export function useGamePath(path: string[]) {
       "Menu:Produksi": "/game/pembangunan/produksi",
       "Menu:ProduksiMiliter": "/game/pembangunan/produksi-militer",
       "Menu:TempatUmum": "/game/pembangunan/tempat-umum",
+      "Menu:HunianPermukiman": "/game/pembangunan/hunian_permukiman",
       "Pertahanan": "/game/pertahanan",
       "Komando Pertahanan": "/game/pertahanan/komando-pertahanan",
       "Komando Pertahanan:Program Nuklir": "/game/pertahanan/komando-pertahanan/program_nuklir",
@@ -210,7 +213,9 @@ export function useGamePath(path: string[]) {
       "Menu:KedutaanBesar": "/game/geopolitik/kedutaan-besar",
       "Geopolitik": "/game/geopolitik",
       "Kementerian": "/game/kementrian",
-      "Dashboard:Kementerian": "/game/kementrian/kementrian-dashboard",
+      "Dashboard:Kementerian": "/game/kementrian/kabinet_pemerintahan",
+      "Dashboard:Kementerian:kabinet": "/game/kementrian/kabinet_pemerintahan",
+      "Dashboard:Kementerian:undang-undang": "/game/kementrian/undang_undang",
       "Menu:Berita": "/game/berita_internasional/all",
       "Menu:Berita:all": "/game/berita_internasional/all",
       "Menu:Berita:pembangunan": "/game/berita_internasional/pembangunan",

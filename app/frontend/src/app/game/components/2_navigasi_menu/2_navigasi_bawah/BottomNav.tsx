@@ -139,7 +139,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
                            !["Kepuasan", "Populasi", "ProduksiKonsumsi", "Ekonomi", "Pembangunan", "Pertahanan", "Geopolitik", "Sosial & Budaya", "Kementerian"].includes(activeMenu) &&
                            !activeMenu.startsWith("Komando Pertahanan") &&
                            !(activeMenu.startsWith("Menu:") && ["Menu:Kelistrikan", "Menu:Perminyakan", "Menu:Uranium", "Menu:Perdagangan", "Menu:Pajak", "Menu:Hutang", "Menu:Budget", "Menu:Harga", "Menu:Produksi", "Menu:ProduksiMiliter", "Menu:TempatUmum", "Menu:HunianPermukiman", "Menu:Intelijen", "Menu:ArmadaMiliter", "Menu:ArmadaPolisi", "Menu:ManajemenPertahanan", "Menu:PBB", "Menu:OrganisasiInternasional", "Menu:TingkatHubungan", "Menu:Bantuan", "Menu:Diplomasi", "Menu:KedutaanBesar", "Menu:Agama", "Menu:Ideologi"].some(m => activeMenu.startsWith(m))) &&
-                           !(activeMenu.startsWith("Dashboard:") && ["Dashboard:Kepuasan", "Dashboard:Populasi"].includes(activeMenu)) &&
+                           !(activeMenu.startsWith("Dashboard:") && ["Dashboard:Kepuasan", "Dashboard:Populasi", "Dashboard:Kementerian"].includes(activeMenu)) &&
                            !(activeMenu.startsWith("Action:") && ["Action:NaikkanKepuasan"].includes(activeMenu));
 
   return (
