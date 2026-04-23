@@ -52,7 +52,12 @@ export const initVotingTimer = (userCountry: string) => {
           effect: vote.effect,
           durationLabel: vote.durationLabel,
           targetCountry: vote.targetCountry,
-          status: isPassed ? 'DITERIMA' : 'DITOLAK'
+          status: isPassed ? 'DITERIMA' : 'DITOLAK',
+          results: {
+            yes: result.yes,
+            no: result.no,
+            abstain: result.abstain
+          }
         });
 
         console.log(`[PBB] Berhasil memindahkan "${vote.name}" ke histori.`);

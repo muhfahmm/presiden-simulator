@@ -150,6 +150,40 @@ export default function HistoriTab() {
                    </p>
                 </div>
 
+                <div className="grid grid-cols-3 gap-2">
+                  {(() => {
+                    let results = res.results;
+                    if (!results) {
+                      try {
+                        const { simulateUNVote } = require("../1_pemungutan_suara/logika_pemungutan_suara/votingLogic");
+                        const userCountry = (typeof window !== 'undefined' ? localStorage.getItem('selected_country') : "") || "Indonesia";
+                        results = simulateUNVote(res.targetCountry || "Global", userCountry, res.category);
+                      } catch (e) {
+                        results = { yes: 0, no: 0, abstain: 0 };
+                      }
+                    }
+
+                    const safeResults = results || { yes: 0, no: 0, abstain: 0 };
+
+                    return (
+                      <>
+                        <div className="p-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center">
+                          <p className="text-[7px] font-black text-emerald-400 uppercase tracking-tighter mb-0.5">Setuju</p>
+                          <p className="text-[10px] font-black text-white">{safeResults.yes}</p>
+                        </div>
+                        <div className="p-2 rounded-xl bg-rose-500/5 border border-rose-500/10 text-center">
+                          <p className="text-[7px] font-black text-rose-400 uppercase tracking-tighter mb-0.5">Tolak</p>
+                          <p className="text-[10px] font-black text-white">{safeResults.no}</p>
+                        </div>
+                        <div className="p-2 rounded-xl bg-zinc-500/5 border border-zinc-500/10 text-center">
+                          <p className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter mb-0.5">Abstain</p>
+                          <p className="text-[10px] font-black text-white">{safeResults.abstain}</p>
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
+
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1">
                     <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Negara Target</span>

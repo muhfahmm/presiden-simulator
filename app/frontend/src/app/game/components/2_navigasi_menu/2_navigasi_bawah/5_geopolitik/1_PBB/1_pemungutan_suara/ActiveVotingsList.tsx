@@ -42,7 +42,46 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-white/5">
+            <div className="grid grid-cols-3 gap-2 mb-4">
+              {(() => {
+                // Fallback jika finalResults belum ada (sidang lama)
+                let res = vote.finalResults;
+                if (!res) {
+                   try {
+                     const { simulateUNVote } = require("./logika_pemungutan_suara/votingLogic");
+                     const userCountry = (typeof window !== 'undefined' ? localStorage.getItem('selected_country') : "") || "Indonesia";
+                     res = simulateUNVote(vote.targetCountry, userCountry, vote.category);
+                   } catch (e) {
+                     res = { yes: 0, no: 0, abstain: 0 };
+                   }
+                }
+                
+                // Pastikan res tidak null sebelum akses properti
+                const safeRes = res || { yes: 0, no: 0, abstain: 0 };
+                const yes = Math.floor(safeRes.yes * (vote.progress / 100));
+                const no = Math.floor(safeRes.no * (vote.progress / 100));
+                const abstain = 207 - (yes + no);
+
+                return (
+                  <>
+                    <div className="p-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center">
+                      <p className="text-[7px] font-black text-emerald-500 uppercase tracking-tighter mb-0.5">Setuju</p>
+                      <p className="text-xs font-black text-white">{yes}</p>
+                    </div>
+                    <div className="p-2 rounded-xl bg-rose-500/5 border border-rose-500/10 text-center">
+                      <p className="text-[7px] font-black text-rose-500 uppercase tracking-tighter mb-0.5">Tolak</p>
+                      <p className="text-xs font-black text-white">{no}</p>
+                    </div>
+                    <div className="p-2 rounded-xl bg-zinc-500/5 border border-zinc-500/10 text-center">
+                      <p className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter mb-0.5">Abstain</p>
+                      <p className="text-xs font-black text-white">{abstain}</p>
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
               <div className="flex flex-col gap-1">
                 <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Negara Target</span>
                 <div className="flex items-center gap-2">
