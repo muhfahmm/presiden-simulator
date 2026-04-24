@@ -3,12 +3,19 @@
 
 import { Clock, Globe, Loader2 } from "lucide-react";
 import { ActiveVoting } from "./logika_pemungutan_suara/unVotingStorage";
+import { countries } from "@/app/pilih_negara/data/negara/benua/index";
 
 interface ActiveVotingsListProps {
   votings: ActiveVoting[];
 }
 
 export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
+  const getCountryCode = (emoji: string) => {
+    const chars = [...emoji];
+    if (chars.length < 2) return "";
+    return chars.map(ch => String.fromCharCode((ch.codePointAt(0) || 0) - 0x1F1E6 + 65)).join("").toLowerCase();
+  };
+
   if (votings.length === 0) return null;
 
   return (
@@ -45,9 +52,15 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                     <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-widest">{vote.category}</span>
                   </div>
                 </div>
-                <div className="flex flex-col items-end">
-                  <span className="text-[10px] font-black text-cyan-400">{Math.floor(vote.progress)}%</span>
-                  <span className="text-[7px] font-bold text-zinc-600 uppercase tracking-tighter">{totalVoted}/207 Negara Telah Memilih</span>
+                <div className="flex flex-col items-end gap-1">
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-zinc-950 border border-zinc-800">
+                      <Clock className="h-2 w-2 text-cyan-500" />
+                      <span className="text-[8px] font-black text-zinc-400 uppercase tracking-widest">{Math.floor((vote.progress / 100) * 30)}/30 HARI</span>
+                    </div>
+                    <span className="text-[11px] font-black text-cyan-400">{Math.floor(vote.progress)}%</span>
+                  </div>
+                  <span className="text-[9px] font-black text-zinc-500 uppercase tracking-tighter">{totalVoted}/207 Negara Telah Memilih</span>
                 </div>
               </div>
 
@@ -68,25 +81,50 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
               </div>
 
               <div className="grid grid-cols-2 gap-4 py-4 border-t border-white/5">
-                <div className="flex flex-col gap-1">
-                  <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Negara Target</span>
-                  <div className="flex items-center gap-2">
-                     <Globe className="h-3 w-3 text-zinc-500" />
-                     <span className="text-[10px] font-black text-zinc-300 uppercase">{vote.targetCountry}</span>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Pengusul</span>
-                  <div className="flex items-center gap-2">
-                     <div className="h-3 w-3 rounded-full bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-[6px] font-black text-cyan-400">AI</div>
-                     <span className="text-[10px] font-black text-zinc-300 uppercase">{vote.proposer || "Anggota PBB"}</span>
-                  </div>
-                </div>
+                {/* Find Country Data for Flags */}
+                {(() => {
+                  const targetCountryData = countries.find(c => c.name_id === vote.targetCountry || c.name_en === vote.targetCountry);
+                  const proposerCountryData = countries.find(c => c.name_id === vote.proposer || c.name_en === vote.proposer);
+                  
+                  const targetCode = targetCountryData ? getCountryCode(targetCountryData.flag) : "";
+                  const proposerCode = proposerCountryData ? getCountryCode(proposerCountryData.flag) : "";
+
+                  return (
+                    <>
+                      <div className="flex flex-col gap-1.5">
+                        <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Negara Target</span>
+                        <div className="flex items-center gap-2">
+                           {targetCode ? (
+                             <div className="w-5 h-3.5 rounded-sm overflow-hidden border border-white/10 shadow-sm shrink-0">
+                               <img src={`https://flagcdn.com/w80/${targetCode}.png`} className="w-full h-full object-cover" alt="" />
+                             </div>
+                           ) : (
+                             <Globe className="h-3 w-3 text-zinc-500" />
+                           )}
+                           <span className="text-[11px] font-black text-zinc-200 uppercase tracking-tight">{vote.targetCountry}</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-1.5">
+                        <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Pengusul</span>
+                        <div className="flex items-center gap-2">
+                           {proposerCode ? (
+                             <div className="w-5 h-3.5 rounded-sm overflow-hidden border border-white/10 shadow-sm shrink-0">
+                               <img src={`https://flagcdn.com/w80/${proposerCode}.png`} className="w-full h-full object-cover" alt="" />
+                             </div>
+                           ) : (
+                             <div className="h-4 w-4 rounded-full bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-[7px] font-black text-cyan-400 shrink-0">AI</div>
+                           )}
+                           <span className="text-[11px] font-black text-zinc-200 uppercase tracking-tight">{vote.proposer || "Anggota PBB"}</span>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })()}
               </div>
 
               {/* Voting Buttons for User */}
               <div className="mt-2 pt-4 border-t border-white/5">
-                <p className="text-[8px] font-black text-zinc-500 uppercase tracking-widest mb-3 text-center">Berikan Suara Anda</p>
+                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] mb-4 text-center">Berikan Suara Anda</p>
                 <div className="grid grid-cols-3 gap-2">
                   <button 
                     onClick={() => {

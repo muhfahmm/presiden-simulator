@@ -4,8 +4,14 @@
 import { useState, useEffect } from "react";
 import { History, Search, Filter, ShieldAlert, Ban, FileText, Calendar, Globe, ThumbsUp, ThumbsDown, Loader2 } from "lucide-react";
 import { unVotingStorage, VotingHistoryItem } from "../1_pemungutan_suara/logika_pemungutan_suara/unVotingStorage";
+import { countries } from "@/app/pilih_negara/data/negara/benua/index";
 
 export default function HistoriTab() {
+  const getCountryCode = (emoji: string) => {
+    const chars = [...emoji];
+    if (chars.length < 2) return "";
+    return chars.map(ch => String.fromCharCode((ch.codePointAt(0) || 0) - 0x1F1E6 + 65)).join("").toLowerCase();
+  };
   const [resolutions, setResolutions] = useState<VotingHistoryItem[]>([]);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<string>("all");
@@ -185,15 +191,31 @@ export default function HistoriTab() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="flex flex-col gap-1">
-                    <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Negara Target</span>
+                  <div className="flex flex-col gap-1.5">
+                    <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Negara Target</span>
                     <div className="flex items-center gap-2">
-                       <Globe className="h-3 w-3 text-zinc-500" />
-                       <span className="text-[10px] font-black text-zinc-300 uppercase">{res.targetCountry || "GLOBAL"}</span>
+                       {(() => {
+                         const targetName = res.targetCountry || "Global";
+                         const countryData = countries.find(c => c.name_id === targetName || c.name_en === targetName);
+                         const code = countryData ? getCountryCode(countryData.flag) : "";
+                         
+                         return (
+                           <>
+                             {code ? (
+                               <div className="w-5 h-3.5 rounded-sm overflow-hidden border border-white/10 shadow-sm shrink-0">
+                                 <img src={`https://flagcdn.com/w80/${code}.png`} className="w-full h-full object-cover" alt="" />
+                               </div>
+                             ) : (
+                               <Globe className="h-3 w-3 text-zinc-500" />
+                             )}
+                             <span className="text-[11px] font-black text-zinc-200 uppercase tracking-tight">{targetName}</span>
+                           </>
+                         );
+                       })()}
                     </div>
                   </div>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-[7px] font-black text-zinc-600 uppercase tracking-widest">Durasi Efek</span>
+                  <div className="flex flex-col gap-1.5">
+                    <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Durasi Efek</span>
                     <div className="flex items-center gap-2 text-indigo-400">
                        <History className="h-3 w-3" />
                        <span className="text-[10px] font-black uppercase">{res.durationLabel || "PERMANEN"}</span>

@@ -4,6 +4,7 @@ import { unVotingStorage, ActiveVoting } from "../unVotingStorage";
 import { simulateUNVote } from "../votingLogic";
 import { terapkanPenaltiDiterima } from "../dampak_hubungan/penaltiDiterima";
 import { terapkanPenaltiDitolak } from "../dampak_hubungan/penaltiDitolak";
+import { relationStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 
 /**
  * Logika Pengembang Waktu Pemungutan Suara (30 Hari)
@@ -71,10 +72,35 @@ export const initVotingTimer = (userCountry: string) => {
 
         console.log(`[PBB] Berhasil memindahkan "${vote.name}" ke histori.`);
 
-        if (isPassed) {
-          terapkanPenaltiDiterima(vote.targetCountry, userCountry);
+        const isAiResolution = vote.proposer && vote.proposer !== userCountry;
+
+        if (isAiResolution) {
+          if (vote.userVote === 'TOLAK') {
+            // User menolak resolusi AI -> Membela target
+            // Hubungan target naik +10
+            relationStorage.updateRelationScore(vote.targetCountry, 10, 50, userCountry);
+            // Hubungan dengan perancang (AI) turun -10
+            relationStorage.updateRelationScore(vote.proposer!, -10, 50, userCountry);
+            
+            console.log(`[PBB AI] User menolak resolusi ${vote.proposer} terhadap ${vote.targetCountry}. Efek: Target +10, Proposer -10.`);
+          } else if (vote.userVote === 'SETUJU') {
+            // User mendukung resolusi AI
+            if (isPassed) {
+              terapkanPenaltiDiterima(vote.targetCountry, userCountry);
+            } else {
+              terapkanPenaltiDitolak(vote.targetCountry, userCountry);
+            }
+          } else {
+            // User ABSTAIN atau TIDAK MEMILIH sama sekali
+            console.log(`[PBB AI] User abstain/tidak memilih pada resolusi ${vote.proposer}. Tidak ada dampak hubungan.`);
+          }
         } else {
-          terapkanPenaltiDitolak(vote.targetCountry, userCountry);
+          // User yang mengusulkan
+          if (isPassed) {
+            terapkanPenaltiDiterima(vote.targetCountry, userCountry);
+          } else {
+            terapkanPenaltiDitolak(vote.targetCountry, userCountry);
+          }
         }
 
         const loadNews = async () => {
