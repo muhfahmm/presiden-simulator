@@ -32,7 +32,8 @@ import InboxModal from "@/app/game/components/sidemenu/2_kotak_masuk/InboxModal"
 import RisetModal from "@/app/game/components/sidemenu/3_riset_dan_penelitian/RisetModal";
 
 import KepuasanModal from "@/app/game/components/1_navbar/1_kepuasan/KepuasanModal";
-import PopulasiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/8_populasi/PopulasiModal";
+import RingkasanPopulasiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/8_populasi/1_ringkasan/RingkasanPopulasiModal";
+import StatistikPopulasiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/8_populasi/2_statistik/StatistikPopulasiModal";
 import AcaraModal from "@/app/game/components/1_navbar/1_kepuasan/acara/AcaraModal";
 import NewMessageToast from "@/app/game/components/sidemenu/2_kotak_masuk/NewMessageToast";
 import RelationAlertToast from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/3_tingkat_hubungan/RelationAlertToast";
@@ -255,10 +256,14 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         onClose={() => setActiveMenu("Kepuasan")}
         setActiveMenu={setActiveMenu}
       />
-      <PopulasiModal
-        isOpen={activeMenu === "Dashboard:Populasi" || activeMenu === "Dashboard:Populasi:Overview"}
+      <RingkasanPopulasiModal
+        isOpen={activeMenu === "Dashboard:Populasi:Overview"}
         onClose={() => setActiveMenu("Populasi")}
-        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
+      />
+      <StatistikPopulasiModal
+        isOpen={activeMenu === "Dashboard:Populasi"}
+        onClose={() => setActiveMenu("Populasi")}
         setActiveMenu={setActiveMenu}
       />
       <BudgetDetailModal
