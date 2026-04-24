@@ -6,6 +6,7 @@ import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { OrganizationMembers } from "@/app/database/data/database_organisasi_internasional/index";
 import OrgMembersList from "./OrgMembersList";
+import { unMembershipStorage } from "./1_organisasi_PBB/logic/unMembershipStorage";
 
 
 // Dynamic Imports for UN Organizations
@@ -135,6 +136,14 @@ export default function OrgIntlModal({
   const updateBudget = () => {
     setCurrentCash(budgetStorage.getData().anggaran);
   };
+
+  const [membershipKey, setMembershipKey] = useState(0);
+
+  useEffect(() => {
+    const handleUpdate = () => setMembershipKey(prev => prev + 1);
+    window.addEventListener("un_membership_updated", handleUpdate);
+    return () => window.removeEventListener("un_membership_updated", handleUpdate);
+  }, []);
 
   useEffect(() => {
     const session = gameStorage.getSession();
@@ -403,7 +412,12 @@ export default function OrgIntlModal({
                        </div>
                        <div className="text-right">
                           <span className="text-[11px] font-black text-purple-400 uppercase italic">
-                            {OrganizationMembers[org.id]?.length || 0} Negara
+                            {(() => {
+                               const dbMembers = OrganizationMembers[org.id] || [];
+                               const userInDb = dbMembers.includes(currentCountry.toLowerCase());
+                               const userJoined = unMembershipStorage.getJoinedOrganizations().includes(org.id);
+                               return dbMembers.length + (userJoined && !userInDb ? 1 : (!userJoined && userInDb ? -1 : 0));
+                            })()} Negara
                           </span>
                        </div>
                     </div>

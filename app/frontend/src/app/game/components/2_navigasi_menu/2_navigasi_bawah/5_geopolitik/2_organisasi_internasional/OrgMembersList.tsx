@@ -5,6 +5,7 @@ import { Search, MapPin, Globe, Users, SearchSlash, Command, CheckCircle2, Crown
 import { countries } from "@/app/database/data/negara/benua/index";
 import { OrganizationMembers } from "@/app/database/data/database_organisasi_internasional/index";
 import { gameStorage } from "@/app/game/gamestorage";
+import { unMembershipStorage } from "./1_organisasi_PBB/logic/unMembershipStorage";
 
 interface OrgMembersListProps {
     orgId: string;
@@ -28,10 +29,9 @@ export default function OrgMembersList({ orgId, orgName, searchQuery }: OrgMembe
     // Filter countries based on organization membership and search query
     const memberCountries = useMemo(() => {
         return countries.filter(c => {
-            // 1. Check if country is a member of this specific organization (if list exists)
-            const isMember = allowedMembers 
-                ? allowedMembers.includes(c.name_id.toLowerCase())
-                : true; // Default to all if no database entry yet
+            // 1. Check if country is a member using centralized logic
+            // (User must have manually joined, AI nations use DB)
+            const isMember = unMembershipStorage.isMember(orgId, c.name_id);
 
             if (!isMember) return false;
 
@@ -39,7 +39,7 @@ export default function OrgMembersList({ orgId, orgName, searchQuery }: OrgMembe
             return c.name_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
                    c.name_en.toLowerCase().includes(searchQuery.toLowerCase());
         });
-    }, [orgId, searchQuery, allowedMembers]);
+    }, [orgId, searchQuery]);
 
     return (
         <div className="flex flex-col gap-6 p-10">

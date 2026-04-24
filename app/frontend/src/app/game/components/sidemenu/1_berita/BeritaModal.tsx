@@ -31,6 +31,7 @@ import { TradeList } from './3_perdagangan/TradeList';
 import { EmbassyList } from './4_kedutaan/EmbassyList';
 import { PactList } from './5_pakta/PactList';
 import { AllianceList } from './6_aliansi/AllianceList';
+import { OrganisasiList } from './7_organisasi/OrganisasiList';
 
 interface BeritaModalProps {
   isOpen: boolean;
@@ -60,7 +61,7 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
   // Calculate total counts per category (resets weekly with news)
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {
-      all: 0, pembangunan: 0, keuangan: 0, perdagangan: 0, kedutaan: 0, pakta: 0, aliansi: 0
+      all: 0, pembangunan: 0, keuangan: 0, perdagangan: 0, kedutaan: 0, pakta: 0, aliansi: 0, organisasi: 0
     };
 
     news.forEach(item => {
@@ -85,6 +86,13 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
         if (/(dana|hibah|anggaran|pajak|ekonomi|utang|hutang|keuangan)/.test(subj)) counts.keuangan++;
         else if (/(dagang|ekspor|impor|perdagangan)/.test(subj)) counts.perdagangan++;
       }
+      else if (item.category === 'organizations') {
+        counts.organisasi++;
+      }
+      else {
+        // Fallback pattern matching for untagged categories
+        if (/(pbb|imf|bank dunia|organisasi|keanggotaan|membership|asean|nato|brics|g20)/.test(subj)) counts.organisasi++;
+      }
     });
 
     return counts;
@@ -107,6 +115,7 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
         case 'kedutaan': return <EmbassyList {...commonProps} />;
         case 'pakta': return <PactList {...commonProps} />;
         case 'aliansi': return <AllianceList {...commonProps} />;
+        case 'organisasi': return <OrganisasiList {...commonProps} />;
         default: return <AllList {...commonProps} />;
     }
   };
@@ -179,7 +188,8 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
               { id: 'perdagangan', label: 'perdagangan' },
               { id: 'kedutaan', label: 'kedutaan' },
               { id: 'pakta', label: 'pakta' },
-              { id: 'aliansi', label: 'aliansi' }
+              { id: 'aliansi', label: 'aliansi' },
+              { id: 'organisasi', label: 'organisasi' }
             ].map((tab) => {
               const isActive = filter === tab.id;
               const count = categoryCounts[tab.id];

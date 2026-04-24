@@ -241,6 +241,7 @@ export function useGamePath(path: string[]) {
       "Menu:Berita:kedutaan": "/game/berita_internasional/kedutaan",
       "Menu:Berita:pakta": "/game/berita_internasional/pakta",
       "Menu:Berita:aliansi": "/game/berita_internasional/aliansi",
+      "Menu:Berita:organisasi": "/game/berita_internasional/organisasi",
       "Menu:Inbox": "/game/inbox/semua",
       "Menu:Inbox:all": "/game/inbox/semua",
       "Menu:Inbox:finance": "/game/inbox/keuangan",
