@@ -402,22 +402,16 @@ func simulationEngine() {
 			continue
 		}
 
-		// Accumulate based on speed
-		// 1x -> adds 1 (100 ticks = 1000ms)
-		// 2x -> adds 2 (50 ticks = 500ms)
-		// 3x -> adds 3 (33.3 ticks = ~333ms)
-		increment := 1
-		if speed == 2 {
-			increment = 2
-		} else if speed == 3 {
-			increment = 3
-		}
-
-		acc += increment
+		// Precise Accumulator: 10ms * 100 = 1000ms (1 second)
+		// 1x speed -> increment 1 -> 1 day per 1000ms
+		// 2x speed -> increment 2 -> 2 days per 1000ms (1 day per 500ms)
+		// 3x speed -> increment 3 -> 3 days per 1000ms (1 day per 333.3ms)
+		acc += speed
 		if acc < 100 {
 			continue
 		}
-		acc = 0
+		// Use subtraction instead of reset to preserve fractional progress and prevent drift
+		acc -= 100
 
 		// === ADVANCE ONE GAME DAY ===
 		core.GlobalState.Mu.Lock()
