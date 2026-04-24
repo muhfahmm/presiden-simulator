@@ -177,13 +177,19 @@ export default function OrgIntlModal({
 
   // Sync state with activeMenu for dynamic URLs
   useEffect(() => {
-    if (activeMenu?.startsWith("Menu:OrganisasiInternasional:anggota_")) {
+    if (activeMenu === "Menu:OrganisasiInternasional:organisasi_pbb") {
+      setActiveTab("UN");
+      setViewingMembersOrgId(null);
+    } else if (activeMenu === "Menu:OrganisasiInternasional:organisasi_regional") {
+      setActiveTab("REGIONAL");
+      setViewingMembersOrgId(null);
+    } else if (activeMenu?.startsWith("Menu:OrganisasiInternasional:anggota_")) {
       const orgId = activeMenu.replace("Menu:OrganisasiInternasional:anggota_", "");
       setViewingMembersOrgId(orgId);
     } else {
       setViewingMembersOrgId(null);
     }
-  }, [activeMenu, isOpen, selectedOrgId]);
+  }, [activeMenu, isOpen]);
 
   // Handle Close Members
   const handleCloseMembers = () => {
@@ -197,9 +203,19 @@ export default function OrgIntlModal({
   // Handle View Members
   const handleViewMembers = (orgId: string) => {
     if (setActiveMenu) {
+      const tabSlug = activeTab === "UN" ? "organisasi_pbb" : "organisasi_regional";
       setActiveMenu(`Menu:OrganisasiInternasional:anggota_${orgId}`);
     } else {
       setViewingMembersOrgId(orgId);
+    }
+  };
+
+  const handleTabChange = (tab: "UN" | "REGIONAL") => {
+    if (setActiveMenu) {
+      const slug = tab === "UN" ? "organisasi_pbb" : "organisasi_regional";
+      setActiveMenu(`Menu:OrganisasiInternasional:${slug}`);
+    } else {
+      setActiveTab(tab);
     }
   };
 
@@ -262,7 +278,7 @@ export default function OrgIntlModal({
             ) : (
               <div className="flex items-center gap-2 bg-black/40 p-2 rounded-[24px] border border-zinc-800/40 w-full lg:w-max shadow-inner">
                 <button 
-                  onClick={() => setActiveTab("UN")}
+                  onClick={() => handleTabChange("UN")}
                   className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all flex items-center gap-3 cursor-pointer ${activeTab === "UN" 
                     ? "bg-purple-600 text-white shadow-[0_0_25px_rgba(147,51,234,0.3)] scale-105 z-10" 
                     : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/50"}`}
@@ -271,13 +287,13 @@ export default function OrgIntlModal({
                   <span className={`px-2 py-0.5 rounded-md text-[9px] ${activeTab === "UN" ? "bg-white/20 text-white" : "bg-zinc-800 text-zinc-600"}`}>12</span>
                 </button>
                 <button 
-                  onClick={() => setActiveTab("REGIONAL")}
+                  onClick={() => handleTabChange("REGIONAL")}
                   className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all flex items-center gap-3 cursor-pointer ${activeTab === "REGIONAL" 
                     ? "bg-purple-600 text-white shadow-[0_0_25px_rgba(147,51,234,0.3)] scale-105 z-10" 
                     : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/50"}`}
                 >
                   Organisasi Regional
-                  <span className={`px-2 py-0.5 rounded-md text-[9px] ${activeTab === "REGIONAL" ? "bg-white/20 text-white" : "bg-zinc-800 text-zinc-600"}`}>16</span>
+                  <span className={`px-2 py-0.5 rounded-md text-[9px] ${activeTab === "REGIONAL" ? "bg-white/20 text-white" : "bg-zinc-800 text-zinc-600"}`}>18</span>
                 </button>
               </div>
             )}

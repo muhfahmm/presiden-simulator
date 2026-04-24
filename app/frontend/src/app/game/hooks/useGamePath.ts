@@ -90,10 +90,14 @@ export function useGamePath(path: string[]) {
     }
     else if (subMenu === 'organisasi-internasional') {
       const detail = path[2];
-      if (detail && detail.startsWith('anggota_')) {
+      if (detail === 'organisasi_pbb') {
+        initialMenu = "Menu:OrganisasiInternasional:organisasi_pbb";
+      } else if (detail === 'organisasi_regional') {
+        initialMenu = "Menu:OrganisasiInternasional:organisasi_regional";
+      } else if (detail && detail.startsWith('anggota_')) {
         initialMenu = `Menu:OrganisasiInternasional:${detail}`;
       } else {
-        initialMenu = "Menu:OrganisasiInternasional";
+        initialMenu = "Menu:OrganisasiInternasional:organisasi_pbb";
       }
     }
     else if (subMenu === 'diplomasi') {
@@ -303,11 +307,11 @@ export function useGamePath(path: string[]) {
     // Dynamic path handling for Organisasi Internasional details
     if (!targetPath && activeMenu.startsWith("Menu:OrganisasiInternasional")) {
       const parts = activeMenu.split(":");
-      const detail = parts[2]; // e.g., anggota_imf
+      const detail = parts[2]; // e.g., anggota_imf, organisasi_pbb, organisasi_regional
       if (detail) {
         targetPath = `/game/geopolitik/organisasi-internasional/${detail}`;
       } else {
-        targetPath = "/game/geopolitik/organisasi-internasional";
+        targetPath = "/game/geopolitik/organisasi-internasional/organisasi_pbb";
       }
     }
 
