@@ -13,7 +13,7 @@ sys.path.append(os.path.join(current_dir, '..', '..', '..', '1_organisasi_PBB', 
 from regional_requirements import RegionalRequirements
 from regional_treasury_scanner import RegionalTreasuryScanner
 from ai_geopolitical_analyzer import GeopoliticalAnalyzer
-from movement_engine import MembershipMovementEngine
+from regional_movement_engine import RegionalMovementEngine
 
 class RegionalAIMembershipEngine:
     """
@@ -26,7 +26,7 @@ class RegionalAIMembershipEngine:
         self.requirements = RegionalRequirements()
         self.finance_scanner = RegionalTreasuryScanner()
         self.analyzer = GeopoliticalAnalyzer(regional_data or {})
-        self.movement_engine = MembershipMovementEngine()
+        self.movement_engine = RegionalMovementEngine()
         self.membership_data = self._load_data()
 
     def _load_data(self):
