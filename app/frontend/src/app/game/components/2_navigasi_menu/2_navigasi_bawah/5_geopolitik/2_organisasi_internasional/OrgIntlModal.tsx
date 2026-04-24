@@ -62,6 +62,23 @@ const OrgMembersComponents: Record<string, any> = {
 
   // Regional Organizations
   asean: lazy(() => import("./2_organisasi_regional/1_ASEAN/anggota")),
+  eu: lazy(() => import("./2_organisasi_regional/2_Uni_Eropa/anggota")),
+  arab_league: lazy(() => import("./2_organisasi_regional/3_Liga_Arab/anggota")),
+  au: lazy(() => import("./2_organisasi_regional/4_Uni_Afrika/anggota")),
+  oic: lazy(() => import("./2_organisasi_regional/5_OKI/anggota")),
+  brics: lazy(() => import("./2_organisasi_regional/6_BRICS/anggota")),
+  nato: lazy(() => import("./2_organisasi_regional/7_NATO/anggota")),
+  opec: lazy(() => import("./2_organisasi_regional/8_OPEC/anggota")),
+  g20: lazy(() => import("./2_organisasi_regional/9_G20/anggota")),
+  apec: lazy(() => import("./2_organisasi_regional/10_APEC/anggota")),
+  sco: lazy(() => import("./2_organisasi_regional/11_SCO/anggota")),
+  oas: lazy(() => import("./2_organisasi_regional/12_OAS/anggota")),
+  gcc: lazy(() => import("./2_organisasi_regional/13_GCC/anggota")),
+  mercosur: lazy(() => import("./2_organisasi_regional/14_MERCOSUR/anggota")),
+  commonwealth: lazy(() => import("./2_organisasi_regional/15_Commonwealth/anggota")),
+  g7: lazy(() => import("./2_organisasi_regional/16_G7/anggota")),
+  quad: lazy(() => import("./2_organisasi_regional/17_QUAD/anggota")),
+  oecd: lazy(() => import("./2_organisasi_regional/18_OECD/anggota")),
 };
 
 interface Organization {
@@ -358,6 +375,7 @@ export default function OrgIntlModal({
                     orgId={viewingMembersOrgId} 
                     orgName={ORGANIZATIONS.find(o => o.id === viewingMembersOrgId)?.name || "Detail Anggota"} 
                     searchQuery={searchQuery} 
+                    category={ORGANIZATIONS.find(o => o.id === viewingMembersOrgId)?.category}
                   />
                 </div>
               ) : (

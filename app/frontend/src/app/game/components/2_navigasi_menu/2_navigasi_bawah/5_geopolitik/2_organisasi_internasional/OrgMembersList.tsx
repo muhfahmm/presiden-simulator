@@ -6,14 +6,16 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import { OrganizationMembers } from "@/app/database/data/database_organisasi_internasional/index";
 import { gameStorage } from "@/app/game/gamestorage";
 import { unMembershipStorage } from "./1_organisasi_PBB/logic/unMembershipStorage";
+import { regionalMembershipRouter } from "./2_organisasi_regional/logic/router/RegionalMembershipRouter";
 
 interface OrgMembersListProps {
     orgId: string;
     orgName: string;
     searchQuery: string;
+    category?: "UN" | "REGIONAL";
 }
 
-export default function OrgMembersList({ orgId, orgName, searchQuery }: OrgMembersListProps) {
+export default function OrgMembersList({ orgId, orgName, searchQuery, category = "UN" }: OrgMembersListProps) {
     const [userCountry, setUserCountry] = useState<string>("");
 
     useEffect(() => {
@@ -23,14 +25,17 @@ export default function OrgMembersList({ orgId, orgName, searchQuery }: OrgMembe
     }, []);
 
     // Get specific member list for this organization from database
-    const allowedMembers = OrganizationMembers[orgId];
-
-    // Filter countries based on organization membership and search query
     const memberCountries = useMemo(() => {
+        const consolidatedMembers = category === "REGIONAL" 
+            ? regionalMembershipRouter.getConsolidatedMembers(orgId)
+            : []; // For UN we still use unMembershipStorage.isMember per country below for historical reasons, 
+                  // or we can also use a consolidated method if available.
+
         return countries.filter(c => {
-            // 1. Check if country is a member using centralized logic
-            // (User must have manually joined, AI nations use DB)
-            const isMember = unMembershipStorage.isMember(orgId, c.name_id);
+            // 1. Check if country is a member
+            const isMember = category === "REGIONAL"
+                ? consolidatedMembers.includes(c.name_id.toLowerCase())
+                : unMembershipStorage.isMember(orgId, c.name_id);
 
             if (!isMember) return false;
 
@@ -38,7 +43,7 @@ export default function OrgMembersList({ orgId, orgName, searchQuery }: OrgMembe
             return c.name_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
                    c.name_en.toLowerCase().includes(searchQuery.toLowerCase());
         });
-    }, [orgId, searchQuery]);
+    }, [orgId, searchQuery, category]);
 
     return (
         <div className="flex flex-col gap-6 p-10">

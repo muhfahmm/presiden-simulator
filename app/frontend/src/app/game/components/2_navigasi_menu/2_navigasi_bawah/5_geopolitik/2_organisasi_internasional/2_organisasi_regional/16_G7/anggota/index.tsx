@@ -2,11 +2,11 @@
 
 import OrgMembersList from "../../../OrgMembersList";
 
-export default function AnggotaASEAN({ searchQuery = "" }: { searchQuery?: string }) {
+export default function AnggotaG7({ searchQuery = "" }: { searchQuery?: string }) {
   return (
     <OrgMembersList 
-      orgId="asean" 
-      orgName="ASEAN" 
+      orgId="g7" 
+      orgName="G7" 
       searchQuery={searchQuery} 
       category="REGIONAL" 
     />
