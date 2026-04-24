@@ -41,7 +41,7 @@ import { aiProductionStorage } from "@/app/game/components/AI_logic/5_AI_Pembang
 import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
-import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
+import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/components/1_navbar/3_kas_negara/BudgetDeltaLogic";
 import { GameSession, gameStorage } from "@/app/game/gamestorage";
 import { aiThinkingStorage } from "@/app/game/components/AI_logic/global_event/aiThinkingStorage";
 import { Brain } from "lucide-react";

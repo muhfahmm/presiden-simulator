@@ -19,7 +19,7 @@ import {
    sosialRate
 } from "@/app/database/data/semua_fitur_negara"
 
-import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMaintenance, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic"
+import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/components/1_navbar/3_kas_negara/BudgetDeltaLogic"
 import { incomeStorage } from "./pemasukkan/IncomeStorage"
 import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic"
 

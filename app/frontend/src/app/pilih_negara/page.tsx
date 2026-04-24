@@ -14,7 +14,7 @@ import { buildingStorage } from "../game/components/2_navigasi_menu/2_navigasi_b
 import { populationStorage } from "../game/components/1_navbar/2_populasi";
 import { budgetStorage } from "../game/components/1_navbar/3_kas_negara";
 import { CountryData } from "./data/semua_fitur_negara";
-import { calculateBudgetBreakdown } from "../game/data/economy/BudgetDeltaLogic";
+import { calculateBudgetBreakdown } from "../game/components/1_navbar/3_kas_negara/BudgetDeltaLogic";
 import { motion, useSpring, useTransform } from "framer-motion";
 
 function AnimatedNumber({ value }: { value: number }) {

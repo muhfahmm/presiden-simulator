@@ -10,7 +10,7 @@ import { aiHappinessStorage } from "../../../modals/1_info_strategis/6_Kepuasan/
 import { EksekutorPembangunanAI } from "../sistem_tindakan_respon/EksekutorPembangunanAI";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { aiThinkingStorage } from "../../global_event/aiThinkingStorage";
-import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
+import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/components/1_navbar/3_kas_negara/BudgetDeltaLogic";
 import { 
     KAPASITAS_LISTRIK_METADATA, 
     mineralKritisRate, 

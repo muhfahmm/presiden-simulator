@@ -7,7 +7,7 @@ import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_baw
 import { incomeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
 import { expenseStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
 import { priceStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
-import { calculateTotalMaintenance, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
+import { calculateBudgetBreakdown } from "@/app/game/components/1_navbar/3_kas_negara/BudgetDeltaLogic";
 import { produksiMiliter } from "@/app/database/data/semua_fitur_negara";
 import NavigasiWaktu from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/NavigasiWaktu";
 
