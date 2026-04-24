@@ -22,6 +22,26 @@ const OrgDetailComponents: Record<string, any> = {
   imo: lazy(() => import("./1_organisasi_PBB/10_Organisasi_Maritim_Internasional")),
   itu: lazy(() => import("./1_organisasi_PBB/11_Organisasi_Telekomunikasi_Internasional")),
   wmo: lazy(() => import("./1_organisasi_PBB/12_Organisasi_Meteorologi_Dunia")),
+  
+  // Regional Organizations
+  asean: lazy(() => import("./2_organisasi_regional/1_ASEAN")),
+  eu: lazy(() => import("./2_organisasi_regional/2_Uni_Eropa")),
+  arab_league: lazy(() => import("./2_organisasi_regional/3_Liga_Arab")),
+  au: lazy(() => import("./2_organisasi_regional/4_Uni_Afrika")),
+  oic: lazy(() => import("./2_organisasi_regional/5_OKI")),
+  brics: lazy(() => import("./2_organisasi_regional/6_BRICS")),
+  nato: lazy(() => import("./2_organisasi_regional/7_NATO")),
+  opec: lazy(() => import("./2_organisasi_regional/8_OPEC")),
+  g20: lazy(() => import("./2_organisasi_regional/9_G20")),
+  apec: lazy(() => import("./2_organisasi_regional/10_APEC")),
+  sco: lazy(() => import("./2_organisasi_regional/11_SCO")),
+  oas: lazy(() => import("./2_organisasi_regional/12_OAS")),
+  gcc: lazy(() => import("./2_organisasi_regional/13_GCC")),
+  mercosur: lazy(() => import("./2_organisasi_regional/14_MERCOSUR")),
+  commonwealth: lazy(() => import("./2_organisasi_regional/15_Commonwealth")),
+  g7: lazy(() => import("./2_organisasi_regional/16_G7")),
+  quad: lazy(() => import("./2_organisasi_regional/17_QUAD")),
+  oecd: lazy(() => import("./2_organisasi_regional/18_OECD")),
 };
 
 // Dynamic Imports for Members List
@@ -38,6 +58,9 @@ const OrgMembersComponents: Record<string, any> = {
   imo: lazy(() => import("./1_organisasi_PBB/10_Organisasi_Maritim_Internasional/anggota")),
   itu: lazy(() => import("./1_organisasi_PBB/11_Organisasi_Telekomunikasi_Internasional/anggota")),
   wmo: lazy(() => import("./1_organisasi_PBB/12_Organisasi_Meteorologi_Dunia/anggota")),
+
+  // Regional Organizations
+  asean: lazy(() => import("./2_organisasi_regional/1_ASEAN/anggota")),
 };
 
 interface Organization {
