@@ -256,8 +256,10 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         setActiveMenu={setActiveMenu}
       />
       <PopulasiModal
-        isOpen={activeMenu === "Dashboard:Populasi"}
+        isOpen={activeMenu === "Dashboard:Populasi" || activeMenu === "Dashboard:Populasi:Overview"}
         onClose={() => setActiveMenu("Populasi")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
       />
       <BudgetDetailModal
         isOpen={activeMenu === "Dashboard:Budget"}

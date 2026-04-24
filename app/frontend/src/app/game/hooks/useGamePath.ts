@@ -133,6 +133,14 @@ export function useGamePath(path: string[]) {
       "aliansi": "alliance"
     };
     initialMenu = `Menu:Inbox:${filterMap[filter] || "all"}`;
+  } else if (category === 'populasi') {
+    if (subMenu === 'statistik_populasi') {
+      initialMenu = "Dashboard:Populasi";
+    } else if (subMenu === 'ringkasan') {
+      initialMenu = "Dashboard:Populasi:Overview";
+    } else {
+      initialMenu = "Populasi";
+    }
   } else if (category === 'kependudukan') {
     initialMenu = "Dashboard:Populasi";
   } else if (category === 'riset') {
@@ -241,7 +249,9 @@ export function useGamePath(path: string[]) {
 
       "Dashboard:Kepuasan": "/game/kepuasan/statistik_kepuasan",
       "Action:NaikkanKepuasan": "/game/kepuasan/naikkan",
-      "Dashboard:Populasi": "/game/kependudukan",
+      "Populasi": "/game/populasi",
+      "Dashboard:Populasi": "/game/populasi/statistik_populasi",
+      "Dashboard:Populasi:Overview": "/game/populasi/ringkasan",
       "Dashboard:Budget": "/game/anggaran/dashboard",
       "Menu:Agama": "/game/sosial_budaya/agama",
       "Menu:Ideologi": "/game/sosial_budaya/ideologi",

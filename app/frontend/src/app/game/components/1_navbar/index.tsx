@@ -128,6 +128,7 @@ export default function GameNavbar({
             label="Populasi"
             value={population}
             delta={populationDelta}
+            onClick={() => setActiveMenu("Dashboard:Populasi:Overview")}
           />
           <StatusBadge
             icon={<Coins className="h-4 w-4 text-yellow-500" />}

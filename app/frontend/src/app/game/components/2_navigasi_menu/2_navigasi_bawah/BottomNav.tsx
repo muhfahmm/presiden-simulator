@@ -5,7 +5,7 @@ import {
   Star, Wallet, Wrench, Shield, Globe, Landmark, LayoutGrid, ChevronLeft,
   Hammer, Swords as MilitaryIcon, Users2, BarChart3, TrendingUp,
   ArrowRightLeft, FileText, CreditCard, Zap, Package, Home, ShieldAlert, Gem, Tag, Smile, Eye, HeartHandshake, HandHelping, Handshake,
-  Droplet, Activity, Bolt, Radiation
+  Droplet, Activity, Bolt, Radiation, Info
 } from "lucide-react";
 
 interface BottomNavProps {
@@ -47,6 +47,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
       { id: "Action:NaikkanKepuasan", label: "Naikkan Kepuasan", icon: TrendingUp },
     ],
     "Populasi": [
+      { id: "Dashboard:Populasi:Overview", label: "Ringkasan Populasi", icon: Info },
       { id: "Dashboard:Populasi", label: "Statistik Populasi", icon: Users2 },
     ],
     "Ekonomi": [
@@ -139,7 +140,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
                            !["Kepuasan", "Populasi", "ProduksiKonsumsi", "Ekonomi", "Pembangunan", "Pertahanan", "Geopolitik", "Sosial & Budaya", "Kementerian"].includes(activeMenu) &&
                            !activeMenu.startsWith("Komando Pertahanan") &&
                            !(activeMenu.startsWith("Menu:") && ["Menu:Kelistrikan", "Menu:Perminyakan", "Menu:Uranium", "Menu:Perdagangan", "Menu:Pajak", "Menu:Hutang", "Menu:Budget", "Menu:Harga", "Menu:Produksi", "Menu:ProduksiMiliter", "Menu:TempatUmum", "Menu:HunianPermukiman", "Menu:Intelijen", "Menu:ArmadaMiliter", "Menu:ArmadaPolisi", "Menu:ManajemenPertahanan", "Menu:PBB", "Menu:OrganisasiInternasional", "Menu:TingkatHubungan", "Menu:Bantuan", "Menu:Diplomasi", "Menu:KedutaanBesar", "Menu:Agama", "Menu:Ideologi"].some(m => activeMenu.startsWith(m))) &&
-                           !(activeMenu.startsWith("Dashboard:") && ["Dashboard:Kepuasan", "Dashboard:Populasi", "Dashboard:Kementerian"].includes(activeMenu)) &&
+                           !(activeMenu.startsWith("Dashboard:") && ["Dashboard:Kepuasan", "Dashboard:Populasi", "Dashboard:Kementerian", "Dashboard:Populasi:Overview"].includes(activeMenu)) &&
                            !(activeMenu.startsWith("Action:") && ["Action:NaikkanKepuasan"].includes(activeMenu));
 
   return (
