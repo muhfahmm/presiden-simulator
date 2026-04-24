@@ -51,7 +51,7 @@ export default function WHOMenu({ currentCash, currentDate, onUpdate }: OrgProps
                         <Coins size={12} className="text-amber-500" /> Biaya Masuk
                     </p>
                     <p className="text-[11px] text-zinc-300 font-bold leading-relaxed">
-                        Kontribusi Global: 2.000.000 / Tahun.
+                        Kontribusi Global: 400.000 / Tahun.
                     </p>
                 </div>
             </div>

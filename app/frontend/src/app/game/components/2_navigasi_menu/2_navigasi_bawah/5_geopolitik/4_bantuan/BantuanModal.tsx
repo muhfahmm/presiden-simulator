@@ -12,7 +12,7 @@ export default function BantuanModal({ isOpen, onClose }: { isOpen: boolean; onC
   useEffect(() => {
     const session = gameStorage.getSession();
     if (session) {
-      const countryName = session.country || localStorage.getItem("selectedCountry") || "Indonesia";
+      const countryName = session.country || localStorage.getItem("selectedCountry") || "";
       const data = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
       setCurrentData(data);
     }

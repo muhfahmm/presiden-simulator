@@ -127,7 +127,7 @@ export default function OrgIntlModal({
 }) {
   const [activeTab, setActiveTab] = useState<"UN" | "REGIONAL">("UN");
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentCountry, setCurrentCountry] = useState("Indonesia");
+  const [currentCountry, setCurrentCountry] = useState("");
   const [selectedOrgId, setSelectedOrgId] = useState<string | null>(null);
   const [viewingMembersOrgId, setViewingMembersOrgId] = useState<string | null>(null);
   const [currentCash, setCurrentCash] = useState(budgetStorage.getData().anggaran);
@@ -147,9 +147,8 @@ export default function OrgIntlModal({
 
   useEffect(() => {
     const session = gameStorage.getSession();
-    if (session) {
-      setCurrentCountry(session.country || localStorage.getItem("selectedCountry") || "Indonesia");
-    }
+    const country = session?.country || localStorage.getItem("selectedCountry") || "Negara Anda";
+    setCurrentCountry(country);
     
     // Get current date from storage
     const storedDate = localStorage.getItem("em_game_date");

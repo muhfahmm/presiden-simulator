@@ -25,8 +25,11 @@ export const unWTOStorage = {
   },
 
   join: (currentCash: number, currentDate: string) => {
-    const cost = 10000000;
-    if (currentCash < cost) return { success: false, message: "Kas negara tidak cukup untuk jaminan WTO (10M)." };
+    const countryName = localStorage.getItem("selectedCountry") || "";
+    const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+
+    const cost = 2000000;
+    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk jaminan WTO (2M).` };
 
     budgetStorage.updateBudget(-cost);
     const newState = { isJoined: true, joinDate: currentDate };
@@ -35,12 +38,12 @@ export const unWTOStorage = {
     inboxStorage.addMessage({
       source: "WTO Sekretariat",
       subject: "🌐 Akses Perdagangan Bebas Aktif",
-      content: "Indonesia resmi bergabung dengan WTO. Jaminan kepatuhan 10.000.000 telah disetorkan. Manfaat aktif: Pendapatan jalur dagang +15% & perlindungan sanksi ekonomi.",
+      content: `${capitalizedCountry} resmi bergabung dengan WTO. Jaminan kepatuhan 2.000.000 telah disetorkan. Manfaat aktif: Pendapatan jalur dagang +15% & perlindungan sanksi ekonomi.`,
       time: currentDate,
       priority: "high"
     });
 
-    return { success: true, cost, message: "Pendaftaran Berhasil! Indonesia resmi menjadi anggota WTO." };
+    return { success: true, cost, message: `Pendaftaran Berhasil! ${capitalizedCountry} resmi menjadi anggota WTO.` };
   },
 
   clear: () => {

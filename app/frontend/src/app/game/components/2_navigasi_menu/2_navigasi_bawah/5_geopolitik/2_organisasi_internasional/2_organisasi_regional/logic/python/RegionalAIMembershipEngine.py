@@ -14,6 +14,8 @@ from regional_requirements import RegionalRequirements
 from regional_treasury_scanner import RegionalTreasuryScanner
 from ai_geopolitical_analyzer import GeopoliticalAnalyzer
 from regional_movement_engine import RegionalMovementEngine
+from location_detector import LocationDetector
+from RegionalMembershipNewsGenerator import RegionalMembershipNewsGenerator
 
 class RegionalAIMembershipEngine:
     """
@@ -25,9 +27,14 @@ class RegionalAIMembershipEngine:
         self.data_path = data_path
         self.requirements = RegionalRequirements()
         self.finance_scanner = RegionalTreasuryScanner()
-        self.analyzer = GeopoliticalAnalyzer(regional_data or {})
         self.movement_engine = RegionalMovementEngine()
+        self.location_detector = LocationDetector()
+        
+        # Auto-detect regions if missing to ensure AI has alignment data
+        self.regional_data = regional_data or {}
         self.membership_data = self._load_data()
+        self.analyzer = GeopoliticalAnalyzer(self.regional_data)
+        self.news_gen = RegionalMembershipNewsGenerator()
 
     def _load_data(self):
         if os.path.exists(self.data_path):
@@ -49,11 +56,18 @@ class RegionalAIMembershipEngine:
 
             current_status = self.membership_data.get(country_name, {}).get(org_id, False)
             
-            # 2. Strategic & Financial Analysis
-            # Get current members for regional alignment bonus
+            # Ensure AI has regional data for alignment calculation
+            if country_name not in self.regional_data:
+                loc = self.location_detector.detect_location(country_name)
+                self.regional_data[country_name] = loc['continent']
+
+            # Strategic & Financial Analysis
             current_members = [c for c, orgs in self.membership_data.items() if orgs.get(org_id)]
             score = self.analyzer.get_final_decision_weight(country_name, country_stats, config, current_members)
             
+            # Boost score for AI countries to prevent "empty organizations" on game start
+            if score < 50: score += 25 
+
             # 3. Final Movement (Probability based)
             action = self.movement_engine.calculate_movement(country_name, current_status, score)
             
@@ -67,3 +81,29 @@ class RegionalAIMembershipEngine:
     def save_state(self, updated_data):
         with open(self.data_path, 'w') as f:
             json.dump(updated_data, f, indent=4)
+
+    def process_full_cycle(self, all_countries_stats, org_configs, current_date):
+        """
+        Runs the simulation for all countries and returns news reports.
+        """
+        all_news = []
+        for country_stats in all_countries_stats:
+            country_name = country_stats.get('name')
+            actions = self.process_country_cycle(country_name, country_stats, org_configs)
+            
+            for action in actions:
+                org_id = action['org_id']
+                act_type = action['action']
+                org_name = org_configs[org_id].get('name', org_id)
+                
+                # Update local state
+                if country_name not in self.membership_data:
+                    self.membership_data[country_name] = {}
+                self.membership_data[country_name][org_id] = (act_type == "join")
+                
+                # Generate News
+                news_item = self.news_gen.format_news_item(country_name, org_name, act_type, current_date)
+                all_news.append(news_item)
+        
+        self.save_state(self.membership_data)
+        return all_news

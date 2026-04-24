@@ -25,8 +25,11 @@ export const unUNESCOStorage = {
   },
 
   join: (currentCash: number, currentDate: string) => {
-    const cost = 3000000;
-    if (currentCash < cost) return { success: false, message: "Kas negara tidak cukup untuk biaya sertifikasi UNESCO (3M)." };
+    const countryName = localStorage.getItem("selectedCountry") || "";
+    const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+
+    const cost = 800000;
+    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk biaya sertifikasi UNESCO (800K).` };
 
     budgetStorage.updateBudget(-cost);
     const newState = { isJoined: true, joinDate: currentDate };
@@ -35,12 +38,12 @@ export const unUNESCOStorage = {
     inboxStorage.addMessage({
       source: "UNESCO HQ",
       subject: "🏺 Pelestarian Budaya & Pariwisata",
-      content: "Indonesia resmi bergabung dengan UNESCO. Biaya sertifikasi 3.000.000 telah dibayarkan. Manfaat aktif: Pariwisata naik 25% & peningkatan Happiness Index warga.",
+      content: `${capitalizedCountry} resmi bergabung dengan UNESCO. Biaya sertifikasi 800.000 telah dibayarkan. Manfaat aktif: Pariwisata naik 25% & peningkatan Happiness Index warga.`,
       time: currentDate,
       priority: "high"
     });
 
-    return { success: true, cost, message: "Pendaftaran Berhasil! Indonesia resmi menjadi anggota UNESCO." };
+    return { success: true, cost, message: `Pendaftaran Berhasil! ${capitalizedCountry} resmi menjadi anggota UNESCO.` };
   },
 
   clear: () => {

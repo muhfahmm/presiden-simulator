@@ -51,7 +51,7 @@ export default function WorldBankMenu({ currentCash, currentDate, onUpdate }: Or
                         <Coins size={12} className="text-amber-500" /> Biaya Masuk
                     </p>
                     <p className="text-[11px] text-zinc-300 font-bold leading-relaxed">
-                        Biaya Tetap: 50.000.000.
+                        Biaya Tetap: 10.000.000.
                     </p>
                 </div>
             </div>

@@ -44,7 +44,7 @@ def scan_user_membership(user_country, base_path):
 if __name__ == "__main__":
     # Example usage: Change this to the user's country or pass as argument
     import sys
-    target_country = sys.argv[1] if len(sys.argv) > 1 else "Indonesia"
+    target_country = sys.argv[1] if len(sys.argv) > 1 else ""
     
     # Path relative to the script location
     script_dir = os.path.dirname(os.path.abspath(__file__))

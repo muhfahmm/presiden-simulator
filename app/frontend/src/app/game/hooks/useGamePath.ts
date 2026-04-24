@@ -249,6 +249,7 @@ export function useGamePath(path: string[]) {
       "Menu:Berita:organisasi": "/game/berita_internasional/organisasi/pbb",
       "Menu:Berita:organisasi:pbb": "/game/berita_internasional/organisasi/pbb",
       "Menu:Berita:organisasi:regional": "/game/berita_internasional/organisasi/regional",
+      "Menu:Berita:organisasi:voting": "/game/berita_internasional/organisasi/voting",
       "Menu:Inbox": "/game/inbox/semua",
       "Menu:Inbox:all": "/game/inbox/semua",
       "Menu:Inbox:finance": "/game/inbox/keuangan",

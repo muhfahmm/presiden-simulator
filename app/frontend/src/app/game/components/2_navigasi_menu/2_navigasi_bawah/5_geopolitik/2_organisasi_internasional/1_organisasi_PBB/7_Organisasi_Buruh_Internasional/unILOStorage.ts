@@ -25,8 +25,11 @@ export const unILOStorage = {
   },
 
   join: (currentCash: number, currentDate: string) => {
-    const cost = 1500000;
-    if (currentCash < cost) return { success: false, message: "Kas negara tidak cukup untuk operasional ILO (1.5M)." };
+    const countryName = localStorage.getItem("selectedCountry") || "";
+    const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+
+    const cost = 400000;
+    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk operasional ILO (400K).` };
 
     budgetStorage.updateBudget(-cost);
     const newState = { isJoined: true, joinDate: currentDate };
@@ -35,12 +38,12 @@ export const unILOStorage = {
     inboxStorage.addMessage({
       source: "ILO Sekretariat",
       subject: "🤝 Hak Buruh & Loyalitas Pekerja",
-      content: "Indonesia resmi bergabung dengan ILO. Biaya operasional 1.500.000 telah dibayarkan. Manfaat aktif: Peningkatan loyalitas buruh & penurunan risiko mogok kerja massal.",
+      content: `${capitalizedCountry} resmi bergabung dengan ILO. Biaya operasional 400.000 telah dibayarkan. Manfaat aktif: Peningkatan loyalitas buruh & penurunan risiko mogok kerja massal.`,
       time: currentDate,
       priority: "high"
     });
 
-    return { success: true, cost, message: "Pendaftaran Berhasil! Indonesia resmi menjadi anggota ILO." };
+    return { success: true, cost, message: `Pendaftaran Berhasil! ${capitalizedCountry} resmi menjadi anggota ILO.` };
   },
 
   clear: () => {

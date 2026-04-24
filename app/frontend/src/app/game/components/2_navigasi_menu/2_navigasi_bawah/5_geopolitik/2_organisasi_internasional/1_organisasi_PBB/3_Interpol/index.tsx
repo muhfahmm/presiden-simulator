@@ -51,7 +51,7 @@ export default function InterpolMenu({ currentCash, currentDate, onUpdate }: Org
                         <Coins size={12} className="text-amber-500" /> Biaya Masuk
                     </p>
                     <p className="text-[11px] text-zinc-300 font-bold leading-relaxed">
-                        Biaya Tahunan: 5.000.000.
+                        Biaya Tahunan: 1.000.000.
                     </p>
                 </div>
             </div>

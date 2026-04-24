@@ -25,8 +25,11 @@ export const unICAOStorage = {
   },
 
   join: (currentCash: number, currentDate: string) => {
-    const cost = 7500000;
-    if (currentCash < cost) return { success: false, message: "Kas negara tidak cukup untuk standarisasi ICAO (7.5M)." };
+    const countryName = localStorage.getItem("selectedCountry") || "";
+    const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+
+    const cost = 2000000;
+    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk standarisasi ICAO (2M).` };
 
     budgetStorage.updateBudget(-cost);
     const newState = { isJoined: true, joinDate: currentDate };
@@ -35,12 +38,12 @@ export const unICAOStorage = {
     inboxStorage.addMessage({
       source: "ICAO Sekretariat",
       subject: "✈️ Navigasi Udara Internasional",
-      content: "Indonesia resmi bergabung dengan ICAO. Biaya standarisasi 7.500.000 telah dibayarkan. Manfaat aktif: Efisiensi jalur udara & pendapatan pajak bandara +10%.",
+      content: `${capitalizedCountry} resmi bergabung dengan ICAO. Biaya standarisasi 2.000.000 telah dibayarkan. Manfaat aktif: Efisiensi jalur udara & pendapatan pajak bandara +10%.`,
       time: currentDate,
       priority: "high"
     });
 
-    return { success: true, cost, message: "Pendaftaran Berhasil! Indonesia resmi menjadi anggota ICAO." };
+    return { success: true, cost, message: `Pendaftaran Berhasil! ${capitalizedCountry} resmi menjadi anggota ICAO.` };
   },
 
   clear: () => {

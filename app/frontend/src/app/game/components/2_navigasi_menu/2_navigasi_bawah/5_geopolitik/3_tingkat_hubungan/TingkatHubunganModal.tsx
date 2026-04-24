@@ -87,7 +87,7 @@ const CONTINENT_MAP: Record<string, Continent> = {
 };
 
 export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const [currentCountry, setCurrentCountry] = useState<string>("Indonesia");
+  const [currentCountry, setCurrentCountry] = useState<string>("");
   const [activeContinent, setActiveContinent] = useState<Continent | "Semua">("Semua");
   const [searchQuery, setSearchQuery] = useState("");
   const [isUNSCMember, setIsUNSCMember] = useState(false);
@@ -97,13 +97,13 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
 
   useEffect(() => {
     const data = unSecurityCouncilStorage.getData();
-    setIsUNSCMember(data.members.some(m => m.name === "Indonesia"));
+    setIsUNSCMember(data.members.some(m => m.name.toLowerCase() === (localStorage.getItem("selectedCountry") || "").toLowerCase()));
   }, []);
 
   useEffect(() => {
     const session = gameStorage.getSession();
     if (session) {
-      const countryName = session.country || localStorage.getItem("selectedCountry") || "Indonesia";
+      const countryName = session.country || localStorage.getItem("selectedCountry") || "";
       setCurrentCountry(countryName);
     }
   }, [isOpen]);

@@ -30,7 +30,7 @@ export const OrganisasiList = (props: TabProps) => {
             : 'text-zinc-500 hover:text-zinc-300'
           }`}
         >
-          PBB & Global
+          Keanggotaan PBB
         </button>
         <button 
           onClick={() => props.setActiveMenu('Menu:Berita:organisasi:regional')}
@@ -40,7 +40,17 @@ export const OrganisasiList = (props: TabProps) => {
             : 'text-zinc-500 hover:text-zinc-300'
           }`}
         >
-          Organisasi Regional
+          Keanggotaan Regional
+        </button>
+        <button 
+          onClick={() => props.setActiveMenu('Menu:Berita:organisasi:voting')}
+          className={`px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer ${
+            currentSubTab === 'voting' 
+            ? 'bg-emerald-600 text-white shadow-[0_0_20px_rgba(16,185,129,0.4)] translate-y-[-1px]' 
+            : 'text-zinc-500 hover:text-zinc-300'
+          }`}
+        >
+          Hasil Sidang & Voting
         </button>
       </div>
 
@@ -49,16 +59,40 @@ export const OrganisasiList = (props: TabProps) => {
         categoryFilter={(item) => {
           const subj = item.subject.toLowerCase();
           const content = item.content.toLowerCase();
+          const combined = (subj + " " + content).toLowerCase();
           
-          if (currentSubTab === 'pbb') {
-            // Include general organizations but exclude specific regional keywords
-            return (item.category === 'organizations' || /(pbb|imf|bank dunia|interpol|who|unesco|wto|ilo|fao|icao|imo|itu|wmo)/.test(subj)) &&
-                   !/(asean|nato|uni eropa|brics|g20|apec|sco|oas|gcc|mercosur|commonwealth|g7|quad|oecd)/.test(subj);
-          } else {
-            // Focus purely on regional organizations
-            return /(asean|nato|eu|uni eropa|brics|g20|apec|sco|oas|gcc|mercosur|commonwealth|g7|quad|oecd)/.test(subj) ||
-                   (/(bergabung dengan|keluar dari)/.test(content) && !/(pbb|imf|bank dunia)/.test(subj));
+          // 1. ABSOLUTE EXCLUSION: Buang sampah kategori teknis
+          if (['construction', 'finance', 'trade', 'conflict'].includes(item.category)) {
+            return false;
           }
+
+          // 2. DETECT ORGANIZATION
+          const globalOrgs = /(pbb|imf|bank dunia|world bank|who|unesco|wto|interpol|unicef|fao)/i;
+          const regionalOrgs = /(asean|nato|eu|uni eropa|brics|g20|g7|apec|sco|oas|gcc|mercosur|commonwealth|oic|oki|uni afrika|african union)/i;
+
+          const isGlobal = globalOrgs.test(combined);
+          const isRegional = regionalOrgs.test(combined);
+
+          // 3. SEPARATION LOGIC
+          if (currentSubTab === 'voting') {
+             // Tab khusus hasil sidang, voting, dan resolusi
+             return /(hasil sidang|voting|resolusi|pemungutan suara|sidang umum|dewan keamanan|kesepakatan sidang)/i.test(combined);
+          }
+
+          // Filter Keanggotaan (Hanya muncul jika ada aksi keanggotaan)
+          const membershipMove = /(bergabung|keluar|anggota|keanggotaan|membership|masuk|exit|join|leave|diterima|ditolak|permohonan|aplikasi|mengundurkan diri)/i;
+          const hasMembershipKeyword = membershipMove.test(combined);
+
+          // Pastikan berita sidang tidak masuk ke tab keanggotaan
+          const isVotingNews = /(hasil sidang|voting|resolusi|pemungutan suara)/i.test(combined);
+
+          if (currentSubTab === 'pbb') {
+            return isGlobal && hasMembershipKeyword && !isRegional && !isVotingNews;
+          } else if (currentSubTab === 'regional') {
+            return isRegional && hasMembershipKeyword && !isVotingNews;
+          }
+          
+          return false;
         }} 
       />
     </div>

@@ -37,7 +37,7 @@ class UNMembershipStorage {
    */
   public isMember(orgId: string, countryName: string): boolean {
     const session = gameStorage.getSession();
-    const userCountry = session?.country || localStorage.getItem("selectedCountry") || "Indonesia";
+    const userCountry = session?.country || localStorage.getItem("selectedCountry") || "";
 
     if (countryName.toLowerCase() === userCountry.toLowerCase()) {
       // User must have manually joined
@@ -55,7 +55,7 @@ class UNMembershipStorage {
    */
   public existsInDefaultDatabase(orgId: string): boolean {
     const session = gameStorage.getSession();
-    const userCountry = session?.country || localStorage.getItem("selectedCountry") || "Indonesia";
+    const userCountry = session?.country || localStorage.getItem("selectedCountry") || "";
     const dbMembers = OrganizationMembers[orgId] || [];
     return dbMembers.includes(userCountry.toLowerCase());
   }

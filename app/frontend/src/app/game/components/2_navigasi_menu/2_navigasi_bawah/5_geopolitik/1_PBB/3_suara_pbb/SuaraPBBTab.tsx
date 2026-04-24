@@ -101,7 +101,7 @@ export default function SuaraPBBTab({ currentData }: SuaraPBBTabProps) {
                     // Fallback map untuk negara penting jika deteksi emoji gagal
                     const fallbackMap: Record<string, string> = {
                       "Amerika Serikat": "us", "Rusia": "ru", "China": "cn", "Inggris": "gb", "Prancis": "fr",
-                      "Indonesia": "id", "Jepang": "jp", "Jerman": "de", "India": "in", "Korea Selatan": "kr",
+                      "Jepang": "jp", "Jerman": "de", "India": "in", "Korea Selatan": "kr",
                       "Pakistan": "pk", "Somalia": "so", "Panama": "pa", "Denmark": "dk", "Yunani": "gr",
                       "Aljazair": "dz", "Guyana": "gy", "Sierra Leone": "sl", "Slovenia": "si"
                     };

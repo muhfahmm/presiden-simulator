@@ -162,7 +162,7 @@ export default function HistoriTab() {
                     if (!results) {
                       try {
                         const { simulateUNVote } = require("../1_pemungutan_suara/logika_pemungutan_suara/votingLogic");
-                        const userCountry = (typeof window !== 'undefined' ? localStorage.getItem('selected_country') : "") || "Indonesia";
+                        const userCountry = (typeof window !== 'undefined' ? localStorage.getItem('selectedCountry') : "") || "";
                         results = simulateUNVote(res.targetCountry || "Global", userCountry, res.category);
                       } catch (e) {
                         results = { yes: 0, no: 0, abstain: 0 };

@@ -1,5 +1,7 @@
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
+import { gameStorage } from "@/app/game/gamestorage";
+import { countries } from "@/app/database/data/negara/benua/index";
 
 const STORAGE_KEY = "em_un_imf";
 
@@ -25,7 +27,10 @@ export const unIMFStorage = {
   },
 
   join: (currentCash: number, currentDate: string) => {
-    const cost = Math.floor(currentCash * 0.05);
+    const countryName = localStorage.getItem("selectedCountry") || "";
+    const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+
+    const cost = Math.floor(currentCash * 0.01);
     // Even if cash is 0, we can join but it might be 0 cost (unlikely case)
     
     budgetStorage.updateBudget(-cost);
@@ -35,12 +40,12 @@ export const unIMFStorage = {
     inboxStorage.addMessage({
       source: "IMF Sekretariat",
       subject: "🏛️ Aktivasi Keanggotaan IMF",
-      content: "Selamat! Indonesia resmi menjadi anggota Dana Moneter Internasional. Kuota simpanan sebesar 5% kas telah disetorkan. Manfaat aktif: Akses pinjaman darurat saat kas kritis & reduksi inflasi 10%.",
+      content: `Selamat! ${capitalizedCountry} resmi menjadi anggota Dana Moneter Internasional. Kuota simpanan sebesar 1% kas telah disetorkan. Manfaat aktif: Akses pinjaman darurat saat kas kritis & reduksi inflasi 10%.`,
       time: currentDate,
       priority: "high"
     });
 
-    return { success: true, cost, message: "Pendaftaran Berhasil! Indonesia resmi menjadi anggota IMF." };
+    return { success: true, cost, message: `Pendaftaran Berhasil! ${capitalizedCountry} resmi menjadi anggota IMF.` };
   },
 
   clear: () => {

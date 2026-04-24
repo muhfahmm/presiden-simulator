@@ -43,7 +43,7 @@ export default function IMFMenu({ currentCash, currentDate, onUpdate }: OrgProps
             <JoinOrgButton 
                 orgId="imf" 
                 orgName="Dana Moneter Internasional" 
-                membershipFee={1500000000} // 1.5B
+                membershipFee={400000000} // 400M
             />
         </div>
     );

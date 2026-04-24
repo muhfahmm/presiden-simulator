@@ -25,8 +25,11 @@ export const unWHOStorage = {
   },
 
   join: (currentCash: number, currentDate: string) => {
-    const cost = 2000000;
-    if (currentCash < cost) return { success: false, message: "Kas negara tidak cukup untuk kontribusi WHO (2M)." };
+    const countryName = localStorage.getItem("selectedCountry") || "";
+    const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+
+    const cost = 400000;
+    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk kontribusi WHO (400K).` };
 
     budgetStorage.updateBudget(-cost);
     const newState = { isJoined: true, joinDate: currentDate };
@@ -35,12 +38,12 @@ export const unWHOStorage = {
     inboxStorage.addMessage({
       source: "WHO Sekretariat",
       subject: "🏥 Akses Kesehatan Global Aktif",
-      content: "Indonesia resmi menjadi anggota WHO. Kontribusi 2.000.000 telah dibayarkan. Manfaat aktif: Peningkatan Health Score otomatis & bonus riset medis saat pandemi.",
+      content: `${capitalizedCountry} resmi menjadi anggota WHO. Kontribusi 400.000 telah dibayarkan. Manfaat aktif: Peningkatan Health Score otomatis & bonus riset medis saat pandemi.`,
       time: currentDate,
       priority: "high"
     });
 
-    return { success: true, cost, message: "Pendaftaran Berhasil! Indonesia resmi menjadi anggota WHO." };
+    return { success: true, cost, message: `Pendaftaran Berhasil! ${capitalizedCountry} resmi menjadi anggota WHO.` };
   },
 
   clear: () => {

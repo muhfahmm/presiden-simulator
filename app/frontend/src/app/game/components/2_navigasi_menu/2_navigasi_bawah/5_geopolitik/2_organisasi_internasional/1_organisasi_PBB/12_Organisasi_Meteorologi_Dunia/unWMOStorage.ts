@@ -25,8 +25,11 @@ export const unWMOStorage = {
   },
 
   join: (currentCash: number, currentDate: string) => {
-    const cost = 2500000;
-    if (currentCash < cost) return { success: false, message: "Kas negara tidak cukup untuk akses satelit WMO (2.5M)." };
+    const countryName = localStorage.getItem("selectedCountry") || "";
+    const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+
+    const cost = 600000;
+    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk akses satelit WMO (600K).` };
 
     budgetStorage.updateBudget(-cost);
     const newState = { isJoined: true, joinDate: currentDate };
@@ -35,12 +38,12 @@ export const unWMOStorage = {
     inboxStorage.addMessage({
       source: "WMO HQ",
       subject: "🌤️ Deteksi Dini & Mitigasi Iklim",
-      content: "Indonesia resmi bergabung dengan WMO. Biaya akses satelit 2.500.000 telah dibayarkan. Manfaat aktif: Peringatan dini bencana & mitigasi kerusakan hingga 50%.",
+      content: `${capitalizedCountry} resmi bergabung dengan WMO. Biaya akses satelit 600.000 telah dibayarkan. Manfaat aktif: Peringatan dini bencana & mitigasi kerusakan hingga 50%.`,
       time: currentDate,
       priority: "high"
     });
 
-    return { success: true, cost, message: "Pendaftaran Berhasil! Indonesia resmi menjadi anggota WMO." };
+    return { success: true, cost, message: `Pendaftaran Berhasil! ${capitalizedCountry} resmi menjadi anggota WMO.` };
   },
 
   clear: () => {

@@ -25,8 +25,11 @@ export const unInterpolStorage = {
   },
 
   join: (currentCash: number, currentDate: string) => {
-    const cost = 5000000;
-    if (currentCash < cost) return { success: false, message: "Kas negara tidak cukup untuk biaya tahunan Interpol (5M)." };
+    const countryName = localStorage.getItem("selectedCountry") || "";
+    const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+
+    const cost = 1000000;
+    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk biaya tahunan Interpol (1M).` };
 
     budgetStorage.updateBudget(-cost);
     const newState = { isJoined: true, joinDate: currentDate };
@@ -35,12 +38,12 @@ export const unInterpolStorage = {
     inboxStorage.addMessage({
       source: "Interpol HQ",
       subject: "🛡️ Sinkronisasi Intelijen Global",
-      content: "Indonesia resmi bergabung dengan jaringan Interpol. Biaya sinkronisasi 5.000.000 telah dibayarkan. Manfaat aktif: Penurunan kriminalitas 15% & deteksi spionase lebih akurat.",
+      content: `${capitalizedCountry} resmi bergabung dengan jaringan Interpol. Biaya sinkronisasi 1.000.000 telah dibayarkan. Manfaat aktif: Penurunan kriminalitas 15% & deteksi spionase lebih akurat.`,
       time: currentDate,
       priority: "high"
     });
 
-    return { success: true, cost, message: "Pendaftaran Berhasil! Keanggotaan Interpol telah aktif." };
+    return { success: true, cost, message: `Pendaftaran Berhasil! Keanggotaan ${capitalizedCountry} di Interpol telah aktif.` };
   },
 
   clear: () => {

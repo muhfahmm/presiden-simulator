@@ -100,8 +100,7 @@ export const unVotingStorage = {
     const { simulateUNVote } = require("./votingLogic");
     
     // Ambil data negara pemain untuk simulasi
-    const storedCountry = typeof window !== 'undefined' ? localStorage.getItem('em_user_country') : null;
-    const userCountry = storedCountry ? JSON.parse(storedCountry).name : "Indonesia";
+    const userCountry = (typeof window !== 'undefined' ? localStorage.getItem('selectedCountry') : "") || "";
 
     const results = simulateUNVote(voting.targetCountry, userCountry, voting.category);
     

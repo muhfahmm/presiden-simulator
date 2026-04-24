@@ -37,7 +37,7 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
   useEffect(() => {
     const userCountryName = localStorage.getItem('selected_country');
     const session = gameStorage.getSession();
-    const countryName = userCountryName || session?.country || "Indonesia";
+    const countryName = userCountryName || session?.country || "";
     const data = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
     setCurrentData(data);
   }, [isOpen]);

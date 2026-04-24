@@ -25,8 +25,11 @@ export const unIMOStorage = {
   },
 
   join: (currentCash: number, currentDate: string) => {
-    const cost = 8000000;
-    if (currentCash < cost) return { success: false, message: "Kas negara tidak cukup untuk koordinasi IMO (8M)." };
+    const countryName = localStorage.getItem("selectedCountry") || "";
+    const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+
+    const cost = 2000000;
+    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk koordinasi IMO (2M).` };
 
     budgetStorage.updateBudget(-cost);
     const newState = { isJoined: true, joinDate: currentDate };
@@ -35,12 +38,12 @@ export const unIMOStorage = {
     inboxStorage.addMessage({
       source: "IMO HQ",
       subject: "⚓ Keamanan Maritim & Navigasi",
-      content: "Indonesia resmi bergabung dengan IMO. Biaya koordinasi 8.000.000 telah dibayarkan. Manfaat aktif: Kecepatan armada laut +10% & penurunan risiko pembajakan.",
+      content: `${capitalizedCountry} resmi bergabung dengan IMO. Biaya koordinasi 2.000.000 telah dibayarkan. Manfaat aktif: Kecepatan armada laut +10% & penurunan risiko pembajakan.`,
       time: currentDate,
       priority: "high"
     });
 
-    return { success: true, cost, message: "Pendaftaran Berhasil! Indonesia resmi menjadi anggota IMO." };
+    return { success: true, cost, message: `Pendaftaran Berhasil! ${capitalizedCountry} resmi menjadi anggota IMO.` };
   },
 
   clear: () => {

@@ -58,19 +58,28 @@ export default function DewanKeamananTab() {
           </div>
 
           {/* Candidacy Button */}
-          {gameMonth === 5 && !members.some(m => m.name === "Indonesia") && (
-            <button 
-              onClick={handleApply}
-              disabled={isCandidate}
-              className={`px-4 py-1.5 rounded-full border text-[9px] font-black uppercase tracking-widest transition-all ${
-                isCandidate 
-                ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400 cursor-default"
-                : "bg-amber-500/20 border-amber-500/40 text-amber-400 hover:bg-amber-500/40 hover:scale-105 active:scale-95"
-              }`}
-            >
-              {isCandidate ? "🇮🇩 Indonesia Terdaftar sebagai Kandidat" : "🇮🇩 Calonkan Indonesia"}
-            </button>
-          )}
+          {(() => {
+            const countryName = localStorage.getItem("selectedCountry") || "";
+            const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+            const isMember = members.some(m => m.name.toLowerCase() === countryName.toLowerCase());
+            
+            if (gameMonth === 5 && !isMember) {
+              return (
+                <button 
+                  onClick={handleApply}
+                  disabled={isCandidate}
+                  className={`px-4 py-1.5 rounded-full border text-[9px] font-black uppercase tracking-widest transition-all ${
+                    isCandidate 
+                    ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400 cursor-default"
+                    : "bg-amber-500/20 border-amber-500/40 text-amber-400 hover:bg-amber-500/40 hover:scale-105 active:scale-95"
+                  }`}
+                >
+                  {isCandidate ? `${capitalizedCountry} Terdaftar sebagai Kandidat` : `Calonkan ${capitalizedCountry}`}
+                </button>
+              );
+            }
+            return null;
+          })()}
         </div>
       </div>
 
@@ -104,7 +113,7 @@ export default function DewanKeamananTab() {
 
                     const fallbackMap: Record<string, string> = {
                       "Amerika Serikat": "us", "Rusia": "ru", "China": "cn", "Inggris": "gb", "Prancis": "fr",
-                      "Indonesia": "id", "Jepang": "jp", "Jerman": "de", "India": "in", "Korea Selatan": "kr"
+                      "Jepang": "jp", "Jerman": "de", "India": "in", "Korea Selatan": "kr"
                     };
 
                     if (!iso && fallbackMap[m.name]) iso = fallbackMap[m.name];

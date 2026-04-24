@@ -11,6 +11,7 @@ import { EksekutorPertahananAI } from "../components/AI_logic/6_AI_pertahanan/si
 import { EksekutorPembangunanAI } from "../components/AI_logic/5_AI_Pembangunan/sistem_tindakan_respon/EksekutorPembangunanAI";
 import { PusatKeputusanPertahanan } from "../components/AI_logic/6_AI_pertahanan/pusat_keputusan_pertahanan/PusatKeputusanPertahanan";
 import { RelationEngine } from '../components/3_hubungan/RelationEngine';
+import { GeopoliticalPulse } from '../logic/ai/geopolitical/GeopoliticalPulse';
 
 /**
  * useAIGameSync — Orchestrator untuk sinkronisasi stats AI dengan game time.
@@ -120,7 +121,12 @@ export function useAIGameSync() {
           );
         }
 
-        // Update rotation index
+        // C. Process Geopolitical Membership Cycle (Regional & PBB)
+        GeopoliticalPulse.processDaily(gameDate, userCountry).catch(err =>
+          console.error("[useAIGameSync] Geopolitical Pulse Error:", err)
+        );
+
+        // D. Update rotation index
         batchIndexRef.current = endIdx >= npcCountries.length ? 0 : endIdx;
       } catch (e) {
         console.error("[useAIGameSync] Defense AI Cycle Error:", e);

@@ -14,13 +14,12 @@ interface OrgMembersListProps {
 }
 
 export default function OrgMembersList({ orgId, orgName, searchQuery }: OrgMembersListProps) {
-    const [userCountry, setUserCountry] = useState<string>("Indonesia");
+    const [userCountry, setUserCountry] = useState<string>("");
 
     useEffect(() => {
         const session = gameStorage.getSession();
-        if (session) {
-            setUserCountry(session.country || localStorage.getItem("selectedCountry") || "Indonesia");
-        }
+        const country = session?.country || localStorage.getItem("selectedCountry") || "";
+        setUserCountry(country);
     }, []);
 
     // Get specific member list for this organization from database

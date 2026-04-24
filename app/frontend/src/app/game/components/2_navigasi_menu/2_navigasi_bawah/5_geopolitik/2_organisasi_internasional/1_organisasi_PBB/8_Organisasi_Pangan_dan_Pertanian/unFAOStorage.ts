@@ -25,8 +25,11 @@ export const unFAOStorage = {
   },
 
   join: (currentCash: number, currentDate: string) => {
-    const cost = 4000000;
-    if (currentCash < cost) return { success: false, message: "Kas negara tidak cukup untuk integrasi FAO (4M)." };
+    const countryName = localStorage.getItem("selectedCountry") || "";
+    const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+
+    const cost = 1000000;
+    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk integrasi FAO (1M).` };
 
     budgetStorage.updateBudget(-cost);
     const newState = { isJoined: true, joinDate: currentDate };
@@ -35,12 +38,12 @@ export const unFAOStorage = {
     inboxStorage.addMessage({
       source: "FAO HQ",
       subject: "🌾 Ketahanan Pangan Global",
-      content: "Indonesia resmi bergabung dengan FAO. Biaya integrasi teknologi 4.000.000 telah dibayarkan. Manfaat aktif: Produksi pangan +20% & bantuan darurat saat bencana.",
+      content: `${capitalizedCountry} resmi bergabung dengan FAO. Biaya integrasi teknologi 1.000.000 telah dibayarkan. Manfaat aktif: Produksi pangan +20% & bantuan darurat saat bencana.`,
       time: currentDate,
       priority: "high"
     });
 
-    return { success: true, cost, message: "Pendaftaran Berhasil! Indonesia resmi menjadi anggota FAO." };
+    return { success: true, cost, message: `Pendaftaran Berhasil! ${capitalizedCountry} resmi menjadi anggota FAO.` };
   },
 
   clear: () => {

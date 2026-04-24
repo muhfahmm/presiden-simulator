@@ -1,4 +1,4 @@
-import { UNGroup, getCountriesByGroup, UN_GROUPS_CONFIG } from "./unGroups";
+import { UNGroup, getCountriesByGroup, UN_GROUPS_CONFIG, getCountryUNGroup } from "./unGroups";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 
@@ -17,8 +17,8 @@ export interface UNSCState {
   members: UNSCMember[];
   history: string[]; // Countries that just served (cannot be re-elected for 1 year)
   lastElectionYear: number;
-  isPlayerCandidate: boolean; // Is Indonesia running for election?
-  playerVotes: number;        // Current vote count for Indonesia
+  isPlayerCandidate: boolean; // Is the player's country running for election?
+  playerVotes: number;        // Current vote count for the player's country
 }
 
 const P5: Omit<UNSCMember, "termStart" | "termEnd" | "group">[] = [
@@ -123,7 +123,11 @@ export const unSecurityCouncilStorage = {
 
   applyAsCandidate: (year: number) => {
     const state = unSecurityCouncilStorage.getData();
-    const canRun = !state.members.some(m => m.name === "Indonesia") && !state.history.includes("Indonesia");
+    const countryName = localStorage.getItem("selectedCountry") || "";
+    const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+
+    const canRun = !state.members.some(m => m.name.toLowerCase() === countryName.toLowerCase()) && 
+                   !state.history.some(h => h.toLowerCase() === countryName.toLowerCase());
     
     if (canRun) {
       unSecurityCouncilStorage.saveData({
@@ -134,7 +138,7 @@ export const unSecurityCouncilStorage = {
       inboxStorage.addMessage({
         source: "Sekretariat Negara",
         subject: "Pencalonan Dewan Keamanan PBB",
-        content: "Indonesia resmi mendaftarkan diri sebagai kandidat Anggota Tidak Tetap Dewan Keamanan PBB. Pemilihan akan dilakukan oleh Majelis Umum PBB pada 15 Juni.",
+        content: `${capitalizedCountry} resmi mendaftarkan diri sebagai kandidat Anggota Tidak Tetap Dewan Keamanan PBB. Pemilihan akan dilakukan oleh Majelis Umum PBB pada 15 Juni.`,
         time: `01-06-${year}`,
         priority: "medium"
       });
@@ -192,8 +196,12 @@ export const unSecurityCouncilStorage = {
           !state.history.includes(name)
         );
 
+        const countryName = localStorage.getItem("selectedCountry") || "";
+        const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+        const playerGroup = getCountryUNGroup(countryName);
+
         // If player is in this group and applied, they are a primary candidate
-        const isPlayerInGroup = group === "Asia-Pacific Group" && state.isPlayerCandidate;
+        const isPlayerInGroup = group === playerGroup && state.isPlayerCandidate;
 
         for (let i = 0; i < seatsToFill; i++) {
           if (pool.length > 0) {
@@ -202,27 +210,26 @@ export const unSecurityCouncilStorage = {
 
             if (isPlayerInGroup && i === 0) {
               // Player candidacy logic (only for the first seat in their group)
-              selectedName = "Indonesia";
-              // Simulate sentiment-based votes. For now, random but roughly based on "General support"
-              // In future, this should link to actual diplomatic data.
+              selectedName = capitalizedCountry;
+              // Simulate sentiment-based votes
               votes = Math.floor(Math.random() * 50) + 120; // 120-170 range
               
               if (votes >= REQUIRED_VOTES) {
-                // Remove player from candidate status if won
+                // Won
                 state.isPlayerCandidate = false;
               } else {
-                // Failed to get 2/3 votes
+                // Failed
                 selectedName = ""; 
               }
-              // Remove Indonesia from pool if it was there
-              pool = pool.filter(p => p !== "Indonesia");
+              // Remove player from pool
+              pool = pool.filter(p => p.toLowerCase() !== countryName.toLowerCase());
             }
 
             // If player didn't win or isn't candidate, pick from AI
             if (!selectedName) {
               const randomIndex = Math.floor(Math.random() * pool.length);
               selectedName = pool.splice(randomIndex, 1)[0];
-              votes = Math.floor(Math.random() * 40) + 140; // AI candidates usually pass in simulation
+              votes = Math.floor(Math.random() * 40) + 140; // AI candidates usually pass
             }
             
             if (selectedName) {
@@ -251,14 +258,17 @@ export const unSecurityCouncilStorage = {
 
     // ── Consolidated Election Notification ──
     if (newElectedMembers.length > 0) {
+      const countryName = localStorage.getItem("selectedCountry") || "";
+      const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+      
       const electedList = newElectedMembers.map(m => `${m.flag} ${m.name} (${m.group})`).join("\n• ");
-      const playerWon = newElectedMembers.some(m => m.name === "Indonesia");
+      const playerWon = newElectedMembers.some(m => m.name.toLowerCase() === countryName.toLowerCase());
 
       inboxStorage.addMessage({
         source: "Majelis Umum PBB",
         subject: `🗳️ Hasil Pemilihan Dewan Keamanan PBB — Juni ${year}`,
         content: `PENGUMUMAN PBB: Majelis Umum PBB telah menyelesaikan pemilihan Anggota Tidak Tetap Dewan Keamanan untuk periode ${year + 1}-${year + 2}.\n\n` +
-                 (playerWon ? "🎉 SELAMAT! Indonesia berhasil mendapatkan dukungan 2/3 suara dan terpilih sebagai anggota Dewan Keamanan!\n\n" : "") +
+                 (playerWon ? `🎉 SELAMAT! ${capitalizedCountry} berhasil mendapatkan dukungan 2/3 suara dan terpilih sebagai anggota Dewan Keamanan!\n\n` : "") +
                  `Negara-negara yang terpilih:\n• ${electedList}\n\nMereka akan resmi menjabat mulai 1 Januari ${year + 1}.`,
         time: `15-06-${year}`,
         priority: "high"
@@ -269,29 +279,31 @@ export const unSecurityCouncilStorage = {
   promoteElectedMembers: (year: number) => {
     const state = unSecurityCouncilStorage.getData();
     
-    // Find members elected for next year
     const newlyElected = state.members.filter(m => !m.isPermanent && m.termStart > year);
     if (newlyElected.length === 0) return;
 
-    // Find current non-permanent members who are scheduled to leave (Lengser)
-    // In this specific system, everyone in 2026-2028 is "Lengser" in 2028.
     const retiringNames = state.members
       .filter(m => !m.isPermanent && m.termEnd <= year)
       .map(m => m.name);
 
-    // Filter out retiring members and update newly elected to start immediately
     const remainingPermanent = state.members.filter(m => m.isPermanent);
+    const activeNonPermanent = state.members.filter(m => 
+      !m.isPermanent && 
+      m.termStart <= year && 
+      m.termEnd > year
+    );
+
     const updatedNewlyElected = newlyElected.map(m => ({
       ...m,
       termStart: year // Start now (July 1st)
     }));
 
-    const nextMembers = [...remainingPermanent, ...updatedNewlyElected];
+    const nextMembers = [...remainingPermanent, ...activeNonPermanent, ...updatedNewlyElected];
 
     unSecurityCouncilStorage.saveData({
       ...state,
       members: nextMembers,
-      history: [...state.history, ...retiringNames]
+      history: [...state.history, ...retiringNames].slice(-20)
     });
 
     inboxStorage.addMessage({
