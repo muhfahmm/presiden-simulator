@@ -252,9 +252,10 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
 
 
       <KepuasanModal
-        isOpen={activeMenu === "Dashboard:Kepuasan"}
+        isOpen={activeMenu === "Dashboard:Kepuasan" || activeMenu === "Dashboard:KepuasanAI"}
         onClose={() => setActiveMenu("Kepuasan")}
         setActiveMenu={setActiveMenu}
+        activeMenu={activeMenu}
       />
       <RingkasanPopulasiModal
         isOpen={activeMenu === "Dashboard:Populasi:Overview"}

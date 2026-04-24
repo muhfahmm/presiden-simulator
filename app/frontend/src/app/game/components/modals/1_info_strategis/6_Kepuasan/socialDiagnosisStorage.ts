@@ -7,6 +7,7 @@ export interface AIRootCauseData {
   root_cause: string;
   suggested_action: string;
   last_updated: number;
+  breakdown?: Record<string, number>;
 }
 
 export type AIRootCauseMap = Record<string, AIRootCauseData>;
@@ -33,7 +34,7 @@ export const aiRootCauseStorage = {
     }
   },
 
-  saveDiagnosis: (countryNameEn: string, root_cause: string, suggested_action: string) => {
+  saveDiagnosis: (countryNameEn: string, root_cause: string, suggested_action: string, breakdown?: Record<string, number>) => {
     if (typeof window === 'undefined') return;
     
     const stored = localStorage.getItem(AI_ROOT_CAUSE_KEY);
@@ -42,7 +43,8 @@ export const aiRootCauseStorage = {
     data[countryNameEn] = {
       root_cause,
       suggested_action,
-      last_updated: Date.now()
+      last_updated: Date.now(),
+      breakdown
     };
     
     localStorage.setItem(AI_ROOT_CAUSE_KEY, JSON.stringify(data));

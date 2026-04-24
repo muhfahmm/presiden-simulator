@@ -91,8 +91,16 @@ export default function AILogicCNS() {
         // ═══════════════════════════════════════════════
         const dashboard = new DashboardInternalNPC();
         const kognisi = new EvaluasiSentimenPublik(dashboard);
-        const satisfactionStats = (calculatePopulationHappiness() as any).global || 55;
+        
+        // Process satisfaction for the current batch of NPCs
+        for (const npc of batch) {
+          try {
+            await kognisi.evaluasi(npc.name_en);
+          } catch (e) { /* Silent */ }
+        }
 
+        // Also evaluate player's country for recommendations
+        const satisfactionStats = (calculatePopulationHappiness() as any).global || 55;
         try {
           if (satisfactionStats <= 25) {
             const analisis = await kognisi.evaluasi(session.country);
@@ -114,10 +122,9 @@ export default function AILogicCNS() {
       }
     };
 
-    // PERFORMANCE: DISABLED BROWSER-SIDE SIMULATION
-    // The Go Backend is now the master orchestrator.
-    // const interval = setInterval(runAILogic, 15000); 
-    // return () => clearInterval(interval);
+    // Re-enable local simulation for Satisfaction & Decision Making
+    const interval = setInterval(runAILogic, 10000); // Run every 10s
+    return () => clearInterval(interval);
   }, []);
 
   return null; // Headless component

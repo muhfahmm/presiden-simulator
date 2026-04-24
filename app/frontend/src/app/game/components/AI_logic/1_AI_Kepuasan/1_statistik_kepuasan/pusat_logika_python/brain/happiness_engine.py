@@ -21,130 +21,144 @@ INFRA_FACTORS = {
     "helipad": 0.0005
 }
 
+CRITICAL_THRESHOLD = 25.0
+
 def calculate_detailed_happiness(data):
     """
     Comprehensive Happiness Engine for AI Countries.
-    Replicates the exact logic used in the player's dashboard.
+    Integrates all aspects of life: Economy, Security, Resources, and Geopolitics.
     """
     stats = data.get('statistik', {})
     current_value = stats.get('indeks_kepuasan', 55.0)
+    population = data.get('population', 1000000)
     
-    # 1. Tax Impact (Baseline)
-    # Provided directly by KolektorDataNasional or calculated here
+    # 1. Tax Impact
     avg_tax_rate = data.get('avg_tax_rate', 25)
-    if avg_tax_rate <= 25: tax_delta = 0.05
-    elif avg_tax_rate <= 50: tax_delta = 0
-    elif avg_tax_rate <= 75: tax_delta = -0.1
-    else: tax_delta = -0.25
+    if avg_tax_rate <= 20: tax_delta = 0.1
+    elif avg_tax_rate <= 35: tax_delta = 0.02
+    elif avg_tax_rate <= 50: tax_delta = -0.05
+    elif avg_tax_rate <= 70: tax_delta = -0.15
+    else: tax_delta = -0.35
 
-    # 2. Price Impact (Baseline)
+    # 2. Price Impact
     avg_price_mult = data.get('avg_price_multiplier', 1.0)
-    if avg_price_mult <= 0.8: price_delta = 0.05
-    elif avg_price_mult <= 1.2: price_delta = 0
-    elif avg_price_mult <= 1.5: price_delta = -0.1
-    else: price_delta = -0.25
+    if avg_price_mult <= 0.8: price_delta = 0.1
+    elif avg_price_mult <= 1.1: price_delta = 0.02
+    elif avg_price_mult <= 1.4: price_delta = -0.1
+    elif avg_price_mult <= 1.8: price_delta = -0.25
+    else: price_delta = -0.5
 
-    # 3. Religion Impact
-    religion = data.get('religion', 'Sekuler')
+    # 3. Religion & Ideology
     religion_delta = 0
-    if religion == 'Buddha': religion_delta = BUDDHA_BONUS
-    elif religion == 'Konghucu': religion_delta = KONGHUCU_PENALTY
+    rel = data.get('religion', 'Sekuler')
+    if rel == 'Buddha': religion_delta = BUDDHA_BONUS
+    elif rel == 'Konghucu': religion_delta = KONGHUCU_PENALTY
 
-    # 4. Ideology Impact
-    ideology = data.get('ideology', 'Netral')
     ideology_delta = 0
-    if ideology == 'Demokrasi': ideology_delta = DEMOKRASI_BONUS
-    elif ideology == 'Kapitalisme': ideology_delta = KAPITALISME_PENALTY
-    elif ideology == 'Konservatisme': ideology_delta = KONSERVATISME_BONUS
-    elif ideology == 'Sosialisme': ideology_delta = SOSIALISME_BONUS
+    ideo = data.get('ideology', 'Netral')
+    if ideo == 'Demokrasi': ideology_delta = DEMOKRASI_BONUS
+    elif ideo == 'Kapitalisme': ideology_delta = KAPITALISME_PENALTY
+    elif ideo == 'Konservatisme': ideology_delta = KONSERVATISME_BONUS
+    elif ideo == 'Sosialisme': ideology_delta = SOSIALISME_BONUS
 
-    # 5. Infrastructure Impact
+    # 4. Infrastructure Impact
     infra_data = data.get('infrastructure', {})
     infra_bonus = 0
-    infra_breakdown = {}
-    
     for key, factor in INFRA_FACTORS.items():
-        count = infra_data.get(key, 0)
-        contribution = count * factor
-        infra_bonus += contribution
-        infra_breakdown[key] = round(contribution, 4)
+        infra_bonus += infra_data.get(key, 0) * factor
+    infra_bonus = min(1.5, infra_bonus)
 
-    # Cap infra bonus to 2.5% per day
-    infra_bonus = min(2.5, infra_bonus)
-
-    # 6. Housing Penalty (Societal Deficit)
+    # 5. Housing Penalty
     housing_data = data.get('housing', {})
-    population = data.get('population', 0)
-    
-    # Capacities (Matched with hunianRate)
-    CAP_SUBSIDI = 5
-    CAP_APARTEMEN = 6000
-    CAP_MANSION = 10
-    
     total_housing_cap = (
-        (housing_data.get('rumah_subsidi', 0) * CAP_SUBSIDI) +
-        (housing_data.get('apartemen', 0) * CAP_APARTEMEN) +
-        (housing_data.get('mansion', 0) * CAP_MANSION)
+        (housing_data.get('rumah_subsidi', 0) * 5) +
+        (housing_data.get('apartemen', 0) * 6000) +
+        (housing_data.get('mansion', 0) * 10)
     )
-    
     deficit = max(0, population - total_housing_cap)
     homeless_percent = (deficit / population * 100) if population > 0 else 0
-    
     housing_penalty = 0
-    if homeless_percent > 0:
-        # Logarithmic scaling to prevent instant drop to 0, but significant at high percentages
-        housing_penalty = -(math.log10(homeless_percent + 1) / math.log10(101)) * 3.5
+    if homeless_percent > 1:
+        housing_penalty = -(math.log10(homeless_percent) * 0.8)
 
-    # 7. Final Daily Delta
-    total_daily_delta = tax_delta + price_delta + religion_delta + ideology_delta + infra_bonus + housing_penalty
+    # 6. NEW: Economic Health (Budget Balance)
+    budget = data.get('budget', 0)
+    economy_delta = 0
+    if budget < 0:
+        # Debt stress: every 1B debt causes slight worry
+        economy_delta = max(-0.5, (budget / 1000000000) * 0.01)
+    elif budget > 1000000000:
+        # Surplus confidence
+        economy_delta = min(0.2, (budget / 1000000000) * 0.02)
 
-    # 7. Red Zone Multiplier (Satisfaction < 40%)
-    is_red_zone = current_value < 40
-    if is_red_zone:
-        if total_daily_delta < 0: total_daily_delta *= 2
-        else: total_daily_delta *= 1.5
-
-    new_value = round(max(1.0, min(100.0, current_value + total_daily_delta)), 2)
-
-    # 8. Root Cause Analysis (Diagnostic for AI Brain)
-    root_cause = "none"
-    suggested_action = "none"
+    # 7. NEW: National Security (Military Presence)
+    military_power = data.get('military_power', 0)
+    security_ratio = (military_power / population) * 1000 if population > 0 else 0
+    security_delta = 0
+    if security_ratio < 0.5: security_delta = -0.1  # Vulnerable
+    elif security_ratio > 5.0: security_delta = 0.05 # Secure
     
-    if total_daily_delta < 0:
-        # Find the most negative contributor
-        impacts = {
-            "housing": housing_penalty,
-            "tax": tax_delta,
-            "price": price_delta
-        }
-        # Get key with minimum value (most negative)
-        root_cause = min(impacts, key=impacts.get)
+    # 8. NEW: Resource Security
+    stocks = data.get('stocks', {})
+    essential_materials = ["5_pabrik_semen", "12_tambang_bijih_besi", "4_smelter"]
+    resource_shortage_penalty = 0
+    for mat in essential_materials:
+        if stocks.get(mat, 0) < 1000:
+            resource_shortage_penalty -= 0.05
+    
+    # 9. NEW: Geopolitical Standing
+    avg_relation = data.get('avg_relation', 0)
+    geopol_delta = (avg_relation / 100) * 0.1
+
+    # Final Calculation
+    total_daily_delta = (
+        tax_delta + price_delta + religion_delta + ideology_delta + 
+        infra_bonus + housing_penalty + economy_delta + security_delta + 
+        resource_shortage_penalty + geopol_delta
+    )
+
+    # Red Zone Multipliers
+    if current_value < 40:
+        total_daily_delta *= 1.5 if total_daily_delta > 0 else 2.5
+    
+    # Critical Protocol (< 25%)
+    emergency_protocol = "NONE"
+    emergency_actions = []
+    if current_value < CRITICAL_THRESHOLD:
+        emergency_protocol = "CRITICAL_INSTABILITY"
+        if economy_delta < -0.2:
+            emergency_actions.append("REQUEST_IMF_BAILOUT")
+        if tax_delta < -0.1:
+            emergency_actions.append("TAX_HOLIDAY_30D")
+        if security_delta < 0:
+            emergency_actions.append("MARTIAL_LAW_DECLARATION")
+        if housing_penalty < -0.5:
+            emergency_actions.append("EMERGENCY_SQUATTER_LEGALIZATION")
         
-        # Mapping root cause to actions
-        action_map = {
-            "housing": "BUILD_RESIDENTIAL",
-            "tax": "LOWER_TAXES",
-            "price": "SUBSIDIZE_MARKET"
-        }
-        suggested_action = action_map.get(root_cause, "none")
+        # Risk of collapse
+        if current_value < 10:
+            emergency_protocol = "GOVERNMENT_COLLAPSE_RISK"
+            emergency_actions.append("EMERGENCY_ELECTIONS")
+
+    new_value = round(max(0.0, min(100.0, current_value + total_daily_delta)), 2)
 
     return {
         "new_value": new_value,
         "delta": round(total_daily_delta, 4),
-        "root_cause": root_cause,
-        "suggested_action": suggested_action,
+        "status": "CRITICAL" if new_value < CRITICAL_THRESHOLD else ("WARNING" if new_value < 40 else "STABLE"),
+        "emergency_protocol": emergency_protocol,
+        "emergency_actions": emergency_actions,
         "breakdown": {
-            "tax": tax_delta,
-            "price": price_delta,
-            "religion": religion_delta,
-            "ideology": ideology_delta,
-            "infrastructure": round(infra_bonus, 4),
-            "housing": round(housing_penalty, 4),
-            "homeless_rate": round(homeless_percent, 2),
-            "infra_details": infra_breakdown
-        },
-        "status": "CRITICAL" if new_value < 40 else "STABLE",
-        "analysis": f"Total dampak kebijakan ({'+' if total_daily_delta >= 0 else ''}{round(total_daily_delta, 2)}%) {'menguntungkan' if total_daily_delta >= 0 else 'merugikan'} rakyat. Rating cenderung {'naik' if total_daily_delta > 0 else 'turun' if total_daily_delta < 0 else 'stabil'}."
+            "fiscal": tax_delta,
+            "market": price_delta,
+            "social": religion_delta + ideology_delta,
+            "infrastructure": infra_bonus,
+            "housing": housing_penalty,
+            "economy": economy_delta,
+            "security": security_delta,
+            "resources": resource_shortage_penalty,
+            "geopolitics": geopol_delta
+        }
     }
 
 if __name__ == "__main__":
@@ -153,20 +167,11 @@ if __name__ == "__main__":
         if not input_data:
             print(json.dumps({"error": "No input provided"}))
             sys.exit(0)
-            
         data = json.loads(input_data)
-        
-        # Check if batch mode (list of countries)
         if isinstance(data, list):
-            results = {}
-            for country_packet in data:
-                name = country_packet.get('negara', 'Unknown')
-                results[name] = calculate_detailed_happiness(country_packet)
+            results = {p.get('negara', 'Unknown'): calculate_detailed_happiness(p) for p in data}
             print(json.dumps(results))
         else:
-            # Single mode
-            result = calculate_detailed_happiness(data)
-            print(json.dumps(result))
-        
+            print(json.dumps(calculate_detailed_happiness(data)))
     except Exception as e:
         print(json.dumps({"error": str(e)}))
