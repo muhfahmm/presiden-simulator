@@ -14,7 +14,7 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 import { getStoredGameDate } from "../1_navbar/5_navigasi_waktu/gameTime";
-import { calculatePopulationHappiness } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan";
+import { calculatePopulationHappiness } from "@/app/game/components/1_navbar/1_kepuasan";
 
 /**
  * AI Logic CNS (Central Nervous System)

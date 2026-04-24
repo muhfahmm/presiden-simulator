@@ -26,5 +26,11 @@ export const relationStorage = {
         const currentScore = getRelationScore(targetCountry, currentBase, sourceCountry || "player");
         const newScore = Math.max(0, Math.min(100, currentScore + delta));
         updateMatrixScore(sourceCountry || "player", targetCountry, newScore);
+    },
+
+    // Legacy clear fallback
+    clear: () => {
+        const { hardClearMatrix } = require("@/app/game/components/3_hubungan/RelationMatrix");
+        hardClearMatrix();
     }
 };

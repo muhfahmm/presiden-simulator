@@ -15,7 +15,7 @@ import PenghasilanHarian from "./1_info_strategis/5_Keuangan/2_PenghasilanHarian
 import SatisfactionRow from "./1_info_strategis/6_Kepuasan/SatisfactionRow";
 import PopulasiRow from "./1_info_strategis/7_DetailNegara/PopulasiRow";
 import { aiHappinessStorage } from "./1_info_strategis/6_Kepuasan/AIHappinessStorage";
-import { happinessStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/happinessStorage";
+import { happinessStorage } from "@/app/game/components/1_navbar/1_kepuasan/happinessStorage";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaStorage";
 import { calculateDetailedPopulationMetrics } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";

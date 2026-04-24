@@ -17,7 +17,7 @@ def main():
         events = []
         countries = [k for k in matrix.keys() if k != user]
 
-        # Small daily chance for NPCs to build embassies with each other
+        # Monthly chance for NPCs to build embassies with each other
         for i, source in enumerate(countries):
             for target in countries[i+1:]:
                 src_rel = matrix.get(source, {}).get(target, None)
@@ -27,8 +27,8 @@ def main():
                 has_embassy = src_rel.get("e", 0) == 1
                 score = src_rel.get("s", 50)
 
-                # 0.5% chance per day if score >= 55 and no embassy yet
-                if not has_embassy and score >= 55 and random.random() < 0.005:
+                # 15% chance per month if score >= 55 and no embassy yet
+                if not has_embassy and score >= 55 and random.random() < 0.15:
                     matrix[source][target]["e"] = 1
                     # Ensure reverse direction also has embassy
                     if target in matrix and source in matrix[target]:

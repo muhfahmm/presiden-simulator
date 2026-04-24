@@ -12,7 +12,9 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
-import { AiHunianService } from "../../../AI_logic/2_AI_Populasi/2_kebutuhan_hunian/AiHunianService";
+import { AiHunianService } from "@/app/game/components/AI_logic/2_AI_Populasi/2_kebutuhan_hunian/AiHunianService";
+import { PenurunanLogic } from "./logic/1_penurunan/penurunan_fiskal";
+import { PeningkatanLogic } from "./logic/2_peningkatan/peningkatan_sosial";
 
 interface KepuasanModalProps {
   isOpen: boolean;
@@ -46,35 +48,16 @@ export default function KepuasanModal({ isOpen, onClose, setActiveMenu }: Kepuas
 
   const happiness = stats.value;
 
-  // Hitung daily happiness delta dari pajak (restored)
-  const computeDailyTaxDelta = (): number => {
-    const ti = liveImpacts.taxImpact;
-    if (ti > 2.5) return 0.1;
-    if (ti >= 0) return 0;
-    if (ti >= -5) return -0.2;
-    return -0.5;
-  };
-  const dailyTaxDelta = computeDailyTaxDelta();
+  const { dailyDelta: dailyTaxDelta } = PenurunanLogic.calculateTaxImpact(
+    countries.find(c => c.name_id === (gameStorage.getSession() as any)?.country || c.name_en === (gameStorage.getSession() as any)?.country) || countries[0]
+  );
 
-  // Hitung daily happiness delta dari harga
-  const computeDailyPriceDelta = (): number => {
-    if (typeof window === 'undefined') return 0;
-    const session = gameStorage.getSession() as any;
-    const countryName = session?.country || "Indonesia";
-    const country = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
-    const priceData = priceStorage.getData(country);
-    const priceKeys = Object.keys(BASE_PRICES) as Array<keyof typeof BASE_PRICES>;
-    const avgPriceMult = priceKeys.reduce((acc: number, k) => acc + ((priceData as any)[k] / (BASE_PRICES as any)[k]), 0) / priceKeys.length;
-
-    if (avgPriceMult <= 0.8) return 0.1;
-    if (avgPriceMult <= 1.2) return 0;
-    if (avgPriceMult <= 1.5) return -0.2;
-    return -0.5;
-  };
-  const dailyPriceDelta = computeDailyPriceDelta();
+  const { dailyDelta: dailyPriceDelta } = PenurunanLogic.calculatePriceImpact(
+    countries.find(c => c.name_id === (gameStorage.getSession() as any)?.country || c.name_en === (gameStorage.getSession() as any)?.country) || countries[0]
+  );
 
   // Hitung Bonus Infrastruktur & Logistik
-  const infraBreakdown = happinessStorage.getInfraDetailedBreakdown();
+  const infraBreakdown = PeningkatanLogic.getInfrastructureBonus();
 
   const isRedZone = happiness < 40;
 
@@ -91,8 +74,8 @@ export default function KepuasanModal({ isOpen, onClose, setActiveMenu }: Kepuas
     : dailyPriceDelta;
 
   // Sektor Hunian & Permukiman
-  const housingStats = AiHunianService.getHousingStats();
-  const housingPenalty = housingStats?.penalty || 0;
+  const { penalty: housingPenalty, deficit: housingDeficit, homelessPercent: housingHomelessPercent } = PenurunanLogic.calculateHousingPenalty();
+  const housingStats = { penalty: housingPenalty, deficit: housingDeficit, homeless_percent: housingHomelessPercent };
 
 
   const getStatus = (val: number) => {

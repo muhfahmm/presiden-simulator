@@ -10,7 +10,9 @@ import { religionStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { BUDDHA_SATISFACTION_DAILY_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/6_buddha/1_plus/plus";
 import { KONGHUCU_PRESS_FREEDOM_PENALTY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/9_konghucu/2_minus/minus";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { AiHunianService } from "../../../AI_logic/2_AI_Populasi/2_kebutuhan_hunian/AiHunianService";
+import { AiHunianService } from "@/app/game/components/AI_logic/2_AI_Populasi/2_kebutuhan_hunian/AiHunianService";
+import { PenurunanLogic } from "./logic/1_penurunan/penurunan_fiskal";
+import { PeningkatanLogic } from "./logic/2_peningkatan/peningkatan_sosial";
 
 export interface HappinessStats {
   value: number; // 0-100
@@ -120,31 +122,10 @@ export const happinessStorage = {
     const session = gameStorage.getSession();
     const countryName = session?.country || "Indonesia";
     const country = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
-    
-    // Price Impact
-    const priceData = priceStorage.getData(country);
-    const keys = Object.keys(BASE_PRICES) as Array<keyof typeof BASE_PRICES>;
-    const avgPriceMultiplier = keys.reduce((acc, key) => {
-      const base = (BASE_PRICES as any)[key] || 1;
-      const current = (priceData as any)[key] || base;
-      return acc + (current / base);
-    }, 0) / keys.length;
-    
-    const priceImpact = Number(((1.0 - avgPriceMultiplier) * 15).toFixed(1));
 
-    // Tax Impact
-    const taxData = taxStorage.getTaxes(country.name_en) || country.pajak;
-    const domesticTaxes = ["ppn", "korporasi", "pendapatan_nasional", "lingkungan", "lainnya"];
-    let totalTaxSat = 0;
-    domesticTaxes.forEach(key => {
-       const currentTax = (taxData as any)[key];
-       const baseTax = (country.pajak as any)[key];
-       totalTaxSat += currentTax?.kepuasan ?? baseTax?.kepuasan ?? 50;
-    });
-    const avgTaxSat = totalTaxSat / domesticTaxes.length;
-    const taxImpact = Number((avgTaxSat >= 50 
-      ? ((avgTaxSat - 50) / 50) * 5 
-      : ((avgTaxSat - 50) / 50) * 10).toFixed(1));
+    // Get Policy Impacts from modular logic
+    const { impact: priceImpact } = PenurunanLogic.calculatePriceImpact(country);
+    const { impact: taxImpact } = PenurunanLogic.calculateTaxImpact(country);
 
     return { priceImpact, taxImpact };
   },
@@ -197,44 +178,7 @@ export const happinessStorage = {
   },
 
   getInfraDetailedBreakdown: () => {
-    const sessionS = gameStorage.getSession() as any;
-    const countryNameS = sessionS?.country || "Indonesia";
-    const countryS = countries.find(c => 
-      c.name_id === countryNameS || 
-      c.name_en === countryNameS || 
-      (c as any).id === countryNameS ||
-      (c as any).id === Number(countryNameS)
-    ) || countries[0];
-
-    const deltas = buildingStorage.getData().buildingDeltas || {};
-    
-    const breakdown = {
-      darat: { label: "Infrastruktur Darat & Logistik", value: 0, items: ["1_jalur_sepeda", "2_jalan_tol", "3_terminal_bus"] },
-      kereta: { label: "Sistem Perkeretaapian Nasional", value: 0, items: ["4_jalur_kereta", "5_kereta_bawah_tanah"] },
-      maritim_udara: { label: "Hub Maritim & Dirgantara", value: 0, items: ["6_pelabuhan_laut", "7_bandara", "8_helipad"] }
-    };
-
-    const factors: Record<string, { factor: number, baseKey: string }> = {
-      "1_jalur_sepeda": { factor: 0.0005, baseKey: "jalur_sepeda" },
-      "2_jalan_tol": { factor: 0.0008, baseKey: "jalan_raya" },
-      "3_terminal_bus": { factor: 0.001, baseKey: "terminal_bus" },
-      "4_jalur_kereta": { factor: 0.0012, baseKey: "stasiun_kereta_api" },
-      "5_kereta_bawah_tanah": { factor: 0.0015, baseKey: "kereta_bawah_tanah" },
-      "6_pelabuhan_laut": { factor: 0.0018, baseKey: "pelabuhan" },
-      "7_bandara": { factor: 0.002, baseKey: "bandara" },
-      "8_helipad": { factor: 0.0005, baseKey: "helipad" }
-    };
-
-    Object.entries(breakdown).forEach(([sector, config]) => {
-      config.items.forEach(key => {
-        const factorConfig = factors[key];
-        const baseCount = (countryS.infrastruktur as any)?.[factorConfig.baseKey] || 0;
-        const deltaCount = (deltas[key] || 0) as number;
-        breakdown[sector as keyof typeof breakdown].value += (baseCount + deltaCount) * factorConfig.factor;
-      });
-    });
-
-    return breakdown;
+    return PeningkatanLogic.getInfrastructureBonus();
   }
 };
 

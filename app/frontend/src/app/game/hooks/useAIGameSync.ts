@@ -63,13 +63,15 @@ export function useAIGameSync() {
         }
       }
 
-      // 1. AI Diplomacy & Global Drift — Process DAILY for real-time dynamics
+      // 1. AI Diplomacy & Global Drift — Process MONTHLY on the 1st
       try {
-        // Trigger drift every day to ensure the world feels alive
-        console.log(`[useAIGameSync] Daily Diplomacy Drift triggered for ${dateStr}...`);
-        RelationEngine.processDailyUpdate(userCountry).catch(err => 
-          console.error("[useAIGameSync] Diplomacy Drift Error:", err)
-        );
+        const isFirstDayOfMonth = gameDate.getDate() === 1;
+        if (isFirstDayOfMonth) {
+          console.log(`[useAIGameSync] Monthly Diplomacy Drift triggered for ${dateStr}...`);
+          RelationEngine.processDailyUpdate(userCountry).catch(err => 
+            console.error("[useAIGameSync] Diplomacy Drift Error:", err)
+          );
+        }
       } catch (e) {
         console.warn("[useAIGameSync] Diplomacy Drift Trigger Error:", e);
       }

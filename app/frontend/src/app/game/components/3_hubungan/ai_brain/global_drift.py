@@ -15,25 +15,25 @@ def main():
 
         events = []
 
-        # Small daily drift for all NPC-to-NPC and NPC-to-User relations
+        # Monthly Drift for all NPC-to-NPC and NPC-to-User relations
         for source in list(matrix.keys()):
             for target in list(matrix.get(source, {}).keys()):
                 rel = matrix[source][target]
                 score = rel.get("s", 50)
 
-                # High Volatility Drift: -5.0 to +5.0 (for visible real-time changes)
-                drift = random.uniform(-5.0, 5.0)
+                # Monthly Volatility Drift
+                drift = random.uniform(-2.0, 2.0)
 
-                # Diplomatic bonus/penalty based on Embassy presence
+                # Diplomatic bonus/penalty based on Embassy presence (Monthly Scale)
                 if rel.get("e", 0) == 1:
-                    drift += 0.1  # Embassy provides small positive bias
+                    drift += 2.0  # Embassy provides positive bias
                 else:
-                    drift -= 0.1  # Lack of embassy causes slow diplomatic decay
+                    drift -= 2.0  # Lack of embassy causes diplomatic decay
 
                 if rel.get("p", 0) == 1:
-                    drift += 0.05  # Pact provides stability
+                    drift += 1.0  # Pact provides stability
                 if rel.get("a", 0) == 1:
-                    drift += 0.05  # Alliance provides stability
+                    drift += 1.0  # Alliance provides stability
 
                 new_score = max(0, min(100, score + drift))
                 matrix[source][target]["s"] = round(new_score, 4)

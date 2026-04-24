@@ -4,7 +4,7 @@ import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5
 import { aiHappinessStorage } from "@/app/game/components/modals/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
 import { aiPublicEventStorage } from "../antarmuka_data_acara/AIPublicEventStorage";
-import { DATA_ACARA, Acara } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/acara/acaraStorage";
+import { DATA_ACARA, Acara } from "@/app/game/components/1_navbar/1_kepuasan/acara/acaraStorage";
 import { formatGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
 export class EksekutorAcaraNasional {

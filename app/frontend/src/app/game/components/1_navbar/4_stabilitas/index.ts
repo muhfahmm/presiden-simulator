@@ -145,7 +145,7 @@ export const stabilityStorage = {
 
     // 4. Efek Monarki: Risiko Revolusi jika Kepuasan Rendah
     if (currentIdeology === "Monarki") {
-      const { happinessStorage } = require("../../2_navigasi_menu/2_navigasi_bawah/1_kepuasan/happinessStorage");
+      const { happinessStorage } = require("@/app/game/components/1_navbar/1_kepuasan/happinessStorage");
       const happiness = happinessStorage.getStats().value;
       
       // Jika kepuasan < 40, ada penalti tambahan (Risiko Revolusi)

@@ -2,7 +2,7 @@
 
 import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { aiHappinessStorage } from "@/app/game/components/modals/1_info_strategis/6_Kepuasan/AIHappinessStorage";
-import { DATA_ACARA } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/acara/acaraStorage";
+import { DATA_ACARA } from "@/app/game/components/1_navbar/1_kepuasan/acara/acaraStorage";
 import { aiPublicEventStorage } from "../antarmuka_data_acara/AIPublicEventStorage";
 import { aiRootCauseStorage } from "../../../../modals/1_info_strategis/6_Kepuasan/socialDiagnosisStorage";
 import { EksekutorAcaraNasional } from "../sistem_tindakan_respon/EksekutorAcaraNasional";
