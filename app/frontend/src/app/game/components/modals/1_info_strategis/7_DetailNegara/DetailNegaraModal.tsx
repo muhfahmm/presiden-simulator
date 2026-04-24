@@ -58,6 +58,10 @@ interface DetailNegaraModalProps {
   setActiveMenu: (menu: string) => void;
 }
 
+import { RelationPersistence } from "@/app/game/components/3_hubungan/RelationPersistence";
+import { getRelationScore, getNormalizedUser } from "@/app/game/components/3_hubungan/RelationMatrix";
+import { RELATION_EVENTS } from "@/app/game/components/3_hubungan/RelationEvents";
+
 export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUser, activeSector, activeCard, setActiveMenu }: DetailNegaraModalProps) {
   const currentSector = activeSector || "produksi";
   const [refreshKey, setRefreshKey] = useState(0);
@@ -68,7 +72,6 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
     if (info) {
       setSelectedBuildingInfo(info);
     } else {
-      // Fallback for types not in registry yet
       setSelectedBuildingInfo({
         id: key,
         label: customLabel || key.replace(/_/g, ' '),
@@ -93,8 +96,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
 
   // Real-time Relationship Tracking
   const [relationScore, setRelationScore] = useState(50);
-  const { getRelationScore, calculateFinalScore, getRelationMetadata } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage").relationStorage;
-  const normalizedUser = typeof window !== 'undefined' ? (require("@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler").getNormalizedUser()) : "indonesia";
+  const normalizedUser = typeof window !== 'undefined' ? getNormalizedUser() : "indonesia";
 
   // Reactivity: Refresh when construction state changes
   useEffect(() => {
@@ -125,7 +127,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
     const updateRelation = () => {
       if (!isUser && countryEntryRaw) {
         const targetId = countryEntryRaw.name_id.toLowerCase().trim();
-        const userRelations = (require("@/app/database/data/database_hubungan_antar_negara").allRelations)[normalizedUser];
+        const { allRelations } = require("@/app/database/data/database_hubungan_antar_negara");
+        const userRelations = allRelations[normalizedUser];
         const relData = Array.isArray(userRelations) ? userRelations.find((r: any) => r.name?.toLowerCase().trim() === targetId) : null;
         const initialBase = relData?.relation ?? 50;
         setRelationScore(getRelationScore(targetId, initialBase, normalizedUser));
@@ -133,16 +136,16 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
     };
     
     updateRelation();
-    window.addEventListener('relation_storage_updated', updateRelation);
-    window.addEventListener('relation_status_updated', updateRelation);
+    window.addEventListener(RELATION_EVENTS.MATRIX_UPDATED, updateRelation);
+    window.addEventListener(RELATION_EVENTS.STATUS_UPDATED, updateRelation);
     
     return () => {
       window.removeEventListener('building_storage_updated', handleUpdate);
       window.removeEventListener('ai_building_updated', handleUpdate);
       window.removeEventListener('population_updated', handlePopUpdate);
       window.removeEventListener('ai_population_updated', handleAiPopUpdate);
-      window.removeEventListener('relation_storage_updated', updateRelation);
-      window.removeEventListener('relation_status_updated', updateRelation);
+      window.removeEventListener(RELATION_EVENTS.MATRIX_UPDATED, updateRelation);
+      window.removeEventListener(RELATION_EVENTS.STATUS_UPDATED, updateRelation);
     };
   }, [isUser, targetCountry, countryEntryRaw?.name_en, basePop, normalizedUser]);
 
@@ -280,8 +283,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                   {!isUser && (
                     <div className="flex items-center gap-2 px-3 py-1 bg-zinc-800/50 rounded-full border border-zinc-700/50">
                       <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
-                      <span className={`text-[10px] not-italic normal-case font-black tracking-widest ${getRelationMetadata(calculateFinalScore(relationScore, false)).color}`}>
-                        HUBUNGAN: {calculateFinalScore(relationScore, false).toFixed(1)} ({getRelationMetadata(calculateFinalScore(relationScore, false)).labelFull})
+                      <span className={`text-[10px] not-italic normal-case font-black tracking-widest ${RelationPersistence.getRelationMetadata(RelationPersistence.calculateFinalScore(relationScore, false)).color}`}>
+                        HUBUNGAN: {RelationPersistence.calculateFinalScore(relationScore, false).toFixed(1)} ({RelationPersistence.getRelationMetadata(RelationPersistence.calculateFinalScore(relationScore, false)).labelFull})
                       </span>
                     </div>
                   )}

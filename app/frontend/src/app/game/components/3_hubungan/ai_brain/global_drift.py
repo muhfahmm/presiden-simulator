@@ -24,9 +24,12 @@ def main():
                 # High Volatility Drift: -5.0 to +5.0 (for visible real-time changes)
                 drift = random.uniform(-5.0, 5.0)
 
-                # Diplomatic bonus: embassies stabilize relationships
+                # Diplomatic bonus/penalty based on Embassy presence
                 if rel.get("e", 0) == 1:
                     drift += 0.1  # Embassy provides small positive bias
+                else:
+                    drift -= 0.1  # Lack of embassy causes slow diplomatic decay
+
                 if rel.get("p", 0) == 1:
                     drift += 0.05  # Pact provides stability
                 if rel.get("a", 0) == 1:

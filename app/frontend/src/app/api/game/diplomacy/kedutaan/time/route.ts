@@ -15,8 +15,7 @@ export async function POST(req: NextRequest) {
     // Path to Python script
     const scriptPath = path.join(
       process.cwd(), 
-      'src', 'app', 'game', 'components', 'map-system', 'modals_detail_negara', 
-      '2_diplomasi_hubungan', '1_kedutaan', 'logic', 'time_logic.py'
+      'src', 'app', 'game', 'components', '3_hubungan', 'ai_brain', 'kedutaan', 'time_logic.py'
     );
 
     // Call Python script: python time_logic.py <user_region> <target_region> <user_continent> <target_continent>

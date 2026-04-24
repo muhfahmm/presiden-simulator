@@ -12,8 +12,7 @@ export async function POST(req: NextRequest) {
     // Path to Python script
     const scriptPath = path.join(
       process.cwd(), 
-      'src', 'app', 'game', 'components', 'map-system', 'modals_detail_negara', 
-      '2_diplomasi_hubungan', '1_kedutaan', 'logic', 'efek_penghancuran_kedubes.py'
+      'src', 'app', 'game', 'components', '3_hubungan', 'ai_brain', 'kedutaan', 'efek_penghancuran_kedubes.py'
     );
 
     // Call Python script: python efek_penghancuran_kedubes.py <current_score>

@@ -322,7 +322,7 @@ export default function KedutaanModal({
                   <span className="text-[10px] text-zinc-300 font-black uppercase tracking-[0.1em]">Analisis Penyesuaian</span>
                 </div>
                 <div className="divide-y divide-zinc-700/30">
-                  {priceData.adjustments.map((adj, i) => {
+                  {priceData.adjustments && priceData.adjustments.map((adj, i) => {
                     const isSame = adj.status === "Sama";
                     return (
                       <div key={i} className="flex items-center justify-between px-4 py-3.5 hover:bg-zinc-800/40 transition-colors">

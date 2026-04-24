@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
     const scriptPath = path.join(
       process.cwd(),
-      "src", "app", "game", "components", "map-system", "modals_detail_negara", "2_diplomasi_hubungan", "1_kedutaan", "logic", "check_syarat.py"
+      "src", "app", "game", "components", "3_hubungan", "ai_brain", "kedutaan", "check_syarat.py"
     );
 
     return new Promise<NextResponse>((resolve) => {

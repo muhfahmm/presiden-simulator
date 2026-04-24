@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useMemo, memo } from "react";
 import { Globe2, X, Search, ArrowUpDown, Users, Loader2 } from "lucide-react";
 import { countries as centersData, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
-import { relationStorage } from "../1_kedutaan/logic/relationStorage";
-import { relationDeltaStorage } from "./logic/relationDeltaStorage";
+import { RelationPersistence } from "@/app/game/components/3_hubungan/RelationPersistence";
+import { getRelationScore, getNormalizedUser } from "@/app/game/components/3_hubungan/RelationMatrix";
+import { RELATION_EVENTS } from "@/app/game/components/3_hubungan/RelationEvents";
+import { relationDeltaStorage } from "@/app/game/components/3_hubungan/RelationDelta";
 
 interface HubunganInternasionalProps {
   isOpen: boolean;
@@ -62,10 +64,10 @@ function HubunganInternasional({ isOpen, onClose, targetCountry }: HubunganInter
         setRefreshKey(prev => prev + 1);
       }, 500); 
     };
-    window.addEventListener('relation_storage_updated', handleUpdate);
+    window.addEventListener(RELATION_EVENTS.MATRIX_UPDATED, handleUpdate);
     window.addEventListener('relation_deltas_updated', handleUpdate);
     return () => {
-      window.removeEventListener('relation_storage_updated', handleUpdate);
+      window.removeEventListener(RELATION_EVENTS.MATRIX_UPDATED, handleUpdate);
       window.removeEventListener('relation_deltas_updated', handleUpdate);
       clearTimeout(timeout);
     };
@@ -102,9 +104,9 @@ function HubunganInternasional({ isOpen, onClose, targetCountry }: HubunganInter
     return dynamicRawRelations.map((r: { id: number; name: string; relation: number }) => {
       const countryId = r.name.toLowerCase().trim();
       const metaInfo = countryStaticMeta[countryId];
-      const dynamicScore = relationStorage.getRelationScore(countryId, r.relation, targetKey);
+      const dynamicScore = getRelationScore(countryId, r.relation, targetKey);
       const delta = relationDeltaStorage.getDelta(countryId);
-      const meta = relationStorage.getRelationMetadata(dynamicScore);
+      const meta = RelationPersistence.getRelationMetadata(dynamicScore);
       return {
         ...r,
         relation: dynamicScore,

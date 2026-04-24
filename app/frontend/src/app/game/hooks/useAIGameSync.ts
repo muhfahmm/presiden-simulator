@@ -10,7 +10,7 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import { EksekutorPertahananAI } from "../components/AI_logic/6_AI_pertahanan/sistem_tindakan_respon/EksekutorPertahananAI";
 import { EksekutorPembangunanAI } from "../components/AI_logic/5_AI_Pembangunan/sistem_tindakan_respon/EksekutorPembangunanAI";
 import { PusatKeputusanPertahanan } from "../components/AI_logic/6_AI_pertahanan/pusat_keputusan_pertahanan/PusatKeputusanPertahanan";
-import { processGlobalAiRelations } from "../logic/ai/ai_diplomacy_engine/AiGlobalDiplomacy";
+import { RelationEngine } from '../components/3_hubungan/RelationEngine';
 
 /**
  * useAIGameSync — Orchestrator untuk sinkronisasi stats AI dengan game time.
@@ -67,7 +67,7 @@ export function useAIGameSync() {
       try {
         // Trigger drift every day to ensure the world feels alive
         console.log(`[useAIGameSync] Daily Diplomacy Drift triggered for ${dateStr}...`);
-        processGlobalAiRelations().catch(err => 
+        RelationEngine.processDailyUpdate(userCountry).catch(err => 
           console.error("[useAIGameSync] Diplomacy Drift Error:", err)
         );
       } catch (e) {

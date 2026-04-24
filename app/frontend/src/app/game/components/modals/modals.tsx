@@ -41,9 +41,11 @@ import TanamkanIdeologiModal from "./4_bantuan_dan_kerjasama/6_tanamkan_ideologi
 import { tradeStorage } from "./2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
 import DetailNegaraModal from "./1_info_strategis/7_DetailNegara/DetailNegaraModal";
 
+import { RelationPersistence } from "@/app/game/components/3_hubungan/RelationPersistence";
+import { getRelationScore, normalizeId } from "@/app/game/components/3_hubungan/RelationMatrix";
+import { RELATION_EVENTS } from "@/app/game/components/3_hubungan/RelationEvents";
 import { COUNTRY_REGIONS, getRegion } from "./2_diplomasi_hubungan/1_kedutaan/logic/regions";
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
-import { relationStorage } from "./2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 import { countries as centersData, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
@@ -169,7 +171,7 @@ export default function StrategyModal({
 
   const userEntry = centersData.find(c => c.name_id === userCountry || c.name_en === userCountry);
   const userId = userEntry ? userEntry.name_id.toLowerCase().trim() : userCountry.toLowerCase().trim();
-  const targetId = relationStorage.normalizeTargetId(targetCountry || "", centersData);
+  const targetId = normalizeId(targetCountry || "");
   const countryEntry = centersData.find(c => c.name_id.toLowerCase().trim() === targetId);
 
   // Debugging target normalization
@@ -185,13 +187,13 @@ export default function StrategyModal({
   // 1. Tick for Global Real-time Updates
   useEffect(() => {
     const handleUpdate = () => setTick(t => t + 1);
-    window.addEventListener("relation_storage_updated", handleUpdate);
-    window.addEventListener("relation_status_updated", handleUpdate);
+    window.addEventListener(RELATION_EVENTS.MATRIX_UPDATED, handleUpdate);
+    window.addEventListener(RELATION_EVENTS.STATUS_UPDATED, handleUpdate);
     window.addEventListener("ai_building_updated", handleUpdate);
     window.addEventListener("building_storage_updated", handleUpdate);
     return () => {
-      window.removeEventListener("relation_storage_updated", handleUpdate);
-      window.removeEventListener("relation_status_updated", handleUpdate);
+      window.removeEventListener(RELATION_EVENTS.MATRIX_UPDATED, handleUpdate);
+      window.removeEventListener(RELATION_EVENTS.STATUS_UPDATED, handleUpdate);
       window.removeEventListener("ai_building_updated", handleUpdate);
       window.removeEventListener("building_storage_updated", handleUpdate);
     };
@@ -259,7 +261,7 @@ export default function StrategyModal({
         popTotal,
         popDelta
       });
-      setRelationScore(relationStorage.getRelationScore(targetK, initialBase, userId));
+      setRelationScore(getRelationScore(targetK, initialBase, userId));
     };
 
     updateStats();
@@ -286,8 +288,8 @@ export default function StrategyModal({
   }, [isOpen, targetId, userId, countryEntry, tick]);
 
   const isUNSCMember = unSecurityCouncilStorage.getData()?.members?.some(m => m.name === userCountry);
-  const finalScore = relationStorage.calculateFinalScore(relationScore, !!isUNSCMember);
-  const metadata = relationStorage.getRelationMetadata(finalScore);
+  const finalScore = RelationPersistence.calculateFinalScore(relationScore, !!isUNSCMember);
+  const metadata = RelationPersistence.getRelationMetadata(finalScore);
   const relationLabel = metadata.labelFull;
   const relationColor = metadata.color;
 
