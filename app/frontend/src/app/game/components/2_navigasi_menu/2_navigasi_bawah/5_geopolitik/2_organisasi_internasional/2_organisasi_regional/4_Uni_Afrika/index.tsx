@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Activity, Award, Briefcase, Coins, Globe, Info, Landmark, MapPin, Scale, Shield, TrendingUp, Users, Zap } from 'lucide-react';
+import RegionalJoinOrgButton from "../logic/RegionalJoinOrgButton";
 
 interface AUProps {
   currentCash: number;
@@ -67,9 +68,11 @@ export default function UniAfrika({ currentCash, currentDate, onUpdate }: AUProp
             Bergabung dengan aliansi ini untuk memperkuat posisi geopolitik dan ekonomi nasional di kancah internasional.
           </p>
         </div>
-        <button className="px-12 py-4 bg-purple-600 hover:bg-purple-500 text-white font-black uppercase text-[11px] tracking-[0.2em] rounded-full transition-all shadow-[0_10px_30px_-5px_rgba(147,51,234,0.4)] active:scale-95 cursor-pointer">
-          Kirim Permohonan
-        </button>
+        <RegionalJoinOrgButton 
+          orgId="uni_afrika" 
+          orgName="Uni Afrika" 
+          membershipFee={400000000} 
+        />
       </div>
     </div>
   );
