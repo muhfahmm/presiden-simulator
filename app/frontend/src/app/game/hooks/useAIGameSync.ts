@@ -10,6 +10,7 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import { EksekutorPertahananAI } from "../components/AI_logic/6_AI_pertahanan/sistem_tindakan_respon/EksekutorPertahananAI";
 import { EksekutorPembangunanAI } from "../components/AI_logic/5_AI_Pembangunan/sistem_tindakan_respon/EksekutorPembangunanAI";
 import { PusatKeputusanPertahanan } from "../components/AI_logic/6_AI_pertahanan/pusat_keputusan_pertahanan/PusatKeputusanPertahanan";
+import { processGlobalAiRelations } from "../logic/ai/ai_diplomacy_engine/AiGlobalDiplomacy";
 
 /**
  * useAIGameSync — Orchestrator untuk sinkronisasi stats AI dengan game time.
@@ -62,30 +63,41 @@ export function useAIGameSync() {
         }
       }
 
+      // 1. AI Diplomacy & Global Drift — Process DAILY for real-time dynamics
+      try {
+        // Trigger drift every day to ensure the world feels alive
+        console.log(`[useAIGameSync] Daily Diplomacy Drift triggered for ${dateStr}...`);
+        processGlobalAiRelations().catch(err => 
+          console.error("[useAIGameSync] Diplomacy Drift Error:", err)
+        );
+      } catch (e) {
+        console.warn("[useAIGameSync] Diplomacy Drift Trigger Error:", e);
+      }
+
       if (isFreshSession) {
         // Still skip local AI calculations for now to preserve server authority
         return;
       }
 
-      // 1. Update AI Budget (Kas Negara) — adds daily income for all 206 NPC nations
+      // 2. Update AI Budget (Kas Negara) — adds daily income for all 206 NPC nations
       // SKIP these if backend sync already handled it, but keep as fallback if npcStates is missing
       if (!data.npcStates) {
         try {
           aiBudgetStorage.updateAll(gameDate, userCountry);
         } catch (e) { /* silent */ }
 
-        // 2. Update AI Population (Populasi) — grows population daily for all NPC nations
+        // 3. Update AI Population (Populasi) — grows population daily for all NPC nations
         try {
           aiPopulationStorage.updateAll(gameDate, userCountry);
         } catch (e) { /* silent */ }
       }
 
-      // 3. Update AI Happiness (Kepuasan) — small daily decay
+      // 4. Update AI Happiness (Kepuasan) — small daily decay
       try {
         aiHappinessStorage.dailyDecay(dateStr, userCountry);
       } catch (e) { /* silent */ }
 
-      // 4. AI Construction & Defense Completion
+      // 5. AI Construction & Defense Completion
       try {
         // A. Check for completed BUILDING projects (was missing — caused AI counts to never increment)
         EksekutorPembangunanAI.checkCompletion(gameDate);

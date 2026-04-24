@@ -21,8 +21,8 @@ def main():
                 rel = matrix[source][target]
                 score = rel.get("s", 50)
 
-                # Gentle random drift: -0.5 to +0.5
-                drift = random.uniform(-0.5, 0.5)
+                # High Volatility Drift: -5.0 to +5.0 (for visible real-time changes)
+                drift = random.uniform(-5.0, 5.0)
 
                 # Diplomatic bonus: embassies stabilize relationships
                 if rel.get("e", 0) == 1:

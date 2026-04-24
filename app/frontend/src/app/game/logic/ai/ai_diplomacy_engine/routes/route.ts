@@ -9,22 +9,31 @@ import path from "path";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { matrix, userCountry } = body;
+    const { matrix, userCountry, fullCycle } = body;
 
     if (!matrix) {
       return NextResponse.json({ error: "Missing relation matrix" }, { status: 400 });
     }
 
     const brainPath = path.join(process.cwd(), "src", "app", "game", "logic", "ai", "ai_diplomacy_engine", "brain");
-    const scripts = [
-        path.join(brainPath, "global_drift.py"),
-        path.join(brainPath, "active_actions", "improve_relations.py"),
-        path.join(brainPath, "npc_to_user", "tingkatkan_hubungan.py"), // Ganti nama dari grant_initiatives
-        path.join(brainPath, "npc_to_user", "1_pakta_non_agresi.py"),
-        path.join(brainPath, "npc_to_user", "2_aliansi_pertahanan.py"),
-        path.join(brainPath, "npc_to_user", "5_tawaran_kedutaan.py"),
-        path.join(brainPath, "npc_to_npc", "1_kedutaan_besar.py")
+    
+    // Base daily drift script
+    let scripts = [
+        path.join(brainPath, "global_drift.py")
     ];
+
+    // Heavy diplomatic actions (Embassies, Pacts, Initiatives) - only on fullCycle
+    if (fullCycle === true) {
+        scripts = [
+            ...scripts,
+            path.join(brainPath, "active_actions", "improve_relations.py"),
+            path.join(brainPath, "npc_to_user", "tingkatkan_hubungan.py"),
+            path.join(brainPath, "npc_to_user", "1_pakta_non_agresi.py"),
+            path.join(brainPath, "npc_to_user", "2_aliansi_pertahanan.py"),
+            path.join(brainPath, "npc_to_user", "5_tawaran_kedutaan.py"),
+            path.join(brainPath, "npc_to_npc", "1_kedutaan_besar.py")
+        ];
+    }
 
     const runScript = (scriptPath: string, inputData: any): Promise<any> => {
       return new Promise<any>((resolve) => {

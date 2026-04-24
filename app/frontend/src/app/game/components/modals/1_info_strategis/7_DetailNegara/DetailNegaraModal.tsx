@@ -91,6 +91,11 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
   const [population, setPopulation] = useState(initPop);
   const [highlitCard, setHighlitCard] = useState<string | null>(null);
 
+  // Real-time Relationship Tracking
+  const [relationScore, setRelationScore] = useState(50);
+  const { getRelationScore, calculateFinalScore, getRelationMetadata } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage").relationStorage;
+  const normalizedUser = typeof window !== 'undefined' ? (require("@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler").getNormalizedUser()) : "indonesia";
+
   // Reactivity: Refresh when construction state changes
   useEffect(() => {
     const handleUpdate = () => {
@@ -115,14 +120,31 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
     
     window.addEventListener('population_updated', handlePopUpdate);
     window.addEventListener('ai_population_updated', handleAiPopUpdate);
+
+    // Relationship listeners
+    const updateRelation = () => {
+      if (!isUser && countryEntryRaw) {
+        const targetId = countryEntryRaw.name_id.toLowerCase().trim();
+        const userRelations = (require("@/app/database/data/database_hubungan_antar_negara").allRelations)[normalizedUser];
+        const relData = Array.isArray(userRelations) ? userRelations.find((r: any) => r.name?.toLowerCase().trim() === targetId) : null;
+        const initialBase = relData?.relation ?? 50;
+        setRelationScore(getRelationScore(targetId, initialBase, normalizedUser));
+      }
+    };
+    
+    updateRelation();
+    window.addEventListener('relation_storage_updated', updateRelation);
+    window.addEventListener('relation_status_updated', updateRelation);
     
     return () => {
       window.removeEventListener('building_storage_updated', handleUpdate);
       window.removeEventListener('ai_building_updated', handleUpdate);
       window.removeEventListener('population_updated', handlePopUpdate);
       window.removeEventListener('ai_population_updated', handleAiPopUpdate);
+      window.removeEventListener('relation_storage_updated', updateRelation);
+      window.removeEventListener('relation_status_updated', updateRelation);
     };
-  }, [isUser, targetCountry, countryEntryRaw?.name_en, basePop]);
+  }, [isUser, targetCountry, countryEntryRaw?.name_en, basePop, normalizedUser]);
 
   // Handle Deep-link Scroll and Highlight
   useEffect(() => {
@@ -253,8 +275,16 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                 <Activity className="h-6 w-6 text-amber-500" />
               </div>
               <div>
-                <h2 className="text-2xl font-black text-white uppercase tracking-tight italic">
-                  Detail Lengkap: {targetCountry}
+                <h2 className="text-2xl font-black text-white uppercase tracking-tight italic flex items-center gap-4">
+                  <span>Detail Lengkap: {targetCountry}</span>
+                  {!isUser && (
+                    <div className="flex items-center gap-2 px-3 py-1 bg-zinc-800/50 rounded-full border border-zinc-700/50">
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+                      <span className={`text-[10px] not-italic normal-case font-black tracking-widest ${getRelationMetadata(calculateFinalScore(relationScore, false)).color}`}>
+                        HUBUNGAN: {calculateFinalScore(relationScore, false).toFixed(1)} ({getRelationMetadata(calculateFinalScore(relationScore, false)).labelFull})
+                      </span>
+                    </div>
+                  )}
                 </h2>
                 <div className="flex items-center gap-2 mt-0.5">
                   <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>

@@ -313,7 +313,7 @@ export default function StrategyModal({
                 {targetCountry}
               </h2>
               <p className="text-sm text-zinc-400">
-                Hubungan: <span className={`font-semibold ${relationColor}`}>{finalScore} ({relationLabel})</span>
+                Hubungan: <span className={`font-semibold ${relationColor}`}>{finalScore.toFixed(1)} ({relationLabel})</span>
               </p>
             </div>
           </div>

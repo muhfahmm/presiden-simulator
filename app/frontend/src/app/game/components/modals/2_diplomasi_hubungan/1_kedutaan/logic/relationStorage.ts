@@ -37,34 +37,33 @@ export const relationStorage = {
 
   updateRelationScore: (targetCountry: string, delta: number, currentBase: number, sourceCountry?: string) => {
     if (typeof window === "undefined") return;
-    const data = relationStorage.getRelationData();
-    const targetKey = targetCountry.toLowerCase().trim();
     
-    // Determine the source key (defaulting to current player session if possible)
-    let sourceKey = sourceCountry?.toLowerCase().trim();
+    // Determining the source key (defaulting to current player session if possible)
+    let sourceKey = sourceCountry;
     if (!sourceKey) {
       const sessionRaw = localStorage.getItem("game_session");
       if (sessionRaw) {
         try {
-          sourceKey = JSON.parse(sessionRaw).country?.toLowerCase().trim();
+          sourceKey = JSON.parse(sessionRaw).country;
         } catch(e) {}
       }
     }
     
-    const finalSourceKey = sourceKey || "player"; // Fallback to generic if still unknown
-    const compositeKey = `${finalSourceKey}:${targetKey}`;
-
-    const currentScore = relationStorage.getRelationScore(targetKey, currentBase, finalSourceKey);
+    const finalSourceKey = sourceKey || "player";
+    const currentScore = relationStorage.getRelationScore(targetCountry, currentBase, finalSourceKey);
     
-    // Calculate new score, potentially clamped between 0 and 100
+    // Calculate new score, clamped between 0 and 100
     const newScore = Math.max(0, Math.min(100, currentScore + delta));
     
-    // Deterioration Check (entered Red zone)
+    // Save in Matrix structure (Normalization is handled by updateMatrixScore)
+    updateMatrixScore(finalSourceKey, targetCountry, newScore);
+    
+    // Dispatch local alerts if needed (Red zone check)
     if (newScore <= 49 && currentScore > 49) {
       const meta = relationStorage.getRelationMetadata(newScore);
       window.dispatchEvent(new CustomEvent("relation_alert", {
         detail: {
-          countryId: targetKey,
+          countryId: targetCountry,
           newScore: newScore,
           status: meta.label,
           color: meta.hex,
@@ -72,14 +71,6 @@ export const relationStorage = {
         }
       }));
     }
-
-    // Save in Matrix structure (Consolidated)
-    updateMatrixScore(finalSourceKey, targetKey, newScore);
-    
-    // Dispatch event to notify UI components
-    window.dispatchEvent(new CustomEvent("relation_status_updated", { 
-      detail: { targetCountry: targetKey, sourceCountry: finalSourceKey, newScore } 
-    }));
   },
 
   updateAllRelationScores: (delta: number, playerCountry: string) => {
@@ -182,46 +173,12 @@ export const relationStorage = {
   },
 
   /**
-   * Menormalisasi nama negara menjadi ID yang konsisten untuk digunakan sebagai key di storage.
+   * Menormalisasi nama negara menjadi ID yang konsisten.
+   * DEPRECATED: Gunakan MatrixHandler.normalizeId sebagai gantinya.
    */
   normalizeTargetId: (name: string, centersData: any[]): string => {
-    if (!name) return "";
-    
-    const geoJsonToIndo: Record<string, string> = {
-      "The Bahamas": "bahama",
-      "Democratic Republic of the Congo": "republik demokratik kongo",
-      "Northern Cyprus": "siprus",
-      "Czech Republic": "ceko",
-      "Guinea Bissau": "guinea-bissau",
-      "Equatorial Guinea": "guinea",
-      "Macedonia": "makedonia utara",
-      "Republic of Serbia": "republik serbia",
-      "Swaziland": "eswatini",
-      "East Timor": "timor-leste",
-      "Turkey": "turki",
-      "United Republic of Tanzania": "republik tanzania",
-      "United States of America": "amerika serikat",
-      "United States": "amerika serikat",
-      "West Bank": "palestina",
-      "Falkland Islands": "argentina",
-      "Western Sahara": "maroko",
-      "Somaliland": "somalia",
-      "New Caledonia": "fiji",
-      "Solomon Islands": "marshall",
-      "United Kingdom": "inggris"
-    };
-
-    let normalized = name.trim();
-    if (geoJsonToIndo[normalized]) {
-      normalized = geoJsonToIndo[normalized];
-    }
-
-    const entry = centersData.find(c => 
-      c.name_en?.toLowerCase() === normalized.toLowerCase() || 
-      c.name_id?.toLowerCase() === normalized.toLowerCase()
-    );
-
-    return entry ? entry.name_id.toLowerCase().trim() : normalized.toLowerCase().trim();
+    const { normalizeId } = require("@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler");
+    return normalizeId(name);
   }
 };
 
@@ -239,11 +196,17 @@ if (typeof window !== 'undefined') {
     const storedDay = typeof window !== 'undefined' ? localStorage.getItem("em_last_sync_day") : "0";
     const dayCounter = storedDay ? Number(storedDay) : 0;
     
-    // CRITICAL: Overwrite instead of merge if it's a reset or the very beginning of the game (Day 0-2)
-    // This prevents "Memory Poisoning" where old 31.96 values are merged back into the fresh 75.0 state.
-    const isReset = e.detail.resetTriggered || (typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true") || dayCounter <= 2;
+    // CRITICAL: Overwrite ONLY if it's an explicit reset or a fresh session.
+    // Removed 'dayCounter <= 2' to prevent it from wiping out AI drift in early game.
+    const isReset = e.detail.resetTriggered || (typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true");
     
-    const mergedMatrix = isReset ? { ...serverMatrix } : { ...currentMatrix, ...serverMatrix };
+    // Deep merge to ensure AI data is preserved while server updates are integrated
+    const mergedMatrix = isReset ? { ...serverMatrix } : { ...currentMatrix };
+    if (!isReset) {
+      Object.keys(serverMatrix).forEach(source => {
+        mergedMatrix[source] = { ...mergedMatrix[source], ...serverMatrix[source] };
+      });
+    }
     saveGlobalRelationMatrix(mergedMatrix);
 
     // 2. Sync scores to relationStorage for UI compatibility

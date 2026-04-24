@@ -17,6 +17,77 @@ export interface RelationMatrix {
     };
 }
 
+/**
+ * Normalisasi ID Negara
+ * Mengonversi nama negara (Inggris/GeoJSON/Lokal) ke ID standar bahasa Indonesia.
+ */
+export const normalizeId = (name: string): string => {
+    if (!name) return "";
+    
+    const geoJsonToIndo: Record<string, string> = {
+        "The Bahamas": "bahama",
+        "Democratic Republic of the Congo": "republik demokratik kongo",
+        "Northern Cyprus": "siprus",
+        "Czech Republic": "ceko",
+        "Guinea Bissau": "guinea-bissau",
+        "Equatorial Guinea": "guinea",
+        "Macedonia": "makedonia utara",
+        "Republic of Serbia": "republik serbia",
+        "Swaziland": "eswatini",
+        "East Timor": "timor-leste",
+        "Turkey": "turki",
+        "United Republic of Tanzania": "republik tanzania",
+        "United States of America": "amerika serikat",
+        "United States": "amerika serikat",
+        "West Bank": "palestina",
+        "Falkland Islands": "argentina",
+        "Western Sahara": "maroko",
+        "Somaliland": "somalia",
+        "New Caledonia": "fiji",
+        "Solomon Islands": "marshall",
+        "United Kingdom": "inggris"
+    };
+
+    let normalized = name.trim();
+    if (geoJsonToIndo[normalized]) {
+        normalized = geoJsonToIndo[normalized];
+    }
+
+    const cleanName = normalized.toLowerCase().trim();
+    const found = centersData.find(c => 
+        c.name_id.toLowerCase().trim() === cleanName ||
+        c.name_en.toLowerCase().trim() === cleanName
+    );
+    return found ? found.name_id.toLowerCase().trim() : cleanName;
+};
+
+/**
+ * Mendapatkan ID User yang sedang login
+ */
+export const getNormalizedUser = (): string => {
+    if (typeof window === 'undefined') return "indonesia";
+
+    // Try multiple sources for user country identification
+    const sessionRaw = localStorage.getItem("game_session");
+    const selectedCountry = localStorage.getItem("selectedCountry");
+    const selectedCountryAlt = localStorage.getItem("selected_country");
+    
+    let userCountry = "Indonesia";
+    
+    if (sessionRaw) {
+        try {
+            const session = JSON.parse(sessionRaw);
+            userCountry = session.country || userCountry;
+        } catch(e) {}
+    } else if (selectedCountry) {
+        userCountry = selectedCountry;
+    } else if (selectedCountryAlt) {
+        userCountry = selectedCountryAlt;
+    }
+
+    return normalizeId(userCountry);
+};
+
 let inMemoryMatrix: RelationMatrix | null = null;
 
 export const getGlobalRelationMatrix = (): RelationMatrix => {
@@ -39,18 +110,23 @@ export const getGlobalRelationMatrix = (): RelationMatrix => {
 export const getRelationScore = (targetCountryId: string, baseScore: number, sourceCountryId?: string): number => {
     if (typeof window === 'undefined') return baseScore;
     
-    // CRITICAL RESET GUARD
-    const isFreshSession = localStorage.getItem("em_fresh_session") === "true";
-    if (isFreshSession) return baseScore;
-
-    const sourceKey = sourceCountryId?.toLowerCase().trim() || "player";
-    const targetKey = targetCountryId.toLowerCase().trim();
+    const normalizedUser = getNormalizedUser();
+    // If source is "player" or missing, use the identified user country
+    const rawSource = (!sourceCountryId || sourceCountryId === "player") ? normalizedUser : sourceCountryId;
+    
+    const sourceKey = normalizeId(rawSource);
+    const targetKey = normalizeId(targetCountryId);
 
     const matrix = getGlobalRelationMatrix();
     if (matrix[sourceKey] && matrix[sourceKey][targetKey]) {
         return matrix[sourceKey][targetKey].s;
     }
     
+    // Fallback: Check if we have the inverse relation (symmetric fallback if primary missing)
+    if (matrix[targetKey] && matrix[targetKey][sourceKey]) {
+        return matrix[targetKey][sourceKey].s;
+    }
+
     return baseScore;
 };
 
@@ -64,18 +140,6 @@ export const hardClearMatrix = () => {
     console.log("[AI-MATRIX] ☢ Nuclear wipe of in-memory and storage matrix data complete.");
 };
 
-/**
- * Normalisasi ID Negara
- */
-export const normalizeId = (name: string): string => {
-    if (!name) return "";
-    const cleanName = name.toLowerCase().trim();
-    const found = centersData.find(c => 
-        c.name_id.toLowerCase().trim() === cleanName ||
-        c.name_en.toLowerCase().trim() === cleanName
-    );
-    return found ? found.name_id.toLowerCase().trim() : cleanName;
-};
 
 /**
  * Cek apakah sebuah relationship adalah "Netral Default"
@@ -85,20 +149,6 @@ const isDefaultNeutral = (entry: RelationEntry): boolean => {
     return entry.s === 50 && entry.e === 0 && entry.p === 0 && entry.a === 0 && entry.t === 0;
 };
 
-/**
- * Mendapatkan ID User yang sedang login
- */
-export const getNormalizedUser = (): string => {
-    const sessionRaw = localStorage.getItem("game_session");
-    let userCountry = "Indonesia";
-    try {
-        if(sessionRaw) {
-            const session = JSON.parse(sessionRaw);
-            userCountry = session.country || userCountry;
-        }
-    } catch(e) {}
-    return normalizeId(userCountry);
-};
 
 // Lazy import for database to avoid circular issues during init
 let allRelations: any = null;
@@ -116,16 +166,19 @@ export const initializeMatrixData = async () => {
     const gameDate = storedDate ? new Date(Number(storedDate)) : new Date(2026, 0, 1);
     const isFirstDay = gameDate.getFullYear() === 2026 && gameDate.getMonth() === 0 && gameDate.getDate() === 1;
 
-    const existing = localStorage.getItem(RELATION_MATRIX_KEY);
+    const existingRaw = localStorage.getItem(RELATION_MATRIX_KEY);
     const normalizedUser = getNormalizedUser();
 
-    if (!existing || existing === "{}" || isFirstDay) {
-        console.log("[AI-MATRIX] Initializing Database Sync...");
-        const matrix: RelationMatrix = {};
+    // Merge check: Run if matrix is empty, it's Day 1, or a fresh session flag is set.
+    const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true";
+
+    if (!existingRaw || existingRaw === "{}" || isFirstDay || isFreshSession) { 
+        console.log("[AI-MATRIX] Synchronizing Matrix with Database...");
+        const matrix: RelationMatrix = existingRaw ? JSON.parse(existingRaw) : {};
         const database = await getAllRelations();
         
-        // --- ADDED: DATABASE TRADE SYNC ---
-        const userCountryRaw = localStorage.getItem('selected_country') || "Indonesia";
+        // --- DATABASE TRADE SYNC ---
+        const userCountryRaw = localStorage.getItem('selectedCountry') || localStorage.getItem('selected_country') || "Indonesia";
         const userCountryData = centersData.find((c: any) => 
             c.name_id === userCountryRaw || 
             c.name_en === userCountryRaw || 
@@ -141,54 +194,6 @@ export const initializeMatrixData = async () => {
                 .map(a => normalizeId(a.mitra))
         );
         
-        // --- EMERGENCY MIGRATION: FINAL AUTO-ACTIVATION (v4) ---
-        const MIGRATION_VERSION = "em_matrix_v5_final_sync"; 
-        if (existing && existing !== "{}" && localStorage.getItem(MIGRATION_VERSION) !== "true") {
-            try {
-                const existingMatrix: RelationMatrix = JSON.parse(existing);
-                let migrationChanged = false;
-                
-                // Specific Blacklist for countries user mentioned as "annoying" ghosts
-                const manualBlacklist = new Set(["belarus", "republik_afrika_tengah", "maldives", "turkmenistan", "lebanon", "panama", "tanjung_verde"]);
-
-                Object.keys(existingMatrix).forEach(srcId => {
-                    Object.keys(existingMatrix[srcId]).forEach(trgId => {
-                        const entry = existingMatrix[srcId][trgId];
-                        const involvesUser = srcId === normalizedUser || trgId === normalizedUser;
-                        
-                        if (involvesUser) {
-                            const partnerId = srcId === normalizedUser ? trgId : srcId;
-                            const isOfficial = activeTradePartners.has(partnerId);
-                            const isBlacklisted = manualBlacklist.has(partnerId);
-                            
-                            // 1. Force Activate Official Partners
-                            if (isOfficial && entry.t === 0) {
-                                console.log(`[AI-MATRIX] Force activating official partner: ${partnerId}`);
-                                entry.t = 1;
-                                migrationChanged = true;
-                            }
-                            
-                            // 2. Force Deactivate Ghost/Blacklisted Partners
-                            if ((!isOfficial || isBlacklisted) && entry.t === 1) {
-                                console.log(`[AI-MATRIX] Wiping ghost trade partner: ${partnerId}`);
-                                entry.t = 0; 
-                                migrationChanged = true;
-                            }
-                        }
-                    });
-                });
-
-                if (migrationChanged) {
-                    console.log("[AI-MATRIX] 🚨 Emergency Migration v4: Matrix synchronized with official database.");
-                    saveGlobalRelationMatrix(existingMatrix);
-                    const freshData = localStorage.getItem(RELATION_MATRIX_KEY);
-                    if (freshData) inMemoryMatrix = JSON.parse(freshData);
-                }
-                localStorage.setItem(MIGRATION_VERSION, "true");
-            } catch (e) {
-                console.error("Migration failed", e);
-            }
-        }
         // -------------------------------------------------------
 
         Object.keys(database).forEach(rawSourceId => {
@@ -200,39 +205,41 @@ export const initializeMatrixData = async () => {
                 
                 relations.forEach((rel: any) => {
                     const targetId = normalizeId(rel.name);
-                    let score = rel.relation !== undefined ? rel.relation : 50;
                     
-                    if (targetId === normalizedUser && !isFirstDay) {
-                        score = getRelationScore(normalizedUser, score, sourceId);
-                    }
-                    
-                    if (sourceId === normalizedUser && !isFirstDay) {
-                        score = getRelationScore(targetId, score, normalizedUser);
-                    }
-                    
-                    // --- REFINED: SYNC TRADE STATUS WITH DATABASE ---
-                    const isDefaultPartner = 
-                        (sourceId === normalizedUser && activeTradePartners.has(targetId)) ||
-                        (targetId === normalizedUser && activeTradePartners.has(sourceId));
+                    // Only set if not already in matrix (prevent overwriting dynamic scores)
+                    if (matrix[sourceId][targetId] === undefined) {
+                        let score = rel.relation !== undefined ? rel.relation : 50;
+                        
+                        // --- REFINED: SYNC TRADE STATUS WITH DATABASE ---
+                        const isDefaultPartner = 
+                            (sourceId === normalizedUser && activeTradePartners.has(targetId)) ||
+                            (targetId === normalizedUser && activeTradePartners.has(sourceId));
 
-                    const entry: RelationEntry = {
-                        s: score,
-                        e: score >= 60 ? 1 : 0,
-                        p: score >= 70 ? 1 : 0,
-                        a: score >= 85 ? 1 : 0,
-                        t: isDefaultPartner ? 1 : 0
-                    };
-                    // ------------------------------------------------
-
-                    const involvesUser = sourceId === normalizedUser || targetId === normalizedUser;
-                    if (!isDefaultNeutral(entry) || involvesUser) {
-                        matrix[sourceId][targetId] = entry;
+                        const entry: RelationEntry = {
+                            s: score,
+                            e: score >= 60 ? 1 : 0,
+                            p: score >= 70 ? 1 : 0,
+                            a: score >= 85 ? 1 : 0,
+                            t: isDefaultPartner ? 1 : 0
+                        };
+                        
+                        const involvesUser = sourceId === normalizedUser || targetId === normalizedUser;
+                        if (!isDefaultNeutral(entry) || involvesUser) {
+                            matrix[sourceId][targetId] = entry;
+                        }
                     }
                 });
             }
         });
 
         saveGlobalRelationMatrix(matrix);
+        
+        // CRITICAL: Clear the fresh session flag to prevent subsequent resets
+        if (typeof window !== 'undefined') {
+            localStorage.removeItem("em_fresh_session");
+        }
+        
+        console.log(`[AI-MATRIX] Sync Complete. User ID: ${normalizedUser}. Matrix entries: ${Object.keys(matrix).length}`);
     }
 };
 
@@ -244,13 +251,14 @@ export const saveGlobalRelationMatrix = (matrix: RelationMatrix) => {
         const prunedMatrix: RelationMatrix = {};
         const normalizedUser = getNormalizedUser();
         
-        Object.keys(matrix).forEach(sourceId => {
-            const targets = matrix[sourceId];
-            const prunedTargets: { [key: string]: RelationEntry } = {};
+        Object.keys(matrix).forEach(rawSourceId => {
+            const sourceId = normalizeId(rawSourceId);
+            const prunedTargets: Record<string, RelationEntry> = {};
             let hasContent = false;
 
-            Object.keys(targets).forEach(targetId => {
-                const entry = targets[targetId];
+            Object.keys(matrix[rawSourceId]).forEach(rawTargetId => {
+                const targetId = normalizeId(rawTargetId);
+                const entry = matrix[rawSourceId][rawTargetId];
                 
                 // ATURAN PENYIMPANAN (PRUNING):
                 // 1. Jika melibatkan USER (Source atau Target), WAJIB SIMPAN (Agar angka tidak stuck)
@@ -279,7 +287,11 @@ export const saveGlobalRelationMatrix = (matrix: RelationMatrix) => {
         try {
             const json = JSON.stringify(prunedMatrix);
             localStorage.setItem(RELATION_MATRIX_KEY, json);
-            // console.log(`[AI-MATRIX] Saved Sparse Matrix. Size: ${(json.length / 1024).toFixed(2)} KB`);
+            
+            // Broadcast event to trigger UI refresh across all components
+            window.dispatchEvent(new Event("relation_storage_updated"));
+            window.dispatchEvent(new Event("relation_status_updated"));
+            
         } catch (e) {
             console.error("Critical Quota Error in Matrix Storage, attempting emergency cleanup", e);
             // If we hit a quota error, proactively clean up the inbox to make space for next time
@@ -295,13 +307,16 @@ export const saveGlobalRelationMatrix = (matrix: RelationMatrix) => {
  * Pruning is automatically applied during save.
  */
 export const updateMatrixScore = (sourceId: string, targetId: string, score: number) => {
+    const sId = normalizeId(sourceId);
+    const tId = normalizeId(targetId);
+    
     const matrix = getGlobalRelationMatrix();
-    if (!matrix[sourceId]) matrix[sourceId] = {};
-    if (!matrix[sourceId][targetId]) {
-        matrix[sourceId][targetId] = { s: 50, e: 0, p: 0, a: 0, t: 0 };
+    if (!matrix[sId]) matrix[sId] = {};
+    if (!matrix[sId][tId]) {
+        matrix[sId][tId] = { s: 50, e: 0, p: 0, a: 0, t: 0 };
     }
     
-    matrix[sourceId][targetId].s = score;
+    matrix[sId][tId].s = score;
     saveGlobalRelationMatrix(matrix);
 };
 
@@ -310,18 +325,18 @@ export const updateMatrixScore = (sourceId: string, targetId: string, score: num
  * Optimized with a single save operation.
  */
 export const updateMatrixScoresBatch = (sourceId: string, updates: Record<string, number>) => {
+    const sId = normalizeId(sourceId);
     const matrix = getGlobalRelationMatrix();
-    if (!matrix[sourceId]) matrix[sourceId] = {};
+    if (!matrix[sId]) matrix[sId] = {};
     
     Object.keys(updates).forEach(targetId => {
+        const tId = normalizeId(targetId);
         const score = updates[targetId];
-        if (!matrix[sourceId][targetId]) {
-            matrix[sourceId][targetId] = { s: 50, e: 0, p: 0, a: 0, t: 0 };
+        if (!matrix[sId][tId]) {
+            matrix[sId][tId] = { s: 50, e: 0, p: 0, a: 0, t: 0 };
         }
-        matrix[sourceId][targetId].s = score;
+        matrix[sId][tId].s = score;
     });
     
     saveGlobalRelationMatrix(matrix);
 };
-
-

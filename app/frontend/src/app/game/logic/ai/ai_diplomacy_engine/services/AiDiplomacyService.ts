@@ -28,10 +28,15 @@ export const AiDiplomacyService = {
         const currentMatrix = getGlobalRelationMatrix();
         const normalizedUser = userCountry.toLowerCase().trim();
         
+        console.log(`[AI-DIPLOMACY] Requesting drift for ${userCountry}...`);
+        
         try {
             // Ambil data negara untuk mencocokkan mitra dagang
             const { collectCountriesData } = await import('@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/services/AiTradeService');
             const countriesData = collectCountriesData() || {};
+
+            const gameDate = new Date(timeStorage.getState().gameDate);
+            const isMonday = gameDate.getDay() === 1;
 
             const response = await fetch('/api/game/diplomacy/ai-global/drift', {
                 method: 'POST',
@@ -39,12 +44,15 @@ export const AiDiplomacyService = {
                 body: JSON.stringify({ 
                     matrix: currentMatrix,
                     userCountry: userCountry,
-                    countriesData: countriesData
+                    countriesData: countriesData,
+                    fullCycle: isMonday // Only run heavy scripts once a week
                 })
             });
 
             const data = await response.json();
             if (data.error) throw new Error(data.error);
+
+            console.log(`[AI-DIPLOMACY] Drift response received. Matrix entries: ${data.matrix ? Object.keys(data.matrix).length : 0}`);
 
             // CEK 2: Jika game di-pause saat sedang menunggu response dari Python, batalkan update UI
             if (timeStorage.getState().isPaused) {
@@ -119,7 +127,6 @@ export const AiDiplomacyService = {
             }
 
             // 2. Berikan Notifikasi Event Global
-            const gameDate = timeStorage.getState().gameDate;
             if (Array.isArray(data.events)) {
                 data.events.forEach((event: any) => {
                     const type = event.type || "";
