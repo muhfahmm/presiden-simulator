@@ -119,7 +119,12 @@ export function useGamePath(path: string[]) {
     else initialMenu = "Kepuasan";
   } else if (category === 'berita_internasional') {
     const filter = path[1] || "all";
-    initialMenu = `Menu:Berita:${filter}`;
+    const subFilter = path[2];
+    if (filter === 'organisasi' && subFilter) {
+      initialMenu = `Menu:Berita:${filter}:${subFilter}`;
+    } else {
+      initialMenu = `Menu:Berita:${filter}`;
+    }
   } else if (category === 'berita') {
     // Legacy redirect to new URL
     initialMenu = "Menu:Berita";
@@ -241,7 +246,9 @@ export function useGamePath(path: string[]) {
       "Menu:Berita:kedutaan": "/game/berita_internasional/kedutaan",
       "Menu:Berita:pakta": "/game/berita_internasional/pakta",
       "Menu:Berita:aliansi": "/game/berita_internasional/aliansi",
-      "Menu:Berita:organisasi": "/game/berita_internasional/organisasi",
+      "Menu:Berita:organisasi": "/game/berita_internasional/organisasi/pbb",
+      "Menu:Berita:organisasi:pbb": "/game/berita_internasional/organisasi/pbb",
+      "Menu:Berita:organisasi:regional": "/game/berita_internasional/organisasi/regional",
       "Menu:Inbox": "/game/inbox/semua",
       "Menu:Inbox:all": "/game/inbox/semua",
       "Menu:Inbox:finance": "/game/inbox/keuangan",

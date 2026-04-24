@@ -46,7 +46,9 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
   const [searchTerm, setSearchTerm] = useState('');
   
   // Derive filter from URL/activeMenu state
-  const filter = activeMenu.startsWith("Menu:Berita:") ? activeMenu.split(":")[2] : "all";
+  const parts = activeMenu.split(":");
+  const filter = activeMenu.startsWith("Menu:Berita:") ? parts[2] : "all";
+  const subFilter = activeMenu.startsWith("Menu:Berita:") ? parts[3] : null;
 
   useEffect(() => {
     if (isOpen) {
@@ -115,7 +117,7 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
         case 'kedutaan': return <EmbassyList {...commonProps} />;
         case 'pakta': return <PactList {...commonProps} />;
         case 'aliansi': return <AllianceList {...commonProps} />;
-        case 'organisasi': return <OrganisasiList {...commonProps} />;
+        case 'organisasi': return <OrganisasiList {...commonProps} subFilter={subFilter} />;
         default: return <AllList {...commonProps} />;
     }
   };
