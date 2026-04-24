@@ -28,7 +28,7 @@ export const unFAOStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = 1000000;
+    const cost = 250000;
     if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk integrasi FAO (1M).` };
 
     budgetStorage.updateBudget(-cost);
@@ -38,7 +38,7 @@ export const unFAOStorage = {
     inboxStorage.addMessage({
       source: "FAO HQ",
       subject: "🌾 Ketahanan Pangan Global",
-      content: `${capitalizedCountry} resmi bergabung dengan FAO. Biaya integrasi teknologi 1.000.000 telah dibayarkan. Manfaat aktif: Produksi pangan +20% & bantuan darurat saat bencana.`,
+      content: `${capitalizedCountry} resmi bergabung dengan FAO. Biaya integrasi teknologi 250.000 telah dibayarkan. Manfaat aktif: Produksi pangan +20% & bantuan darurat saat bencana.`,
       time: currentDate,
       priority: "high"
     });

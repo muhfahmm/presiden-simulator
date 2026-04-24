@@ -30,7 +30,7 @@ export const unIMFStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = Math.floor(currentCash * 0.01);
+    const cost = Math.floor(currentCash * 0.0025);
     // Even if cash is 0, we can join but it might be 0 cost (unlikely case)
     
     budgetStorage.updateBudget(-cost);
@@ -40,7 +40,7 @@ export const unIMFStorage = {
     inboxStorage.addMessage({
       source: "IMF Sekretariat",
       subject: "🏛️ Aktivasi Keanggotaan IMF",
-      content: `Selamat! ${capitalizedCountry} resmi menjadi anggota Dana Moneter Internasional. Kuota simpanan sebesar 1% kas telah disetorkan. Manfaat aktif: Akses pinjaman darurat saat kas kritis & reduksi inflasi 10%.`,
+      content: `Selamat! ${capitalizedCountry} resmi menjadi anggota Dana Moneter Internasional. Kuota simpanan sebesar 0.25% kas telah disetorkan. Manfaat aktif: Akses pinjaman darurat saat kas kritis & reduksi inflasi 10%.`,
       time: currentDate,
       priority: "high"
     });

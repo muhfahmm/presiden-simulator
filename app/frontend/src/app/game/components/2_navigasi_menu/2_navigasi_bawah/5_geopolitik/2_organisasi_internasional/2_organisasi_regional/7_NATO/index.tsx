@@ -71,7 +71,7 @@ export default function NATO({ currentCash, currentDate, onUpdate }: NATOProps) 
         <RegionalJoinOrgButton 
           orgId="nato" 
           orgName="NATO" 
-          membershipFee={1500000000} 
+          membershipFee={375000000} 
         />
       </div>
     </div>

@@ -28,7 +28,7 @@ export const unICAOStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = 2000000;
+    const cost = 500000;
     if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk standarisasi ICAO (2M).` };
 
     budgetStorage.updateBudget(-cost);
@@ -38,7 +38,7 @@ export const unICAOStorage = {
     inboxStorage.addMessage({
       source: "ICAO Sekretariat",
       subject: "✈️ Navigasi Udara Internasional",
-      content: `${capitalizedCountry} resmi bergabung dengan ICAO. Biaya standarisasi 2.000.000 telah dibayarkan. Manfaat aktif: Efisiensi jalur udara & pendapatan pajak bandara +10%.`,
+      content: `${capitalizedCountry} resmi bergabung dengan ICAO. Biaya standarisasi 500.000 telah dibayarkan. Manfaat aktif: Efisiensi jalur udara & pendapatan pajak bandara +10%.`,
       time: currentDate,
       priority: "high"
     });

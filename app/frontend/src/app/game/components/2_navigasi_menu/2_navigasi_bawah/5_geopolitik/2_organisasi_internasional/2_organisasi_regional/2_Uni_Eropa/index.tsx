@@ -71,7 +71,7 @@ export default function UniEropa({ currentCash, currentDate, onUpdate }: EUProps
         <RegionalJoinOrgButton 
           orgId="uni_eropa" 
           orgName="Uni Eropa" 
-          membershipFee={1000000000} 
+          membershipFee={250000000} 
         />
       </div>
     </div>

@@ -71,7 +71,7 @@ export default function LigaArab({ currentCash, currentDate, onUpdate }: ARAB_LE
         <RegionalJoinOrgButton 
           orgId="liga_arab" 
           orgName="Liga Arab" 
-          membershipFee={600000000} 
+          membershipFee={150000000} 
         />
       </div>
     </div>

@@ -28,7 +28,7 @@ export const unWMOStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = 600000;
+    const cost = 150000;
     if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk akses satelit WMO (600K).` };
 
     budgetStorage.updateBudget(-cost);
@@ -38,7 +38,7 @@ export const unWMOStorage = {
     inboxStorage.addMessage({
       source: "WMO HQ",
       subject: "🌤️ Deteksi Dini & Mitigasi Iklim",
-      content: `${capitalizedCountry} resmi bergabung dengan WMO. Biaya akses satelit 600.000 telah dibayarkan. Manfaat aktif: Peringatan dini bencana & mitigasi kerusakan hingga 50%.`,
+      content: `${capitalizedCountry} resmi bergabung dengan WMO. Biaya akses satelit 150.000 telah dibayarkan. Manfaat aktif: Peringatan dini bencana & mitigasi kerusakan hingga 50%.`,
       time: currentDate,
       priority: "high"
     });

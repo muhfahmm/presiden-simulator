@@ -71,7 +71,7 @@ export default function UniAfrika({ currentCash, currentDate, onUpdate }: AUProp
         <RegionalJoinOrgButton 
           orgId="uni_afrika" 
           orgName="Uni Afrika" 
-          membershipFee={400000000} 
+          membershipFee={100000000} 
         />
       </div>
     </div>

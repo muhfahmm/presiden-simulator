@@ -28,7 +28,7 @@ export const unUNESCOStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = 800000;
+    const cost = 200000;
     if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk biaya sertifikasi UNESCO (800K).` };
 
     budgetStorage.updateBudget(-cost);
@@ -38,7 +38,7 @@ export const unUNESCOStorage = {
     inboxStorage.addMessage({
       source: "UNESCO HQ",
       subject: "🏺 Pelestarian Budaya & Pariwisata",
-      content: `${capitalizedCountry} resmi bergabung dengan UNESCO. Biaya sertifikasi 800.000 telah dibayarkan. Manfaat aktif: Pariwisata naik 25% & peningkatan Happiness Index warga.`,
+      content: `${capitalizedCountry} resmi bergabung dengan UNESCO. Biaya sertifikasi 200.000 telah dibayarkan. Manfaat aktif: Pariwisata naik 25% & peningkatan Happiness Index warga.`,
       time: currentDate,
       priority: "high"
     });

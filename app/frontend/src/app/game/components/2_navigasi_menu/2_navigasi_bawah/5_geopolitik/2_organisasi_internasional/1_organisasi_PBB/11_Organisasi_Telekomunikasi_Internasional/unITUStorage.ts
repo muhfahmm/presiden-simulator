@@ -28,7 +28,7 @@ export const unITUStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = 1000000;
+    const cost = 250000;
     if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup for alokasi ITU (1M).` };
 
     budgetStorage.updateBudget(-cost);
@@ -38,7 +38,7 @@ export const unITUStorage = {
     inboxStorage.addMessage({
       source: "ITU Sekretariat",
       subject: "📡 Alokasi Spektrum & Cyber Defense",
-      content: `${capitalizedCountry} resmi bergabung dengan ITU. Biaya alokasi frekuensi 1.000.000 telah dibayarkan. Manfaat aktif: Cyber Defense +15% & percepatan riset komunikasi.`,
+      content: `${capitalizedCountry} resmi bergabung dengan ITU. Biaya alokasi frekuensi 250.000 telah dibayarkan. Manfaat aktif: Cyber Defense +15% & percepatan riset komunikasi.`,
       time: currentDate,
       priority: "high"
     });

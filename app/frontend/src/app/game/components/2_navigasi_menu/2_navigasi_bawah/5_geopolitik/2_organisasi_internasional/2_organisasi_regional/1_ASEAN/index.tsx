@@ -71,7 +71,7 @@ export default function ASEAN({ currentCash, currentDate, onUpdate }: ASEANProps
         <RegionalJoinOrgButton 
           orgId="asean" 
           orgName="ASEAN" 
-          membershipFee={500000000} 
+          membershipFee={125000000} 
         />
       </div>
     </div>

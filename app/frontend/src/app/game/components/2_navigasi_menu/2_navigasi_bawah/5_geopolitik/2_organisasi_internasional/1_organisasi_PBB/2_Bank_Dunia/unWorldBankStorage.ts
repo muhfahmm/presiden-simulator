@@ -28,8 +28,8 @@ export const unWorldBankStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = 10000000;
-    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk biaya masuk Bank Dunia (10M).` };
+    const cost = 2500000;
+    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk biaya masuk Bank Dunia (2.5M).` };
 
     budgetStorage.updateBudget(-cost);
     const newState = { isJoined: true, joinDate: currentDate };
@@ -38,7 +38,7 @@ export const unWorldBankStorage = {
     inboxStorage.addMessage({
       source: "World Bank",
       subject: "🏗️ Kerja Sama Pembangunan Aktif",
-      content: `${capitalizedCountry} resmi bergabung dengan Bank Dunia. Biaya keanggotaan flat sebesar 10.000.000 telah dibayarkan. Manfaat aktif: Biaya infrastruktur 20% lebih murah & percepatan ekonomi wilayah.`,
+      content: `${capitalizedCountry} resmi bergabung dengan Bank Dunia. Biaya keanggotaan flat sebesar 2.500.000 telah dibayarkan. Manfaat aktif: Biaya infrastruktur 20% lebih murah & percepatan ekonomi wilayah.`,
       time: currentDate,
       priority: "high"
     });

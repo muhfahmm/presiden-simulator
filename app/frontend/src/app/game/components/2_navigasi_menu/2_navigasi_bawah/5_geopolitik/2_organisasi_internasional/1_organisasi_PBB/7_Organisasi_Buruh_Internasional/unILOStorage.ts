@@ -28,7 +28,7 @@ export const unILOStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = 400000;
+    const cost = 100000;
     if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk operasional ILO (400K).` };
 
     budgetStorage.updateBudget(-cost);
@@ -38,7 +38,7 @@ export const unILOStorage = {
     inboxStorage.addMessage({
       source: "ILO Sekretariat",
       subject: "🤝 Hak Buruh & Loyalitas Pekerja",
-      content: `${capitalizedCountry} resmi bergabung dengan ILO. Biaya operasional 400.000 telah dibayarkan. Manfaat aktif: Peningkatan loyalitas buruh & penurunan risiko mogok kerja massal.`,
+      content: `${capitalizedCountry} resmi bergabung dengan ILO. Biaya operasional 100.000 telah dibayarkan. Manfaat aktif: Peningkatan loyalitas buruh & penurunan risiko mogok kerja massal.`,
       time: currentDate,
       priority: "high"
     });

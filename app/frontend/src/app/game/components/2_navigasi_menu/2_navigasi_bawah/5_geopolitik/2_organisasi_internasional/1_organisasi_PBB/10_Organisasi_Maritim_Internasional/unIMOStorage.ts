@@ -28,7 +28,7 @@ export const unIMOStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = 2000000;
+    const cost = 500000;
     if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk koordinasi IMO (2M).` };
 
     budgetStorage.updateBudget(-cost);
@@ -38,7 +38,7 @@ export const unIMOStorage = {
     inboxStorage.addMessage({
       source: "IMO HQ",
       subject: "⚓ Keamanan Maritim & Navigasi",
-      content: `${capitalizedCountry} resmi bergabung dengan IMO. Biaya koordinasi 2.000.000 telah dibayarkan. Manfaat aktif: Kecepatan armada laut +10% & penurunan risiko pembajakan.`,
+      content: `${capitalizedCountry} resmi bergabung dengan IMO. Biaya koordinasi 500.000 telah dibayarkan. Manfaat aktif: Kecepatan armada laut +10% & penurunan risiko pembajakan.`,
       time: currentDate,
       priority: "high"
     });

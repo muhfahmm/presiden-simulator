@@ -28,7 +28,7 @@ export const unWHOStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = 400000;
+    const cost = 100000;
     if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk kontribusi WHO (400K).` };
 
     budgetStorage.updateBudget(-cost);
@@ -38,7 +38,7 @@ export const unWHOStorage = {
     inboxStorage.addMessage({
       source: "WHO Sekretariat",
       subject: "🏥 Akses Kesehatan Global Aktif",
-      content: `${capitalizedCountry} resmi menjadi anggota WHO. Kontribusi 400.000 telah dibayarkan. Manfaat aktif: Peningkatan Health Score otomatis & bonus riset medis saat pandemi.`,
+      content: `${capitalizedCountry} resmi menjadi anggota WHO. Kontribusi 100.000 telah dibayarkan. Manfaat aktif: Peningkatan Health Score otomatis & bonus riset medis saat pandemi.`,
       time: currentDate,
       priority: "high"
     });

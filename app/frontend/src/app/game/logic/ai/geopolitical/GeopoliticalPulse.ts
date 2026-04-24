@@ -9,8 +9,28 @@ import { formatGameDate } from "../../../components/1_navbar/5_navigasi_waktu/ga
  * Triggered daily by useAIGameSync.
  */
 export class GeopoliticalPulse {
-    private static lastProcessMonth = -1;
-    private static regionalEngine = new RegionalMovementEngine();
+    private static ORG_COSTS: Record<string, number> = {
+        // PBB (75% reduced & even)
+        imf: 0.0025, // percentage
+        world_bank: 2500000,
+        interpol: 250000,
+        who: 100000,
+        unesco: 200000,
+        wto: 500000,
+        ilo: 100000,
+        fao: 250000,
+        icao: 500000,
+        imo: 500000,
+        itu: 250000,
+        wmo: 150000,
+        
+        // Regional (75% reduced)
+        asean: 125000000,
+        eu: 250000000,
+        arab_league: 150000000,
+        au: 100000000,
+        nato: 375000000,
+    };
 
     /**
      * Main entry point called by the game loop.
@@ -20,50 +40,46 @@ export class GeopoliticalPulse {
         const month = gameDate.getUTCMonth();
         const dateStr = formatGameDate(gameDate);
 
-        // REGIONAL MOVEMENTS: Every 5th of the month (Realistic cycle)
+        // REGIONAL MOVEMENTS: Every 5th, 15th, 25th
         if (day === 5 || day === 15 || day === 25) {
-            console.log(`[GeopoliticalPulse] Regional Membership Cycle triggered for ${dateStr}`);
             await this.simulateRegionalMovements(userCountry, dateStr);
         }
 
-        // PBB MOVEMENTS: Once a month (The 1st)
-        if (day === 1 && this.lastProcessMonth !== month) {
-            this.lastProcessMonth = month;
-            console.log(`[GeopoliticalPulse] Global PBB Membership Cycle triggered for ${dateStr}`);
+        // PBB MOVEMENTS: Every 10th of the month
+        if (day === 10) {
             await this.simulateGlobalMovements(userCountry, dateStr);
         }
     }
 
     private static async simulateRegionalMovements(userCountry: string, dateStr: string) {
-        // Pick a batch of random NPCs to evaluate (Performance optimization)
         const npcs = countries
             .filter(c => c.name_en !== userCountry)
             .sort(() => 0.5 - Math.random())
-            .slice(0, 15);
+            .slice(0, 10);
 
         const results: Record<string, any[]> = {};
 
         for (const country of npcs) {
             const countryName = country.name_en;
-            const budget = aiBudgetStorage.getBudget(countryName);
+            const currentBudget = aiBudgetStorage.getBudget(countryName);
             
-            // Randomly pick 1-2 regional orgs for this country to evaluate
-            const orgIds = ["asean", "nato", "eu", "brics", "g20", "apec", "sco", "oas", "gcc", "mercosur", "commonwealth", "oic", "au"];
-            const targetOrgs = orgIds.sort(() => 0.5 - Math.random()).slice(0, 2);
+            const orgIds = ["asean", "nato", "eu", "arab_league", "au"];
+            const targetOrgs = orgIds.sort(() => 0.5 - Math.random()).slice(0, 1);
 
             const actions: any[] = [];
             for (const orgId of targetOrgs) {
-                // Check eligibility first (Geographic/Requirements)
                 const eligibility = regionalMembershipRouter.checkEligibility(countryName, orgId);
                 if (!eligibility.eligible) continue;
 
-                // Simple AI Decision Logic (Frontend simulation of the Python Engine)
-                const roll = Math.random();
                 const isMember = regionalMembershipRouter.getConsolidatedMembers(orgId).includes(countryName.toLowerCase());
+                const cost = this.ORG_COSTS[orgId] || 0;
 
-                if (!isMember && roll < 0.05) { // 5% chance to join if eligible
+                // AI Decision: Higher chance to join now that it's cheaper (0.05 -> 0.12)
+                const roll = Math.random();
+                if (!isMember && currentBudget >= cost && roll < 0.12) {
                      actions.push({ org_id: orgId, action: "join", date: dateStr });
-                } else if (isMember && roll < 0.01) { // 1% chance to leave (Stable regional blocs)
+                     aiBudgetStorage.updateBudgetManual(countryName, -cost);
+                } else if (isMember && roll < 0.01) {
                      actions.push({ org_id: orgId, action: "leave", date: dateStr });
                 }
             }
@@ -75,11 +91,33 @@ export class GeopoliticalPulse {
 
         if (Object.keys(results).length > 0) {
             regionalMembershipRouter.syncAIMemberships(results);
-            console.log(`[GeopoliticalPulse] AI Membership Sync completed:`, results);
         }
     }
 
     private static async simulateGlobalMovements(userCountry: string, dateStr: string) {
-        // Implementation for PBB global membership cycle
+        // PBB memberships for AI are currently mostly static in OrganizationMembers DB,
+        // but we can simulate "Joining" activities for flavor/news or future dynamic PBB state.
+        const npcs = countries
+            .filter(c => c.name_en !== userCountry)
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 5);
+
+        for (const country of npcs) {
+            const countryName = country.name_en;
+            const currentBudget = aiBudgetStorage.getBudget(countryName);
+            
+            const pbbOrgs = ["imf", "world_bank", "who", "unesco", "wto", "interpol"];
+            const orgId = pbbOrgs[Math.floor(Math.random() * pbbOrgs.length)];
+            
+            let cost = this.ORG_COSTS[orgId] || 0;
+            if (orgId === 'imf') cost = Math.floor(currentBudget * 0.0025);
+
+            // AI PBB Joining Simulation (Flavor + Budget impact)
+            const roll = Math.random();
+            if (currentBudget >= cost && roll < 0.15) {
+                aiBudgetStorage.updateBudgetManual(countryName, -cost);
+                // In a full implementation, we'd also sync this to an AI PBB state.
+            }
+        }
     }
 }

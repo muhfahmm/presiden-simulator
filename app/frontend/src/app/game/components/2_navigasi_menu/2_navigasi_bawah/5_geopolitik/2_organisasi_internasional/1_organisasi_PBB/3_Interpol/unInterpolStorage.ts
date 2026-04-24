@@ -28,7 +28,7 @@ export const unInterpolStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = 1000000;
+    const cost = 250000;
     if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk biaya tahunan Interpol (1M).` };
 
     budgetStorage.updateBudget(-cost);
@@ -38,7 +38,7 @@ export const unInterpolStorage = {
     inboxStorage.addMessage({
       source: "Interpol HQ",
       subject: "🛡️ Sinkronisasi Intelijen Global",
-      content: `${capitalizedCountry} resmi bergabung dengan jaringan Interpol. Biaya sinkronisasi 1.000.000 telah dibayarkan. Manfaat aktif: Penurunan kriminalitas 15% & deteksi spionase lebih akurat.`,
+      content: `${capitalizedCountry} resmi bergabung dengan jaringan Interpol. Biaya sinkronisasi 250.000 telah dibayarkan. Manfaat aktif: Penurunan kriminalitas 15% & deteksi spionase lebih akurat.`,
       time: currentDate,
       priority: "high"
     });
