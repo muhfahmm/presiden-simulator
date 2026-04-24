@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { Activity, Award, Briefcase, Coins, Globe, Info, Landmark, MapPin, Scale, Shield, TrendingUp, Users, Zap } from 'lucide-react';
 import RegionalJoinOrgButton from "../logic/RegionalJoinOrgButton";
+import { getOrgFee } from "@/app/game/logic/geopolitik/GeopoliticalConfig";
+
 
 interface ARAB_LEAGUEProps {
   currentCash: number;
@@ -71,7 +73,7 @@ export default function LigaArab({ currentCash, currentDate, onUpdate }: ARAB_LE
         <RegionalJoinOrgButton 
           orgId="liga_arab" 
           orgName="Liga Arab" 
-          membershipFee={150000000} 
+          membershipFee={getOrgFee("liga_arab")} 
         />
       </div>
     </div>

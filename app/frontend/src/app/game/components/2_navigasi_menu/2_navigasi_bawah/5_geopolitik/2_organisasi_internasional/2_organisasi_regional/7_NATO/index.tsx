@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { Activity, Award, Briefcase, Coins, Globe, Info, Landmark, MapPin, Scale, Shield, TrendingUp, Users, Zap } from 'lucide-react';
 import RegionalJoinOrgButton from "../logic/RegionalJoinOrgButton";
+import { getOrgFee } from "@/app/game/logic/geopolitik/GeopoliticalConfig";
+
 
 interface NATOProps {
   currentCash: number;
@@ -71,7 +73,7 @@ export default function NATO({ currentCash, currentDate, onUpdate }: NATOProps) 
         <RegionalJoinOrgButton 
           orgId="nato" 
           orgName="NATO" 
-          membershipFee={375000000} 
+          membershipFee={getOrgFee("nato")} 
         />
       </div>
     </div>

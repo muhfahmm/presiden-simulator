@@ -8,30 +8,9 @@ import { formatGameDate } from "../../../components/1_navbar/5_navigasi_waktu/ga
  * GeopoliticalPulse: Orchestrates AI decisions for PBB and Regional memberships.
  * Triggered daily by useAIGameSync.
  */
-export class GeopoliticalPulse {
-    private static ORG_COSTS: Record<string, number> = {
-        // PBB (75% reduced & even)
-        imf: 0.0025, // percentage
-        world_bank: 2500000,
-        interpol: 250000,
-        who: 100000,
-        unesco: 200000,
-        wto: 500000,
-        ilo: 100000,
-        fao: 250000,
-        icao: 500000,
-        imo: 500000,
-        itu: 250000,
-        wmo: 150000,
-        
-        // Regional (75% reduced)
-        asean: 125000000,
-        eu: 250000000,
-        arab_league: 150000000,
-        au: 100000000,
-        nato: 375000000,
-    };
+import { getOrgFee } from "../../geopolitik/GeopoliticalConfig";
 
+export class GeopoliticalPulse {
     /**
      * Main entry point called by the game loop.
      */
@@ -72,7 +51,7 @@ export class GeopoliticalPulse {
                 if (!eligibility.eligible) continue;
 
                 const isMember = regionalMembershipRouter.getConsolidatedMembers(orgId).includes(countryName.toLowerCase());
-                const cost = this.ORG_COSTS[orgId] || 0;
+                const cost = getOrgFee(orgId, currentBudget);
 
                 // AI Decision: Higher chance to join now that it's cheaper (0.05 -> 0.12)
                 const roll = Math.random();
@@ -109,8 +88,7 @@ export class GeopoliticalPulse {
             const pbbOrgs = ["imf", "world_bank", "who", "unesco", "wto", "interpol"];
             const orgId = pbbOrgs[Math.floor(Math.random() * pbbOrgs.length)];
             
-            let cost = this.ORG_COSTS[orgId] || 0;
-            if (orgId === 'imf') cost = Math.floor(currentBudget * 0.0025);
+            const cost = getOrgFee(orgId, currentBudget);
 
             // AI PBB Joining Simulation (Flavor + Budget impact)
             const roll = Math.random();

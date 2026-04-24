@@ -1,5 +1,7 @@
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
+import { getOrgFee } from "@/app/game/logic/geopolitik/GeopoliticalConfig";
+
 
 const STORAGE_KEY = "em_un_imo";
 
@@ -28,7 +30,7 @@ export const unIMOStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = 500000;
+    const cost = getOrgFee("imo");
     if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk koordinasi IMO (2M).` };
 
     budgetStorage.updateBudget(-cost);

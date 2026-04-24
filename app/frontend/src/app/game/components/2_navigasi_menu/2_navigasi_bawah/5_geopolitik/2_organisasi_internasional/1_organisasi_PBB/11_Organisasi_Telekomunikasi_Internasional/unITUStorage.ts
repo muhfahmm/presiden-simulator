@@ -1,5 +1,7 @@
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
+import { getOrgFee } from "@/app/game/logic/geopolitik/GeopoliticalConfig";
+
 
 const STORAGE_KEY = "em_un_itu";
 
@@ -28,7 +30,7 @@ export const unITUStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = 250000;
+    const cost = getOrgFee("itu");
     if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup for alokasi ITU (1M).` };
 
     budgetStorage.updateBudget(-cost);

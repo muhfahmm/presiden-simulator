@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { Activity, Award, Briefcase, Coins, Globe, Info, Landmark, MapPin, Scale, Shield, TrendingUp, Users, Zap } from 'lucide-react';
 import RegionalJoinOrgButton from "../logic/RegionalJoinOrgButton";
+import { getOrgFee } from "@/app/game/logic/geopolitik/GeopoliticalConfig";
+
 
 interface EUProps {
   currentCash: number;
@@ -71,7 +73,7 @@ export default function UniEropa({ currentCash, currentDate, onUpdate }: EUProps
         <RegionalJoinOrgButton 
           orgId="uni_eropa" 
           orgName="Uni Eropa" 
-          membershipFee={250000000} 
+          membershipFee={getOrgFee("uni_eropa")} 
         />
       </div>
     </div>

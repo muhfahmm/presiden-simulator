@@ -2,6 +2,8 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
+import { getOrgFee } from "@/app/game/logic/geopolitik/GeopoliticalConfig";
+
 
 const STORAGE_KEY = "em_un_imf";
 
@@ -30,7 +32,7 @@ export const unIMFStorage = {
     const countryName = localStorage.getItem("selectedCountry") || "";
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
-    const cost = Math.floor(currentCash * 0.0025);
+    const cost = getOrgFee("imf", currentCash);
     // Even if cash is 0, we can join but it might be 0 cost (unlikely case)
     
     budgetStorage.updateBudget(-cost);
