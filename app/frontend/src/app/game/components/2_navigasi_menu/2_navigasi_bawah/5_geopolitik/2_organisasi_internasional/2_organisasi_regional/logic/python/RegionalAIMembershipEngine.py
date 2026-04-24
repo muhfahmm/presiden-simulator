@@ -11,6 +11,7 @@ sys.path.append(os.path.join(current_dir, '..', '..', '..', '1_organisasi_PBB', 
 sys.path.append(os.path.join(current_dir, '..', '..', '..', '1_organisasi_PBB', 'logic', 'python', 'membership_movement'))
 
 from regional_requirements import RegionalRequirements
+from regional_treasury_scanner import RegionalTreasuryScanner
 from ai_geopolitical_analyzer import GeopoliticalAnalyzer
 from movement_engine import MembershipMovementEngine
 
@@ -23,6 +24,7 @@ class RegionalAIMembershipEngine:
     def __init__(self, data_path="ai_regional_membership_state.json", regional_data=None):
         self.data_path = data_path
         self.requirements = RegionalRequirements()
+        self.finance_scanner = RegionalTreasuryScanner()
         self.analyzer = GeopoliticalAnalyzer(regional_data or {})
         self.movement_engine = MembershipMovementEngine()
         self.membership_data = self._load_data()
