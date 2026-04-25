@@ -40,6 +40,7 @@ import MintaBantuanModal from "./4_bantuan_dan_kerjasama/5_minta_bantuan/MintaBa
 import TanamkanIdeologiModal from "./4_bantuan_dan_kerjasama/6_tanamkan_ideologi/TanamkanIdeologiModal";
 import { tradeStorage } from "./2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
 import DetailNegaraModal from "./1_info_strategis/7_DetailNegara/DetailNegaraModal";
+import KedutaanBesarModalAI from "./2_diplomasi_hubungan/9_kedutaan_besar_ai/KedutaanBesarModalAI";
 
 import { RelationPersistence } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationPersistence";
 import { getRelationScore, normalizeId } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix";
@@ -474,6 +475,16 @@ export default function StrategyModal({
 
       {activeSubTab === 'kedutaan_detail' && (
         <ModalDetailKedubes 
+          isOpen={true}
+          onClose={() => {
+            setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);
+          }}
+          targetCountry={targetCountry || ""}
+        />
+      )}
+
+      {activeSubTab === 'kedutaan_besar' && (
+        <KedutaanBesarModalAI 
           isOpen={true}
           onClose={() => {
             setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);

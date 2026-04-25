@@ -156,6 +156,12 @@ export default function DiplomacyTab({
           }}
         />
         <ActionCard
+          icon={<Landmark className="h-4 w-4" />}
+          label="Kedutaan Besar"
+          bg="from-purple-900/30 to-zinc-900/80"
+          onClick={() => setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:kedutaan_besar`)}
+        />
+        <ActionCard
           icon={<Globe2 className="h-4 w-4" />}
           label="Hubungan Internasional"
           bg="from-blue-900/20 to-zinc-900"

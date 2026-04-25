@@ -186,6 +186,31 @@ export const NewsBaseList = ({
                       {item.content}
                     </p>
                     {(() => {
+                      if (item.category === 'diplomacy' && item.subject.toLowerCase().includes('kedutaan besar')) {
+                        const match = item.subject.match(/antara negara (.+) dengan negara (.+) disepakati/i);
+                        if (match) {
+                          const c1 = match[1];
+                          return (
+                            <div className="mt-8 pt-6 border-t border-zinc-900 flex items-center justify-end">
+                              <button
+                                onClick={() => {
+                                  onClose();
+                                  const countrySlug = c1.toLowerCase().replace(/ /g, '_');
+                                  setActiveMenu(`CountryModal:${c1.toLowerCase()}:diplomasi_hubungan:kedutaan_besar`);
+                                  router.push(`/game/${countrySlug}/diplomasi_hubungan`);
+                                }}
+                                className="flex items-center gap-2 group/btn cursor-pointer py-2 px-4 bg-purple-500/10 hover:bg-purple-500 border border-purple-500/30 hover:border-purple-400 rounded-xl transition-all"
+                              >
+                                <Shield size={14} className="text-purple-500 group-hover/btn:text-black transition-colors" />
+                                <span className="text-[10px] font-black uppercase tracking-widest text-purple-500 group-hover/btn:text-black transition-colors">
+                                  Lihat Kedutaan - {c1}
+                                </span>
+                              </button>
+                            </div>
+                          );
+                        }
+                      }
+
                       if (item.category !== 'construction') return null;
                       const targets = detectNavigationTargets(item);
                       if (!targets) return null;
