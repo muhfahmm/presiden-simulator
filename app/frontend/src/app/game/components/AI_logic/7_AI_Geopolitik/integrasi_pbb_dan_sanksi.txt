@@ -1,0 +1,100 @@
+# LOGIKA INTEGRASI AI GEOPOLITIK & PBB (SANCTIONS, EMBARGO, & MISSIONS)
+
+KONSEP DASAR:
+PBB berfungsi sebagai regulator keamanan global. Jika AI mendeteksi tensi yang terlalu tinggi antara dua negara, atau satu negara dianggap mengancam stabilitas, maka Dewan Keamanan (UNSC) akan bereaksi berdasarkan database geopolitik dunia nyata.
+
+[LEVEL RESOLUSI & SANKSI (SANCTION LEVELS)]
+
+1. LEVEL 1: KECAMAN DIPLOMATIK (OFFICIAL CONDEMNATION)
+   - Trigger: Hubungan jatuh ke < 25.0 atau adanya provokasi siber minor.
+   - Efek: Reputasi Moral -10, Kepercayaan Global -5%.
+   - Logika: Peringatan keras sebelum sanksi ekonomi diberlakukan.
+
+2. LEVEL 2: SANKSI SELEKTIF (TARGETED SANCTIONS)
+   - Trigger: Melakukan pelanggaran HAM atau ancaman militer di perbatasan.
+   - Efek: Pembekuan aset elit (Dana Harian -15%), Biaya Diplomasi +2x lipat.
+   - Logika: Menekan pemimpin negara tanpa menghancurkan ekonomi rakyat jelata.
+
+3. LEVEL 3: EMBARGO SEKTORAL (SECTORAL EMBARGO)
+   - Trigger: Menguasai sumber daya kritis secara ilegal atau agresi militer skala kecil.
+   - Efek: Ekspor/Impor komoditas kunci (misal: Minyak/Chip) berhenti total. Pendapatan -40%.
+   - Logika: Memutus nadi ekonomi yang digunakan untuk membiayai perang.
+
+4. LEVEL 4: EMBARGO TOTAL & ISOLASI (TOTAL LOCKDOWN)
+   - Trigger: Perang terbuka (Invasi) atau penggunaan senjata pemusnah massal.
+   - Efek: Status "PARIAH STATE". Seluruh perdagangan berhenti. Produksi Militer berhenti.
+   - Logika: Isolasi total dari peradaban global sampai rezim berubah atau menyerah.
+
+[LOGIKA VETO & LOBI P5 (POWER PLAY)]
+
+1. VETO TRADING:
+   - Negara target dapat melakukan lobi ke P5 (AS, Rusia, China, Inggris, Perancis).
+   - Jika target memiliki Hubungan > 70.0 dengan salah satu P5, peluang Veto otomatis adalah 90%.
+   - Player dapat menyuap P5 dengan Mineral Langka atau Dana Hibah untuk membeli Veto.
+
+2. PERLINDUNGAN BLOK:
+   - Anggota NATO akan saling Veto untuk melindungi sesama anggota.
+   - Rusia/China akan Veto setiap resolusi Barat terhadap sekutu mereka (Belarusia, Korut, Iran).
+
+[MISI PENJAGA PERDAMAIAN (PEACEKEEPING OPERATIONS - PKO)]
+
+1. DEPLOYMENT HELM BIRU:
+   - Trigger: Perang di wilayah Hotspot yang berlangsung lebih dari 60 hari.
+   - Efek: Tombol "Serang" di perbatasan tersebut dikunci oleh PBB.
+   - Biaya: Negara-negara donor (termasuk Indonesia) akan membayar biaya pemeliharaan pasukan.
+
+2. ZONA LARANGAN TERBANG (NO-FLY ZONE):
+   - Efek: Unit Udara (Jet Tempur) tidak bisa menyerang target di wilayah tersebut.
+   - Pelanggaran: Jika nekat menyerang, PBB akan langsung menaikkan status menjadi Level 4 Embargo.
+
+[MEKANISME PENGANGKATAN SANKSI (EXIT STRATEGY)]
+
+1. SYARAT REHABILITASI:
+   - Menghentikan aksi militer & menarik pasukan dari perbatasan.
+   - Meningkatkan hubungan dengan P5 hingga minimal > 40.0.
+   - Membayar denda perang ke kas PBB (UN Treasury).
+
+2. VOTING PEMULIHAN:
+   - Resolusi pengangkatan sanksi harus melewati voting ulang dengan aturan yang sama (Butuh persetujuan mayoritas & tanpa Veto).
+
+[LOGIKA VOTING NEGARA ANGGOTA (VOTING BEHAVIOR)]
+
+1. ALIRAN BLOK (BLOC ALIGNMENT):
+   - Skor Hubungan dengan Pimpinan Blok > 60: Peluang 85% mengikuti suara pimpinan.
+   - Anggota NATO -> Ikut AS/Inggris.
+   - Anggota CSTO -> Ikut Rusia.
+
+2. PRAGMATISME EKONOMI:
+   - Jika Target adalah mitra dagang utama (Impor > 20%): Peluang 70% memilih "TOLAK" atau "ABSTAIN".
+   - Ketergantungan Energi: Negara yang membeli minyak dari target tidak akan menyetujui embargo total.
+
+3. TEKANAN DIPLOMATIK (LOBBYING):
+   - Player dapat melakukan misi diplomatik ke negara-negara kecil untuk "membeli suara" mereka dengan bantuan ekonomi atau janji perlindungan militer.
+
+[POSISI STRATEGIS INDONESIA DI PBB (INDONESIA'S LEVERAGE)]
+
+1. KONTRIBUTOR UTAMA PKO:
+   - Pengiriman ribuan pasukan perdamaian memberikan Indonesia hak istimewa dalam mengusulkan resolusi damai.
+   - Efek: Reputasi Moral +30, Pengaruh di Majelis Umum +20%.
+
+2. PEMIMPIN GLOBAL SOUTH:
+   - Menjadi jembatan antara kepentingan negara maju (G7) dan negara berkembang.
+   - Logika: Mampu meredam resolusi sanksi yang terlalu keras jika dianggap merugikan ekonomi negara berkembang.
+
+3. DIPLOMASI KEMANUAIAN:
+   - Fokus mutlak pada isu kemerdekaan Palestina & bantuan bencana global.
+   - Efek: Solidaritas tinggi dengan blok OKI dan negara-negara non-blok.
+
+[KRISIS & RESOLUSI DARURAT (EMERGENCY SESSIONS)]
+
+1. EMERGENCY SPECIAL SESSION:
+   - Trigger: Jika P5 menggunakan Veto lebih dari 3x dalam satu konflik yang sama.
+   - Efek: Majelis Umum mengambil alih voting. Veto P5 tidak berlaku di sesi ini.
+
+2. INVESTIGASI KEJAHATAN PERANG:
+   - Trigger: Laporan intelijen tentang pembantaian warga sipil atau penggunaan senjata kimia.
+   - Efek: Tim PBB masuk ke wilayah konflik. Jika terbukti, target otomatis masuk Level 4 Embargo.
+
+3. RESOLUSI BENCANA GLOBAL:
+   - Trigger: Munculnya Pandemi baru atau Bencana Iklim ekstrem.
+   - Efek: Seluruh negara wajib berbagi data & sumber daya. Negara yang menolak akan di-isolasi secara teknologi.

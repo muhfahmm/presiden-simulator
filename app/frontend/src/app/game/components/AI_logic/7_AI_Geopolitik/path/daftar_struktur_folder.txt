@@ -1,0 +1,33 @@
+# DAFTAR STRUKTUR FOLDER & FILE (AI GEOPOLITIK)
+# Lokasi: c:\fhm\em\app\frontend\src\app\game\components\AI_logic\7_AI_Geopolitik\
+
+7_AI_Geopolitik/
+├── data_rivalitas_parts/        # [75+ Files] Database Dunia Nyata (Real-World Data)
+│   ├── 01_blok_barat.txt        # Data NATO & Sekutu Barat
+│   ├── 04_hotspots.txt          # Titik api konflik (Korea, Timur Tengah, dll)
+│   ├── 12_rivalitas_abadi.txt   # Daftar musuh bebuyutan (Natural Drift Down)
+│   ├── 13_aliansi_besi.txt      # Daftar sahabat sejati (Natural Drift Up)
+│   ├── 16_raja_sumber_daya.txt  # Negara pemegang leverage ekonomi (Minyak, Chip, dll)
+│   └── ... (70+ file lainnya)
+│
+├── 1_data_geopolitik/           # Core Data Structures
+│   ├── world_rivalries.ts       # Mappings data ke sistem game
+│   ├── strategic_interests.ts   # Daftar kepentingan wilayah
+│   └── power_index.ts           # Bobot pengaruh masing-masing negara
+│
+├── 2_mesin_diplomasi/           # Logical Engines (TypeScript)
+│   ├── DrifterHubungan.ts       # Mesin waktu harian (Daily Drift Calculation)
+│   ├── KalkulatorSentimen.ts    # Perhitungan efek domino aksi Player/NPC
+│   └── AliansiLogic.ts          # Logika stabilitas & pembentukan blok
+│
+├── brain/                       # Advanced AI Brain
+│   └── otak_geopolitik.py       # Pemrosesan skenario kompleks (Python)
+│
+├── index.tsx                    # Entry point orkestrasi CNS Geopolitik
+├── struktur_dan_logika.txt      # Dokumentasi rumus & parameter teknis
+├── integrasi_pbb_dan_sanksi.txt # Panduan sistem sanksi & resolusi PBB
+└── daftar_struktur_folder.txt   # File navigasi arsitektur ini (File ini)
+
+# CATATAN PENTING:
+- Database di 'data_rivalitas_parts' adalah "Single Source of Truth" untuk AI.
+- Jangan merubah format penamaan file '01_...', '02_...' agar urutan pembacaan AI tetap konsisten.

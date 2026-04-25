@@ -1,0 +1,105 @@
+# ARSITEKTUR AI GEOPOLITIK (SIMULASI DUNIA NYATA)
+
+FOLDER STRUCTURE:
+7_AI_Geopolitik/
+├── 1_data_geopolitik/
+│   ├── world_rivalries.ts       # Database rivalitas (AS-China, AS-Iran, Rusia-NATO, dll)
+│   ├── strategic_interests.ts   # Kepentingan tiap negara (Taiwan, Laut China Selatan, Ukraina)
+│   └── power_index.ts           # Indeks kekuatan untuk pembobotan pengaruh diplomasi
+├── 2_mesin_diplomasi/
+│   ├── DrifterHubungan.ts       # Kalkulator drift harian (Hubungan memanas/mendingin otomatis)
+│   ├── KalkulatorSentimen.ts    # Menghitung efek domino dari aksi player terhadap NPC
+│   └── AliansiLogic.ts          # Logika pembentukan dan stabilitas blok/aliansi
+├── brain/
+│   └── otak_geopolitik.py       # Brain Python untuk pemrosesan skenario tingkat tinggi
+├── index.tsx                    # Entry point orkestrasi ke AI Logic CNS
+└── struktur_dan_logika.txt      # File dokumentasi ini
+
+ALUR LOGIKA (GEOPOLITICAL ENGINE):
+
+1. INITIALIZATION:
+   - AI memuat "Status Quo" dunia berdasarkan data real-world (misal: AS & China mulai dengan tensi tinggi).
+   - Menentukan "Sphere of Influence" (Negara mana yang berkiblat ke mana).
+
+2. INPUT PROCESSING (DAILY / ACTION BASED):
+   - Jika ada aksi (Player) atau peristiwa (NPC):
+     a. Tentukan subjek dan objek (Misal: AS memberi sanksi ke Iran).
+     b. Cek "Global Ripple Effect": Siapa teman subjek? Siapa teman objek?
+
+3. REACTION CALCULATION (THE DOMINO EFFECT):
+   - Rumus Dasar: Change = Base_Effect * (Interest_Weight + Alignment_Score)
+   - Friendship Multiplier: Jika temanmu diserang, hubunganmu dengan penyerang turun 2x lipat.
+   - Economic Buffer: Jika volume dagang tinggi, penurunan hubungan diredam 0.5x.
+
+4. DRIFT SIMULATION (AUTOMATIC):
+   - Tanpa aksi player pun, hubungan dunia bergerak (Drift).
+   - Rivalitas permanen (Rivalry Loop) akan menarik skor hubungan ke arah "Tegang" setiap hari kecuali ada upaya diplomasi.
+
+[DETAIL FORMULA & PARAMETER TEKNIS (THE MATHEMATICS OF WAR)]
+
+1. FORMULA PERUBAHAN HUBUNGAN (RELATIONSHIP DELTA):
+   Delta = (Base_Action_Value * Power_Multiplier) + (Ideological_Bonus) - (Aggression_Penalty)
+
+   - Base_Action_Value: Nilai dasar aksi (misal: Kirim Bantuan = +10, Kirim Spionase = -15).
+   - Power_Multiplier: Jika aksi dilakukan oleh negara P5, efeknya 1.5x lebih besar bagi dunia.
+   - Ideological_Bonus: Jika satu blok (Liberal vs Liberal), efek positif +20% lebih kuat.
+
+2. LOGIKA DOMINO (RIPPLE WEIGHTS):
+   - Teman Dekat (Aliansi Besi): Menerima 100% efek domino.
+   - Anggota Blok yang Sama: Menerima 50% efek domino.
+   - Negara Netral: Menerima 10% efek domino (Hanya sentimen moral).
+
+   Contoh: AS menyerang Iran (-50). 
+   - Israel (Aliansi Besi AS) -> Hubungan dengan Iran turun -50.
+   - Inggris (Anggota NATO) -> Hubungan dengan Iran turun -25.
+
+3. ECONOMIC BUFFER (PENGERING KONFLIK):
+   - Rumus: Actual_Drop = Drop_Value * (1 - (Trade_Volume / 100))
+   - Jika dua negara adalah mitra dagang terbesar, setiap konflik politik hanya akan menurunkan hubungan sebesar 50% dari seharusnya (Karena saling butuh secara ekonomi).
+
+4. DRIFT RATE CONSTANTS:
+   - Eternal Rivalry: -0.05 poin per hari (Cenderung memburuk perlahan).
+   - Ironclad Alliance: +0.02 poin per hari (Cenderung membaik perlahan).
+   - Regional Stability: +0.01 (Jika kawasan damai, semua hubungan naik tipis).
+
+[INTEGRASI DATA KE CNS (CENTRAL NERVOUS SYSTEM)]:
+- Semua output dari mesin ini masuk ke `GlobalRelationMatrix`.
+- NPC akan mengeksekusi aksi (Buka Kedutaan, Tutup Perbatasan, Voting PBB) berdasarkan skor akhir dari matrix ini.
+- Threshold Pemicu Perang: < 10.0 (NPC mulai mempertimbangkan opsi militer).
+- Threshold Pemicu Aliansi: > 85.0 (NPC mulai menawarkan pakta pertahanan).
+
+[POHON KEPUTUSAN AI (NPC BEHAVIOR TREE)]
+
+1. ZONA HIJAU (SCORE 85 - 100): "THE BROTHERHOOD"
+   - Tindakan Otomatis: Berbagi peta militer, bantuan dana saat krisis, lobi Veto di PBB.
+   - Respon Aksi Player: Toleransi tinggi terhadap kesalahan kecil.
+
+2. ZONA BIRU (SCORE 60 - 85): "STRATEGIC PARTNER"
+   - Tindakan Otomatis: Membuka rute dagang baru, investasi infrastruktur.
+   - Respon Aksi Player: Mendukung di PBB jika tidak bertabrakan dengan kepentingan utama.
+
+3. ZONA KUNING (SCORE 30 - 60): "PRAGMATIC NEUTRAL"
+   - Tindakan Otomatis: Hubungan kedutaan standar, perdagangan terbatas.
+   - Respon Aksi Player: Berhati-hati, sering memilih "Abstain" di PBB.
+
+4. ZONA ORANGE (SCORE 15 - 30): "THE RIVAL"
+   - Tindakan Otomatis: Penarikan Duta Besar, Spionase siber, kampanye info war.
+   - Respon Aksi Player: Selalu curiga, sering menolak draft resolusi Player.
+
+5. ZONA MERAH (SCORE < 15): "THE MORTAL ENEMY"
+   - Tindakan Otomatis: Mobilisasi militer, Embargo Total, Usul sanksi Level 4 di PBB.
+   - Respon Aksi Player: Memutus hubungan diplomatik total, deklarasi perang jika ada kesempatan.
+
+5. OUTPUT GENERATION:
+   - Update Global Relation Matrix (Source of Truth).
+   - Kirim notifikasi ke News Feed (Berita Internasional).
+   - Perbarui UI Trend (TrendingUp/Down) di Strategi Modal.
+
+SCENARIO EXAMPLE (CHINA-USA-IRAN):
+- Player (Indonesia) menandatangani Pakta Pertahanan dengan China.
+- Brain AI mendeteksi: China adalah Rival Utama AS.
+- Effect:
+  * Hubungan Player -> China: +15.0
+  * Hubungan Player -> AS: -20.0 (Karena AS merasa terancam di Indo-Pasifik)
+  * Hubungan AS -> China: -2.0 (Ketegangan meningkat karena perebutan pengaruh)
+  * Berita: "AS Khawatir akan Meningkatnya Pengaruh China di Kawasan."
