@@ -41,9 +41,9 @@ import TanamkanIdeologiModal from "./4_bantuan_dan_kerjasama/6_tanamkan_ideologi
 import { tradeStorage } from "./2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
 import DetailNegaraModal from "./1_info_strategis/7_DetailNegara/DetailNegaraModal";
 
-import { RelationPersistence } from "@/app/game/components/3_hubungan/RelationPersistence";
-import { getRelationScore, normalizeId } from "@/app/game/components/3_hubungan/RelationMatrix";
-import { RELATION_EVENTS } from "@/app/game/components/3_hubungan/RelationEvents";
+import { RelationPersistence } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationPersistence";
+import { getRelationScore, normalizeId } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix";
+import { RELATION_EVENTS } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationEvents";
 import { COUNTRY_REGIONS, getRegion } from "./2_diplomasi_hubungan/1_kedutaan/logic/regions";
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
 import { gameStorage } from "@/app/game/gamestorage";

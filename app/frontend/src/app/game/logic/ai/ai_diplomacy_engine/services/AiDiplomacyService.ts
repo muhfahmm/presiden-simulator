@@ -1,7 +1,7 @@
 /**
  * AiDiplomacyService.ts (PROXY)
  */
-import { RelationEngine } from "@/app/game/components/3_hubungan/RelationEngine";
+import { RelationEngine } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationEngine";
 
 export const AiDiplomacyService = {
     runDailyDrift: (userCountry?: string) => RelationEngine.processDailyUpdate(userCountry),

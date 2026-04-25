@@ -1,1 +1,1 @@
-export * from "@/app/game/components/3_hubungan/RelationDelta";
+export * from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationDelta";

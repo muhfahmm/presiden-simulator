@@ -58,9 +58,9 @@ interface DetailNegaraModalProps {
   setActiveMenu: (menu: string) => void;
 }
 
-import { RelationPersistence } from "@/app/game/components/3_hubungan/RelationPersistence";
-import { getRelationScore, getNormalizedUser } from "@/app/game/components/3_hubungan/RelationMatrix";
-import { RELATION_EVENTS } from "@/app/game/components/3_hubungan/RelationEvents";
+import { RelationPersistence } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationPersistence";
+import { getRelationScore, getNormalizedUser } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix";
+import { RELATION_EVENTS } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationEvents";
 
 export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUser, activeSector, activeCard, setActiveMenu }: DetailNegaraModalProps) {
   const currentSector = activeSector || "produksi";

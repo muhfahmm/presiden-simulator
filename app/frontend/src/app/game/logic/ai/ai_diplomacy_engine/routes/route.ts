@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing relation matrix" }, { status: 400 });
     }
 
-    const brainPath = path.join(process.cwd(), "src", "app", "game", "components", "3_hubungan", "ai_brain");
+    const brainPath = path.join(process.cwd(), "src", "app", "game", "components", "modals", "1_info_strategis", "8_Hubungan", "ai_brain");
     
     // Base daily drift script
     let scripts = [

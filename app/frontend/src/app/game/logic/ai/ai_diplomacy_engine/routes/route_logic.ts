@@ -17,7 +17,7 @@ export async function handleGlobalAiDrift(req: NextRequest) {
 
     const scriptPath = path.join(
       process.cwd(),
-      "src", "app", "game", "components", "3_hubungan", "ai_brain", "global_drift.py"
+      "src", "app", "game", "components", "modals", "1_info_strategis", "8_Hubungan", "ai_brain", "global_drift.py"
     );
 
     return new Promise((resolve) => {

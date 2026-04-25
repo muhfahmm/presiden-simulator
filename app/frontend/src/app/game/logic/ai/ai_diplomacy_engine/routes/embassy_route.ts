@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required data" }, { status: 400 });
     }
 
-    const brainPath = path.join(process.cwd(), "src", "app", "game", "components", "3_hubungan", "ai_brain", "npc_to_user");
+    const brainPath = path.join(process.cwd(), "src", "app", "game", "components", "modals", "1_info_strategis", "8_Hubungan", "ai_brain", "npc_to_user");
     const scriptPath = path.join(brainPath, "5_tawaran_kedutaan.py");
 
     const runScript = (scriptPath: string, inputData: any): Promise<any> => {

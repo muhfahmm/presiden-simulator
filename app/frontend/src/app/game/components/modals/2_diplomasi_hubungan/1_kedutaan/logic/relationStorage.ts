@@ -1,5 +1,5 @@
-import { RelationPersistence } from "@/app/game/components/3_hubungan/RelationPersistence";
-import { getRelationScore, normalizeId } from "@/app/game/components/3_hubungan/RelationMatrix";
+import { RelationPersistence } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationPersistence";
+import { getRelationScore, normalizeId } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix";
 
 export const relationStorage = {
     ...RelationPersistence,
@@ -8,7 +8,7 @@ export const relationStorage = {
     
     // Legacy getRelationData fallback
     getRelationData: () => {
-        const { getGlobalRelationMatrix } = require("@/app/game/components/3_hubungan/RelationMatrix");
+        const { getGlobalRelationMatrix } = require("@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix");
         const matrix = getGlobalRelationMatrix();
         const flat: Record<string, number> = {};
         Object.keys(matrix).forEach(sourceId => {
@@ -22,7 +22,7 @@ export const relationStorage = {
 
     // Legacy updateRelationScore fallback
     updateRelationScore: (targetCountry: string, delta: number, currentBase: number, sourceCountry?: string) => {
-        const { updateMatrixScore } = require("@/app/game/components/3_hubungan/RelationMatrix");
+        const { updateMatrixScore } = require("@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix");
         const currentScore = getRelationScore(targetCountry, currentBase, sourceCountry || "player");
         const newScore = Math.max(0, Math.min(100, currentScore + delta));
         updateMatrixScore(sourceCountry || "player", targetCountry, newScore);
@@ -30,7 +30,7 @@ export const relationStorage = {
 
     // Legacy clear fallback
     clear: () => {
-        const { hardClearMatrix } = require("@/app/game/components/3_hubungan/RelationMatrix");
+        const { hardClearMatrix } = require("@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix");
         hardClearMatrix();
     }
 };

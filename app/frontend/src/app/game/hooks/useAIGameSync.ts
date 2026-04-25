@@ -10,7 +10,7 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import { EksekutorPertahananAI } from "../components/AI_logic/6_AI_pertahanan/sistem_tindakan_respon/EksekutorPertahananAI";
 import { EksekutorPembangunanAI } from "../components/AI_logic/5_AI_Pembangunan/sistem_tindakan_respon/EksekutorPembangunanAI";
 import { PusatKeputusanPertahanan } from "../components/AI_logic/6_AI_pertahanan/pusat_keputusan_pertahanan/PusatKeputusanPertahanan";
-import { RelationEngine } from '../components/3_hubungan/RelationEngine';
+import { RelationEngine } from '../components/modals/1_info_strategis/8_Hubungan/RelationEngine';
 import { GeopoliticalPulse } from '../logic/ai/geopolitical/GeopoliticalPulse';
 
 /**
