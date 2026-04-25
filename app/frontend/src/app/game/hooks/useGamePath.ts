@@ -193,6 +193,9 @@ export function useGamePath(path: string[]) {
     else if (subMenu === 'perminyakan') initialMenu = "Menu:Perminyakan";
     else if (subMenu === 'uranium') initialMenu = "Menu:Uranium";
     else initialMenu = "ProduksiKonsumsi";
+  } else if (category === 'debug_keuangan') {
+    if (subMenu === 'detail_debug') initialMenu = "Menu:DebugKeuanganAI:DetailDebug";
+    else initialMenu = "Menu:DebugKeuanganAI";
   }
 
   const [activeMenu, setActiveMenu] = useState<string>(initialMenu);
@@ -273,7 +276,9 @@ export function useGamePath(path: string[]) {
       "Menu:Kelistrikan": "/game/produksi_konsumsi/grid-nasional",
       "Menu:Perminyakan": "/game/produksi_konsumsi/perminyakan",
       "Menu:Uranium": "/game/produksi_konsumsi/uranium",
-      "Komando Pertahanan:PerbandinganMisi": "/game/misi-taktis"
+      "Komando Pertahanan:PerbandinganMisi": "/game/misi-taktis",
+      "Menu:DebugKeuanganAI": "/game/debug_keuangan",
+      "Menu:DebugKeuanganAI:DetailDebug": "/game/debug_keuangan/detail_debug"
     };
 
     let targetPath = menuToPath[activeMenu];

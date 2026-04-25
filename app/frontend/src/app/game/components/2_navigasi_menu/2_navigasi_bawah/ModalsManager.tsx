@@ -35,6 +35,7 @@ import RingkasanPopulasiModal from "@/app/game/components/2_navigasi_menu/2_navi
 import StatistikPopulasiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/8_populasi/2_statistik/StatistikPopulasiModal";
 import AcaraModal from "@/app/game/components/1_navbar/1_kepuasan/acara/AcaraModal";
 import NewMessageToast from "@/app/game/components/sidemenu/2_kotak_masuk/NewMessageToast";
+import DebugKeuanganAIModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/DebugKeuanganAIModal";
 import RelationAlertToast from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/3_tingkat_hubungan/RelationAlertToast";
 import BudgetDetailModal from "@/app/game/components/1_navbar/3_kas_negara/BudgetDetailModal";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
@@ -265,6 +266,12 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         onClose={() => setActiveMenu("Ekonomi")}
         countryData={countryData}
         buildingDeltas={buildingStorage.getData().buildingDeltas || {}}
+      />
+      <DebugKeuanganAIModal 
+        isOpen={activeMenu.startsWith("Menu:DebugKeuanganAI")}
+        onClose={() => setActiveMenu("Peta Taktis")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
       />
       <NewMessageToast />
       <RelationAlertToast />
