@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Activity, Award, Briefcase, Coins, Globe, Info, Landmark, MapPin, Scale, Shield, TrendingUp, Users, Zap } from 'lucide-react';
 import RegionalJoinOrgButton from "../logic/RegionalJoinOrgButton";
-import { getOrgFee } from "@/app/game/logic/geopolitik/GeopoliticalConfig";
+import { getOrgFee } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/logic/GeopoliticalConfig";
 
 
 interface ASEANProps {

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Landmark, Coins, Zap, CheckCircle2 } from "lucide-react";
 import { unWorldBankStorage } from "./unWorldBankStorage";
+import { getOrgFee } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/logic/GeopoliticalConfig";
 
 interface OrgProps {
     currentCash: number;
@@ -12,6 +13,7 @@ interface OrgProps {
 
 export default function WorldBankMenu({ currentCash, currentDate, onUpdate }: OrgProps) {
     const [state, setState] = useState(unWorldBankStorage.getData());
+    const cost = getOrgFee("world_bank");
 
     useEffect(() => {
         setState(unWorldBankStorage.getData());
@@ -51,7 +53,7 @@ export default function WorldBankMenu({ currentCash, currentDate, onUpdate }: Or
                         <Coins size={12} className="text-amber-500" /> Biaya Masuk
                     </p>
                     <p className="text-[11px] text-zinc-300 font-bold leading-relaxed">
-                        Biaya Tetap: 10.000.000.
+                        Biaya Tetap: {cost.toLocaleString()}.
                     </p>
                 </div>
             </div>

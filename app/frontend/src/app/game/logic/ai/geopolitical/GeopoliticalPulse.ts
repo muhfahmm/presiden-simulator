@@ -9,7 +9,7 @@ import { unMembershipStorage } from "../../../components/2_navigasi_menu/2_navig
  * GeopoliticalPulse: Orchestrates AI decisions for PBB and Regional memberships.
  * Triggered daily by useAIGameSync.
  */
-import { getOrgFee } from "../../geopolitik/GeopoliticalConfig";
+import { getOrgFee } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/logic/GeopoliticalConfig";
 
 export class GeopoliticalPulse {
     /**

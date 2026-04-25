@@ -1,6 +1,6 @@
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
-import { getOrgFee } from "@/app/game/logic/geopolitik/GeopoliticalConfig";
+import { getOrgFee } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/logic/GeopoliticalConfig";
 
 
 const STORAGE_KEY = "em_un_worldbank";
@@ -31,7 +31,7 @@ export const unWorldBankStorage = {
     const capitalizedCountry = countryName.charAt(0).toUpperCase() + countryName.slice(1);
 
     const cost = getOrgFee("world_bank");
-    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk biaya masuk Bank Dunia (2.5M).` };
+    if (currentCash < cost) return { success: false, message: `Kas negara tidak cukup untuk biaya masuk Bank Dunia (${cost.toLocaleString()}).` };
 
     budgetStorage.updateBudget(-cost);
     const newState = { isJoined: true, joinDate: currentDate };
@@ -40,7 +40,7 @@ export const unWorldBankStorage = {
     inboxStorage.addMessage({
       source: "World Bank",
       subject: "🏗️ Kerja Sama Pembangunan Aktif",
-      content: `${capitalizedCountry} resmi bergabung dengan Bank Dunia. Biaya keanggotaan flat sebesar 2.500.000 telah dibayarkan. Manfaat aktif: Biaya infrastruktur 20% lebih murah & percepatan ekonomi wilayah.`,
+      content: `${capitalizedCountry} resmi bergabung dengan Bank Dunia. Biaya keanggotaan flat sebesar ${cost.toLocaleString()} telah dibayarkan. Manfaat aktif: Biaya infrastruktur 20% lebih murah & percepatan ekonomi wilayah.`,
       time: currentDate,
       priority: "high"
     });

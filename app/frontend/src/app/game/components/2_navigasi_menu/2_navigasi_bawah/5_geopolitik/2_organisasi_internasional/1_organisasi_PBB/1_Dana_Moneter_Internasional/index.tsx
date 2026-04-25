@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, Coins, Zap, CheckCircle2 } from "lucide-react";
 import JoinOrgButton from "../logic/JoinOrgButton";
+import { getOrgFee } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/logic/GeopoliticalConfig";
 
 interface OrgProps {
     currentCash: number;
@@ -43,7 +44,7 @@ export default function IMFMenu({ currentCash, currentDate, onUpdate }: OrgProps
             <JoinOrgButton 
                 orgId="imf" 
                 orgName="Dana Moneter Internasional" 
-                membershipFee={400000000} // 400M
+                membershipFee={getOrgFee("imf", currentCash)} 
             />
         </div>
     );

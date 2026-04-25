@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, Coins, Zap, CheckCircle2 } from "lucide-react";
 import { unInterpolStorage } from "./unInterpolStorage";
+import { getOrgFee } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/logic/GeopoliticalConfig";
 
 interface OrgProps {
     currentCash: number;
@@ -12,6 +13,7 @@ interface OrgProps {
 
 export default function InterpolMenu({ currentCash, currentDate, onUpdate }: OrgProps) {
     const [state, setState] = useState(unInterpolStorage.getData());
+    const cost = getOrgFee("interpol");
 
     useEffect(() => {
         setState(unInterpolStorage.getData());
@@ -51,7 +53,7 @@ export default function InterpolMenu({ currentCash, currentDate, onUpdate }: Org
                         <Coins size={12} className="text-amber-500" /> Biaya Masuk
                     </p>
                     <p className="text-[11px] text-zinc-300 font-bold leading-relaxed">
-                        Biaya Tahunan: 1.000.000.
+                        Biaya Tahunan: {cost.toLocaleString()}.
                     </p>
                 </div>
             </div>
