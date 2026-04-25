@@ -2,8 +2,60 @@ package perdagangan
 
 import (
 	"fmt"
+	"strings"
 	"emserver/core"
 )
+
+// hasEmbassyBetween checks if two NPC nations have an active embassy relationship (E=1)
+func hasEmbassyBetween(n1, n2 string) bool {
+	k1 := strings.ToLower(strings.TrimSpace(n1))
+	k2 := strings.ToLower(strings.TrimSpace(n2))
+
+	// Check n1 -> n2
+	if rels, ok := core.GlobalState.Relationships[k1]; ok {
+		for k, rel := range rels {
+			if strings.ToLower(k) == k2 && rel != nil && rel.E == 1 {
+				return true
+			}
+		}
+	}
+	// Check n2 -> n1
+	if rels, ok := core.GlobalState.Relationships[k2]; ok {
+		for k, rel := range rels {
+			if strings.ToLower(k) == k1 && rel != nil && rel.E == 1 {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func GenerateBilateralNews(dateStr string) {
+	if len(core.NpcNations) < 2 {
+		return
+	}
+
+	// Try up to 20 times to find a pair of nations that already have an embassy
+	for attempt := 0; attempt < 20; attempt++ {
+		n1 := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
+		n2 := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
+		for n2 == n1 {
+			n2 = core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
+		}
+
+		// Prerequisite: both nations must have an active embassy relationship
+		if !hasEmbassyBetween(n1, n2) {
+			continue
+		}
+
+		subj := fmt.Sprintf("Tawaran hubungan dagang negara %s diterima oleh negara %s", n1, n2)
+		content := fmt.Sprintf("Setelah menjalin hubungan diplomatik melalui kedutaan besar, %s dan %s resmi menandatangani perjanjian kemitraan perdagangan. Kesepakatan ini mencakup pengurangan tarif dan fasilitasi arus barang antar kedua negara.", n1, n2)
+
+		core.AddNewsItemLocked("Berita Ekonomi Global", subj, content, "trade", "low", dateStr)
+		return
+	}
+	// If no embassy pair found after 20 attempts, skip — no trade without diplomacy
+}
 
 func GenerateFlashNews(dateStr string) {
 	if len(core.NpcNations) == 0 {
@@ -18,6 +70,9 @@ func GenerateFlashNews(dateStr string) {
 }
 
 func GenerateBatch(dateStr string, count int) {
+	// Generate 1 bilateral agreement news per batch to keep it special
+	GenerateBilateralNews(dateStr)
+	
 	for i := 0; i < count; i++ {
 		roll := core.Rng.Intn(3)
 		switch roll {

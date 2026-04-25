@@ -5,21 +5,50 @@ import { Briefcase, X, Handshake, ShieldAlert } from "lucide-react";
 import { getInitialAgreements } from "@/app/database/data/database_mitra_perdagangan/agreementsRegistry";
 import { embassyStorage } from "../1_kedutaan/logic/embassyStorage";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
-import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
-
-/** Parse a date string that could be in "DD-MM-YYYY" or "02 Jan 2006" format. */
-function parseNewsDate(dateStr: string): Date | null {
-  const ddmmyyyy = dateStr.match(/^(\d{2})-(\d{2})-(\d{4})$/);
-  if (ddmmyyyy) return new Date(Date.UTC(+ddmmyyyy[3], +ddmmyyyy[2] - 1, +ddmmyyyy[1]));
-  const parsed = new Date(dateStr);
-  if (!isNaN(parsed.getTime())) return parsed;
-  return null;
-}
+import { getStoredGameDate, parseFormattedDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
 interface MitraPerdaganganModalProps {
   isOpen: boolean;
   onClose: () => void;
   targetCountry: string;
+}
+
+/**
+ * Parse the Go-generated subject:
+ *   "Tawaran hubungan dagang negara {A} diterima oleh negara {B}"
+ * Returns [countryA, countryB] or null if pattern doesn't match.
+ */
+function parseTradeNewsSubject(subject: string): [string, string] | null {
+  const regex = /tawaran hubungan dagang negara (.+?) diterima oleh negara (.+)/i;
+  const match = subject.match(regex);
+  if (match) return [match[1].trim(), match[2].trim()];
+  return null;
+}
+
+/**
+ * Parse a date string that could be in "DD-MM-YYYY" or "02 Jan 2006" format.
+ */
+function parseNewsDate(dateStr: string): Date | null {
+  // Try DD-MM-YYYY first
+  const ddmmyyyy = dateStr.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  if (ddmmyyyy) {
+    return new Date(Date.UTC(+ddmmyyyy[3], +ddmmyyyy[2] - 1, +ddmmyyyy[1]));
+  }
+  // Try "02 Jan 2006" or "02 May 2026" (Go's date.Format("02 Jan 2006"))
+  const parsed = new Date(dateStr);
+  if (!isNaN(parsed.getTime())) return parsed;
+  return null;
+}
+
+/**
+ * Check if newsDate is within 30 days of gameDate.
+ */
+function isWithin30Days(newsTimeStr: string, gameDate: Date): boolean {
+  const newsDate = parseNewsDate(newsTimeStr);
+  if (!newsDate) return false;
+  const diffMs = gameDate.getTime() - newsDate.getTime();
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+  return diffDays >= 0 && diffDays <= 30;
 }
 
 export default function MitraPerdaganganModal({ isOpen, onClose, targetCountry }: MitraPerdaganganModalProps) {
@@ -28,49 +57,81 @@ export default function MitraPerdaganganModal({ isOpen, onClose, targetCountry }
 
   useEffect(() => {
     if (isOpen && targetCountry) {
-      // Fetch agreements
+      // 1. Load static embassy list from trade agreements database
       const data = getInitialAgreements(targetCountry, targetCountry);
       const playerCountry = localStorage.getItem("selectedCountry")?.toLowerCase().trim() || "";
       const isEmbassyActive = embassyStorage.getEmbassyStatus(targetCountry) === 'completed';
 
-      let finalAgreements = data;
+      let activeAgreements = data;
       if (!isEmbassyActive) {
          // Filter out player's nation if embassy/relations are severed
-         finalAgreements = data.filter((item: any) => item.mitra.toLowerCase().trim() !== playerCountry);
+         activeAgreements = data.filter((item: any) => item.mitra.toLowerCase().trim() !== playerCountry);
       }
-      
-      setAgreements(finalAgreements);
 
-      // Determine which ones are "BARU" based on news within the last 30 days
+      // 2. Scan ALL news for trade agreement involving this country
       const newsItems = newsStorage.getNews();
       const gameDate = getStoredGameDate();
+      const targetLower = targetCountry.toLowerCase().trim();
+
+      // Build a set of existing partner names (lowercase) for dedup
+      const existingPartners = new Set(
+        activeAgreements.map((e: any) => e.mitra.toLowerCase().trim())
+      );
+
       const newMap: Record<string, boolean> = {};
+      const newsAddedEntries: any[] = [];
 
-      finalAgreements.forEach((emb) => {
-        const mitra = emb.mitra.toLowerCase();
-        const target = targetCountry.toLowerCase();
+      newsItems.forEach((item: any) => {
+        // Trade agreements can be in 'trade' or 'diplomacy' category depending on implementation
+        if (item.category !== "trade" && item.category !== "diplomacy") return;
+        
+        const parsed = parseTradeNewsSubject(item.subject);
+        if (!parsed) return;
 
-        // Find if there's any recent news about this trade partner
-        const hasRecentNews = newsItems.some((item: any) => {
-          if (item.subject.toLowerCase().includes("perdagangan") || item.category === "trade") {
-            const subjLower = item.subject.toLowerCase();
-            // Checking if both countries are mentioned in the news subject
-            if (subjLower.includes(target) && subjLower.includes(mitra)) {
-              // Check date diff (within 30 days)
-              const newsDate = parseNewsDate(item.time);
-              if (!newsDate) return false;
-              const diffTime = gameDate.getTime() - newsDate.getTime();
-              const diffDays = diffTime / (1000 * 60 * 60 * 24);
-              return diffDays >= 0 && diffDays <= 30;
-            }
+        const [countryA, countryB] = parsed;
+        const aLower = countryA.toLowerCase().trim();
+        const bLower = countryB.toLowerCase().trim();
+
+        // Check if this news involves our target country
+        let otherCountryName: string | null = null;
+        if (aLower === targetLower) {
+          otherCountryName = countryB;
+        } else if (bLower === targetLower) {
+          otherCountryName = countryA;
+        }
+
+        if (!otherCountryName) return;
+
+        // Check if this news is within 30 days
+        if (!isWithin30Days(item.time, gameDate)) return;
+
+        const otherLower = otherCountryName.toLowerCase().trim();
+
+        if (existingPartners.has(otherLower)) {
+          // Already in static list — just mark as BARU
+          const existing = activeAgreements.find(
+            (e: any) => e.mitra.toLowerCase().trim() === otherLower
+          );
+          if (existing) {
+            newMap[existing.mitra] = true;
           }
-          return false;
-        });
-
-        if (hasRecentNews) {
-          newMap[emb.mitra] = true;
+        } else {
+          // NEW entry not in static database — inject it
+          if (!existingPartners.has(otherLower)) {
+            existingPartners.add(otherLower);
+            newsAddedEntries.push({
+              mitra: otherCountryName,
+              type: "Perdagangan",
+              status: "Aktif",
+            });
+            newMap[otherCountryName] = true;
+          }
         }
       });
+
+      // 3. Merge: news-added entries go to the TOP of the list
+      const merged = [...newsAddedEntries, ...activeAgreements];
+      setAgreements(merged);
       setNewPartnerMap(newMap);
       
       window.dispatchEvent(new CustomEvent('hide_strategy_modal'));
@@ -139,7 +200,7 @@ export default function MitraPerdaganganModal({ isOpen, onClose, targetCountry }
                   </div>
                   <div className="text-right flex items-center gap-2">
                      {newPartnerMap[agreement.mitra] && (
-                        <span className="px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                        <span className="px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 animate-pulse">
                            Baru
                         </span>
                      )}

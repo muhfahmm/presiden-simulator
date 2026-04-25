@@ -9,7 +9,8 @@ import {
   Shield, 
   Zap,
   Calendar,
-  X
+  X,
+  Handshake
 } from 'lucide-react';
 import { NewsItem } from './newsStorage';
 import { countries } from '@/app/database/data/negara/benua/index';
@@ -204,6 +205,31 @@ export const NewsBaseList = ({
                                 <Shield size={14} className="text-purple-500 group-hover/btn:text-black transition-colors" />
                                 <span className="text-[10px] font-black uppercase tracking-widest text-purple-500 group-hover/btn:text-black transition-colors">
                                   Lihat Kedutaan - {c1}
+                                </span>
+                              </button>
+                            </div>
+                          );
+                        }
+                      }
+
+                      if (item.category === 'trade') {
+                        const match = item.subject.match(/tawaran hubungan dagang negara (.+?) diterima oleh negara (.+)/i);
+                        if (match) {
+                          const c1 = match[1];
+                          return (
+                            <div className="mt-8 pt-6 border-t border-zinc-900 flex items-center justify-end">
+                              <button
+                                onClick={() => {
+                                  onClose();
+                                  const countrySlug = c1.toLowerCase().replace(/ /g, '_');
+                                  setActiveMenu(`CountryModal:${c1.toLowerCase()}:diplomasi_hubungan:mitra_dagang`);
+                                  router.push(`/game/${countrySlug}/diplomasi_hubungan`);
+                                }}
+                                className="flex items-center gap-2 group/btn cursor-pointer py-2 px-4 bg-orange-500/10 hover:bg-orange-500 border border-orange-500/30 hover:border-orange-400 rounded-xl transition-all"
+                              >
+                                <Handshake size={14} className="text-orange-500 group-hover/btn:text-black transition-colors" />
+                                <span className="text-[10px] font-black uppercase tracking-widest text-orange-500 group-hover/btn:text-black transition-colors">
+                                  Lihat Mitra Dagang - {c1}
                                 </span>
                               </button>
                             </div>
