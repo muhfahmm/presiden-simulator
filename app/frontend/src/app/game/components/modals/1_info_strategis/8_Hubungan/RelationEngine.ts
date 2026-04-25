@@ -7,6 +7,7 @@ import { nonAggressionStorage } from '@/app/game/components/modals/2_diplomasi_h
 import { aliansiStorage } from '@/app/game/components/modals/2_diplomasi_hubungan/3_aliansi_pertahanan/logic/aliansiStorage';
 import { newsStorage } from '@/app/game/components/sidemenu/1_berita/newsStorage';
 import { formatGameDate } from '@/app/game/components/1_navbar/5_navigasi_waktu/gameTime';
+import { runGeopoliticalDrift } from '@/app/game/components/AI_logic/7_AI_Geopolitik/2_mesin_diplomasi/DrifterHubungan';
 
 export const RelationEngine = {
     _isProcessing: false,
@@ -16,6 +17,9 @@ export const RelationEngine = {
      */
     async processDailyUpdate(userCountry: string = "Indonesia") {
         if (timeStorage.getState().isPaused || this._isProcessing) return;
+
+        // Run Client-Side Geopolitical AI Drift
+        runGeopoliticalDrift();
 
         this._isProcessing = true;
         const currentMatrix = getGlobalRelationMatrix();

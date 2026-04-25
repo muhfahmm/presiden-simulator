@@ -32,5 +32,19 @@ export const relationStorage = {
     clear: () => {
         const { hardClearMatrix } = require("@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix");
         hardClearMatrix();
+    },
+
+    /**
+     * AI-Friendly Aliases
+     */
+    getRelation: (sourceId: string, targetId: string) => {
+        return getRelationScore(targetId, 50, sourceId);
+    },
+
+    updateRelation: (sourceId: string, targetId: string, delta: number) => {
+        const current = getRelationScore(targetId, 50, sourceId);
+        const { updateMatrixScore } = require("@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix");
+        const newScore = Math.max(0, Math.min(100, current + delta));
+        updateMatrixScore(sourceId, targetId, newScore);
     }
 };
