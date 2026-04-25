@@ -56,8 +56,8 @@ export const aiPopulationStorage = {
       // Ensure we pull from the correct property and handle string/number
       const rawPop = (c as any).jumlah_penduduk ?? (c as any).populasi;
       const rawValue = typeof rawPop === 'string' 
-        ? Number(rawPop.replace(/\./g, '')) 
-        : Number(rawPop);
+        ? parseInt(rawPop.replace(/\./g, ''), 10) 
+        : (typeof rawPop === 'number' ? rawPop : 0);
       
       initialData[c.name_en] = (rawValue || 0);
       
@@ -86,8 +86,8 @@ export const aiPopulationStorage = {
       if (c) {
         const rawPop = (c as any).jumlah_penduduk ?? (c as any).populasi;
         const defaultPop = typeof rawPop === 'string'
-          ? Number(rawPop.replace(/\./g, ''))
-          : Number(rawPop) || 0;
+          ? parseInt(rawPop.replace(/\./g, ''), 10)
+          : (typeof rawPop === 'number' ? rawPop : 0);
         console.log(`[AI POPULATION] Reset detected - providing default for ${countryNameEn}: ${defaultPop}`);
         return defaultPop;
       }
@@ -103,9 +103,9 @@ export const aiPopulationStorage = {
     if (c) {
       const rawPop = (c as any).jumlah_penduduk ?? (c as any).populasi;
       const rawValue = typeof rawPop === 'string' 
-        ? Number(rawPop.replace(/\./g, '')) 
-        : Number(rawPop);
-      return rawValue || 0;
+        ? parseInt(rawPop.replace(/\./g, ''), 10) 
+        : (typeof rawPop === 'number' ? rawPop : 0);
+      return rawValue;
     }
     return 0;
   },

@@ -262,6 +262,76 @@ func loadBuildingsFromTypeScript() error {
 	return nil
 }
 
+// loadNationsFromTypeScript reads baseline stats for all 207 nations from TypeScript database files
+func loadNationsFromTypeScript() map[string]core.NPCNationState {
+	nations := make(map[string]core.NPCNationState)
+	basePath := "c:/fhm/em/app/frontend/src/app/pilih_negara/data/semua_fitur_negara/0_profiles/"
+	continents := []string{"asia", "afrika", "eropa", "na", "sa", "oceania"}
+
+	count := 0
+	for _, continent := range continents {
+		dir := basePath + continent
+		files, err := ioutil.ReadDir(dir)
+		if err != nil {
+			fmt.Printf("[GO] Warning: Could not read continent directory %s: %v\n", dir, err)
+			continue
+		}
+
+		for _, file := range files {
+			if file.IsDir() {
+				continue
+			}
+			path := dir + "/" + file.Name()
+			data, err := ioutil.ReadFile(path)
+			if err != nil {
+				continue
+			}
+			content := string(data)
+
+			// Regex to find name_id, name_en, jumlah_penduduk, anggaran
+			nameIDMatch := regexp.MustCompile(`"name_id":\s*"([^"]+)"`).FindStringSubmatch(content)
+			nameENMatch := regexp.MustCompile(`"name_en":\s*"([^"]+)"`).FindStringSubmatch(content)
+			popMatch := regexp.MustCompile(`"jumlah_penduduk":\s*(\d+)`).FindStringSubmatch(content)
+			budgetMatch := regexp.MustCompile(`"anggaran":\s*(\d+)`).FindStringSubmatch(content)
+
+			if len(nameIDMatch) >= 2 {
+				nameID := nameIDMatch[1]
+				nameEN := nameID // Fallback
+				if len(nameENMatch) >= 2 {
+					nameEN = nameENMatch[1]
+				}
+
+				var pop float64 = 50000000.0 // Global default if missing
+				if len(popMatch) >= 2 {
+					fmt.Sscanf(popMatch[1], "%f", &pop)
+				}
+
+				var budget float64 = 1000.0 // Global default if missing
+				if len(budgetMatch) >= 2 {
+					fmt.Sscanf(budgetMatch[1], "%f", &budget)
+				}
+
+				// We map by BOTH name_id (Indonesian) and name_en (English) to ensure lookups work
+				state := core.NPCNationState{
+					Name:       nameID,
+					Population: pop,
+					Budget:     budget,
+					Happiness:  50.0,
+					Stability:  75.0,
+				}
+				nations[nameID] = state
+				if nameEN != nameID {
+					nations[nameEN] = state
+				}
+				count++
+			}
+		}
+	}
+	fmt.Printf("[GO] Database Sync: Loaded %d country baselines from TypeScript profiles.\n", count)
+	return nations
+}
+
+
 func loadDefaultsFromPython() map[string]core.NPCNationState {
 	defaults := make(map[string]core.NPCNationState)
 	
@@ -289,6 +359,7 @@ func InitializeNPCStatesLocked() {
 	}
 	
 	pyDefaults := loadDefaultsFromPython()
+	tsDefaults := loadNationsFromTypeScript()
 	
 	for _, name := range core.NpcNations {
 		tier := 1 + core.Rng.Intn(3)
@@ -299,29 +370,20 @@ func InitializeNPCStatesLocked() {
 		stability := 75.0 + core.Rng.Float64()*20.0
 		happiness := 50.0
 		
-		// Use Python defaults if available
-		if def, ok := pyDefaults[name]; ok {
+		// 1. Try to load from TypeScript Profile (Strongest Authority)
+		if def, ok := tsDefaults[name]; ok {
+			pop = def.Population
+			budget = def.Budget
+			// Ensure tier is somewhat related to budget
+			if budget > 100000 { tier = 4 } else if budget > 50000 { tier = 3 } else if budget > 10000 { tier = 2 } else { tier = 1 }
+		} else if def, ok := pyDefaults[name]; ok {
+			// 2. Fallback to Python defaults
 			pop = def.Population
 			budget = def.Budget
 			happiness = def.Happiness
 			stability = def.Stability
 			tier = def.EconomicTier
 			if tier == 0 { tier = 1 + core.Rng.Intn(3) }
-		} else if name == "China" {
-			pop = 1392730000.0
-			budget = 180167.0
-		} else if name == "India" {
-			pop = 1352640000.0
-			budget = 165000.0
-		} else if name == "Amerika Serikat" {
-			pop = 331002651.0
-			budget = 150000.0
-		} else if name == "Indonesia" {
-			pop = 273523615.0
-			budget = 13807.0
-		} else if name == "Thailand" {
-			pop = 69800000.0
-			budget = 12000.0
 		}
 		
 		core.GlobalState.NPCStates[name] = &core.NPCNationState{
@@ -337,7 +399,7 @@ func InitializeNPCStatesLocked() {
 			PriceIndex:   1.0,
 		}
 	}
-	fmt.Printf("[GO] Initialized %d NPC nations with database-aligned baselines.\n", len(core.NpcNations))
+	fmt.Printf("[GO] Initialized %d NPC nations with dynamic database-aligned baselines.\n", len(core.NpcNations))
 }
 
 // ═══════════════════════════════════════════════════════════

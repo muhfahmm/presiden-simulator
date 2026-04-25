@@ -13,7 +13,7 @@ export interface NewsItem {
   time: string;
   read: boolean;
   priority: 'low' | 'medium' | 'high';
-  category: 'global' | 'diplomacy' | 'conflict' | 'economy' | 'construction' | 'finance' | 'trade' | 'organizations';
+  category: 'global' | 'diplomacy' | 'conflict' | 'economy' | 'construction' | 'finance' | 'trade';
   timestamp: number;
 }
 
@@ -21,7 +21,7 @@ const NEWS_STORAGE_KEY = "em_global_news_v1";
 const NEWS_WEEK_KEY = "em_news_week_id";
 const NEWS_EFFECTS_KEY = "em_news_effects_processed";
 const DAILY_LIMIT = 10;
-const WEEKLY_AI_LIMIT = 20; 
+const WEEKLY_AI_LIMIT = 20;
 // News list is reset every 1st of the month by the Go server to keep history lightweight.
 
 const dailyCounters: Record<string, Record<string, number>> = {};
@@ -46,13 +46,13 @@ export const newsStorage = {
     try {
       const parsed = JSON.parse(stored);
       if (!Array.isArray(parsed)) return [];
-      
+
       // Self-healing: Deduplicate by ID to prevent UI crashes from legacy data
       const uniqueMap = new Map();
       parsed.forEach((item: NewsItem) => {
         if (item && item.id) uniqueMap.set(item.id, item);
       });
-      
+
       return Array.from(uniqueMap.values())
         .sort((a: NewsItem, b: NewsItem) => b.timestamp - a.timestamp);
     } catch (e) {
@@ -67,7 +67,7 @@ export const newsStorage = {
    */
   syncFromServer: (serverNews: any[], currentGameDate?: string) => {
     if (typeof window === "undefined" || !Array.isArray(serverNews)) return;
-    
+
     // Monthly reset: if server sends empty news, clear local cache
     if (serverNews.length === 0) {
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify([]));
@@ -100,7 +100,7 @@ export const newsStorage = {
       newsStorage.processConstructionEffects(merged);
     } catch (e) {
       // Quota exceeded — only trim if absolutely necessary to prevent crash, but keep a large buffer
-      const trimmed = merged.slice(0, 1000); 
+      const trimmed = merged.slice(0, 1000);
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
     }
     window.dispatchEvent(new Event("news_updated"));
@@ -121,18 +121,18 @@ export const newsStorage = {
         sseSource.onmessage = async (event) => {
           try {
             const data = JSON.parse(event.data);
-            
+
             // ALWAYS dispatch player state immediately (lightweight)
             window.dispatchEvent(new CustomEvent("game_state_sync", { detail: data }));
 
-              // Sync news (Always sync if count changes or if server sends an empty list to handle weekly reset)
-              if (data.news && Array.isArray(data.news)) {
-                const currentCount = data.news.length;
-                if (currentCount !== lastNewsCount || currentCount === 0) {
-                  lastNewsCount = currentCount;
-                  newsStorage.syncFromServer(data.news, data.gameDate);
-                }
+            // Sync news (Always sync if count changes or if server sends an empty list to handle weekly reset)
+            if (data.news && Array.isArray(data.news)) {
+              const currentCount = data.news.length;
+              if (currentCount !== lastNewsCount || currentCount === 0) {
+                lastNewsCount = currentCount;
+                newsStorage.syncFromServer(data.news, data.gameDate);
               }
+            }
 
             // Sync NPC building levels from Go server (authoritative)
             if (data.npcBuildingLevels && typeof data.npcBuildingLevels === 'object') {
@@ -198,20 +198,20 @@ export const newsStorage = {
                   "em_ai_happiness", "em_ai_last_happiness_update",
                   "em_ai_building_data", "em_ai_defense_counts",
                   "em_relation_matrix", "em_global_news_v1",
-                  "em_fresh_session"
+                  "em_fresh_session", "em_game_date"
                 ];
 
                 keysToRemove.forEach(key => localStorage.removeItem(key));
-                
+
                 // Set FRESH SESSION flag to TRUE to force components to re-read baseline
                 localStorage.setItem("em_fresh_session", "true");
-                
+
                 // Also notify storages that are currently in memory
                 window.dispatchEvent(new Event("news_updated"));
                 window.dispatchEvent(new Event("ai_budget_updated"));
                 window.dispatchEvent(new Event("ai_population_updated"));
                 window.dispatchEvent(new Event("ai_happiness_updated"));
-                
+
                 console.log("[SSE] Nuclear Reset: Local caches purged. Components will reload baseline data.");
               } catch (e) {
                 console.error("[SSE] Failed to purge some AI caches:", e);
@@ -222,7 +222,7 @@ export const newsStorage = {
             // Fire AiTradeService.processDaily() once per game day change
             if (data.gameDate && data.gameDate !== lastTradeProcessedDate && !data.isPaused) {
               lastTradeProcessedDate = data.gameDate;
-              
+
               // Debounce: wait 5s after date change to avoid rapid-fire during speed 3x
               if (tradeProcessTimeout) clearTimeout(tradeProcessTimeout);
               tradeProcessTimeout = setTimeout(async () => {
@@ -245,7 +245,7 @@ export const newsStorage = {
           console.warn("[SSE] Connection lost. Retrying in 3s...");
           sseSource?.close();
           sseSource = null;
-          
+
           // Retry connection
           if (sseRetryTimeout) clearTimeout(sseRetryTimeout);
           sseRetryTimeout = setTimeout(connect, 3000);
@@ -282,7 +282,7 @@ export const newsStorage = {
     if (typeof window === "undefined") return;
     const current = localStorage.getItem(NEWS_STORAGE_KEY);
     const currentParsed = current ? JSON.parse(current) : [];
-    
+
     const newItem: NewsItem = {
       ...news,
       id: Math.random().toString(36).substr(2, 9),
@@ -290,7 +290,7 @@ export const newsStorage = {
       time: news.time || formatGameDate(getStoredGameDate()),
       timestamp: Date.now()
     };
-    
+
     const updated = [newItem, ...currentParsed];
     try {
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(updated));
@@ -336,7 +336,7 @@ export const newsStorage = {
    * Limit AI News frequency.
    */
   canAddWeekly: (category: string, gameDate: Date): boolean => {
-    if (category === 'construction') return true; 
+    if (category === 'construction') return true;
     // This is now legacy code as Go server handles generation, but keeping for compatibility
     return true;
   },
@@ -355,22 +355,22 @@ export const newsStorage = {
     newsItems.forEach(item => {
       if (item.category === 'construction' && !processedIds.has(item.id)) {
         const { country, building, isAI } = detectConstructionDetails(item.subject, item.content, item.source);
-        
+
         if (isAI && country && building) {
           const countryKey = country.name_en;
-          
+
           // Extract quantity from news text (e.g., "pembangunan 4 unit" or "pengadaan 4 unit")
           const fullText = `${item.subject} ${item.content}`;
           const qtyMatch = fullText.match(/(?:pembangunan|pengadaan|memulai pembangunan|membangun)\s+(\d+)\s+unit/i);
           const quantity = qtyMatch ? parseInt(qtyMatch[1], 10) : 1;
 
           // Apply effect based on sector
-          if (building.sectorPath.includes('armada_militer') || 
-              building.sectorPath.includes('armada_kepolisian') || 
-              building.sectorPath.includes('sektor_pertahanan') ||
-              building.sectorPath.includes('intelijen') ||
-              building.sectorPath.includes('militer_strategis') ||
-              building.sectorPath.includes('pabrik_militer')) {
+          if (building.sectorPath.includes('armada_militer') ||
+            building.sectorPath.includes('armada_kepolisian') ||
+            building.sectorPath.includes('sektor_pertahanan') ||
+            building.sectorPath.includes('intelijen') ||
+            building.sectorPath.includes('militer_strategis') ||
+            building.sectorPath.includes('pabrik_militer')) {
             aiDefenseStorage.incrementDefenseCount(countryKey, building.dataKey, quantity);
             console.log(`[AI EFFECT] Instant Defense for ${countryKey}: ${building.dataKey} x${quantity}`);
           } else {

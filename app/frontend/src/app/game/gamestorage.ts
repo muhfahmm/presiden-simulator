@@ -110,6 +110,7 @@ export const gameStorage = {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     localStorage.setItem("selectedCountry", country);
     localStorage.removeItem("em_game_date"); // Reset date for new game
+    localStorage.setItem("em_fresh_session", "true");
 
     // Modular cleanup
     happinessStorage.clear();
@@ -212,6 +213,7 @@ export const gameStorage = {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem("selectedCountry");
     localStorage.removeItem("em_game_date");
+    localStorage.setItem("em_fresh_session", "true");
 
     // Modular cleanup
     happinessStorage.clear();
@@ -440,6 +442,7 @@ export const gameStorage = {
       console.error("[RESET] ERROR during verification:", e);
     }
 
+    localStorage.setItem("em_fresh_session", "true");
     console.log(`[RESET] ========== NUCLEAR RESET COMPLETE ==========`);
   },
 
