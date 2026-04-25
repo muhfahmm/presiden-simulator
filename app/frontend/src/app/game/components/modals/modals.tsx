@@ -41,6 +41,7 @@ import TanamkanIdeologiModal from "./4_bantuan_dan_kerjasama/6_tanamkan_ideologi
 import { tradeStorage } from "./2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
 import DetailNegaraModal from "./1_info_strategis/7_DetailNegara/DetailNegaraModal";
 import KedutaanBesarModalAI from "./2_diplomasi_hubungan/9_kedutaan_besar_ai/KedutaanBesarModalAI";
+import PaktaAliansiModal from "./3_aksi_militer_dan_intelijen/7_pakta_aliansi/PaktaAliansiModal";
 
 import { RelationPersistence } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationPersistence";
 import { getRelationScore, normalizeId } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix";
@@ -422,6 +423,7 @@ export default function StrategyModal({
             <MilitaryTab 
               setActiveMenu={setActiveMenu} 
               targetId={targetId}
+              targetCountry={targetCountry || ""}
             />
           )}
           {menuTab === 'aid' && (
@@ -605,6 +607,30 @@ export default function StrategyModal({
           }}
         />
       )}
+
+      {activeSubTab === 'daftar_pakta' && (
+        <PaktaAliansiModal 
+          isOpen={true}
+          onClose={() => {
+            setActiveMenu(`CountryModal:${targetId}:aksi_militer_intelijen`);
+          }}
+          targetCountry={targetCountry || ""}
+          mode="pakta"
+        />
+      )}
+
+      {activeSubTab === 'daftar_aliansi' && (
+        <PaktaAliansiModal 
+          isOpen={true}
+          onClose={() => {
+            setActiveMenu(`CountryModal:${targetId}:aksi_militer_intelijen`);
+          }}
+          targetCountry={targetCountry || ""}
+          mode="aliansi"
+        />
+      )}
+
+
 
       <DetailNegaraModal 
         isOpen={activeSubTab === 'detail_lengkap'}

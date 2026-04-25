@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react";
-import { Swords, Eye, Bomb, Flame, Zap, Shield } from "lucide-react";
+import { Swords, Eye, Bomb, Flame, Zap, Shield, Handshake, Skull } from "lucide-react";
 import ActionCard from "../shared/ActionCard";
 
 // Import Modular Modals
@@ -12,12 +12,14 @@ import PerangNuklirModal from "./4_perang_nuklir/PerangNuklirModal";
 import KudetaModal from "./5_kudeta/KudetaModal";
 import HinaModal from "./6_hina/HinaModal";
 
+
 interface MilitaryTabProps {
   setActiveMenu: (menu: string) => void;
   targetId: string;
+  targetCountry: string;
 }
 
-export default function MilitaryTab({ setActiveMenu, targetId }: MilitaryTabProps) {
+export default function MilitaryTab({ setActiveMenu, targetId, targetCountry }: MilitaryTabProps) {
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   return (
@@ -55,12 +57,25 @@ export default function MilitaryTab({ setActiveMenu, targetId }: MilitaryTabProp
           onClick={() => setActiveModal('kudeta')}
         />
         <ActionCard 
-          icon={<Shield className="h-4 w-4" />} 
+          icon={<Skull className="h-4 w-4" />} 
           label="Hina" 
           bg="from-stone-900/30 to-zinc-900" 
           onClick={() => setActiveModal('hina')}
         />
+        <ActionCard 
+          icon={<Handshake className="h-4 w-4" />} 
+          label="Daftar Pakta" 
+          bg="from-red-900/40 to-zinc-900" 
+          onClick={() => setActiveMenu(`CountryModal:${targetId}:aksi_militer_intelijen:daftar_pakta`)}
+        />
+        <ActionCard 
+          icon={<Shield className="h-4 w-4" />} 
+          label="Daftar Aliansi" 
+          bg="from-rose-900/40 to-zinc-900" 
+          onClick={() => setActiveMenu(`CountryModal:${targetId}:aksi_militer_intelijen:daftar_aliansi`)}
+        />
       </div>
+
 
       {/* Render Specific Modals */}
       <SpionaseModal isOpen={activeModal === 'spionase'} onClose={() => setActiveModal(null)} />
@@ -69,5 +84,7 @@ export default function MilitaryTab({ setActiveMenu, targetId }: MilitaryTabProp
       <KudetaModal isOpen={activeModal === 'kudeta'} onClose={() => setActiveModal(null)} />
       <HinaModal isOpen={activeModal === 'hina'} onClose={() => setActiveModal(null)} />
     </>
+
+
   );
 }

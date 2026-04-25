@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math"
 	"os/exec"
+	"strings"
 	"sync"
 	"emserver/core"
 )
@@ -35,17 +36,25 @@ func ProcessDaily(dateStr string) bool {
 	}
 
 	day := core.GlobalState.DayCounter
-	isWeeklyBatch := day%7 == 0 || day <= 1
+	
+	// Synchronize with the batch schedule: 1, 5, 10, 15, 20, 25, 30
+	isBatchDay := false
+	for _, d := range []string{"01 ", "05 ", "10 ", "15 ", "20 ", "25 ", "30 "} {
+		if strings.HasPrefix(dateStr, d) {
+			isBatchDay = true
+			break
+		}
+	}
 
 	changed := false
-	if isWeeklyBatch {
+	if isBatchDay || day <= 1 {
 		changed = processWeeklyConstruction(dateStr)
 	} else {
 		changed = processDailyConstruction(dateStr)
 	}
 
-	// Background Python smart builds (20% weekly chance)
-	if isWeeklyBatch && core.Rng.Intn(100) < 20 {
+	// Background Python smart builds (20% batch chance)
+	if isBatchDay && core.Rng.Intn(100) < 20 {
 		go processSmartConstruction(dateStr)
 	}
 
@@ -68,11 +77,9 @@ func getShuffledNPCs() []string {
 }
 
 // processWeeklyConstruction picks 20-50 random NPC nations to build + generate news.
-// Caller must already hold core.GlobalState.Mu lock.
 func processWeeklyConstruction(dateStr string) bool {
 	shuffled := getShuffledNPCs()
 
-	// Pick 20-50 random nations (not all 207)
 	numBuilders := 20 + core.Rng.Intn(31)
 	if numBuilders > len(shuffled) {
 		numBuilders = len(shuffled)
@@ -135,13 +142,11 @@ func processWeeklyConstruction(dateStr string) bool {
 		newsGenerated++
 	}
 
-	fmt.Printf("[GO] AI Construction (WEEKLY): %d/%d nations built, %d news\n",
+	fmt.Printf("[GO] AI Construction (BATCH): %d/%d nations built, %d news\n",
 		nationsBuilt, numBuilders, newsGenerated)
 	return nationsBuilt > 0
 }
 
-// processDailyConstruction: 5-15 random NPC nations build silently (no news).
-// Caller must already hold core.GlobalState.Mu lock.
 func processDailyConstruction(dateStr string) bool {
 	shuffled := getShuffledNPCs()
 
@@ -208,7 +213,6 @@ func getSpendRatio(state *core.NPCNationState) float64 {
 	}
 }
 
-// processSmartConstruction: Python AI brain for smarter builds (background goroutine).
 func processSmartConstruction(dateStr string) {
 	playerCountry := core.GlobalState.Player.Country
 

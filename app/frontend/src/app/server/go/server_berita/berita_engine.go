@@ -4,6 +4,7 @@ import (
 	"time"
 	"emserver/core"
 	aliansi "emserver/server_berita/6_aliansi"
+	organisasi "emserver/server_berita/7_organisasi"
 	kedutaan "emserver/server_berita/4_kedutaan"
 	keuangan "emserver/server_berita/2_keuangan"
 	pakta "emserver/server_berita/5_pakta"
@@ -19,34 +20,35 @@ func ProcessNewsDay(date time.Time) bool {
 	// 1. Pembangunan (Daily progress) - Already active via ProcessDaily
 	changed := pembangunan.ProcessDaily(dateStr)
 
-	// --- BATCH NEWS GENERATION (5-15 items per tab) ---
-	// Trigger strictly on the 1st of the month (Day 1 for Finance)
-	isMonthlyFinanceDay := date.Day() == 1 && day > 0
-	if isMonthlyFinanceDay {
-		count := core.Rng.Intn(11) + 5 // 5 to 15
-		keuangan.GenerateBatch(dateStr, count)
-	}
+	// --- BATCH NEWS GENERATION (Synchronized Schedule: 1, 5, 10, 15, 20, 25, 30) ---
+	d := date.Day()
+	isBatchNewsDay := (d == 1 || d == 5 || d == 10 || d == 15 || d == 20 || d == 25 || d == 30) && day > 0
+	
+	if isBatchNewsDay {
+		// 1. Finance (Keuangan)
+		fCount := core.Rng.Intn(6) + 5 // 5 to 10 per batch
+		keuangan.GenerateBatch(dateStr, fCount)
 
-	// Trigger batches for Trade & Diplomacy twice a month (1st and 15th)
-	isBiWeeklyBatchDay := (date.Day() == 1 || date.Day() == 15) && day > 0
-	if isBiWeeklyBatchDay {
-		// Trade
-		tCount := core.Rng.Intn(11) + 5
+		// 2. Trade (Perdagangan)
+		tCount := core.Rng.Intn(6) + 5
 		perdagangan.GenerateBatch(dateStr, tCount)
 
-		// Diplomacy (split between Embassy, Pact, Alliance)
-		eCount := core.Rng.Intn(4) + 2
-		pCount := core.Rng.Intn(4) + 2
-		aCount := core.Rng.Intn(4) + 2
+		// 3. Diplomacy (Embassy, Pact, Alliance)
+		eCount := core.Rng.Intn(3) + 2
+		pCount := core.Rng.Intn(3) + 2
+		aCount := core.Rng.Intn(3) + 2
+		oCount := core.Rng.Intn(3) + 2
 		kedutaan.GenerateBatch(dateStr, eCount)
 		pakta.GenerateBatch(dateStr, pCount)
 		aliansi.GenerateBatch(dateStr, aCount)
+		organisasi.GenerateBatch(dateStr, oCount)
 	}
 
-	// Maintain subtle daily variety (5% chance)
-	if core.Rng.Intn(100) < 5 { // 5% daily chance
-		keuangan.GenerateFlashNews(dateStr)
+	// 3. DAILY VARIETY (Subtle 5% chance)
+	// Small daily updates to keep the world alive between batch days
+	if core.Rng.Intn(100) < 5 {
 		perdagangan.GenerateFlashNews(dateStr)
+		keuangan.GenerateFlashNews(dateStr)
 	}
 
 	return changed
