@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 
 import { 
-  Globe, BarChart3, Handshake, Swords, Gift, X, TrendingUp
+  Globe, BarChart3, Handshake, Swords, Gift, X, TrendingUp, TrendingDown
 } from "lucide-react";
 
 import SDAInfoRow from "./1_info_strategis/1_SDA/SDAInfoRow";
@@ -131,6 +131,7 @@ export default function StrategyModal({
   });
   const [isTemporarilyHidden, setIsTemporarilyHidden] = useState(false);
   const [relationScore, setRelationScore] = useState(50);
+  const [relationDelta, setRelationDelta] = useState(0);
   const [baseScore, setBaseScore] = useState(50);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -191,11 +192,13 @@ export default function StrategyModal({
     window.addEventListener(RELATION_EVENTS.STATUS_UPDATED, handleUpdate);
     window.addEventListener("ai_building_updated", handleUpdate);
     window.addEventListener("building_storage_updated", handleUpdate);
+    window.addEventListener("relation_delta_updated", handleUpdate);
     return () => {
       window.removeEventListener(RELATION_EVENTS.MATRIX_UPDATED, handleUpdate);
       window.removeEventListener(RELATION_EVENTS.STATUS_UPDATED, handleUpdate);
       window.removeEventListener("ai_building_updated", handleUpdate);
       window.removeEventListener("building_storage_updated", handleUpdate);
+      window.removeEventListener("relation_delta_updated", handleUpdate);
     };
   }, []);
 
@@ -262,6 +265,9 @@ export default function StrategyModal({
         popDelta
       });
       setRelationScore(getRelationScore(targetK, initialBase, userId));
+      
+      const { relationDeltaStorage } = require("./1_info_strategis/8_Hubungan/RelationDelta");
+      setRelationDelta(relationDeltaStorage.getDelta(targetK));
     };
 
     updateStats();
@@ -314,8 +320,14 @@ export default function StrategyModal({
               <h2 className="font-bold text-2xl text-amber-500 tracking-tight">
                 {targetCountry}
               </h2>
-              <p className="text-sm text-zinc-400">
+              <p className="text-sm text-zinc-400 flex items-center gap-2">
                 Hubungan: <span className={`font-semibold ${relationColor}`}>{finalScore.toFixed(1)} ({relationLabel})</span>
+                {relationDelta !== 0 && (
+                  <span className={`flex items-center text-[10px] font-black ${relationDelta > 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
+                    {relationDelta > 0 ? <TrendingUp size={12} className="mr-0.5" /> : <TrendingDown size={12} className="mr-0.5" />}
+                    {relationDelta > 0 ? `+${relationDelta}` : relationDelta}
+                  </span>
+                )}
               </p>
             </div>
           </div>

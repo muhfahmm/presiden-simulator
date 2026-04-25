@@ -140,10 +140,16 @@ export const saveGlobalRelationMatrix = (matrix: RelationMatrix) => {
     });
 
     try {
+        const oldMatrix = getGlobalRelationMatrix();
         const json = JSON.stringify(prunedMatrix);
         localStorage.setItem(RELATION_MATRIX_KEY, json);
         inMemoryMatrix = prunedMatrix;
         
+        // Track Deltas for UI Trending (Rising/Falling)
+        import("./RelationDelta").then(({ relationDeltaStorage }) => {
+            relationDeltaStorage.updateFromMatrix(oldMatrix, prunedMatrix, normalizedUser);
+        });
+
         // Dispatch centralized update signal
         dispatchRelationUpdate();
     } catch (e) {

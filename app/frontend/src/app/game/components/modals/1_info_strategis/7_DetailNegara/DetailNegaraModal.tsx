@@ -96,6 +96,7 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
 
   // Real-time Relationship Tracking
   const [relationScore, setRelationScore] = useState(50);
+  const [relationDelta, setRelationDelta] = useState(0);
   const normalizedUser = typeof window !== 'undefined' ? getNormalizedUser() : "indonesia";
 
   // Reactivity: Refresh when construction state changes
@@ -131,7 +132,11 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
         const userRelations = allRelations[normalizedUser];
         const relData = Array.isArray(userRelations) ? userRelations.find((r: any) => r.name?.toLowerCase().trim() === targetId) : null;
         const initialBase = relData?.relation ?? 50;
-        setRelationScore(getRelationScore(targetId, initialBase, normalizedUser));
+        const targetK = targetId;
+        setRelationScore(getRelationScore(targetK, initialBase, normalizedUser));
+        
+        const { relationDeltaStorage } = require("../8_Hubungan/RelationDelta");
+        setRelationDelta(relationDeltaStorage.getDelta(targetK));
       }
     };
     
@@ -283,8 +288,14 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                   {!isUser && (
                     <div className="flex items-center gap-2 px-3 py-1 bg-zinc-800/50 rounded-full border border-zinc-700/50">
                       <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
-                      <span className={`text-[10px] not-italic normal-case font-black tracking-widest ${RelationPersistence.getRelationMetadata(RelationPersistence.calculateFinalScore(relationScore, false)).color}`}>
+                      <span className={`text-[10px] not-italic normal-case font-black tracking-widest ${RelationPersistence.getRelationMetadata(RelationPersistence.calculateFinalScore(relationScore, false)).color} flex items-center gap-1`}>
                         HUBUNGAN: {RelationPersistence.calculateFinalScore(relationScore, false).toFixed(1)} ({RelationPersistence.getRelationMetadata(RelationPersistence.calculateFinalScore(relationScore, false)).labelFull})
+                        {relationDelta !== 0 && (
+                          <span className={`flex items-center ml-1 ${relationDelta > 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
+                            {relationDelta > 0 ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
+                            {relationDelta > 0 ? `+${relationDelta}` : relationDelta}
+                          </span>
+                        )}
                       </span>
                     </div>
                   )}

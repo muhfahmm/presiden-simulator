@@ -77,6 +77,10 @@ export default function AILogicCNS() {
           await produksiNegaraAI.jalankanSiklusHarian(currentDate);
           aiBudgetStorage.updateAll(currentDate, session.country);
           
+          // Update hubungan internasional (Drift harian)
+          const { RelationEngine } = await import("../modals/1_info_strategis/8_Hubungan/RelationEngine");
+          await RelationEngine.processDailyUpdate(session.country);
+          
           lastDateRef.current = currentDateStr;
 
           // Check for completed construction projects globally

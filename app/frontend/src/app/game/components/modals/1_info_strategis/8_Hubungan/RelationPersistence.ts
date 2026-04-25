@@ -12,45 +12,45 @@ export const RelationPersistence = {
      * Mendapatkan metadata label dan warna untuk UI
      */
     getRelationMetadata: (score: number) => {
-        if (score <= 25) return { 
-            label: "Sangat Buruk", 
+        if (score <= 20) return { 
+            label: "Konflik", 
             color: "text-red-600", 
-            labelFull: "Sangat Buruk / Konflik",
+            labelFull: "Musuh / Konflik Terbuka",
             bg: "bg-red-600/10",
             border: "border-red-600/30",
             hex: "#dc2626"
         };
-        if (score <= 49) return { 
-            label: "Buruk", 
-            color: "text-red-400", 
-            labelFull: "Buruk",
-            bg: "bg-red-400/10",
-            border: "border-red-400/30",
-            hex: "#f87171"
+        if (score <= 45) return { 
+            label: "Tegang", 
+            color: "text-orange-500", 
+            labelFull: "Tegang / Tidak Harmonis",
+            bg: "bg-orange-500/10",
+            border: "border-orange-500/30",
+            hex: "#f97316"
         };
-        if (score <= 69) return { 
+        if (score <= 65) return { 
             label: "Netral", 
-            color: "text-yellow-500", 
-            labelFull: "Netral",
-            bg: "bg-yellow-500/10",
-            border: "border-yellow-500/30",
-            hex: "#eab308"
+            color: "text-zinc-400", 
+            labelFull: "Netral / Stabil",
+            bg: "bg-zinc-400/10",
+            border: "border-zinc-400/30",
+            hex: "#a1a1aa"
         };
-        if (score <= 79) return { 
+        if (score <= 84) return { 
             label: "Baik", 
-            color: "text-green-400", 
-            labelFull: "Baik",
-            bg: "bg-green-400/10",
-            border: "border-green-400/30",
-            hex: "#4ade80"
+            color: "text-emerald-400", 
+            labelFull: "Baik / Kooperatif",
+            bg: "bg-emerald-400/10",
+            border: "border-emerald-400/30",
+            hex: "#34d399"
         };
         return { 
-            label: "Cukup Baik", 
-            color: "text-emerald-500", 
-            labelFull: "Cukup Baik / Aliansi",
-            bg: "bg-emerald-500/10",
-            border: "border-emerald-500/30",
-            hex: "#10b981"
+            label: "Sangat Baik", 
+            color: "text-blue-400", 
+            labelFull: "Sangat Baik / Aliansi Erat",
+            bg: "bg-blue-400/10",
+            border: "border-blue-400/30",
+            hex: "#60a5fa"
         };
     },
 
