@@ -17,7 +17,7 @@ import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_ba
 import { gameStorage } from "@/app/game/gamestorage";
 import { getStoredGameDate } from "../1_navbar/5_navigasi_waktu/gameTime";
 import { calculatePopulationHappiness } from "@/app/game/components/1_navbar/1_kepuasan";
-import { newsStorage } from "./sidemenu/1_berita/newsStorage";
+import { newsStorage } from "../sidemenu/1_berita/newsStorage";
 
 /**
  * AI Logic CNS (Central Nervous System)

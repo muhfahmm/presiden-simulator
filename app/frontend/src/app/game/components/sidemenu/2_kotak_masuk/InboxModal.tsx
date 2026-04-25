@@ -429,8 +429,6 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
                 <span className="flex items-center gap-1.5"><div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div> Ekspor</span>
                 <span className="flex items-center gap-1.5"><div className="h-1.5 w-1.5 rounded-full bg-rose-500"></div> Impor</span>
             </div>
-            <div className="h-3 w-[1px] bg-zinc-800"></div>
-            <span>National Communication Surveillance System © 2026</span>
         </div>
       </div>
     </div>

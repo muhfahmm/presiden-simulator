@@ -237,14 +237,6 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
             </div>
           </div>
         </div>
-
-        {/* Footer info */}
-        <div className="px-8 py-4 bg-zinc-900/30 border-t border-zinc-800/50 flex items-center justify-center text-[10px] text-zinc-600 font-bold uppercase tracking-[0.3em] gap-8">
-            <span className="flex items-center gap-1.5"><div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></div> Global Stream Active</span>
-            <div className="h-3 w-[1px] bg-zinc-800"></div>
-            <span>World Report Surveillance System © 2026 v2.7</span>
-        </div>
-
       </div>
     </div>
   );
