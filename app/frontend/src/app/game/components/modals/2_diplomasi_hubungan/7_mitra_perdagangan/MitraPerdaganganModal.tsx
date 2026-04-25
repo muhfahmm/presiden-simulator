@@ -5,7 +5,16 @@ import { Briefcase, X, Handshake, ShieldAlert } from "lucide-react";
 import { getInitialAgreements } from "@/app/database/data/database_mitra_perdagangan/agreementsRegistry";
 import { embassyStorage } from "../1_kedutaan/logic/embassyStorage";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
-import { getStoredGameDate, parseFormattedDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+
+/** Parse a date string that could be in "DD-MM-YYYY" or "02 Jan 2006" format. */
+function parseNewsDate(dateStr: string): Date | null {
+  const ddmmyyyy = dateStr.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  if (ddmmyyyy) return new Date(Date.UTC(+ddmmyyyy[3], +ddmmyyyy[2] - 1, +ddmmyyyy[1]));
+  const parsed = new Date(dateStr);
+  if (!isNaN(parsed.getTime())) return parsed;
+  return null;
+}
 
 interface MitraPerdaganganModalProps {
   isOpen: boolean;
@@ -48,14 +57,11 @@ export default function MitraPerdaganganModal({ isOpen, onClose, targetCountry }
             // Checking if both countries are mentioned in the news subject
             if (subjLower.includes(target) && subjLower.includes(mitra)) {
               // Check date diff (within 30 days)
-              try {
-                const newsDate = parseFormattedDate(item.time);
-                const diffTime = gameDate.getTime() - newsDate.getTime();
-                const diffDays = diffTime / (1000 * 60 * 60 * 24);
-                return diffDays >= 0 && diffDays <= 30;
-              } catch (e) {
-                return false;
-              }
+              const newsDate = parseNewsDate(item.time);
+              if (!newsDate) return false;
+              const diffTime = gameDate.getTime() - newsDate.getTime();
+              const diffDays = diffTime / (1000 * 60 * 60 * 24);
+              return diffDays >= 0 && diffDays <= 30;
             }
           }
           return false;

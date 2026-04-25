@@ -4,12 +4,50 @@ import React, { useEffect, useState } from "react";
 import { Landmark, X, Building, ShieldAlert } from "lucide-react";
 import { getInitialAgreements } from "@/app/database/data/database_mitra_perdagangan/agreementsRegistry";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
-import { getStoredGameDate, parseFormattedDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
 interface KedutaanBesarModalAIProps {
   isOpen: boolean;
   onClose: () => void;
   targetCountry: string;
+}
+
+/**
+ * Parse the Go-generated subject:
+ *   "Pembangunan kedutaan besar antara negara {A} dengan negara {B} disepakati"
+ * Returns [countryA, countryB] or null if pattern doesn't match.
+ */
+function parseEmbassyNewsSubject(subject: string): [string, string] | null {
+  const regex = /kedutaan besar antara negara (.+?) dengan negara (.+?) disepakati/i;
+  const match = subject.match(regex);
+  if (match) return [match[1].trim(), match[2].trim()];
+  return null;
+}
+
+/**
+ * Parse a date string that could be in "DD-MM-YYYY" or "02 Jan 2006" format.
+ */
+function parseNewsDate(dateStr: string): Date | null {
+  // Try DD-MM-YYYY first
+  const ddmmyyyy = dateStr.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  if (ddmmyyyy) {
+    return new Date(Date.UTC(+ddmmyyyy[3], +ddmmyyyy[2] - 1, +ddmmyyyy[1]));
+  }
+  // Try "02 Jan 2006" or "02 May 2026" (Go's date.Format("02 Jan 2006"))
+  const parsed = new Date(dateStr);
+  if (!isNaN(parsed.getTime())) return parsed;
+  return null;
+}
+
+/**
+ * Check if newsDate is within 30 days of gameDate.
+ */
+function isWithin30Days(newsTimeStr: string, gameDate: Date): boolean {
+  const newsDate = parseNewsDate(newsTimeStr);
+  if (!newsDate) return false;
+  const diffMs = gameDate.getTime() - newsDate.getTime();
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+  return diffDays >= 0 && diffDays <= 30;
 }
 
 export default function KedutaanBesarModalAI({ isOpen, onClose, targetCountry }: KedutaanBesarModalAIProps) {
@@ -18,45 +56,73 @@ export default function KedutaanBesarModalAI({ isOpen, onClose, targetCountry }:
 
   useEffect(() => {
     if (isOpen && targetCountry) {
-      // Fetch agreements to determine embassy networks
+      // 1. Load static embassy list from trade agreements database
       const data = getInitialAgreements(targetCountry, targetCountry);
-      // As per game logic, countries with active trade agreements have embassies
       const activeEmbassies = data.filter((item: any) => item.status === "Aktif");
-      setEmbassies(activeEmbassies);
 
-      // Determine which ones are "BARU" based on news within the last 30 days
+      // 2. Scan ALL news for embassy construction involving this country
       const newsItems = newsStorage.getNews();
       const gameDate = getStoredGameDate();
+      const targetLower = targetCountry.toLowerCase().trim();
+
+      // Build a set of existing partner names (lowercase) for dedup
+      const existingPartners = new Set(
+        activeEmbassies.map((e: any) => e.mitra.toLowerCase().trim())
+      );
+
       const newMap: Record<string, boolean> = {};
+      const newsAddedEntries: any[] = [];
 
-      activeEmbassies.forEach((emb) => {
-        const mitra = emb.mitra.toLowerCase();
-        const target = targetCountry.toLowerCase();
+      newsItems.forEach((item: any) => {
+        if (item.category !== "diplomacy") return;
+        const parsed = parseEmbassyNewsSubject(item.subject);
+        if (!parsed) return;
 
-        // Find if there's any recent news about this embassy
-        const hasRecentNews = newsItems.some((item: any) => {
-          if (item.category === "diplomacy" && item.subject.toLowerCase().includes("kedutaan besar")) {
-            const subjLower = item.subject.toLowerCase();
-            // Checking if both countries are mentioned in the news subject
-            if (subjLower.includes(target) && subjLower.includes(mitra)) {
-              // Check date diff (within 30 days)
-              try {
-                const newsDate = parseFormattedDate(item.time);
-                const diffTime = gameDate.getTime() - newsDate.getTime();
-                const diffDays = diffTime / (1000 * 60 * 60 * 24);
-                return diffDays >= 0 && diffDays <= 30;
-              } catch (e) {
-                return false;
-              }
-            }
+        const [countryA, countryB] = parsed;
+        const aLower = countryA.toLowerCase().trim();
+        const bLower = countryB.toLowerCase().trim();
+
+        // Check if this news involves our target country
+        let otherCountryName: string | null = null;
+        if (aLower === targetLower) {
+          otherCountryName = countryB;
+        } else if (bLower === targetLower) {
+          otherCountryName = countryA;
+        }
+
+        if (!otherCountryName) return;
+
+        // Check if this news is within 30 days
+        if (!isWithin30Days(item.time, gameDate)) return;
+
+        const otherLower = otherCountryName.toLowerCase().trim();
+
+        if (existingPartners.has(otherLower)) {
+          // Already in static list — just mark as BARU
+          // Find the original casing from the static list
+          const existing = activeEmbassies.find(
+            (e: any) => e.mitra.toLowerCase().trim() === otherLower
+          );
+          if (existing) {
+            newMap[existing.mitra] = true;
           }
-          return false;
-        });
-
-        if (hasRecentNews) {
-          newMap[emb.mitra] = true;
+        } else {
+          // NEW entry not in static database — inject it
+          if (!existingPartners.has(otherLower)) {
+            existingPartners.add(otherLower);
+            newsAddedEntries.push({
+              mitra: otherCountryName,
+              type: "Diplomatik",
+              status: "Aktif",
+            });
+            newMap[otherCountryName] = true;
+          }
         }
       });
+
+      // 3. Merge: news-added entries go to the TOP of the list
+      const merged = [...newsAddedEntries, ...activeEmbassies];
+      setEmbassies(merged);
       setNewEmbassyMap(newMap);
       
       window.dispatchEvent(new CustomEvent('hide_strategy_modal'));
@@ -120,7 +186,7 @@ export default function KedutaanBesarModalAI({ isOpen, onClose, targetCountry }:
                         <p className="text-sm font-black text-zinc-200 uppercase tracking-tight flex items-center gap-2">
                           {embassy.mitra}
                           {newEmbassyMap[embassy.mitra] && (
-                            <span className="px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                            <span className="px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 animate-pulse">
                               Baru
                             </span>
                           )}
