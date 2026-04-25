@@ -57,14 +57,58 @@ func GenerateBilateralNews(dateStr string) {
 	// If no embassy pair found after 20 attempts, skip — no trade without diplomacy
 }
 
+type EconomyCommodity struct {
+	Name      string
+	BasePrice int
+	Unit      string
+}
+
+var economyCommodities = []EconomyCommodity{
+	{"Beras Pokok", 16000, "kg"},
+	{"Daging Sapi", 104100, "kg"},
+	{"Daging Ayam", 41000, "kg"},
+	{"Minyak Goreng", 15400, "liter"},
+	{"Gula", 14400, "kg"},
+	{"Telur Ayam", 31100, "kg"},
+	{"Bahan Bakar (BBM)", 10700, "liter"},
+	{"Listrik", 1600, "kWh"},
+	{"Air Bersih", 5200, "m³"},
+	{"Obat-obatan", 157900, "kunjungan"},
+	{"Pendidikan", 483900, "bulan"},
+}
+
+func formatPrice(n int) string {
+	s := fmt.Sprintf("%d", n)
+	if len(s) <= 3 {
+		return s
+	}
+	var res []string
+	for len(s) > 3 {
+		res = append([]string{s[len(s)-3:]}, res...)
+		s = s[:len(s)-3]
+	}
+	if len(s) > 0 {
+		res = append([]string{s}, res...)
+	}
+	return strings.Join(res, ".")
+}
+
 func GenerateFlashNews(dateStr string) {
 	if len(core.NpcNations) == 0 {
 		return
 	}
 	nation := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
 	
-	subj := fmt.Sprintf("Kenaikan Harga Komoditas di %s", nation)
-	content := fmt.Sprintf("Pasar komoditas di %s mengalami lonjakan harga akibat peningkatan permintaan industri manufaktur global. Para pelaku dagang mengantisipasi penguatan ekspor pada kuartal mendatang.", nation)
+	c := economyCommodities[core.Rng.Intn(len(economyCommodities))]
+	
+	// Calculate price jump (10% to 40% increase)
+	increasePercent := core.Rng.Intn(31) + 10
+	oldPrice := c.BasePrice
+	newPrice := oldPrice * (100 + increasePercent) / 100
+	
+	subj := fmt.Sprintf("Kenaikan Harga %s di %s", c.Name, nation)
+	content := fmt.Sprintf("Pasar domestik di %s melaporkan lonjakan harga pada %s dari Rp %s menjadi Rp %s per %s. Kenaikan sebesar %d%% ini dipicu oleh gangguan rantai pasok global dan peningkatan biaya logistik. Pemerintah setempat sedang mempertimbangkan langkah intervensi pasar.", 
+		nation, c.Name, formatPrice(oldPrice), formatPrice(newPrice), c.Unit, increasePercent)
 	
 	core.AddNewsItemLocked("Berita Perdagangan Dunia", subj, content, "trade", "low", dateStr)
 }
@@ -74,22 +118,26 @@ func GenerateBatch(dateStr string, count int) {
 	GenerateBilateralNews(dateStr)
 	
 	for i := 0; i < count; i++ {
-		roll := core.Rng.Intn(3)
+		roll := core.Rng.Intn(2)
 		switch roll {
 		case 0:
 			GenerateFlashNews(dateStr)
 		case 1:
 			if len(core.NpcNations) > 0 {
 				nation := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
-				subj := fmt.Sprintf("Logistik Global: Jalur Dagang %s", nation)
-				content := fmt.Sprintf("Otoritas pelabuhan %s melaporkan efisiensi bongkar muat yang lebih tinggi, meningkatkan frekuensi kapal dagang dan memperlancar arus barang internasional.", nation)
-				core.AddNewsItemLocked("Logistik Dunia", subj, content, "trade", "low", dateStr)
-			}
-		case 2:
-			if len(core.NpcNations) > 0 {
-				nation := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
-				subj := fmt.Sprintf("Update Tarif Ekspor %s", nation)
-				content := fmt.Sprintf("Kementerian Perdagangan %s mengumumkan penyesuaian tarif untuk beberapa komoditas unggulan guna menyeimbangkan neraca perdagangan dan mendongkrak daya saing global.", nation)
+				
+				regTypes := []string{"Bea Cukai", "Transit Sekutu", "Transit Non-Sekutu"}
+				regType := regTypes[core.Rng.Intn(len(regTypes))]
+				percentage := core.Rng.Intn(101) // 0-100%
+				
+				action := "menaikkan"
+				if core.Rng.Intn(2) == 0 {
+					action = "menurunkan"
+				}
+
+				subj := fmt.Sprintf("Penyesuaian %s %s: %d%%", regType, nation, percentage)
+				content := fmt.Sprintf("Otoritas fiskal di %s mengumumkan kebijakan baru untuk %s %s menjadi %d%%. Langkah ini diambil untuk mengoptimalkan pendapatan negara dan mengatur arus logistik internasional.", nation, action, regType, percentage)
+				
 				core.AddNewsItemLocked("Regulasi Dagang", subj, content, "trade", "medium", dateStr)
 			}
 		}
