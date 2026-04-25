@@ -97,7 +97,7 @@ export class PusatKeputusanPembangunan {
   /**
    * Main entry: Think and decide what to build for an NPC country.
    */
-  static async pikirkan(countryNameEn: string) {
+  static async pikirkan(countryNameEn: string, allocatedBudget?: number) {
     const session = timeStorage.getState();
     const gameDate = session.gameDate;
     const dateStr = gameDate.toISOString().split('T')[0];
@@ -162,7 +162,7 @@ export class PusatKeputusanPembangunan {
     try {
       const flatPayload = {
         negara: countryNameEn,
-        budget,
+        budget: allocatedBudget ?? budget,
         pop: currentAiPop,
         q: queue.length,
         date: dateStr,

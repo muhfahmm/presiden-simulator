@@ -68,6 +68,38 @@ export const newsStorage = {
   syncFromServer: (serverNews: any[], currentGameDate?: string) => {
     if (typeof window === "undefined" || !Array.isArray(serverNews)) return;
 
+    // Enforce Monthly Reset in Frontend (Universal Format Detection)
+    if (currentGameDate) {
+      try {
+        // Mendukung DD-MM-YYYY (Indonesia) atau YYYY-MM-DD (ISO)
+        const isTanggalSatu = currentGameDate.startsWith("01-") || currentGameDate.endsWith("-01");
+        
+        if (isTanggalSatu) {
+          const lastWipe = localStorage.getItem("em_last_monthly_wipe");
+          // Buat key unik berdasarkan bulan dan tahun (misal: "05-2026")
+          const monthYearKey = currentGameDate.length > 7 ? 
+            (currentGameDate.includes("-") ? (currentGameDate.startsWith("01-") ? currentGameDate.substring(3) : currentGameDate.substring(0, 7)) : "reset") 
+            : "monthly";
+
+          if (lastWipe !== monthYearKey) {
+            console.log(`[NewsStorage] 🧹 Monthly Reset Enforced for ${monthYearKey} (${currentGameDate})`);
+            localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify([]));
+            localStorage.setItem("em_last_monthly_wipe", monthYearKey);
+            window.dispatchEvent(new Event("news_updated"));
+            return; // Hentikan proses sync untuk tick ini
+          }
+
+          // Jika sudah di-wipe tapi server masih kirim berita di hari yang sama (tanggal 1), 
+          // paksa tetap kosong agar user melihat angka 0.
+          if (serverNews.length > 0) {
+            localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify([]));
+            window.dispatchEvent(new Event("news_updated"));
+            return;
+          }
+        }
+      } catch (e) { /* Ignore errors */ }
+    }
+
     // Map server news to our format
     const mapped: NewsItem[] = serverNews.map((sn: any) => ({
       id: sn.id || `sv-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,

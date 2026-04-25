@@ -6,15 +6,18 @@ import { EvaluasiSentimenPublik } from "./1_AI_Kepuasan/1_statistik_kepuasan/pus
 import { ModulPenyesuaianPajak } from "./1_AI_Kepuasan/1_statistik_kepuasan/sistem_tindakan_respon/ModulPenyesuaianPajak";
 import { PusatKeputusanAcara } from "./1_AI_Kepuasan/2_naikkan_kepuasan/pusat_keputusan_acara/PusatKeputusanAcara";
 import { PusatKeputusanPembangunan } from "./5_AI_Pembangunan/pusat_keputusan_pembangunan/PusatKeputusanPembangunan";
+import { PusatKeputusanPertahanan } from "./6_AI_pertahanan/pusat_keputusan_pertahanan/PusatKeputusanPertahanan";
 import { produksiNegaraAI } from "./5_AI_Pembangunan/sistem_tindakan_respon/ProduksiNegaraAI";
 import { aiBudgetStorage } from "../modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { EksekutorPembangunanAI } from "./5_AI_Pembangunan/sistem_tindakan_respon/EksekutorPembangunanAI";
+import { PusatKeputusanStrategis } from "./3_AI_Strategis_Pusat/PusatKeputusanStrategis";
 import { aiProductionStorage } from "./5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 import { getStoredGameDate } from "../1_navbar/5_navigasi_waktu/gameTime";
 import { calculatePopulationHappiness } from "@/app/game/components/1_navbar/1_kepuasan";
+import { newsStorage } from "./sidemenu/1_berita/newsStorage";
 
 /**
  * AI Logic CNS (Central Nervous System)
@@ -30,6 +33,7 @@ const BATCH_SIZE = 1; // Process 1 NPC per second for continuous rotation
 
 export default function AILogicCNS() {
   const lastDateRef = useRef<string>("");
+  const lastMonthRef = useRef<number>(-1);
   const batchIndexRef = useRef<number>(0);
 
   useEffect(() => {
@@ -50,6 +54,18 @@ export default function AILogicCNS() {
         if (!session || !session.country) return;
 
         const currentDateStr = currentDate.toISOString().split('T')[0];
+        const currentMonth = currentDate.getMonth();
+
+        // ═══════════════════════════════════════════════
+        // MONTHLY RESET (runs ONCE per month)
+        // ═══════════════════════════════════════════════
+        if (lastMonthRef.current !== -1 && lastMonthRef.current !== currentMonth) {
+          if (currentDate.getDate() === 1) {
+            console.log(`[AI CNS] 🧹 Awal Bulan detected (${currentDateStr}): Membersihkan riwayat berita...`);
+            newsStorage.clear();
+          }
+        }
+        lastMonthRef.current = currentMonth;
 
         // ═══════════════════════════════════════════════
         // DAILY TICKER (runs ONCE per new game day)
@@ -60,7 +76,6 @@ export default function AILogicCNS() {
           aiProductionStorage.bootstrapNPCs(countries);
           await produksiNegaraAI.jalankanSiklusHarian(currentDate);
           aiBudgetStorage.updateAll(currentDate, session.country);
-          
           
           lastDateRef.current = currentDateStr;
 
@@ -80,7 +95,16 @@ export default function AILogicCNS() {
         // This spreads the CPU load from spawning Python processes over time
         for (const npc of batch) {
           try {
-            await PusatKeputusanPembangunan.pikirkan(npc.name_en);
+            // 1. Dapatkan Keputusan Strategis (Budgeting)
+            const strategi = await PusatKeputusanStrategis.evaluasi(npc.name_en);
+            const budgetPembangunan = strategi?.allocations?.pembangunan;
+            
+            // 2. Jalankan Pembangunan dengan budget yang sudah dialokasikan
+            await PusatKeputusanPembangunan.pikirkan(npc.name_en, budgetPembangunan);
+            
+            // 3. Jalankan Pertahanan dengan budget yang sudah dialokasikan
+            const budgetPertahanan = strategi?.allocations?.pertahanan;
+            await PusatKeputusanPertahanan.pikirkan(npc.name_en, budgetPertahanan);
           } catch (e) { /* Silent */ }
         }
 
