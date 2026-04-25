@@ -1,13 +1,11 @@
 export const trinidad_dan_tobagoAgreements = [
-
-      { "mitra": "Kanada", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Kuba", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Meksiko", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
-    
+  { "no": 1, "mitra": "Kanada", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 2, "mitra": "Kuba", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 3, "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 4, "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 5, "mitra": "Meksiko", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 6, "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 7, "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 8, "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 9, "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" }
 ];

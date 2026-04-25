@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Briefcase, X, Handshake, ShieldAlert } from "lucide-react";
 import { getInitialAgreements } from "@/app/database/data/database_mitra_perdagangan/agreementsRegistry";
 import { embassyStorage } from "../1_kedutaan/logic/embassyStorage";
+import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
+import { getStoredGameDate, parseFormattedDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
 interface MitraPerdaganganModalProps {
   isOpen: boolean;
@@ -13,6 +15,7 @@ interface MitraPerdaganganModalProps {
 
 export default function MitraPerdaganganModal({ isOpen, onClose, targetCountry }: MitraPerdaganganModalProps) {
   const [agreements, setAgreements] = useState<any[]>([]);
+  const [newPartnerMap, setNewPartnerMap] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     if (isOpen && targetCountry) {
@@ -28,6 +31,41 @@ export default function MitraPerdaganganModal({ isOpen, onClose, targetCountry }
       }
       
       setAgreements(finalAgreements);
+
+      // Determine which ones are "BARU" based on news within the last 30 days
+      const newsItems = newsStorage.getNews();
+      const gameDate = getStoredGameDate();
+      const newMap: Record<string, boolean> = {};
+
+      finalAgreements.forEach((emb) => {
+        const mitra = emb.mitra.toLowerCase();
+        const target = targetCountry.toLowerCase();
+
+        // Find if there's any recent news about this trade partner
+        const hasRecentNews = newsItems.some((item: any) => {
+          if (item.subject.toLowerCase().includes("perdagangan") || item.category === "trade") {
+            const subjLower = item.subject.toLowerCase();
+            // Checking if both countries are mentioned in the news subject
+            if (subjLower.includes(target) && subjLower.includes(mitra)) {
+              // Check date diff (within 30 days)
+              try {
+                const newsDate = parseFormattedDate(item.time);
+                const diffTime = gameDate.getTime() - newsDate.getTime();
+                const diffDays = diffTime / (1000 * 60 * 60 * 24);
+                return diffDays >= 0 && diffDays <= 30;
+              } catch (e) {
+                return false;
+              }
+            }
+          }
+          return false;
+        });
+
+        if (hasRecentNews) {
+          newMap[emb.mitra] = true;
+        }
+      });
+      setNewPartnerMap(newMap);
       
       window.dispatchEvent(new CustomEvent('hide_strategy_modal'));
     }
@@ -43,7 +81,7 @@ export default function MitraPerdaganganModal({ isOpen, onClose, targetCountry }
 
   return (
     <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
-      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-xl max-h-[85vh] flex flex-col overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.6)] relative animate-in fade-in slide-in-from-bottom-4 duration-300 transition-all">
+      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-xl max-h-[85vh] flex flex-col overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.6)] relative animate-in fade-in slide-in-from-bottom-4 duration-300 transition-all pointer-events-auto">
         {/* Top accent bar */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600"></div>
         
@@ -55,7 +93,7 @@ export default function MitraPerdaganganModal({ isOpen, onClose, targetCountry }
             </div>
             <div>
               <h3 className="text-sm font-black text-white italic uppercase tracking-tight">Mitra Perdagangan</h3>
-              <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-wider">{targetCountry}</p>
+              <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-wider">{targetCountry} — {agreements.length} Mitra Aktif</p>
             </div>
           </div>
           <button 
@@ -81,17 +119,24 @@ export default function MitraPerdaganganModal({ isOpen, onClose, targetCountry }
           ) : (
             <div className="grid gap-3">
               {agreements.map((agreement, idx) => (
-                <div key={idx} className="bg-zinc-800/40 rounded-xl p-4 border border-zinc-700/30 flex items-center justify-between hover:bg-zinc-800/60 hover:border-zinc-700/50 transition-colors">
+                <div key={idx} className={`rounded-xl p-4 border flex items-center justify-between transition-colors ${newPartnerMap[agreement.mitra] ? 'bg-orange-900/20 border-orange-500/40 hover:bg-orange-900/30' : 'bg-zinc-800/40 border-zinc-700/30 hover:bg-zinc-800/60 hover:border-zinc-700/50'}`}>
                   <div className="flex items-center gap-4">
-                     <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
+                     <div className={`w-8 h-8 rounded-lg flex items-center justify-center border ${newPartnerMap[agreement.mitra] ? 'bg-emerald-500/20 border-emerald-500/30' : 'bg-emerald-500/10 border-emerald-500/20'}`}>
                         <Handshake className="h-4 w-4 text-emerald-500" />
                      </div>
                      <div>
-                        <p className="text-sm font-black text-zinc-200 uppercase tracking-tight">{agreement.mitra}</p>
+                        <p className="text-sm font-black text-zinc-200 uppercase tracking-tight">
+                          {agreement.mitra}
+                        </p>
                         <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{agreement.type}</p>
                      </div>
                   </div>
-                  <div className="text-right">
+                  <div className="text-right flex items-center gap-2">
+                     {newPartnerMap[agreement.mitra] && (
+                        <span className="px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                           Baru
+                        </span>
+                     )}
                      <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md border ${
                         agreement.status === "Aktif" 
                         ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"

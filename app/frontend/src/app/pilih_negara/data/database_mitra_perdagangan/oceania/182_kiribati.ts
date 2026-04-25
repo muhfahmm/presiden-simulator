@@ -1,16 +1,14 @@
 export const kiribatiAgreements = [
-
-      { "mitra": "Papua Nugini", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Fiji", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Australia", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" }
-    
+  { "no": 1, "mitra": "Papua Nugini", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 2, "mitra": "Fiji", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 3, "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 4, "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 5, "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 6, "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 7, "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 8, "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 9, "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 10, "mitra": "Australia", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 11, "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
+  { "no": 12, "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" }
 ];

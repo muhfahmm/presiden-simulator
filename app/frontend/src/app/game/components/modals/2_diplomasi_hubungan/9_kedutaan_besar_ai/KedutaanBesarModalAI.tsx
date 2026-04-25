@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { Landmark, X, Building, ShieldAlert } from "lucide-react";
 import { getInitialAgreements } from "@/app/database/data/database_mitra_perdagangan/agreementsRegistry";
+import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
+import { getStoredGameDate, parseFormattedDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
 interface KedutaanBesarModalAIProps {
   isOpen: boolean;
@@ -12,6 +14,7 @@ interface KedutaanBesarModalAIProps {
 
 export default function KedutaanBesarModalAI({ isOpen, onClose, targetCountry }: KedutaanBesarModalAIProps) {
   const [embassies, setEmbassies] = useState<any[]>([]);
+  const [newEmbassyMap, setNewEmbassyMap] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     if (isOpen && targetCountry) {
@@ -20,6 +23,41 @@ export default function KedutaanBesarModalAI({ isOpen, onClose, targetCountry }:
       // As per game logic, countries with active trade agreements have embassies
       const activeEmbassies = data.filter((item: any) => item.status === "Aktif");
       setEmbassies(activeEmbassies);
+
+      // Determine which ones are "BARU" based on news within the last 30 days
+      const newsItems = newsStorage.getNews();
+      const gameDate = getStoredGameDate();
+      const newMap: Record<string, boolean> = {};
+
+      activeEmbassies.forEach((emb) => {
+        const mitra = emb.mitra.toLowerCase();
+        const target = targetCountry.toLowerCase();
+
+        // Find if there's any recent news about this embassy
+        const hasRecentNews = newsItems.some((item: any) => {
+          if (item.category === "diplomacy" && item.subject.toLowerCase().includes("kedutaan besar")) {
+            const subjLower = item.subject.toLowerCase();
+            // Checking if both countries are mentioned in the news subject
+            if (subjLower.includes(target) && subjLower.includes(mitra)) {
+              // Check date diff (within 30 days)
+              try {
+                const newsDate = parseFormattedDate(item.time);
+                const diffTime = gameDate.getTime() - newsDate.getTime();
+                const diffDays = diffTime / (1000 * 60 * 60 * 24);
+                return diffDays >= 0 && diffDays <= 30;
+              } catch (e) {
+                return false;
+              }
+            }
+          }
+          return false;
+        });
+
+        if (hasRecentNews) {
+          newMap[emb.mitra] = true;
+        }
+      });
+      setNewEmbassyMap(newMap);
       
       window.dispatchEvent(new CustomEvent('hide_strategy_modal'));
     }
@@ -73,13 +111,20 @@ export default function KedutaanBesarModalAI({ isOpen, onClose, targetCountry }:
           ) : (
             <div className="grid gap-3">
               {embassies.map((embassy, idx) => (
-                <div key={idx} className="bg-zinc-800/40 rounded-xl p-4 border border-zinc-700/30 flex items-center justify-between hover:bg-zinc-800/60 hover:border-zinc-700/50 transition-colors">
+                <div key={idx} className={`rounded-xl p-4 border flex items-center justify-between transition-colors ${newEmbassyMap[embassy.mitra] ? 'bg-purple-900/20 border-purple-500/40 hover:bg-purple-900/30' : 'bg-zinc-800/40 border-zinc-700/30 hover:bg-zinc-800/60 hover:border-zinc-700/50'}`}>
                   <div className="flex items-center gap-4">
-                     <div className="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
-                        <Building className="h-4 w-4 text-purple-400" />
+                     <div className={`w-8 h-8 rounded-lg flex items-center justify-center border ${newEmbassyMap[embassy.mitra] ? 'bg-purple-500/20 border-purple-500/30' : 'bg-purple-500/10 border-purple-500/20'}`}>
+                        <Building className={`h-4 w-4 ${newEmbassyMap[embassy.mitra] ? 'text-purple-300' : 'text-purple-400'}`} />
                      </div>
                      <div>
-                        <p className="text-sm font-black text-zinc-200 uppercase tracking-tight">{embassy.mitra}</p>
+                        <p className="text-sm font-black text-zinc-200 uppercase tracking-tight flex items-center gap-2">
+                          {embassy.mitra}
+                          {newEmbassyMap[embassy.mitra] && (
+                            <span className="px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                              Baru
+                            </span>
+                          )}
+                        </p>
                         <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Hubungan Diplomatik</p>
                      </div>
                   </div>
