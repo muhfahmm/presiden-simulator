@@ -24,22 +24,25 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
         setUserCountry(country);
     }, []);
 
+    // Get join dates for "New Member" badge
+    const joinDates = useMemo(() => unMembershipStorage.getJoinDates(), []);
+    const currentGameDate = useMemo(() => {
+        const stored = localStorage.getItem("game_date") || "2026-01-01";
+        return new Date(stored);
+    }, []);
+
     // Get specific member list for this organization from database
     const memberCountries = useMemo(() => {
         const consolidatedMembers = category === "REGIONAL" 
             ? regionalMembershipRouter.getConsolidatedMembers(orgId)
-            : []; // For UN we still use unMembershipStorage.isMember per country below for historical reasons, 
-                  // or we can also use a consolidated method if available.
+            : unMembershipStorage.getConsolidatedMembers(orgId);
 
         return countries.filter(c => {
-            // 1. Check if country is a member
-            const isMember = category === "REGIONAL"
-                ? consolidatedMembers.includes(c.name_id.toLowerCase())
-                : unMembershipStorage.isMember(orgId, c.name_id);
-
+            const isMember = consolidatedMembers.includes(c.name_id.toLowerCase()) || 
+                             consolidatedMembers.includes(c.name_en.toLowerCase());
             if (!isMember) return false;
 
-            // 2. Apply search filter
+            // Apply search filter
             return c.name_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
                    c.name_en.toLowerCase().includes(searchQuery.toLowerCase());
         });
@@ -68,6 +71,17 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
                     memberCountries.map((country, idx) => {
                         const isUser = country.name_id.toLowerCase() === userCountry.toLowerCase();
                         
+                        // Check if new member (within 30 days)
+                        const joinDateStr = joinDates[orgId]?.[country.name_en.toLowerCase()] || 
+                                           joinDates[orgId]?.[country.name_id.toLowerCase()];
+                        let isNewMember = false;
+                        if (joinDateStr) {
+                            const joinDate = new Date(joinDateStr);
+                            const diffTime = Math.abs(currentGameDate.getTime() - joinDate.getTime());
+                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                            isNewMember = diffDays <= 30;
+                        }
+
                         return (
                             <div 
                                 key={country.name_en || idx}
@@ -86,11 +100,11 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
                                     <div className="flex flex-col">
                                         <div className="flex items-center gap-1.5 mb-1">
                                             <span className={`text-[9px] font-black uppercase tracking-widest leading-none ${
-                                                isUser ? "text-purple-400" : "text-zinc-600"
+                                                isUser ? "text-purple-400" : (isNewMember ? "text-amber-400" : "text-zinc-600")
                                             }`}>
-                                                {isUser ? "Negara Anda" : "Negara Anggota"}
+                                                {isUser ? "Negara Anda" : (isNewMember ? "Anggota Baru" : "Negara Anggota")}
                                             </span>
-                                            {isUser && <Sparkles size={8} className="text-amber-400 animate-pulse" />}
+                                            {(isUser || isNewMember) && <Sparkles size={8} className="text-amber-400 animate-pulse" />}
                                         </div>
                                         <h4 className={`text-sm font-black uppercase tracking-tight transition-colors ${
                                             isUser ? "text-white" : "text-white group-hover:text-purple-400"
@@ -103,13 +117,18 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
                                 <div className={`p-2.5 border rounded-xl transition-all ${
                                     isUser 
                                     ? "bg-purple-500 text-white border-purple-400 shadow-[0_0_10px_rgba(168,85,247,0.5)]" 
-                                    : "bg-zinc-950/50 border-zinc-800/50 text-emerald-500/60 group-hover:text-emerald-500 group-hover:border-emerald-500/30"
+                                    : (isNewMember 
+                                        ? "bg-amber-500/10 text-amber-500 border-amber-500/30 shadow-[0_0_10px_rgba(245,158,11,0.1)]"
+                                        : "bg-zinc-950/50 border-zinc-800/50 text-emerald-500/60 group-hover:text-emerald-500 group-hover:border-emerald-500/30")
                                 }`}>
-                                    {isUser ? <Crown size={16} /> : <CheckCircle2 size={16} />}
+                                    {isUser ? <Crown size={16} /> : (isNewMember ? <Sparkles size={16} /> : <CheckCircle2 size={16} />)}
                                 </div>
 
                                 {isUser && (
                                     <div className="absolute -top-1.5 -right-1.5 h-3 w-3 bg-purple-500 rounded-full border-2 border-zinc-950 animate-ping opacity-75" />
+                                )}
+                                {isNewMember && !isUser && (
+                                    <div className="absolute -top-1.5 -right-1.5 h-3 w-3 bg-amber-500 rounded-full border-2 border-zinc-950 animate-pulse opacity-75" />
                                 )}
                             </div>
                         );

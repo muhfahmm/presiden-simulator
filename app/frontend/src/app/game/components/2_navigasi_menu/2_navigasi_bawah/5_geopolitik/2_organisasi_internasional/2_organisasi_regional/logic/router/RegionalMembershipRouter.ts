@@ -56,6 +56,18 @@ class RegionalMembershipRouter {
                     const eligibility = this.checkEligibility(country, item.org_id);
                     if (eligibility.eligible) {
                         currentState[country][item.org_id] = isMember;
+                        
+                        if (isMember) {
+                            unMembershipStorage.recordJoinDate(item.org_id, country);
+                        } else {
+                            // Remove join date
+                            const dates = unMembershipStorage.getJoinDates();
+                            if (dates[item.org_id]) {
+                                delete dates[item.org_id][country.toLowerCase()];
+                                localStorage.setItem("em_org_join_dates", JSON.stringify(dates));
+                            }
+                        }
+
                         this.generateNews(country, item.org_id, item.action);
                     }
                 }
@@ -66,14 +78,41 @@ class RegionalMembershipRouter {
     }
 
     private generateNews(countryName: string, orgId: string, action: 'join' | 'leave') {
-        const countryData = countries.find(c => c.name_en === countryName || c.name_id === countryName);
+        const countryData = countries.find(c => 
+            c.name_en.toLowerCase() === countryName.toLowerCase() || 
+            c.name_id.toLowerCase() === countryName.toLowerCase()
+        );
         const flag = countryData?.flag || "🌐";
+        
+        const orgLabels: Record<string, string> = {
+            asean: "ASEAN",
+            eu: "UNI EROPA",
+            arab_league: "LIGA ARAB",
+            au: "UNI AFRIKA",
+            oic: "OKI",
+            brics: "BRICS",
+            nato: "NATO",
+            opec: "OPEC",
+            g20: "G20",
+            apec: "APEC",
+            sco: "SCO",
+            oas: "OAS",
+            gcc: "GCC",
+            mercosur: "MERCOSUR",
+            commonwealth: "COMMONWEALTH",
+            g7: "G7",
+            quad: "QUAD",
+            oecd: "OECD"
+        };
+
+        const orgDisplay = orgLabels[orgId] || orgId.toUpperCase();
+
         newsStorage.addNews({
             source: "REGIONAL WATCH",
-            category: "organizations",
+            category: "organizations" as any,
             priority: "medium",
             subject: `${flag} DINAMIKA REGIONAL: ${countryName.toUpperCase()}`,
-            content: `${countryName} telah ${action === 'join' ? 'bergabung dengan' : 'keluar dari'} blok regional ${orgId.toUpperCase()}.`,
+            content: `${countryName} telah secara resmi ${action === 'join' ? 'bergabung dengan' : 'keluar dari'} blok regional ${orgDisplay}.`,
             time: ""
         });
     }

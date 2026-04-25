@@ -58,6 +58,10 @@ export const NewsBaseList = ({
         bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400', 
         glow: 'shadow-[0_0_20px_rgba(245,158,11,0.15)]', icon: <Zap size={18} /> 
       };
+      case 'organizations': return { 
+        bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-400', 
+        glow: 'shadow-[0_0_20px_rgba(59,130,246,0.15)]', icon: <Globe size={18} /> 
+      };
       default: return { 
         bg: 'bg-sky-500/10', border: 'border-sky-500/20', text: 'text-sky-400', 
         glow: 'shadow-[0_0_20px_rgba(14,165,233,0.15)]', icon: <Newspaper size={18} /> 

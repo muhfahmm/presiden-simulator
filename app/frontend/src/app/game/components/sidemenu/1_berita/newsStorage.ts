@@ -13,7 +13,7 @@ export interface NewsItem {
   time: string;
   read: boolean;
   priority: 'low' | 'medium' | 'high';
-  category: 'global' | 'diplomacy' | 'conflict' | 'economy' | 'construction' | 'finance' | 'trade';
+  category: 'global' | 'diplomacy' | 'conflict' | 'economy' | 'construction' | 'finance' | 'trade' | 'organizations';
   timestamp: number;
 }
 
@@ -68,38 +68,46 @@ export const newsStorage = {
   syncFromServer: (serverNews: any[], currentGameDate?: string) => {
     if (typeof window === "undefined" || !Array.isArray(serverNews)) return;
 
-    // Monthly reset: if server sends empty news, clear local cache
-    if (serverNews.length === 0) {
-      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify([]));
-      return;
-    }
-
-    // Import helper if needed (though it's better to pass it in)
-    const fallbackDate = currentGameDate || formatGameDate(getStoredGameDate());
-
     // Map server news to our format
     const mapped: NewsItem[] = serverNews.map((sn: any) => ({
       id: sn.id || `sv-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
       source: sn.source || "Server",
       subject: sn.subject || "",
       content: sn.content || "",
-      time: sn.time || fallbackDate || new Date(sn.timestamp || Date.now()).toLocaleDateString("id-ID"),
+      time: sn.time || currentGameDate || new Date(sn.timestamp || Date.now()).toLocaleDateString("id-ID"),
       read: sn.read || false,
       priority: sn.priority || "low",
       category: sn.category || "global",
       timestamp: sn.timestamp || Date.now(),
     }));
 
-    // OVERWRITE: Server is now the absolute authority for news.
-    // This ensures that when the server resets every week, the frontend follows.
-    const merged = mapped.sort((a: any, b: any) => b.timestamp - a.timestamp);
+    // Monthly reset: if server sends empty news, it means a new month started.
+    // We should clear everything EXCEPT local simulation news.
+    if (serverNews.length === 0) {
+      const current = newsStorage.getNews();
+      const locals = current.filter(item => !item.id.startsWith('sv-'));
+      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(locals));
+      return;
+    }
+
+    // MERGE: Keep server news as authoritative, but preserve local simulation news.
+    const current = newsStorage.getNews();
+    const localNews = current.filter(item => !item.id.startsWith('sv-'));
+    
+    // Combine server news with local news, avoiding duplicates
+    const serverIds = new Set(mapped.map(m => m.id));
+    const uniqueLocalNews = localNews.filter(l => !serverIds.has(l.id));
+    
+    const merged = [...mapped, ...uniqueLocalNews].sort((a: NewsItem, b: NewsItem) => b.timestamp - a.timestamp);
+
+    console.log(`[NewsStorage] Sync Complete. Server: ${mapped.length}, Local: ${uniqueLocalNews.length}, Total: ${merged.length}`);
 
     try {
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(merged));
       // Trigger side-effects for AI construction
       newsStorage.processConstructionEffects(merged);
     } catch (e) {
-      // Quota exceeded — only trim if absolutely necessary to prevent crash, but keep a large buffer
+      // Quota exceeded — only trim if absolutely necessary
       const trimmed = merged.slice(0, 1000);
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
     }
@@ -280,6 +288,7 @@ export const newsStorage = {
 
   addNews: (news: Omit<NewsItem, "id" | "read" | "timestamp">) => {
     if (typeof window === "undefined") return;
+
     const current = localStorage.getItem(NEWS_STORAGE_KEY);
     const currentParsed = current ? JSON.parse(current) : [];
 

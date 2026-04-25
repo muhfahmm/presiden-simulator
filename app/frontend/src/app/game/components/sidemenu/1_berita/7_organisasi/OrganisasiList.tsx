@@ -60,36 +60,39 @@ export const OrganisasiList = (props: TabProps) => {
           const subj = item.subject.toLowerCase();
           const content = item.content.toLowerCase();
           const combined = (subj + " " + content).toLowerCase();
+          const source = item.source.toLowerCase();
           
-          // 1. ABSOLUTE EXCLUSION: Buang sampah kategori teknis
+          // 1. ABSOLUTE EXCLUSION
           if (['construction', 'finance', 'trade', 'conflict'].includes(item.category)) {
             return false;
           }
 
-          // 2. DETECT ORGANIZATION
-          const globalOrgs = /(pbb|imf|bank dunia|world bank|who|unesco|wto|interpol|unicef|fao)/i;
+          // 2. DETECT ORGANIZATION TYPES
+          const isPBBNews = item.category === 'organizations' && source.includes("global diplomacy");
+          const isRegionalNews = item.category === 'organizations' && source.includes("regional watch");
+          
+          const globalOrgs = /(pbb|imf|bank dunia|world bank|who|unesco|wto|interpol|unicef|fao|ilo|icao|imo|itu|wmo)/i;
           const regionalOrgs = /(asean|nato|eu|uni eropa|brics|g20|g7|apec|sco|oas|gcc|mercosur|commonwealth|oic|oki|uni afrika|african union)/i;
+          
+          const isGlobalKeyword = globalOrgs.test(combined);
+          const isRegionalKeyword = regionalOrgs.test(combined);
 
-          const isGlobal = globalOrgs.test(combined);
-          const isRegional = regionalOrgs.test(combined);
-
-          // 3. SEPARATION LOGIC
+          // 3. VOTING TAB LOGIC
+          const isVotingNews = /(hasil sidang|voting|resolusi|pemungutan suara|sidang umum|dewan keamanan|kesepakatan sidang)/i.test(combined);
           if (currentSubTab === 'voting') {
-             // Tab khusus hasil sidang, voting, dan resolusi
-             return /(hasil sidang|voting|resolusi|pemungutan suara|sidang umum|dewan keamanan|kesepakatan sidang)/i.test(combined);
+             return isVotingNews;
           }
 
-          // Filter Keanggotaan (Hanya muncul jika ada aksi keanggotaan)
-          const membershipMove = /(bergabung|keluar|anggota|keanggotaan|membership|masuk|exit|join|leave|diterima|ditolak|permohonan|aplikasi|mengundurkan diri)/i;
+          // 4. MEMBERSHIP TAB LOGIC
+          const membershipMove = /(bergabung|keluar|anggota|keanggotaan|membership|masuk|exit|join|leave|diterima|ditolak|permohonan|aplikasi|mengundurkan diri|secara resmi)/i;
           const hasMembershipKeyword = membershipMove.test(combined);
 
-          // Pastikan berita sidang tidak masuk ke tab keanggotaan
-          const isVotingNews = /(hasil sidang|voting|resolusi|pemungutan suara)/i.test(combined);
-
           if (currentSubTab === 'pbb') {
-            return isGlobal && hasMembershipKeyword && !isRegional && !isVotingNews;
+            if (isPBBNews) return true;
+            return isGlobalKeyword && hasMembershipKeyword && !isRegionalKeyword && !isVotingNews;
           } else if (currentSubTab === 'regional') {
-            return isRegional && hasMembershipKeyword && !isVotingNews;
+            if (isRegionalNews) return true;
+            return isRegionalKeyword && hasMembershipKeyword && !isVotingNews;
           }
           
           return false;

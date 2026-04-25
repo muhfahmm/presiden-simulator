@@ -7,6 +7,7 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { OrganizationMembers } from "@/app/database/data/database_organisasi_internasional/index";
 import OrgMembersList from "./OrgMembersList";
 import { unMembershipStorage } from "./1_organisasi_PBB/logic/unMembershipStorage";
+import { regionalMembershipRouter } from "./2_organisasi_regional/logic/router/RegionalMembershipRouter";
 
 
 // Dynamic Imports for UN Organizations
@@ -433,7 +434,7 @@ export default function OrgIntlModal({
                                const dbMembers = OrganizationMembers[org.id] || [];
                                const userInDb = dbMembers.includes(currentCountry.toLowerCase());
                                const userJoined = unMembershipStorage.getJoinedOrganizations().includes(org.id);
-                               return dbMembers.length + (userJoined && !userInDb ? 1 : (!userJoined && userInDb ? -1 : 0));
+                               return (org.category === 'UN' ? unMembershipStorage.getConsolidatedMembers(org.id) : regionalMembershipRouter.getConsolidatedMembers(org.id)).length;
                             })()} Negara
                           </span>
                        </div>
