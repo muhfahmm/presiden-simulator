@@ -61,13 +61,13 @@ export const simulateUNVote = (
     }
 
     // 3. Logika Hubungan Diplomatik (Kedubes)
-    // Jika punya kedubes (hubungan diplomatik), maka MENOLAK resolusi
-    // Jika TIDAK punya kedubes, maka SETUJU dengan resolusi
+    // Jika punya kedubes (hubungan diplomatik), maka SETUJU dengan resolusi
+    // Jika TIDAK punya kedubes, maka MENOLAK resolusi
     const embassyStatus = embassyStorage.getEmbassyStatus(countryName);
     if (embassyStatus === 'completed') {
-      opponents.push(countryName);
-    } else {
       supporters.push(countryName);
+    } else {
+      opponents.push(countryName);
     }
   });
 
