@@ -21,14 +21,27 @@ func ensureRelation(n1, n2 string) *core.Relationship {
 }
 
 func GenerateBilateralNews(dateStr string) {
-	if len(core.NpcNations) < 2 {
+	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	
+	// LAYER 1: Filter out player's country from the pool
+	available := make([]string, 0)
+	for _, n := range core.NpcNations {
+		if strings.ToLower(strings.TrimSpace(n)) != playerCountry {
+			available = append(available, n)
+		}
+	}
+
+	if len(available) < 2 {
 		return
 	}
-	n1 := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
-	n2 := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
+
+	// LAYER 2: Pick two distinct NPC nations
+	n1 := available[core.Rng.Intn(len(available))]
+	n2 := available[core.Rng.Intn(len(available))]
 	for n2 == n1 {
-		n2 = core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
+		n2 = available[core.Rng.Intn(len(available))]
 	}
+
 	
 	// PERSISTENCE: Update the actual relationship state so other systems (like Trade) know it exists
 	rel1 := ensureRelation(n1, n2)

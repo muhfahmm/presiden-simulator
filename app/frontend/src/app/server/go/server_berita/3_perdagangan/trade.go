@@ -31,16 +31,27 @@ func hasEmbassyBetween(n1, n2 string) bool {
 }
 
 func GenerateBilateralNews(dateStr string) {
-	if len(core.NpcNations) < 2 {
+	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	
+	// LAYER 1: Filter out player's country from the pool
+	available := make([]string, 0)
+	for _, n := range core.NpcNations {
+		if strings.ToLower(strings.TrimSpace(n)) != playerCountry {
+			available = append(available, n)
+		}
+	}
+
+	if len(available) < 2 {
 		return
 	}
 
 	// Try up to 20 times to find a pair of nations that already have an embassy
 	for attempt := 0; attempt < 20; attempt++ {
-		n1 := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
-		n2 := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
+		// LAYER 2: Pick two distinct NPC nations from the filtered list
+		n1 := available[core.Rng.Intn(len(available))]
+		n2 := available[core.Rng.Intn(len(available))]
 		for n2 == n1 {
-			n2 = core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
+			n2 = available[core.Rng.Intn(len(available))]
 		}
 
 		// Prerequisite: both nations must have an active embassy relationship
@@ -56,6 +67,7 @@ func GenerateBilateralNews(dateStr string) {
 	}
 	// If no embassy pair found after 20 attempts, skip — no trade without diplomacy
 }
+
 
 type EconomyCommodity struct {
 	Name      string
@@ -94,10 +106,17 @@ func formatPrice(n int) string {
 }
 
 func GenerateFlashNews(dateStr string) {
-	if len(core.NpcNations) == 0 {
+	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	available := make([]string, 0)
+	for _, n := range core.NpcNations {
+		if strings.ToLower(strings.TrimSpace(n)) != playerCountry {
+			available = append(available, n)
+		}
+	}
+	if len(available) == 0 {
 		return
 	}
-	nation := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
+	nation := available[core.Rng.Intn(len(available))]
 	
 	c := economyCommodities[core.Rng.Intn(len(economyCommodities))]
 	
@@ -117,14 +136,22 @@ func GenerateBatch(dateStr string, count int) {
 	// Generate 1 bilateral agreement news per batch to keep it special
 	GenerateBilateralNews(dateStr)
 	
+	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	available := make([]string, 0)
+	for _, n := range core.NpcNations {
+		if strings.ToLower(strings.TrimSpace(n)) != playerCountry {
+			available = append(available, n)
+		}
+	}
+
 	for i := 0; i < count; i++ {
 		roll := core.Rng.Intn(2)
 		switch roll {
 		case 0:
 			GenerateFlashNews(dateStr)
 		case 1:
-			if len(core.NpcNations) > 0 {
-				nation := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
+			if len(available) > 0 {
+				nation := available[core.Rng.Intn(len(available))]
 				
 				regTypes := []string{"Bea Cukai", "Transit Sekutu", "Transit Non-Sekutu"}
 				regType := regTypes[core.Rng.Intn(len(regTypes))]
@@ -143,3 +170,4 @@ func GenerateBatch(dateStr string, count int) {
 		}
 	}
 }
+

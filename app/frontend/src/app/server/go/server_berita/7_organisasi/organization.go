@@ -2,15 +2,25 @@ package organisasi
 
 import (
 	"fmt"
+	"strings"
 	"emserver/core"
 )
 
 func GenerateBatch(dateStr string, count int) {
-	for i := 0; i < count; i++ {
-		if len(core.NpcNations) == 0 {
-			return
+	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	available := make([]string, 0)
+	for _, n := range core.NpcNations {
+		if strings.ToLower(strings.TrimSpace(n)) != playerCountry {
+			available = append(available, n)
 		}
-		nation := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
+	}
+
+	if len(available) == 0 {
+		return
+	}
+
+	for i := 0; i < count; i++ {
+		nation := available[core.Rng.Intn(len(available))]
 		
 		topics := []string{
 			"Resolusi Kemanusiaan",
@@ -29,3 +39,4 @@ func GenerateBatch(dateStr string, count int) {
 		core.AddNewsItemLocked("Perserikatan Bangsa-Bangsa", subj, content, "organizations", "medium", dateStr)
 	}
 }
+

@@ -127,20 +127,32 @@ func processWeeklyConstruction(dateStr string) bool {
 		state.Budget = math.Max(0, state.Budget-cost)
 		nationsBuilt++
 
-		// Generate news
-		template := constructionTemplates[core.Rng.Intn(len(constructionTemplates))]
-		content := fmt.Sprintf(template, nation, quantity, building.Name)
+		// Generate news ONLY if player has an embassy in this nation
+		playerCountry := core.GlobalState.Player.Country
+		kPlayer := strings.ToLower(strings.TrimSpace(playerCountry))
+		kTarget := strings.ToLower(strings.TrimSpace(nation))
+		
+		hasEmbassy := false
+		if rels, ok := core.GlobalState.Relationships[kPlayer]; ok && rels[kTarget] != nil && rels[kTarget].E == 1 {
+			hasEmbassy = true
+		}
 
-		core.AddNewsItemLocked(
-			fmt.Sprintf("Kantor Berita %s", nation),
-			fmt.Sprintf("Pembangunan Infrastruktur %s: %s", building.Name, nation),
-			content,
-			"construction",
-			"medium",
-			dateStr,
-		)
-		newsGenerated++
+		if hasEmbassy {
+			template := constructionTemplates[core.Rng.Intn(len(constructionTemplates))]
+			content := fmt.Sprintf(template, nation, quantity, building.Name)
+
+			core.AddNewsItemLocked(
+				fmt.Sprintf("Kantor Berita %s", nation),
+				fmt.Sprintf("Pembangunan Infrastruktur %s: %s", building.Name, nation),
+				content,
+				"construction",
+				"medium",
+				dateStr,
+			)
+			newsGenerated++
+		}
 	}
+
 
 	fmt.Printf("[GO] AI Construction (BATCH): %d/%d nations built, %d news\n",
 		nationsBuilt, numBuilders, newsGenerated)
@@ -310,17 +322,31 @@ func processSmartConstruction(dateStr string) {
 
 					newsMu.Lock()
 					if newsCount < newsLimit {
-						core.AddNewsItem(
-							fmt.Sprintf("Kantor Berita %s", nation),
-							fmt.Sprintf("Proyek Strategis: %s", nation),
-							result.Reason,
-							"construction",
-							"high",
-							dateStr,
-						)
-						newsCount++
+						// Filter: Only news if player has embassy
+						kPlayer := strings.ToLower(strings.TrimSpace(playerCountry))
+						kTarget := strings.ToLower(strings.TrimSpace(nation))
+						
+						hasEmbassy := false
+						core.GlobalState.Mu.Lock()
+						if rels, ok := core.GlobalState.Relationships[kPlayer]; ok && rels[kTarget] != nil && rels[kTarget].E == 1 {
+							hasEmbassy = true
+						}
+						core.GlobalState.Mu.Unlock()
+
+						if hasEmbassy {
+							core.AddNewsItem(
+								fmt.Sprintf("Kantor Berita %s", nation),
+								fmt.Sprintf("Proyek Strategis: %s", nation),
+								result.Reason,
+								"construction",
+								"high",
+								dateStr,
+							)
+							newsCount++
+						}
 					}
 					newsMu.Unlock()
+
 				}
 			} else {
 				cmd.Process.Kill()

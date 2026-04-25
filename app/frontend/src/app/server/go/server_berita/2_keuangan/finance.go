@@ -2,6 +2,7 @@ package keuangan
 
 import (
 	"fmt"
+	"strings"
 	"emserver/core"
 )
 
@@ -13,10 +14,18 @@ func GenerateMonthlyReport(dateStr string) {
 }
 
 func GenerateFlashNews(dateStr string) {
-	if len(core.NpcNations) == 0 {
+	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	available := make([]string, 0)
+	for _, n := range core.NpcNations {
+		if strings.ToLower(strings.TrimSpace(n)) != playerCountry {
+			available = append(available, n)
+		}
+	}
+
+	if len(available) == 0 {
 		return
 	}
-	nation := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
+	nation := available[core.Rng.Intn(len(available))]
 	
 	subj := fmt.Sprintf("Inflasi Terkendali di %s", nation)
 	content := fmt.Sprintf("Bank Sentral %s melaporkan bahwa tingkat inflasi tahunan turun di bawah target, memberikan ruang bagi kebijakan moneter yang lebih ekspansif untuk mendukung pertumbuhan.", nation)
@@ -25,6 +34,14 @@ func GenerateFlashNews(dateStr string) {
 }
 
 func GenerateBatch(dateStr string, count int) {
+	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	available := make([]string, 0)
+	for _, n := range core.NpcNations {
+		if strings.ToLower(strings.TrimSpace(n)) != playerCountry {
+			available = append(available, n)
+		}
+	}
+
 	for i := 0; i < count; i++ {
 		roll := core.Rng.Intn(3)
 		switch roll {
@@ -33,8 +50,8 @@ func GenerateBatch(dateStr string, count int) {
 		case 1:
 			GenerateFlashNews(dateStr)
 		case 2:
-			if len(core.NpcNations) > 0 {
-				nation := core.NpcNations[core.Rng.Intn(len(core.NpcNations))]
+			if len(available) > 0 {
+				nation := available[core.Rng.Intn(len(available))]
 				subj := fmt.Sprintf("Proyeksi Ekonomi Terkini: %s", nation)
 				content := fmt.Sprintf("Analis pasar memprediksi bahwa %s akan mengalami penguatan fundamental ekonomi seiring dengan peningkatan cadangan devisa dan stabilitas mata uang lokal.", nation)
 				core.AddNewsItemLocked("Data Ekonomi Dunia", subj, content, "finance", "medium", dateStr)
