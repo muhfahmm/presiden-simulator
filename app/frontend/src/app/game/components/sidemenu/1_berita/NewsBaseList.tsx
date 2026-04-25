@@ -185,37 +185,38 @@ export const NewsBaseList = ({
                     <p className="text-zinc-300 text-sm leading-relaxed font-medium whitespace-pre-line relative z-10 border-l-2 border-indigo-500/30 pl-6 py-2">
                       {item.content}
                     </p>
-                    <div className="mt-8 pt-6 border-t border-zinc-900 flex items-center justify-end">
-                        {(() => {
-                          const targets = detectNavigationTargets(item);
-                          if (!targets) return null;
-                          return (
-                            <button
-                                onClick={() => {
-                                  onClose();
-                                  const countryNameId = targets.country.name_id;
-                                  const countrySlug = countryNameId.toLowerCase().replace(/ /g, '_');
-                                  const tab = targets.tab || 'produksi';
-                                  const key = targets.buildingKey || 'emas';
-                                  
-                                  console.log(`[NEWS NAVIGATION] Target: ${countryNameId} (${countrySlug}), Tab: ${tab}, Key: ${key}`);
-                                  
-                                  // Update state with precise name_id for internal lookup
-                                  setActiveMenu(`CountryModal:${countryNameId.toLowerCase()}:info_strategis:detail_lengkap:${tab}:${key}`);
-                                  
-                                  // Use URL-friendly slug for the browser address
-                                  router.push(`/game/${countrySlug}/info_strategis/detail_lengkap/${tab}/${key}`);
-                                }}
-                              className="flex items-center gap-2 group/btn cursor-pointer py-2 px-4 bg-amber-500/10 hover:bg-amber-500 border border-amber-500/30 hover:border-amber-400 rounded-xl transition-all"
-                            >
-                              <TrendingUp size={14} className="text-amber-500 group-hover/btn:text-black transition-colors" />
-                              <span className="text-[10px] font-black uppercase tracking-widest text-amber-500 group-hover/btn:text-black transition-colors">
-                                Lihat Detail {(targets as any).buildingLabel} - {targets.country.name_id}
-                              </span>
-                            </button>
-                          );
-                        })()}
-                    </div>
+                    {(() => {
+                      if (item.category !== 'construction') return null;
+                      const targets = detectNavigationTargets(item);
+                      if (!targets) return null;
+                      return (
+                        <div className="mt-8 pt-6 border-t border-zinc-900 flex items-center justify-end">
+                          <button
+                              onClick={() => {
+                                onClose();
+                                const countryNameId = targets.country.name_id;
+                                const countrySlug = countryNameId.toLowerCase().replace(/ /g, '_');
+                                const tab = targets.tab || 'produksi';
+                                const key = targets.buildingKey || 'emas';
+                                
+                                console.log(`[NEWS NAVIGATION] Target: ${countryNameId} (${countrySlug}), Tab: ${tab}, Key: ${key}`);
+                                
+                                // Update state with precise name_id for internal lookup
+                                setActiveMenu(`CountryModal:${countryNameId.toLowerCase()}:info_strategis:detail_lengkap:${tab}:${key}`);
+                                
+                                // Use URL-friendly slug for the browser address
+                                router.push(`/game/${countrySlug}/info_strategis/detail_lengkap/${tab}/${key}`);
+                              }}
+                            className="flex items-center gap-2 group/btn cursor-pointer py-2 px-4 bg-amber-500/10 hover:bg-amber-500 border border-amber-500/30 hover:border-amber-400 rounded-xl transition-all"
+                          >
+                            <TrendingUp size={14} className="text-amber-500 group-hover/btn:text-black transition-colors" />
+                            <span className="text-[10px] font-black uppercase tracking-widest text-amber-500 group-hover/btn:text-black transition-colors">
+                              Lihat Detail {(targets as any).buildingLabel} - {targets.country.name_id}
+                            </span>
+                          </button>
+                        </div>
+                      );
+                    })()}
                   </div>
                 </div>
               )}
