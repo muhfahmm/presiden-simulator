@@ -80,7 +80,7 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 py-4 border-t border-white/5">
+              <div className="grid grid-cols-3 gap-4 py-4 border-t border-white/5">
                 {/* Find Country Data for Flags */}
                 {(() => {
                   const targetCountryData = countries.find(c => c.name_id === vote.targetCountry || c.name_en === vote.targetCountry);
@@ -115,6 +115,13 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                              <div className="h-4 w-4 rounded-full bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-[7px] font-black text-cyan-400 shrink-0">AI</div>
                            )}
                            <span className="text-[11px] font-black text-zinc-200 uppercase tracking-tight">{vote.proposer || "Anggota PBB"}</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-1.5">
+                        <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Durasi Usulan</span>
+                        <div className="flex items-center gap-2">
+                           <Clock className="h-3 w-3 text-cyan-500" />
+                           <span className="text-[11px] font-black text-zinc-200 uppercase tracking-tight">{vote.resolutionDuration || "6 Bulan"}</span>
                         </div>
                       </div>
                     </>

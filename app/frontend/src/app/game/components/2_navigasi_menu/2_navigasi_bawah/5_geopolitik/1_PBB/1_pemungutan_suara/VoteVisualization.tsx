@@ -48,7 +48,8 @@ export function VoteVisualization({ userCountry, isUNSCMember, selectedItem, onC
             name: selectedItem.name,
             description: selectedItem.description,
             effect: selectedItem.effect,
-            status: 'DITERIMA'
+            status: 'DITERIMA',
+            durationLabel: selectedDuration.replace('_', ' ').toUpperCase()
           });
 
           if (isSanctionOrEmbargo && selectedItem.targetCountry) {
@@ -61,7 +62,8 @@ export function VoteVisualization({ userCountry, isUNSCMember, selectedItem, onC
             name: selectedItem.name,
             description: selectedItem.description,
             effect: selectedItem.effect,
-            status: 'DITOLAK'
+            status: 'DITOLAK',
+            durationLabel: selectedDuration.replace('_', ' ').toUpperCase()
           });
 
           if (isSanctionOrEmbargo && selectedItem.targetCountry) {

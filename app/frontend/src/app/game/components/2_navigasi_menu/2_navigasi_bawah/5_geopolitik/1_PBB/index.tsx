@@ -91,21 +91,6 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
               ))}
             </div>
 
-            {/* Separator */}
-            <div className="h-8 w-px bg-zinc-800 mx-1" />
-
-            {/* Separate Histori Tab */}
-            <button
-              onClick={() => handleTabChange("histori")}
-              className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer border ${
-                activeTab === "histori"
-                  ? "bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-500/20"
-                  : "bg-zinc-900 border-zinc-800 text-zinc-500 hover:text-zinc-300 hover:border-zinc-700"
-              }`}
-            >
-              <History className="h-3.5 w-3.5" />
-              Histori
-            </button>
           </div>
 
           {/* Close Button */}
@@ -116,7 +101,12 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
         </div>
 
         {/* Tab Content */}
-        {activeTab === "pemungutan_suara" && <PemungutanSuaraTab currentData={currentData} />}
+        {activeTab === "pemungutan_suara" && (
+          <PemungutanSuaraTab 
+            currentData={currentData} 
+            onSwitchTab={(tabId: any) => handleTabChange(tabId)} 
+          />
+        )}
         {activeTab === "dewan_keamanan" && <DewanKeamananTab />}
         {activeTab === "suara_PBB" && <SuaraPBBTab currentData={currentData} />}
         {activeTab === "histori" && <HistoriTab />}

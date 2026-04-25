@@ -26,6 +26,7 @@ export interface ActiveVoting {
   effect: string;
   targetCountry: string;
   durationLabel: string;
+  resolutionDuration?: string; // Durasi efek sanksi/embargo
   startDate: string;
   endDate: string;
   progress: number; // 0 to 100
@@ -157,26 +158,39 @@ export const unVotingStorage = {
     const targets = ["Korea Utara", "Iran", "Suriah", "Israel", "Ukraina", "Taiwan", "Venezuela", "Sudan", "Myanmar", "Afghanistan", "Libya"];
     const randomTarget = targets[Math.floor(Math.random() * targets.length)];
     
-    // Daftar judul resolusi agar bervariasi
-    const resolutionNames = [
-      "Stabilisasi Wilayah Konflik",
-      "Bantuan Kemanusiaan Darurat",
-      "Penyelidikan Pelanggaran HAM",
-      "Gencatan Senjata Regional",
-      "Pengiriman Pasukan Perdamaian",
-      "Embargo Senjata Strategis",
-      "Pencabutan Hambatan Distribusi Logistik"
-    ];
-    const randomName = resolutionNames[Math.floor(Math.random() * resolutionNames.length)];
+    // Penentuan Judul Resolusi berdasarkan Kategori yang ada di Card UI
+    const resolutionCategories = ["Rancangan Resolusi", "Sanksi", "Embargo"];
+    const randomCategory = resolutionCategories[Math.floor(Math.random() * resolutionCategories.length)];
+    
+    let randomName = "";
+    if (randomCategory === "Rancangan Resolusi") {
+      randomName = "LARANGAN PERANG";
+    } else if (randomCategory === "Sanksi") {
+      randomName = "SANKSI EKONOMI";
+    } else {
+      // Opsi untuk Embargo (Ada 4 Opsi sesuai Gambar)
+      const embargoOptions = [
+        "EMBARGO EKONOMI",
+        "EMBARGO PENJUALAN TEKNOLOGI",
+        "EMBARGO PENJUALAN SUMBER DAYA",
+        "EMBARGO SENJATA"
+      ];
+      randomName = embargoOptions[Math.floor(Math.random() * embargoOptions.length)];
+    }
+
+    // Penentuan Durasi Efek (Berapa lama sanksi/embargo berlaku jika lolos)
+    const durations = ["6 Bulan", "1 Tahun", "2 Tahun", "5 Tahun"];
+    const randomEffectDuration = durations[Math.floor(Math.random() * durations.length)];
 
     unVotingStorage.proposeAiResolution({
-      category: "Resolusi Keamanan",
+      category: randomCategory,
       name: randomName,
-      description: `Resolusi ini diajukan oleh ${randomCountry} untuk membahas isu mendesak di ${randomTarget}. Fokus utama adalah ${randomName.toLowerCase()} demi stabilitas internasional.`,
-      effect: "Berpotensi mengubah peta kekuatan diplomatik dan stabilitas keamanan di wilayah target.",
+      description: `Resolusi ini diajukan oleh ${randomCountry} untuk membahas isu mendesak di ${randomTarget}. Fokus utama adalah ${randomName.toLowerCase()} dengan durasi usulan selama ${randomEffectDuration} demi stabilitas internasional.`,
+      effect: `Penerapan ${randomName.toLowerCase()} selama ${randomEffectDuration} terhadap wilayah target.`,
       targetCountry: randomTarget,
       proposer: randomCountry,
       durationLabel: "30 Hari",
+      resolutionDuration: randomEffectDuration,
       startDate: gameDate.toISOString(),
       endDate: new Date(gameDate.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString()
     });
