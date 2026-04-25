@@ -2,7 +2,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { History, Search, Filter, ShieldAlert, Ban, FileText, Calendar, Globe, ThumbsUp, ThumbsDown, Loader2 } from "lucide-react";
+import { History, Search, Filter, ShieldAlert, Ban, FileText, Calendar, Globe, ThumbsUp, ThumbsDown, Loader2, ChevronDown } from "lucide-react";
 import { unVotingStorage, VotingHistoryItem } from "../1_pemungutan_suara/logika_pemungutan_suara/unVotingStorage";
 import { countries } from "@/app/pilih_negara/data/negara/benua/index";
 
@@ -15,6 +15,8 @@ export default function HistoriTab() {
   const [resolutions, setResolutions] = useState<VotingHistoryItem[]>([]);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<string>("all");
+  const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const [debugCount, setDebugCount] = useState(0);
 
@@ -45,7 +47,10 @@ export default function HistoriTab() {
                       res.category.toLowerCase().includes("larangan");
     }
     
-    return matchesSearch && matchesFilter;
+    let matchesStatus = statusFilter === "all";
+    if (statusFilter !== "all") matchesStatus = res.status === statusFilter;
+    
+    return matchesSearch && matchesFilter && matchesStatus;
   });
 
   return (
@@ -74,16 +79,88 @@ export default function HistoriTab() {
               className="w-full bg-zinc-900/50 border border-zinc-800 rounded-2xl py-3 pl-11 pr-4 text-xs text-white placeholder:text-zinc-600 focus:outline-none focus:border-indigo-500/50 transition-all"
             />
           </div>
-          <select 
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            className="bg-zinc-900/50 border border-zinc-800 rounded-2xl py-3 px-4 text-[10px] font-black text-zinc-400 uppercase tracking-widest focus:outline-none cursor-pointer"
-          >
-            <option value="all">Semua Kategori</option>
-            <option value="sanksi">Sanksi</option>
-            <option value="embargo">Embargo</option>
-            <option value="rancangan">Resolusi Umum</option>
-          </select>
+
+          {/* Custom Modern Dropdown */}
+          <div className="relative w-48 shrink-0">
+            <button 
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className={`w-full bg-zinc-900/50 border border-zinc-800 rounded-2xl py-3 px-5 text-[10px] font-black text-zinc-400 uppercase tracking-widest flex items-center justify-between transition-all hover:bg-zinc-800/50 hover:border-zinc-700 active:scale-95 ${isDropdownOpen ? "border-indigo-500/50 ring-4 ring-indigo-500/5" : ""}`}
+            >
+              <span>{filter === "all" ? "Semua Kategori" : filter === "rancangan" ? "Resolusi Umum" : filter.toUpperCase()}</span>
+              <ChevronDown className={`h-3 w-3 text-zinc-600 transition-transform duration-300 ${isDropdownOpen ? "rotate-180 text-indigo-400" : ""}`} />
+            </button>
+
+            {isDropdownOpen && (
+              <div className="absolute top-full left-0 w-full mt-2 bg-zinc-950 border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden z-50 animate-in slide-in-from-top-2 duration-200">
+                <div className="p-1">
+                  {[
+                    { id: "all", label: "Semua Kategori" },
+                    { id: "sanksi", label: "Sanksi" },
+                    { id: "embargo", label: "Embargo" },
+                    { id: "rancangan", label: "Resolusi Umum" }
+                  ].map((opt) => (
+                    <button
+                      key={opt.id}
+                      onClick={() => {
+                        setFilter(opt.id);
+                        setIsDropdownOpen(false);
+                      }}
+                      className={`w-full text-left px-4 py-2.5 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all ${
+                        filter === opt.id 
+                        ? "bg-indigo-600 text-white" 
+                        : "text-zinc-500 hover:bg-zinc-800 hover:text-zinc-200"
+                      }`}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Status Filter Menu */}
+      <div className="flex items-center justify-between p-2 bg-zinc-900/30 border border-zinc-800/50 rounded-[24px]">
+        <div className="flex items-center gap-2">
+           <button 
+             onClick={() => setStatusFilter("all")}
+             className={`px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+               statusFilter === "all" 
+               ? "bg-zinc-800 text-white shadow-lg" 
+               : "text-zinc-500 hover:text-zinc-300"
+             }`}
+           >
+             Semua Riwayat
+           </button>
+           <div className="h-4 w-px bg-zinc-800 mx-1" />
+           <button 
+             onClick={() => setStatusFilter("DITERIMA")}
+             className={`px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border ${
+               statusFilter === "DITERIMA" 
+               ? "bg-emerald-500 border-emerald-400 text-white shadow-lg shadow-emerald-500/20" 
+               : "bg-emerald-500/5 border-emerald-500/10 text-emerald-500 hover:bg-emerald-500/10"
+             }`}
+           >
+             Resolusi Diterima
+           </button>
+           <button 
+             onClick={() => setStatusFilter("DITOLAK")}
+             className={`px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border ${
+               statusFilter === "DITOLAK" 
+               ? "bg-rose-500 border-rose-400 text-white shadow-lg shadow-rose-500/20" 
+               : "bg-rose-500/5 border-rose-500/10 text-rose-500 hover:bg-rose-500/10"
+             }`}
+           >
+             Resolusi Ditolak
+           </button>
+        </div>
+        
+        <div className="pr-4">
+           <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">
+             Menampilkan {filteredResolutions.length} dari {resolutions.length} Arsip
+           </span>
         </div>
       </div>
 
