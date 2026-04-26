@@ -59,11 +59,7 @@ export const TradeList: React.FC<TradeListProps> = ({
       const isActivation = subj.includes('aktivasi');
       const isContract = subj.includes('kontrak');
       
-      // We allow all trade category messages that were not blocked at storage level
-      // except for certain special types if needed.
-      if (isContract) return false;
-      
-      return isExport || isImport || isActivation || isPartnership;
+      return isExport || isImport || isActivation || isPartnership || isContract;
     })
     .filter(msg => 
       msg.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 

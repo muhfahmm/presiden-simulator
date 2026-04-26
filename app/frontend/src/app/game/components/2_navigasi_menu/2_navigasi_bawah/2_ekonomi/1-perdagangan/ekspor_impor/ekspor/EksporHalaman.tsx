@@ -188,7 +188,7 @@ export const EksporHalaman: React.FC<EksporHalamanProps> = ({
                 .filter((n: any) => 
                   n.title.includes("EKSPOR") || n.title.includes("IMPOR") || 
                   n.title.includes("PENAWARAN") || n.title.includes("PERMINTAAN") ||
-                  n.category === "Penawaran"
+                  n.title.includes("KONTRAK") || n.category === "Penawaran"
                 )
                 .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
                 
@@ -208,19 +208,25 @@ export const EksporHalaman: React.FC<EksporHalamanProps> = ({
               return finalDisplay.map((n: any) => {
                 const isEkspor = n.title.includes("EKSPOR");
                 const isImpor = n.title.includes("IMPOR") || n.title.includes("PENAWARAN");
-                const themeColor = isEkspor ? "emerald" : (isImpor ? "red" : "blue");
-                const borderColor = isEkspor ? "border-emerald-500/40" : (isImpor ? "border-red-500/40" : "border-zinc-800/50");
-                const bgColor = isEkspor ? "bg-emerald-600/5" : (isImpor ? "bg-red-600/5" : "bg-zinc-900/40");
-                const tagColor = isEkspor ? "bg-emerald-500" : (isImpor ? "bg-red-500" : "bg-blue-500");
+                const isKontrak = n.title.includes("KONTRAK");
+                
+                let themeColor = "blue";
+                if (isEkspor) themeColor = "emerald";
+                else if (isImpor) themeColor = "red";
+                else if (isKontrak) themeColor = "blue";
+
+                const borderColor = isEkspor ? "border-emerald-500/40" : (isImpor ? "border-red-500/40" : (isKontrak ? "border-blue-500/40" : "border-zinc-800/50"));
+                const bgColor = isEkspor ? "bg-emerald-600/5" : (isImpor ? "bg-red-600/5" : (isKontrak ? "bg-blue-600/5" : "bg-zinc-900/40"));
+                const tagColor = isEkspor ? "bg-emerald-500" : (isImpor ? "bg-red-500" : (isKontrak ? "bg-blue-500" : "bg-zinc-500"));
 
                 return (
                   <div key={n.id} className={`p-5 rounded-2xl flex flex-col gap-2 group transition-all border ${bgColor} ${borderColor} shadow-[0_0_20px_rgba(0,0,0,0.2)]`}>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-md text-white ${tagColor}`}>
-                          {isEkspor ? "TAWARAN EKSPOR" : (isImpor ? "TAWARAN IMPOR" : n.category)}
+                          {isEkspor ? "TAWARAN EKSPOR" : (isImpor ? "TAWARAN IMPOR" : (isKontrak ? "PENAWARAN" : n.category))}
                         </span>
-                        <Zap size={10} className={`${isEkspor ? "text-emerald-400" : "text-red-400"} animate-pulse`} />
+                        <Zap size={10} className={`${isEkspor ? "text-emerald-400" : (isImpor ? "text-red-400" : "text-blue-400")} animate-pulse`} />
                       </div>
                       <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter">{n.date}</span>
                     </div>

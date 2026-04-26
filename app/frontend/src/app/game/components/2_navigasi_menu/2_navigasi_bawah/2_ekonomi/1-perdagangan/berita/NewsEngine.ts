@@ -77,6 +77,13 @@ const NEWS_TEMPLATES = {
       impactLabel: "Peluang Ekspor Terbuka",
       impactType: "positive",
       affectedCommodities: ["[KOMODITAS]"]
+    },
+    {
+      title: "KONTRAK DAGANG: [KOMODITAS] DARI [NEGARA]",
+      content: "[NEGARA] mengajak kontrak dagang [KOMODITAS] selama [DURASI] bulan ([JUMLAH] unit/bulan) dengan harga tetap [HARGA] EM/unit.",
+      impactLabel: "Kontrak Jangka Panjang",
+      impactType: "neutral",
+      affectedCommodities: ["[KOMODITAS]"]
     }
   ]
 };
@@ -100,7 +107,10 @@ export const NewsEngine = {
       return text
         .replace(/\[NEGARA\]/g, negara)
         .replace(/\[KOMODITAS\]/g, komoditas)
-        .replace(/\[LOKASI\]/g, lokasi);
+        .replace(/\[LOKASI\]/g, lokasi)
+        .replace(/\[DURASI\]/g, Math.floor(Math.random() * 12 + 3).toString())
+        .replace(/\[JUMLAH\]/g, (Math.floor(Math.random() * 50 + 5) * 100).toString())
+        .replace(/\[HARGA\]/g, (Math.floor(Math.random() * 1000 + 100)).toString());
     };
 
     return {
@@ -168,6 +178,34 @@ export const NewsEngine = {
       const newItem = NewsEngine.generateRandomNews(currentDate);
       updatedNews = [newItem, ...updatedNews];
       hasChanges = true;
+
+      // NEW: If it's a Penawaran/Kontrak, also add to inboxStorage so it appears in Inbox
+      if (newItem.title.includes("PENAWARAN") || newItem.title.includes("PERMINTAAN") || newItem.title.includes("KONTRAK")) {
+        try {
+          const { inboxStorage } = require("@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage");
+          
+          // Determine partner country from title if possible
+          const countryMatch = newItem.title.match(/DARI (.*)/);
+          const source = countryMatch ? `Pemerintah ${countryMatch[1]}` : "Global Trade Hub";
+
+          inboxStorage.addMessage({
+            source: source,
+            subject: newItem.title.toLowerCase(),
+            content: newItem.content,
+            time: newItem.date,
+            priority: "medium",
+            category: "trade",
+            isProposal: true,
+            proposalLabel: newItem.title.includes("KONTRAK") ? "KONTRAK" : "PROPOSAL",
+            metadata: {
+              type: newItem.title.includes("KONTRAK") ? "contract" : "offer",
+              commodity: newItem.affectedCommodities[0]
+            }
+          });
+        } catch (e) {
+          console.error("Failed to sync news to inbox", e);
+        }
+      }
     }
 
     if (hasChanges) {

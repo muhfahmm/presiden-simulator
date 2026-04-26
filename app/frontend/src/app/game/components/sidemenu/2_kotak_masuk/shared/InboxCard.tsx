@@ -27,6 +27,7 @@ export const InboxCard: React.FC<InboxCardProps> = ({
   const isTransactionOffer = msg.isProposal && msg.category === 'trade' && msg.metadata;
   const isExport = msg.metadata?.type === 'purchase_request' || msg.subject.toLowerCase().includes('ekspor');
   const isImport = msg.metadata?.type === 'product_offer' || msg.subject.toLowerCase().includes('impor');
+  const isContract = msg.metadata?.type === 'contract' || msg.metadata?.type === 'trade_contract' || msg.subject.toLowerCase().includes('kontrak');
   
   const theme = getCategoryTheme(
     msg.category, 
@@ -41,8 +42,8 @@ export const InboxCard: React.FC<InboxCardProps> = ({
     <div 
       className={`group relative border rounded-[32px] overflow-hidden transition-all duration-300 ${
         isExpanded 
-          ? `ring-1 ${isExport ? 'ring-emerald-500/50 bg-emerald-950/20' : isImport ? 'ring-rose-500/50 bg-rose-950/20' : isTransactionOffer ? 'ring-indigo-500/50 bg-indigo-950/20' : isPartnerOffer ? 'ring-amber-500/50 bg-amber-950/20' : 'ring-zinc-700 bg-zinc-900/50'}` 
-          : `bg-zinc-900/30 ${isExport ? 'border-emerald-500/30 hover:border-emerald-400 hover:bg-emerald-900/20' : isImport ? 'border-rose-500/30 hover:border-rose-400 hover:bg-rose-900/20' : isTransactionOffer ? 'border-indigo-500/30 hover:border-indigo-400 hover:bg-indigo-900/20' : isPartnerOffer ? 'border-amber-500/30 hover:border-amber-400 hover:bg-amber-900/20' : 'border-zinc-800/50 hover:border-zinc-700 hover:bg-zinc-900/40'}`
+          ? `ring-1 ${isExport ? 'ring-emerald-500/50 bg-emerald-950/20' : isImport ? 'ring-rose-500/50 bg-rose-950/20' : isContract ? 'ring-indigo-500/50 bg-indigo-950/20' : isTransactionOffer ? 'ring-indigo-500/50 bg-indigo-950/20' : isPartnerOffer ? 'ring-amber-500/50 bg-amber-950/20' : 'ring-zinc-700 bg-zinc-900/50'}` 
+          : `bg-zinc-900/30 ${isExport ? 'border-emerald-500/30 hover:border-emerald-400 hover:bg-emerald-900/20' : isImport ? 'border-rose-500/30 hover:border-rose-400 hover:bg-rose-900/20' : isContract ? 'border-indigo-500/30 hover:border-indigo-400 hover:bg-indigo-900/20' : isTransactionOffer ? 'border-indigo-500/30 hover:border-indigo-400 hover:bg-indigo-900/20' : isPartnerOffer ? 'border-amber-500/30 hover:border-amber-400 hover:bg-amber-900/20' : 'border-zinc-800/50 hover:border-zinc-700 hover:bg-zinc-900/40'}`
       }`}
     >
       <div 
@@ -63,7 +64,10 @@ export const InboxCard: React.FC<InboxCardProps> = ({
                   if (cat === 'defense' || cat === 'pact') return subj.includes('aliansi') ? 'aliansi' : 'pakta';
                   if (cat === 'diplomacy' || cat === 'embassy') return 'kedutaan';
                   if (cat === 'finance') return 'keuangan';
-                  if (cat === 'trade') return isPartnerOffer ? 'TAWARAN MITRA' : 'perdagangan';
+                  if (cat === 'trade') {
+                    if (isContract) return 'KONTRAK DAGANG';
+                    return isPartnerOffer ? 'TAWARAN MITRA' : 'perdagangan';
+                  }
                   return cat;
                 })()}
               </span>
@@ -75,6 +79,7 @@ export const InboxCard: React.FC<InboxCardProps> = ({
                   msg.status === 'rejected' ? 'bg-rose-500 text-black border-rose-300 animate-none' :
                   isExport ? 'bg-emerald-500 text-black border-emerald-300' : 
                   isImport ? 'bg-rose-500 text-black border-rose-300' : 
+                  isContract ? 'bg-indigo-500 text-black border-indigo-300' :
                   isTransactionOffer ? 'bg-indigo-500 text-black border-indigo-300' : 
                   isPartnerOffer ? 'bg-amber-500 text-black border-amber-300' : 
                   'bg-amber-500/10 text-amber-500 border-amber-500/20'
@@ -100,6 +105,7 @@ export const InboxCard: React.FC<InboxCardProps> = ({
             <h4 className={`text-xl font-black mt-1.5 transition-colors uppercase italic tracking-tighter leading-tight ${
               isExport ? 'text-emerald-400 group-hover:text-emerald-200' : 
               isImport ? 'text-rose-400 group-hover:text-rose-200' : 
+              isContract ? 'text-indigo-400 group-hover:text-indigo-200' :
               isTransactionOffer ? 'text-indigo-400 group-hover:text-indigo-200' : 
               isPartnerOffer ? 'text-amber-400 group-hover:text-amber-200' : 
               'text-white group-hover:text-blue-400'
