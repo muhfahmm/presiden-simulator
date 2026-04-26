@@ -473,7 +473,8 @@ export default function OrgIntlModal({
                   {/* ACTION BUTTONS */}
                   <div className="space-y-2 mt-auto">
                     {(() => {
-                      const isEligible = unMembershipStorage.isEligibleForRegional(org.id, currentCountry);
+                      const isMember = unMembershipStorage.isMember(org.id, currentCountry);
+                      const isEligible = isMember ? true : unMembershipStorage.isEligibleForRegional(org.id, currentCountry);
                       
                       return (
                         <>
@@ -490,15 +491,17 @@ export default function OrgIntlModal({
                           </button>
                           <button 
                             onClick={() => isEligible ? setSelectedOrgId(org.id) : null}
-                            disabled={!isEligible}
+                            disabled={!isEligible && !isMember}
                             className={`w-full py-3 px-6 rounded-2xl border text-[9px] font-black uppercase tracking-[0.15em] flex items-center justify-between group/btn-apply transition-all ${
-                              isEligible
-                              ? "bg-purple-600/10 border-purple-500/20 hover:bg-purple-600/20 hover:border-purple-500/40 text-purple-400 active:scale-[0.98] cursor-pointer"
-                              : "bg-red-500/5 border-red-500/10 text-red-500/50 cursor-not-allowed"
+                              isMember
+                              ? "bg-emerald-500/10 border-emerald-500/20 hover:bg-emerald-500/20 text-emerald-400 active:scale-[0.98] cursor-pointer"
+                              : isEligible
+                                ? "bg-purple-600/10 border-purple-500/20 hover:bg-purple-600/20 hover:border-purple-500/40 text-purple-400 active:scale-[0.98] cursor-pointer"
+                                : "bg-red-500/5 border-red-500/10 text-red-500/50 cursor-not-allowed"
                             }`}
                           >
                             <span>{isMember ? "Lihat Organisasi" : (isEligible ? "Kirim Permohonan" : "Tidak Memenuhi Syarat")}</span>
-                            {isEligible && <ChevronRight size={12} className="group-hover/btn-apply:translate-x-1 transition-transform" />}
+                            {(isEligible || isMember) && <ChevronRight size={12} className="group-hover/btn-apply:translate-x-1 transition-transform" />}
                           </button>
                         </>
                       );
