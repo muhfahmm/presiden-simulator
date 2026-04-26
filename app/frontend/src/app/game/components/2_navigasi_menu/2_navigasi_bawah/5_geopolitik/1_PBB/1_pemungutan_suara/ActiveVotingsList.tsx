@@ -120,14 +120,16 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                       <div className="flex flex-col gap-1.5">
                         <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Negara Target</span>
                         <div className="flex items-center gap-2">
-                           {targetCode ? (
+                           {targetCode && vote.targetCountry ? (
                              <div className="w-5 h-3.5 rounded-sm overflow-hidden border border-white/10 shadow-sm shrink-0">
                                <img src={`https://flagcdn.com/w80/${targetCode}.png`} className="w-full h-full object-cover" alt="" />
                              </div>
                            ) : (
-                             <Globe className="h-3 w-3 text-zinc-500" />
+                             <div className="p-1 rounded-md bg-cyan-500/10 border border-cyan-500/20">
+                               <Globe className="h-2.5 w-2.5 text-cyan-500" />
+                             </div>
                            )}
-                           <span className="text-[11px] font-black text-zinc-200 uppercase tracking-tight">{vote.targetCountry}</span>
+                           <span className="text-[11px] font-black text-zinc-200 uppercase tracking-tight">{vote.targetCountry || "DUNIA"}</span>
                         </div>
                       </div>
                       <div className="flex flex-col gap-1.5">

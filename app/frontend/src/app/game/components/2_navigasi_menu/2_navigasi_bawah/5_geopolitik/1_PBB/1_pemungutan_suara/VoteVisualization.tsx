@@ -98,7 +98,7 @@ export function VoteVisualization({ userCountry, isUNSCMember, selectedItem, onC
 
 
   return (
-    <div className="mt-8 p-8 rounded-[32px] bg-zinc-900/50 border border-zinc-800/50 animate-in slide-in-from-bottom duration-500 shadow-2xl relative overflow-y-auto overflow-x-hidden max-h-[600px] w-full scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
+    <div className="mt-8 p-8 rounded-[32px] bg-zinc-900/50 border border-zinc-800/50 animate-in slide-in-from-bottom duration-500 shadow-2xl relative w-full">
       {/* Background Glow */}
       <div className="absolute -top-24 -right-24 w-64 h-64 bg-cyan-500/5 blur-[100px] pointer-events-none" />
       

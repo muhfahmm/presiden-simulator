@@ -94,7 +94,7 @@ export default function PemungutanSuaraTab({ currentData, onSwitchTab }: Pemungu
   };
 
   return (
-    <div className="flex-1 relative overflow-y-auto overflow-x-hidden p-8 animate-in fade-in duration-300 flex flex-col gap-10 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
+    <div className="flex-1 h-full min-h-0 relative overflow-y-auto overflow-x-hidden p-8 animate-in fade-in duration-300 flex flex-col gap-10 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
       
       {/* SECTION 2: Selection Cards */}
       <div className="flex flex-col gap-4">

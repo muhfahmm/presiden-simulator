@@ -194,12 +194,19 @@ export const unVotingStorage = {
     const durations = ["6 Bulan", "1 Tahun", "2 Tahun", "5 Tahun"];
     const randomEffectDuration = durations[Math.floor(Math.random() * durations.length)];
 
+    const isGlobalResolution = randomName === "LARANGAN PERANG";
+    const actualTarget = isGlobalResolution ? "" : randomTarget;
+
     unVotingStorage.proposeAiResolution({
       category: randomCategory,
       name: randomName,
-      description: `Resolusi ini diajukan oleh ${randomCountry} untuk membahas isu mendesak di ${randomTarget}. Fokus utama adalah ${randomName.toLowerCase()} dengan durasi usulan selama ${randomEffectDuration} demi stabilitas internasional.`,
-      effect: `Penerapan ${randomName.toLowerCase()} selama ${randomEffectDuration} terhadap wilayah target.`,
-      targetCountry: randomTarget,
+      description: isGlobalResolution 
+        ? `Resolusi ini diajukan oleh ${randomCountry} sebagai inisiatif perdamaian global untuk melarang segala bentuk konflik bersenjata dan menjaga stabilitas internasional.`
+        : `Resolusi ini diajukan oleh ${randomCountry} untuk membahas isu mendesak di ${randomTarget}. Fokus utama adalah ${randomName.toLowerCase()} dengan durasi usulan selama ${randomEffectDuration} demi stabilitas internasional.`,
+      effect: isGlobalResolution
+        ? `Penghentian dan larangan segala bentuk aktivitas militer agresif secara global.`
+        : `Penerapan ${randomName.toLowerCase()} selama ${randomEffectDuration} terhadap wilayah target.`,
+      targetCountry: actualTarget,
       proposer: randomCountry,
       durationLabel: "30 Hari",
       resolutionDuration: randomEffectDuration,

@@ -101,15 +101,17 @@ export default function PBBModal({ isOpen, onClose, activeMenu, setActiveMenu }:
         </div>
 
         {/* Tab Content */}
-        {activeTab === "pemungutan_suara" && (
-          <PemungutanSuaraTab 
-            currentData={currentData} 
-            onSwitchTab={(tabId: any) => handleTabChange(tabId)} 
-          />
-        )}
-        {activeTab === "dewan_keamanan" && <DewanKeamananTab />}
-        {activeTab === "suara_PBB" && <SuaraPBBTab currentData={currentData} />}
-        {activeTab === "histori" && <HistoriTab />}
+        <div className="flex-1 min-h-0 overflow-hidden flex flex-col">
+          {activeTab === "pemungutan_suara" && (
+            <PemungutanSuaraTab 
+              currentData={currentData} 
+              onSwitchTab={(tabId: any) => handleTabChange(tabId)} 
+            />
+          )}
+          {activeTab === "dewan_keamanan" && <DewanKeamananTab />}
+          {activeTab === "suara_PBB" && <SuaraPBBTab currentData={currentData} />}
+          {activeTab === "histori" && <HistoriTab />}
+        </div>
       </div>
     </div>
   )

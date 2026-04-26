@@ -246,21 +246,21 @@ export default function HistoriTab() {
                       }
                     }
 
-                    const safeResults = results || { yes: 0, no: 0, abstain: 0 };
+                    const safeResults = results || { yes: 0, no: 0, abstain: 0, weightedYes: 0, weightedNo: 0, weightedAbstain: 0 };
 
                     return (
                       <>
                         <div className="p-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center">
                           <p className="text-[7px] font-black text-emerald-400 uppercase tracking-tighter mb-0.5">Setuju</p>
-                          <p className="text-[10px] font-black text-white">{safeResults.yes}</p>
+                          <p className="text-sm font-black text-white">{safeResults.yes} <span className="text-zinc-500">({safeResults.weightedYes || 0})</span></p>
                         </div>
                         <div className="p-2 rounded-xl bg-rose-500/5 border border-rose-500/10 text-center">
                           <p className="text-[7px] font-black text-rose-400 uppercase tracking-tighter mb-0.5">Tolak</p>
-                          <p className="text-[10px] font-black text-white">{safeResults.no}</p>
+                          <p className="text-sm font-black text-white">{safeResults.no} <span className="text-zinc-500">({safeResults.weightedNo || 0})</span></p>
                         </div>
                         <div className="p-2 rounded-xl bg-zinc-500/5 border border-zinc-500/10 text-center">
                           <p className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter mb-0.5">Abstain</p>
-                          <p className="text-[10px] font-black text-white">{safeResults.abstain}</p>
+                          <p className="text-sm font-black text-white">{safeResults.abstain} <span className="text-zinc-500">({safeResults.weightedAbstain || 0})</span></p>
                         </div>
                       </>
                     );
