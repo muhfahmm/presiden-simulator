@@ -125,7 +125,7 @@ export const unSecurityCouncilStorage = {
     leavingMembers.forEach(m => {
       newsStorage.addLocalNews({
         source: "Global Diplomacy News",
-        subject: `Keanggotaan PBB: ${m.name} Keluar Dari Dewan Keamanan`,
+        subject: `${m.name} Keluar Dari Dewan Keamanan`,
         content: `Masa jabatan ${m.name} sebagai Anggota Tidak Tetap Dewan Keamanan PBB telah berakhir. Negara ini resmi meninggalkan kursi dewan per 1 Januari ${year}.`,
         time: `01-01-${year}`,
         priority: "high",
@@ -291,7 +291,7 @@ export const unSecurityCouncilStorage = {
       newElectedMembers.forEach(m => {
         newsStorage.addLocalNews({
           source: "Global Diplomacy News",
-          subject: `Keanggotaan PBB: ${m.name} Terpilih di Dewan Keamanan`,
+          subject: `${m.name} Terpilih di Dewan Keamanan`,
           content: `${m.name} terpilih sebagai Anggota Tidak Tetap Dewan Keamanan PBB mewakili kelompok ${m.group} untuk periode ${m.termStart}-${m.termEnd}. Negara ini akan resmi menjabat mulai 1 Januari ${m.termStart}.`,
           time: `15-06-${year}`,
           priority: "high",
@@ -343,7 +343,7 @@ export const unSecurityCouncilStorage = {
     updatedNewlyElected.forEach(m => {
       newsStorage.addLocalNews({
         source: "Global Diplomacy News",
-        subject: `Keanggotaan PBB: ${m.name} Resmi Bergabung di Dewan Keamanan`,
+        subject: `${m.name} Resmi Bergabung di Dewan Keamanan`,
         content: `${m.name} secara resmi menduduki kursi Anggota Tidak Tetap Dewan Keamanan PBB mulai 1 Juli ${year}. Masa jabatan berlangsung hingga ${m.termEnd}.`,
         time: `01-07-${year}`,
         priority: "high",

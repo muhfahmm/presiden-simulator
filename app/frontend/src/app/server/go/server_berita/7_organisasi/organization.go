@@ -13,83 +13,77 @@ import (
 //   2. Keanggotaan Regional → source: "Regional Watch Intelligence"
 //   3. Hasil Sidang & Voting → source: "Perserikatan Bangsa-Bangsa"
 //
-// RULES:
-//   - Membership news checks the actual database before generating
-//   - Countries already IN an org → can only "leave" or "update status"
-//   - Countries NOT in an org → can only "join" or "apply"
-//   - Geographic eligibility is enforced (no "Indonesia joins NATO")
-//   - Voting keywords MUST NOT appear in membership news templates
+// Subject format: "{Country} Bergabung ke {Org}" (direct, no prefix)
 // ═══════════════════════════════════════════════════════════════════════
 
-// --- PBB MEMBERSHIP TEMPLATES ---
-
 type newsTemplate struct {
-	Subject string
-	Content string
+	Subject string // Two %s: nation, org
+	Content string // Two %s: nation, org
 }
 
-// Templates for countries NOT yet in the PBB org (applying/joining)
+// PBB sub-organization names for variety
+var pbbSubOrgs = []string{"PBB", "UNESCO", "WHO", "IMF", "WTO", "FAO", "ILO", "ICAO", "IMO", "ITU", "WMO", "Bank Dunia", "Interpol"}
+
+// --- PBB MEMBERSHIP TEMPLATES (subject: {country} {action} {org}) ---
+
 var pbbJoinTemplates = []newsTemplate{
 	{
-		"Keanggotaan PBB: %s Mengajukan Permohonan Anggota Baru",
-		"Pemerintah %s telah secara resmi mengajukan permohonan keanggotaan ke Perserikatan Bangsa-Bangsa. Proses aplikasi ini akan ditinjau oleh Komite Penerimaan Anggota dalam beberapa bulan mendatang.",
+		"%s Bergabung ke %s",
+		"Pemerintah %s telah secara resmi bergabung dengan organisasi %s. Langkah diplomatik ini menandai babak baru dalam partisipasi internasional negara tersebut.",
 	},
 	{
-		"Keanggotaan PBB: %s Diterima Sebagai Anggota Pengamat",
-		"Status keanggotaan %s di PBB telah ditingkatkan menjadi anggota pengamat. Dengan status baru ini, negara tersebut dapat menghadiri forum internasional tanpa hak suara penuh.",
+		"%s Mengajukan Permohonan ke %s",
+		"Pemerintah %s mengajukan permohonan keanggotaan resmi ke %s. Proses aplikasi ini akan ditinjau oleh Komite Penerimaan dalam beberapa bulan mendatang.",
 	},
 	{
-		"Keanggotaan PBB: Permohonan %s Masih Dipertimbangkan",
-		"Permohonan keanggotaan %s di PBB masih dalam tahap evaluasi oleh Komite Penerimaan. Beberapa negara anggota meminta klarifikasi terkait persyaratan yang belum dipenuhi.",
+		"%s Diterima Sebagai Anggota Pengamat %s",
+		"Status %s di %s telah ditingkatkan menjadi anggota pengamat. Dengan status baru ini, negara tersebut dapat menghadiri forum internasional tanpa hak suara penuh.",
 	},
 }
 
-// Templates for countries ALREADY in the PBB org (leaving/updating)
 var pbbLeaveTemplates = []newsTemplate{
 	{
-		"Keanggotaan PBB: %s Mengundurkan Diri",
-		"Pemerintah %s mengumumkan pengunduran diri dari keanggotaan PBB. Keputusan kontroversial ini menuai beragam reaksi dari komunitas internasional.",
+		"%s Mengundurkan Diri dari %s",
+		"Pemerintah %s mengumumkan pengunduran diri dari keanggotaan %s. Keputusan kontroversial ini menuai beragam reaksi dari komunitas internasional.",
 	},
 	{
-		"Keanggotaan PBB: %s Memperbarui Status Keanggotaan",
-		"Delegasi %s telah menyelesaikan proses pembaruan status keanggotaan di PBB. Pembaruan ini mencakup kontribusi finansial dan komitmen pada piagam organisasi.",
+		"%s Memperbarui Status di %s",
+		"Delegasi %s telah menyelesaikan proses pembaruan status keanggotaan di %s. Pembaruan ini mencakup kontribusi finansial dan komitmen pada piagam organisasi.",
 	},
 	{
-		"Keanggotaan PBB: %s Tingkatkan Kontribusi Tahunan",
-		"Negara %s mengumumkan peningkatan kontribusi tahunan kepada PBB sebesar 15%%. Langkah ini memperkuat komitmen negara tersebut terhadap multilateralisme global.",
+		"%s Tingkatkan Kontribusi ke %s",
+		"Negara %s mengumumkan peningkatan kontribusi tahunan kepada %s sebesar 15%%. Langkah ini memperkuat komitmen negara tersebut terhadap multilateralisme global.",
 	},
 }
 
-// --- REGIONAL MEMBERSHIP TEMPLATES ---
+// --- REGIONAL MEMBERSHIP TEMPLATES (subject: {country} {action} {org}) ---
 
-// Templates for countries NOT yet in the regional org (joining)
 var regionalJoinTemplates = []newsTemplate{
 	{
-		"Blok Regional: %s Bergabung Dengan %s",
+		"%s Bergabung Dengan %s",
 		"Dalam langkah strategis, %s secara resmi bergabung dengan %s. Keanggotaan baru ini diharapkan membuka peluang kerjasama ekonomi dan keamanan yang lebih luas bagi negara tersebut.",
 	},
 	{
-		"Blok Regional: %s Diterima Sebagai Anggota %s",
+		"%s Diterima Sebagai Anggota %s",
 		"Permohonan keanggotaan %s di %s telah disetujui secara aklamasi oleh seluruh anggota. Penerimaan ini memperluas jangkauan dan pengaruh organisasi di kawasan.",
 	},
 	{
-		"Blok Regional: Permohonan %s ke %s Ditolak",
+		"Permohonan %s ke %s Ditolak",
 		"Permohonan keanggotaan %s untuk masuk ke %s tidak mendapatkan persetujuan. Beberapa negara anggota memiliki keberatan terkait syarat dan ketentuan organisasi.",
 	},
 }
 
-// Templates for countries ALREADY in the regional org (leaving/status change)
 var regionalLeaveTemplates = []newsTemplate{
 	{
-		"Blok Regional: %s Keluar Dari %s",
+		"%s Keluar Dari %s",
 		"Pemerintah %s mengumumkan keputusan untuk keluar dari %s. Langkah ini mencerminkan pergeseran arah kebijakan luar negeri dan prioritas geopolitik negara tersebut.",
 	},
 	{
-		"Blok Regional: %s Mengundurkan Diri Dari %s",
+		"%s Mengundurkan Diri Dari %s",
 		"Secara mengejutkan, %s memutuskan untuk mengundurkan diri dari keanggotaan %s. Keputusan ini akan mempengaruhi dinamika geopolitik dan perdagangan kawasan.",
 	},
 	{
-		"Blok Regional: %s Perkuat Posisi di %s",
+		"%s Perkuat Posisi di %s",
 		"Delegasi %s mengumumkan peningkatan kontribusi dan partisipasi aktif di dalam %s. Negara ini diharapkan memainkan peran lebih besar dalam pengambilan keputusan organisasi.",
 	},
 }
@@ -113,15 +107,10 @@ func GenerateBatch(dateStr string, count int) {
 		nationLower := strings.ToLower(strings.TrimSpace(nation))
 
 		if roll < 20 {
-			// ═══ 1. PBB MEMBERSHIP NEWS (20%) ═══
 			generatePBBMembershipNews(nation, nationLower, dateStr)
-
 		} else if roll < 40 {
-			// ═══ 2. REGIONAL MEMBERSHIP NEWS (20%) ═══
 			generateRegionalMembershipNews(nation, nationLower, dateStr)
-
 		} else {
-			// ═══ 3. VOTING & RESOLUTION NEWS (60%) ═══
 			generateVotingNews(nation, dateStr)
 		}
 	}
@@ -129,42 +118,37 @@ func GenerateBatch(dateStr string, count int) {
 
 func generatePBBMembershipNews(nation, nationLower, dateStr string) {
 	isMember := IsMemberOfPBBOrg(nationLower)
+	org := pbbSubOrgs[core.Rng.Intn(len(pbbSubOrgs))]
 
 	var t newsTemplate
 	if isMember {
-		// Already a member → can leave or update status (rare: 10% chance to leave)
 		if core.Rng.Intn(100) < 10 {
-			t = pbbLeaveTemplates[0] // "mengundurkan diri"
+			t = pbbLeaveTemplates[0]
 		} else {
-			// Update status or increase contribution
 			t = pbbLeaveTemplates[1+core.Rng.Intn(len(pbbLeaveTemplates)-1)]
 		}
 	} else {
-		// Not a member → can apply or join
 		t = pbbJoinTemplates[core.Rng.Intn(len(pbbJoinTemplates))]
 	}
 
-	subj := fmt.Sprintf(t.Subject, nation)
-	content := fmt.Sprintf(t.Content, nation)
+	subj := fmt.Sprintf(t.Subject, nation, org)
+	content := fmt.Sprintf(t.Content, nation, org)
 	core.AddNewsItemLocked("Global Diplomacy News", subj, content, "organizations", "high", dateStr)
 }
 
 func generateRegionalMembershipNews(nation, nationLower, dateStr string) {
-	// Try up to 5 times to find a valid org-country combination
 	for attempt := 0; attempt < 5; attempt++ {
 		org := RegionalOrgList[core.Rng.Intn(len(RegionalOrgList))]
 		isMember := IsMemberOfRegionalOrg(nationLower, org)
 		isEligible := IsEligibleForOrg(nationLower, org)
 
 		if isMember {
-			// Already a member → can leave or strengthen position
 			var t newsTemplate
 			if core.Rng.Intn(100) < 15 {
-				t = regionalLeaveTemplates[core.Rng.Intn(2)] // leave/resign
+				t = regionalLeaveTemplates[core.Rng.Intn(2)]
 			} else {
-				t = regionalLeaveTemplates[2] // strengthen position
+				t = regionalLeaveTemplates[2]
 			}
-
 			subj := fmt.Sprintf(t.Subject, nation, org)
 			content := fmt.Sprintf(t.Content, nation, org)
 			core.AddNewsItemLocked("Regional Watch Intelligence", subj, content, "organizations", "medium", dateStr)
@@ -172,22 +156,17 @@ func generateRegionalMembershipNews(nation, nationLower, dateStr string) {
 		}
 
 		if !isMember && isEligible {
-			// Not a member but eligible → can apply or join
 			t := regionalJoinTemplates[core.Rng.Intn(len(regionalJoinTemplates))]
 			subj := fmt.Sprintf(t.Subject, nation, org)
 			content := fmt.Sprintf(t.Content, nation, org)
 			core.AddNewsItemLocked("Regional Watch Intelligence", subj, content, "organizations", "medium", dateStr)
 			return
 		}
-
-		// Not eligible → try another org
 	}
 
-	// Fallback: If no valid combination found after 5 attempts,
-	// just use an org where the country IS already a member
 	for _, org := range RegionalOrgList {
 		if IsMemberOfRegionalOrg(nationLower, org) {
-			t := regionalLeaveTemplates[2] // "perkuat posisi"
+			t := regionalLeaveTemplates[2]
 			subj := fmt.Sprintf(t.Subject, nation, org)
 			content := fmt.Sprintf(t.Content, nation, org)
 			core.AddNewsItemLocked("Regional Watch Intelligence", subj, content, "organizations", "medium", dateStr)

@@ -267,6 +267,77 @@ export const NewsBaseList = ({
                         }
                       }
 
+                      // Organization membership news buttons
+                      if (item.category === 'organizations') {
+                        const subj = item.subject;
+                        // Match patterns: "{Country} Bergabung Dengan {Org}", "{Country} Keluar Dari {Org}", 
+                        // "{Country} Bergabung ke {Org}", "{Country} Diterima Sebagai Anggota {Org}", etc.
+                        const orgPatterns = [
+                          /^(.+?) Bergabung (?:Dengan|ke) (.+)$/i,
+                          /^(.+?) Keluar Dari (.+)$/i,
+                          /^(.+?) Diterima Sebagai Anggota (?:Pengamat )?(.+)$/i,
+                          /^(.+?) Mengundurkan Diri (?:dari|Dari) (.+)$/i,
+                          /^(.+?) Mengajukan Permohonan ke (.+)$/i,
+                          /^(.+?) Memperbarui Status di (.+)$/i,
+                          /^(.+?) Tingkatkan Kontribusi ke (.+)$/i,
+                          /^(.+?) Perkuat Posisi di (.+)$/i,
+                          /^Permohonan (.+?) ke (.+?) Ditolak$/i,
+                          /^(.+?) Terpilih di (.+)$/i,
+                          /^(.+?) Resmi Bergabung di (.+)$/i,
+                        ];
+
+                        for (const regex of orgPatterns) {
+                          const match = subj.match(regex);
+                          if (match) {
+                            const country = match[1].trim();
+                            const org = match[2].trim();
+                            return (
+                              <div className="mt-8 pt-6 border-t border-zinc-900 flex items-center justify-end gap-3">
+                                <button
+                                  onClick={() => {
+                                    onClose();
+                                    const countrySlug = country.toLowerCase().replace(/ /g, '_');
+                                    setActiveMenu(`CountryModal:${country.toLowerCase()}:diplomasi_hubungan:hubungan_internasional`);
+                                    router.push(`/game/${countrySlug}/diplomasi_hubungan`);
+                                  }}
+                                  className="flex items-center gap-2 group/btn cursor-pointer py-2 px-4 bg-indigo-500/10 hover:bg-indigo-500 border border-indigo-500/30 hover:border-indigo-400 rounded-xl transition-all"
+                                >
+                                  <Globe size={14} className="text-indigo-500 group-hover/btn:text-black transition-colors" />
+                                  <span className="text-[10px] font-black uppercase tracking-widest text-indigo-500 group-hover/btn:text-black transition-colors">
+                                    Lihat {country}
+                                  </span>
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    onClose();
+                                    
+                                    const pbbOrgs = ["PBB", "UNESCO", "WHO", "IMF", "WTO", "FAO", "ILO", "ICAO", "IMO", "ITU", "WMO", "BANK DUNIA", "INTERPOL", "DEWAN KEAMANAN"];
+                                    const isPBB = pbbOrgs.includes(org.toUpperCase());
+                                    
+                                    const targetPath = isPBB 
+                                      ? '/game/geopolitik/organisasi-internasional/organisasi_pbb' 
+                                      : '/game/geopolitik/organisasi-internasional/organisasi_regional';
+                                      
+                                    const targetMenu = isPBB
+                                      ? 'Menu:OrganisasiInternasional:organisasi_pbb'
+                                      : 'Menu:OrganisasiInternasional:organisasi_regional';
+
+                                    setActiveMenu(targetMenu);
+                                    router.push(targetPath);
+                                  }}
+                                  className="flex items-center gap-2 group/btn cursor-pointer py-2 px-4 bg-cyan-500/10 hover:bg-cyan-500 border border-cyan-500/30 hover:border-cyan-400 rounded-xl transition-all"
+                                >
+                                  <Globe size={14} className="text-cyan-500 group-hover/btn:text-black transition-colors" />
+                                  <span className="text-[10px] font-black uppercase tracking-widest text-cyan-500 group-hover/btn:text-black transition-colors">
+                                    Lihat {org}
+                                  </span>
+                                </button>
+                              </div>
+                            );
+                          }
+                        }
+                      }
+
                       if (item.category === 'trade') {
                         const match = item.subject.match(/tawaran hubungan dagang negara (.+?) diterima oleh negara (.+)/i);
                         if (match) {

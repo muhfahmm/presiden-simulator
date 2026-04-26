@@ -144,10 +144,10 @@ class UNMembershipStorage {
     const orgDisplay = orgLabels[orgId] || orgId.toUpperCase();
 
     newsStorage.addNews({
-      source: "GLOBAL DIPLOMACY",
+      source: "Global Diplomacy News",
       category: "organizations" as any,
       priority: "medium",
-      subject: `${flag} KEANGGOTAAN GLOBAL: ${countryName.toUpperCase()}`,
+      subject: `${countryName} ${action === 'join' ? 'Bergabung ke' : 'Keluar dari'} ${orgDisplay}`,
       content: `${countryName} telah secara resmi ${action === 'join' ? 'bergabung dengan' : 'keluar dari'} organisasi PBB ${orgDisplay}.`,
       time: ""
     });
