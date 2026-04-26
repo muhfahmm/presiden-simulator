@@ -44,9 +44,11 @@ export const OrgDebtPanel: React.FC<OrgDebtPanelProps> = ({ isImfMember, isWbMem
                         Ajukan Paket Krisis →
                     </button>
                 ) : (
-                    <div className="py-2 px-4 bg-zinc-950 border border-zinc-900 rounded-xl flex items-center gap-3">
-                        <AlertCircle className="h-4 w-4 text-zinc-700 font-black" />
-                        <span className="text-[8px] font-bold text-zinc-600 uppercase leading-none">Harus bergabung melalui hub Geopolitik</span>
+                    <div className="py-2.5 px-4 bg-zinc-900 border border-amber-500/20 rounded-xl flex items-center gap-3 shadow-[0_0_15px_rgba(245,158,11,0.05)]">
+                        <AlertCircle className="h-4 w-4 text-amber-500 animate-pulse" />
+                        <span className="text-[10px] font-black text-amber-500 uppercase leading-tight tracking-wider">
+                            Harus bergabung melalui hub Geopolitik
+                        </span>
                     </div>
                 )}
             </div>
@@ -83,9 +85,11 @@ export const OrgDebtPanel: React.FC<OrgDebtPanelProps> = ({ isImfMember, isWbMem
                         Dana Pembangunan →
                     </button>
                 ) : (
-                    <div className="py-2 px-4 bg-zinc-950 border border-zinc-900 rounded-xl flex items-center gap-3">
-                        <AlertCircle className="h-4 w-4 text-zinc-700" />
-                        <span className="text-[8px] font-bold text-zinc-600 uppercase leading-none">Harus bergabung melalui hub Geopolitik</span>
+                    <div className="py-2.5 px-4 bg-zinc-900 border border-amber-500/20 rounded-xl flex items-center gap-3 shadow-[0_0_15px_rgba(245,158,11,0.05)]">
+                        <AlertCircle className="h-4 w-4 text-amber-500 animate-pulse" />
+                        <span className="text-[10px] font-black text-amber-500 uppercase leading-tight tracking-wider">
+                            Harus bergabung melalui hub Geopolitik
+                        </span>
                     </div>
                 )}
             </div>
