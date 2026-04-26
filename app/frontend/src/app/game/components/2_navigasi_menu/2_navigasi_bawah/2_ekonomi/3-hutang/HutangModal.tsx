@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from "react";
-import { X, CreditCard, TrendingDown, Landmark, ShieldAlert, BadgeInfo, ArrowDownToLine, Wallet, Activity, Globe, Sparkles, ArrowRightLeft, FileText, BarChart3, Tag } from "lucide-react";
+import { X, CreditCard, TrendingDown, Landmark, ShieldAlert, BadgeInfo, ArrowDownToLine, ArrowUpToLine, Wallet, Activity, Globe, Sparkles, ArrowRightLeft, FileText, BarChart3, Tag } from "lucide-react";
 import { debtAiStorage, DebtOffer, ActiveDebt } from "./sistem_hutang_AI/storage/DebtAiStorage";
 import { DebtAiService } from "./sistem_hutang_AI/services/DebtAiService";
 import { BilateralDebtPanel } from "./sistem_hutang_AI/components/BilateralDebtPanel";
@@ -22,18 +22,24 @@ export default function HutangModal({ isOpen, onClose, activeMenu, setActiveMenu
   const [creditScore, setCreditScore] = useState(70);
   const [memberships, setMemberships] = useState({ isImfMember: false, isWbMember: false });
   const [currentCountry, setCurrentCountry] = useState("Indonesia");
+  const [activeDebtTab, setActiveDebtTab] = useState<'HUTANG' | 'PIUTANG'>('HUTANG');
 
   useEffect(() => {
     setIsMounted(true);
     if (isOpen) {
+      DebtAiService.seedInitialOffers();
       refreshData();
     }
+
+    const handleUpdate = () => refreshData();
+    window.addEventListener('debt_storage_updated', handleUpdate);
+    return () => window.removeEventListener('debt_storage_updated', handleUpdate);
   }, [isOpen]);
 
   const refreshData = () => {
     const data = debtAiStorage.getData();
-    setOffers(data.offers);
-    setActiveDebts(data.activeDebts);
+    setOffers([...data.offers]); // Force new array reference
+    setActiveDebts([...data.activeDebts]);
     
     const storedScore = localStorage.getItem('em_user_credit_score');
     if (storedScore) setCreditScore(parseInt(storedScore));
@@ -171,43 +177,63 @@ export default function HutangModal({ isOpen, onClose, activeMenu, setActiveMenu
                         <Wallet className="h-4 w-4 text-emerald-400" />
                         <h3 className="text-[12px] font-black text-white uppercase tracking-[0.2em]">Daftar Tagihan Berjalan</h3>
                     </div>
-                    <div className="bg-zinc-900/40 border border-zinc-800 p-6 rounded-[32px] overflow-hidden">
-                        {activeDebts.length > 0 ? (
-                            <table className="w-full text-left">
-                                <thead className="border-b border-zinc-800">
-                                    <tr className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">
-                                        <th className="pb-4">Pemberi Dana</th>
-                                        <th className="pb-4 text-center">Sisa Pokok</th>
-                                        <th className="pb-4 text-center">Bunga</th>
-                                        <th className="pb-4 text-right">Cicilan/Bulan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {activeDebts.filter(d => d.status === 'ACTIVE').map((debt, i) => (
-                                        <tr key={i} className="border-b border-zinc-800/30 last:border-0 hover:bg-white/[0.02] transition-colors">
-                                            <td className="py-4">
-                                                <p className="text-[11px] font-black text-white uppercase leading-none">{debt.provider}</p>
-                                                <p className="text-[9px] font-bold text-zinc-500 mt-1 uppercase tracking-tighter">{debt.type}</p>
-                                            </td>
-                                            <td className="py-4 text-center">
-                                                <span className="text-[11px] font-bold text-zinc-200">${debt.remainingPrincipal.toLocaleString()}</span>
-                                            </td>
-                                            <td className="py-4 text-center">
-                                                <span className="text-[11px] font-bold text-blue-400">{debt.interestRate}%</span>
-                                            </td>
-                                            <td className="py-4 text-right">
-                                                <span className="text-[11px] font-black text-white">${debt.monthlyPayment.toLocaleString()}</span>
-                                            </td>
+                    <div className="bg-zinc-900/40 border border-zinc-800 p-0 rounded-[32px] overflow-hidden flex flex-col">
+                        {/* Tab Sub-Header */}
+                        <div className="flex border-b border-zinc-800">
+                            <button 
+                                onClick={() => setActiveDebtTab('HUTANG')}
+                                className={`flex-1 py-4 text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 ${activeDebtTab === 'HUTANG' ? 'bg-white/5 text-rose-500 border-b-2 border-rose-500 cursor-default' : 'text-zinc-500 hover:text-zinc-300 cursor-pointer'}`}
+                            >
+                                <ArrowDownToLine className="h-3 w-3" /> Hutang Pemerintah
+                            </button>
+                            <button 
+                                onClick={() => setActiveDebtTab('PIUTANG')}
+                                className={`flex-1 py-4 text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 ${activeDebtTab === 'PIUTANG' ? 'bg-white/5 text-emerald-500 border-b-2 border-emerald-500 cursor-default' : 'text-zinc-500 hover:text-zinc-300 cursor-pointer'}`}
+                            >
+                                <ArrowUpToLine className="h-3 w-3" /> Piutang Negara
+                            </button>
+                        </div>
+
+                        <div className="p-6">
+                            {activeDebts.filter(d => d.status === 'ACTIVE' && (activeDebtTab === 'HUTANG' ? (d.direction === 'BORROWER' || !d.direction) : d.direction === 'LENDER')).length > 0 ? (
+                                <table className="w-full text-left">
+                                    <thead className="border-b border-zinc-800">
+                                        <tr className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">
+                                            <th className="pb-4">{activeDebtTab === 'HUTANG' ? 'Pemberi Dana' : 'Penerima Dana'}</th>
+                                            <th className="pb-4 text-center">Sisa Pokok</th>
+                                            <th className="pb-4 text-center">Bunga</th>
+                                            <th className="pb-4 text-right">{activeDebtTab === 'HUTANG' ? 'Cicilan/Bulan' : 'Penerimaan/Bulan'}</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        ) : (
-                            <div className="py-10 flex flex-col items-center justify-center text-center">
-                                <Landmark className="h-8 w-8 text-zinc-800 mb-3" />
-                                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em]">Pemerintah Bersih dari Hutang</p>
-                            </div>
-                        )}
+                                    </thead>
+                                    <tbody>
+                                        {activeDebts.filter(d => d.status === 'ACTIVE' && (activeDebtTab === 'HUTANG' ? (d.direction === 'BORROWER' || !d.direction) : d.direction === 'LENDER')).map((debt, i) => (
+                                            <tr key={i} className="border-b border-zinc-800/30 last:border-0 hover:bg-white/[0.02] transition-colors">
+                                                <td className="py-4">
+                                                    <p className="text-[11px] font-black text-white uppercase leading-none">{debt.provider}</p>
+                                                    <p className="text-[9px] font-bold text-zinc-500 mt-1 uppercase tracking-tighter">{debt.type}</p>
+                                                </td>
+                                                <td className="py-4 text-center">
+                                                    <span className="text-[11px] font-bold text-zinc-200">${debt.remainingPrincipal.toLocaleString()}</span>
+                                                </td>
+                                                <td className="py-4 text-center">
+                                                    <span className={`text-[11px] font-bold ${activeDebtTab === 'HUTANG' ? 'text-blue-400' : 'text-emerald-400'}`}>{debt.interestRate}%</span>
+                                                </td>
+                                                <td className="py-4 text-right">
+                                                    <span className="text-[11px] font-black text-white">${debt.monthlyPayment.toLocaleString()}</span>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            ) : (
+                                <div className="py-10 flex flex-col items-center justify-center text-center">
+                                    <Landmark className="h-8 w-8 text-zinc-800 mb-3" />
+                                    <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em]">
+                                        {activeDebtTab === 'HUTANG' ? 'Pemerintah Bersih dari Hutang' : 'Tidak ada Piutang Aktif'}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </section>
             </div>

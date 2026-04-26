@@ -16,6 +16,7 @@ export interface ActiveDebt {
     id: string;
     provider: string; // Name of Country/Org
     type: 'BILATERAL' | 'IMF' | 'WORLD_BANK';
+    direction: 'BORROWER' | 'LENDER';
     principal: number;
     remainingPrincipal: number;
     interestRate: number;

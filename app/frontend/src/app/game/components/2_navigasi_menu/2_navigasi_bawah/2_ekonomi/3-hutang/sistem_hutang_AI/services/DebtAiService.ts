@@ -144,36 +144,139 @@ export const DebtAiService = {
     },
 
     /**
-     * Menerima pinjaman dari AI
+     * Generate penawaran bilateral secara acak (maksimal 10 negara)
+     */
+    seedInitialOffers(force: boolean = false) {
+        const data = debtAiStorage.getData();
+        const pendingOffers = data.offers.filter((o: DebtOffer) => o.status === 'pending');
+        
+        // Generate jika dipaksa (update bulanan) atau market benar-benar kosong (< 3)
+        if (force || pendingOffers.length < 3) {
+            const session = gameStorage.getSession();
+            const userCountry = session?.country || "Indonesia";
+            
+            // Ambil daftar negara secara acak, kecualikan negara user
+            const otherCountries = countries
+                .filter(c => c.name_id !== userCountry && c.name_en !== userCountry)
+                .sort(() => 0.5 - Math.random())
+                .slice(0, 10); // Ambil maksimal 10
+
+            const newSeeds: DebtOffer[] = otherCountries.map((c, idx) => {
+                const isRequest = Math.random() > 0.4; // 60% kemungkinan meminta dana, 40% menawarkan
+                const baseAmount = isRequest ? 10000000 : 50000000;
+                const multiplier = Math.floor(Math.random() * 20) + 1;
+                
+                return {
+                    id: `seed_${c.name_id.toLowerCase().replace(/\s+/g, '_')}_${Date.now()}_${idx}`,
+                    type: isRequest ? 'NPC_REQUEST' : 'NPC_OFFER',
+                    lender: c.name_id,
+                    amount: baseAmount * multiplier,
+                    interestRate: parseFloat((Math.random() * (5.0 - 1.0) + 1.0).toFixed(1)),
+                    tenorMonths: [6, 12, 24, 36, 48, 60][Math.floor(Math.random() * 6)],
+                    expiryDays: 30,
+                    status: 'pending',
+                    dayCreated: 1
+                };
+            });
+
+            // Simpan penawaran baru (bersihkan seed lama yang masih pending agar tidak menumpuk)
+            const nonSeedOffers = data.offers.filter((o: DebtOffer) => !o.id.startsWith('seed_') || o.status !== 'pending');
+            
+            debtAiStorage.saveData({
+                offers: [...nonSeedOffers, ...newSeeds],
+                activeDebts: data.activeDebts
+            });
+            return true;
+        }
+        return false;
+    },
+
+    /**
+     * Mengecek apakah bulan sudah berganti untuk melakukan update market bilateral
+     */
+    checkMonthlyUpdate() {
+        if (typeof window === 'undefined') return;
+        
+        const gameDateStr = localStorage.getItem('em_game_date') || "01-01-2026";
+        const currentMonth = gameDateStr.split("-")[1]; // Mengambil bagian bulan dari DD-MM-YYYY
+        const lastUpdateMonth = localStorage.getItem('em_last_bilateral_update_month');
+        
+        if (currentMonth !== lastUpdateMonth) {
+            console.log(`[DebtAiService] Month changed (${lastUpdateMonth} -> ${currentMonth}), refreshing market...`);
+            this.seedInitialOffers(true); // Paksa refresh market
+            localStorage.setItem('em_last_bilateral_update_month', currentMonth);
+        }
+    },
+
+    /**
+     * Menangani aksi terhadap penawaran (Terima Pinjaman atau Beri Bantuan)
      */
     acceptLoan(offerId: string) {
         const data = debtAiStorage.getData();
         const offer = data.offers.find((o: DebtOffer) => o.id === offerId);
         
         if (offer && offer.status === 'pending') {
-            // 1. Tambahkan Dana ke Kas
-            budgetStorage.updateBudget(offer.amount);
+            const isRequest = offer.type === 'NPC_REQUEST';
 
-            // 2. Hitung Cicilan Bulanan (Anuitas sederhana)
-            const monthlyInterest = (offer.interestRate / 100) / 12;
-            const monthlyPayment = offer.amount / offer.tenorMonths + (offer.amount * (offer.interestRate / 100) / 12);
+            if (isRequest) {
+                // Player MEMBERI pinjaman/bantuan
+                const currentBudget = budgetStorage.getBudget();
+                if (currentBudget < offer.amount) {
+                    if (typeof window !== 'undefined') {
+                        alert("Kas Negara tidak mencukupi untuk memberikan dana bantuan ini!");
+                    }
+                    return false;
+                }
+                // 1. Potong Dana dari Kas
+                budgetStorage.updateBudget(-offer.amount);
+                
+                // 2. Hitung Cicilan Bulanan yang akan diterima (Anuitas sederhana)
+                const monthlyPayment = offer.amount / offer.tenorMonths + (offer.amount * (offer.interestRate / 100) / 12);
 
-            // 3. Masukkan ke Active Debt
-            const newDebt: ActiveDebt = {
-                id: `debt_${Date.now()}`,
-                provider: offer.lender,
-                type: offer.type === 'NPC_OFFER' ? 'BILATERAL' : offer.type === 'IMF_OFFER' ? 'IMF' : 'WORLD_BANK',
-                principal: offer.amount,
-                remainingPrincipal: offer.amount,
-                interestRate: offer.interestRate,
-                tenorMonths: offer.tenorMonths,
-                monthsRemaining: offer.tenorMonths,
-                monthlyPayment: Math.round(monthlyPayment),
-                startDate: new Date().toLocaleDateString(),
-                status: 'ACTIVE'
-            };
+                // 3. Masukkan ke Active Debt sebagai PIUTANG (LENDER)
+                const newReceivable: ActiveDebt = {
+                    id: `debt_${Date.now()}`,
+                    provider: offer.lender,
+                    type: 'BILATERAL',
+                    direction: 'LENDER',
+                    principal: offer.amount,
+                    remainingPrincipal: offer.amount,
+                    interestRate: offer.interestRate,
+                    tenorMonths: offer.tenorMonths,
+                    monthsRemaining: offer.tenorMonths,
+                    monthlyPayment: Math.round(monthlyPayment),
+                    startDate: new Date().toLocaleDateString(),
+                    status: 'ACTIVE'
+                };
 
-            debtAiStorage.addActiveDebt(newDebt);
+                debtAiStorage.addActiveDebt(newReceivable);
+            } else {
+                // Player MENERIMA pinjaman
+                // 1. Tambahkan Dana ke Kas
+                budgetStorage.updateBudget(offer.amount);
+
+                // 2. Hitung Cicilan Bulanan (Anuitas sederhana)
+                const monthlyPayment = offer.amount / offer.tenorMonths + (offer.amount * (offer.interestRate / 100) / 12);
+
+                // 3. Masukkan ke Active Debt sebagai HUTANG (BORROWER)
+                const newDebt: ActiveDebt = {
+                    id: `debt_${Date.now()}`,
+                    provider: offer.lender,
+                    type: offer.type === 'NPC_OFFER' ? 'BILATERAL' : offer.type === 'IMF_OFFER' ? 'IMF' : 'WORLD_BANK',
+                    direction: 'BORROWER',
+                    principal: offer.amount,
+                    remainingPrincipal: offer.amount,
+                    interestRate: offer.interestRate,
+                    tenorMonths: offer.tenorMonths,
+                    monthsRemaining: offer.tenorMonths,
+                    monthlyPayment: Math.round(monthlyPayment),
+                    startDate: new Date().toLocaleDateString(),
+                    status: 'ACTIVE'
+                };
+
+                debtAiStorage.addActiveDebt(newDebt);
+            }
+
             debtAiStorage.updateOfferStatus(offerId, 'accepted');
             return true;
         }

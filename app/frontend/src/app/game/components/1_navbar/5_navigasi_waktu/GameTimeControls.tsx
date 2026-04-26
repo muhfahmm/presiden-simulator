@@ -8,6 +8,7 @@ import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { nuclearStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/nuclearStorage";
 import { researchStorage } from "@/app/game/components/sidemenu/3_riset_dan_penelitian/researchStorage";
+import { DebtAiService } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/3-hutang/sistem_hutang_AI/services/DebtAiService";
 
 // ══════════════════════════════════════════════════════════════
 // REMOVED IMPORTS (Migrated to Go Server):
@@ -57,6 +58,7 @@ export default function GameTimeControls() {
     // Nuclear & Research Progress (lightweight, stays client-side)
     nuclearStorage.updateProgress(state.gameDate);
     researchStorage.updateProgress(state.gameDate);
+    DebtAiService.checkMonthlyUpdate();
 
     // UN Security Council (Calendar Events — lightweight date checks)
     if (state.gameDate.getMonth() === 0 && state.gameDate.getDate() === 1) {
