@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Activity, Award, Briefcase, Coins, Globe, Info, Landmark, MapPin, Scale, Shield, TrendingUp, Users, Zap } from 'lucide-react';
-import { unMembershipStorage } from "../../1_organisasi_PBB/logic/unMembershipStorage";
+import RegionalJoinOrgButton from "../logic/RegionalJoinOrgButton";
+import { getOrgFee } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/logic/GeopoliticalConfig";
 
 interface MERCOSURProps {
   currentCash: number;
@@ -11,19 +12,6 @@ interface MERCOSURProps {
 }
 
 export default function MERCOSUR({ currentCash, currentDate, onUpdate }: MERCOSURProps) {
-  const userCountryName = (localStorage.getItem("selectedCountry") || "Indonesia").toLowerCase();
-  const isEligible = unMembershipStorage.isEligibleForRegional("mercosur", userCountryName);
-
-  const handleJoin = () => {
-    if (!isEligible) {
-      alert("Permohonan Ditolak: MERCOSUR hanya menerima negara anggota dari wilayah Amerika Selatan.");
-      return;
-    }
-
-    unMembershipStorage.joinOrganization("mercosur");
-    onUpdate();
-  };
-
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       {/* Hero Section */}
@@ -81,17 +69,11 @@ export default function MERCOSUR({ currentCash, currentDate, onUpdate }: MERCOSU
             Bergabung dengan aliansi ini untuk memperkuat posisi geopolitik dan ekonomi nasional di kancah internasional.
           </p>
         </div>
-        <button 
-          onClick={handleJoin}
-          disabled={!isEligible}
-          className={`px-12 py-4 text-white font-black uppercase text-[11px] tracking-[0.2em] rounded-full transition-all active:scale-95 cursor-pointer ${
-            isEligible 
-            ? "bg-purple-600 hover:bg-purple-500 shadow-[0_10px_30px_-5px_rgba(147,51,234,0.4)]"
-            : "bg-red-500/20 text-red-500/50 border border-red-500/20 cursor-not-allowed shadow-none"
-          }`}
-        >
-          {isEligible ? "Kirim Permohonan" : "Tidak Memenuhi Syarat"}
-        </button>
+        <RegionalJoinOrgButton 
+          orgId="mercosur" 
+          orgName="MERCOSUR" 
+          membershipFee={getOrgFee("mercosur")} 
+        />
       </div>
     </div>
   );

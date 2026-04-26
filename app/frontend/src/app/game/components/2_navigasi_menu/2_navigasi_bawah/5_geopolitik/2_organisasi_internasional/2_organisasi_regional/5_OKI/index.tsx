@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Activity, Award, Briefcase, Coins, Globe, Info, Landmark, MapPin, Scale, Shield, TrendingUp, Users, Zap } from 'lucide-react';
-import { unMembershipStorage } from "../../1_organisasi_PBB/logic/unMembershipStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import RegionalJoinOrgButton from "../logic/RegionalJoinOrgButton";
+import { getOrgFee } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/logic/GeopoliticalConfig";
 
 interface OICProps {
   currentCash: number;
@@ -12,22 +12,6 @@ interface OICProps {
 }
 
 export default function OKI({ currentCash, currentDate, onUpdate }: OICProps) {
-  const handleJoin = () => {
-    const userCountryName = localStorage.getItem("selectedCountry") || "Indonesia";
-    const userCountry = countries.find(c => 
-      c.name_id.toLowerCase() === userCountryName.toLowerCase() || 
-      c.name_en.toLowerCase() === userCountryName.toLowerCase()
-    );
-
-    if (userCountry && userCountry.religion !== "Islam") {
-      alert("Permohonan Ditolak: Organisasi Kerja Sama Islam (OKI) hanya menerima negara anggota dengan mayoritas beragama Islam.");
-      return;
-    }
-
-    unMembershipStorage.joinOrganization("oic");
-    onUpdate();
-  };
-
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       {/* Hero Section */}
@@ -85,12 +69,11 @@ export default function OKI({ currentCash, currentDate, onUpdate }: OICProps) {
             Bergabung dengan aliansi ini untuk memperkuat posisi geopolitik dan ekonomi nasional di kancah internasional.
           </p>
         </div>
-        <button 
-          onClick={handleJoin}
-          className="px-12 py-4 bg-purple-600 hover:bg-purple-500 text-white font-black uppercase text-[11px] tracking-[0.2em] rounded-full transition-all shadow-[0_10px_30px_-5px_rgba(147,51,234,0.4)] active:scale-95 cursor-pointer"
-        >
-          Kirim Permohonan
-        </button>
+        <RegionalJoinOrgButton 
+          orgId="oic" 
+          orgName="OKI" 
+          membershipFee={getOrgFee("oic")} 
+        />
       </div>
     </div>
   );
