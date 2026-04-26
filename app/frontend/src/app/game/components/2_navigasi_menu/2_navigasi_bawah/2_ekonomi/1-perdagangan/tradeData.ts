@@ -109,18 +109,66 @@ export const getSeededNoise = (seed: string | number) => {
 };
 
 // DYNAMIC PRICE GENERATOR
-export const getDynamicPrice = (key: string, type: "buy" | "sell", date: Date) => {
+export const getDynamicPrice = (key: string, type: "buy" | "sell", date: Date, partnerCountry?: string) => {
   const baseMap = type === "buy" ? buyPriceMap : sellPriceMap;
   const basePrice = baseMap[key] || 100;
   
-  // Use day-based seed to ensure same base price for the whole game day
+  // 1. Base Fluctuations (Day-based seed)
   const dayTimestamp = Math.floor(date.getTime() / (1000 * 60 * 60 * 24));
   const seed = `${key}-${dayTimestamp}`;
-  
-  // Pseudo-random fluctuation (+/- 15%)
-  // We use the seeded noise to get a value between -1 and 1
   const noise = (getSeededNoise(seed) * 2) - 1;
-  const multiplier = 1 + (noise * 0.15);
+  let multiplier = 1 + (noise * 0.10); // Base +/- 10%
+
+  // 2. Geopolitical & News Impacts
+  if (typeof window !== "undefined") {
+    try {
+      // News Impact
+      const newsModule = require("./berita/newsStorage");
+      const storageNews = newsModule.newsStorage || newsModule;
+      const recentNews = storageNews?.getNews ? storageNews.getNews() : [];
+      const label = labelsMap[key] || "";
+      
+      if (Array.isArray(recentNews)) {
+        recentNews.forEach((news: any) => {
+          if (news.affectedCommodities?.includes(label) || news.affectedCommodities?.includes(key)) {
+            if (news.impactType === "positive") multiplier *= 0.85; // Surplus -> Price drops
+            if (news.impactType === "negative") multiplier *= 1.25; // Scarcity -> Price rises
+          }
+        });
+      }
+
+      // UN Sanctions/Embargoes Impact (if partner specified and not global market)
+      if (partnerCountry && partnerCountry !== "Pasar Global") {
+        try {
+          const unVotingModule = require("../../5_geopolitik/1_PBB/1_pemungutan_suara/logika_pemungutan_suara/unVotingStorage");
+          const unStorage = unVotingModule.unVotingStorage || unVotingModule;
+          const unData = unStorage?.getData ? unStorage.getData() : { votingHistory: [] };
+          
+          if (unData && Array.isArray(unData.votingHistory)) {
+            const activeRestrictions = unData.votingHistory.filter((res: any) => 
+              res.status === "DITERIMA" && 
+              res.targetCountry?.toLowerCase() === partnerCountry.toLowerCase()
+            );
+
+            activeRestrictions.forEach((res: any) => {
+              const name = (res.name || "").toUpperCase();
+              const category = (res.category || "").toUpperCase();
+              
+              if (name.includes("EMBARGO") || category.includes("EMBARGO")) {
+                multiplier *= 3.0; // Hard block penalty
+              } else if (name.includes("SANKSI") || category.includes("SANKSI") || name.includes("SANCTION")) {
+                multiplier *= 1.5; // Soft block penalty
+              }
+            });
+          }
+        } catch (e) {
+          console.warn("[TradePrice] Gagal memuat data sanksi PBB:", e);
+        }
+      }
+    } catch (e) {
+      console.warn("[TradePrice] Gagal memuat data berita:", e);
+    }
+  }
   
   return Math.round(basePrice * multiplier);
 };

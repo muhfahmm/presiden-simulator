@@ -429,8 +429,8 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   }, [activeMenu, isOpen]);
 
   const currentDate = getStoredGameDate();
-  const baseBuyPrice = getDynamicPrice(selectedKey, "buy", currentDate);
-  const baseSellPrice = getDynamicPrice(selectedKey, "sell", currentDate);
+  const baseBuyPrice = getDynamicPrice(selectedKey, "buy", currentDate, selectedTradePartner || undefined);
+  const baseSellPrice = getDynamicPrice(selectedKey, "sell", currentDate, selectedTradePartner || undefined);
 
   const iconMap: Record<string, any> = {
     emas: Gem, uranium: Radio, batu_bara: Layers, minyak_bumi: Droplets, gas_alam: Flame, garam: Waves,

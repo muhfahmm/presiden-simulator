@@ -104,6 +104,16 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
   const [quantity, setQuantity] = useState(type === "sell" ? Math.min(100, maxStock) : 100);
   const [progress, setProgress] = useState(0);
   const [selectedPartner, setSelectedPartner] = useState<string | null>(defaultPartner);
+  const [dynamicPrice, setDynamicPrice] = useState(basePrice);
+
+  // Update price dynamically when partner or key changes
+  useEffect(() => {
+    const { getDynamicPrice } = require("./tradeData");
+    const currentDate = require("@/app/game/components/1_navbar/5_navigasi_waktu/gameTime").getStoredGameDate();
+    const price = getDynamicPrice(selectedKey, type, currentDate, selectedPartner || undefined);
+    setDynamicPrice(price);
+  }, [selectedKey, type, selectedPartner]);
+
   const [isPartnerDropdownOpen, setIsPartnerDropdownOpen] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
   const [budgetErrorData, setBudgetErrorData] = useState<{
@@ -369,7 +379,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                   </div>
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-black text-white tracking-tighter italic">
-                    {Math.floor(basePrice).toLocaleString('id-ID')}EM
+                    {Math.floor(dynamicPrice).toLocaleString('id-ID')}EM
                   </span>
                   </div>
                 </div>
@@ -380,11 +390,11 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                   <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest">Total Estimasi Nilai</span>
                   <div className="flex items-baseline justify-end gap-1">
                     <span className={`text-4xl font-black tracking-tighter italic transition-colors duration-300 ${
-                      type === "buy" && (quantity * basePrice) > budgetData.anggaran 
+                      type === "buy" && (quantity * dynamicPrice) > budgetData.anggaran 
                       ? "text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.3)]" 
                       : "text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
                     }`}>
-                      {Math.floor(quantity * basePrice).toLocaleString('id-ID')}EM
+                      {Math.floor(quantity * dynamicPrice).toLocaleString('id-ID')}EM
                     </span>
                   </div>
                 </div>
@@ -416,7 +426,10 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                         return;
                       }
                       // Proceed with confirmation logic
-                      const totalValue = quantity * basePrice;
+                      const { getDynamicPrice } = require("./tradeData");
+                      const currentDate = require("@/app/game/components/1_navbar/5_navigasi_waktu/gameTime").getStoredGameDate();
+                      const finalUnitPrice = getDynamicPrice(selectedKey, type, currentDate, selectedPartner || undefined);
+                      const totalValue = quantity * finalUnitPrice;
                       
                       // Budget Validation Check - Match Success State Pattern
                       if (type === "buy" && Number(totalValue) > Number(budgetData.anggaran)) {

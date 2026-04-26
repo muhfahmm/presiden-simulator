@@ -2,7 +2,7 @@ import React from "react";
 import { buyPriceMap, sellPriceMap } from "../../tradeData";
 import { TradePriceChart } from "../../TradePriceChart";
 import { pbbImpactLogic } from "@/app/game/utils/pbbImpactLogic";
-import { Landmark, AlertTriangle } from "lucide-react";
+import { Landmark, AlertTriangle, Zap } from "lucide-react";
 
 interface EksporHalamanProps {
   selectedKey: string;
@@ -153,10 +153,84 @@ export const EksporHalaman: React.FC<EksporHalamanProps> = ({
         <TradePriceChart selectedKey={selectedKey} selectedTimeframe={selectedTimeframe} basePrice={activeChartTab === "buy" ? Math.round(buyPriceMap[selectedKey] || 100) : baseSellPrice} type={activeChartTab} color={activeChartTab === "buy" ? "#ef4444" : "#22c55e"} />
       </div>
 
-      <div className="pt-8 border-t border-zinc-900/80">
-        <div className="max-w-md bg-zinc-900/40 border border-zinc-800/50 p-8 rounded-[2rem] relative overflow-hidden">
-          <span className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.4em] block mb-3">Metrik Pasokan</span>
-          <div className="flex items-baseline gap-3"><span className="text-4xl font-black text-white tracking-tighter italic">{selectedUnits}</span></div>
+      <div className="pt-8 border-t border-zinc-900/80 flex flex-col gap-6">
+        {/* Relevant News Section */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between px-2">
+            <div className="flex items-center gap-3">
+              <Landmark size={14} className="text-green-500" />
+              <span className="text-[11px] font-black text-zinc-500 uppercase tracking-[0.3em]">Trade Intelligence Feed</span>
+            </div>
+            <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">Real-time Global Updates</span>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[400px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
+            {(() => {
+              const { newsStorage } = require("../../berita/newsStorage");
+              const { inboxStorage } = require("@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage");
+              
+              const allNews = newsStorage.getNews();
+              const inboxTrade = inboxStorage.getMessages().filter((m: any) => m.category === 'trade');
+              
+              // Convert inbox messages to compatible format
+              const inboxConverted = inboxTrade.map((m: any) => ({
+                 id: m.id,
+                 title: m.subject.toUpperCase(),
+                 content: m.content || "",
+                 date: m.time,
+                 timestamp: m.timestamp,
+                 category: "Penawaran",
+                 impactType: "neutral",
+                 isInbox: true
+              }));
+
+              const combined = [...allNews, ...inboxConverted]
+                .filter((n: any) => 
+                  n.title.includes("EKSPOR") || n.title.includes("IMPOR") || 
+                  n.title.includes("PENAWARAN") || n.title.includes("PERMINTAAN") ||
+                  n.category === "Penawaran"
+                )
+                .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+                
+              const finalDisplay = combined.slice(0, 10);
+
+              if (finalDisplay.length === 0) {
+                return (
+                  <div className="col-span-2 p-10 bg-zinc-900/20 border border-zinc-900/50 rounded-3xl border-dashed flex flex-col items-center justify-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-zinc-800">
+                       <Landmark size={16} className="text-zinc-700" />
+                    </div>
+                    <span className="text-[10px] font-bold text-zinc-700 uppercase tracking-widest">Belum ada tawaran ekspor atau impor</span>
+                  </div>
+                );
+              }
+
+              return finalDisplay.map((n: any) => {
+                const isEkspor = n.title.includes("EKSPOR");
+                const isImpor = n.title.includes("IMPOR") || n.title.includes("PENAWARAN");
+                const themeColor = isEkspor ? "emerald" : (isImpor ? "red" : "blue");
+                const borderColor = isEkspor ? "border-emerald-500/40" : (isImpor ? "border-red-500/40" : "border-zinc-800/50");
+                const bgColor = isEkspor ? "bg-emerald-600/5" : (isImpor ? "bg-red-600/5" : "bg-zinc-900/40");
+                const tagColor = isEkspor ? "bg-emerald-500" : (isImpor ? "bg-red-500" : "bg-blue-500");
+
+                return (
+                  <div key={n.id} className={`p-5 rounded-2xl flex flex-col gap-2 group transition-all border ${bgColor} ${borderColor} shadow-[0_0_20px_rgba(0,0,0,0.2)]`}>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-md text-white ${tagColor}`}>
+                          {isEkspor ? "TAWARAN EKSPOR" : (isImpor ? "TAWARAN IMPOR" : n.category)}
+                        </span>
+                        <Zap size={10} className={`${isEkspor ? "text-emerald-400" : "text-red-400"} animate-pulse`} />
+                      </div>
+                      <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter">{n.date}</span>
+                    </div>
+                    <h4 className="text-[12px] font-black text-white uppercase leading-tight group-hover:text-zinc-200 transition-colors">{n.title}</h4>
+                    <p className="text-[10px] text-zinc-500 font-medium line-clamp-2 leading-relaxed italic">{n.content}</p>
+                  </div>
+                );
+              });
+            })()}
+          </div>
         </div>
       </div>
     </div>

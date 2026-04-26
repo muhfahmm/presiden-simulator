@@ -46,6 +46,8 @@ import KirimPasukanModal from "@/app/game/components/modals/2_diplomasi_hubungan
 import { relationStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 
+import { useTradeNewsEngine } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/berita/useTradeNewsEngine";
+
 interface ModalsManagerProps {
   isMounted: boolean;
   activeMenu: string;
@@ -54,6 +56,9 @@ interface ModalsManagerProps {
 }
 
 export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, countryData }: ModalsManagerProps) {
+  // Start the Trade News Engine
+  useTradeNewsEngine();
+
   if (!isMounted) return null;
 
   // URL Parsing for Country-specific Modals

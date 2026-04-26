@@ -1,4 +1,4 @@
-import { newsData, NewsItem } from "./newsData";
+import { NewsItem } from "./newsData";
 
 const NEWS_STORAGE_KEY = "em_trade_news_data";
 
@@ -8,7 +8,7 @@ export const newsStorage = {
   },
   
   getNews: (): NewsItem[] => {
-    if (typeof window === 'undefined') return newsData;
+    if (typeof window === 'undefined') return [];
     
     const stored = localStorage.getItem(NEWS_STORAGE_KEY);
     if (stored) {
@@ -19,9 +19,8 @@ export const newsStorage = {
       }
     }
 
-    // INITIALIZATION: Save default newsData to localStorage on first load
-    newsStorage.saveNews(newsData);
-    return newsData;
+    // Default to empty array as requested for first time playing
+    return [];
   },
 
   saveNews: (data: NewsItem[]) => {
