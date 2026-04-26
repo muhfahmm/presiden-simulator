@@ -241,7 +241,12 @@ export const initializeMatrixData = async () => {
     const isFreshSession = localStorage.getItem("em_fresh_session") === "true";
 
     if (!existingRaw || existingRaw === "{}" || isFirstDay || isFreshSession) { 
-        console.log("[RELATION-MATRIX] Initializing from Database...");
+        console.log("[RELATION-MATRIX] Initializing from Database & Remote Core...");
+        
+        // Sync with Go/Rust Backend
+        const { matrixManager } = await import("../../../AI_logic/8_geopolitik_advanced/frontend/matrix_manager");
+        await matrixManager.fetchRelations();
+        
         const matrix: RelationMatrix = existingRaw ? JSON.parse(existingRaw) : {};
         
         const { allRelations } = await import("@/app/pilih_negara/data/database_hubungan_antar_negara");

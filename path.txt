@@ -9,7 +9,7 @@ npm run setup
 cd "c:\fhm\em\app\frontend"
 npm run dev
 > Akses: http://localhost:4000
-> Log Next.js (Cyan) dan Go Server (Magenta) akan tampil bersamaan.
+> Log: NEXT (Cyan), GO (Magenta), AI-RUST (Green), AI-GO (Blue) akan tampil bersamaan.
 
 # Lokasi Server Backend (Go)
 Lokasi: c:\fhm\em\app\frontend\src\app\server\go

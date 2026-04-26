@@ -7,47 +7,30 @@ import { nonAggressionStorage } from '@/app/game/components/modals/2_diplomasi_h
 import { aliansiStorage } from '@/app/game/components/modals/2_diplomasi_hubungan/3_aliansi_pertahanan/logic/aliansiStorage';
 import { newsStorage } from '@/app/game/components/sidemenu/1_berita/newsStorage';
 import { formatGameDate } from '@/app/game/components/1_navbar/5_navigasi_waktu/gameTime';
+import { matrixManager } from "../../../AI_logic/8_geopolitik_advanced/frontend/matrix_manager";
+import { countries } from "@/app/pilih_negara/data/negara/benua/index";
 
 
 export const RelationEngine = {
     _isProcessing: false,
 
     /**
-     * Memicu simulasi harian (Daily Drift)
+     * Memicu simulasi harian (Daily Drift) menggunakan Go/Rust Core
      */
     async processDailyUpdate(userCountry: string = "Indonesia") {
         if (timeStorage.getState().isPaused || this._isProcessing) return;
 
-
         this._isProcessing = true;
-        const currentMatrix = getGlobalRelationMatrix();
-        
         try {
-            const gameDate = new Date(timeStorage.getState().gameDate);
-            const isMonday = gameDate.getDay() === 1;
+            console.log(`[RELATION-ENGINE] Running Geopolitical AI Turn...`);
 
-            console.log(`[RELATION-ENGINE] Running ${isMonday ? 'Full Cycle' : 'Daily Drift'}...`);
+            // 1. Run turn in Rust Core via Go API
+            const updatedRelations = await matrixManager.runTurn();
 
-            const response = await fetch('/api/game/diplomacy/ai-global/drift', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    matrix: currentMatrix,
-                    userCountry: userCountry,
-                    fullCycle: isMonday 
-                })
-            });
-
-            const data = await response.json();
-            if (data.error) throw new Error(data.error);
-
-            if (data.matrix) {
-                saveGlobalRelationMatrix(data.matrix);
-                
-                // Process events returned by AI (Notifications, Pacts, etc.)
-                if (Array.isArray(data.events) && data.events.length > 0) {
-                    this._handleAiEvents(data.events, gameDate);
-                }
+            if (updatedRelations.length > 0) {
+                // 2. Map updated relations back to existing UI state if needed
+                // For now, we rely on matrixManager.getRelation() throughout the app
+                saveGlobalRelationMatrix(this._convertArrayToMatrix(updatedRelations));
             }
 
             console.log("[RELATION-ENGINE] Daily Simulation Success.");
@@ -56,6 +39,24 @@ export const RelationEngine = {
         } finally {
             this._isProcessing = false;
         }
+    },
+
+    /**
+     * Helper to convert 1D array from Rust to the legacy 2D Matrix object for backward compatibility
+     */
+    _convertArrayToMatrix(arr: number[]): any {
+        const matrix: any = {};
+        const size = 207;
+        for (let i = 0; i < size; i++) {
+            const sourceName = countries[i].name_id.toLowerCase();
+            matrix[sourceName] = {};
+            for (let j = 0; j < size; j++) {
+                const targetName = countries[j].name_id.toLowerCase();
+                const score = arr[i * size + j];
+                matrix[sourceName][targetName] = { s: score, e: score >= 60 ? 1 : 0, p: 0, a: 0, t: 0 };
+            }
+        }
+        return matrix;
     },
 
     /**
