@@ -1,5 +1,6 @@
 import { UNGroup, getCountriesByGroup, UN_GROUPS_CONFIG, getCountryUNGroup } from "./unGroups";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
+import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 
 const STORAGE_KEY = "em_un_security_council";
@@ -118,6 +119,18 @@ export const unSecurityCouncilStorage = {
       content: `PENGUMUMAN PBB: Masa jabatan ${leavingNames} telah berakhir pada 31 Desember ${year - 1}. ${incomingMembers.length > 0 ? `${incomingNames} resmi menduduki kursi Dewan Keamanan untuk periode ${year}-${year + 2}.` : "Pemilihan anggota baru akan dilaksanakan pada Juni ${year}."}`,
       time: `01-01-${year}`,
       priority: "high"
+    });
+
+    // ── News Item: Rotation ──
+    leavingMembers.forEach(m => {
+      newsStorage.addLocalNews({
+        source: "Global Diplomacy News",
+        subject: `Keanggotaan PBB: ${m.name} Keluar Dari Dewan Keamanan`,
+        content: `Masa jabatan ${m.name} sebagai Anggota Tidak Tetap Dewan Keamanan PBB telah berakhir. Negara ini resmi meninggalkan kursi dewan per 1 Januari ${year}.`,
+        time: `01-01-${year}`,
+        priority: "high",
+        category: "organizations",
+      });
     });
   },
 
@@ -273,6 +286,18 @@ export const unSecurityCouncilStorage = {
         time: `15-06-${year}`,
         priority: "high"
       });
+
+      // ── News Items: Election Results ──
+      newElectedMembers.forEach(m => {
+        newsStorage.addLocalNews({
+          source: "Global Diplomacy News",
+          subject: `Keanggotaan PBB: ${m.name} Terpilih di Dewan Keamanan`,
+          content: `${m.name} terpilih sebagai Anggota Tidak Tetap Dewan Keamanan PBB mewakili kelompok ${m.group} untuk periode ${m.termStart}-${m.termEnd}. Negara ini akan resmi menjabat mulai 1 Januari ${m.termStart}.`,
+          time: `15-06-${year}`,
+          priority: "high",
+          category: "organizations",
+        });
+      });
     }
   },
 
@@ -312,6 +337,18 @@ export const unSecurityCouncilStorage = {
       content: "Sesuai protokol percepatan, Anggota Tidak Tetap yang baru terpilih telah resmi mengemban tugas mulai 1 Juli ini. Anggota dewan lama telah resmi menyelesaikan masa baktinya.",
       time: `01-07-${year}`,
       priority: "medium"
+    });
+
+    // ── News Item: Inauguration ──
+    updatedNewlyElected.forEach(m => {
+      newsStorage.addLocalNews({
+        source: "Global Diplomacy News",
+        subject: `Keanggotaan PBB: ${m.name} Resmi Bergabung di Dewan Keamanan`,
+        content: `${m.name} secara resmi menduduki kursi Anggota Tidak Tetap Dewan Keamanan PBB mulai 1 Juli ${year}. Masa jabatan berlangsung hingga ${m.termEnd}.`,
+        time: `01-07-${year}`,
+        priority: "high",
+        category: "organizations",
+      });
     });
   }
 };

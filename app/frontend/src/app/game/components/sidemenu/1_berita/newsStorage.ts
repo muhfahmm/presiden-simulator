@@ -62,6 +62,29 @@ export const newsStorage = {
   },
 
   /**
+   * Add a local news item from client-side systems (e.g. UN Security Council rotation).
+   * These items use "local-" prefix and are preserved during SSE sync merges.
+   */
+  addLocalNews: (item: Omit<NewsItem, 'id' | 'read' | 'timestamp'>) => {
+    if (typeof window === "undefined") return;
+    const news = newsStorage.getNews();
+    const newItem: NewsItem = {
+      ...item,
+      id: `local-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
+      read: false,
+      timestamp: Date.now(),
+    };
+    news.unshift(newItem);
+    try {
+      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(news));
+    } catch (e) {
+      const trimmed = news.slice(0, 1000);
+      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
+    }
+    window.dispatchEvent(new Event("news_updated"));
+  },
+
+  /**
    * Sync news from Go Server SSE stream.
    * This replaces the old fetch-inside-getNews pattern.
    */
