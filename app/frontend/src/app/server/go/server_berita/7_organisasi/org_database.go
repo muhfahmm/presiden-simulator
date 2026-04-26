@@ -346,6 +346,22 @@ var RegionalEligibility = map[string]func(country string) bool{
 		}
 		return eligible[c]
 	},
+	"OKI": func(c string) bool {
+		// Negara dengan mayoritas penduduk beragama Islam
+		eligible := map[string]bool{
+			"afganistan": true, "aljazair": true, "arab saudi": true, "azerbaijan": true, "bahrain": true,
+			"bangladesh": true, "benin": true, "brunei": true, "burkina faso": true, "chad": true, "djibouti": true,
+			"gabon": true, "gambia": true, "guinea": true, "guyana": true, "indonesia": true, "irak": true, "iran": true,
+			"kamerun": true, "kazakhstan": true, "kirgizstan": true, "komoro": true, "kuwait": true, "lebanon": true,
+			"libya": true, "malaysia": true, "mali": true, "maroko": true, "mauritania": true, "mesir": true,
+			"mozambik": true, "niger": true, "nigeria": true, "oman": true, "pakistan": true, "palestina": true,
+			"pantai gading": true, "qatar": true, "republik sudan": true, "senegal": true, "sierra leone": true,
+			"somalia": true, "suriah": true, "suriname": true, "tajikistan": true, "togo": true, "tunisia": true,
+			"turki": true, "turkmenistan": true, "uni emirat arab": true, "uzbekistan": true, "yaman": true,
+			"yordania": true,
+		}
+		return eligible[c]
+	},
 	// BRICS, G20, G7, QUAD, APEC, SCO, OKI, OPEC, Commonwealth, OECD
 	// These are invitation-based or have looser geographic rules.
 	// We allow any NPC nation for these (they can join/leave by invitation).
