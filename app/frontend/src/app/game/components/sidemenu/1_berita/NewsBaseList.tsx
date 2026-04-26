@@ -311,19 +311,65 @@ export const NewsBaseList = ({
                                   onClick={() => {
                                     onClose();
                                     
-                                    const pbbOrgs = ["PBB", "UNESCO", "WHO", "IMF", "WTO", "FAO", "ILO", "ICAO", "IMO", "ITU", "WMO", "BANK DUNIA", "INTERPOL", "DEWAN KEAMANAN"];
-                                    const isPBB = pbbOrgs.includes(org.toUpperCase());
-                                    
-                                    const targetPath = isPBB 
-                                      ? '/game/geopolitik/organisasi-internasional/organisasi_pbb' 
-                                      : '/game/geopolitik/organisasi-internasional/organisasi_regional';
-                                      
-                                    const targetMenu = isPBB
-                                      ? 'Menu:OrganisasiInternasional:organisasi_pbb'
-                                      : 'Menu:OrganisasiInternasional:organisasi_regional';
+                                    const orgToIdMap: Record<string, string> = {
+                                      "IMF": "imf",
+                                      "BANK DUNIA": "world_bank",
+                                      "WHO": "who",
+                                      "UNESCO": "unesco",
+                                      "WTO": "wto",
+                                      "INTERPOL": "interpol",
+                                      "ILO": "ilo",
+                                      "FAO": "fao",
+                                      "ICAO": "icao",
+                                      "IMO": "imo",
+                                      "ITU": "itu",
+                                      "WMO": "wmo",
+                                      "DEWAN KEAMANAN": "dewan_keamanan",
+                                      "ASEAN": "asean",
+                                      "UNI EROPA": "eu",
+                                      "EU": "eu",
+                                      "LIGA ARAB": "arab_league",
+                                      "UNI AFRIKA": "au",
+                                      "AU": "au",
+                                      "OKI": "oic",
+                                      "OIC": "oic",
+                                      "BRICS": "brics",
+                                      "NATO": "nato",
+                                      "OPEC": "opec",
+                                      "G20": "g20",
+                                      "APEC": "apec",
+                                      "SCO": "sco",
+                                      "OAS": "oas",
+                                      "GCC": "gcc",
+                                      "MERCOSUR": "mercosur",
+                                      "COMMONWEALTH": "commonwealth",
+                                      "G7": "g7",
+                                      "QUAD": "quad",
+                                      "OECD": "oecd"
+                                    };
 
-                                    setActiveMenu(targetMenu);
-                                    router.push(targetPath);
+                                    const orgKey = org.toUpperCase();
+                                    const orgId = orgToIdMap[orgKey];
+
+                                    if (orgId) {
+                                      setActiveMenu(`Menu:OrganisasiInternasional:anggota_${orgId}`);
+                                      router.push(`/game/geopolitik/organisasi-internasional/anggota_${orgId}`);
+                                    } else {
+                                      // Fallback for unknown orgs
+                                      const pbbOrgs = ["PBB", "UNESCO", "WHO", "IMF", "WTO", "FAO", "ILO", "ICAO", "IMO", "ITU", "WMO", "BANK DUNIA", "INTERPOL", "DEWAN KEAMANAN"];
+                                      const isPBB = pbbOrgs.includes(orgKey);
+                                      
+                                      const targetPath = isPBB 
+                                        ? '/game/geopolitik/organisasi-internasional/organisasi_pbb' 
+                                        : '/game/geopolitik/organisasi-internasional/organisasi_regional';
+                                        
+                                      const targetMenu = isPBB
+                                        ? 'Menu:OrganisasiInternasional:organisasi_pbb'
+                                        : 'Menu:OrganisasiInternasional:organisasi_regional';
+
+                                      setActiveMenu(targetMenu);
+                                      router.push(targetPath);
+                                    }
                                   }}
                                   className="flex items-center gap-2 group/btn cursor-pointer py-2 px-4 bg-cyan-500/10 hover:bg-cyan-500 border border-cyan-500/30 hover:border-cyan-400 rounded-xl transition-all"
                                 >

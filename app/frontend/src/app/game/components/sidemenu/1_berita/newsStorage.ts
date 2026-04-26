@@ -159,14 +159,144 @@ export const newsStorage = {
 
     try {
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(merged));
-      // Trigger side-effects for AI construction
+      // Trigger side-effects for AI construction and memberships
       newsStorage.processConstructionEffects(merged);
+      newsStorage.processMembershipEffects(merged);
     } catch (e) {
       // Quota exceeded — only trim if absolutely necessary
       const trimmed = merged.slice(0, 1000);
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
     }
     window.dispatchEvent(new Event("news_updated"));
+  },
+
+  processMembershipEffects: async (newsList: NewsItem[]) => {
+    try {
+      const { unMembershipStorage } = await import(
+        '../../2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/logic/unMembershipStorage'
+      );
+      const { regionalMembershipRouter } = await import(
+        '../../2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/2_organisasi_regional/logic/router/RegionalMembershipRouter'
+      );
+
+      const PROCESSED_KEY = "em_membership_processed_news";
+      const storedProcessed = localStorage.getItem(PROCESSED_KEY);
+      const processedIds = new Set<string>(storedProcessed ? JSON.parse(storedProcessed) : []);
+
+      const orgToIdMap: Record<string, string> = {
+        "IMF": "imf",
+        "BANK DUNIA": "world_bank",
+        "WHO": "who",
+        "UNESCO": "unesco",
+        "WTO": "wto",
+        "INTERPOL": "interpol",
+        "ILO": "ilo",
+        "FAO": "fao",
+        "ICAO": "icao",
+        "IMO": "imo",
+        "ITU": "itu",
+        "WMO": "wmo",
+        "DEWAN KEAMANAN": "dewan_keamanan",
+        "ASEAN": "asean",
+        "UNI EROPA": "eu",
+        "EU": "eu",
+        "LIGA ARAB": "arab_league",
+        "UNI AFRIKA": "au",
+        "AU": "au",
+        "OKI": "oic",
+        "OIC": "oic",
+        "BRICS": "brics",
+        "NATO": "nato",
+        "OPEC": "opec",
+        "G20": "g20",
+        "APEC": "apec",
+        "SCO": "sco",
+        "OAS": "oas",
+        "GCC": "gcc",
+        "MERCOSUR": "mercosur",
+        "COMMONWEALTH": "commonwealth",
+        "G7": "g7",
+        "QUAD": "quad",
+        "OECD": "oecd"
+      };
+
+      const pbbOrgs = ["PBB", "UNESCO", "WHO", "IMF", "WTO", "FAO", "ILO", "ICAO", "IMO", "ITU", "WMO", "BANK DUNIA", "INTERPOL", "DEWAN KEAMANAN"];
+
+      let hasChanges = false;
+      const unChanges: Record<string, any> = {};
+      const regChanges: Record<string, any> = {};
+
+      for (const item of newsList) {
+        if (item.category === "organizations" && !processedIds.has(item.id)) {
+          processedIds.add(item.id);
+          
+          const subject = item.subject.toUpperCase();
+          let isJoin = subject.includes("BERGABUNG");
+          let isLeave = subject.includes("MENGUNDURKAN DIRI") || subject.includes("KELUAR DARI");
+
+          if (isJoin || isLeave) {
+            let targetOrgName = "";
+            let targetOrgId = "";
+            for (const org of Object.keys(orgToIdMap)) {
+               if (subject.endsWith(org) || subject.includes(` KE ${org}`) || subject.includes(` DARI ${org}`)) {
+                  targetOrgName = org;
+                  targetOrgId = orgToIdMap[org];
+                  break;
+               }
+            }
+            
+            if (targetOrgId) {
+                let countryName = "";
+                if (isJoin) {
+                   countryName = subject.split(" BERGABUNG")[0].trim();
+                } else {
+                   if (subject.includes("MENGUNDURKAN DIRI")) {
+                       countryName = subject.split(" MENGUNDURKAN DIRI")[0].trim();
+                   } else if (subject.includes("KELUAR DARI")) {
+                       countryName = subject.split(" KELUAR DARI")[0].trim();
+                   }
+                }
+                
+                if (countryName) {
+                   // Title case the country name to match storage keys correctly (e.g. "Turkmenistan")
+                   countryName = countryName.charAt(0).toUpperCase() + countryName.slice(1).toLowerCase();
+                   
+                   const action = isJoin ? "join" : "leave";
+                   const isPBB = pbbOrgs.includes(targetOrgName);
+                   
+                   if (isPBB) {
+                       if (!unChanges[countryName]) unChanges[countryName] = [];
+                       unChanges[countryName].push({ org_id: targetOrgId, action });
+                   } else {
+                       if (!regChanges[countryName]) regChanges[countryName] = [];
+                       regChanges[countryName].push({ org_id: targetOrgId, action });
+                   }
+                   hasChanges = true;
+                }
+            }
+          }
+        }
+      }
+
+      if (hasChanges) {
+          if (Object.keys(unChanges).length > 0) {
+              unMembershipStorage.syncAIMemberships(unChanges);
+              // Dispatch event to re-render OrgMembersList
+              window.dispatchEvent(new Event("un_membership_updated"));
+          }
+          if (Object.keys(regChanges).length > 0) {
+              regionalMembershipRouter.syncAIMemberships(regChanges);
+              window.dispatchEvent(new Event("un_membership_updated"));
+          }
+          localStorage.setItem(PROCESSED_KEY, JSON.stringify(Array.from(processedIds)));
+          if (processedIds.size > 1000) {
+              const array = Array.from(processedIds).slice(-500);
+              localStorage.setItem(PROCESSED_KEY, JSON.stringify(array));
+          }
+      }
+    } catch (e) {
+      console.error("[NewsStorage] Failed to process membership effects", e);
+    }
   },
 
   /**

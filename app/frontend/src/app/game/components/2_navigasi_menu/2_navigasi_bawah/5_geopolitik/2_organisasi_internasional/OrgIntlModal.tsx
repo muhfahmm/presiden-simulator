@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useMemo, lazy, Suspense } from "react";
-import { X, Landmark, Globe, Shield, Coins, Users, Activity, TrendingUp, Info, Award, MapPin, Search, GraduationCap, Laptop, ChefHat, Plane, Anchor, Radio, Cloud, Briefcase, HeartPulse, Scale, SearchSlash, AlertCircle, ChevronRight, Zap, Loader2 } from "lucide-react"
+import { X, Landmark, Globe, Shield, Coins, Users, Activity, TrendingUp, Info, Award, MapPin, Search, GraduationCap, Laptop, ChefHat, Plane, Anchor, Radio, Cloud, Briefcase, HeartPulse, Scale, SearchSlash, AlertCircle, ChevronRight, Zap, Loader2, Sparkles } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { OrganizationMembers } from "@/app/database/data/database_organisasi_internasional/index";
@@ -157,6 +157,8 @@ export default function OrgIntlModal({
 
   const [membershipKey, setMembershipKey] = useState(0);
 
+  const [currentGameDate, setCurrentGameDate] = useState<Date>(new Date());
+
   useEffect(() => {
     const handleUpdate = () => setMembershipKey(prev => prev + 1);
     window.addEventListener("un_membership_updated", handleUpdate);
@@ -168,15 +170,14 @@ export default function OrgIntlModal({
     const country = session?.country || localStorage.getItem("selectedCountry") || "Negara Anda";
     setCurrentCountry(country);
     
-    // Get current date from storage
-    const storedDate = localStorage.getItem("em_game_date");
-    if (storedDate) {
-      const dateObj = JSON.parse(storedDate);
-      setCurrentDate(`${dateObj.day} ${dateObj.month} ${dateObj.year}`);
-    }
+    import("@/app/game/components/1_navbar/5_navigasi_waktu/gameTime").then(module => {
+      setCurrentGameDate(module.getStoredGameDate());
+    });
 
     updateBudget();
   }, [isOpen]);
+
+  const joinDates = useMemo(() => unMembershipStorage.getJoinDates(), [membershipKey]);
 
   // Handle keyboard shortcut (Ctrl+K)
   useEffect(() => {
@@ -393,15 +394,43 @@ export default function OrgIntlModal({
             </Suspense>
           ) : filteredOrgs.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 animate-in fade-in slide-in-from-bottom-5 duration-700">
-              {filteredOrgs.map((org) => (
-                <div key={org.id} className="group bg-zinc-900/10 border border-zinc-800/40 hover:border-purple-500/30 hover:bg-zinc-900/30 p-6 rounded-[32px] transition-all duration-500 flex flex-col gap-6 relative backdrop-blur-sm shadow-xl hover:shadow-purple-500/5 overflow-hidden">
+              {filteredOrgs.map((org) => {
+                const joinDateStr = joinDates[org.id]?.[currentCountry.toLowerCase()];
+                let isNewMember = false;
+                if (joinDateStr) {
+                    try {
+                        const [d, m, y] = joinDateStr.split('-').map(Number);
+                        const joinDate = new Date(Date.UTC(y, m - 1, d));
+                        const diffTime = Math.abs(currentGameDate.getTime() - joinDate.getTime());
+                        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                        isNewMember = diffDays <= 30;
+                    } catch (e) {
+                        isNewMember = false;
+                    }
+                }
+
+                return (
+                <div key={org.id} className={`group p-6 rounded-[32px] transition-all duration-500 flex flex-col gap-6 relative backdrop-blur-sm shadow-xl overflow-hidden ${
+                    isNewMember
+                    ? "bg-purple-900/10 border border-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.1)] ring-1 ring-purple-500/20"
+                    : "bg-zinc-900/10 border border-zinc-800/40 hover:border-purple-500/30 hover:bg-zinc-900/30 hover:shadow-purple-500/5"
+                }`}>
                   
                   {/* Row 1: Header (Name & Icon) */}
-                  <div className="bg-zinc-900/40 border border-zinc-800/30 rounded-2xl p-4 relative overflow-hidden h-[120px] flex flex-col justify-center">
+                  <div className={`rounded-2xl p-4 relative overflow-hidden h-[120px] flex flex-col justify-center ${
+                      isNewMember ? "bg-purple-900/20 border border-purple-500/30" : "bg-zinc-900/40 border border-zinc-800/30"
+                  }`}>
                      <div className="absolute top-2 right-2 p-1.5 opacity-5 group-hover:opacity-10 transition-opacity">
                         <org.icon size={60} />
                      </div>
-                     <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1.5">Nama Organisasi</span>
+                     <div className="flex items-center gap-2 mb-1.5">
+                         <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">Nama Organisasi</span>
+                         {isNewMember && (
+                             <span className="px-2 py-0.5 rounded border border-amber-500/30 bg-amber-500/10 text-[8px] font-black text-amber-500 tracking-widest flex items-center gap-1 animate-pulse">
+                                BARU <Sparkles size={8} />
+                             </span>
+                         )}
+                     </div>
                      <h4 className="text-lg font-black text-amber-500 uppercase italic leading-none tracking-tight pr-4">
                         {org.name}
                      </h4>
@@ -445,10 +474,14 @@ export default function OrgIntlModal({
                   <div className="space-y-2 mt-auto">
                     <button 
                       onClick={() => handleViewMembers(org.id)}
-                      className="w-full py-3 px-6 rounded-2xl bg-zinc-950 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 text-[9px] font-black text-zinc-300 uppercase tracking-[0.15em] flex items-center justify-between group/btn transition-all active:scale-[0.98] cursor-pointer"
+                      className={`w-full py-3 px-6 rounded-2xl border text-[9px] font-black uppercase tracking-[0.15em] flex items-center justify-between group/btn transition-all active:scale-[0.98] cursor-pointer ${
+                          isNewMember
+                          ? "bg-purple-900/40 border-purple-500 text-purple-300 hover:bg-purple-800/60"
+                          : "bg-zinc-950 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 text-zinc-300"
+                      }`}
                     >
                       <span>Lihat Anggota</span>
-                      <Users size={12} className="group-hover/btn:translate-x-1 transition-transform" />
+                      <Users size={12} className={isNewMember ? "text-purple-400 group-hover/btn:translate-x-1 transition-transform" : "group-hover/btn:translate-x-1 transition-transform"} />
                     </button>
                     <button 
                       onClick={() => setSelectedOrgId(org.id)}
@@ -464,7 +497,8 @@ export default function OrgIntlModal({
                      <span className="text-[10px] font-black text-zinc-800">{org.displayId.padStart(2, '0')}</span>
                   </div>
                 </div>
-              ))}
+              );
+            })}
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-[50vh] text-center gap-6 animate-in fade-in duration-1000">

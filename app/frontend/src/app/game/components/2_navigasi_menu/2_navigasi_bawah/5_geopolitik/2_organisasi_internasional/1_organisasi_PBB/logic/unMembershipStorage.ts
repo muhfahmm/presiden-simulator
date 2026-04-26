@@ -83,6 +83,61 @@ class UNMembershipStorage {
     window.dispatchEvent(new CustomEvent("un_membership_updated", { detail: { orgId, action: "leave" } }));
   }
 
+  private generateNews(countryName: string, orgId: string, action: 'join' | 'leave') {
+    const countryData = countries.find(c => 
+      c.name_en.toLowerCase() === countryName.toLowerCase() || 
+      c.name_id.toLowerCase() === countryName.toLowerCase()
+    );
+    const flag = countryData?.flag || "🌐";
+    
+    const orgLabels: Record<string, string> = {
+      imf: "IMF",
+      world_bank: "BANK DUNIA",
+      who: "WHO",
+      unesco: "UNESCO",
+      wto: "WTO",
+      interpol: "INTERPOL",
+      ilo: "ILO",
+      fao: "FAO",
+      icao: "ICAO",
+      imo: "IMO",
+      itu: "ITU",
+      wmo: "WMO",
+      asean: "ASEAN",
+      eu: "UNI EROPA",
+      arab_league: "LIGA ARAB",
+      au: "UNI AFRIKA",
+      oic: "OKI",
+      brics: "BRICS",
+      nato: "NATO",
+      opec: "OPEC",
+      g20: "G20",
+      apec: "APEC",
+      sco: "SCO",
+      oas: "OAS",
+      gcc: "GCC",
+      mercosur: "MERCOSUR",
+      commonwealth: "COMMONWEALTH",
+      g7: "G7",
+      quad: "QUAD",
+      oecd: "OECD"
+    };
+
+    const orgDisplay = orgLabels[orgId] || orgId.toUpperCase();
+    const isPbb = ["imf", "world_bank", "who", "unesco", "wto", "interpol", "ilo", "fao", "icao", "imo", "itu", "wmo"].includes(orgId);
+    
+    newsStorage.addNews({
+      source: isPbb ? "Global Diplomacy News" : "REGIONAL WATCH",
+      category: "organizations" as any,
+      priority: "medium",
+      subject: isPbb ? `${countryName} ${action === 'join' ? 'Bergabung ke' : 'Keluar dari'} ${orgDisplay}` : `${flag} DINAMIKA REGIONAL: ${countryName.toUpperCase()}`,
+      content: isPbb 
+        ? `${countryName} telah secara resmi ${action === 'join' ? 'bergabung dengan' : 'keluar dari'} organisasi PBB ${orgDisplay}.`
+        : `${countryName} telah secara resmi ${action === 'join' ? 'bergabung dengan' : 'keluar dari'} blok regional ${orgDisplay}.`,
+      time: ""
+    });
+  }
+
   public syncAIMemberships(aiResults: Record<string, any>) {
     const currentState = this.getAIState();
     let hasChanges = false;
@@ -107,7 +162,6 @@ class UNMembershipStorage {
             }
           }
 
-          this.generateNews(country, item.org_id, item.action);
           hasChanges = true;
         }
       });
@@ -116,41 +170,6 @@ class UNMembershipStorage {
     if (hasChanges) {
       this.saveAIState(currentState);
     }
-  }
-
-  private generateNews(countryName: string, orgId: string, action: 'join' | 'leave') {
-    const countryData = countries.find(c => 
-      c.name_en.toLowerCase() === countryName.toLowerCase() || 
-      c.name_id.toLowerCase() === countryName.toLowerCase()
-    );
-    const flag = countryData?.flag || "🌐";
-    
-    // Standardize org name for news
-    const orgLabels: Record<string, string> = {
-      imf: "IMF",
-      world_bank: "BANK DUNIA",
-      who: "WHO",
-      unesco: "UNESCO",
-      wto: "WTO",
-      interpol: "INTERPOL",
-      ilo: "ILO",
-      fao: "FAO",
-      icao: "ICAO",
-      imo: "IMO",
-      itu: "ITU",
-      wmo: "WMO"
-    };
-
-    const orgDisplay = orgLabels[orgId] || orgId.toUpperCase();
-
-    newsStorage.addNews({
-      source: "Global Diplomacy News",
-      category: "organizations" as any,
-      priority: "medium",
-      subject: `${countryName} ${action === 'join' ? 'Bergabung ke' : 'Keluar dari'} ${orgDisplay}`,
-      content: `${countryName} telah secara resmi ${action === 'join' ? 'bergabung dengan' : 'keluar dari'} organisasi PBB ${orgDisplay}.`,
-      time: ""
-    });
   }
 
   /**

@@ -67,8 +67,6 @@ class RegionalMembershipRouter {
                                 localStorage.setItem("em_org_join_dates", JSON.stringify(dates));
                             }
                         }
-
-                        this.generateNews(country, item.org_id, item.action);
                     }
                 }
             });
@@ -77,45 +75,7 @@ class RegionalMembershipRouter {
         this.saveAIState(currentState);
     }
 
-    private generateNews(countryName: string, orgId: string, action: 'join' | 'leave') {
-        const countryData = countries.find(c => 
-            c.name_en.toLowerCase() === countryName.toLowerCase() || 
-            c.name_id.toLowerCase() === countryName.toLowerCase()
-        );
-        const flag = countryData?.flag || "🌐";
-        
-        const orgLabels: Record<string, string> = {
-            asean: "ASEAN",
-            eu: "UNI EROPA",
-            arab_league: "LIGA ARAB",
-            au: "UNI AFRIKA",
-            oic: "OKI",
-            brics: "BRICS",
-            nato: "NATO",
-            opec: "OPEC",
-            g20: "G20",
-            apec: "APEC",
-            sco: "SCO",
-            oas: "OAS",
-            gcc: "GCC",
-            mercosur: "MERCOSUR",
-            commonwealth: "COMMONWEALTH",
-            g7: "G7",
-            quad: "QUAD",
-            oecd: "OECD"
-        };
 
-        const orgDisplay = orgLabels[orgId] || orgId.toUpperCase();
-
-        newsStorage.addNews({
-            source: "REGIONAL WATCH",
-            category: "organizations" as any,
-            priority: "medium",
-            subject: `${flag} DINAMIKA REGIONAL: ${countryName.toUpperCase()}`,
-            content: `${countryName} telah secara resmi ${action === 'join' ? 'bergabung dengan' : 'keluar dari'} blok regional ${orgDisplay}.`,
-            time: ""
-        });
-    }
 
     public getConsolidatedMembers(orgId: string): string[] {
         const dbMembers = [...(OrganizationMembers[orgId] || [])];

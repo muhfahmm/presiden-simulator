@@ -26,9 +26,17 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
 
     // Get join dates for "New Member" badge
     const joinDates = useMemo(() => unMembershipStorage.getJoinDates(), []);
-    const currentGameDate = useMemo(() => {
-        const stored = localStorage.getItem("game_date") || "2026-01-01";
-        return new Date(stored);
+    const [currentGameDate, setCurrentGameDate] = useState<Date>(new Date("2026-01-01"));
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+    useEffect(() => {
+        import("@/app/game/components/1_navbar/5_navigasi_waktu/gameTime").then(module => {
+            setCurrentGameDate(module.getStoredGameDate());
+        });
+
+        const handleUpdate = () => setRefreshTrigger(prev => prev + 1);
+        window.addEventListener("un_membership_updated", handleUpdate);
+        return () => window.removeEventListener("un_membership_updated", handleUpdate);
     }, []);
 
     // Get specific member list for this organization from database
@@ -46,7 +54,7 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
             return c.name_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
                    c.name_en.toLowerCase().includes(searchQuery.toLowerCase());
         });
-    }, [orgId, searchQuery, category]);
+    }, [orgId, searchQuery, category, refreshTrigger]);
 
     return (
         <div className="flex flex-col gap-6 p-10">
@@ -76,10 +84,16 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
                                            joinDates[orgId]?.[country.name_id.toLowerCase()];
                         let isNewMember = false;
                         if (joinDateStr) {
-                            const joinDate = new Date(joinDateStr);
-                            const diffTime = Math.abs(currentGameDate.getTime() - joinDate.getTime());
-                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                            isNewMember = diffDays <= 30;
+                            try {
+                                // Parse DD-MM-YYYY format
+                                const [d, m, y] = joinDateStr.split('-').map(Number);
+                                const joinDate = new Date(Date.UTC(y, m - 1, d));
+                                const diffTime = Math.abs(currentGameDate.getTime() - joinDate.getTime());
+                                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                                isNewMember = diffDays <= 30;
+                            } catch (e) {
+                                isNewMember = false;
+                            }
                         }
 
                         return (
@@ -88,7 +102,9 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
                                 className={`group p-4 rounded-2xl transition-all duration-300 flex items-center justify-between relative backdrop-blur-sm shadow-sm hover:shadow-[0_0_30px_rgba(168,85,247,0.05)] border ${
                                     isUser 
                                     ? "bg-purple-600/10 border-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.15)] ring-1 ring-purple-500/30" 
-                                    : "bg-zinc-900/10 border-zinc-800/40 hover:border-purple-500/30 hover:bg-zinc-900/30"
+                                    : (isNewMember 
+                                        ? "bg-purple-900/10 border-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.1)] ring-1 ring-purple-500/20"
+                                        : "bg-zinc-900/10 border-zinc-800/40 hover:border-purple-500/30 hover:bg-zinc-900/30")
                                 }`}
                             >
                                 <div className="flex items-center gap-4">
@@ -102,7 +118,7 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
                                             <span className={`text-[9px] font-black uppercase tracking-widest leading-none ${
                                                 isUser ? "text-purple-400" : (isNewMember ? "text-amber-400" : "text-zinc-600")
                                             }`}>
-                                                {isUser ? "Negara Anda" : (isNewMember ? "Anggota Baru" : "Negara Anggota")}
+                                                {isUser ? "Negara Anda" : (isNewMember ? "BARU" : "Negara Anggota")}
                                             </span>
                                             {(isUser || isNewMember) && <Sparkles size={8} className="text-amber-400 animate-pulse" />}
                                         </div>
