@@ -53,6 +53,17 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
             // Apply search filter
             return c.name_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
                    c.name_en.toLowerCase().includes(searchQuery.toLowerCase());
+        }).map(country => {
+            // Pre-calculate ISO code for Windows compatibility
+            let iso = "";
+            const emoji = country.flag;
+            if (emoji && emoji.length >= 2) {
+                const codePoints = Array.from(emoji).map(c => c.codePointAt(0) || 0);
+                if (codePoints.length >= 2 && codePoints[0] >= 0x1F1E6 && codePoints[0] <= 0x1F1FF) {
+                    iso = String.fromCodePoint(codePoints[0] - 0x1F1E6 + 65, codePoints[1] - 0x1F1E6 + 65).toLowerCase();
+                }
+            }
+            return { ...country, iso };
         });
     }, [orgId, searchQuery, category, refreshTrigger]);
 
@@ -108,10 +119,18 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
                                 }`}
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className={`w-10 h-10 rounded-full border flex items-center justify-center text-xl shadow-inner group-hover:scale-110 transition-transform ${
+                                    <div className={`w-10 h-7 rounded-md border flex items-center justify-center text-xl shadow-inner group-hover:scale-110 transition-transform overflow-hidden ${
                                         isUser ? "bg-purple-900/50 border-purple-400" : "bg-zinc-800/50 border-zinc-800"
                                     }`}>
-                                        {country.flag || "🏳️"}
+                                        {(country as any).iso ? (
+                                            <img 
+                                                src={`https://flagcdn.com/w80/${(country as any).iso}.png`} 
+                                                alt={country.name_id} 
+                                                className="w-full h-full object-cover" 
+                                            />
+                                        ) : (
+                                            <span className="text-sm">{country.flag || "🏳️"}</span>
+                                        )}
                                     </div>
                                     <div className="flex flex-col">
                                         <div className="flex items-center gap-1.5 mb-1">

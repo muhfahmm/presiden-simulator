@@ -89,6 +89,8 @@ interface Organization {
   desc: string;
   focus: string;
   icon: any;
+  flag: string;
+  iso?: string;
   color: string;
   benefit: string;
   impact: string;
@@ -98,38 +100,38 @@ interface Organization {
 
 const ORGANIZATIONS: Organization[] = [
   // --- UN ORGANIZATIONS (1 - 12) ---
-  { id: "imf", displayId: "1", name: "Dana Moneter Internasional (IMF)", desc: "Stabilitas sistem keuangan global dan nilai tukar mata uang.", focus: "Ekonomi & Moneter", icon: Coins, color: "text-blue-400", benefit: "Krisis Likuiditas", impact: "Inflasi -10%", category: "UN" },
-  { id: "world_bank", displayId: "2", name: "Bank Dunia", desc: "Pemberian pinjaman dan bantuan teknis untuk pembangunan ekonomi.", focus: "Pembangunan", icon: Landmark, color: "text-emerald-400", benefit: "Dana Infrastruktur", impact: "Biaya Bangun -20%", category: "UN" },
-  { id: "interpol", displayId: "3", name: "Interpol", desc: "Fasilitas kerja sama polisi internasional dan kontrol kejahatan lintas batas.", focus: "Keamanan Global", icon: Shield, color: "text-indigo-400", benefit: "Intel Sharing", impact: "Kriminalitas -15%", category: "UN" },
-  { id: "who", displayId: "4", name: "Organisasi Kesehatan Dunia (WHO)", desc: "Koordinasi kesehatan global dan penanganan pandemi/wabah.", focus: "Kesehatan", icon: HeartPulse, color: "text-rose-400", benefit: "Standar Medis", impact: "Kesehatan +20%", category: "UN" },
-  { id: "unesco", displayId: "5", name: "UNESCO", desc: "Pendidikan, ilmu pengetahuan, dan pelestarian budaya dunia.", focus: "Budaya & Pendidikan", icon: GraduationCap, color: "text-amber-400", benefit: "Riset Edukasi", impact: "Pendidikan +15%", category: "UN" },
-  { id: "wto", displayId: "6", name: "Organisasi Perdagangan Dunia (WTO)", desc: "Regulasi perdagangan antarnegara dan penyelesaian sengketa pasar.", focus: "Perdagangan", icon: TrendingUp, color: "text-cyan-400", benefit: "Akses Pasar", impact: "Volume Ekspor +10%", category: "UN" },
-  { id: "ilo", displayId: "7", name: "Organisasi Buruh Internasional (ILO)", desc: "Penetapan standar tenaga kerja internasional dan perlindungan pekerja.", focus: "Ketenagakerjaan", icon: Users, color: "text-sky-400", benefit: "Hak Pekerja", impact: "Produktivitas +10%", category: "UN" },
-  { id: "fao", displayId: "8", name: "Organisasi Pangan dan Pertanian (FAO)", desc: "Upaya mengalahkan kelaparan dan standarisasi pangan dunia.", focus: "Pangan", icon: ChefHat, color: "text-orange-400", benefit: "Subsidi Pangan", impact: "Ketahanan Pangan +15%", category: "UN" },
-  { id: "icao", displayId: "9", name: "Organisasi Penerbangan Sipil Internasional (ICAO)", desc: "Standar keselamatan dan navigasi penerbangan internasional.", focus: "Penerbangan", icon: Plane, color: "text-zinc-400", benefit: "Keamanan Udara", impact: "Arus Wisata +15%", category: "UN" },
-  { id: "imo", displayId: "10", name: "Organisasi Maritim Internasional (IMO)", desc: "Keamanan kapal dan pencegahan polusi laut dari kapal.", focus: "Maritim", icon: Anchor, color: "text-teal-400", benefit: "Logistik Maritim", impact: "Keamanan Laut +15%", category: "UN" },
-  { id: "itu", displayId: "11", name: "Organisasi Telekomunikasi Internasional (ITU)", desc: "Standarisasi teknologi informasi dan komunikasi global.", focus: "Teknologi", icon: Radio, color: "text-violet-400", benefit: "Infrastruktur IT", impact: "Konektivitas +20%", category: "UN" },
-  { id: "wmo", displayId: "12", name: "Organisasi Meteorologi Dunia (WMO)", desc: "Layanan cuaca, hidrologi, dan observasi sirkulasi bumi.", focus: "Iklim", icon: Cloud, color: "text-blue-300", benefit: "Early Warning", impact: "Prediksi Bencana +15%", category: "UN" },
+  { id: "imf", displayId: "1", name: "Dana Moneter Internasional (IMF)", desc: "Stabilitas sistem keuangan global dan nilai tukar mata uang.", focus: "Ekonomi & Moneter", icon: Coins, flag: "🏦", color: "text-blue-400", benefit: "Krisis Likuiditas", impact: "Inflasi -10%", category: "UN" },
+  { id: "world_bank", displayId: "2", name: "Bank Dunia", desc: "Pemberian pinjaman dan bantuan teknis untuk pembangunan ekonomi.", focus: "Pembangunan", icon: Landmark, flag: "🏛️", color: "text-emerald-400", benefit: "Dana Infrastruktur", impact: "Biaya Bangun -20%", category: "UN" },
+  { id: "interpol", displayId: "3", name: "Interpol", desc: "Fasilitas kerja sama polisi internasional dan kontrol kejahatan lintas batas.", focus: "Keamanan Global", icon: Shield, flag: "👮", color: "text-indigo-400", benefit: "Intel Sharing", impact: "Kriminalitas -15%", category: "UN" },
+  { id: "who", displayId: "4", name: "Organisasi Kesehatan Dunia (WHO)", desc: "Koordinasi kesehatan global dan penanganan pandemi/wabah.", focus: "Kesehatan", icon: HeartPulse, flag: "🩺", color: "text-rose-400", benefit: "Standar Medis", impact: "Kesehatan +20%", category: "UN" },
+  { id: "unesco", displayId: "5", name: "UNESCO", desc: "Pendidikan, ilmu pengetahuan, dan pelestarian budaya dunia.", focus: "Budaya & Pendidikan", icon: GraduationCap, flag: "🎓", color: "text-amber-400", benefit: "Riset Edukasi", impact: "Pendidikan +15%", category: "UN" },
+  { id: "wto", displayId: "6", name: "Organisasi Perdagangan Dunia (WTO)", desc: "Regulasi perdagangan antarnegara dan penyelesaian sengketa pasar.", focus: "Perdagangan", icon: TrendingUp, flag: "⚖️", color: "text-cyan-400", benefit: "Akses Pasar", impact: "Volume Ekspor +10%", category: "UN" },
+  { id: "ilo", displayId: "7", name: "Organisasi Buruh Internasional (ILO)", desc: "Penetapan standar tenaga kerja internasional dan perlindungan pekerja.", focus: "Ketenagakerjaan", icon: Users, flag: "👷", color: "text-sky-400", benefit: "Hak Pekerja", impact: "Produktivitas +10%", category: "UN" },
+  { id: "fao", displayId: "8", name: "Organisasi Pangan dan Pertanian (FAO)", desc: "Upaya mengalahkan kelaparan dan standarisasi pangan dunia.", focus: "Pangan", icon: ChefHat, flag: "🌾", color: "text-orange-400", benefit: "Subsidi Pangan", impact: "Ketahanan Pangan +15%", category: "UN" },
+  { id: "icao", displayId: "9", name: "Organisasi Penerbangan Sipil Internasional (ICAO)", desc: "Standar keselamatan dan navigasi penerbangan internasional.", focus: "Penerbangan", icon: Plane, flag: "✈️", color: "text-zinc-400", benefit: "Keamanan Udara", impact: "Arus Wisata +15%", category: "UN" },
+  { id: "imo", displayId: "10", name: "Organisasi Maritim Internasional (IMO)", desc: "Keamanan kapal dan pencegahan polusi laut dari kapal.", focus: "Maritim", icon: Anchor, flag: "⚓", color: "text-teal-400", benefit: "Logistik Maritim", impact: "Keamanan Laut +15%", category: "UN" },
+  { id: "itu", displayId: "11", name: "Organisasi Telekomunikasi Internasional (ITU)", desc: "Standarisasi teknologi informasi dan komunikasi global.", focus: "Teknologi", icon: Radio, flag: "📡", color: "text-violet-400", benefit: "Infrastruktur IT", impact: "Konektivitas +20%", category: "UN" },
+  { id: "wmo", displayId: "12", name: "Organisasi Meteorologi Dunia (WMO)", desc: "Layanan cuaca, hidrologi, dan observasi sirkulasi bumi.", focus: "Iklim", icon: Cloud, flag: "☁️", color: "text-blue-300", benefit: "Early Warning", impact: "Prediksi Bencana +15%", category: "UN" },
 
   // --- REGIONAL ORGANIZATIONS (1 - 16) ---
-  { id: "asean", displayId: "1", name: "Perhimpunan Bangsa-Bangsa Asia Tenggara (ASEAN)", desc: "Percepat pertumbuhan ekonomi dan stabilitas politik Asia Tenggara.", focus: "Ekonomi & Keamanan", icon: MapPin, color: "text-rose-500", benefit: "Pasar Regional", impact: "Volume Dagang +15%", category: "REGIONAL", region: "Asia Tenggara" },
-  { id: "eu", displayId: "2", name: "Uni Eropa (EU)", desc: "Integrasi ekonomi, politik, and mata uang tunggal di benua Eropa.", focus: "Ekonomi & Moneter", icon: Landmark, color: "text-blue-600", benefit: "Mata Uang Tunggal", impact: "Integrasi Pasar +40%", category: "REGIONAL", region: "Eropa" },
-  { id: "arab_league", displayId: "3", name: "Liga Negara-Negara Arab (Liga Arab)", desc: "Kerja sama bangsa Arab di Timur Tengah dan Afrika Utara.", focus: "Budaya & Politik", icon: Users, color: "text-emerald-700", benefit: "Blok Arab", impact: "Solidaritas Politik +30%", category: "REGIONAL", region: "Timur Tengah" },
-  { id: "au", displayId: "4", name: "Uni Afrika (AU)", desc: "Integrasi politik and sosial-ekonomi di benua Afrika.", focus: "Pembangunan & Keamanan", icon: MapPin, color: "text-green-600", benefit: "Stabilitas Afrika", impact: "Keamanan Benua +20%", category: "REGIONAL", region: "Afrika" },
-  { id: "oic", displayId: "5", name: "Organisasi Kerja Sama Islam (OKI)", desc: "Solidaritas dunia muslim dalam kerja sama sosial dan politik.", focus: "Solidaritas Dunia Muslim", icon: Users, color: "text-emerald-500", benefit: "Blok Muslim", impact: "Solidaritas Muslim +25%", category: "REGIONAL", region: "Global" },
-  { id: "brics", displayId: "6", name: "Brazil, Russia, India, China, South Africa (BRICS)", desc: "Blok ekonomi alternatif untuk menyeimbangkan dominasi barat.", focus: "Ekonomi Alternatif", icon: Coins, color: "text-orange-600", benefit: "Dedolarisasi", impact: "Cadangan Devisa +20%", category: "REGIONAL", region: "Global" },
-  { id: "nato", displayId: "7", name: "Pakta Pertahanan Atlantik Utara (NATO)", desc: "Aliansi pertahanan militer kolektif negara-negara Atlantik Utara.", focus: "Pertahanan Kolektif", icon: Shield, color: "text-indigo-600", benefit: "Payung Nuklir", impact: "Keamanan Kolektif +50%", category: "REGIONAL", region: "Atlantik" },
-  { id: "opec", displayId: "8", name: "Organisasi Negara-negara Pengekspor Minyak (OPEC)", desc: "Kontrol harga energi dan koordinasi kebijakan minyak bumi.", focus: "Harga Energi Dunia", icon: Activity, color: "text-emerald-600", benefit: "Harga Minyak", impact: "Pendapatan Energi +30%", category: "REGIONAL", region: "Global (Minyak)" },
-  { id: "g20", displayId: "9", name: "Kelompok Dua Puluh (G20)", desc: "Forum kerja sama ekonomi internasional antaranegara besar.", focus: "Koordinasi Global", icon: Globe, color: "text-cyan-600", benefit: "Koordinasi Global", impact: "Stabilitas G20 +15%", category: "REGIONAL", region: "Global" },
-  { id: "apec", displayId: "10", name: "Kerja Sama Ekonomi Asia Pasifik (APEC)", desc: "Forum ekonomi Pasifik untuk mempromosikan perdagangan bebas.", focus: "Perdagangan Bebas", icon: TrendingUp, color: "text-blue-500", benefit: "Liberalisasi Dagang", impact: "Arus Dagang +20%", category: "REGIONAL", region: "Asia-Pasifik" },
-  { id: "sco", displayId: "11", name: "Organisasi Kerja Sama Shanghai (SCO)", desc: "Shanghai Cooperation Organization - Kerja sama keamanan Eurasia.", focus: "Keamanan Eurasia", icon: Shield, color: "text-blue-700", benefit: "Keamanan SCO", impact: "Kontraterorisme +30%", category: "REGIONAL", region: "Eurasia" },
-  { id: "oas", displayId: "12", name: "Organisasi Negara-Negara Amerika (OAS)", desc: "Organisasi Negara-Negara Amerika untuk solidaritas regional.", focus: "Demokrasi & HAM", icon: Users, color: "text-blue-400", benefit: "Stabilitas OAS", impact: "Demokrasi +20%", category: "REGIONAL", region: "Amerika" },
-  { id: "gcc", displayId: "13", name: "Dewan Kerja Sama Teluk (GCC)", desc: "Dewan Kerja Sama Teluk untuk integrasi ekonomi negara Arab Teluk.", focus: "Integrasi Teluk", icon: Landmark, color: "text-emerald-600", benefit: "Kemakmuran Pasca-Minyak", impact: "Dana Investasi +40%", category: "REGIONAL", region: "Teluk" },
-  { id: "mercosur", displayId: "14", name: "Pasar Bersama Selatan (MERCOSUR)", desc: "Blok perdagangan dan integrasi ekonomi di Amerika Selatan.", focus: "Blok Dagang Latin", icon: TrendingUp, color: "text-emerald-700", benefit: "Pasar Umum Latin", impact: "Ekon. Amerika Latin +20%", category: "REGIONAL", region: "Amerika Selatan" },
-  { id: "commonwealth", displayId: "15", name: "Negara-Negara Persemakmuran (Commonwealth)", desc: "Negara Persemakmuran Inggris - Hubungan sejarah & politik.", focus: "Hubungan Politik", icon: Award, color: "text-sky-700", benefit: "Diplomasi Persemakmuran", impact: "Akses Pendidikan UK +25%", category: "REGIONAL", region: "Global" },
-  { id: "g7", displayId: "16", name: "Kelompok Tujuh (G7)", desc: "Negara Maju - Kelompok negara dengan pengaruh ekonomi terbesar.", focus: "Ekonomi Global", icon: Briefcase, color: "text-zinc-600", benefit: "Kebijakan Global", impact: "Kebijakan Ekonomi +30%", category: "REGIONAL", region: "Global" },
-  { id: "quad", displayId: "17", name: "Dialog Keamanan Kuadrilateral (QUAD)", desc: "Aliansi strategis keamanan di wilayah Indo-Pasifik.", focus: "Keamanan Indo-Pac", icon: Shield, color: "text-sky-600", benefit: "Latihan Bersama", impact: "Keamanan Indo-Pasifik +25%", category: "REGIONAL", region: "Indo-Pasifik" },
-  { id: "oecd", displayId: "18", name: "Organisasi Kerja Sama dan Pembangunan Ekonomi (OECD)", desc: "Standarisasi kebijakan ekonomi dan tata kelola negara maju.", focus: "Standar Kebijakan", icon: Scale, color: "text-cyan-700", benefit: "Standar Global", impact: "Ease of Doing Business +20%", category: "REGIONAL", region: "Maju" }
+  { id: "asean", displayId: "1", name: "Perhimpunan Bangsa-Bangsa Asia Tenggara (ASEAN)", desc: "Percepat pertumbuhan ekonomi and stabilitas politik Asia Tenggara.", focus: "Ekonomi & Keamanan", icon: MapPin, flag: "🌏", color: "text-rose-500", benefit: "Pasar Regional", impact: "Volume Dagang +15%", category: "REGIONAL", region: "Asia Tenggara" },
+  { id: "eu", displayId: "2", name: "Uni Eropa (EU)", desc: "Integrasi ekonomi, politik, and mata uang tunggal di benua Eropa.", focus: "Ekonomi & Moneter", icon: Landmark, flag: "🇪🇺", iso: "eu", color: "text-blue-600", benefit: "Mata Uang Tunggal", impact: "Integrasi Pasar +40%", category: "REGIONAL", region: "Eropa" },
+  { id: "arab_league", displayId: "3", name: "Liga Negara-Negara Arab (Liga Arab)", desc: "Kerja sama bangsa Arab di Timur Tengah dan Afrika Utara.", focus: "Budaya & Politik", icon: Users, flag: "🕌", color: "text-emerald-700", benefit: "Blok Arab", impact: "Solidaritas Politik +30%", category: "REGIONAL", region: "Timur Tengah" },
+  { id: "au", displayId: "4", name: "Uni Afrika (AU)", desc: "Integrasi politik and sosial-ekonomi di benua Afrika.", focus: "Pembangunan & Keamanan", icon: MapPin, flag: "🌍", color: "text-green-600", benefit: "Stabilitas Afrika", impact: "Keamanan Benua +20%", category: "REGIONAL", region: "Afrika" },
+  { id: "oic", displayId: "5", name: "Organisasi Kerja Sama Islam (OKI)", desc: "Solidaritas dunia muslim dalam kerja sama sosial dan politik.", focus: "Solidaritas Dunia Muslim", icon: Users, flag: "☪️", color: "text-emerald-500", benefit: "Blok Muslim", impact: "Solidaritas Muslim +25%", category: "REGIONAL", region: "Global" },
+  { id: "brics", displayId: "6", name: "Brazil, Russia, India, China, South Africa (BRICS)", desc: "Blok ekonomi alternatif untuk menyeimbangkan dominasi barat.", focus: "Ekonomi Alternatif", icon: Coins, flag: "🧱", color: "text-orange-600", benefit: "Dedolarisasi", impact: "Cadangan Devisa +20%", category: "REGIONAL", region: "Global" },
+  { id: "nato", displayId: "7", name: "Pakta Pertahanan Atlantik Utara (NATO)", desc: "Aliansi pertahanan militer kolektif negara-negara Atlantik Utara.", focus: "Pertahanan Kolektif", icon: Shield, flag: "🧭", color: "text-indigo-600", benefit: "Payung Nuklir", impact: "Keamanan Kolektif +50%", category: "REGIONAL", region: "Atlantik" },
+  { id: "opec", displayId: "8", name: "Organisasi Negara-negara Pengekspor Minyak (OPEC)", desc: "Kontrol harga energi dan koordinasi kebijakan minyak bumi.", focus: "Harga Energi Dunia", icon: Activity, flag: "🛢️", color: "text-emerald-600", benefit: "Harga Minyak", impact: "Pendapatan Energi +30%", category: "REGIONAL", region: "Global (Minyak)" },
+  { id: "g20", displayId: "9", name: "Kelompok Dua Puluh (G20)", desc: "Forum kerja sama ekonomi internasional antaranegara besar.", focus: "Koordinasi Global", icon: Globe, flag: "🌐", color: "text-cyan-600", benefit: "Koordinasi Global", impact: "Stabilitas G20 +15%", category: "REGIONAL", region: "Global" },
+  { id: "apec", displayId: "10", name: "Kerja Sama Ekonomi Asia Pasifik (APEC)", desc: "Forum ekonomi Pasifik untuk mempromosikan perdagangan bebas.", focus: "Perdagangan Bebas", icon: TrendingUp, flag: "🌊", color: "text-blue-500", benefit: "Liberalisasi Dagang", impact: "Arus Dagang +20%", category: "REGIONAL", region: "Asia-Pasifik" },
+  { id: "sco", displayId: "11", name: "Organisasi Kerja Sama Shanghai (SCO)", desc: "Shanghai Cooperation Organization - Kerja sama keamanan Eurasia.", focus: "Keamanan Eurasia", icon: Shield, flag: "🤝", color: "text-blue-700", benefit: "Keamanan SCO", impact: "Kontraterorisme +30%", category: "REGIONAL", region: "Eurasia" },
+  { id: "oas", displayId: "12", name: "Organisasi Negara-Negara Amerika (OAS)", desc: "Organisasi Negara-Negara Amerika untuk solidaritas regional.", focus: "Demokrasi & HAM", icon: Users, flag: "🌎", color: "text-blue-400", benefit: "Stabilitas OAS", impact: "Demokrasi +20%", category: "REGIONAL", region: "Amerika" },
+  { id: "gcc", displayId: "13", name: "Dewan Kerja Sama Teluk (GCC)", desc: "Dewan Kerja Sama Teluk untuk integrasi ekonomi negara Arab Teluk.", focus: "Integrasi Teluk", icon: Landmark, flag: "🐪", color: "text-emerald-600", benefit: "Kemakmuran Pasca-Minyak", impact: "Dana Investasi +40%", category: "REGIONAL", region: "Teluk" },
+  { id: "mercosur", displayId: "14", name: "Pasar Bersama Selatan (MERCOSUR)", desc: "Blok perdagangan dan integrasi ekonomi di Amerika Selatan.", focus: "Blok Dagang Latin", icon: TrendingUp, flag: "☀️", color: "text-emerald-700", benefit: "Pasar Umum Latin", impact: "Ekon. Amerika Latin +20%", category: "REGIONAL", region: "Amerika Selatan" },
+  { id: "commonwealth", displayId: "15", name: "Negara-Negara Persemakmuran (Commonwealth)", desc: "Negara Persemakmuran Inggris - Hubungan sejarah & politik.", focus: "Hubungan Politik", icon: Award, flag: "👑", color: "text-sky-700", benefit: "Diplomasi Persemakmuran", impact: "Akses Pendidikan UK +25%", category: "REGIONAL", region: "Global" },
+  { id: "g7", displayId: "16", name: "Kelompok Tujuh (G7)", desc: "Negara Maju - Kelompok negara dengan pengaruh ekonomi terbesar.", focus: "Ekonomi Global", icon: Briefcase, flag: "💎", color: "text-zinc-600", benefit: "Kebijakan Global", impact: "Kebijakan Ekonomi +30%", category: "REGIONAL", region: "Global" },
+  { id: "quad", displayId: "17", name: "Dialog Keamanan Kuadrilateral (QUAD)", desc: "Aliansi strategis keamanan di wilayah Indo-Pasifik.", focus: "Keamanan Indo-Pac", icon: Shield, flag: "🔷", color: "text-sky-600", benefit: "Latihan Bersama", impact: "Keamanan Indo-Pasifik +25%", category: "REGIONAL", region: "Indo-Pasifik" },
+  { id: "oecd", displayId: "18", name: "Organisasi Kerja Sama dan Pembangunan Ekonomi (OECD)", desc: "Standarisasi kebijakan ekonomi dan tata kelola negara maju.", focus: "Standar Kebijakan", icon: Scale, flag: "📈", color: "text-cyan-700", benefit: "Standar Global", impact: "Ease of Doing Business +20%", category: "REGIONAL", region: "Maju" }
 ];
 
 export default function OrgIntlModal({ 
@@ -297,9 +299,26 @@ export default function OrgIntlModal({
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] font-black text-purple-500/60 uppercase tracking-[0.2em] leading-none mb-1.5">Profil Organisasi</span>
-                  <h4 className="text-sm font-black text-white uppercase tracking-tight italic">
-                    {ORGANIZATIONS.find(o => o.id === viewingMembersOrgId)?.name || "Detail Anggota"}
-                  </h4>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm">
+                      {(() => {
+                        const org = ORGANIZATIONS.find(o => o.id === viewingMembersOrgId);
+                        if (org?.iso) {
+                          return (
+                            <img 
+                              src={`https://flagcdn.com/w40/${org.iso}.png`} 
+                              alt={org.name} 
+                              className="h-4 w-auto object-contain rounded-sm" 
+                            />
+                          );
+                        }
+                        return org?.flag;
+                      })()}
+                    </span>
+                    <h4 className="text-sm font-black text-white uppercase tracking-tight italic">
+                      {ORGANIZATIONS.find(o => o.id === viewingMembersOrgId)?.name || "Detail Anggota"}
+                    </h4>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -425,6 +444,17 @@ export default function OrgIntlModal({
                      </div>
                      <div className="flex items-center gap-2 mb-1.5">
                          <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">Nama Organisasi</span>
+                         <span className="text-sm">
+                           {org.iso ? (
+                             <img 
+                               src={`https://flagcdn.com/w40/${org.iso}.png`} 
+                               alt={org.name} 
+                               className="h-4 w-auto object-contain rounded-sm" 
+                             />
+                           ) : (
+                             org.flag
+                           )}
+                         </span>
                          {isNewMember && (
                              <span className="px-2 py-0.5 rounded border border-amber-500/30 bg-amber-500/10 text-[8px] font-black text-amber-500 tracking-widest flex items-center gap-1 animate-pulse">
                                 BARU <Sparkles size={8} />
