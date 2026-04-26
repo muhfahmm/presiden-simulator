@@ -191,8 +191,9 @@ export const NewsBaseList = ({
                         const match = item.subject.match(/antara negara (.+) dengan negara (.+) disepakati/i);
                         if (match) {
                           const c1 = match[1];
+                          const c2 = match[2];
                           return (
-                            <div className="mt-8 pt-6 border-t border-zinc-900 flex items-center justify-end">
+                            <div className="mt-8 pt-6 border-t border-zinc-900 flex items-center justify-end gap-3">
                               <button
                                 onClick={() => {
                                   onClose();
@@ -207,6 +208,60 @@ export const NewsBaseList = ({
                                   Lihat Kedutaan - {c1}
                                 </span>
                               </button>
+                              <button
+                                onClick={() => {
+                                  onClose();
+                                  const countrySlug = c2.toLowerCase().replace(/ /g, '_');
+                                  setActiveMenu(`CountryModal:${c2.toLowerCase()}:diplomasi_hubungan:kedutaan_besar`);
+                                  router.push(`/game/${countrySlug}/diplomasi_hubungan`);
+                                }}
+                                className="flex items-center gap-2 group/btn cursor-pointer py-2 px-4 bg-purple-500/10 hover:bg-purple-500 border border-purple-500/30 hover:border-purple-400 rounded-xl transition-all"
+                              >
+                                <Shield size={14} className="text-purple-500 group-hover/btn:text-black transition-colors" />
+                                <span className="text-[10px] font-black uppercase tracking-widest text-purple-500 group-hover/btn:text-black transition-colors">
+                                  Lihat Kedutaan - {c2}
+                                </span>
+                              </button>
+                            </div>
+                          );
+                        }
+                      }
+
+                      // Pact & Alliance detection
+                      if (item.category === 'diplomacy') {
+                        const pactRegex = /(.+?) dan (.+?) Menandatangani Pakta Kerja Sama/i;
+                        const allianceRegex = /(.+?) dan (.+?) Perkuat Aliansi Strategis/i;
+                        
+                        const pMatch = item.subject.match(pactRegex);
+                        const aMatch = item.subject.match(allianceRegex);
+                        
+                        if (pMatch || aMatch) {
+                          const type = pMatch ? "Pakta" : "Aliansi";
+                          const c1 = pMatch ? pMatch[1] : aMatch![1];
+                          const c2 = pMatch ? pMatch[2] : aMatch![2];
+                          const tabKey = pMatch ? "pakta_non_agresi" : "aliansi_pertahanan";
+                          const colorClass = pMatch ? "bg-red-500/10 hover:bg-red-500 border-red-500/30 text-red-500" : "bg-rose-500/10 hover:bg-rose-500 border-rose-500/30 text-rose-500";
+                          const Icon = pMatch ? Handshake : Shield;
+
+                          return (
+                            <div className="mt-8 pt-6 border-t border-zinc-900 flex items-center justify-end gap-3">
+                              {[c1, c2].map((country, idx) => (
+                                <button
+                                  key={idx}
+                                  onClick={() => {
+                                    onClose();
+                                    const countrySlug = country.toLowerCase().trim().replace(/ /g, '_');
+                                    setActiveMenu(`CountryModal:${country.toLowerCase().trim()}:diplomasi_hubungan:${tabKey}`);
+                                    router.push(`/game/${countrySlug}/diplomasi_hubungan`);
+                                  }}
+                                  className={`flex items-center gap-2 group/btn cursor-pointer py-2 px-4 border rounded-xl transition-all ${colorClass}`}
+                                >
+                                  <Icon size={14} className="group-hover/btn:text-black transition-colors" />
+                                  <span className="text-[10px] font-black uppercase tracking-widest group-hover/btn:text-black transition-colors">
+                                    Lihat {type} - {country}
+                                  </span>
+                                </button>
+                              ))}
                             </div>
                           );
                         }

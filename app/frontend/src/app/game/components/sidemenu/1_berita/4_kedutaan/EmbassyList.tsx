@@ -19,8 +19,12 @@ export const EmbassyList = (props: TabProps) => {
       {...props} 
       categoryFilter={(item) => {
         const subjectLower = item.subject.toLowerCase();
+        
+        // Exclude trade and economy categories to prevent crossover (e.g. "Hubungan Dagang")
+        if (item.category === 'trade' || item.category === 'economy') return false;
+
         return (item.category === 'diplomacy' && !/(pakta|perjanjian|aliansi|sekutu)/.test(subjectLower)) || 
-               /(diplomatik|hubungan|kedutaan|dubes|perwakilan|konsulat)/.test(subjectLower);
+               /(diplomatik|hubungan bilateral|kedutaan|dubes|perwakilan diplomatik|konsulat)/.test(subjectLower);
       }} 
     />
   );
