@@ -83,16 +83,18 @@ type InboxItem struct {
 }
 
 type NPCNationState struct {
-	Name         string             `json:"name"`
-	GDPGrowth    float64            `json:"gdpGrowth"`
-	Stability    float64            `json:"stability"`
-	EconomicTier int                `json:"economicTier"`
-	Population   float64            `json:"population"`
-	Budget       float64            `json:"budget"`
-	Happiness    float64            `json:"happiness"`
-	DailyIncome  float64            `json:"dailyIncome"`
-	Taxes        map[string]float64 `json:"taxes"`
-	PriceIndex   float64            `json:"priceIndex"`
+	Name          string             `json:"name"`
+	GDPGrowth     float64            `json:"gdpGrowth"`
+	Stability     float64            `json:"stability"`
+	EconomicTier  int                `json:"economicTier"`
+	Population    float64            `json:"population"`
+	Budget        float64            `json:"budget"`
+	Happiness     float64            `json:"happiness"`
+	DailyIncome   float64            `json:"dailyIncome"`
+	Taxes         map[string]float64 `json:"taxes"`
+	PriceIndex    float64            `json:"priceIndex"`
+	Commodities   map[string]int     `json:"commodities"`   // Key: commodity key (e.g. "padi"), Value: stock qty
+	TradePartners []string           `json:"tradePartners"` // Names of trade partner countries from DB
 }
 
 type Relationship struct {
@@ -112,12 +114,40 @@ func (r *Relationship) Prune() bool {
 // GLOBAL STATE
 // ═══════════════════════════════════════════════════════════
 
+// CommodityPrice holds base pricing info synced from frontend tradeData.ts
+type CommodityPrice struct {
+	Key       string `json:"key"`
+	Label     string `json:"label"`
+	BuyPrice  int    `json:"buyPrice"`
+	SellPrice int    `json:"sellPrice"`
+	Sector    string `json:"sector"` // "mineral", "agrikultur", "peternakan", etc.
+	Unit      string `json:"unit"`   // "KG", "TON", "BARREL", "LITER", "UNIT", "EKOR", etc.
+}
+
 var (
-	GlobalState   SimulationState
-	Rng           = rand.New(rand.NewSource(time.Now().UnixNano()))
-	NpcNations    []string
-	BuildingTypes []BuildingType
+	GlobalState       SimulationState
+	Rng               = rand.New(rand.NewSource(time.Now().UnixNano()))
+	NpcNations        []string
+	BuildingTypes     []BuildingType
+	CommodityPrices   map[string]CommodityPrice  // key -> price info
+	TradePartnerGraph map[string][]string        // country name -> list of trade partner names
 )
+
+// ═══════════════════════════════════════════════════════════
+// COMMODITY ↔ BUILDING SECTOR MAPPING
+// Which building sectors produce which commodities
+// ═══════════════════════════════════════════════════════════
+
+var SectorCommodityMap = map[string][]string{
+	"Agrikultur":       {"padi", "gandum", "jagung", "umbi", "kedelai", "kelapa_sawit", "teh", "kopi", "kakao", "tebu", "sayur", "karet", "kapas", "tembakau"},
+	"Peternakan":       {"ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"},
+	"Perikanan":        {"udang", "ikan", "mutiara"},
+	"Mineral Kritis":   {"emas", "uranium", "batu_bara", "minyak_bumi", "gas_alam", "garam", "nikel", "litium", "tembaga", "aluminium", "logam_tanah_jarang", "bijih_besi"},
+	"Manufaktur":       {"semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu", "pupuk"},
+	"Olahan Pangan":    {"air_mineral", "gula", "roti", "pengolahan_daging", "mie_instan", "minyak_goreng", "susu", "pakan_ternak", "ikan_kaleng", "kopi_teh"},
+	"Farmasi":          {"farmasi"},
+	"Armada Militer":   {"pabrik_amunisi"},
+}
 
 // ═══════════════════════════════════════════════════════════
 // CORE UTILITIES

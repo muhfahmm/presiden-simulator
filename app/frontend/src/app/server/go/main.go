@@ -18,6 +18,7 @@ import (
 	"emserver/server_hubungan"
 	"emserver/server_inbox"
 	"emserver/server_berita"
+	"emserver/server_ekonomi"
 )
 
 var (
@@ -387,16 +388,18 @@ func InitializeNPCStatesLocked() {
 		}
 		
 		core.GlobalState.NPCStates[name] = &core.NPCNationState{
-			Name:         name,
-			GDPGrowth:    1.0 + core.Rng.Float64()*3.0,
-			Stability:    stability,
-			EconomicTier: tier,
-			Population:   pop,
-			Budget:       budget,
-			Happiness:    happiness, 
-			DailyIncome:  float64(tier) * 50.0,
-			Taxes:        map[string]float64{"ppn": 10, "korporasi": 20, "pendapatan_nasional": 15, "lingkungan": 5, "lainnya": 5},
-			PriceIndex:   1.0,
+			Name:          name,
+			GDPGrowth:     1.0 + core.Rng.Float64()*3.0,
+			Stability:     stability,
+			EconomicTier:  tier,
+			Population:    pop,
+			Budget:        budget,
+			Happiness:     happiness, 
+			DailyIncome:   float64(tier) * 50.0,
+			Taxes:         map[string]float64{"ppn": 10, "korporasi": 20, "pendapatan_nasional": 15, "lingkungan": 5, "lainnya": 5},
+			PriceIndex:    1.0,
+			Commodities:   make(map[string]int),
+			TradePartners: nil, // Will be populated after server_ekonomi.Initialize()
 		}
 	}
 	fmt.Printf("[GO] Initialized %d NPC nations with dynamic database-aligned baselines.\n", len(core.NpcNations))
@@ -420,6 +423,22 @@ func main() {
 	// 3. Initialize NPC States (Crucial BEFORE Engine starts)
 	core.GlobalState.Mu.Lock()
 	InitializeNPCStatesLocked()
+	core.GlobalState.Mu.Unlock()
+
+	// 3.5. Initialize Economy Engine (Trade Partners + Commodity Prices)
+	if err := server_ekonomi.Initialize(); err != nil {
+		fmt.Printf("[GO] Warning: Could not initialize economy engine: %v\n", err)
+	}
+
+	// 3.6. Assign trade partners to NPC states
+	core.GlobalState.Mu.Lock()
+	for name, state := range core.GlobalState.NPCStates {
+		if state.TradePartners == nil {
+			if tp, ok := core.TradePartnerGraph[name]; ok {
+				state.TradePartners = tp
+			}
+		}
+	}
 	core.GlobalState.Mu.Unlock()
 
 	// 4. Start the Global Ticker (Simulation Engine)
@@ -497,6 +516,10 @@ func simulationEngine() {
 
 		// 3. Process NPC & Global Simulation (CRITICAL: Called INSIDE Lock for thread-safety)
 		processNPCDay(nextDate)
+		
+		// 3.5. Daily Commodity Production (NPC nations produce goods based on buildings)
+		server_ekonomi.ProcessDailyProduction()
+		
 		constructionChanged := server_berita.ProcessNewsDay(nextDate)
 		
 		// Quarterly Polyglot Workers (Spawns background goroutine, doesn't need lock)

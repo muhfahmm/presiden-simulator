@@ -144,8 +144,14 @@ func GenerateBatch(dateStr string, count int) {
 		}
 	}
 
+	// Collect commodity keys from registry for trade news variety
+	var commKeys []string
+	for k := range core.CommodityPrices {
+		commKeys = append(commKeys, k)
+	}
+
 	for i := 0; i < count; i++ {
-		roll := core.Rng.Intn(2)
+		roll := core.Rng.Intn(3)
 		switch roll {
 		case 0:
 			GenerateFlashNews(dateStr)
@@ -166,6 +172,31 @@ func GenerateBatch(dateStr string, count int) {
 				content := fmt.Sprintf("Otoritas fiskal di %s mengumumkan kebijakan baru untuk %s %s menjadi %d%%. Langkah ini diambil untuk mengoptimalkan pendapatan negara dan mengatur arus logistik internasional.", nation, action, regType, percentage)
 				
 				core.AddNewsItemLocked("Regulasi Dagang", subj, content, "trade", "medium", dateStr)
+			}
+		case 2:
+			// Commodity-specific trade news using real units from registry
+			if len(available) >= 2 && len(commKeys) > 0 {
+				n1 := available[core.Rng.Intn(len(available))]
+				n2 := available[core.Rng.Intn(len(available))]
+				for n2 == n1 {
+					n2 = available[core.Rng.Intn(len(available))]
+				}
+
+				ck := commKeys[core.Rng.Intn(len(commKeys))]
+				cp := core.CommodityPrices[ck]
+				
+				qty := 5 + core.Rng.Intn(96) // 5-100
+				unit := cp.Unit
+				if unit == "" {
+					unit = "Unit"
+				}
+				total := qty * cp.SellPrice
+
+				subj := fmt.Sprintf("%s Mengekspor %d %s %s ke %s", n1, qty, unit, cp.Label, n2)
+				content := fmt.Sprintf("Perdagangan bilateral antara %s dan %s mencatatkan ekspor %d %s %s dengan nilai total Rp %s. Komoditas dari sektor %s ini menjadi bagian penting dari stabilitas ekonomi kawasan.",
+					n1, n2, qty, unit, cp.Label, formatPrice(total), cp.Sector)
+
+				core.AddNewsItemLocked("Berita Perdagangan Internasional", subj, content, "trade", "low", dateStr)
 			}
 		}
 	}

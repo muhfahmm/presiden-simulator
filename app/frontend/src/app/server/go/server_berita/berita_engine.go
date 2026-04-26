@@ -10,6 +10,7 @@ import (
 	pakta "emserver/server_berita/5_pakta"
 	pembangunan "emserver/server_berita/1_pembangunan"
 	perdagangan "emserver/server_berita/3_perdagangan"
+	"emserver/server_ekonomi"
 )
 
 // ProcessNewsDay coordinates daily international news generation
@@ -29,7 +30,7 @@ func ProcessNewsDay(date time.Time) bool {
 		fCount := core.Rng.Intn(6) + 5 // 5 to 10 per batch
 		keuangan.GenerateBatch(dateStr, fCount)
 
-		// 2. Trade (Perdagangan)
+		// 2. Trade (Perdagangan) - News generation
 		tCount := core.Rng.Intn(6) + 5
 		perdagangan.GenerateBatch(dateStr, tCount)
 
@@ -42,6 +43,12 @@ func ProcessNewsDay(date time.Time) bool {
 		pakta.GenerateBatch(dateStr, pCount)
 		aliansi.GenerateBatch(dateStr, aCount)
 		organisasi.GenerateBatch(dateStr, oCount)
+
+		// 4. AI Economy: NPC Commodity Trading (C++ engine)
+		server_ekonomi.ProcessBatchTrade(dateStr)
+
+		// 5. AI Smart Construction (Python brain - background goroutine)
+		go server_ekonomi.ProcessSmartConstruction(dateStr)
 	}
 
 	// 3. DAILY VARIETY (Subtle 5% chance)
