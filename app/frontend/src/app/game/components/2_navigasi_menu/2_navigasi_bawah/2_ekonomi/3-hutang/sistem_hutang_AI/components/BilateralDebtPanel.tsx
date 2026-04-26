@@ -83,7 +83,7 @@ export const BilateralDebtPanel: React.FC<BilateralDebtPanelProps> = ({ offers, 
                                     </div>
                                     <div className="text-right">
                                         <p className={`text-sm font-black ${isRequest ? 'text-rose-400' : 'text-emerald-400'}`}>
-                                            ${offer.amount.toLocaleString()}
+                                            {offer.amount.toLocaleString()}EM
                                         </p>
                                         <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-tighter italic">Strategic Fund</p>
                                     </div>
@@ -104,7 +104,7 @@ export const BilateralDebtPanel: React.FC<BilateralDebtPanelProps> = ({ offers, 
                                 <div className="flex gap-2">
                                     <button 
                                         onClick={() => handleAccept(offer.id)}
-                                        className={`flex-1 py-2.5 ${isRequest ? 'bg-rose-600 hover:bg-rose-500 shadow-rose-900/20' : 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-900/20'} text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-xl transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2`}
+                                        className={`flex-1 py-2.5 ${isRequest ? 'bg-rose-600 hover:bg-rose-500 shadow-rose-900/20' : 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-900/20'} text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-xl transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2 cursor-pointer`}
                                     >
                                         {isRequest ? (
                                             <><HeartHandshake className="h-3 w-3" /> Beri Dana</>
@@ -114,7 +114,7 @@ export const BilateralDebtPanel: React.FC<BilateralDebtPanelProps> = ({ offers, 
                                     </button>
                                     <button 
                                         onClick={() => handleReject(offer.id)}
-                                        className="px-4 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-500 hover:text-white rounded-xl transition-all active:scale-95 border border-zinc-700/30"
+                                        className="px-4 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-500 hover:text-white rounded-xl transition-all active:scale-95 border border-zinc-700/30 cursor-pointer"
                                         title="Tolak"
                                     >
                                         <X className="h-4 w-4" />

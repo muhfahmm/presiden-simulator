@@ -53,7 +53,7 @@ export function PengajuanMitraModal({
           </div>
           <button 
             onClick={onClose}
-            className="p-2 rounded-xl hover:bg-zinc-800 text-zinc-500 hover:text-white transition-colors"
+            className="p-2 rounded-xl hover:bg-zinc-800 text-zinc-500 hover:text-white transition-colors cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
@@ -63,18 +63,40 @@ export function PengajuanMitraModal({
         <div className="p-6 space-y-6">
           {/* Target Country Info */}
           <div className="flex items-center justify-center gap-6 pb-6 border-b border-zinc-900">
-            <div className="text-center">
-              <div className="text-4xl mb-2">{playerCountry.flag}</div>
-              <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider">{playerCountry.name_id}</div>
-            </div>
-            <div className="text-zinc-600 flex flex-col items-center">
-              <Globe className="h-5 w-5 mb-1 opacity-50" />
-              <div className="h-[1px] w-12 bg-zinc-800"></div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl mb-2">{targetCountry.flag}</div>
-              <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider">{targetCountry.name_id}</div>
-            </div>
+            {(() => {
+              const getCountryCode = (emoji: string) => {
+                const chars = [...emoji];
+                if (chars.length < 2) return "";
+                return chars.map(ch => String.fromCharCode((ch.codePointAt(0) || 0) - 0x1F1E6 + 65)).join("").toLowerCase();
+              };
+              const playerCode = getCountryCode(playerCountry.flag);
+              const targetCode = getCountryCode(targetCountry.flag);
+
+              return (
+                <>
+                  <div className="text-center flex flex-col items-center">
+                    <div className="w-16 h-10 rounded-lg overflow-hidden border border-zinc-800 mb-2">
+                       {playerCode ? (
+                         <img src={`https://flagcdn.com/w160/${playerCode}.png`} alt={playerCountry.name_id} className="w-full h-full object-cover" />
+                       ) : <Globe className="h-6 w-6 text-zinc-700" />}
+                    </div>
+                    <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider">{playerCountry.name_id}</div>
+                  </div>
+                  <div className="text-zinc-600 flex flex-col items-center">
+                    <Globe className="h-5 w-5 mb-1 opacity-50" />
+                    <div className="h-[1px] w-12 bg-zinc-800"></div>
+                  </div>
+                  <div className="text-center flex flex-col items-center">
+                    <div className="w-16 h-10 rounded-lg overflow-hidden border border-zinc-800 mb-2">
+                       {targetCode ? (
+                         <img src={`https://flagcdn.com/w160/${targetCode}.png`} alt={targetCountry.name_id} className="w-full h-full object-cover" />
+                       ) : <Globe className="h-6 w-6 text-zinc-700" />}
+                    </div>
+                    <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider">{targetCountry.name_id}</div>
+                  </div>
+                </>
+              );
+            })()}
           </div>
 
           {/* Analysis */}
@@ -146,13 +168,13 @@ export function PengajuanMitraModal({
         <div className="p-6 border-t border-zinc-900 bg-zinc-900/20 flex gap-3">
           <button 
             onClick={onClose}
-            className="flex-1 py-3 px-4 rounded-xl border border-zinc-800 text-zinc-400 font-bold hover:bg-zinc-800 hover:text-white transition-colors"
+            className="flex-1 py-3 px-4 rounded-xl border border-zinc-800 text-zinc-400 font-bold hover:bg-zinc-800 hover:text-white transition-colors cursor-pointer"
           >
             Batal
           </button>
           <button 
             onClick={() => onConfirm(targetCountry, calculation.waitTimeDays, calculation.totalChance)}
-            className="flex-1 py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-colors flex items-center justify-center gap-2 group"
+            className="flex-1 py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-colors flex items-center justify-center gap-2 group cursor-pointer"
           >
             <Send className="h-4 w-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             Kirim Pengajuan

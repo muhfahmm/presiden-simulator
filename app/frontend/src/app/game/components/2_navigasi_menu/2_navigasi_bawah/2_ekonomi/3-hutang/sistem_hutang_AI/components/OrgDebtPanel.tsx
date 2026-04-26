@@ -39,7 +39,7 @@ export const OrgDebtPanel: React.FC<OrgDebtPanelProps> = ({ isImfMember, isWbMem
                 {isImfMember ? (
                     <button 
                         onClick={() => onApply('IMF')}
-                        className="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-xl shadow-lg shadow-blue-900/40 active:scale-95 transition-all"
+                        className="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-xl shadow-lg shadow-blue-900/40 active:scale-95 transition-all cursor-pointer"
                     >
                         Ajukan Paket Krisis →
                     </button>
@@ -80,7 +80,7 @@ export const OrgDebtPanel: React.FC<OrgDebtPanelProps> = ({ isImfMember, isWbMem
                 {isWbMember ? (
                     <button 
                         onClick={() => onApply('WB')}
-                        className="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-xl shadow-lg shadow-emerald-900/40 active:scale-95 transition-all"
+                        className="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-xl shadow-lg shadow-emerald-900/40 active:scale-95 transition-all cursor-pointer"
                     >
                         Dana Pembangunan →
                     </button>

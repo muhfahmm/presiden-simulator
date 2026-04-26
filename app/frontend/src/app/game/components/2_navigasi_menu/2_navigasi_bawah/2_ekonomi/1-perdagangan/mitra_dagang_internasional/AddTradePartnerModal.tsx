@@ -71,7 +71,7 @@ export const AddTradePartnerModal: React.FC<AddTradePartnerModalProps> = ({
               placeholder="CARI NEGARA MITRA..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl py-4 pl-12 pr-6 text-xs font-black uppercase tracking-widest text-white focus:outline-none focus:border-blue-500 transition-all placeholder:text-zinc-700"
+              className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl py-4 pl-12 pr-6 text-xs font-black uppercase tracking-widest text-white focus:outline-none focus:border-blue-500 transition-all placeholder:text-zinc-700 cursor-text"
             />
           </div>
         </div>
@@ -83,25 +83,45 @@ export const AddTradePartnerModal: React.FC<AddTradePartnerModalProps> = ({
              <span className="text-[9px] font-black text-blue-500 uppercase tracking-widest italic">{filteredCountries.length} NEGARA TERSEDIA</span>
           </div>
           {filteredCountries.length > 0 ? (
-            filteredCountries.map((c) => (
-                <button
-                    key={c.name_en}
-                    onClick={() => {
-                        setSelectedTarget(c);
-                    }}
-                    className="w-full flex items-center justify-between p-4 rounded-2xl bg-zinc-950 border border-zinc-900 hover:border-blue-500/50 hover:bg-zinc-900/50 transition-all group cursor-pointer"
-                >
-                    <div className="flex items-center gap-4">
-                        <span className="text-2xl">{c.flag}</span>
-                        <span className="text-xs font-black text-zinc-300 uppercase tracking-wider group-hover:text-white transition-colors">
-                            {c.name_id}
-                        </span>
-                    </div>
-                    <div className="p-2 rounded-lg bg-zinc-900 group-hover:bg-blue-500 text-zinc-600 group-hover:text-white transition-all">
-                        <Plus className="h-4 w-4" />
-                    </div>
-                </button>
-            ))
+            filteredCountries.map((c) => {
+                const getCountryCode = (emoji: string) => {
+                    const chars = [...emoji];
+                    if (chars.length < 2) return "";
+                    return chars.map(ch => String.fromCharCode((ch.codePointAt(0) || 0) - 0x1F1E6 + 65)).join("").toLowerCase();
+                };
+
+                const code = getCountryCode(c.flag);
+
+                return (
+                    <button
+                        key={c.name_en}
+                        onClick={() => {
+                            setSelectedTarget(c);
+                        }}
+                        className="w-full flex items-center justify-between p-4 rounded-2xl bg-zinc-950 border border-zinc-900 hover:border-blue-500/50 hover:bg-zinc-900/50 transition-all group cursor-pointer"
+                    >
+                        <div className="flex items-center gap-4">
+                            <div className="w-10 h-7 rounded overflow-hidden flex items-center justify-center bg-zinc-900 border border-zinc-800 group-hover:border-blue-500/30 transition-all">
+                                {code ? (
+                                    <img 
+                                        src={`https://flagcdn.com/w80/${code}.png`} 
+                                        alt={c.name_id}
+                                        className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <Globe size={14} className="text-zinc-600" />
+                                )}
+                            </div>
+                            <span className="text-xs font-black text-zinc-300 uppercase tracking-wider group-hover:text-white transition-colors">
+                                {c.name_id}
+                            </span>
+                        </div>
+                        <div className="p-2 rounded-lg bg-zinc-900 group-hover:bg-blue-500 text-zinc-600 group-hover:text-white transition-all">
+                            <Plus className="h-4 w-4" />
+                        </div>
+                    </button>
+                );
+            })
           ) : (
             <div className="text-center py-12">
                <p className="text-[10px] font-black text-zinc-600 uppercase tracking-widest italic">Tidak Ada Negara Tersedia</p>

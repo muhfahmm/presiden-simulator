@@ -34,6 +34,7 @@ import { ImporEksekusi } from "./ekspor_impor/impor/ImporEksekusi";
 import { HistoriEkspor } from "./ekspor_impor/ekspor/HistoriEkspor";
 import { HistoriImport } from "./ekspor_impor/impor/HistoriImport";
 import BeritaHalaman from "./berita/BeritaHalaman";
+import { MitraDagangHalaman } from "./mitra_dagang_internasional/MitraDagangHalaman";
 
 interface ModalProps {
   isOpen: boolean;
@@ -525,7 +526,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
               <div className="flex flex-col">
                 <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest leading-none mb-0.5 opacity-60 group-hover/budget:opacity-100 transition-opacity">Kas Negara</span>
                 <span className="text-sm font-black text-white tracking-tight italic tabular-nums leading-none">
-                  ${userBudget.toLocaleString('id-ID')}
+                  {userBudget.toLocaleString('id-ID')}EM
                 </span>
               </div>
             </div>
@@ -558,31 +559,31 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
         <div className="px-6 py-2 bg-zinc-900/40 border-b border-zinc-800 flex gap-2 relative z-10">
           <button 
             onClick={() => setActiveMenu("Menu:Perdagangan")}
-            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu.startsWith("Menu:Perdagangan") ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu.startsWith("Menu:Perdagangan") ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300 cursor-pointer"}`}
           >
             <ArrowRightLeft size={16} /> Perdagangan
           </button>
           <button 
             onClick={() => setActiveMenu("Menu:Pajak")}
-            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Pajak" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Pajak" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300 cursor-pointer"}`}
           >
             <FileText size={16} /> Pajak
           </button>
           <button 
             onClick={() => setActiveMenu("Menu:Hutang")}
-            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Hutang" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Hutang" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300 cursor-pointer"}`}
           >
             <Landmark size={16} /> Hutang
           </button>
           <button 
             onClick={() => setActiveMenu("Menu:Budget")}
-            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Budget" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Budget" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300 cursor-pointer"}`}
           >
             <BarChart3 size={16} /> Budget
           </button>
           <button 
             onClick={() => setActiveMenu("Menu:Harga")}
-            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Harga" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Harga" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300 cursor-pointer"}`}
           >
             <Tag size={16} /> Harga
           </button>
@@ -597,25 +598,48 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
             </div>
             <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent p-4 space-y-1.5">
               <div className="h-px bg-zinc-900 my-3"></div>
-              {activePartnersList.filter((a: any) => a.status === 'Aktif' || !a.status || a.status !== 'Rejected').map((agreement: any, idx: number) => (
-                <button
-                  key={idx}
-                  onClick={() => {
-                    const nextPartner = agreement.mitra;
-                    setActiveMenu(`Menu:Perdagangan:${tradeType === 'histori' || tradeType === 'berita' || tradeType === 'tawaran_ai' ? 'impor' : tradeType}:${nextPartner}`);
-                  }}
-                  className={`w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border ${selectedTradePartner === agreement.mitra ? 'bg-emerald-600/10 border-emerald-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'
-                    }`}
-                >
-                  <div className={`p-2 rounded-xl ${selectedTradePartner === agreement.mitra ? 'bg-emerald-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                    <Globe className="h-4 w-4" />
-                  </div>
+                {activePartnersList.filter((a: any) => a.status === 'Aktif' || !a.status || a.status !== 'Rejected').map((agreement: any, idx: number) => {
+                  const country = countries.find(c => 
+                    c.name_id?.toLowerCase() === agreement.mitra?.toLowerCase() || 
+                    c.name_en?.toLowerCase() === agreement.mitra?.toLowerCase()
+                  );
+                  
+                  const getCountryCode = (emoji: string) => {
+                    const chars = [...emoji];
+                    if (chars.length < 2) return "";
+                    return chars.map(ch => String.fromCharCode((ch.codePointAt(0) || 0) - 0x1F1E6 + 65)).join("").toLowerCase();
+                  };
+
+                  const code = country ? getCountryCode(country.flag) : "";
+
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => {
+                        const nextPartner = agreement.mitra;
+                        setActiveMenu(`Menu:Perdagangan:${tradeType === 'histori' || tradeType === 'berita' || tradeType === 'tawaran_ai' ? 'impor' : tradeType}:${nextPartner}`);
+                      }}
+                      className={`w-full flex items-center gap-3 p-3.5 rounded-2xl transition-all cursor-pointer border ${selectedTradePartner === agreement.mitra ? 'bg-emerald-600/10 border-emerald-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'
+                        }`}
+                    >
+                      <div className={`w-8 h-5 rounded overflow-hidden flex items-center justify-center ${selectedTradePartner === agreement.mitra ? 'ring-2 ring-emerald-500/50' : 'bg-zinc-900'}`}>
+                        {code ? (
+                          <img 
+                            src={`https://flagcdn.com/w80/${code}.png`} 
+                            alt={agreement.mitra}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <Globe className="h-4 w-4 text-zinc-600" />
+                        )}
+                      </div>
                   <div className="text-left flex-1 min-w-0">
                     <span className="text-[14px] font-black uppercase tracking-tight block leading-tight truncate">{agreement.mitra}</span>
                     <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic">{agreement.status === 'Aktif' ? 'Hubungan Aktif' : 'Diproses Sistem'}</span>
                   </div>
-                </button>
-              ))}
+                    </button>
+                  );
+                })}
             </div>
           </div>
 
@@ -882,6 +906,20 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                   <Newspaper size={14} />
                   Berita
                 </button>
+
+                <button
+                  onClick={() => {
+                    const countryPart = selectedTradePartner ? `:${selectedTradePartner}` : "";
+                    setActiveMenu(`Menu:Perdagangan:mitra_dagang${countryPart}`);
+                  }}
+                  className={`px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-[1.05] hover:brightness-110 active:scale-95 flex items-center gap-2 cursor-pointer ${tradeType === "mitra_dagang"
+                      ? "bg-indigo-600 text-white shadow-[0_0_30px_rgba(79,70,229,0.3)] hover:shadow-[0_0_40px_rgba(79,70,229,0.5)]"
+                      : "text-zinc-500 hover:text-zinc-300"
+                    }`}
+                >
+                  <Globe size={14} />
+                  Mitra Dagang
+                </button>
               </div>
 
               {/* Logistics Efficiency Summary Card */}
@@ -987,6 +1025,11 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                       {historiType === "impor" ? <HistoriImport /> : <HistoriEkspor />}
                     </div>
                   </div>
+                ) : tradeType === "mitra_dagang" ? (
+                  <MitraDagangHalaman 
+                    activePartnersList={activePartnersList}
+                    onAddPartner={() => setIsAddPartnerOpen(true)}
+                  />
                 ) : tradeType === "ekspor" ? (
                   <EksporHalaman
                     selectedKey={selectedKey}
@@ -1025,35 +1068,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 )
               )}
 
-              {!(tradeType === "ekspor_eksekusi" || tradeType === "impor_eksekusi") && (
-                <div className="space-y-6 pt-8 border-t border-zinc-900/80">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-[11px] font-black text-white uppercase tracking-[0.3em] italic">DAFTAR MITRA DAGANG INTERNASIONAL</h3>
-                    <div className="h-[1px] flex-1 bg-zinc-900 mx-8"></div>
-                  </div>
-                  <div className="h-[400px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <button onClick={() => setIsAddPartnerOpen(true)} className="bg-blue-500/5 border border-dashed border-blue-500/30 hover:border-blue-500/60 hover:bg-blue-500/10 p-5 rounded-2xl flex items-center gap-4 cursor-pointer group transition-all">
-                        <div className="p-3 bg-blue-500/10 rounded-xl group-hover:bg-blue-500 group-hover:text-white transition-all"><Plus className="h-5 w-5" /></div>
-                        <div className="text-left"><div className="text-xs font-black text-blue-400 uppercase tracking-widest">Tambah Mitra Dagang</div><div className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">Ekspansi Jaringan</div></div>
-                      </button>
-                      {activePartnersList.map((agreement: any, idx: number) => (
-                        <div key={idx} className="bg-zinc-900/20 border border-zinc-900 p-5 rounded-2xl flex items-center justify-between transition-all">
-                          <div className="flex items-center gap-4">
-                            <div className="p-3 bg-zinc-900 rounded-xl"><Globe className="h-5 w-5 text-zinc-500" /></div>
-                            <div className="text-xs font-black text-white uppercase tracking-wider">{agreement.mitra}</div>
-                          </div>
-                          <div className="flex flex-col items-end gap-1">
-                            <span className={`${agreement.status === 'Aktif' ? 'bg-green-500/10 text-green-500 border-green-500/20' : 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20'} px-2 py-1 text-[8px] font-black uppercase tracking-widest rounded-md border text-center whitespace-nowrap`}>
-                              {agreement.status === 'Aktif' ? 'Terverifikasi' : 'Diproses'}
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
+              {/* Bottom section removed as it's now in Mitra Dagang tab */}
             </div>
           </div>
         </div>

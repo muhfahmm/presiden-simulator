@@ -1,0 +1,44 @@
+STRUKTUR FOLDER SISTEM BERITA (PYTHON & C++ HYBRID)
+================================================
+
+Folder: /app/engine/ekonomi/berita/
+----------------------------------
+
+/core_cpp/ (High-Performance Engine)
+│   ├── src/
+│   │   ├── main.cpp                 # Titik masuk utama sistem backend
+│   │   ├── PriceEngine.cpp          # Kalkulasi fluktuasi harga real-time
+│   │   ├── EventDistributor.cpp     # Distribusi event berita ke seluruh dunia
+│   │   └── DataIngestion.cpp        # Pengolahan data mentah dari database negara
+│   ├── include/
+│   │   ├── PriceEngine.hpp
+│   │   └── Constants.hpp
+│   └── CMakeLists.txt               # Konfigurasi build untuk performa maksimal
+
+/logic_python/ (AI & Scripting Layer)
+│   ├── main_service.py              # Orchestrator Python
+│   ├── ai_generator/
+│   │   ├── news_llm.py              # Integrasi dengan LLM (OpenAI/Local LLM)
+│   │   └── template_manager.py      # Pengelola template berita dinamis
+│   ├── analysis/
+│   │   ├── impact_calculator.py     # Menghitung efek berita ke ekonomi pemain
+│   │   └── sentiment_analyzer.py    # Analisis sentimen geopolitik
+│   ├── bridge/
+│   │   └── cpp_interface.py         # Penghubung (C-Types/Pybind11) ke modul C++
+│   └── requirements.txt             # Dependensi Python (pandas, openai, etc.)
+
+/data/
+│   ├── raw/                         # Data mentah dari simulasi
+│   ├── processed/                   # Berita yang sudah diformat
+│   └── news_history.json            # Arsip seluruh berita yang pernah muncul
+
+/api/
+│   ├── router.py                    # Endpoint untuk diakses oleh Frontend (FastAPI)
+│   └── websocket.py                 # Streaming berita real-time ke UI
+
+Alur Kerja:
+1. C++ Engine memproses jutaan data negara dan mendeteksi anomali (misal: harga melonjak).
+2. Data anomali dikirim ke Python melalui Bridge.
+3. Python AI Generator mengubah data menjadi teks berita yang dramatis dan natural.
+4. Python Analysis menghitung dampak spesifik ke negara pemain.
+5. Hasil akhir dikirim melalui API/Websocket ke UI di Frontend.

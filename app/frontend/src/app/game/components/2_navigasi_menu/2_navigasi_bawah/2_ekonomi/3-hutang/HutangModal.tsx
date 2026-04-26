@@ -56,8 +56,8 @@ export default function HutangModal({ isOpen, onClose, activeMenu, setActiveMenu
   const totalMonthlyPayment = activeDebts.reduce((acc, d) => d.status === 'ACTIVE' ? acc + d.monthlyPayment : acc, 0);
 
   const debtStats = [
-    { label: "Total Hutang Aktif", value: `$${totalDebt.toLocaleString()}`, status: totalDebt > 0 ? "Under Review" : "Healthy", color: totalDebt > 0 ? "text-amber-400" : "text-green-400" },
-    { label: "Cicilan Bulanan", value: `$${totalMonthlyPayment.toLocaleString()}`, status: "Automatic", color: "text-zinc-500" },
+    { label: "Total Hutang Aktif", value: `${totalDebt.toLocaleString()}EM`, status: totalDebt > 0 ? "Under Review" : "Healthy", color: totalDebt > 0 ? "text-amber-400" : "text-green-400" },
+    { label: "Cicilan Bulanan", value: `${totalMonthlyPayment.toLocaleString()}EM`, status: "Automatic", color: "text-zinc-500" },
     { label: "Credit Score AI", value: creditScore, status: creditScore > 75 ? "Excellent" : creditScore > 50 ? "Prime" : "Subprime", color: creditScore > 75 ? "text-blue-400" : "text-rose-400" }
   ];
 
@@ -102,31 +102,31 @@ export default function HutangModal({ isOpen, onClose, activeMenu, setActiveMenu
         <div className="px-6 py-2 bg-zinc-900/40 border-b border-zinc-800 flex gap-2 relative z-10">
           <button 
             onClick={() => setActiveMenu?.("Menu:Perdagangan")}
-            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu?.startsWith("Menu:Perdagangan") ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu?.startsWith("Menu:Perdagangan") ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300 cursor-pointer"}`}
           >
             <ArrowRightLeft size={16} /> Perdagangan
           </button>
           <button 
             onClick={() => setActiveMenu?.("Menu:Pajak")}
-            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Pajak" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Pajak" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300 cursor-pointer"}`}
           >
             <FileText size={16} /> Pajak
           </button>
           <button 
             onClick={() => setActiveMenu?.("Menu:Hutang")}
-            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Hutang" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Hutang" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300 cursor-pointer"}`}
           >
             <Landmark size={16} /> Hutang
           </button>
           <button 
             onClick={() => setActiveMenu?.("Menu:Budget")}
-            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Budget" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Budget" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300 cursor-pointer"}`}
           >
             <BarChart3 size={16} /> Budget
           </button>
           <button 
             onClick={() => setActiveMenu?.("Menu:Harga")}
-            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Harga" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300"}`}
+            className={`px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeMenu === "Menu:Harga" ? "bg-zinc-100 text-zinc-950 shadow-lg cursor-default" : "text-zinc-500 hover:bg-zinc-800/60 hover:text-zinc-300 cursor-pointer"}`}
           >
             <Tag size={16} /> Harga
           </button>
@@ -213,13 +213,13 @@ export default function HutangModal({ isOpen, onClose, activeMenu, setActiveMenu
                                                     <p className="text-[9px] font-bold text-zinc-500 mt-1 uppercase tracking-tighter">{debt.type}</p>
                                                 </td>
                                                 <td className="py-4 text-center">
-                                                    <span className="text-[11px] font-bold text-zinc-200">${debt.remainingPrincipal.toLocaleString()}</span>
+                                                    <span className="text-[11px] font-bold text-zinc-200">{debt.remainingPrincipal.toLocaleString()}EM</span>
                                                 </td>
                                                 <td className="py-4 text-center">
                                                     <span className={`text-[11px] font-bold ${activeDebtTab === 'HUTANG' ? 'text-blue-400' : 'text-emerald-400'}`}>{debt.interestRate}%</span>
                                                 </td>
                                                 <td className="py-4 text-right">
-                                                    <span className="text-[11px] font-black text-white">${debt.monthlyPayment.toLocaleString()}</span>
+                                                    <span className="text-[11px] font-black text-white">{debt.monthlyPayment.toLocaleString()}EM</span>
                                                 </td>
                                             </tr>
                                         ))}

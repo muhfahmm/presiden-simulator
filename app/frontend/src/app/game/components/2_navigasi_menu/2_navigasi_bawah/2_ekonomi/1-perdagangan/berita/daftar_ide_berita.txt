@@ -1,0 +1,59 @@
+DAFTAR IDE BERITA PERDAGANGAN (SIMULATOR PRESIDEN)
+================================================
+
+1. DINAMIKA PRODUKSI & KELANGKAAN (SUPPLY & DEMAND)
+-------------------------------------------------
+- Surplus Produksi: "Panen raya di Vietnam menyebabkan stok beras melimpah, harga ekspor diprediksi turun."
+- Krisis Energi/Bahan Baku: "Mogok kerja massal di tambang nikel Australia menghentikan produksi, pasokan global terancam."
+- Bencana Alam: "Badai besar di Teluk Meksiko merusak kilang minyak, distribusi energi ke pasar internasional terhambat."
+
+2. KEBIJAKAN EKONOMI & PROTEKSIONISME
+------------------------------------
+- Tarif Impor: "Amerika Serikat menaikkan tarif impor semikonduktor sebesar 15% untuk melindungi industri dalam negeri."
+- Embargo/Sanksi: "Dewan Keamanan PBB menjatuhkan embargo ekonomi terhadap [Negara X], seluruh hubungan perdagangan dihentikan sementara."
+- Subsidi Negara: "Pemerintah China memberikan subsidi besar-besaran untuk industri panel surya, siap mendominasi pasar ekspor."
+
+3. LOGISTIK & JALUR DISTRIBUSI
+------------------------------
+- Blokade Jalur Laut: "Ketegangan di Laut Merah memaksa kapal kargo mencari jalur alternatif, biaya logistik membengkak 20%."
+- Pembangunan Infrastruktur: "Kanal baru di Thailand resmi beroperasi, memangkas waktu pengiriman barang dari Asia Timur ke Eropa."
+- Kemacetan Pelabuhan: "Antrean panjang di Pelabuhan Rotterdam menyebabkan keterlambatan pengiriman komoditas manufaktur."
+
+4. INOVASI & PERGESERAN TEKNOLOGI
+---------------------------------
+- Teknologi Baru: "Penemuan metode ekstraksi Lithium baru di Bolivia membuat biaya produksi baterai menjadi jauh lebih murah."
+- Efisiensi Industri: "Implementasi AI pada pabrik otomotif Jerman meningkatkan output produksi hingga 30% per bulan."
+
+5. SENTIMEN PASAR & GEOPOLITIK
+------------------------------
+- Boikot Konsumen: "Gerakan boikot produk [Negara Y] meluas di Timur Tengah akibat ketegangan diplomatik."
+- Aliansi Ekonomi Baru: "Pembentukan blok ekonomi baru antara Brasil dan Argentina mengancam dominasi perdagangan di Amerika Selatan."
+
+6. UPDATE HUBUNGAN & HARGA (REAL-TIME)
+--------------------------------------
+- Hubungan Perdagangan: Update otomatis jika ada negara baru yang menjadi mitra atau memutuskan hubungan.
+- Fluktuasi Harga: Notifikasi real-time jika harga komoditas global naik/turun secara signifikan.
+
+INDIKATOR DAMPAK (Saran UI):
+- (Hijau) Harga Turun: Kesempatan beli murah.
+- (Merah) Harga Naik: Kesempatan jual mahal / Bahaya impor.
+- (Kuning) Jalur Terputus: Peringatan logistik.
+
+7. IDE INTEGRASI AI (AI DRIVEN NEWS SYSTEM)
+------------------------------------------
+- AI News Generator (LLM Based): 
+  Menggunakan AI untuk mengubah data mentah (misal: "Produksi Padi Vietnam +20%") menjadi narasi berita yang natural dan bervariasi ("Vietnam Alami Surplus Pangan, Siap Banjiri Pasar Global").
+- AI Economic Advisor: 
+  AI menganalisis berita yang muncul dan memberikan saran spesifik kepada pemain. 
+  Contoh: "Melihat kenaikan tarif di AS, saya sarankan kita mulai mencari mitra alternatif di Eropa untuk mengamankan impor semikonduktor."
+- Analisis Dampak Kontekstual: 
+  AI menghitung bagaimana sebuah berita akan berdampak langsung ke ekonomi pemain.
+  Contoh: "Berita ini diprediksi akan menaikkan biaya produksi otomotif kita sebesar 5% dalam 2 minggu ke depan."
+- Sentiment Analysis & Propaganda:
+  Tipe berita (bahasanya) berubah tergantung hubungan diplomatik. Jika hubungan buruk, AI bisa membuat berita yang bernada provokatif atau propaganda.
+- AI Trend Forecasting: 
+  AI memberikan prediksi masa depan berdasarkan rentetan berita.
+  Contoh: "Berdasarkan tren penemuan Lithium di Bolivia, analis AI kami memprediksi harga baterai akan terus turun hingga akhir tahun."
+- Dynamic Story Arcs:
+  AI menghubungkan beberapa kejadian kecil menjadi satu narasi besar. 
+  Misal: Kelangkaan bahan baku -> Pabrik tutup -> Kerusuhan buruh (AI menjahit kejadian-kejadian ini menjadi satu alur cerita yang koheren).

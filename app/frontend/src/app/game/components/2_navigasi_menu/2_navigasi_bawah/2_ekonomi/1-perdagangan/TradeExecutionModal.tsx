@@ -174,7 +174,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
               </div>
               <button 
                 onClick={onClose}
-                className="w-12 h-12 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all active:scale-95"
+                className="w-12 h-12 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all active:scale-95 cursor-pointer"
               >
                 <X size={24} />
               </button>
@@ -255,7 +255,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                   </div>
                   <div className="flex flex-col">
                     <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Saldo Anggaran Saat Ini</span>
-                    <span className="text-xl font-black text-white italic tracking-tight">{budgetData.anggaran.toLocaleString('id-ID')}</span>
+                    <span className="text-xl font-black text-white italic tracking-tight">{budgetData.anggaran.toLocaleString('id-ID')}EM</span>
                   </div>
                 </div>
                 <div className="flex flex-col items-end">
@@ -311,21 +311,44 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                       </div>
                       <span className="text-xs font-black text-zinc-300 uppercase tracking-widest">Pasar Global</span>
                     </button>
-                    {partners.map((p, i) => (
-                      <button 
-                        key={i}
-                        onClick={() => {
-                          setSelectedPartner(p.mitra);
-                          setIsPartnerDropdownOpen(false);
-                        }}
-                        className={`w-full p-4 flex items-center gap-4 hover:bg-zinc-900 transition-all text-left ${selectedPartner === p.mitra ? 'bg-blue-500/5' : ''}`}
-                      >
-                        <div className="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center text-blue-400">
-                          <Globe size={14} />
-                        </div>
-                        <span className="text-xs font-black text-zinc-300 uppercase tracking-widest">{p.mitra}</span>
-                      </button>
-                    ))}
+                    {partners.map((p, i) => {
+                      const country = countries.find(c => 
+                        c.name_id?.toLowerCase() === p.mitra?.toLowerCase() || 
+                        c.name_en?.toLowerCase() === p.mitra?.toLowerCase()
+                      );
+                      
+                      const getCountryCode = (emoji: string) => {
+                        const chars = [...emoji];
+                        if (chars.length < 2) return "";
+                        return chars.map(ch => String.fromCharCode((ch.codePointAt(0) || 0) - 0x1F1E6 + 65)).join("").toLowerCase();
+                      };
+
+                      const code = country ? getCountryCode(country.flag) : "";
+
+                      return (
+                        <button 
+                          key={i}
+                          onClick={() => {
+                            setSelectedPartner(p.mitra);
+                            setIsPartnerDropdownOpen(false);
+                          }}
+                          className={`w-full p-4 flex items-center gap-4 hover:bg-zinc-900 transition-all text-left ${selectedPartner === p.mitra ? 'bg-blue-500/5' : ''}`}
+                        >
+                          <div className="w-8 h-5 rounded overflow-hidden flex items-center justify-center bg-zinc-900 border border-zinc-800">
+                            {code ? (
+                              <img 
+                                src={`https://flagcdn.com/w80/${code}.png`} 
+                                alt={p.mitra}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <Globe size={14} className="text-zinc-600" />
+                            )}
+                          </div>
+                          <span className="text-xs font-black text-zinc-300 uppercase tracking-widest">{p.mitra}</span>
+                        </button>
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -346,7 +369,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                   </div>
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-black text-white tracking-tighter italic">
-                    {Math.floor(basePrice).toLocaleString('id-ID')}
+                    {Math.floor(basePrice).toLocaleString('id-ID')}EM
                   </span>
                   </div>
                 </div>
@@ -361,7 +384,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                       ? "text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.3)]" 
                       : "text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
                     }`}>
-                      {Math.floor(quantity * basePrice).toLocaleString('id-ID')}
+                      {Math.floor(quantity * basePrice).toLocaleString('id-ID')}EM
                     </span>
                   </div>
                 </div>
@@ -381,7 +404,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
               <div className="flex gap-4 pt-4">
                  <button 
                     onClick={onClose}
-                    className="flex-1 py-6 bg-zinc-900 text-zinc-400 font-black uppercase text-[11px] tracking-[0.4em] rounded-[2rem] border border-zinc-800 hover:bg-zinc-800 hover:text-white transition-all active:scale-[0.98]"
+                    className="flex-1 py-6 bg-zinc-900 text-zinc-400 font-black uppercase text-[11px] tracking-[0.4em] rounded-[2rem] border border-zinc-800 hover:bg-zinc-800 hover:text-white transition-all active:scale-[0.98] cursor-pointer"
                  >
                     Batalkan
                  </button>
@@ -426,7 +449,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                         totalValue
                       });
                     }}
-                    className={`flex-[2] py-6 relative group overflow-hidden rounded-[2rem] active:scale-[0.98] transition-all ${!selectedPartner ? 'grayscale opacity-50 cursor-not-allowed' : ''}`}
+                    className={`flex-[2] py-6 relative group overflow-hidden rounded-[2rem] active:scale-[0.98] transition-all ${!selectedPartner ? 'grayscale opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                     style={{ backgroundColor: selectedPartner ? color : '#3f3f46' }}
                  >
                     <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -459,7 +482,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                 {successData.type === "buy" ? "Impor Berhasil!" : "Ekspor Berhasil!"}
               </h3>
               <p className="text-zinc-400 text-sm font-medium leading-relaxed">
-                {successData.type === "buy" ? "import" : "ekspor"} <span className="text-white font-bold">{successData.commodity}</span> {successData.type === "buy" ? "dari" : "ke"} <span className="text-white font-bold">{successData.partner}</span> dengan nilai <span className="text-green-500 font-bold">{Math.floor(successData.totalValue).toLocaleString('id-ID')}</span> berhasil!
+                {successData.type === "buy" ? "import" : "ekspor"} <span className="text-white font-bold">{successData.commodity}</span> {successData.type === "buy" ? "dari" : "ke"} <span className="text-white font-bold">{successData.partner}</span> dengan nilai <span className="text-green-500 font-bold">{Math.floor(successData.totalValue).toLocaleString('id-ID')}EM</span> berhasil!
               </p>
             </div>
 
@@ -470,7 +493,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                 setSuccessData(null);
                 onClose();
               }}
-              className="w-full py-4 bg-zinc-900 hover:bg-zinc-800 text-white font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl border border-zinc-800 transition-all active:scale-[0.98]"
+              className="w-full py-4 bg-zinc-900 hover:bg-zinc-800 text-white font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl border border-zinc-800 transition-all active:scale-[0.98] cursor-pointer"
             >
               Tutup
             </button>
@@ -528,7 +551,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
 
             <button 
               onClick={() => setBudgetErrorData(null)}
-              className="w-full py-4 bg-zinc-900 hover:bg-zinc-800 text-white font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl border border-zinc-800 transition-all active:scale-[0.98] shadow-lg"
+              className="w-full py-4 bg-zinc-900 hover:bg-zinc-800 text-white font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl border border-zinc-800 transition-all active:scale-[0.98] shadow-lg cursor-pointer"
             >
               Kembali & Sesuaikan
             </button>
