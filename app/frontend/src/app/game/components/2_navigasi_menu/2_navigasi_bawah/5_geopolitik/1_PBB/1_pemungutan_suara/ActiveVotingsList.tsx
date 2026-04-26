@@ -25,11 +25,25 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
         {votings.map((vote) => {
           // Calculate Live Stats
           const progress = vote.progress / 100;
+          // Fetch User's UN Vote Weight
+          const userCountryRaw = (typeof window !== 'undefined' ? localStorage.getItem('selectedCountry') : "") || "Indonesia";
+          const userCountryData = countries.find(c => c.name_id === userCountryRaw || c.name_en === userCountryRaw);
+          const userVoteWeight = userCountryData?.geopolitik?.un_vote || 1;
+
           const liveYes = Math.floor((vote.finalResults?.yes || 0) * progress) + (vote.userVote === 'SETUJU' ? 1 : 0);
           const liveNo = Math.floor((vote.finalResults?.no || 0) * progress) + (vote.userVote === 'TOLAK' ? 1 : 0);
           const liveAbstain = Math.floor((vote.finalResults?.abstain || 0) * progress) + (vote.userVote === 'ABSTAIN' ? 1 : 0);
           
+          const liveWeightedYes = Math.floor((vote.finalResults?.weightedYes || 0) * progress) + (vote.userVote === 'SETUJU' ? userVoteWeight : 0);
+          const liveWeightedNo = Math.floor((vote.finalResults?.weightedNo || 0) * progress) + (vote.userVote === 'TOLAK' ? userVoteWeight : 0);
+          const liveWeightedAbstain = Math.floor((vote.finalResults?.weightedAbstain || 0) * progress) + (vote.userVote === 'ABSTAIN' ? userVoteWeight : 0);
+
+          // Calculate Totals
+          const totalCountriesInApp = countries.length; // Should be 207
+          const totalWeightInApp = countries.reduce((acc, c) => acc + (c.geopolitik?.un_vote || 1), 0);
+          
           const totalVoted = liveYes + liveNo + liveAbstain;
+          const totalWeightedVoted = liveWeightedYes + liveWeightedNo + liveWeightedAbstain;
 
           return (
             <div 
@@ -60,7 +74,10 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                     </div>
                     <span className="text-[11px] font-black text-cyan-400">{Math.floor(vote.progress)}%</span>
                   </div>
-                  <span className="text-[9px] font-black text-zinc-500 uppercase tracking-tighter">{totalVoted}/207 Negara Telah Memilih</span>
+                  <div className="flex flex-col items-end">
+                    <span className="text-[9px] font-black text-zinc-500 uppercase tracking-tighter">{totalVoted}/{totalCountriesInApp} Negara</span>
+                    <span className="text-[7px] font-bold text-zinc-600 uppercase tracking-tight">{totalWeightedVoted}/{totalWeightInApp} Bobot Suara</span>
+                  </div>
                 </div>
               </div>
 
@@ -68,23 +85,32 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
               <div className="grid grid-cols-3 gap-2 mb-4">
                 <div className="p-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center">
                   <p className="text-[7px] font-black text-emerald-500 uppercase tracking-tighter mb-0.5">Setuju</p>
-                  <p className="text-xs font-black text-white">{liveYes}</p>
+                  <p className="text-base font-black text-white">{liveYes} <span className="text-zinc-500">({liveWeightedYes})</span></p>
                 </div>
                 <div className="p-2 rounded-xl bg-rose-500/5 border border-rose-500/10 text-center">
                   <p className="text-[7px] font-black text-rose-500 uppercase tracking-tighter mb-0.5">Tolak</p>
-                  <p className="text-xs font-black text-white">{liveNo}</p>
+                  <p className="text-base font-black text-white">{liveNo} <span className="text-zinc-500">({liveWeightedNo})</span></p>
                 </div>
                 <div className="p-2 rounded-xl bg-zinc-500/5 border border-zinc-500/10 text-center">
                   <p className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter mb-0.5">Abstain</p>
-                  <p className="text-xs font-black text-white">{liveAbstain}</p>
+                  <p className="text-base font-black text-white">{liveAbstain} <span className="text-zinc-500">({liveWeightedAbstain})</span></p>
                 </div>
               </div>
 
               <div className="grid grid-cols-3 gap-4 py-4 border-t border-white/5">
                 {/* Find Country Data for Flags */}
                 {(() => {
-                  const targetCountryData = countries.find(c => c.name_id === vote.targetCountry || c.name_en === vote.targetCountry);
-                  const proposerCountryData = countries.find(c => c.name_id === vote.proposer || c.name_en === vote.proposer);
+                  const normalizeName = (name: string) => {
+                    if (!name) return "";
+                    if (name.toUpperCase() === "BRASIL") return "Brazil";
+                    return name;
+                  };
+
+                  const proposerName = normalizeName(vote.proposer || "");
+                  const targetName = normalizeName(vote.targetCountry || "");
+
+                  const targetCountryData = countries.find(c => c.name_id === targetName || c.name_en === targetName);
+                  const proposerCountryData = countries.find(c => c.name_id === proposerName || c.name_en === proposerName);
                   
                   const targetCode = targetCountryData ? getCountryCode(targetCountryData.flag) : "";
                   const proposerCode = proposerCountryData ? getCountryCode(proposerCountryData.flag) : "";

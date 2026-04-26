@@ -7,6 +7,9 @@ export interface VoteResult {
   yes: number;
   no: number;
   abstain: number;
+  weightedYes: number;
+  weightedNo: number;
+  weightedAbstain: number;
   details: {
     supporters: string[];
     opponents: string[];
@@ -43,13 +46,19 @@ export const simulateUNVote = (
   const supporters: string[] = [];
   const opponents: string[] = [];
   const abstainers: string[] = [];
+  
+  let weightedYes = 0;
+  let weightedNo = 0;
+  let weightedAbstain = 0;
 
   allCountries.forEach(country => {
     const countryName = country.name_id;
+    const voteWeight = country.geopolitik?.un_vote || 1;
 
     // 1. Negara Target otomatis menolak
     if (targetCountry && countryName === targetCountry) {
       opponents.push(countryName);
+      weightedNo += voteWeight;
       return;
     }
 
@@ -57,17 +66,18 @@ export const simulateUNVote = (
     const randAbstain = Math.random();
     if (randAbstain < 0.07) { // 7% chance abstain
       abstainers.push(countryName);
+      weightedAbstain += voteWeight;
       return;
     }
 
     // 3. Logika Hubungan Diplomatik (Kedubes)
-    // Jika punya kedubes (hubungan diplomatik), maka SETUJU dengan resolusi
-    // Jika TIDAK punya kedubes, maka MENOLAK resolusi
     const embassyStatus = embassyStorage.getEmbassyStatus(countryName);
     if (embassyStatus === 'completed') {
       supporters.push(countryName);
+      weightedYes += voteWeight;
     } else {
       opponents.push(countryName);
+      weightedNo += voteWeight;
     }
   });
 
@@ -75,6 +85,9 @@ export const simulateUNVote = (
     yes: supporters.length,
     no: opponents.length,
     abstain: abstainers.length,
+    weightedYes,
+    weightedNo,
+    weightedAbstain,
     details: {
       supporters,
       opponents,

@@ -15,6 +15,9 @@ export interface VotingHistoryItem {
     yes: number;
     no: number;
     abstain: number;
+    weightedYes?: number;
+    weightedNo?: number;
+    weightedAbstain?: number;
   };
 }
 
@@ -36,6 +39,9 @@ export interface ActiveVoting {
     yes: number;
     no: number;
     abstain: number;
+    weightedYes?: number;
+    weightedNo?: number;
+    weightedAbstain?: number;
   };
 }
 
@@ -85,7 +91,10 @@ export const unVotingStorage = {
       finalResults: {
         yes: results.yes,
         no: results.no,
-        abstain: results.abstain
+        abstain: results.abstain,
+        weightedYes: results.weightedYes,
+        weightedNo: results.weightedNo,
+        weightedAbstain: results.weightedAbstain
       }
     };
     
@@ -113,7 +122,10 @@ export const unVotingStorage = {
       finalResults: {
         yes: results.yes,
         no: results.no,
-        abstain: results.abstain
+        abstain: results.abstain,
+        weightedYes: results.weightedYes,
+        weightedNo: results.weightedNo,
+        weightedAbstain: results.weightedAbstain
       }
     };
     
@@ -153,7 +165,7 @@ export const unVotingStorage = {
 
     console.log(`[PBB AI] Memicu resolusi otomatis pada tanggal: ${dayKey}`);
     
-    const aiCountries = ["Amerika Serikat", "Rusia", "China", "Inggris", "Prancis", "Jepang", "Jerman", "India", "Brasil", "Australia", "Arab Saudi", "Turki", "Korea Selatan"];
+    const aiCountries = ["Amerika Serikat", "Rusia", "China", "Inggris", "Prancis", "Jepang", "Jerman", "India", "Brazil", "Australia", "Arab Saudi", "Turki", "Korea Selatan"];
     const randomCountry = aiCountries[Math.floor(Math.random() * aiCountries.length)];
     const targets = ["Korea Utara", "Iran", "Suriah", "Israel", "Ukraina", "Taiwan", "Venezuela", "Sudan", "Myanmar", "Afghanistan", "Libya"];
     const randomTarget = targets[Math.floor(Math.random() * targets.length)];
