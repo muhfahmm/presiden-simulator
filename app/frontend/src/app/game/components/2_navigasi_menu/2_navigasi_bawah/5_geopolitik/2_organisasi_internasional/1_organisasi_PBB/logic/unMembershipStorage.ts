@@ -1,7 +1,7 @@
 import { gameStorage } from "@/app/game/gamestorage";
 import { OrganizationMembers } from "@/app/pilih_negara/data/database_organisasi_internasional/index";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries, naCountries, saCountries } from "@/app/database/data/negara/benua/index";
 import { formatGameDate, getStoredGameDate } from "../../../../../../1_navbar/5_navigasi_waktu/gameTime";
 
 /**
@@ -225,6 +225,44 @@ class UNMembershipStorage {
     const userCountry = localStorage.getItem("selectedCountry") || "";
     const dbMembers = OrganizationMembers[orgId] || [];
     return dbMembers.includes(userCountry.toLowerCase());
+  }
+
+  public isEligibleForRegional(orgId: string, countryName: string): boolean {
+    const nameLower = countryName.toLowerCase();
+    
+    if (orgId === "oas") {
+      const allAmericas = [...naCountries, ...saCountries];
+      return allAmericas.some(c => c.name_id.toLowerCase() === nameLower || c.name_en.toLowerCase() === nameLower);
+    }
+    
+    if (orgId === "mercosur") {
+      return saCountries.some(c => c.name_id.toLowerCase() === nameLower || c.name_en.toLowerCase() === nameLower);
+    }
+
+    if (orgId === "gcc") {
+      const gccEligible = ["arab saudi", "bahrain", "kuwait", "oman", "qatar", "uni emirat arab"];
+      return gccEligible.includes(nameLower);
+    }
+
+    if (orgId === "commonwealth") {
+      const commonwealthEligible = [
+        "afrika selatan", "australia", "bahama", "bangladesh", "barbados",
+        "belize", "botswana", "fiji", "ghana", "guyana", "india", "inggris",
+        "jamaika", "kamerun", "kanada", "kenya", "malaysia", "malta",
+        "mauritius", "mozambik", "namibia", "nigeria", "pakistan",
+        "papua nugini", "rwanda", "samoa", "selandia baru", "singapura",
+        "sri lanka", "tonga", "trinidad dan tobago", "vanuatu",
+        "republik uganda", "republik tanzania", "republik zambia", "eswatini", "sierra leone", "togo", "seychelles"
+      ];
+      return commonwealthEligible.includes(nameLower);
+    }
+
+    if (orgId === "oic") {
+       const c = countries.find(x => x.name_id.toLowerCase() === nameLower || x.name_en.toLowerCase() === nameLower);
+       return c?.religion === "Islam";
+    }
+
+    return true;
   }
 }
 

@@ -472,24 +472,37 @@ export default function OrgIntlModal({
 
                   {/* ACTION BUTTONS */}
                   <div className="space-y-2 mt-auto">
-                    <button 
-                      onClick={() => handleViewMembers(org.id)}
-                      className={`w-full py-3 px-6 rounded-2xl border text-[9px] font-black uppercase tracking-[0.15em] flex items-center justify-between group/btn transition-all active:scale-[0.98] cursor-pointer ${
-                          isNewMember
-                          ? "bg-purple-900/40 border-purple-500 text-purple-300 hover:bg-purple-800/60"
-                          : "bg-zinc-950 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 text-zinc-300"
-                      }`}
-                    >
-                      <span>Lihat Anggota</span>
-                      <Users size={12} className={isNewMember ? "text-purple-400 group-hover/btn:translate-x-1 transition-transform" : "group-hover/btn:translate-x-1 transition-transform"} />
-                    </button>
-                    <button 
-                      onClick={() => setSelectedOrgId(org.id)}
-                      className="w-full py-3 px-6 rounded-2xl bg-purple-600/10 border border-purple-500/20 hover:bg-purple-600/20 hover:border-purple-500/40 text-[9px] font-black text-purple-400 uppercase tracking-[0.15em] flex items-center justify-between group/btn-apply transition-all active:scale-[0.98] cursor-pointer"
-                    >
-                      <span>Kirim Permohonan</span>
-                      <ChevronRight size={12} className="group-hover/btn-apply:translate-x-1 transition-transform" />
-                    </button>
+                    {(() => {
+                      const isEligible = unMembershipStorage.isEligibleForRegional(org.id, currentCountry);
+                      
+                      return (
+                        <>
+                          <button 
+                            onClick={() => handleViewMembers(org.id)}
+                            className={`w-full py-3 px-6 rounded-2xl border text-[9px] font-black uppercase tracking-[0.15em] flex items-center justify-between group/btn transition-all active:scale-[0.98] cursor-pointer ${
+                                isNewMember
+                                ? "bg-purple-900/40 border-purple-500 text-purple-300 hover:bg-purple-800/60"
+                                : "bg-zinc-950 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 text-zinc-300"
+                            }`}
+                          >
+                            <span>Lihat Anggota</span>
+                            <Users size={12} className={isNewMember ? "text-purple-400 group-hover/btn:translate-x-1 transition-transform" : "group-hover/btn:translate-x-1 transition-transform"} />
+                          </button>
+                          <button 
+                            onClick={() => isEligible ? setSelectedOrgId(org.id) : null}
+                            disabled={!isEligible}
+                            className={`w-full py-3 px-6 rounded-2xl border text-[9px] font-black uppercase tracking-[0.15em] flex items-center justify-between group/btn-apply transition-all ${
+                              isEligible
+                              ? "bg-purple-600/10 border-purple-500/20 hover:bg-purple-600/20 hover:border-purple-500/40 text-purple-400 active:scale-[0.98] cursor-pointer"
+                              : "bg-red-500/5 border-red-500/10 text-red-500/50 cursor-not-allowed"
+                            }`}
+                          >
+                            <span>{isMember ? "Lihat Organisasi" : (isEligible ? "Kirim Permohonan" : "Tidak Memenuhi Syarat")}</span>
+                            {isEligible && <ChevronRight size={12} className="group-hover/btn-apply:translate-x-1 transition-transform" />}
+                          </button>
+                        </>
+                      );
+                    })()}
                   </div>
 
                   {/* Numerical ID Badge */}

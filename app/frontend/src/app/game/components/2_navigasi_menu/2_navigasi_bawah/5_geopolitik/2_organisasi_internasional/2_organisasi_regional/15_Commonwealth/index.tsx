@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Activity, Award, Briefcase, Coins, Globe, Info, Landmark, MapPin, Scale, Shield, TrendingUp, Users, Zap } from 'lucide-react';
+import { unMembershipStorage } from "../../1_organisasi_PBB/logic/unMembershipStorage";
 
 interface COMMONWEALTHProps {
   currentCash: number;
@@ -10,6 +11,19 @@ interface COMMONWEALTHProps {
 }
 
 export default function Commonwealth({ currentCash, currentDate, onUpdate }: COMMONWEALTHProps) {
+  const userCountryName = (localStorage.getItem("selectedCountry") || "Indonesia").toLowerCase();
+  const isEligible = unMembershipStorage.isEligibleForRegional("commonwealth", userCountryName);
+
+  const handleJoin = () => {
+    if (!isEligible) {
+      alert("Permohonan Ditolak: Commonwealth hanya menerima negara-negara Persemakmuran (bekas wilayah jajahan/kekuasaan Inggris).");
+      return;
+    }
+
+    unMembershipStorage.joinOrganization("commonwealth");
+    onUpdate();
+  };
+
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       {/* Hero Section */}
@@ -67,8 +81,16 @@ export default function Commonwealth({ currentCash, currentDate, onUpdate }: COM
             Bergabung dengan aliansi ini untuk memperkuat posisi geopolitik dan ekonomi nasional di kancah internasional.
           </p>
         </div>
-        <button className="px-12 py-4 bg-purple-600 hover:bg-purple-500 text-white font-black uppercase text-[11px] tracking-[0.2em] rounded-full transition-all shadow-[0_10px_30px_-5px_rgba(147,51,234,0.4)] active:scale-95 cursor-pointer">
-          Kirim Permohonan
+        <button 
+          onClick={handleJoin}
+          disabled={!isEligible}
+          className={`px-12 py-4 text-white font-black uppercase text-[11px] tracking-[0.2em] rounded-full transition-all active:scale-95 cursor-pointer ${
+            isEligible 
+            ? "bg-purple-600 hover:bg-purple-500 shadow-[0_10px_30px_-5px_rgba(147,51,234,0.4)]"
+            : "bg-red-500/20 text-red-500/50 border border-red-500/20 cursor-not-allowed shadow-none"
+          }`}
+        >
+          {isEligible ? "Kirim Permohonan" : "Tidak Memenuhi Syarat"}
         </button>
       </div>
     </div>

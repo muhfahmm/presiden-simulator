@@ -362,7 +362,19 @@ var RegionalEligibility = map[string]func(country string) bool{
 		}
 		return eligible[c]
 	},
-	// BRICS, G20, G7, QUAD, APEC, SCO, OKI, OPEC, Commonwealth, OECD
+	"Commonwealth": func(c string) bool {
+		// Negara Persemakmuran Inggris (Commonwealth)
+		eligible := map[string]bool{
+			"afrika selatan": true, "australia": true, "bahama": true, "bangladesh": true, "barbados": true,
+			"belize": true, "botswana": true, "fiji": true, "ghana": true, "guyana": true, "india": true, "inggris": true,
+			"jamaika": true, "kamerun": true, "kanada": true, "kenya": true, "malaysia": true, "malta": true,
+			"mauritius": true, "mozambik": true, "namibia": true, "nigeria": true, "pakistan": true,
+			"papua nugini": true, "rwanda": true, "samoa": true, "selandia baru": true, "singapura": true,
+			"sri lanka": true, "tonga": true, "trinidad dan tobago": true, "vanuatu": true,
+		}
+		return eligible[c]
+	},
+	// BRICS, G20, G7, QUAD, APEC, SCO, OPEC, OECD
 	// These are invitation-based or have looser geographic rules.
 	// We allow any NPC nation for these (they can join/leave by invitation).
 }
