@@ -57,3 +57,11 @@ INDIKATOR DAMPAK (Saran UI):
 - Dynamic Story Arcs:
   AI menghubungkan beberapa kejadian kecil menjadi satu narasi besar. 
   Misal: Kelangkaan bahan baku -> Pabrik tutup -> Kerusuhan buruh (AI menjahit kejadian-kejadian ini menjadi satu alur cerita yang koheren).
+
+8. IDE FITUR ADVANCED (FUTURE UPDATES)
+--------------------------------------
+1. Pasar Gelap (Black Market): Perdagangan ilegal saat blokade PBB dengan risiko tinggi.
+2. Berita Palsu (Hoax): Manipulasi harga pasar melalui disinformasi.
+3. Intelijen Perdagangan: Mendapatkan info kenaikan harga lebih awal (Insider Info).
+4. Dampak ke Kepuasan Rakyat [IMPLEMENTED]: Efek berita ekonomi terhadap stabilitas dan kebahagiaan warga.
+5. Arsip Sejarah & Plot Twist: AI mencatat riwayat berita untuk trigger event besar di masa depan.
