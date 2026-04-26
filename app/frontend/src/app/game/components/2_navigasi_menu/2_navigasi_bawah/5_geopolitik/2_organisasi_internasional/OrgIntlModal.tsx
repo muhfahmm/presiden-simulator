@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useMemo, lazy, Suspense } from "react";
-import { X, Landmark, Globe, Shield, Coins, Users, Activity, TrendingUp, Info, Award, MapPin, Search, GraduationCap, Laptop, ChefHat, Plane, Anchor, Radio, Cloud, Briefcase, HeartPulse, Scale, SearchSlash, AlertCircle, ChevronRight, Zap, Loader2, Sparkles } from "lucide-react"
+import { X, Landmark, Globe, Shield, Coins, Users, Activity, TrendingUp, Info, Award, MapPin, Search, GraduationCap, Laptop, ChefHat, Plane, Anchor, Radio, Cloud, Briefcase, HeartPulse, Scale, SearchSlash, AlertCircle, ChevronRight, Zap, Loader2, Sparkles, Lock } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { OrganizationMembers } from "@/app/database/data/database_organisasi_internasional/index";
@@ -473,8 +473,15 @@ export default function OrgIntlModal({
                   {/* ACTION BUTTONS */}
                   <div className="space-y-2 mt-auto">
                     {(() => {
-                      const isMember = unMembershipStorage.isMember(org.id, currentCountry);
-                      const isEligible = isMember ? true : unMembershipStorage.isEligibleForRegional(org.id, currentCountry);
+                      const isMember = org.category === 'UN' 
+                        ? unMembershipStorage.isMember(org.id, currentCountry)
+                        : regionalMembershipRouter.getConsolidatedMembers(org.id).includes(currentCountry.toLowerCase());
+
+                      const eligibility = org.category === 'REGIONAL' 
+                        ? regionalMembershipRouter.checkEligibility(currentCountry, org.id)
+                        : { eligible: true, reason: "" };
+                        
+                      const isEligible = isMember ? true : eligibility.eligible;
                       
                       return (
                         <>
@@ -489,20 +496,29 @@ export default function OrgIntlModal({
                             <span>Lihat Anggota</span>
                             <Users size={12} className={isNewMember ? "text-purple-400 group-hover/btn:translate-x-1 transition-transform" : "group-hover/btn:translate-x-1 transition-transform"} />
                           </button>
-                          <button 
-                            onClick={() => isEligible ? setSelectedOrgId(org.id) : null}
-                            disabled={!isEligible && !isMember}
-                            className={`w-full py-3 px-6 rounded-2xl border text-[9px] font-black uppercase tracking-[0.15em] flex items-center justify-between group/btn-apply transition-all ${
-                              isMember
-                              ? "bg-emerald-500/10 border-emerald-500/20 hover:bg-emerald-500/20 text-emerald-400 active:scale-[0.98] cursor-pointer"
-                              : isEligible
-                                ? "bg-purple-600/10 border-purple-500/20 hover:bg-purple-600/20 hover:border-purple-500/40 text-purple-400 active:scale-[0.98] cursor-pointer"
-                                : "bg-red-500/5 border-red-500/10 text-red-500/50 cursor-not-allowed"
-                            }`}
-                          >
-                            <span>{isMember ? "Lihat Organisasi" : (isEligible ? "Kirim Permohonan" : "Tidak Memenuhi Syarat")}</span>
-                            {(isEligible || isMember) && <ChevronRight size={12} className="group-hover/btn-apply:translate-x-1 transition-transform" />}
-                          </button>
+                          {!isEligible && !isMember ? (
+                            <div className="flex flex-col items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-2xl bg-rose-500/5 border border-rose-500/10 mt-2">
+                                <div className="flex items-center gap-2">
+                                    <Lock size={12} className="text-rose-500" />
+                                    <span className="text-[9px] font-black text-rose-500 uppercase tracking-[0.15em]">Akses Terbatas</span>
+                                </div>
+                                <span className="text-[8px] font-bold text-rose-500/50 uppercase tracking-widest text-center leading-tight">
+                                    {eligibility.reason}
+                                </span>
+                            </div>
+                          ) : (
+                            <button 
+                              onClick={() => setSelectedOrgId(org.id)}
+                              className={`w-full py-3 px-6 rounded-2xl border text-[9px] font-black uppercase tracking-[0.15em] flex items-center justify-between group/btn-apply transition-all mt-2 ${
+                                isMember
+                                ? "bg-emerald-500/10 border-emerald-500/20 hover:bg-emerald-500/20 text-emerald-400 active:scale-[0.98] cursor-pointer"
+                                : "bg-purple-600/10 border-purple-500/20 hover:bg-purple-600/20 hover:border-purple-500/40 text-purple-400 active:scale-[0.98] cursor-pointer"
+                              }`}
+                            >
+                              <span>{isMember ? "Lihat Organisasi" : "Kirim Permohonan"}</span>
+                              <ChevronRight size={12} className="group-hover/btn-apply:translate-x-1 transition-transform" />
+                            </button>
+                          )}
                         </>
                       );
                     })()}
