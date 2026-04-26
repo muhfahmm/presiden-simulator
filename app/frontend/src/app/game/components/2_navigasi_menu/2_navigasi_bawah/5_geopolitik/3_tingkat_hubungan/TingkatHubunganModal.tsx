@@ -328,7 +328,7 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
         {/* Relationship Status Legend */}
         <div className="px-8 py-3 bg-zinc-900/20 border-b border-zinc-800/30 flex items-center justify-center gap-3 overflow-x-auto no-scrollbar whitespace-nowrap">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-600/10 border border-red-600/20">
-            <div className="w-2 h-2 rounded-full bg-red-600 shadow-[0_0_8px_rgba(220,38,38,0.5)]"></div>
+            <div className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]"></div>
             <span className="text-[9px] font-black uppercase tracking-widest text-red-500">0-25: Sangat Buruk</span>
           </div>
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-400/10 border border-rose-400/20">

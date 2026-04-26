@@ -145,12 +145,13 @@ function HubunganInternasional({ isOpen, onClose, targetCountry }: HubunganInter
   }, [relationsData, searchQuery, continentFilter, sortMode]);
 
   const stats = useMemo(() => {
-    if (relationsData.length === 0) return { allies: 0, neutral: 0, hostile: 0, avg: 0 };
-    const allies = relationsData.filter((r: any) => r.relation >= 70).length;
+    if (relationsData.length === 0) return { allies: 0, good: 0, neutral: 0, bad: 0, avg: 0 };
+    const allies = relationsData.filter((r: any) => r.relation >= 80).length;
+    const good = relationsData.filter((r: any) => r.relation >= 70 && r.relation < 80).length;
     const neutral = relationsData.filter((r: any) => r.relation >= 50 && r.relation < 70).length;
-    const hostile = relationsData.filter((r: any) => r.relation < 50).length;
+    const bad = relationsData.filter((r: any) => r.relation < 50).length;
     const avg = relationsData.reduce((s: number, r: any) => s + r.relation, 0) / relationsData.length;
-    return { allies, neutral, hostile, avg };
+    return { allies, good, neutral, bad, avg };
   }, [relationsData]);
 
   const cycleSortMode = () => {
@@ -184,22 +185,26 @@ function HubunganInternasional({ isOpen, onClose, targetCountry }: HubunganInter
           </button>
         </div>
 
-        <div className="px-6 py-3 border-b border-zinc-800/30 bg-zinc-950/40 grid grid-cols-4 gap-3">
+        <div className="px-6 py-3 border-b border-zinc-800/30 bg-zinc-950/40 grid grid-cols-5 gap-3">
           <div className="flex flex-col items-center">
             <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">Rata-rata</span>
             <span className="text-lg font-black text-white italic">{stats.avg.toFixed(2)}</span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-[9px] font-black text-emerald-600 uppercase tracking-widest">Sekutu</span>
+            <span className="text-[9px] font-black text-emerald-600 uppercase tracking-widest">Aliansi</span>
             <span className="text-lg font-black text-emerald-400 italic">{stats.allies}</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <span className="text-[9px] font-black text-green-600 uppercase tracking-widest">Baik</span>
+            <span className="text-lg font-black text-green-400 italic">{stats.good}</span>
           </div>
           <div className="flex flex-col items-center">
             <span className="text-[9px] font-black text-yellow-600 uppercase tracking-widest">Netral</span>
             <span className="text-lg font-black text-yellow-400 italic">{stats.neutral}</span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-[9px] font-black text-red-600 uppercase tracking-widest">Hostile</span>
-            <span className="text-lg font-black text-red-400 italic">{stats.hostile}</span>
+            <span className="text-[9px] font-black text-rose-600 uppercase tracking-widest">Buruk</span>
+            <span className="text-lg font-black text-rose-400 italic">{stats.bad}</span>
           </div>
         </div>
 
@@ -241,9 +246,10 @@ function HubunganInternasional({ isOpen, onClose, targetCountry }: HubunganInter
               {filteredRelations.slice(0, displayLimit).map((r: any, idx: number) => {
                 const cc = continentColors[r.continent] || continentColors["Global"];
                 const scoreBarWidth = Math.max(5, r.relation);
-                const scoreColor = r.relation >= 70 ? 'from-emerald-600 to-emerald-500' :
+                const scoreColor = r.relation >= 80 ? 'from-emerald-600 to-emerald-500' :
+                                   r.relation >= 70 ? 'from-green-600 to-green-500' :
                                    r.relation >= 50 ? 'from-yellow-600 to-yellow-500' :
-                                   r.relation >= 25 ? 'from-red-500 to-red-400' : 'from-red-700 to-red-600';
+                                   r.relation >= 26 ? 'from-rose-500 to-rose-400' : 'from-red-600 to-red-500';
 
                 return (
                   <div 

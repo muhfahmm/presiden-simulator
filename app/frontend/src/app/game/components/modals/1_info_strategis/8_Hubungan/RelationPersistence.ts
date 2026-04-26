@@ -12,45 +12,45 @@ export const RelationPersistence = {
      * Mendapatkan metadata label dan warna untuk UI
      */
     getRelationMetadata: (score: number) => {
-        if (score <= 20) return { 
-            label: "Konflik", 
-            color: "text-red-600", 
-            labelFull: "Musuh / Konflik Terbuka",
-            bg: "bg-red-600/10",
-            border: "border-red-600/30",
-            hex: "#dc2626"
+        if (score <= 25) return { 
+            label: "Sangat Buruk", 
+            color: "text-red-500", 
+            labelFull: "Sangat Buruk / Konflik",
+            bg: "bg-red-500/10",
+            border: "border-red-500/30",
+            hex: "#ef4444"
         };
-        if (score <= 45) return { 
-            label: "Tegang", 
-            color: "text-orange-500", 
-            labelFull: "Tegang / Tidak Harmonis",
-            bg: "bg-orange-500/10",
-            border: "border-orange-500/30",
-            hex: "#f97316"
+        if (score <= 49) return { 
+            label: "Buruk", 
+            color: "text-rose-400", 
+            labelFull: "Buruk / Tegang",
+            bg: "bg-rose-400/10",
+            border: "border-rose-400/30",
+            hex: "#fb7185"
         };
-        if (score <= 65) return { 
+        if (score <= 69) return { 
             label: "Netral", 
-            color: "text-zinc-400", 
+            color: "text-yellow-500", 
             labelFull: "Netral / Stabil",
-            bg: "bg-zinc-400/10",
-            border: "border-zinc-400/30",
-            hex: "#a1a1aa"
+            bg: "bg-yellow-500/10",
+            border: "border-yellow-500/30",
+            hex: "#eab308"
         };
-        if (score <= 84) return { 
+        if (score <= 79) return { 
             label: "Baik", 
-            color: "text-emerald-400", 
+            color: "text-green-400", 
             labelFull: "Baik / Kooperatif",
-            bg: "bg-emerald-400/10",
-            border: "border-emerald-400/30",
-            hex: "#34d399"
+            bg: "bg-green-400/10",
+            border: "border-green-400/30",
+            hex: "#4ade80"
         };
         return { 
-            label: "Sangat Baik", 
-            color: "text-blue-400", 
-            labelFull: "Sangat Baik / Aliansi Erat",
-            bg: "bg-blue-400/10",
-            border: "border-blue-400/30",
-            hex: "#60a5fa"
+            label: "Aliansi", 
+            color: "text-emerald-500", 
+            labelFull: "Aliansi Strategis",
+            bg: "bg-emerald-500/10",
+            border: "border-emerald-500/30",
+            hex: "#10b981"
         };
     },
 
