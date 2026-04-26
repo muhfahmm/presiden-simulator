@@ -18,81 +18,78 @@ export const OrganisasiList = (props: TabProps) => {
   // Use subFilter from props, default to 'pbb' if not present
   const currentSubTab = props.subFilter || 'pbb';
 
+  // Calculate counts for each sub-tab
+  const counts = props.news.reduce((acc, item) => {
+    if (item.category !== 'organizations') return acc;
+    const source = item.source.toLowerCase();
+    
+    if (source.includes("global diplomacy")) acc.pbb++;
+    else if (source.includes("regional watch")) acc.regional++;
+    else if (source.includes("perserikatan bangsa") || source.includes("bangsa-bangsa")) acc.voting++;
+    
+    return acc;
+  }, { pbb: 0, regional: 0, voting: 0 });
+
   return (
     <div className="space-y-6">
       {/* Sub-Tabs Navigation */}
       <div className="flex gap-4 mb-8 bg-zinc-900/40 p-1.5 rounded-full border border-zinc-800/50 w-fit mx-auto shadow-2xl">
         <button 
           onClick={() => props.setActiveMenu('Menu:Berita:organisasi:pbb')}
-          className={`px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer ${
+          className={`px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer flex items-center gap-2 ${
             currentSubTab === 'pbb' 
             ? 'bg-indigo-600 text-white shadow-[0_0_20px_rgba(79,70,229,0.4)] translate-y-[-1px]' 
             : 'text-zinc-500 hover:text-zinc-300'
           }`}
         >
-          Keanggotaan PBB
+          Keanggotaan PBB <span className={`px-2 py-0.5 rounded-full text-[9px] ${currentSubTab === 'pbb' ? 'bg-white/20' : 'bg-zinc-800'}`}>({counts.pbb})</span>
         </button>
         <button 
           onClick={() => props.setActiveMenu('Menu:Berita:organisasi:regional')}
-          className={`px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer ${
+          className={`px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer flex items-center gap-2 ${
             currentSubTab === 'regional' 
             ? 'bg-purple-600 text-white shadow-[0_0_20px_rgba(147,51,234,0.4)] translate-y-[-1px]' 
             : 'text-zinc-500 hover:text-zinc-300'
           }`}
         >
-          Keanggotaan Regional
+          Keanggotaan Regional <span className={`px-2 py-0.5 rounded-full text-[9px] ${currentSubTab === 'regional' ? 'bg-white/20' : 'bg-zinc-800'}`}>({counts.regional})</span>
         </button>
         <button 
           onClick={() => props.setActiveMenu('Menu:Berita:organisasi:voting')}
-          className={`px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer ${
+          className={`px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer flex items-center gap-2 ${
             currentSubTab === 'voting' 
             ? 'bg-emerald-600 text-white shadow-[0_0_20px_rgba(16,185,129,0.4)] translate-y-[-1px]' 
             : 'text-zinc-500 hover:text-zinc-300'
           }`}
         >
-          Hasil Sidang & Voting
+          Hasil Sidang & Voting <span className={`px-2 py-0.5 rounded-full text-[9px] ${currentSubTab === 'voting' ? 'bg-white/20' : 'bg-zinc-800'}`}>({counts.voting})</span>
         </button>
       </div>
 
       <NewsBaseList 
         {...props} 
         categoryFilter={(item) => {
-          const subj = item.subject.toLowerCase();
-          const content = item.content.toLowerCase();
-          const combined = (subj + " " + content).toLowerCase();
           const source = item.source.toLowerCase();
           
-          // 1. ABSOLUTE EXCLUSION
-          if (['construction', 'finance', 'trade', 'conflict'].includes(item.category)) {
-            return false;
-          }
+          // Only organization category
+          if (item.category !== 'organizations') return false;
 
-          // 2. DETECT ORGANIZATION TYPES
-          const isPBBNews = item.category === 'organizations' && source.includes("global diplomacy");
-          const isRegionalNews = item.category === 'organizations' && source.includes("regional watch");
-          
-          const globalOrgs = /(pbb|imf|bank dunia|world bank|who|unesco|wto|interpol|unicef|fao|ilo|icao|imo|itu|wmo)/i;
-          const regionalOrgs = /(asean|nato|eu|uni eropa|brics|g20|g7|apec|sco|oas|gcc|mercosur|commonwealth|oic|oki|uni afrika|african union)/i;
-          
-          const isGlobalKeyword = globalOrgs.test(combined);
-          const isRegionalKeyword = regionalOrgs.test(combined);
-
-          // 3. VOTING TAB LOGIC
-          const isVotingNews = /(hasil sidang|voting|resolusi|pemungutan suara|sidang umum|dewan keamanan|kesepakatan sidang)/i.test(combined);
-          if (currentSubTab === 'voting') {
-             return isVotingNews;
-          }
-
-          // 4. MEMBERSHIP TAB LOGIC
-          const membershipMove = /(bergabung|keluar|anggota|keanggotaan|membership|masuk|exit|join|leave|diterima|ditolak|permohonan|aplikasi|mengundurkan diri|secara resmi)/i;
-          const hasMembershipKeyword = membershipMove.test(combined);
+          // ═══ SOURCE-BASED ROUTING (matches Go backend exactly) ═══
+          // Backend uses:
+          //   "Global Diplomacy News"         → PBB membership
+          //   "Regional Watch Intelligence"   → Regional membership  
+          //   "Perserikatan Bangsa-Bangsa"     → Voting/Sidang
 
           if (currentSubTab === 'pbb') {
-            if (isPBBNews) return true;
-            return isGlobalKeyword && hasMembershipKeyword && !isRegionalKeyword && !isVotingNews;
-          } else if (currentSubTab === 'regional') {
-            if (isRegionalNews) return true;
-            return isRegionalKeyword && hasMembershipKeyword && !isVotingNews;
+            return source.includes("global diplomacy");
+          }
+          
+          if (currentSubTab === 'regional') {
+            return source.includes("regional watch");
+          }
+          
+          if (currentSubTab === 'voting') {
+            return source.includes("perserikatan bangsa") || source.includes("bangsa-bangsa");
           }
           
           return false;
