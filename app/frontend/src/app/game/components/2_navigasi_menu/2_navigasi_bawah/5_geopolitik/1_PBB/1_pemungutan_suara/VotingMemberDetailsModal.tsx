@@ -185,7 +185,7 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
                       handleBribe(country);
                     }}
                     disabled={isBribing !== null}
-                    className="absolute top-3 right-3 p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-500 hover:bg-cyan-500 hover:text-white transition-all group/bribe"
+                    className="absolute top-3 right-3 p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-500 hover:bg-cyan-500 hover:text-white transition-all group/bribe cursor-pointer"
                     title={`Lobi agar memilih ${activeVotingData.userVote}`}
                   >
                     {isBribing === country.name_id ? (
