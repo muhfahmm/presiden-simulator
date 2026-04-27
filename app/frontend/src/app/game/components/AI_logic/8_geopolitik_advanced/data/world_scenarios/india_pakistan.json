@@ -1,0 +1,18 @@
+{
+  "scenario_name": "India-Pakistan Kashmir Dispute",
+  "participants": ["India", "Pakistan"],
+  "tension_level": 85,
+  "status": "Fragile Ceasefire",
+  "primary_issues": [
+    "Kashmir Territorial Claims",
+    "Cross-border Terrorism",
+    "Water Rights (Indus River)",
+    "Nuclear Deterrence"
+  ],
+  "historical_context": "Multiple wars since partition in 1947 over the status of Jammu and Kashmir.",
+  "ai_modifiers": {
+    "border_patrol_aggression": 1.4,
+    "diplomatic_refusal_rate": 0.8,
+    "water_resource_leverage": 0.5
+  }
+}

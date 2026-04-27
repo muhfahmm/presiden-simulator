@@ -1,0 +1,18 @@
+{
+  "scenario_name": "Global Semiconductor War",
+  "participants": ["Amerika Serikat", "Belanda", "Jepang", "China", "Taiwan", "Korea Selatan"],
+  "tension_level": 78,
+  "status": "Technological Decoupling",
+  "primary_issues": [
+    "EUV Lithography Export Bans",
+    "High-end AI Chip Restrictions",
+    "Supply Chain Resilience",
+    "Indigenous Tech Development"
+  ],
+  "historical_context": "US-led efforts to restrict China's access to advanced chip-making technology.",
+  "ai_modifiers": {
+    "tech_research_subsidy": 1.8,
+    "export_license_rigidity": 2.0,
+    "industrial_espionage_risk": 1.4
+  }
+}

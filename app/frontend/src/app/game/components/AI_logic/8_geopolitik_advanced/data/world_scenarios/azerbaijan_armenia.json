@@ -1,0 +1,18 @@
+{
+  "scenario_name": "Nagorno-Karabakh Conflict",
+  "participants": ["Azerbaijan", "Armenia"],
+  "tension_level": 88,
+  "status": "Post-War Tensions / Border Disputes",
+  "primary_issues": [
+    "Zangezur Corridor Control",
+    "Border Demarcation",
+    "POW Exchange",
+    "Ethnic Displacement"
+  ],
+  "historical_context": "Decades of conflict over Nagorno-Karabakh, with Azerbaijan reclaiming territory in 2020 and 2023.",
+  "ai_modifiers": {
+    "military_modernization_rate": 1.4,
+    "diplomatic_rigidity": 1.8,
+    "border_clash_probability": 0.9
+  }
+}

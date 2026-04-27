@@ -1,0 +1,18 @@
+{
+  "scenario_name": "The Scramble for the Arctic",
+  "participants": ["Rusia", "Kanada", "Amerika Serikat", "Norwegia", "Denmark"],
+  "tension_level": 40,
+  "status": "Strategic Positioning",
+  "primary_issues": [
+    "Northern Sea Route Control",
+    "Undersea Resource Extraction",
+    "Military Arctic Commands",
+    "Environmental Conservation"
+  ],
+  "historical_context": "Melting ice caps opening new shipping lanes and access to vast untapped minerals.",
+  "ai_modifiers": {
+    "arctic_exploration_budget": 1.5,
+    "naval_presence_northern": 1.2,
+    "territorial_claim_overlaps": 0.8
+  }
+}

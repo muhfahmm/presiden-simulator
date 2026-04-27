@@ -1,0 +1,18 @@
+{
+  "scenario_name": "USA-Russia Cold Confrontation",
+  "participants": ["Amerika Serikat", "Rusia"],
+  "tension_level": 88,
+  "status": "Hostile Diplomatic State",
+  "primary_issues": [
+    "NATO Expansion",
+    "Energy Security (Europe)",
+    "Cyber Warfare & Information Ops",
+    "Nuclear Arms Control"
+  ],
+  "historical_context": "Decades of Cold War followed by post-Soviet friction and recent territorial expansion conflicts.",
+  "ai_modifiers": {
+    "proxy_war_probability": 0.7,
+    "sanction_severity": 1.2,
+    "intelligence_activity": 1.4
+  }
+}

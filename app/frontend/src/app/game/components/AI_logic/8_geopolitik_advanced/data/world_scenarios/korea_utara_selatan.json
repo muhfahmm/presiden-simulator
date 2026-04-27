@@ -1,0 +1,18 @@
+{
+  "scenario_name": "Korean Peninsula Standoff",
+  "participants": ["Korea Utara", "Korea Selatan"],
+  "tension_level": 92,
+  "status": "Armistice / Active Threat",
+  "primary_issues": [
+    "Nuclear Proliferation",
+    "Demilitarized Zone (DMZ) Incidents",
+    "US-ROK Military Exercises",
+    "Regime Legitimacy"
+  ],
+  "historical_context": "Unresolved conflict since 1950, technical state of war remains.",
+  "ai_modifiers": {
+    "nuclear_posturing_frequency": 1.8,
+    "border_skirmish_risk": 0.6,
+    "unification_sentiment": 0.1
+  }
+}

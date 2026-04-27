@@ -1,0 +1,18 @@
+{
+  "scenario_name": "BRICS vs G7 Economic Rivalry",
+  "participants": ["Brazil", "Rusia", "India", "China", "Afrika Selatan", "Amerika Serikat", "Jerman", "Jepang", "Inggris", "Prancis", "Italia", "Kanada"],
+  "tension_level": 45,
+  "status": "Systemic Competition",
+  "primary_issues": [
+    "De-dollarization",
+    "Alternative Financial Systems",
+    "Global South Leadership",
+    "Resource Control"
+  ],
+  "historical_context": "Emergence of a multipolar economic world challenging the post-WWII Western-led order.",
+  "ai_modifiers": {
+    "currency_war_risk": 1.3,
+    "investment_diversification_speed": 1.1,
+    "diplomatic_voting_alignment": 1.5
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "scenario_name": "West Philippine Sea Dispute",
+  "participants": ["Filipina", "China"],
+  "tension_level": 80,
+  "status": "Maritime Standoff",
+  "primary_issues": [
+    "Second Thomas Shoal (Ayungin)",
+    "Scarborough Shoal Access",
+    "UNCLOS Arbitration Ruling",
+    "US-Philippine Defense Treaty"
+  ],
+  "historical_context": "Increasingly assertive Chinese maritime presence vs Philippine sovereign rights in their EEZ.",
+  "ai_modifiers": {
+    "maritime_collision_risk": 1.5,
+    "alliance_reliance": 1.2,
+    "coast_guard_aggression": 1.4
+  }
+}
