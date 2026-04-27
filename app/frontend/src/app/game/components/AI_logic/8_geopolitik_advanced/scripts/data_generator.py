@@ -1,12 +1,17 @@
 import os
 import re
 
+import os
+import re
+import json
+
 # Paths
 BASE_DATA_DIR = r"c:\fhm\em\app\frontend\src\app\pilih_negara\data"
 PROFILES_DIR = os.path.join(BASE_DATA_DIR, "semua_fitur_negara", "0_profiles")
 ORGS_DIR = os.path.join(BASE_DATA_DIR, "database_organisasi_internasional")
 HUBUNGAN_DIR = os.path.join(BASE_DATA_DIR, "database_hubungan_antar_negara")
 OUTPUT_DIR = r"c:\fhm\em\app\frontend\src\app\game\components\AI_logic\8_geopolitik_advanced\data\python"
+JSON_OUTPUT_PATH = r"c:\fhm\em\app\frontend\src\app\game\components\2_navigasi_menu\2_navigasi_bawah\5_geopolitik\1_PBB\1_pemungutan_suara\logika_pemungutan_suara\geopolitical_data.json"
 
 def parse_ts_file(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
@@ -15,9 +20,9 @@ def parse_ts_file(filepath):
 def extract_profile_data(content, filename):
     # Basic regex to extract key-value pairs from TS objects
     data = {}
-    name_match = re.search(r'name_id:\s*"([^"]+)"', content)
-    ideology_match = re.search(r'ideology:\s*"([^"]+)"', content)
-    religion_match = re.search(r'religion:\s*"([^"]+)"', content)
+    name_match = re.search(r'["\']?name_id["\']?:\s*"([^"]+)"', content)
+    ideology_match = re.search(r'["\']?ideology["\']?:\s*"([^"]+)"', content)
+    religion_match = re.search(r'["\']?religion["\']?:\s*"([^"]+)"', content)
     
     # ID from filename (e.g., 67_indonesia -> 67)
     id_match = re.match(r'(\d+)_', filename)
@@ -54,11 +59,12 @@ def extract_org_members():
     return orgs
 
 def extract_relations(content):
-    # Extract relation matrix entries: { id: 1, relation: 70 }
+    # Extract relation matrix entries: { id: 1, name: "...", relation: 70 }
     rels = []
-    matches = re.findall(r'\{\s*id:\s*(\d+),\s*relation:\s*(\d+)\s*\}', content)
+    # Capture name and relation
+    matches = re.findall(r'name:\s*"([^"]+)",\s*relation:\s*(\d+)', content)
     for m in matches:
-        rels.append({'id': int(m[0]), 'relation': int(m[1])})
+        rels.append({'name': m[0].lower(), 'relation': int(m[1])})
     return rels
 
 def sync():
@@ -87,18 +93,22 @@ def sync():
     for i in range(num_countries): 
         matrix[i * num_countries + i] = 100 # Self-relation
     
-    # Map ID to index
+    # Map ID and Name to index
     id_to_idx = {c['id']: i for i, c in enumerate(countries)}
+    name_to_idx = {c['name'].lower(): i for i, c in enumerate(countries) if 'name' in c}
     
     for country in countries:
+        if 'filename' not in country: continue
         rel_path = os.path.join(HUBUNGAN_DIR, country['continent'], country['filename'] + ".ts")
         if os.path.exists(rel_path):
             content = parse_ts_file(rel_path)
             rels = extract_relations(content)
             for r in rels:
-                if r['id'] in id_to_idx:
-                    target_idx = id_to_idx[r['id']]
-                    matrix[id_to_idx[country['id']] * num_countries + target_idx] = r['relation']
+                target_name = r['name']
+                if target_name in name_to_idx:
+                    target_idx = name_to_idx[target_name]
+                    source_idx = id_to_idx[country['id']]
+                    matrix[source_idx * num_countries + target_idx] = r['relation']
 
     print("Syncing trade and embassies...")
     trade_registry_path = os.path.join(BASE_DATA_DIR, "database_mitra_perdagangan", "agreementsRegistry.ts")
@@ -129,7 +139,18 @@ def sync():
         f.write(f"TRADE_PARTNERS = {repr(trade_agreements)}\n")
         f.write(f"EMBASSIES = {repr(embassies)}\n")
 
+    # Generate JSON for Frontend
+    frontend_data = {
+        "countries": {c.get('name', f"ID_{c['id']}"): {"id": c['id'], "continent": c['continent']} for c in countries},
+        "relations": matrix,
+        "organizations": orgs,
+        "num_countries": num_countries
+    }
+    with open(JSON_OUTPUT_PATH, 'w', encoding='utf-8') as f:
+        json.dump(frontend_data, f)
+
     print(f"Sync Complete. {num_countries} countries, {len(orgs)} organizations, and extra metadata updated.")
+    print(f"JSON data generated for frontend at {JSON_OUTPUT_PATH}")
 
 if __name__ == "__main__":
     sync()

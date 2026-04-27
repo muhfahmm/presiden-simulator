@@ -9,6 +9,7 @@ def apply_logic(negara_a, negara_b, relasi_saat_ini, orgs=None, is_rival=False, 
     
     # Hanya terjadi berdasarkan probabilitas yang ditentukan (35%)
     if is_rival and random.random() < PROBABILITAS_AKSI_PBB:
+        print(f"[LOG PBB] Sanksi PBB terpicu antara {negara_a['name']} dan {negara_b['name']}")
         perubahan -= 7 # Penalti sanksi PBB otomatis untuk negara yang berkonflik
             
         # Dukungan blok aliansi terhadap sanksi

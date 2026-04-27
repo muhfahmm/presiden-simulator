@@ -9,6 +9,7 @@ def apply_logic(negara_a, negara_b, relasi_saat_ini, orgs=None, is_rival=False, 
     
     # Embargo hanya terjadi jika ada status konflik yang aktif dan probabilitas terpenuhi
     if is_rival and random.random() < PROBABILITAS_AKSI_PBB:
+        print(f"[LOG PBB] Embargo Ekonomi terpicu antara {negara_a['name']} dan {negara_b['name']}")
         perubahan -= 10 # Penalti embargo dasar
             
         # Jika salah satu negara sangat bergantung pada ekonomi (economic_focus tinggi)

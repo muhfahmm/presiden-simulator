@@ -13,6 +13,15 @@ class VoterLogic:
         Logic for deciding a vote: Setuju, Tolak, or Abstain.
         resolution: { "id": 1, "theme": "Military", "proposer": "Player", "description": "..." }
         """
+        # 0. Check for Special Resolution Logic (e.g. Larangan Perang)
+        try:
+            from larangan_perang import apply_larangan_perang_logic
+            special_vote = apply_larangan_perang_logic(self.country, resolution)
+            if special_vote:
+                return special_vote
+        except Exception as e:
+            pass # Fallback to standard logic if special fails
+            
         score = 0
         
         # 1. Alignment with proposer

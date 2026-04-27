@@ -85,7 +85,7 @@ export const unVotingStorage = {
   startVoting: (voting: Omit<ActiveVoting, "id" | "progress" | "finalResults">, userCountry: string) => {
     const state = unVotingStorage.getData();
     const { simulateUNVote } = require("./votingLogic");
-    const results = simulateUNVote(voting.targetCountry, userCountry, voting.category);
+    const results = simulateUNVote(voting.targetCountry, userCountry, voting.category, userCountry, voting.name);
     
     const newVoting: ActiveVoting = {
       ...voting,
@@ -118,7 +118,7 @@ export const unVotingStorage = {
     // Ambil data negara pemain untuk simulasi
     const userCountry = (typeof window !== 'undefined' ? localStorage.getItem('selectedCountry') : "") || "";
 
-    const results = simulateUNVote(voting.targetCountry, userCountry, voting.category);
+    const results = simulateUNVote(voting.targetCountry, userCountry, voting.category, voting.proposer, voting.name);
     
     const newVoting: ActiveVoting = {
       ...voting,
@@ -174,12 +174,33 @@ export const unVotingStorage = {
     
     const aiCountries = ["Amerika Serikat", "Rusia", "China", "Inggris", "Prancis", "Jepang", "Jerman", "India", "Brazil", "Australia", "Arab Saudi", "Turki", "Korea Selatan"];
     const randomCountry = aiCountries[Math.floor(Math.random() * aiCountries.length)];
-    const targets = ["Korea Utara", "Iran", "Suriah", "Israel", "Ukraina", "Taiwan", "Venezuela", "Sudan", "Myanmar", "Afghanistan", "Libya"];
-    const randomTarget = targets[Math.floor(Math.random() * targets.length)];
+    
+    // Filter target agar tidak menyerang sekutu sendiri (Rasionalitas Proposer)
+    const possibleTargets = ["Korea Utara", "Iran", "Suriah", "Israel", "Ukraina", "Taiwan", "Venezuela", "Sudan", "Myanmar", "Afghanistan", "Libya", "Rusia", "China", "Amerika Serikat"];
     
     // Penentuan Judul Resolusi berdasarkan Kategori yang ada di Card UI
     const resolutionCategories = ["Rancangan Resolusi", "Sanksi", "Embargo"];
     const randomCategory = resolutionCategories[Math.floor(Math.random() * resolutionCategories.length)];
+
+    // Logika Pemilihan Target yang Rasional
+    const { getRelation } = require("./votingLogic");
+    const targets = possibleTargets.filter(t => {
+      if (t === randomCountry) return false;
+      if (randomCategory === "Rancangan Resolusi") return true; // Resolusi damai bisa ke siapa saja
+      
+      // Jika Sanksi/Embargo, hanya ke negara dengan relasi buruk (< 45)
+      try {
+        const rel = getRelation(randomCountry, t);
+        return rel < 45;
+      } catch(e) {
+        return true; 
+      }
+    });
+
+    // Jika tidak ada target yang cocok (misal semua teman), batalkan usulan bulan ini
+    if (targets.length === 0) return;
+
+    let randomTarget = targets[Math.floor(Math.random() * targets.length)];
     
     let randomName = "";
     if (randomCategory === "Rancangan Resolusi") {
