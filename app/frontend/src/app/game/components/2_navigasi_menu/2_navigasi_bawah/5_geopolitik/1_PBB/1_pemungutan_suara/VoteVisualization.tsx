@@ -37,39 +37,73 @@ export function VoteVisualization({ userCountry, isUNSCMember, selectedItem, onC
 
   const isPassed = votes.yes >= REQUIRED_VOTES;
 
+  const isWarBanActive = unVotingStorage.isWarBanActive();
+  const isCurrentItemWarBan = selectedItem?.name.toUpperCase().includes("LARANGAN PERANG");
+  const isWarBanBlocked = isCurrentItemWarBan && isWarBanActive;
+
   useEffect(() => {
     if (step === 'result' && selectedItem) {
       const isSanctionOrEmbargo = selectedItem.category.includes("Sanksi") || selectedItem.category.includes("Embargo");
       
-        if (isPassed) {
-          // Logika jika DITERIMA
-          unVotingStorage.addHistoryItem({
-            category: selectedItem.category,
-            name: selectedItem.name,
-            description: selectedItem.description,
-            effect: selectedItem.effect,
-            status: 'DITERIMA',
-            durationLabel: selectedDuration.replace('_', ' ').toUpperCase()
-          });
+          // Hitung End Date berdasarkan durasi yang dipilih
+          const startDateStr = timeStorage.getState().gameDate.toISOString();
+          const startDate = new Date(startDateStr);
+          const endDate = new Date(startDate);
+          
+          if (selectedDuration === '6_bulan') endDate.setMonth(endDate.getMonth() + 6);
+          else if (selectedDuration === '9_bulan') endDate.setMonth(endDate.getMonth() + 9);
+          else if (selectedDuration === '1_tahun') endDate.setFullYear(endDate.getFullYear() + 1);
+          else if (selectedDuration === '3_tahun') endDate.setFullYear(endDate.getFullYear() + 3);
+          else if (selectedDuration === '2_tahun') endDate.setFullYear(endDate.getFullYear() + 2);
+          else if (selectedDuration === '5_tahun') endDate.setFullYear(endDate.getFullYear() + 5);
 
-          if (isSanctionOrEmbargo && selectedItem.targetCountry) {
-            terapkanPenaltiDiterima(selectedItem.targetCountry, userCountry);
-          }
-        } else {
-          // Logika jika DITOLAK
-          unVotingStorage.addHistoryItem({
-            category: selectedItem.category,
-            name: selectedItem.name,
-            description: selectedItem.description,
-            effect: selectedItem.effect,
-            status: 'DITOLAK',
-            durationLabel: selectedDuration.replace('_', ' ').toUpperCase()
-          });
+          const endDateStr = endDate.toISOString();
 
-          if (isSanctionOrEmbargo && selectedItem.targetCountry) {
-            terapkanPenaltiDitolak(selectedItem.targetCountry, userCountry);
+          if (isPassed) {
+            // Logika jika DITERIMA
+            unVotingStorage.addHistoryItem({
+              category: selectedItem.category,
+              name: selectedItem.name,
+              description: selectedItem.description,
+              effect: selectedItem.effect,
+              status: 'DITERIMA',
+              durationLabel: selectedDuration.replace('_', ' ').toUpperCase(),
+              targetCountry: selectedItem.targetCountry,
+              startDate: startDateStr,
+              endDate: endDateStr
+            });
+
+            if (isSanctionOrEmbargo && selectedItem.targetCountry) {
+              terapkanPenaltiDiterima(selectedItem.targetCountry, userCountry);
+              
+              // Tambahkan berita keuangan (Finance News)
+              const { newsStorage } = require("@/app/game/components/sidemenu/1_berita/newsStorage");
+              newsStorage.addNews({
+                source: "Sekretariat PBB",
+                subject: `PEMBERLAKUAN ${selectedItem.name.toUpperCase()}`,
+                content: `Resolusi PBB telah disetujui. Pemberlakuan ${selectedItem.name.toLowerCase()} terhadap ${selectedItem.targetCountry} mulai berlaku hari ini selama ${selectedDuration.replace('_', ' ')}. ${selectedItem.effect}`,
+                priority: 'high',
+                category: 'finance'
+              });
+            }
+          } else {
+            // Logika jika DITOLAK
+            unVotingStorage.addHistoryItem({
+              category: selectedItem.category,
+              name: selectedItem.name,
+              description: selectedItem.description,
+              effect: selectedItem.effect,
+              status: 'DITOLAK',
+              durationLabel: selectedDuration.replace('_', ' ').toUpperCase(),
+              targetCountry: selectedItem.targetCountry,
+              startDate: startDateStr,
+              endDate: endDateStr
+            });
+
+            if (isSanctionOrEmbargo && selectedItem.targetCountry) {
+              terapkanPenaltiDitolak(selectedItem.targetCountry, userCountry);
+            }
           }
-        }
     }
   }, [step, isPassed, selectedItem, userCountry]);
 
@@ -201,14 +235,14 @@ export function VoteVisualization({ userCountry, isUNSCMember, selectedItem, onC
               </button>
               <button 
                 onClick={startVoting}
-                disabled={!canPropose || (selectedItem.category !== "Rancangan Resolusi" && !selectedItem.targetCountry)}
+                disabled={!canPropose || (selectedItem.category !== "Rancangan Resolusi" && !selectedItem.targetCountry) || isWarBanBlocked}
                 className={`px-8 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all ${
-                  canPropose && (selectedItem.category === "Rancangan Resolusi" || selectedItem.targetCountry)
+                  canPropose && (selectedItem.category === "Rancangan Resolusi" || selectedItem.targetCountry) && !isWarBanBlocked
                     ? "bg-cyan-600 text-white shadow-lg shadow-cyan-500/20 hover:scale-105 active:scale-95 cursor-pointer"
                     : "bg-zinc-800/50 text-zinc-600 border border-zinc-800 cursor-not-allowed"
                 }`}
               >
-                {canPropose ? "Ajukan Resolusi Ke PBB" : "Izin Ditolak"}
+                {isWarBanBlocked ? "Sudah Ada Resolusi Aktif" : canPropose ? "Ajukan Resolusi Ke PBB" : "Izin Ditolak"}
               </button>
             </div>
           </div>
@@ -216,6 +250,11 @@ export function VoteVisualization({ userCountry, isUNSCMember, selectedItem, onC
           {!canPropose && (
             <p className="text-[9px] text-rose-500/60 font-bold uppercase text-right italic">
               {permission.reason}
+            </p>
+          )}
+          {isWarBanBlocked && (
+            <p className="text-[9px] text-amber-500/80 font-bold uppercase text-right italic mt-1">
+              Resolusi Larangan Perang sedang berjalan atau sudah diberlakukan secara global.
             </p>
           )}
         </div>

@@ -11,6 +11,8 @@ export interface VotingHistoryItem {
   durationLabel?: string;
   targetCountry?: string;
   status: 'DITERIMA' | 'DITOLAK';
+  startDate?: string;
+  endDate?: string;
   results?: {
     yes: number;
     no: number;
@@ -178,9 +180,22 @@ export const unVotingStorage = {
     // Filter target agar tidak menyerang sekutu sendiri (Rasionalitas Proposer)
     const possibleTargets = ["Korea Utara", "Iran", "Suriah", "Israel", "Ukraina", "Taiwan", "Venezuela", "Sudan", "Myanmar", "Afghanistan", "Libya", "Rusia", "China", "Amerika Serikat"];
     
-    // Penentuan Judul Resolusi berdasarkan Kategori yang ada di Card UI
-    const resolutionCategories = ["Rancangan Resolusi", "Sanksi", "Embargo"];
-    const randomCategory = resolutionCategories[Math.floor(Math.random() * resolutionCategories.length)];
+    // Penentuan Judul Resolusi berdasarkan Kategori yang ada di Card UI (Weighted Probability)
+    const rand = Math.random();
+    let randomCategory = "";
+    if (rand < 0.30) {
+      randomCategory = "Rancangan Resolusi";
+    } else if (rand < 0.65) {
+      randomCategory = "Sanksi";
+    } else {
+      randomCategory = "Embargo";
+    }
+    
+    // CEK: Jika kategori adalah Rancangan Resolusi (Larangan Perang), cek apakah sudah ada yang aktif
+    if (randomCategory === "Rancangan Resolusi" && unVotingStorage.isWarBanActive()) {
+      console.log("[PBB AI] Larangan Perang sudah aktif atau sedang disidangkan. Batalkan usulan AI.");
+      return;
+    }
 
     // Logika Pemilihan Target yang Rasional
     const { getRelation } = require("./votingLogic");
@@ -219,7 +234,7 @@ export const unVotingStorage = {
     }
 
     // Penentuan Durasi Efek (Berapa lama sanksi/embargo berlaku jika lolos)
-    const durations = ["6 Bulan", "1 Tahun", "2 Tahun", "5 Tahun"];
+    const durations = ["6 Bulan", "9 Bulan", "1 Tahun", "3 Tahun"];
     const randomEffectDuration = durations[Math.floor(Math.random() * durations.length)];
 
     const isGlobalResolution = randomName === "LARANGAN PERANG";
@@ -277,6 +292,30 @@ export const unVotingStorage = {
       ...state,
       activeVotings: state.activeVotings.filter(v => v.id !== id)
     });
+  },
+
+  isWarBanActive: (): boolean => {
+    if (typeof window === 'undefined') return false;
+    const state = unVotingStorage.getData();
+    
+    // Import timeStorage secara dinamis
+    const { timeStorage } = require("@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage");
+    const now = timeStorage.getState().gameDate.getTime();
+
+    // 1. Cek apakah sedang ada pemungutan suara aktif untuk Larangan Perang
+    const hasActiveVote = state.activeVotings.some(v => v.name === "LARANGAN PERANG");
+    if (hasActiveVote) return true;
+
+    // 2. Cek apakah ada di histori yang statusnya DITERIMA dan tanggalnya masih berlaku
+    const hasActiveHistory = state.votingHistory.some(h => {
+      if (h.name !== "LARANGAN PERANG" || h.status !== 'DITERIMA') return false;
+      if (!h.startDate || !h.endDate) return false;
+      const start = new Date(h.startDate).getTime();
+      const end = new Date(h.endDate).getTime();
+      return now >= start && now <= end;
+    });
+
+    return hasActiveHistory;
   },
 
   clear: () => {

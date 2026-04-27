@@ -54,6 +54,20 @@ export const initVotingTimer = (userCountry: string) => {
         const REQUIRED_VOTES = 138;
         const isPassed = finalYes >= REQUIRED_VOTES;
 
+        // Hitung End Date berdasarkan durasi yang dipilih
+        const startDateStr = now.toISOString();
+        const effectEndDate = new Date(now);
+        const durationLabel = (vote.resolutionDuration || "6 BULAN").toUpperCase();
+
+        if (durationLabel.includes("6 BULAN")) effectEndDate.setMonth(effectEndDate.getMonth() + 6);
+        else if (durationLabel.includes("9 BULAN")) effectEndDate.setMonth(effectEndDate.getMonth() + 9);
+        else if (durationLabel.includes("1 TAHUN")) effectEndDate.setFullYear(effectEndDate.getFullYear() + 1);
+        else if (durationLabel.includes("2 TAHUN")) effectEndDate.setFullYear(effectEndDate.getFullYear() + 2);
+        else if (durationLabel.includes("3 TAHUN")) effectEndDate.setFullYear(effectEndDate.getFullYear() + 3);
+        else if (durationLabel.includes("5 TAHUN")) effectEndDate.setFullYear(effectEndDate.getFullYear() + 5);
+
+        const effectEndDateStr = effectEndDate.toISOString();
+
         // Tambahkan ke Histori via storage method
         unVotingStorage.addHistoryItem({
           category: vote.category,
@@ -63,6 +77,8 @@ export const initVotingTimer = (userCountry: string) => {
           durationLabel: vote.durationLabel,
           targetCountry: vote.targetCountry,
           status: isPassed ? 'DITERIMA' : 'DITOLAK',
+          startDate: startDateStr,
+          endDate: effectEndDateStr,
           results: {
             yes: finalYes,
             no: finalNo,
@@ -90,9 +106,6 @@ export const initVotingTimer = (userCountry: string) => {
             } else {
               terapkanPenaltiDitolak(vote.targetCountry, userCountry);
             }
-          } else {
-            // User ABSTAIN atau TIDAK MEMILIH sama sekali
-            console.log(`[PBB AI] User abstain/tidak memilih pada resolusi ${vote.proposer}. Tidak ada dampak hubungan.`);
           }
         } else {
           // User yang mengusulkan
@@ -103,9 +116,13 @@ export const initVotingTimer = (userCountry: string) => {
           }
         }
 
+        const isSanctionOrEmbargo = vote.category.includes("Sanksi") || vote.category.includes("Embargo");
+
         const loadNews = async () => {
           try {
             const { newsStorage } = await import("@/app/game/components/sidemenu/1_berita/newsStorage");
+            
+            // 1. Notifikasi Diplomasi (General)
             newsStorage.addNews({
               source: "Sekretariat PBB",
               subject: `HASIL SIDANG: ${vote.name.toUpperCase()}`,
@@ -114,6 +131,18 @@ export const initVotingTimer = (userCountry: string) => {
               category: 'diplomacy',
               time: currentDate.toLocaleDateString('id-ID')
             });
+
+            // 2. Notifikasi Keuangan (Jika Passed & Sanksi/Embargo)
+            if (isPassed && isSanctionOrEmbargo) {
+              newsStorage.addNews({
+                source: "Departemen Ekonomi PBB",
+                subject: `IMPLEMENTASI ${vote.name.toUpperCase()}`,
+                content: `Pemberlakuan ${vote.name.toLowerCase()} terhadap ${vote.targetCountry} resmi dimulai hari ini. Sesuai resolusi, pembatasan akan berlaku selama ${vote.durationLabel}. ${vote.effect}`,
+                priority: 'high',
+                category: 'finance',
+                time: currentDate.toLocaleDateString('id-ID')
+              });
+            }
           } catch (e) {}
         };
         loadNews();
