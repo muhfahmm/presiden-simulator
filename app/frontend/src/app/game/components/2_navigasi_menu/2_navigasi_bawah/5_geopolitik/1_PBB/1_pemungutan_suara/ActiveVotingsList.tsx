@@ -211,7 +211,7 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                       const { unVotingStorage } = require("./logika_pemungutan_suara/unVotingStorage");
                       unVotingStorage.castUserVote(vote.id, 'SETUJU');
                     }}
-                    className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border ${
+                    className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border cursor-pointer ${
                       vote.userVote === 'SETUJU' 
                       ? "bg-emerald-500 border-emerald-400 text-white shadow-lg shadow-emerald-500/20 scale-105" 
                       : "bg-emerald-500/5 border-emerald-500/10 text-emerald-500 hover:bg-emerald-500/10"
@@ -224,7 +224,7 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                       const { unVotingStorage } = require("./logika_pemungutan_suara/unVotingStorage");
                       unVotingStorage.castUserVote(vote.id, 'TOLAK');
                     }}
-                    className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border ${
+                    className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border cursor-pointer ${
                       vote.userVote === 'TOLAK' 
                       ? "bg-rose-500 border-rose-400 text-white shadow-lg shadow-rose-500/20 scale-105" 
                       : "bg-rose-500/5 border-rose-500/10 text-rose-500 hover:bg-rose-500/10"
@@ -237,7 +237,7 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                       const { unVotingStorage } = require("./logika_pemungutan_suara/unVotingStorage");
                       unVotingStorage.castUserVote(vote.id, 'ABSTAIN');
                     }}
-                    className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border ${
+                    className={`py-2 rounded-xl text-[9px] font-black uppercase transition-all border cursor-pointer ${
                       vote.userVote === 'ABSTAIN' 
                       ? "bg-zinc-700 border-zinc-600 text-white shadow-lg shadow-zinc-500/20 scale-105" 
                       : "bg-zinc-500/5 border-zinc-500/10 text-zinc-400 hover:bg-zinc-500/10"
