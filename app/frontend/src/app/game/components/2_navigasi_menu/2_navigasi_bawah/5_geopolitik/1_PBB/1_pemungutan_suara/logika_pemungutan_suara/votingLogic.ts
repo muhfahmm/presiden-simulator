@@ -126,6 +126,40 @@ export const simulateUNVote = (
         return;
       }
     }
+
+    // --- KHUSUS IZIN INTERVENSI MILITER ---
+    if (resolutionName.toUpperCase().includes("INTERVENSI MILITER")) {
+        const relWithTarget = targetCountry ? getRelation(countryName, targetCountry) : 50;
+        const relWithProposer = getRelation(countryName, proposer);
+        
+        // PBB sangat enggan mengizinkan perang. Skor dasar adalah negatif besar.
+        let interventionScore = -40; 
+        
+        // Bonus jika target sangat dibenci (Rogue State)
+        if (relWithTarget < 30) interventionScore += 30;
+        if (relWithTarget < 20) interventionScore += 20;
+        
+        // Bonus jika pengusul adalah teman dekat
+        if (relWithProposer > 70) interventionScore += 20;
+        
+        // Penalti jika target adalah teman
+        if (relWithTarget > 60) interventionScore -= 50;
+
+        // Randomness
+        interventionScore += (Math.random() * 20 - 10);
+
+        if (interventionScore > 10) {
+            supporters.push(countryName);
+            weightedYes += voteWeight;
+        } else if (interventionScore < -10) {
+            opponents.push(countryName);
+            weightedNo += voteWeight;
+        } else {
+            abstainers.push(countryName);
+            weightedAbstain += voteWeight;
+        }
+        return;
+    }
     
     // Hubungan dengan Pengusul (Jika suka pengusul -> cenderung setuju)
     const relWithProposer = getRelation(countryName, proposer);

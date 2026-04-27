@@ -60,9 +60,12 @@ export default function PemungutanSuaraTab({ currentData, onSwitchTab }: Pemungu
       return;
     }
 
-    // Deteksi apakah kategori membutuhkan target negara (Sanksi atau Embargo)
+    // Deteksi apakah kategori membutuhkan target negara (Sanksi, Embargo, atau Izin Intervensi)
     const categoryLower = item.category.toLowerCase();
-    const isTargetNeeded = categoryLower.includes("sanksi") || categoryLower.includes("embargo");
+    const nameLower = item.name.toLowerCase();
+    const isTargetNeeded = categoryLower.includes("sanksi") || 
+                          categoryLower.includes("embargo") || 
+                          nameLower.includes("intervensi militer");
 
     if (isTargetNeeded) {
       // Set langsung tanpa memunculkan modal di awal

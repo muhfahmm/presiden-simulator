@@ -33,6 +33,11 @@ export const rancanganResolusiMenu: ResolutionMenu = {
       description: "Kesepakatan kolektif antar negara anggota PBB untuk menghentikan seluruh agresi militer aktif.",
       effect: "Membekukan menu Serang Negara. Jika dilanggar, Diplomatic Standing anjlok -50 poin dan otomatis memicu Sanksi Ekonomi."
     },
+    { 
+      name: "Izin Intervensi Militer", 
+      description: "Permohonan mandat resmi PBB untuk melakukan operasi militer terbatas terhadap negara target.",
+      effect: "Memberikan izin serangan tanpa memicu sanksi otomatis dari PBB. Namun, hubungan dengan sekutu target akan tetap anjlok drastis."
+    },
   ]
 };
 
