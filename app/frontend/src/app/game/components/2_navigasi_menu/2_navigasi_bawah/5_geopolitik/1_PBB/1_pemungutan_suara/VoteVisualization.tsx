@@ -204,7 +204,7 @@ export function VoteVisualization({ userCountry, isUNSCMember, selectedItem, onC
                 <p className="text-sm text-zinc-300 leading-relaxed font-medium">{selectedItem.description}</p>
               )}
             </div>
-            <div className={`grid ${selectedItem.category.includes("Sanksi") || selectedItem.category.includes("Embargo") || selectedItem.name.toUpperCase() === "LARANGAN PERANG" ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"} gap-6`}>
+            <div className={`grid ${selectedItem.category.includes("Sanksi") || selectedItem.category.includes("Embargo") || selectedItem.name.toUpperCase().includes("LARANGAN PERANG") || selectedItem.name.toUpperCase().includes("INTERVENSI MILITER") ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"} gap-6`}>
               <div className="p-5 rounded-2xl bg-zinc-950/50 border border-zinc-800/50 space-y-3">
                 <span className="text-[10px] font-black text-rose-400 uppercase tracking-widest flex items-center gap-2">
                   <div className="h-1 w-3 bg-rose-500 rounded-full" />
@@ -213,7 +213,7 @@ export function VoteVisualization({ userCountry, isUNSCMember, selectedItem, onC
                 <p className="text-xs text-zinc-400 leading-relaxed italic font-medium">{selectedItem.effect}</p>
               </div>
 
-              {(selectedItem.category.includes("Sanksi") || selectedItem.category.includes("Embargo") || selectedItem.name.toUpperCase() === "LARANGAN PERANG") && (
+              {(selectedItem.category.includes("Sanksi") || selectedItem.category.includes("Embargo") || selectedItem.name.toUpperCase().includes("LARANGAN PERANG") || selectedItem.name.toUpperCase().includes("INTERVENSI MILITER")) && (
                 <div className="p-5 rounded-2xl bg-zinc-950/50 border border-zinc-800/50">
                   <DurationPicker 
                     selectedDuration={selectedDuration}
