@@ -24,6 +24,7 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
   const [selectedCountryName, setSelectedCountryName] = useState<string | null>(null);
   const [isBribing, setIsBribing] = useState<string | null>(null);
   const [confirmBribe, setConfirmBribe] = useState<any | null>(null);
+  const [confirmBribeAll, setConfirmBribeAll] = useState<any | null>(null);
   const [bribeError, setBribeError] = useState<string | null>(null);
 
   const activeVotingData = (votingId && !isHistory) ? unVotingStorage.getData().activeVotings.find(v => v.id === votingId) : null;
@@ -115,6 +116,67 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
     }, 1500);
   };
 
+  const handleBribeAll = () => {
+    if (!votingId || !activeVotingData?.userVote) return;
+    
+    const userVote = activeVotingData.userVote;
+    const targetVoteType = userVote === 'SETUJU' ? 'supporters' : 'opponents';
+    
+    // Only bribe those who don't already match the user's vote
+    if (type === targetVoteType) return;
+
+    let totalCost = 0;
+    const bribeList: any[] = [];
+
+    countryList.forEach(name => {
+      const country = allCountriesData.find(c => c.name_id === name || c.name_en === name);
+      if (!country) return;
+
+      const unVote = country.geopolitik?.un_vote || 1;
+      const relation = getRelation(country.name_id, localStorage.getItem('selected_country') || "Indonesia");
+      
+      const baseCost = unVote * 1000;
+      let difficultyMultiplier = 1.2; 
+      if (type === 'supporters' || type === 'opponents') difficultyMultiplier = 2.0;
+
+      const cost = baseCost * difficultyMultiplier * ((120 - relation) / 60);
+      totalCost += cost;
+      bribeList.push({ country, cost });
+    });
+
+    if (bribeList.length === 0) return;
+
+    const currentBudget = budgetStorage.getBudget();
+    if (currentBudget < totalCost) {
+      setBribeError(`Anggaran tidak cukup! Dibutuhkan $${totalCost.toLocaleString()} untuk meyakinkan seluruh kelompok ini agar memilih ${userVote}.`);
+      return;
+    }
+
+    setConfirmBribeAll({ bribeList, totalCost, userVote, targetVoteType });
+  };
+
+  const executeBribeAll = () => {
+    if (!confirmBribeAll || !votingId) return;
+    const { bribeList, totalCost, targetVoteType } = confirmBribeAll;
+    
+    setIsBribing("ALL");
+    const listToProcess = Array.isArray(bribeList) ? [...bribeList] : [];
+    setConfirmBribeAll(null);
+    
+    setTimeout(() => {
+      if (listToProcess.length > 0) {
+        budgetStorage.updateBudget(-totalCost);
+        listToProcess.forEach(item => {
+          if (item && item.country) {
+            unVotingStorage.bribeToChoice(votingId, item.country.name_id, targetVoteType);
+          }
+        });
+      }
+      setIsBribing(null);
+      onClose();
+    }, 2000);
+  };
+
   return (
     <div className="fixed inset-0 bg-black/80 z-[1000] flex items-center justify-center p-6 backdrop-blur-md animate-in fade-in duration-300">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-2xl h-[70vh] flex flex-col overflow-hidden shadow-2xl animate-in zoom-in-95 duration-500">
@@ -130,9 +192,21 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
               <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Total: {countryList.length} Negara</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-zinc-900 rounded-xl transition-colors cursor-pointer">
-            <CloseIcon className="h-6 w-6 text-zinc-500" />
-          </button>
+          <div className="flex items-center gap-4">
+            {votingId && activeVotingData?.userVote && type !== (activeVotingData.userVote === 'SETUJU' ? 'supporters' : 'opponents') && countryList.length > 0 && (
+               <button 
+                 onClick={handleBribeAll}
+                 disabled={isBribing !== null}
+                 className="px-4 py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-500 hover:bg-cyan-500 hover:text-white transition-all flex items-center gap-2 group cursor-pointer"
+               >
+                 <DollarSign className="h-3 w-3 group-hover:scale-110 transition-transform" />
+                 <span className="text-[9px] font-black uppercase tracking-widest">Lobi Semua</span>
+               </button>
+            )}
+            <button onClick={onClose} className="p-2 hover:bg-zinc-900 rounded-xl transition-colors cursor-pointer">
+              <CloseIcon className="h-6 w-6 text-zinc-500" />
+            </button>
+          </div>
         </div>
 
         {/* List */}
@@ -254,6 +328,40 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
                   className="py-2.5 rounded-xl bg-cyan-600 text-white text-[9px] font-black uppercase hover:bg-cyan-500 shadow-lg shadow-cyan-900/20 transition-all cursor-pointer"
                 >
                   Setujui
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Confirmation Bribe All Overlay */}
+      {confirmBribeAll && (
+        <div className="absolute inset-0 z-[1100] flex items-center justify-center p-8 backdrop-blur-sm bg-black/40 animate-in fade-in duration-200">
+          <div className="bg-zinc-900 border border-cyan-500/30 rounded-3xl p-6 w-full max-w-xs shadow-2xl animate-in zoom-in-95 duration-300">
+            <div className="flex flex-col items-center text-center gap-4">
+              <div className="p-3 rounded-2xl bg-cyan-500/10 border border-cyan-500/20">
+                <Globe className="h-6 w-6 text-cyan-400" />
+              </div>
+              <div>
+                <h4 className="text-sm font-black text-white uppercase tracking-tight">Lobi Kelompok Massa</h4>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase mt-1">{confirmBribeAll.bribeList.length} Negara Sekaligus</p>
+              </div>
+              <p className="text-[11px] text-zinc-300 leading-relaxed">
+                Anda akan meluncurkan paket bantuan ekonomi senilai <span className="text-emerald-400 font-bold">${confirmBribeAll.totalCost.toLocaleString()}</span> untuk meyakinkan seluruh kelompok ini agar memilih <span className="text-cyan-400 font-bold">{confirmBribeAll.userVote}</span>.
+              </p>
+              <div className="grid grid-cols-2 gap-3 w-full mt-2">
+                <button 
+                  onClick={() => setConfirmBribeAll(null)}
+                  className="py-2.5 rounded-xl bg-zinc-800 text-zinc-400 text-[9px] font-black uppercase hover:bg-zinc-700 transition-colors cursor-pointer"
+                >
+                  Batal
+                </button>
+                <button 
+                  onClick={executeBribeAll}
+                  className="py-2.5 rounded-xl bg-cyan-600 text-white text-[9px] font-black uppercase hover:bg-cyan-500 shadow-lg shadow-cyan-900/20 transition-all cursor-pointer"
+                >
+                  Eksekusi
                 </button>
               </div>
             </div>
