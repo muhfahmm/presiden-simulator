@@ -25,6 +25,16 @@ export interface VoteResult {
   };
 }
 
+// Utility for randomness in voting order
+const shuffleArray = (array: string[]) => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
+
 export const getRelation = (voterName: string, otherName: string): number => {
   const voter = geoData.countries[voterName];
   const other = geoData.countries[otherName];
@@ -137,8 +147,20 @@ export const simulateUNVote = (
         if (embassyStatus === 'completed') score += 30;
     }
 
+    // Bonus Solidaritas Negara Kecil (Jika Negara Kecil berani melawan Superpower)
+    const proposerData = countriesData.find(c => c.name_id === proposer);
+    const targetData = targetCountry ? countriesData.find(c => c.name_id === targetCountry) : null;
+    const isSmallProposer = proposerData && (proposerData.geopolitik?.un_vote || 0) < 50;
+    const isSuperpowerTarget = targetData && (targetData.geopolitik?.un_vote || 0) >= 150;
+    
+    if (isSmallProposer && isSuperpowerTarget && voteWeight < 50) {
+        score += 25; // Bonus solidaritas tinggi
+    }
+
     // Tambahan Noise agar hasil tidak kaku
-    score += (Math.random() * 30 - 15);
+    // Negara kecil (un_vote rendah) memiliki noise lebih tinggi (lebih tidak terduga)
+    const noiseFactor = voteWeight < 10 ? 50 : 30;
+    score += (Math.random() * noiseFactor - (noiseFactor / 2));
 
     // --- LOGIKA MENGHINDARI ADU DOMBA (Abstain 40%) ---
     // Jika negara berteman dengan keduanya (Skor Hubungan > 60), ada peluang 40% untuk Abstain
@@ -175,9 +197,9 @@ export const simulateUNVote = (
     weightedNo,
     weightedAbstain,
     details: {
-      supporters,
-      opponents,
-      abstainers
+      supporters: shuffleArray(supporters),
+      opponents: shuffleArray(opponents),
+      abstainers: shuffleArray(abstainers)
     }
   };
 };

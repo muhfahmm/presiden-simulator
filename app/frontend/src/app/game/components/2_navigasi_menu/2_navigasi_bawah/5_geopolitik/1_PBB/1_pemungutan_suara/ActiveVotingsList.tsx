@@ -15,7 +15,6 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
   const [detailModal, setDetailModal] = useState<{
     type: 'supporters' | 'opponents' | 'abstainers';
     votingId: string;
-    list: string[];
   } | null>(null);
 
   const getCountryCode = (emoji: string) => {
@@ -111,7 +110,7 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
               {/* LIVE VOTING COUNTS (BUTTONS) */}
               <div className="grid grid-cols-3 gap-2 mb-4">
                 <button 
-                  onClick={() => setDetailModal({ type: 'supporters', votingId: vote.id, list: liveSupporters })}
+                  onClick={() => setDetailModal({ type: 'supporters', votingId: vote.id })}
                   className="p-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center hover:bg-emerald-500/10 transition-colors cursor-pointer group/stat"
                 >
                   <div className="flex items-center justify-center gap-1 mb-0.5">
@@ -121,7 +120,7 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                   <p className="text-base font-black text-white">{liveYes} <span className="text-zinc-500">({liveWeightedYes})</span></p>
                 </button>
                 <button 
-                  onClick={() => setDetailModal({ type: 'opponents', votingId: vote.id, list: liveOpponents })}
+                  onClick={() => setDetailModal({ type: 'opponents', votingId: vote.id })}
                   className="p-2 rounded-xl bg-rose-500/5 border border-rose-500/10 text-center hover:bg-rose-500/10 transition-colors cursor-pointer group/stat"
                 >
                   <div className="flex items-center justify-center gap-1 mb-0.5">
@@ -131,7 +130,7 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                   <p className="text-base font-black text-white">{liveNo} <span className="text-zinc-500">({liveWeightedNo})</span></p>
                 </button>
                 <button 
-                  onClick={() => setDetailModal({ type: 'abstainers', votingId: vote.id, list: liveAbstainers })}
+                  onClick={() => setDetailModal({ type: 'abstainers', votingId: vote.id })}
                   className="p-2 rounded-xl bg-zinc-500/5 border border-zinc-500/10 text-center hover:bg-zinc-500/10 transition-colors cursor-pointer group/stat"
                 >
                   <div className="flex items-center justify-center gap-1 mb-0.5">
@@ -252,16 +251,44 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
         })}
       </div>
 
-      {detailModal && (
-        <VotingMemberDetailsModal 
-          type={detailModal.type}
-          votingId={detailModal.votingId}
-          proposer={votings.find(v => v.id === detailModal.votingId)?.proposer}
-          targetCountry={votings.find(v => v.id === detailModal.votingId)?.targetCountry}
-          countryList={detailModal.list}
-          onClose={() => setDetailModal(null)}
-        />
-      )}
+      {detailModal && (() => {
+        const vote = votings.find(v => v.id === detailModal.votingId);
+        if (!vote) return null;
+
+        const progress = vote.progress / 100;
+        const aiYes = Math.floor((vote.finalResults?.yes || 0) * progress);
+        const aiNo = Math.floor((vote.finalResults?.no || 0) * progress);
+        const aiAbstain = Math.floor((vote.finalResults?.abstain || 0) * progress);
+
+        let currentList: string[] = [];
+        if (detailModal.type === 'supporters') {
+          currentList = [
+            ...(vote.finalResults?.details?.supporters.slice(0, aiYes) || []),
+            ...(vote.userVote === 'SETUJU' ? [(typeof window !== 'undefined' ? localStorage.getItem('selectedCountry') : "") || "Indonesia"] : [])
+          ];
+        } else if (detailModal.type === 'opponents') {
+          currentList = [
+            ...(vote.finalResults?.details?.opponents.slice(0, aiNo) || []),
+            ...(vote.userVote === 'TOLAK' ? [(typeof window !== 'undefined' ? localStorage.getItem('selectedCountry') : "") || "Indonesia"] : [])
+          ];
+        } else {
+          currentList = [
+            ...(vote.finalResults?.details?.abstainers.slice(0, aiAbstain) || []),
+            ...(vote.userVote === 'ABSTAIN' ? [(typeof window !== 'undefined' ? localStorage.getItem('selectedCountry') : "") || "Indonesia"] : [])
+          ];
+        }
+
+        return (
+          <VotingMemberDetailsModal 
+            type={detailModal.type}
+            votingId={detailModal.votingId}
+            proposer={vote.proposer}
+            targetCountry={vote.targetCountry}
+            countryList={currentList}
+            onClose={() => setDetailModal(null)}
+          />
+        );
+      })()}
     </div>
   );
 }

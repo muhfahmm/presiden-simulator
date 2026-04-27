@@ -182,11 +182,41 @@ export const unVotingStorage = {
 
     console.log(`[PBB AI] Memicu resolusi otomatis pada tanggal: ${dayKey}`);
     
-    const aiCountries = ["Amerika Serikat", "Rusia", "China", "Inggris", "Prancis", "Jepang", "Jerman", "India", "Brazil", "Australia", "Arab Saudi", "Turki", "Korea Selatan"];
-    const randomCountry = aiCountries[Math.floor(Math.random() * aiCountries.length)];
+    const { countries: allCountriesData } = require("@/app/pilih_negara/data/negara/benua/index");
+    const userCountry = localStorage.getItem('selected_country') || "Indonesia";
     
-    // Filter target agar tidak menyerang sekutu sendiri (Rasionalitas Proposer)
-    const possibleTargets = ["Korea Utara", "Iran", "Suriah", "Israel", "Ukraina", "Taiwan", "Venezuela", "Sudan", "Myanmar", "Afghanistan", "Libya", "Rusia", "China", "Amerika Serikat"];
+    // Filter out user and non-member entities
+    const availableProposers = (allCountriesData || []).filter((c: any) => c.name_id !== userCountry);
+    if (availableProposers.length === 0) return;
+
+    const proposerObj = availableProposers[Math.floor(Math.random() * availableProposers.length)];
+    const randomCountry = proposerObj.name_id;
+    const proposerWeight = proposerObj.geopolitik?.un_vote || 1;
+    const isSmallProposer = proposerWeight < 50; // Definisi negara kecil
+
+    // Logika Pemilihan Target yang Rasional & Distribusi Negara Kecil
+    const { getRelation } = require("./votingLogic");
+    
+    // Klasifikasi Target
+    const allPossibleTargets = (allCountriesData || []).filter((c: any) => c.name_id !== randomCountry && c.name_id !== userCountry);
+    const largeTargets = allPossibleTargets.filter((c: any) => (c.geopolitik?.un_vote || 0) >= 50);
+    const smallTargets = allPossibleTargets.filter((c: any) => (c.geopolitik?.un_vote || 0) < 50);
+
+    let randomTarget = "";
+    
+    if (isSmallProposer) {
+        // Jika negara kecil yang mengusulkan: 65% ke sesama negara kecil, 35% ke negara besar
+        if (Math.random() < 0.65 && smallTargets.length > 0) {
+            randomTarget = smallTargets[Math.floor(Math.random() * smallTargets.length)].name_id;
+        } else if (largeTargets.length > 0) {
+            randomTarget = largeTargets[Math.floor(Math.random() * largeTargets.length)].name_id;
+        } else {
+            randomTarget = allPossibleTargets[Math.floor(Math.random() * allPossibleTargets.length)].name_id;
+        }
+    } else {
+        // Jika negara besar: Target acak dari daftar global (Bisa ditambahkan logika rivalitas nanti)
+        randomTarget = allPossibleTargets[Math.floor(Math.random() * allPossibleTargets.length)].name_id;
+    }
     
     // Penentuan Judul Resolusi berdasarkan Kategori yang ada di Card UI (Weighted Probability)
     const rand = Math.random();
@@ -205,25 +235,16 @@ export const unVotingStorage = {
       return;
     }
 
-    // Logika Pemilihan Target yang Rasional
-    const { getRelation } = require("./votingLogic");
-    const targets = possibleTargets.filter(t => {
-      if (t === randomCountry) return false;
-      if (randomCategory === "Rancangan Resolusi") return true; // Resolusi damai bisa ke siapa saja
-      
-      // Jika Sanksi/Embargo, hanya ke negara dengan relasi buruk (< 45)
+    // Validasi Hubungan (Opsional: Batalkan jika Proposer berteman baik dengan Target untuk Sanksi/Embargo)
+    if (randomCategory !== "Rancangan Resolusi") {
       try {
-        const rel = getRelation(randomCountry, t);
-        return rel < 45;
-      } catch(e) {
-        return true; 
-      }
-    });
-
-    // Jika tidak ada target yang cocok (misal semua teman), batalkan usulan bulan ini
-    if (targets.length === 0) return;
-
-    let randomTarget = targets[Math.floor(Math.random() * targets.length)];
+        const rel = getRelation(randomCountry, randomTarget);
+        if (rel > 60) {
+          console.log(`[PBB AI] ${randomCountry} berteman dengan ${randomTarget} (${rel}). Membatalkan sanksi.`);
+          return;
+        }
+      } catch(e) {}
+    }
     
     let randomName = "";
     if (randomCategory === "Rancangan Resolusi") {
@@ -247,13 +268,25 @@ export const unVotingStorage = {
 
     const isGlobalResolution = randomName === "LARANGAN PERANG";
     const actualTarget = isGlobalResolution ? "" : randomTarget;
+    
+    // Deteksi keberanian: Negara Kecil vs Superpower
+    const targetObj = allPossibleTargets.find((c: any) => c.name_id === randomTarget);
+    const isSuperpowerTarget = targetObj && (targetObj.geopolitik?.un_vote || 0) >= 150;
+    const isBraveMove = isSmallProposer && isSuperpowerTarget;
+
+    let description = "";
+    if (isGlobalResolution) {
+        description = `Resolusi ini diajukan oleh ${randomCountry} sebagai inisiatif perdamaian global untuk melarang segala bentuk konflik bersenjata dan menjaga stabilitas internasional.`;
+    } else if (isBraveMove) {
+        description = `Dalam langkah diplomatik yang sangat berani, ${randomCountry} mengajukan resolusi konfrontatif terhadap kekuatan adidaya ${randomTarget}. Resolusi ini membahas ${randomName.toLowerCase()} yang dianggap sebagai tantangan terhadap dominasi global demi kedaulatan negara-negara kecil.`;
+    } else {
+        description = `Resolusi ini diajukan oleh ${randomCountry} untuk membahas isu mendesak di ${randomTarget}. Fokus utama adalah ${randomName.toLowerCase()} dengan durasi usulan selama ${randomEffectDuration} demi stabilitas internasional.`;
+    }
 
     unVotingStorage.proposeAiResolution({
       category: randomCategory,
       name: randomName,
-      description: isGlobalResolution 
-        ? `Resolusi ini diajukan oleh ${randomCountry} sebagai inisiatif perdamaian global untuk melarang segala bentuk konflik bersenjata dan menjaga stabilitas internasional.`
-        : `Resolusi ini diajukan oleh ${randomCountry} untuk membahas isu mendesak di ${randomTarget}. Fokus utama adalah ${randomName.toLowerCase()} dengan durasi usulan selama ${randomEffectDuration} demi stabilitas internasional.`,
+      description: description,
       effect: isGlobalResolution
         ? `Penghentian dan larangan segala bentuk aktivitas militer agresif secara global.`
         : `Penerapan ${randomName.toLowerCase()} selama ${randomEffectDuration} terhadap wilayah target.`,
