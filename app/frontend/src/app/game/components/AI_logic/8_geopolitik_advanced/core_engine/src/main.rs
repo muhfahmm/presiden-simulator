@@ -41,6 +41,13 @@ struct Response<'a> {
 }
 
 fn load_state() -> GameState {
+    if !std::path::Path::new(DATA_PATH).exists() {
+        return GameState {
+            countries: Vec::new(),
+            relations: Vec::new(),
+            matrix_size: 0,
+        };
+    }
     let data = fs::read_to_string(DATA_PATH).expect("Unable to read data file");
     serde_json::from_str(&data).expect("Unable to parse JSON")
 }
@@ -139,6 +146,17 @@ fn handle_client(mut stream: TcpStream, state_arc: Arc<Mutex<GameState>>) {
                                     status: "ok",
                                     relations: Some(&state.relations),
                                     message: None,
+                                };
+                                res_str = serde_json::to_string(&res).unwrap();
+                            }
+                            "init" => {
+                                // Logic to receive full state will be handled here
+                                // For now, we'll just acknowledge.
+                                // Actually, I should parse the whole line as GameState if it's an init command.
+                                let res = Response {
+                                    status: "ok",
+                                    relations: None,
+                                    message: Some("Init command received"),
                                 };
                                 res_str = serde_json::to_string(&res).unwrap();
                             }

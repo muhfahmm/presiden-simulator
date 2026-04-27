@@ -1,15 +1,23 @@
 
 "use client"
 
-import { Clock, Globe, Loader2 } from "lucide-react";
+import { Clock, Globe, Loader2, ChevronRight } from "lucide-react";
 import { ActiveVoting } from "./logika_pemungutan_suara/unVotingStorage";
 import { countries } from "@/app/pilih_negara/data/negara/benua/index";
+import { useState } from "react";
+import { VotingMemberDetailsModal } from "./VotingMemberDetailsModal";
 
 interface ActiveVotingsListProps {
   votings: ActiveVoting[];
 }
 
 export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
+  const [detailModal, setDetailModal] = useState<{
+    type: 'supporters' | 'opponents' | 'abstainers';
+    votingId: string;
+    list: string[];
+  } | null>(null);
+
   const getCountryCode = (emoji: string) => {
     const chars = [...emoji];
     if (chars.length < 2) return "";
@@ -30,16 +38,35 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
           const userCountryData = countries.find(c => c.name_id === userCountryRaw || c.name_en === userCountryRaw);
           const userVoteWeight = userCountryData?.geopolitik?.un_vote || 1;
 
-          const liveYes = Math.floor((vote.finalResults?.yes || 0) * progress) + (vote.userVote === 'SETUJU' ? 1 : 0);
-          const liveNo = Math.floor((vote.finalResults?.no || 0) * progress) + (vote.userVote === 'TOLAK' ? 1 : 0);
-          const liveAbstain = Math.floor((vote.finalResults?.abstain || 0) * progress) + (vote.userVote === 'ABSTAIN' ? 1 : 0);
+          const aiYes = Math.floor((vote.finalResults?.yes || 0) * progress);
+          const aiNo = Math.floor((vote.finalResults?.no || 0) * progress);
+          const aiAbstain = Math.floor((vote.finalResults?.abstain || 0) * progress);
+
+          const liveYes = aiYes + (vote.userVote === 'SETUJU' ? 1 : 0);
+          const liveNo = aiNo + (vote.userVote === 'TOLAK' ? 1 : 0);
+          const liveAbstain = aiAbstain + (vote.userVote === 'ABSTAIN' ? 1 : 0);
           
-          const liveWeightedYes = Math.floor((vote.finalResults?.weightedYes || 0) * progress) + (vote.userVote === 'SETUJU' ? userVoteWeight : 0);
-          const liveWeightedNo = Math.floor((vote.finalResults?.weightedNo || 0) * progress) + (vote.userVote === 'TOLAK' ? userVoteWeight : 0);
-          const liveWeightedAbstain = Math.floor((vote.finalResults?.weightedAbstain || 0) * progress) + (vote.userVote === 'ABSTAIN' ? userVoteWeight : 0);
+          // Ensure weighted stats match the count status
+          const liveWeightedYes = (aiYes > 0 ? Math.floor((vote.finalResults?.weightedYes || 0) * progress) : 0) + (vote.userVote === 'SETUJU' ? userVoteWeight : 0);
+          const liveWeightedNo = (aiNo > 0 ? Math.floor((vote.finalResults?.weightedNo || 0) * progress) : 0) + (vote.userVote === 'TOLAK' ? userVoteWeight : 0);
+          const liveWeightedAbstain = (aiAbstain > 0 ? Math.floor((vote.finalResults?.weightedAbstain || 0) * progress) : 0) + (vote.userVote === 'ABSTAIN' ? userVoteWeight : 0);
+
+          // Prepare Voter Lists (Live)
+          const liveSupporters = [
+            ...(vote.finalResults?.details?.supporters.slice(0, aiYes) || []),
+            ...(vote.userVote === 'SETUJU' ? [userCountryRaw] : [])
+          ];
+          const liveOpponents = [
+            ...(vote.finalResults?.details?.opponents.slice(0, aiNo) || []),
+            ...(vote.userVote === 'TOLAK' ? [userCountryRaw] : [])
+          ];
+          const liveAbstainers = [
+            ...(vote.finalResults?.details?.abstainers.slice(0, aiAbstain) || []),
+            ...(vote.userVote === 'ABSTAIN' ? [userCountryRaw] : [])
+          ];
 
           // Calculate Totals
-          const totalCountriesInApp = countries.length; // Should be 207
+          const totalCountriesInApp = countries.length; 
           const totalWeightInApp = countries.reduce((acc, c) => acc + (c.geopolitik?.un_vote || 1), 0);
           
           const totalVoted = liveYes + liveNo + liveAbstain;
@@ -81,20 +108,38 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                 </div>
               </div>
 
-              {/* LIVE VOTING COUNTS */}
+              {/* LIVE VOTING COUNTS (BUTTONS) */}
               <div className="grid grid-cols-3 gap-2 mb-4">
-                <div className="p-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center">
-                  <p className="text-[7px] font-black text-emerald-500 uppercase tracking-tighter mb-0.5">Setuju</p>
+                <button 
+                  onClick={() => setDetailModal({ type: 'supporters', votingId: vote.id, list: liveSupporters })}
+                  className="p-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center hover:bg-emerald-500/10 transition-colors cursor-pointer group/stat"
+                >
+                  <div className="flex items-center justify-center gap-1 mb-0.5">
+                    <p className="text-[7px] font-black text-emerald-500 uppercase tracking-tighter">Setuju</p>
+                    <ChevronRight className="h-2 w-2 text-emerald-500/50 group-hover/stat:translate-x-0.5 transition-transform" />
+                  </div>
                   <p className="text-base font-black text-white">{liveYes} <span className="text-zinc-500">({liveWeightedYes})</span></p>
-                </div>
-                <div className="p-2 rounded-xl bg-rose-500/5 border border-rose-500/10 text-center">
-                  <p className="text-[7px] font-black text-rose-500 uppercase tracking-tighter mb-0.5">Tolak</p>
+                </button>
+                <button 
+                  onClick={() => setDetailModal({ type: 'opponents', votingId: vote.id, list: liveOpponents })}
+                  className="p-2 rounded-xl bg-rose-500/5 border border-rose-500/10 text-center hover:bg-rose-500/10 transition-colors cursor-pointer group/stat"
+                >
+                  <div className="flex items-center justify-center gap-1 mb-0.5">
+                    <p className="text-[7px] font-black text-rose-500 uppercase tracking-tighter">Tolak</p>
+                    <ChevronRight className="h-2 w-2 text-rose-500/50 group-hover/stat:translate-x-0.5 transition-transform" />
+                  </div>
                   <p className="text-base font-black text-white">{liveNo} <span className="text-zinc-500">({liveWeightedNo})</span></p>
-                </div>
-                <div className="p-2 rounded-xl bg-zinc-500/5 border border-zinc-500/10 text-center">
-                  <p className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter mb-0.5">Abstain</p>
+                </button>
+                <button 
+                  onClick={() => setDetailModal({ type: 'abstainers', votingId: vote.id, list: liveAbstainers })}
+                  className="p-2 rounded-xl bg-zinc-500/5 border border-zinc-500/10 text-center hover:bg-zinc-500/10 transition-colors cursor-pointer group/stat"
+                >
+                  <div className="flex items-center justify-center gap-1 mb-0.5">
+                    <p className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter">Abstain</p>
+                    <ChevronRight className="h-2 w-2 text-zinc-500/50 group-hover/stat:translate-x-0.5 transition-transform" />
+                  </div>
                   <p className="text-base font-black text-white">{liveAbstain} <span className="text-zinc-500">({liveWeightedAbstain})</span></p>
-                </div>
+                </button>
               </div>
 
               <div className="grid grid-cols-3 gap-4 py-4 border-t border-white/5">
@@ -206,6 +251,15 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
           );
         })}
       </div>
+
+      {detailModal && (
+        <VotingMemberDetailsModal 
+          type={detailModal.type}
+          targetCountry={votings.find(v => v.id === detailModal.votingId)?.targetCountry}
+          countryList={detailModal.list}
+          onClose={() => setDetailModal(null)}
+        />
+      )}
     </div>
   );
 }

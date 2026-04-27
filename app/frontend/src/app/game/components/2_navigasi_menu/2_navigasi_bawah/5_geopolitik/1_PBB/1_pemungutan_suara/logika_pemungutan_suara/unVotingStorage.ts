@@ -42,6 +42,11 @@ export interface ActiveVoting {
     weightedYes?: number;
     weightedNo?: number;
     weightedAbstain?: number;
+    details?: {
+      supporters: string[];
+      opponents: string[];
+      abstainers: string[];
+    };
   };
 }
 
@@ -94,7 +99,8 @@ export const unVotingStorage = {
         abstain: results.abstain,
         weightedYes: results.weightedYes,
         weightedNo: results.weightedNo,
-        weightedAbstain: results.weightedAbstain
+        weightedAbstain: results.weightedAbstain,
+        details: results.details
       }
     };
     
@@ -125,7 +131,8 @@ export const unVotingStorage = {
         abstain: results.abstain,
         weightedYes: results.weightedYes,
         weightedNo: results.weightedNo,
-        weightedAbstain: results.weightedAbstain
+        weightedAbstain: results.weightedAbstain,
+        details: results.details
       }
     };
     
