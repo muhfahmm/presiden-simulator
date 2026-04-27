@@ -8,6 +8,7 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara/index
 import { unVotingStorage } from "./logika_pemungutan_suara/unVotingStorage";
 import { getRelation } from "./logika_pemungutan_suara/votingLogic";
 import { getVotingReason } from "./logika_pemungutan_suara/votingReasons";
+import { AlertCircle, AlertTriangle } from "lucide-react";
 
 interface VotingMemberDetailsModalProps {
   type: 'supporters' | 'opponents' | 'abstainers';
@@ -22,6 +23,8 @@ interface VotingMemberDetailsModalProps {
 export function VotingMemberDetailsModal({ type, countryList, targetCountry, proposer = "Pemain", votingId, isHistory, onClose }: VotingMemberDetailsModalProps) {
   const [selectedCountryName, setSelectedCountryName] = useState<string | null>(null);
   const [isBribing, setIsBribing] = useState<string | null>(null);
+  const [confirmBribe, setConfirmBribe] = useState<any | null>(null);
+  const [bribeError, setBribeError] = useState<string | null>(null);
 
   const activeVotingData = (votingId && !isHistory) ? unVotingStorage.getData().activeVotings.find(v => v.id === votingId) : null;
   const historyVotingData = (votingId && isHistory) ? unVotingStorage.getData().votingHistory.find(h => h.id === votingId) : null; 
@@ -89,20 +92,27 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
 
     const currentBudget = budgetStorage.getBudget();
     if (currentBudget < cost) {
-      alert(`Anggaran tidak cukup! Dibutuhkan $${cost.toLocaleString()} untuk meyakinkan ${country.name_id} agar memilih ${userVote}.`);
+      setBribeError(`Anggaran tidak cukup! Dibutuhkan $${cost.toLocaleString()} untuk meyakinkan ${country.name_id} agar memilih ${userVote}.`);
       return;
     }
 
-    if (confirm(`Lobi ${country.name_id} agar memilih ${userVote}? \nBiaya: $${cost.toLocaleString()}`)) {
-      setIsBribing(country.name_id);
-      
-      setTimeout(() => {
-        budgetStorage.updateBudget(currentBudget - cost);
-        unVotingStorage.bribeToChoice(votingId, country.name_id, targetVoteType);
-        setIsBribing(null);
-        setSelectedCountryName(null);
-      }, 1500);
-    }
+    setConfirmBribe({ country, cost, userVote, targetVoteType });
+  };
+
+  const executeBribe = () => {
+    if (!confirmBribe || !votingId) return;
+    const { country, cost, targetVoteType } = confirmBribe;
+    
+    setIsBribing(country.name_id);
+    setConfirmBribe(null);
+    
+    setTimeout(() => {
+      const currentBudget = budgetStorage.getBudget();
+      budgetStorage.updateBudget(-cost);
+      unVotingStorage.bribeToChoice(votingId, country.name_id, targetVoteType);
+      setIsBribing(null);
+      setSelectedCountryName(null);
+    }, 1500);
   };
 
   return (
@@ -216,6 +226,66 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
            </p>
         </div>
       </div>
+
+      {/* Confirmation Overlay */}
+      {confirmBribe && (
+        <div className="absolute inset-0 z-[1100] flex items-center justify-center p-8 backdrop-blur-sm bg-black/40 animate-in fade-in duration-200">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 w-full max-w-xs shadow-2xl animate-in zoom-in-95 duration-300">
+            <div className="flex flex-col items-center text-center gap-4">
+              <div className="p-3 rounded-2xl bg-cyan-500/10 border border-cyan-500/20">
+                <DollarSign className="h-6 w-6 text-cyan-400" />
+              </div>
+              <div>
+                <h4 className="text-sm font-black text-white uppercase tracking-tight">Konfirmasi Lobi</h4>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase mt-1">Negara: {confirmBribe.country.name_id}</p>
+              </div>
+              <p className="text-[11px] text-zinc-300 leading-relaxed">
+                Anda akan mengeluarkan dana sebesar <span className="text-emerald-400 font-bold">${confirmBribe.cost.toLocaleString()}</span> untuk meyakinkan negara ini agar memilih <span className="text-cyan-400 font-bold">{confirmBribe.userVote}</span>.
+              </p>
+              <div className="grid grid-cols-2 gap-3 w-full mt-2">
+                <button 
+                  onClick={() => setConfirmBribe(null)}
+                  className="py-2.5 rounded-xl bg-zinc-800 text-zinc-400 text-[9px] font-black uppercase hover:bg-zinc-700 transition-colors"
+                >
+                  Batal
+                </button>
+                <button 
+                  onClick={executeBribe}
+                  className="py-2.5 rounded-xl bg-cyan-600 text-white text-[9px] font-black uppercase hover:bg-cyan-500 shadow-lg shadow-cyan-900/20 transition-all"
+                >
+                  Setujui
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Error Overlay */}
+      {bribeError && (
+        <div className="absolute inset-0 z-[1100] flex items-center justify-center p-8 backdrop-blur-sm bg-black/40 animate-in fade-in duration-200">
+          <div className="bg-zinc-950 border border-rose-500/30 rounded-3xl p-6 w-full max-w-xs shadow-2xl animate-in shake duration-500">
+            <div className="flex flex-col items-center text-center gap-4">
+              <div className="p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20">
+                <AlertCircle className="h-6 w-6 text-rose-500" />
+              </div>
+              <div>
+                <h4 className="text-sm font-black text-rose-500 uppercase tracking-tight">Anggaran Terbatas</h4>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase mt-1">Transaksi Gagal</p>
+              </div>
+              <p className="text-[11px] text-zinc-300 leading-relaxed">
+                {bribeError}
+              </p>
+              <button 
+                onClick={() => setBribeError(null)}
+                className="w-full py-2.5 rounded-xl bg-zinc-800 text-white text-[9px] font-black uppercase hover:bg-zinc-700 transition-colors mt-2"
+              >
+                Mengerti
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
