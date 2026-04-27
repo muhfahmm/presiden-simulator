@@ -245,13 +245,13 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
               <div className="grid grid-cols-2 gap-3 w-full mt-2">
                 <button 
                   onClick={() => setConfirmBribe(null)}
-                  className="py-2.5 rounded-xl bg-zinc-800 text-zinc-400 text-[9px] font-black uppercase hover:bg-zinc-700 transition-colors"
+                  className="py-2.5 rounded-xl bg-zinc-800 text-zinc-400 text-[9px] font-black uppercase hover:bg-zinc-700 transition-colors cursor-pointer"
                 >
                   Batal
                 </button>
                 <button 
                   onClick={executeBribe}
-                  className="py-2.5 rounded-xl bg-cyan-600 text-white text-[9px] font-black uppercase hover:bg-cyan-500 shadow-lg shadow-cyan-900/20 transition-all"
+                  className="py-2.5 rounded-xl bg-cyan-600 text-white text-[9px] font-black uppercase hover:bg-cyan-500 shadow-lg shadow-cyan-900/20 transition-all cursor-pointer"
                 >
                   Setujui
                 </button>
@@ -278,7 +278,7 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
               </p>
               <button 
                 onClick={() => setBribeError(null)}
-                className="w-full py-2.5 rounded-xl bg-zinc-800 text-white text-[9px] font-black uppercase hover:bg-zinc-700 transition-colors mt-2"
+                className="w-full py-2.5 rounded-xl bg-zinc-800 text-white text-[9px] font-black uppercase hover:bg-zinc-700 transition-colors mt-2 cursor-pointer"
               >
                 Mengerti
               </button>
