@@ -140,6 +140,19 @@ export const simulateUNVote = (
     // Tambahan Noise agar hasil tidak kaku
     score += (Math.random() * 30 - 15);
 
+    // --- LOGIKA MENGHINDARI ADU DOMBA (Abstain 40%) ---
+    // Jika negara berteman dengan keduanya (Skor Hubungan > 60), ada peluang 40% untuk Abstain
+    if (relWithProposer > 60 && targetCountry) {
+        const relWithTarget = getRelation(countryName, targetCountry);
+        if (relWithTarget > 60) {
+            if (Math.random() < 0.40) {
+                abstainers.push(countryName);
+                weightedAbstain += voteWeight;
+                return;
+            }
+        }
+    }
+
     // Penentuan Suara berdasarkan Score
     if (score > 15) {
       supporters.push(countryName);
