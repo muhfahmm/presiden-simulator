@@ -174,18 +174,28 @@ export function VoteVisualization({ userCountry, isUNSCMember, selectedItem, onC
                 )}
               </div>
               
-              {!selectedItem.targetCountry && selectedItem.category !== "Rancangan Resolusi" ? (
-                <div className="p-6 rounded-2xl bg-rose-500/5 border border-rose-500/20 flex flex-col items-center gap-4 text-center">
-                  <div className="p-3 bg-rose-500/10 rounded-full">
-                    <Globe className="h-6 w-6 text-rose-500" />
+              {(!selectedItem.targetCountry && (selectedItem.category !== "Rancangan Resolusi" || selectedItem.name.toUpperCase().includes("INTERVENSI MILITER"))) ? (
+                <div className="p-10 rounded-[32px] bg-rose-500/[0.03] border border-rose-500/20 flex flex-col items-center gap-6 text-center relative overflow-hidden group">
+                  {/* Inner Glow */}
+                  <div className="absolute inset-0 bg-rose-500/[0.02] group-hover:bg-rose-500/[0.04] transition-colors duration-500" />
+                  
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-rose-500/20 blur-xl rounded-full" />
+                    <div className="relative p-4 bg-rose-500/10 rounded-full border border-rose-500/20">
+                      <Globe className="h-8 w-8 text-rose-500" />
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-xs font-bold text-white uppercase tracking-tight">Negara Target Belum Dipilih</p>
-                    <p className="text-[10px] text-zinc-500 mt-1 uppercase tracking-widest">Silakan pilih negara target untuk melanjutkan resolusi ini.</p>
+                  
+                  <div className="relative space-y-2">
+                    <h4 className="text-sm font-black text-white uppercase tracking-[0.2em]">Negara Target Belum Dipilih</h4>
+                    <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest max-w-[280px] leading-relaxed">
+                      Silakan pilih negara target untuk melanjutkan resolusi ini.
+                    </p>
                   </div>
+                  
                   <button 
                     onClick={() => onEditTarget?.()}
-                    className="px-6 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-[9px] font-black uppercase tracking-widest transition-all cursor-pointer shadow-lg shadow-rose-500/20"
+                    className="relative px-10 py-3 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer shadow-[0_0_30px_rgba(225,29,72,0.3)] hover:shadow-[0_0_40px_rgba(225,29,72,0.4)] active:scale-95"
                   >
                     Pilih Negara Sekarang
                   </button>
