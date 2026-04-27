@@ -410,6 +410,7 @@ export function VoteVisualization({ userCountry, isUNSCMember, selectedItem, onC
         <VotingMemberDetailsModal 
           type={detailModal}
           targetCountry={selectedItem?.targetCountry}
+          proposer={userCountry}
           countryList={
             detailModal === 'supporters' ? voteDetails.supporters :
             detailModal === 'opponents' ? voteDetails.opponents :

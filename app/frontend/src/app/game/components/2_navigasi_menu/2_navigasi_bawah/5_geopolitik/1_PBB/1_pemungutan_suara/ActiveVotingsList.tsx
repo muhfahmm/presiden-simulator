@@ -255,6 +255,8 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
       {detailModal && (
         <VotingMemberDetailsModal 
           type={detailModal.type}
+          votingId={detailModal.votingId}
+          proposer={votings.find(v => v.id === detailModal.votingId)?.proposer}
           targetCountry={votings.find(v => v.id === detailModal.votingId)?.targetCountry}
           countryList={detailModal.list}
           onClose={() => setDetailModal(null)}

@@ -19,6 +19,9 @@ export const initVotingTimer = (userCountry: string) => {
 
     // Cek apakah perlu memicu resolusi AI bulanan
     unVotingStorage.checkMonthlyAiResolution(new Date(currentDate));
+    
+    // Proses lobi/suap AI (Jika ada voting aktif yang hampir kalah)
+    unVotingStorage.processAiBribery();
 
     let currentState = unVotingStorage.getData();
     const activeVotings = currentState.activeVotings;

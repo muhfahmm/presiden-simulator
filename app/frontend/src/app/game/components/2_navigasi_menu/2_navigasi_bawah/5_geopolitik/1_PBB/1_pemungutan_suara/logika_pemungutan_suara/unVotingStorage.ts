@@ -20,7 +20,13 @@ export interface VotingHistoryItem {
     weightedYes?: number;
     weightedNo?: number;
     weightedAbstain?: number;
+    details?: {
+      supporters: string[];
+      opponents: string[];
+      abstainers: string[];
+    };
   };
+  bribedCountries?: Record<string, string>; 
 }
 
 export interface ActiveVoting {
@@ -50,6 +56,8 @@ export interface ActiveVoting {
       abstainers: string[];
     };
   };
+  aiBribeAttempted?: boolean;
+  bribedCountries?: Record<string, string>;
 }
 
 export interface UNVotingState {
@@ -316,6 +324,83 @@ export const unVotingStorage = {
     });
 
     return hasActiveHistory;
+  },
+
+  bribeToChoice: (votingId: string, countryName: string, targetVote: 'supporters' | 'opponents', isAi: boolean = false) => {
+    const state = unVotingStorage.getData();
+    const voting = state.activeVotings.find(v => v.id === votingId);
+    if (!voting || !voting.finalResults || !voting.finalResults.details) return;
+
+    const details = voting.finalResults.details;
+    let found = false;
+
+    // Hapus dari daftar lama
+    if (details.supporters.includes(countryName)) {
+      details.supporters = details.supporters.filter(c => c !== countryName);
+      found = true;
+    }
+    if (details.opponents.includes(countryName)) {
+      details.opponents = details.opponents.filter(c => c !== countryName);
+      found = true;
+    }
+    if (details.abstainers.includes(countryName)) {
+      details.abstainers = details.abstainers.filter(c => c !== countryName);
+      found = true;
+    }
+
+    if (found) {
+      // Tambahkan ke daftar baru
+      if (targetVote === 'supporters') details.supporters.push(countryName);
+      else if (targetVote === 'opponents') details.opponents.push(countryName);
+      
+      // Update counts
+      voting.finalResults.yes = details.supporters.length;
+      voting.finalResults.no = details.opponents.length;
+      voting.finalResults.abstain = details.abstainers.length;
+
+      // Add reason
+      if (!voting.bribedCountries) voting.bribedCountries = {};
+      voting.bribedCountries[countryName] = isAi 
+        ? "Menerima tekanan diplomatik dan insentif dari blok pengusul."
+        : `Menerima paket lobi dari pihak pemain untuk memilih ${targetVote === 'supporters' ? 'SETUJU' : 'TOLAK'}.`;
+
+      unVotingStorage.saveData(state);
+      window.dispatchEvent(new CustomEvent("un_voting_updated"));
+    }
+  },
+
+  bribeCountry: (votingId: string, countryName: string, isAi: boolean = false) => {
+    // Legacy support for older calls, defaults to supporters
+    unVotingStorage.bribeToChoice(votingId, countryName, 'supporters', isAi);
+  },
+
+  processAiBribery: () => {
+    const state = unVotingStorage.getData();
+    const userCountry = localStorage.getItem('selected_country') || "";
+    let changed = false;
+
+    state.activeVotings.forEach(v => {
+      if (v.proposer !== userCountry && !v.aiBribeAttempted && (v.finalResults?.yes || 0) < 138) {
+        if (Math.random() < 0.35) {
+          const opponents = v.finalResults?.details?.opponents || [];
+          const abstainers = v.finalResults?.details?.abstainers || [];
+          const candidates = [...opponents, ...abstainers];
+
+          if (candidates.length > 0) {
+            const numToBribe = Math.min(candidates.length, Math.floor(Math.random() * 3) + 1);
+            for (let i = 0; i < numToBribe; i++) {
+              const target = candidates[Math.floor(Math.random() * candidates.length)];
+              unVotingStorage.bribeCountry(v.id, target, true);
+            }
+            v.aiBribeAttempted = true;
+            changed = true;
+            console.log(`[PBB AI] ${v.proposer} melakukan lobi/suap untuk resolusi ${v.name}`);
+          }
+        }
+      }
+    });
+
+    if (changed) unVotingStorage.saveData(state);
   },
 
   clear: () => {

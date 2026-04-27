@@ -40,7 +40,7 @@ export const getRelation = (voterName: string, otherName: string): number => {
   return geoData.relations[voterIdx * geoData.num_countries + otherIdx] || 50;
 };
 
-const areInSameOrg = (countryA: string, countryB: string): boolean => {
+export const areInSameOrg = (countryA: string, countryB: string): boolean => {
   for (const members of Object.values(geoData.organizations)) {
     if (members.includes(countryA.toLowerCase()) && members.includes(countryB.toLowerCase())) {
       return true;

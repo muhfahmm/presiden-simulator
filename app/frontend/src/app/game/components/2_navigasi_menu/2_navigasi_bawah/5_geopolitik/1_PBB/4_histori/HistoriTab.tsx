@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { History, Search, Filter, ShieldAlert, Ban, FileText, Calendar, Globe, ThumbsUp, ThumbsDown, Loader2, ChevronDown } from "lucide-react";
 import { unVotingStorage, VotingHistoryItem } from "../1_pemungutan_suara/logika_pemungutan_suara/unVotingStorage";
 import { countries } from "@/app/pilih_negara/data/negara/benua/index";
+import { VotingMemberDetailsModal } from "../1_pemungutan_suara/VotingMemberDetailsModal";
 
 export default function HistoriTab() {
   const getCountryCode = (emoji: string) => {
@@ -17,6 +18,7 @@ export default function HistoriTab() {
   const [filter, setFilter] = useState<string>("all");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [detailModal, setDetailModal] = useState<{ type: 'supporters' | 'opponents' | 'abstainers', res: VotingHistoryItem } | null>(null);
 
   const [debugCount, setDebugCount] = useState(0);
 
@@ -250,18 +252,36 @@ export default function HistoriTab() {
 
                     return (
                       <>
-                        <div className="p-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center">
-                          <p className="text-[7px] font-black text-emerald-400 uppercase tracking-tighter mb-0.5">Setuju</p>
-                          <p className="text-sm font-black text-white">{safeResults.yes} <span className="text-zinc-500">({safeResults.weightedYes || 0})</span></p>
-                        </div>
-                        <div className="p-2 rounded-xl bg-rose-500/5 border border-rose-500/10 text-center">
-                          <p className="text-[7px] font-black text-rose-400 uppercase tracking-tighter mb-0.5">Tolak</p>
-                          <p className="text-sm font-black text-white">{safeResults.no} <span className="text-zinc-500">({safeResults.weightedNo || 0})</span></p>
-                        </div>
-                        <div className="p-2 rounded-xl bg-zinc-500/5 border border-zinc-500/10 text-center">
-                          <p className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter mb-0.5">Abstain</p>
-                          <p className="text-sm font-black text-white">{safeResults.abstain} <span className="text-zinc-500">({safeResults.weightedAbstain || 0})</span></p>
-                        </div>
+                        <button 
+                          onClick={() => {
+                            const results = res.results || require("../1_pemungutan_suara/logika_pemungutan_suara/votingLogic").simulateUNVote(res.targetCountry || "Global", localStorage.getItem('selected_country') || "", res.category);
+                            setDetailModal({ type: 'supporters', res: { ...res, results } });
+                          }}
+                          className="p-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center hover:bg-emerald-500/10 transition-colors cursor-pointer group/btn"
+                        >
+                          <p className="text-[7px] font-black text-emerald-400 uppercase tracking-tighter mb-0.5 group-hover/btn:text-emerald-300">Setuju</p>
+                          <p className="text-sm font-black text-white">{res.results?.yes || 0} <span className="text-zinc-500">({res.results?.weightedYes || 0})</span></p>
+                        </button>
+                        <button 
+                          onClick={() => {
+                            const results = res.results || require("../1_pemungutan_suara/logika_pemungutan_suara/votingLogic").simulateUNVote(res.targetCountry || "Global", localStorage.getItem('selected_country') || "", res.category);
+                            setDetailModal({ type: 'opponents', res: { ...res, results } });
+                          }}
+                          className="p-2 rounded-xl bg-rose-500/5 border border-rose-500/10 text-center hover:bg-rose-500/10 transition-colors cursor-pointer group/btn"
+                        >
+                          <p className="text-[7px] font-black text-rose-400 uppercase tracking-tighter mb-0.5 group-hover/btn:text-rose-300">Tolak</p>
+                          <p className="text-sm font-black text-white">{res.results?.no || 0} <span className="text-zinc-500">({res.results?.weightedNo || 0})</span></p>
+                        </button>
+                        <button 
+                          onClick={() => {
+                            const results = res.results || require("../1_pemungutan_suara/logika_pemungutan_suara/votingLogic").simulateUNVote(res.targetCountry || "Global", localStorage.getItem('selected_country') || "", res.category);
+                            setDetailModal({ type: 'abstainers', res: { ...res, results } });
+                          }}
+                          className="p-2 rounded-xl bg-zinc-500/5 border border-zinc-500/10 text-center hover:bg-zinc-500/10 transition-all cursor-pointer group/btn"
+                        >
+                          <p className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter mb-0.5 group-hover/btn:text-zinc-300">Abstain</p>
+                          <p className="text-sm font-black text-white">{res.results?.abstain || 0} <span className="text-zinc-500">({res.results?.weightedAbstain || 0})</span></p>
+                        </button>
                       </>
                     );
                   })()}
@@ -304,6 +324,22 @@ export default function HistoriTab() {
           </div>
         )}
       </div>
+
+      {detailModal && (
+        <VotingMemberDetailsModal 
+          type={detailModal.type}
+          votingId={detailModal.res.id}
+          isHistory={true}
+          targetCountry={detailModal.res.targetCountry}
+          proposer={detailModal.res.name.includes("LARANGAN PERANG") ? "PBB" : "Negara Anggota"} // Simple fallback
+          countryList={
+            detailModal.type === 'supporters' ? detailModal.res.results?.details?.supporters || [] :
+            detailModal.type === 'opponents' ? detailModal.res.results?.details?.opponents || [] :
+            detailModal.res.results?.details?.abstainers || []
+          }
+          onClose={() => setDetailModal(null)}
+        />
+      )}
     </div>
   );
 }
