@@ -1115,6 +1115,7 @@ func createPlayerSnapshot() []byte {
 		Speed:      core.GlobalState.Speed,
 		DayCounter: core.GlobalState.DayCounter,
 		Player:     core.GlobalState.Player,
+		Relationships: core.GlobalState.Relationships,
 	}
 	data, _ := json.Marshal(payload)
 	return data
@@ -1134,6 +1135,7 @@ func createMajorUpdateSnapshot() []byte {
 		Inbox:      core.GlobalState.Inbox,
 		Player:     core.GlobalState.Player,
 		NpcBuildingLevels: core.GlobalState.NPCBuildingLevels,
+		Relationships: core.GlobalState.Relationships,
 	}
 	data, _ := json.Marshal(payload)
 	return data
