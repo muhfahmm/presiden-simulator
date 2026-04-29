@@ -1,25 +1,28 @@
 import random
 
-def hitung_biaya_suap(un_vote, relation_score, is_opponent=True):
+def hitung_biaya_suap(un_vote, relation_score, from_side='abstainers'):
     """
-    un_vote: Jumlah suara/pengaruh negara (misal: 188)
+    un_vote: Jumlah suara/pengaruh negara
     relation_score: Hubungan saat ini (0-100)
-    is_opponent: True jika negara 'Tolak', False jika 'Abstain'
+    from_side: 'supporters', 'opponents', atau 'abstainers' (posisi asal negara sebelum disuap)
     """
-    # Rumus Dasar: un_vote ditambahkan tiga nol (x1000)
+    # Rumus Dasar: un_vote x 1000
     base_cost = un_vote * 1000
     
-    # Faktor Penambah:
-    # 1. Jika Opponent (Tolak) -> Lebih mahal daripada Abstain
-    type_multiplier = 1.5 if is_opponent else 1.0
-    
-    # 2. Faktor Hubungan: Semakin buruk hubungan, semakin mahal
-    # (100 - 50) = 50 -> multiplier 1.0 (Netral)
-    # (100 - 20) = 80 -> multiplier 1.6 (Benci)
-    relation_multiplier = (100 - relation_score) / 50.0
+    # Pengali Kesulitan:
+    # Mengubah suara yang sudah ada (Setuju/Tolak) lebih sulit (2.0) 
+    # daripada meyakinkan yang Abstain (1.2)
+    difficulty_multiplier = 1.2
+    if from_side == 'supporters' or from_side == 'opponents':
+        difficulty_multiplier = 2.0
+        
+    # Pengali Hubungan: (120 - relation) / 60
+    # Hubungan 60 (Baik) -> multiplier 1.0
+    # Hubungan 0 (Benci) -> multiplier 2.0
+    relation_multiplier = (120 - relation_score) / 60.0
     
     # Total Biaya
-    total_cost = base_cost * type_multiplier * relation_multiplier
+    total_cost = base_cost * difficulty_multiplier * relation_multiplier
     
     # Pembulatan ke ribuan terdekat
     return int(round(total_cost / 1000) * 1000)

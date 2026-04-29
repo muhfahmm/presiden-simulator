@@ -359,7 +359,7 @@ export const unVotingStorage = {
     return hasActiveHistory;
   },
 
-  bribeToChoice: (votingId: string, countryName: string, targetVote: 'supporters' | 'opponents', isAi: boolean = false) => {
+  bribeToChoice: (votingId: string, countryName: string, targetVote: 'supporters' | 'opponents', isAi: boolean = false, briberName: string = "") => {
     const state = unVotingStorage.getData();
     const voting = state.activeVotings.find(v => v.id === votingId);
     if (!voting || !voting.finalResults || !voting.finalResults.details) return;
@@ -367,7 +367,7 @@ export const unVotingStorage = {
     const details = voting.finalResults.details;
     let found = false;
 
-    // Hapus dari daftar lama
+    // Hapus dari daftar lama (bisa dari supporters, opponents, atau abstainers)
     if (details.supporters.includes(countryName)) {
       details.supporters = details.supporters.filter(c => c !== countryName);
       found = true;
@@ -385,6 +385,7 @@ export const unVotingStorage = {
       // Tambahkan ke daftar baru
       if (targetVote === 'supporters') details.supporters.push(countryName);
       else if (targetVote === 'opponents') details.opponents.push(countryName);
+      else if (targetVote as string === 'abstainers') details.abstainers.push(countryName);
       
       // Update counts
       voting.finalResults.yes = details.supporters.length;
@@ -393,9 +394,15 @@ export const unVotingStorage = {
 
       // Add reason
       if (!voting.bribedCountries) voting.bribedCountries = {};
-      voting.bribedCountries[countryName] = isAi 
-        ? "Menerima tekanan diplomatik dan insentif dari blok pengusul."
-        : `Menerima paket lobi dari pihak pemain untuk memilih ${targetVote === 'supporters' ? 'SETUJU' : 'TOLAK'}.`;
+      
+      if (isAi) {
+        const side = targetVote === 'supporters' ? 'mendukung' : 'menentang';
+        voting.bribedCountries[countryName] = briberName 
+          ? `Menerima paket bantuan ekonomi dan lobi diplomatik dari ${briberName} untuk ${side} resolusi ini.`
+          : `Menerima tekanan diplomatik dan insentif strategis untuk ${side} resolusi ini.`;
+      } else {
+        voting.bribedCountries[countryName] = `Menerima paket lobi dari pihak pemain untuk memilih ${targetVote === 'supporters' ? 'SETUJU' : 'TOLAK'}.`;
+      }
 
       unVotingStorage.saveData(state);
       window.dispatchEvent(new CustomEvent("un_voting_updated"));
@@ -413,21 +420,42 @@ export const unVotingStorage = {
     let changed = false;
 
     state.activeVotings.forEach(v => {
-      if (v.proposer !== userCountry && !v.aiBribeAttempted && (v.finalResults?.yes || 0) < 138) {
-        if (Math.random() < 0.35) {
-          const opponents = v.finalResults?.details?.opponents || [];
-          const abstainers = v.finalResults?.details?.abstainers || [];
-          const candidates = [...opponents, ...abstainers];
+      // Setiap resolusi punya 25% peluang terjadi lobi AI per hari
+      if (Math.random() < 0.25) {
+        // Cari negara AI yang memiliki pengaruh besar (un_vote > 80)
+        const { countries: allCountriesData } = require("@/app/pilih_negara/data/negara/benua/index");
+        const details = v.finalResults?.details;
+        if (!details) return;
 
-          if (candidates.length > 0) {
-            const numToBribe = Math.min(candidates.length, Math.floor(Math.random() * 3) + 1);
-            for (let i = 0; i < numToBribe; i++) {
-              const target = candidates[Math.floor(Math.random() * candidates.length)];
-              unVotingStorage.bribeCountry(v.id, target, true);
+        // Tentukan siapa yang akan menyuap (bisa pendukung atau penentang)
+        const supporters = details.supporters.filter(c => c !== userCountry);
+        const opponents = details.opponents.filter(c => c !== userCountry);
+        
+        // Pilih blok mana yang akan aktif melobi (50/50 chance if both exist)
+        const activeBlock = Math.random() < 0.5 ? 'supporters' : 'opponents';
+        const briberCandidates = activeBlock === 'supporters' ? supporters : opponents;
+        
+        if (briberCandidates.length > 0) {
+          const briberName = briberCandidates[Math.floor(Math.random() * briberCandidates.length)];
+          const briberData = allCountriesData.find((c: any) => c.name_id === briberName);
+          
+          // Negara besar lebih cenderung melobi
+          const bribePower = (briberData?.geopolitik?.un_vote || 0) / 200;
+          if (Math.random() < bribePower + 0.1) {
+            // Tentukan target lobi (cari dari blok lawan atau abstain)
+            const targetBlock = activeBlock === 'supporters' ? [...details.opponents, ...details.abstainers] : [...details.supporters, ...details.abstainers];
+            const aiTargets = targetBlock.filter(c => c !== userCountry && c !== briberName);
+
+            if (aiTargets.length > 0) {
+              // Lobi 1-2 negara
+              const numToBribe = Math.min(aiTargets.length, Math.floor(Math.random() * 2) + 1);
+              for (let i = 0; i < numToBribe; i++) {
+                const target = aiTargets[Math.floor(Math.random() * aiTargets.length)];
+                unVotingStorage.bribeToChoice(v.id, target, activeBlock, true, briberName);
+              }
+              changed = true;
+              console.log(`[PBB AI] ${briberName} melakukan lobi untuk blok ${activeBlock} dalam resolusi ${v.name}`);
             }
-            v.aiBribeAttempted = true;
-            changed = true;
-            console.log(`[PBB AI] ${v.proposer} melakukan lobi/suap untuk resolusi ${v.name}`);
           }
         }
       }
