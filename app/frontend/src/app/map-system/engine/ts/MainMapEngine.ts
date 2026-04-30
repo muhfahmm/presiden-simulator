@@ -82,13 +82,23 @@ export class MainMapEngine extends BaseMapEngine {
 
       window.addEventListener('SPAWN_INVASION_UNITS', (e: any) => {
         if (e.detail && e.detail.path) {
-          this.activeInvasions.push({
+          const target = e.detail.targetCountry?.name_id || e.detail.target;
+          const existingIdx = this.activeInvasions.findIndex(inv => inv.target === target);
+
+          const newInvasion = {
             path: e.detail.path,
             units: e.detail.units || [],
-            target: e.detail.targetCountry?.name_id || e.detail.target,
+            target: target,
             progress: 0,
-            speed: 0.001 + (Math.random() * 0.001) // random speed
-          });
+            speed: 0.001 + (Math.random() * 0.001),
+            arrived: false
+          };
+
+          if (existingIdx !== -1) {
+            this.activeInvasions[existingIdx] = newInvasion;
+          } else {
+            this.activeInvasions.push(newInvasion);
+          }
           
           this.saveInvasionsToStorage();
 
@@ -104,6 +114,27 @@ export class MainMapEngine extends BaseMapEngine {
         this.activeInvasions = [];
         localStorage.removeItem('active_invasions');
         this.requestRender();
+      });
+
+      window.addEventListener('REMOVE_INVASION', (e: any) => {
+        if (e.detail && e.detail.target) {
+            const target = String(e.detail.target).toLowerCase().trim();
+            const originalCount = this.activeInvasions.length;
+            
+            this.activeInvasions = this.activeInvasions.filter(inv => {
+              const invTarget = String(inv.target || '').toLowerCase().trim();
+              return invTarget !== target;
+            });
+
+            // If nothing changed but we expect it to, or just to be safe for player peace
+            if (this.activeInvasions.length === originalCount && originalCount > 0) {
+                // Fallback: Clear everything if it's likely the player's primary invasion
+                this.activeInvasions = [];
+            }
+
+            this.saveInvasionsToStorage();
+            this.requestRender();
+        }
       });
     }
   }

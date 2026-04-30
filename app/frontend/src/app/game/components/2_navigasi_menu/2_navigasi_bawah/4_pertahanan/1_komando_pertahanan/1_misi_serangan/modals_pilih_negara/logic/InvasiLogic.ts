@@ -17,7 +17,8 @@ export const landlockedCountries = [
 import { hitungJalurInvasi, JalurResult } from "./visual_dan_jalur/JalurInvasiLogic";
 
 export interface InvasiUnit {
-  type: 'pesawat' | 'kapal' | 'tank';
+  type: 'pesawat' | 'kapal' | 'tank' | 'infanteri';
+  name: string; // Original unit name/key
   modelUrl: string; // URL model 3D realistis
   count: number;
 }
@@ -26,8 +27,9 @@ export const luncurkanInvasi = (playerCountry: CountryData, targetCountry: Count
   const units: InvasiUnit[] = [];
 
   // Peta tipe unit berdasar kategori
-  const unitTypeMap: Record<string, { type: 'pesawat' | 'kapal' | 'tank', modelUrl: string }> = {
+  const unitTypeMap: Record<string, { type: 'pesawat' | 'kapal' | 'tank' | 'infanteri', modelUrl: string }> = {
     // Darat
+    infanteri: { type: 'infanteri', modelUrl: '/models/realistic_infantry.glb' },
     tank_tempur_utama: { type: 'tank', modelUrl: '/models/realistic_tank.glb' },
     apc_ifv: { type: 'tank', modelUrl: '/models/realistic_apc.glb' },
     artileri_berat: { type: 'tank', modelUrl: '/models/realistic_artillery.glb' },
@@ -44,7 +46,7 @@ export const luncurkanInvasi = (playerCountry: CountryData, targetCountry: Count
     drone_intai_uav: { type: 'pesawat', modelUrl: '/models/realistic_drone.glb' },
     drone_kamikaze: { type: 'pesawat', modelUrl: '/models/realistic_kamikaze.glb' },
     pesawat_angkut: { type: 'pesawat', modelUrl: '/models/realistic_transport_plane.glb' },
-
+    
     // Laut
     kapal_induk: { type: 'kapal', modelUrl: '/models/realistic_carrier.glb' },
     kapal_induk_nuklir: { type: 'kapal', modelUrl: '/models/realistic_nuclear_carrier.glb' },
@@ -72,6 +74,7 @@ export const luncurkanInvasi = (playerCountry: CountryData, targetCountry: Count
 
           units.push({
               type: unitData.type,
+              name: key.replace(/_/g, ' ').toUpperCase(),
               modelUrl: unitData.modelUrl,
               count: count
           });

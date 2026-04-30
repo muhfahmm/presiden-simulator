@@ -1,7 +1,10 @@
 import React, { useMemo } from 'react';
-import { X, Sword, Shield, Target, Users, Plane, Ship, Truck } from 'lucide-react';
+import { X, Sword, Shield, Target, Users, Plane, Ship, Truck, Heart } from 'lucide-react';
 import { countries } from "@/app/database/data/negara/benua/index";
 import { calculateTotalMilitaryPower } from "../../../3_armada_militer/kekuatanmiliter";
+import * as MilPower from "../../../3_armada_militer/kekuatanmiliter";
+import { analisisStrategi } from "../pages/logic/EngineJembatan";
+import { activeWarStorage } from "../pages/logic/activeWarStorage";
 
 interface ModalPerangProps {
   invasion: any;
@@ -12,6 +15,11 @@ interface ModalPerangProps {
 export const ModalPerang: React.FC<ModalPerangProps> = ({ invasion, onClose, onStartBattle }) => {
   const targetName = invasion.target;
   const deployedUnits = invasion.units;
+
+  // Check if war is active
+  const savedWar = activeWarStorage.getState();
+  const isActive = savedWar?.target === targetName && savedWar?.phase !== 'result';
+  const isCeasefire = savedWar?.target === targetName && savedWar?.isCeasefire;
 
   const targetCountry = useMemo(() => {
     return countries.find(c => c.name_id === targetName);
@@ -24,9 +32,31 @@ export const ModalPerang: React.FC<ModalPerangProps> = ({ invasion, onClose, onS
 
   // Total deployed strength calculation
   const playerDeployedPower = useMemo(() => {
-    // This is a simplified calculation for the report
-    return deployedUnits.reduce((acc: number, unit: any) => acc + (unit.count || 0), 0) * 1000; // placeholder multiplier
+    return deployedUnits.reduce((acc: number, unit: any) => {
+        let p = 1;
+        const t = unit.type.toLowerCase();
+        if (t === 'tank') p = MilPower.TANK_POWER_PER_UNIT;
+        else if (t === 'pesawat') p = MilPower.INTERCEPTOR_POWER_PER_UNIT;
+        else if (t === 'kapal') p = MilPower.DESTROYER_POWER_PER_UNIT;
+        return acc + ((unit.count || 0) * p);
+    }, 0);
   }, [deployedUnits]);
+
+  // Sync with Engine Jembatan (Python)
+  const intelAnalysis = useMemo(() => {
+    // Generate virtual enemy unit array for analysis
+    if (!targetCountry) return { probabilitas: 0, rekomendasi: "..." };
+    
+    // We need to simulate the enemy unit list for the Python logic
+    const am = targetCountry.armada_militer || {};
+    const enemyUnits = [
+        { type: 'Infanteri', count: (am.barak || 0) * 10000 },
+        { type: 'Tank', count: am.darat?.tank_tempur_utama || 0 },
+        { type: 'Jet', count: (am.udara?.jet_tempur_siluman || 0) + (am.udara?.jet_tempur_interceptor || 0) }
+    ];
+
+    return analisisStrategi(deployedUnits, enemyUnits, playerDeployedPower, targetPower.total);
+  }, [targetCountry, deployedUnits, playerDeployedPower, targetPower]);
 
   if (!targetCountry) return null;
 
@@ -104,7 +134,7 @@ export const ModalPerang: React.FC<ModalPerangProps> = ({ invasion, onClose, onS
                       <span>{targetPower.darat.toLocaleString()}</span>
                     </div>
                     <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
-                      <div className="h-full bg-rose-500" style={{ width: '60%' }} />
+                      <div className="h-full bg-rose-500" style={{ width: `${Math.min(100, (targetPower.darat / (targetPower.total || 1)) * 100)}%` }} />
                     </div>
                   </div>
 
@@ -114,9 +144,21 @@ export const ModalPerang: React.FC<ModalPerangProps> = ({ invasion, onClose, onS
                       <span>{targetPower.udara.toLocaleString()}</span>
                     </div>
                     <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
-                      <div className="h-full bg-rose-500" style={{ width: '45%' }} />
+                      <div className="h-full bg-rose-500" style={{ width: `${Math.min(100, (targetPower.udara / (targetPower.total || 1)) * 100)}%` }} />
                     </div>
                   </div>
+                  
+                  {targetPower.laut > 0 && (
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-[10px] font-bold uppercase text-zinc-400">
+                        <span>Laut</span>
+                        <span>{targetPower.laut.toLocaleString()}</span>
+                      </div>
+                      <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                        <div className="h-full bg-rose-500" style={{ width: `${Math.min(100, (targetPower.laut / (targetPower.total || 1)) * 100)}%` }} />
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -129,11 +171,14 @@ export const ModalPerang: React.FC<ModalPerangProps> = ({ invasion, onClose, onS
                    <Shield className="h-6 w-6 text-red-500" />
                 </div>
                 <div>
-                   <h4 className="text-red-500 font-black uppercase tracking-tighter text-lg italic">Analisis Intelijen</h4>
-                   <p className="text-zinc-400 text-sm mt-1 leading-relaxed">
-                      Kekuatan pertahanan musuh di sektor darat terpantau cukup solid. Disarankan untuk menggunakan 
-                      dukungan armada udara guna melemahkan garis depan sebelum melakukan penetrasi darat.
-                   </p>
+                    <h4 className="text-red-500 font-black uppercase tracking-tighter text-lg italic">Analisis Intelijen (Python)</h4>
+                    <p className="text-white text-xs font-black uppercase mb-1">{intelAnalysis.rekomendasi}</p>
+                    <p className="text-zinc-400 text-[11px] leading-relaxed font-bold">
+                       Estimasi Probabilitas Keberhasilan: <span className="text-white">{intelAnalysis.probabilitas}%</span>
+                    </p>
+                    <p className="text-zinc-500 text-[10px] mt-2 italic font-medium">
+                        *Berdasarkan perbandingan kekuatan efektif dan komposisi armada musuh.
+                    </p>
                 </div>
              </div>
           </div>
@@ -147,12 +192,48 @@ export const ModalPerang: React.FC<ModalPerangProps> = ({ invasion, onClose, onS
           >
             Mundur / Batalkan
           </button>
+          
+          {(isActive || isCeasefire) && (
+            <button 
+              onClick={() => {
+                // Simulasi Negosiasi Perdamaian (Akan dihubungkan ke logic baru)
+                // Peluang damai lebih rendah dari gencatan senjata
+                const chance = Math.random();
+                if (chance > 0.6) { // 40% chance success
+                    alert("PERJANJIAN DAMAI DISETUJUI! Perang berakhir secara resmi. Semua pasukan ditarik mundur.");
+                    activeWarStorage.clearState();
+                    
+                    // Force clear everything related to invasions for this target
+                    if (typeof window !== 'undefined') {
+                      localStorage.removeItem('active_invasions');
+                      window.dispatchEvent(new CustomEvent('CLEAR_INVASIONS'));
+                      window.dispatchEvent(new CustomEvent('REMOVE_INVASION', { 
+                          detail: { target: targetName } 
+                      }));
+                    }
+
+                    onClose();
+                } else {
+                    alert("MUSUH MENOLAK PERDAMAIAN! Mereka menuntut syarat yang terlalu berat atau masih ingin berjuang.");
+                }
+              }}
+              className="flex-1 py-4 px-6 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+            >
+              <Heart className="h-4 w-4 fill-current" />
+              Tawarkan Perdamaian
+            </button>
+          )}
+
           <button 
             onClick={onStartBattle}
-            className="flex-2 py-4 px-12 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all flex items-center justify-center gap-3 cursor-pointer"
+            className={`flex-2 py-4 px-12 text-white font-black uppercase tracking-widest text-xs rounded-2xl transition-all flex items-center justify-center gap-3 cursor-pointer active:scale-95 ${
+              (isActive || isCeasefire) 
+                ? 'bg-amber-600 hover:bg-amber-500 shadow-[0_0_20px_rgba(245,158,11,0.4)]' 
+                : 'bg-red-600 hover:bg-red-500 shadow-[0_0_20px_rgba(220,38,38,0.4)]'
+            }`}
           >
             <Sword className="h-4 w-4" />
-            Mulai Pertempuran
+            {isActive || isCeasefire ? 'Lanjutkan Pertempuran' : 'Mulai Pertempuran'}
           </button>
         </div>
       </div>
