@@ -61,8 +61,58 @@ export class MainMapEngine extends BaseMapEngine {
     if (isTiny && this.scale < 3) this.drawMicrostatePulse(feature);
   }
 
+  public activeInvasions: any[] = [];
+
+  constructor(ctx: CanvasRenderingContext2D, width: number, height: number) {
+    super(ctx, width, height);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('SPAWN_INVASION_UNITS', (e: any) => {
+        if (e.detail && e.detail.path) {
+          this.activeInvasions.push(e.detail.path);
+          this.requestRender();
+        }
+      });
+    }
+  }
+
   protected drawOverlays(): void {
+    this.drawInvasionPaths();
     this.drawCapitals();
+  }
+
+  private drawInvasionPaths(): void {
+    if (!this.activeInvasions || this.activeInvasions.length === 0) return;
+
+    this.ctx.save();
+    for (const path of this.activeInvasions) {
+        if (!path.pathCoordinates || path.pathCoordinates.length === 0) continue;
+
+        this.ctx.beginPath();
+        if (path.style && path.style.isDashed) {
+            this.ctx.setLineDash(path.style.dashArray.map((d: number) => d / this.scale));
+        } else {
+            this.ctx.setLineDash([]);
+        }
+
+        const strokeColor = path.style ? path.style.color : '#ef4444';
+        this.ctx.strokeStyle = strokeColor;
+        this.ctx.lineWidth = path.style ? path.style.lineWidth / this.scale : 3 / this.scale;
+        
+        // Glow effect
+        this.ctx.shadowBlur = 10 / this.scale;
+        this.ctx.shadowColor = strokeColor;
+
+        const p0 = this.projector.project(path.pathCoordinates[0].lon, path.pathCoordinates[0].lat);
+        this.ctx.moveTo(p0.x, p0.y);
+
+        for (let i = 1; i < path.pathCoordinates.length; i++) {
+            const p = this.projector.project(path.pathCoordinates[i].lon, path.pathCoordinates[i].lat);
+            this.ctx.lineTo(p.x, p.y);
+        }
+
+        this.ctx.stroke();
+    }
+    this.ctx.restore();
   }
 
   private drawCapitals() {
