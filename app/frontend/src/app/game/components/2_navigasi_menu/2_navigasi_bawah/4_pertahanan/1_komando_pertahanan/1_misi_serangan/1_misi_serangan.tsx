@@ -7,7 +7,6 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import { ModalPilihNegara } from "./modals_pilih_negara/ModalPilihNegara";
 import { luncurkanInvasi, landlockedCountries } from "./modals_pilih_negara/logic/InvasiLogic";
 import { calculateTotalMilitaryPower } from "../../3_armada_militer/kekuatanmiliter";
-import { ModalPerang } from "./modals_perbandingan/ModalPerang";
 
 interface Props {
   isOpen: boolean;
@@ -21,7 +20,6 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
   const [isSelecting, setIsSelecting] = useState(false);
   const [activeTab, setActiveTab] = useState<'darat' | 'udara' | 'laut'>('darat');
   const [deployments, setDeployments] = useState<Record<string, number>>({});
-  const [activeWarReport, setActiveWarReport] = useState<any>(null);
 
   const targetName = useMemo(() => {
     if (!activeMenu.startsWith("Komando Pertahanan:Misi Serangan:")) return null;
@@ -30,28 +28,6 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
     if (parts[2] === "Halaman Perang") return parts[3] || null;
     return parts[2] || null;
   }, [activeMenu]);
-
-  // Listener untuk membuka laporan perang dari peta
-  useEffect(() => {
-    const handleOpenWarReport = (e: any) => {
-      setActiveWarReport(e.detail);
-      setActiveMenu(`Komando Pertahanan:Misi Serangan:Halaman Perang:${e.detail.target}`);
-    };
-    window.addEventListener('OPEN_WAR_REPORT', handleOpenWarReport);
-    return () => window.removeEventListener('OPEN_WAR_REPORT', handleOpenWarReport);
-  }, [setActiveMenu]);
-
-  // Sync state dengan URL (untuk refresh/navigasi langsung)
-  useEffect(() => {
-    if (!activeWarReport && activeMenu.includes("Halaman Perang") && targetName) {
-       const saved = localStorage.getItem('active_invasions');
-       if (saved) {
-          const parsed = JSON.parse(saved);
-          const inv = parsed.find((i: any) => i.target === targetName);
-          if (inv) setActiveWarReport(inv);
-       }
-    }
-  }, [activeMenu, targetName, activeWarReport]);
 
   const targetCountry = useMemo(() => {
     if (!targetName) return null;
@@ -133,7 +109,7 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
     setDeployments(prev => ({ ...prev, [key]: val }));
   };
 
-  if (!isOpen && !activeWarReport) return null;
+  if (!isOpen) return null;
 
   const getCountryCode = (emoji: string) => {
     const chars = [...emoji];
@@ -454,17 +430,6 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
       />
     </div>
     )}
-      {activeWarReport && (
-        <ModalPerang 
-          invasion={activeWarReport} 
-          onClose={() => {
-            setActiveWarReport(null);
-            if (activeMenu.includes("Halaman Perang")) {
-              setActiveMenu(`Komando Pertahanan:Misi Serangan:${targetName || ""}`);
-            }
-          }} 
-        />
-      )}
     </>
   );
 }

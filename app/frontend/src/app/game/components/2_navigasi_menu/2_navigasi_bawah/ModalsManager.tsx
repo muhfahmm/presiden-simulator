@@ -1,4 +1,5 @@
 "use client"
+import React from "react";
 
 // Ekonomi Modals
 import PerdaganganModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/PerdaganganModal";
@@ -18,6 +19,7 @@ import IntelijenModal from "@/app/game/components/2_navigasi_menu/2_navigasi_baw
 import ArmadaMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/3_armada_militer/ArmadaMiliterModal";
 import ArmadaPolisiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/4_armada_polisi/ArmadaPolisiModal";
 import ManajemenPertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/5_manajemen_pertahanan/ManajemenPertahananModal";
+import { ModalPerang } from "./4_pertahanan/1_komando_pertahanan/1_misi_serangan/modals_perbandingan/ModalPerang";
 import PBBModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB";
 import MisiSeranganModal from "./4_pertahanan/1_komando_pertahanan/1_misi_serangan/1_misi_serangan";
 import OrgIntlModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/OrgIntlModal";
@@ -59,6 +61,32 @@ interface ModalsManagerProps {
 export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, countryData }: ModalsManagerProps) {
   // Start the Trade News Engine
   useTradeNewsEngine();
+
+  const [activeWarReport, setActiveWarReport] = React.useState<any>(null);
+
+  // Sync state dengan URL (untuk refresh/navigasi langsung)
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const handleOpenWarReport = (e: any) => {
+      setActiveWarReport(e.detail);
+      setActiveMenu(`Halaman Perang:${e.detail.target}`);
+    };
+    window.addEventListener('OPEN_WAR_REPORT', handleOpenWarReport);
+
+    // Deep link check
+    if (!activeWarReport && activeMenu.startsWith("Halaman Perang:")) {
+      const targetName = activeMenu.split(":")[1];
+      const saved = localStorage.getItem('active_invasions');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const inv = parsed.find((i: any) => i.target === targetName);
+        if (inv) setActiveWarReport(inv);
+      }
+    }
+
+    return () => window.removeEventListener('OPEN_WAR_REPORT', handleOpenWarReport);
+  }, [activeMenu, activeWarReport, setActiveMenu]);
 
   if (!isMounted) return null;
 
@@ -298,6 +326,16 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         isOpen={activeSubTab === 'kirim_pasukan'}
         onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)}
       />
+
+      {activeWarReport && (
+        <ModalPerang 
+          invasion={activeWarReport} 
+          onClose={() => {
+            setActiveWarReport(null);
+            setActiveMenu("Peta Taktis"); // Kembali ke map
+          }} 
+        />
+      )}
     </>
   );
 }
