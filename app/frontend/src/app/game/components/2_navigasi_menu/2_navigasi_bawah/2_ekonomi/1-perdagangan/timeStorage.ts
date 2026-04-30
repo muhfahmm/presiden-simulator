@@ -14,7 +14,7 @@ class TimeStorage {
   private isPaused: boolean = true;
   private speed: number = 1;
   private lastManualActionTime: number = 0;
-  private readonly LOCK_DURATION = 2000; // 2 seconds to allow server to catch up
+  private readonly LOCK_DURATION = 5000; // 5 seconds to ensure server consistency
   private listeners: Set<TimeListener> = new Set();
 
   constructor() {
@@ -28,15 +28,19 @@ class TimeStorage {
           const newDate = new Date(data.gameDate);
           this.gameDate = newDate;
           
-          // LOCKING MECHANISM: Don't let SSE override our manual choice for 2 seconds
-          const isLocked = (Date.now() - this.lastManualActionTime) < this.LOCK_DURATION;
+          // LOCKING MECHANISM: Don't let SSE override our manual choice during LOCK_DURATION
+          const now = Date.now();
+          const isLocked = (now - this.lastManualActionTime) < this.LOCK_DURATION;
           
           if (!isLocked) {
             this.isPaused = data.isPaused;
             this.speed = data.speed;
+          } else {
+            // Even if locked, we still want to log what's happening
+            // console.log(`[TimeStorage] SSE Ignored (Locked): Server Speed ${data.speed}, Local Speed ${this.speed}`);
           }
           
-          saveGameDate(newDate); // Sync to localStorage for other legacy components
+          saveGameDate(newDate); 
           this.notify();
         }
       });
@@ -64,7 +68,7 @@ class TimeStorage {
 
     // Call Go Backend
     try {
-      await fetch("http://127.0.0.1:8081/api/game/control", {
+      await fetch("http://localhost:8081/api/game/control", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: paused ? "pause" : "resume" })

@@ -339,29 +339,50 @@ export class MainMapEngine extends BaseMapEngine {
   private drawCapitals() {
     if (!this.countries || this.countries.length === 0) return;
     const ctx = this.tacticalCtx;
+    
+    // Viewport Culling Bounds
+    const margin = 20 / this.scale;
+    const vLeft = -this.offsetX / this.scale - margin;
+    const vRight = (this.width - this.offsetX) / this.scale + margin;
+    const vTop = -this.offsetY / this.scale - margin;
+    const vBottom = (this.height - this.offsetY) / this.scale + margin;
+
     ctx.save();
-    ctx.shadowBlur = 4 / this.scale;
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+    // Removed expensive shadowBlur for performance
 
     for (const country of this.countries) {
-      const lat = country.lat !== undefined ? country.lat : country.latitude;
-      const lon = country.lon !== undefined ? country.lon : country.longitude;
-      const capitalName = country.capital || country.ibukota;
-      
-      if (lat === undefined || lon === undefined) continue;
-      const { x, y } = this.projector.project(Number(lon), Number(lat));
+      // Lazy Projection Cache
+      if (!country._px || !country._py) {
+        const lat = country.lat !== undefined ? country.lat : country.latitude;
+        const lon = country.lon !== undefined ? country.lon : country.longitude;
+        if (lat === undefined || lon === undefined) continue;
+        const { x, y } = this.projector.project(Number(lon), Number(lat));
+        country._px = x;
+        country._py = y;
+      }
+
+      const x = country._px;
+      const y = country._py;
+
+      // Viewport Culling: Skip if outside visible area
+      if (x < vLeft || x > vRight || y < vTop || y > vBottom) continue;
 
       const outerRadius = Math.max(3.5 / this.scale, 0.8);
       const innerRadius = outerRadius / 2.5;
+      
       this.drawStar(ctx, x, y, 5, outerRadius, innerRadius);
       ctx.fillStyle = '#22d3ee';
       ctx.fill();
 
+      const capitalName = country.capital || country.ibukota;
       if (this.scale > 4.5 && capitalName) {
         ctx.font = `bold ${10 / this.scale}px "Cascadia Code", monospace`;
         ctx.fillStyle = '#22d3ee';
         ctx.textAlign = 'center';
-        ctx.shadowBlur = 2 / this.scale;
+        // Stroke instead of shadow for performance and clarity
+        ctx.strokeStyle = 'rgba(0,0,0,0.8)';
+        ctx.lineWidth = 2 / this.scale;
+        ctx.strokeText(capitalName.toUpperCase(), x, y - (6 / this.scale));
         ctx.fillText(capitalName.toUpperCase(), x, y - (6 / this.scale));
       }
     }

@@ -519,29 +519,24 @@ export const inboxStorage = {
       return true;
     });
 
-    // Merge logic: deduplicate by ID and preserve local 'read' status
+    // SERVER-AUTHORITATIVE MERGE:
+    // 1. All messages currently on the server are kept.
+    // 2. All local messages (e.g. from player actions) are kept.
+    // 3. Stale server messages (those with 'sv-' prefix that are NO LONGER on the server) are PURGED.
+    
+    // Get local messages (non-server)
+    const localMessages = current.filter(item => !item.id.startsWith('sv-'));
+    
+    // Deduplicate by ID using a Map (ensures unique keys for React)
     const uniqueMap = new Map();
-
-    // Process local items first
-    current.forEach(item => uniqueMap.set(item.id, item));
-
-    // Process server items
-    mapped.forEach(serverItem => {
-      if (uniqueMap.has(serverItem.id)) {
-        // Keep existing item to preserve its 'read' status, but update content if varied
-        const existing = uniqueMap.get(serverItem.id);
-        existing.content = serverItem.content || existing.content;
-      } else {
-        uniqueMap.set(serverItem.id, serverItem);
-      }
+    [...mapped, ...localMessages].forEach(m => {
+      if (m && m.id) uniqueMap.set(m.id, m);
     });
+    
+    const merged = Array.from(uniqueMap.values()).sort((a: any, b: any) => b.timestamp - a.timestamp);
 
-    // Sort by most recent first
-    const sorted = Array.from(uniqueMap.values())
-      .sort((a: any, b: any) => b.timestamp - a.timestamp);
-
-    // Limit storage
-    const limited = sorted.slice(0, MAX_INBOX_MESSAGES);
+    // Limit storage to cap size
+    const limited = merged.slice(0, MAX_INBOX_MESSAGES);
 
     try {
       localStorage.setItem(key, JSON.stringify(limited));

@@ -136,26 +136,17 @@ export const newsStorage = {
       timestamp: sn.timestamp || Date.now(),
     }));
 
-    // Monthly reset: if server sends empty news, it means a new month started.
-    // We should clear everything EXCEPT local simulation news.
-    if (serverNews.length === 0) {
-      const current = newsStorage.getNews();
-      const locals = current.filter(item => !item.id.startsWith('sv-'));
-      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(locals));
-      return;
-    }
-
     // MERGE: Keep server news as authoritative, but preserve local simulation news.
     const current = newsStorage.getNews();
     const localNews = current.filter(item => !item.id.startsWith('sv-'));
     
-    // Combine server news with local news, avoiding duplicates
-    const serverIds = new Set(mapped.map(m => m.id));
-    const uniqueLocalNews = localNews.filter(l => !serverIds.has(l.id));
-    
-    const merged = [...mapped, ...uniqueLocalNews].sort((a: NewsItem, b: NewsItem) => b.timestamp - a.timestamp);
+    // Server-Authoritative Merge:
+    // 1. All news from server is kept.
+    // 2. Local news (non-server) is kept.
+    // 3. Stale server news (those in local storage but not in current server list) is PURGED.
+    const merged = [...mapped, ...localNews].sort((a: NewsItem, b: NewsItem) => b.timestamp - a.timestamp);
 
-    console.log(`[NewsStorage] Sync Complete. Server: ${mapped.length}, Local: ${uniqueLocalNews.length}, Total: ${merged.length}`);
+    console.log(`[NewsStorage] Sync Complete (Strict Authority). Server: ${mapped.length}, Local Preserved: ${localNews.length}, Total: ${merged.length}`);
 
     try {
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(merged));

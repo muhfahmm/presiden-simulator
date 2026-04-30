@@ -24,6 +24,10 @@ import (
 var (
 	sseClients   = make(map[*SSEClient]bool)
 	sseClientsMu sync.Mutex
+
+	lastBroadcastTime     time.Time
+	lastBroadcastNewsLen  int
+	lastBroadcastInboxLen int
 )
 
 
@@ -532,25 +536,32 @@ func simulationEngine() {
 		// Update Relationships
 		server_hubungan.UpdateDailyRelationsLocked()
 
-		// 4. Capture snapshot for SSE AFTER all processing (so news/buildings are included)
+		// 4. Capture snapshot for SSE with Throttling (Prevents Frame Drops at 3x)
+		now := time.Now()
 		isMajorUpdate := len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen || constructionChanged
 		isWeeklySync := core.GlobalState.DayCounter%7 == 0 || core.GlobalState.DayCounter < 2
 		
-		var snapshot []byte
-		if isWeeklySync {
-			snapshot = createSnapshot()
-		} else if isMajorUpdate {
-			snapshot = createMajorUpdateSnapshot()
-		} else {
-			snapshot = createPlayerSnapshot()
+		// Throttle: Max 5 updates per second unless something major happened
+		shouldBroadcast := isMajorUpdate || isWeeklySync || now.Sub(lastBroadcastTime) >= 200*time.Millisecond
+
+		if shouldBroadcast {
+			var snapshot []byte
+			if isWeeklySync {
+				snapshot = createSnapshot()
+			} else if isMajorUpdate {
+				snapshot = createMajorUpdateSnapshot()
+			} else {
+				snapshot = createPlayerSnapshot()
+			}
+			
+			lastBroadcastTime = now
+			lastBroadcastNewsLen = len(core.GlobalState.News)
+			lastBroadcastInboxLen = len(core.GlobalState.Inbox)
+			
+			go broadcastSSE(snapshot)
 		}
 
 		core.GlobalState.Mu.Unlock()
-
-		// Broadcast state to all SSE clients (Fire and forget outside lock)
-		go func(data []byte) {
-			broadcastSSE(data)
-		}(snapshot)
 
 		// Check for Month Change (Quarterly Detection)
 		if nextDate.Month() != core.GlobalState.LastProcessedMonth {
@@ -1079,8 +1090,7 @@ type SyncPayload struct {
 	ResetTriggered bool                            `json:"resetTriggered,omitempty"`
 }
 
-var lastBroadcastNewsLen int = 0
-var lastBroadcastInboxLen int = 0
+
 
 // ═══════════════════════════════════════════════════════════
 // SNAPSHOT UTILITIES (JSON PAYLOAD GENERATORS)
@@ -1242,9 +1252,8 @@ func handleControl(w http.ResponseWriter, r *http.Request) {
 		
 		// Polyglot Optimization: Trigger Situation Report
 		{
-			// Take a local copy of state to avoid holding lock while calling Python
-			snapshotState := core.GlobalState
-			go func(state core.SimulationState) {
+			// Pass a pointer to avoid copying the mutex
+			go func(state *core.SimulationState) {
 				report, err := map_engine.TriggerResumePausedSystem(true, state)
 				if err == nil && report != nil {
 					core.GlobalState.Mu.Lock()
@@ -1260,7 +1269,7 @@ func handleControl(w http.ResponseWriter, r *http.Request) {
 					)
 					core.GlobalState.Mu.Unlock()
 				}
-			}(snapshotState)
+			}(&core.GlobalState)
 		}
 	case "resume":
 		core.GlobalState.IsPaused = false

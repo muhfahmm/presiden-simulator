@@ -191,7 +191,7 @@ func AddInboxItem(sender, subject, content, category, priority string, isProposa
 // Use this inside the simulation loop or other areas where GlobalState.Mu is already locked.
 func AddInboxItemLocked(sender, subject, content, category, priority string, isProposal bool, proposalLabel string, dateStr string) {
 	newItem := InboxItem{
-		ID:            fmt.Sprintf("isv-%d-%d", time.Now().UnixNano(), Rng.Intn(99999)),
+		ID:            fmt.Sprintf("isv-%d-%08x-%d", time.Now().UnixNano(), Rng.Int63(), len(GlobalState.Inbox)),
 		Sender:        sender,
 		Subject:       subject,
 		Content:       content,
