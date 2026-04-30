@@ -4,6 +4,8 @@ import { useState } from "react";
 import { X, Shield, Swords, Eye, Bomb, Map as MapIcon, Radiation, Zap, Truck, Anchor, Plane, Search, Crosshair, Target, Clock, Loader2, EyeOff } from "lucide-react"
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import ProgramNuklirModal from "./5_program_nuklir/5_program_nuklir";
+import MisiSeranganModal from "./1_misi_serangan/1_misi_serangan";
+
 
 interface ModalProps {
   isOpen: boolean;
@@ -142,9 +144,9 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
                             className="mt-2 w-full py-2 rounded-xl bg-zinc-900/50 border border-zinc-800/80 text-center group-hover:border-red-500/20 transition-all cursor-pointer hover:bg-zinc-800"
                             onClick={() => {
                               if (item.label === "Misi Serangan") {
-                                // Modul Pertempuran telah dihapus sementara
-                                console.log("Misi Serangan dinonaktifkan");
+                                setActiveMenu("Komando Pertahanan:Misi Serangan");
                               }
+
                               if (item.label === "Program Nuklir") {
                                 setActiveMenu("Komando Pertahanan:Program Nuklir");
                               }
@@ -170,6 +172,15 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
         onClose={() => setActiveMenu("Komando Pertahanan")}
         data={data}
       />
+
+      <MisiSeranganModal
+        isOpen={activeMenu === "Komando Pertahanan:Misi Serangan" || activeMenu.startsWith("Komando Pertahanan:Misi Serangan:")}
+        onClose={() => setActiveMenu("Komando Pertahanan")}
+        setActiveMenu={setActiveMenu}
+        activeMenu={activeMenu}
+        data={data}
+      />
+
     </div>
   )
 }
