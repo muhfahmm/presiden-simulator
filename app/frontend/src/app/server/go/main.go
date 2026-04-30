@@ -514,8 +514,9 @@ func simulationEngine() {
 		// 2. Process Player Nation (Calculates Happiness, Stability, Budget)
 		processPlayerDay(nextDate)
 		
-		// ─── MONTHLY NEWS RESET CHECK ───
+		// ─── MONTHLY DATA RESET CHECK ───
 		checkMonthlyNewsReset(nextDate)
+		checkMonthlyInboxReset(nextDate)
 
 		// 3. Process NPC & Global Simulation (CRITICAL: Called INSIDE Lock for thread-safety)
 		processNPCDay(nextDate)
@@ -699,7 +700,6 @@ func checkMonthlyNewsReset(date time.Time) {
 	if len(core.GlobalState.News) > 300 {
 		core.GlobalState.News = core.GlobalState.News[:300]
 	}
-
 	// 2. MONTHLY RESET: Clear if month changes
 	if date.Month() != core.GlobalState.LastProcessedMonth && core.GlobalState.DayCounter > 0 {
 		prevNewsCount := len(core.GlobalState.News)
@@ -717,6 +717,32 @@ func checkMonthlyNewsReset(date time.Time) {
 		)
 
 		fmt.Printf("[GO] Monthly news reset: cleared %d items (Transition to %s)\n", prevNewsCount, date.Month().String())
+	}
+}
+
+func checkMonthlyInboxReset(date time.Time) {
+	// 1. TRIM: Always keep it under 200 to prevent lag
+	if len(core.GlobalState.Inbox) > 200 {
+		core.GlobalState.Inbox = core.GlobalState.Inbox[:200]
+	}
+	// 2. MONTHLY RESET: Clear if month changes
+	if date.Month() != core.GlobalState.LastProcessedMonth && core.GlobalState.DayCounter > 0 {
+		prevCount := len(core.GlobalState.Inbox)
+		core.GlobalState.Inbox = []core.InboxItem{}
+		
+		core.AddInboxItemLocked(
+			"Sistem Administrasi Negara",
+			"Pembersihan Arsip Bulanan Otomatis",
+			fmt.Sprintf("Seluruh pesan masuk lama telah diarsipkan secara otomatis untuk menjaga efisiensi sistem. Memulai periode administrasi baru untuk bulan %s %d.",
+				date.Month().String(), date.Year()),
+			"general",
+			"medium",
+			false,
+			"",
+			date.Format("2006-01-02"),
+		)
+
+		fmt.Printf("[GO] Monthly inbox reset: cleared %d items.\n", prevCount)
 	}
 }
 

@@ -358,9 +358,9 @@ export const newsStorage = {
             // Sync inbox from server (quarterly updates etc)
             if (data.inbox && Array.isArray(data.inbox)) {
               const currentInboxCount = data.inbox.length;
-              if (currentInboxCount !== lastInboxCount) {
+              if (currentInboxCount !== lastInboxCount || currentInboxCount === 0) {
                 lastInboxCount = currentInboxCount;
-                inboxStorage.syncFromServer(data.inbox);
+                inboxStorage.syncFromServer(data.inbox, data.gameDate);
               }
             }
 

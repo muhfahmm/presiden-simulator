@@ -468,8 +468,29 @@ export const inboxStorage = {
   /**
    * Sync inbox from Go Server SSE stream.
    */
-  syncFromServer: (serverInbox: any[]) => {
+  syncFromServer: (serverInbox: any[], currentGameDate?: string) => {
     if (typeof window === 'undefined' || !Array.isArray(serverInbox)) return;
+
+    // ENFORCE MONTHLY RESET (Tanggal 1)
+    if (currentGameDate) {
+      try {
+        const isTanggalSatu = currentGameDate.startsWith("01-") || currentGameDate.endsWith("-01") || currentGameDate.includes("-01-");
+        if (isTanggalSatu) {
+          const lastWipe = localStorage.getItem("em_last_inbox_wipe");
+          const monthYearKey = currentGameDate.length > 7 ? 
+            (currentGameDate.includes("-") ? (currentGameDate.startsWith("01-") ? currentGameDate.substring(3) : currentGameDate.substring(0, 7)) : "reset") 
+            : "monthly";
+
+          if (lastWipe !== monthYearKey) {
+            console.log(`[InboxStorage] 🧹 Monthly Reset Enforced for ${monthYearKey} (${currentGameDate})`);
+            localStorage.setItem("em_inbox_data", JSON.stringify([]));
+            localStorage.setItem("em_last_inbox_wipe", monthYearKey);
+            window.dispatchEvent(new Event("inbox_updated"));
+            return; 
+          }
+        }
+      } catch (e) {}
+    }
 
     const key = inboxStorage.getStorageKey();
     const current = inboxStorage.getMessages();
