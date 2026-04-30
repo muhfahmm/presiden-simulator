@@ -196,6 +196,13 @@ export function useGamePath(path: string[]) {
   } else if (category === 'debug_keuangan') {
     if (subMenu === 'detail_debug') initialMenu = "Menu:DebugKeuanganAI:DetailDebug";
     else initialMenu = "Menu:DebugKeuanganAI";
+  } else if (category && category.startsWith('laporan_')) {
+    const country = category.split('_')[1];
+    if (subMenu === 'war_page') {
+      initialMenu = `laporan_${country}:war_page`;
+    } else {
+      initialMenu = `laporan_${country}`;
+    }
   }
 
   const [activeMenu, setActiveMenu] = useState<string>(initialMenu);
@@ -388,6 +395,18 @@ export function useGamePath(path: string[]) {
             targetPath += `/${cardId.replace(/^\d+_/, '')}`;
           }
         }
+      }
+    }
+    
+    // Dynamic path handling for War Reports and War Pages
+    if (!targetPath && activeMenu.startsWith("laporan_")) {
+      const parts = activeMenu.split(":");
+      const country = parts[0].split("_")[1];
+      const sub = parts[1]; // e.g. war_page
+      
+      targetPath = `/game/laporan_${country}`;
+      if (sub === "war_page") {
+        targetPath += "/war_page";
       }
     }
 

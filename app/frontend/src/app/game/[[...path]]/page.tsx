@@ -57,7 +57,9 @@ export default function GamePage() {
       // Reset relation scores too for absolute consistency
       const { relationStorage } = require("../components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage");
       relationStorage.clear();
-      console.log("[GAME PAGE] AI and Relation storages reset complete");
+      localStorage.removeItem('active_invasions');
+      window.dispatchEvent(new CustomEvent('CLEAR_INVASIONS'));
+      console.log("[GAME PAGE] AI, Relation, and Invasion storages reset complete");
     }
   }, []);
 
@@ -125,25 +127,28 @@ export default function GamePage() {
       {/* <AILogicCNS /> */}
 
       {/* Top Header / Status bar - ALWAYS VISIBLE for Page Feel */}
-      <GameNavbar
-        countryData={countryData}
-        happiness={happiness}
-        budget={budget}
-        budgetDelta={budgetDelta}
-        stability={stability}
-        population={population}
-        populationDelta={populationDelta}
-        setActiveMenu={setActiveMenu}
-        onLogout={() => {
-          if (confirm("Apakah Anda yakin ingin mengakhiri sesi simulasi ini? Semua kemajuan akan hilang.")) {
-            gameStorage.clearSession();
-            router.push("/pilih_negara");
-          }
-        }}
-      />
+      {!activeMenu.includes(":war_page") && (
+        <GameNavbar
+          countryData={countryData}
+          happiness={happiness}
+          budget={budget}
+          budgetDelta={budgetDelta}
+          stability={stability}
+          population={population}
+          populationDelta={populationDelta}
+          setActiveMenu={setActiveMenu}
+          onLogout={() => {
+            if (confirm("Apakah Anda yakin ingin mengakhiri sesi simulasi ini? Semua kemajuan akan hilang.")) {
+              window.dispatchEvent(new CustomEvent('CLEAR_INVASIONS'));
+              gameStorage.clearSession();
+              router.push("/pilih_negara");
+            }
+          }}
+        />
+      )}
 
       {/* Main Content Area */}
-      <main className="flex-1 z-10 flex flex-col h-screen overflow-hidden relative pt-[73px]">
+      <main className={`flex-1 z-10 flex flex-col h-screen overflow-hidden relative ${activeMenu.includes(":war_page") ? 'pt-0' : 'pt-[73px]'}`}>
 
         {/* Floating UI Elements */}
         <SideMenu

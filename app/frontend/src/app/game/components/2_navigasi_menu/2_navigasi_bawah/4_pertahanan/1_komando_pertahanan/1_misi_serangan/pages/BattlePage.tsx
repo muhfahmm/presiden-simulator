@@ -51,7 +51,7 @@ export const BattlePage: React.FC<BattlePageProps> = ({ invasion, onBack }) => {
         <div className="flex items-center gap-6">
           <button 
             onClick={onBack}
-            className="p-3 hover:bg-zinc-800 rounded-2xl transition-all border border-zinc-700/50 group"
+            className="p-3 hover:bg-zinc-800 rounded-2xl transition-all border border-zinc-700/50 group cursor-pointer"
           >
             <ArrowLeft className="h-6 w-6 text-zinc-400 group-hover:text-white" />
           </button>
@@ -140,7 +140,7 @@ export const BattlePage: React.FC<BattlePageProps> = ({ invasion, onBack }) => {
                             <p className="text-zinc-500 text-sm font-medium">Seluruh unit telah mencapai garis depan. Menunggu instruksi untuk melakukan serangan penuh.</p>
                             <button 
                                 onClick={() => setPhase('fighting')}
-                                className="w-full py-5 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-[0.2em] rounded-2xl shadow-[0_0_30px_rgba(220,38,38,0.3)] transition-all active:scale-95"
+                                className="w-full py-5 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-[0.2em] rounded-2xl shadow-[0_0_30px_rgba(220,38,38,0.3)] transition-all active:scale-95 cursor-pointer"
                             >
                                 KONTAK SENJATA!
                             </button>
@@ -181,7 +181,7 @@ export const BattlePage: React.FC<BattlePageProps> = ({ invasion, onBack }) => {
                             </p>
                             <button 
                                 onClick={onBack}
-                                className="w-full py-4 bg-zinc-800 hover:bg-zinc-700 text-white font-black uppercase tracking-[0.2em] rounded-2xl transition-all"
+                                className="w-full py-4 bg-zinc-800 hover:bg-zinc-700 text-white font-black uppercase tracking-[0.2em] rounded-2xl transition-all cursor-pointer"
                             >
                                 KEMBALI KE MARKAS
                             </button>

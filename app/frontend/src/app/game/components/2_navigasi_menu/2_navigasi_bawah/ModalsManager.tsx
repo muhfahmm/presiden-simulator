@@ -71,13 +71,14 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
     
     const handleOpenWarReport = (e: any) => {
       setActiveWarReport(e.detail);
-      setActiveMenu(`Halaman Perang:${e.detail.target}`);
+      setActiveMenu(`laporan_${e.detail.target}`);
     };
     window.addEventListener('OPEN_WAR_REPORT', handleOpenWarReport);
 
     // Deep link check
-    if (!activeWarReport && activeMenu.startsWith("Halaman Perang:")) {
-      const targetName = activeMenu.split(":")[1];
+    if (!activeWarReport && activeMenu.startsWith("laporan_")) {
+      const parts = activeMenu.split("_");
+      const targetName = parts[1]?.split(":")[0]; // Handle laporan_Negara or laporan_Negara:war_page
       const saved = localStorage.getItem('active_invasions');
       if (saved) {
         const parsed = JSON.parse(saved);
@@ -336,12 +337,12 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
             setActiveMenu("Peta Taktis"); // Kembali ke map
           }} 
           onStartBattle={() => {
-            setActiveMenu(`BattlePage:${activeWarReport.target}`);
+            setActiveMenu(`laporan_${activeWarReport.target}:war_page`);
           }}
         />
       )}
 
-      {activeMenu.startsWith("BattlePage:") && activeWarReport && (
+      {activeMenu.includes(":war_page") && activeWarReport && (
         <BattlePage 
           invasion={activeWarReport} 
           onBack={() => {
