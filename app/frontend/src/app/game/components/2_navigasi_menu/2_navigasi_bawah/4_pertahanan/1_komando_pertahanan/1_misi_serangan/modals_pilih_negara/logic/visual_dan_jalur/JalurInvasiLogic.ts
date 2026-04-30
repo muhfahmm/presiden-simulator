@@ -46,16 +46,12 @@ export const hitungJalurInvasi = (origin: Coordinates, target: Coordinates): Jal
     for (let i = 0; i <= segments; i++) {
         const fraction = i / segments;
         
-        // Interpolasi linear dasar
+        // Interpolasi linear langsung menuju ke negara tujuan
         const lat = origin.lat + (target.lat - origin.lat) * fraction;
         const lon = origin.lon + (target.lon - origin.lon) * fraction;
         
-        // Tambahkan efek lengkungan (arc) di tengah jalur untuk efek realistis
-        // Berfungsi membedakan jalur serangan dengan jalur lurus biasa
-        const arcHeight = Math.sin(fraction * Math.PI) * (distance * 0.02); // 2% dari jarak
-        
         pathCoordinates.push({
-            lat: lat + arcHeight,
+            lat: lat,
             lon: lon
         });
     }

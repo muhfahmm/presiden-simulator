@@ -6,6 +6,7 @@ import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { ModalPilihNegara } from "./modals_pilih_negara/ModalPilihNegara";
 import { luncurkanInvasi, landlockedCountries } from "./modals_pilih_negara/logic/InvasiLogic";
+import { calculateTotalMilitaryPower } from "../../3_armada_militer/kekuatanmiliter";
 
 interface Props {
   isOpen: boolean;
@@ -31,6 +32,21 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
       c.name_en.toLowerCase() === targetName.toLowerCase()
     );
   }, [targetName]);
+
+  const playerPower = calculateTotalMilitaryPower(data?.armada_militer, {}, data?.religion, data?.ideology);
+  const targetPower = targetCountry 
+    ? calculateTotalMilitaryPower(targetCountry.armada_militer, {}, targetCountry.religion, targetCountry.ideology) 
+    : { darat: 0, laut: 0, udara: 0, total: 0 };
+
+  const playerDarat = playerPower.darat;
+  const playerUdara = playerPower.udara;
+  const playerLaut = playerPower.laut;
+  const playerTotal = playerPower.total;
+
+  const targetDarat = targetPower.darat;
+  const targetUdara = targetPower.udara;
+  const targetLaut = targetPower.laut;
+  const targetTotal = targetPower.total;
 
   const tabGroups = {
     darat: [
@@ -164,20 +180,61 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
                        <h3 className="text-4xl font-black text-white uppercase italic tracking-tighter">{targetCountry.name_id}</h3>
                        <p className="text-red-500 font-black text-[10px] uppercase tracking-[0.4em] mt-1">Target Teridentifikasi</p>
                      </div>
+                     
+                     <div className="ml-auto text-right bg-zinc-900/50 border border-zinc-800/50 p-3 rounded-2xl">
+                       <p className="text-zinc-500 font-black text-[9px] uppercase tracking-widest mb-1.5 flex items-center justify-end gap-1.5">
+                         <Swords className="h-3 w-3 text-red-500" />
+                         Total Kekuatan Militer
+                       </p>
+                       <div className="flex items-end justify-end gap-4">
+                         <div className="text-right">
+                           <span className="text-[9px] font-bold text-emerald-500 block uppercase tracking-wider mb-0.5">Anda</span>
+                           <span className="text-lg font-black text-white leading-none">{playerTotal.toLocaleString()}</span>
+                         </div>
+                         <span className="text-zinc-600 font-black text-xs pb-0.5">VS</span>
+                         <div className="text-left">
+                           <span className="text-[9px] font-bold text-rose-500 block uppercase tracking-wider mb-0.5">Target</span>
+                           <span className="text-lg font-black text-white leading-none">{targetTotal.toLocaleString()}</span>
+                         </div>
+                       </div>
+                     </div>
                   </div>
 
                   <div className="grid grid-cols-3 gap-4">
                      {[
-                       { label: 'Jarak Operasi', value: '1,240 KM', icon: Globe, color: 'text-blue-400' },
-                       { label: 'Kesiapan', value: 'OPTIMAL', icon: Zap, color: 'text-yellow-400' },
-                       { label: 'Resiko', value: 'MEDIUM', icon: AlertTriangle, color: 'text-orange-500' }
+                       { label: 'Kekuatan Darat', player: playerDarat, target: targetDarat, icon: Swords, color: 'text-amber-500' },
+                       { label: 'Kekuatan Laut', player: playerLaut, target: targetLaut, icon: Shield, color: 'text-blue-400' },
+                       { label: 'Kekuatan Udara', player: playerUdara, target: targetUdara, icon: Zap, color: 'text-sky-400' }
                      ].map((stat, i) => (
-                       <div key={i} className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex flex-col items-start gap-2">
-                          <div className="flex items-center gap-2">
-                            <stat.icon className={`h-4 w-4 ${stat.color}`} />
-                            <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">{stat.label}</span>
+                       <div key={i} className="bg-zinc-900/50 border border-zinc-800 p-3 rounded-2xl flex flex-col justify-center gap-1.5 relative overflow-hidden group">
+                          <div className="flex items-center gap-2 mb-1 z-10 relative">
+                            <stat.icon className={`h-3 w-3 ${stat.color}`} />
+                            <span className="text-[9px] font-black text-zinc-400 uppercase tracking-widest">{stat.label}</span>
                           </div>
-                          <span className="text-sm font-black text-white italic">{stat.value}</span>
+                          
+                          <div className="flex justify-between items-center z-10 relative">
+                            <div className="flex flex-col">
+                              <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-wider">Anda</span>
+                              <span className="text-xs font-black text-emerald-400">{stat.player.toLocaleString()}</span>
+                            </div>
+                            <div className="text-zinc-600 text-[10px] font-bold px-2">VS</div>
+                            <div className="flex flex-col items-end">
+                              <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-wider">Target</span>
+                              <span className="text-xs font-black text-rose-500">{stat.target.toLocaleString()}</span>
+                            </div>
+                          </div>
+                          
+                          {/* Background comparison bar indicator */}
+                          <div className="absolute bottom-0 left-0 w-full h-1 flex">
+                            <div 
+                               className="h-full bg-emerald-500/80 transition-all" 
+                               style={{ width: `${stat.player + stat.target === 0 ? 50 : (stat.player / (stat.player + stat.target)) * 100}%` }}
+                            />
+                            <div 
+                               className="h-full bg-rose-500/80 transition-all" 
+                               style={{ width: `${stat.player + stat.target === 0 ? 50 : (stat.target / (stat.player + stat.target)) * 100}%` }}
+                            />
+                          </div>
                        </div>
                      ))}
                   </div>
