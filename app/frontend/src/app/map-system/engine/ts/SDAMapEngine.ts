@@ -5,13 +5,17 @@ export class SDAMapEngine extends BaseMapEngine {
   public targetCountryName: string | null = null;
   public onSelectSDA: ((data: any) => void) | null = null;
 
-  protected drawBackground(): void {
-    // Ocean Background - Tactical Blue (Standardized)
-    this.ctx.fillStyle = '#1e3a8a';
-    this.ctx.fillRect(0, 0, this.width, this.height);
+  constructor(ctx: CanvasRenderingContext2D, width: number, height: number, tacticalCtx: CanvasRenderingContext2D) {
+    super(ctx, width, height, tacticalCtx);
   }
 
-  protected drawFeature(feature: GeoJsonFeature): void {
+  protected drawBackground(ctx: CanvasRenderingContext2D): void {
+    // Ocean Background - Tactical Blue (Standardized)
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(0, 0, this.width, this.height);
+  }
+
+  protected drawFeature(feature: GeoJsonFeature, ctx: CanvasRenderingContext2D): void {
     const continent = feature.properties.CONTINENT || 'Unknown';
     const name = (feature.properties.NAME || '').toLowerCase();
     const nameLong = (feature.properties.NAME_LONG || '').toLowerCase();
@@ -41,25 +45,22 @@ export class SDAMapEngine extends BaseMapEngine {
     
     let lineWidth = (isPlayer || isTarget) ? Math.max(2 / this.scale, 1) : Math.max(0.7 / this.scale, 0.4);
 
-    this.ctx.beginPath();
-    this.ctx.fillStyle = color;
-    this.ctx.strokeStyle = borderColor;
-    this.ctx.lineWidth = lineWidth;
+    const path = this.getPathForFeature(feature);
+    if (!path) return;
 
-    const { type, coordinates } = feature.geometry;
-    if (type === 'Polygon') this.drawPolygon(coordinates);
-    else if (type === 'MultiPolygon') {
-      for (const polygon of coordinates) this.drawPolygon(polygon);
-    }
+    ctx.fillStyle = color;
+    ctx.strokeStyle = borderColor;
+    ctx.lineWidth = lineWidth;
 
-    this.ctx.fill();
-    this.ctx.stroke();
+    ctx.fill(path);
+    ctx.stroke(path);
   }
 
   protected drawOverlays(): void {
     if (!this.countries || this.countries.length === 0) return;
+    const ctx = this.tacticalCtx;
 
-    this.ctx.save();
+    ctx.save();
     for (const center of this.countries) {
       const lat = center.lat !== undefined ? center.lat : center.latitude;
       const lon = center.lon !== undefined ? center.lon : center.longitude;
@@ -71,54 +72,54 @@ export class SDAMapEngine extends BaseMapEngine {
       if (activeResources.length === 0) continue;
 
       // Draw Resource Indicator (Pickaxe icon replacement)
-      this.drawResourceIcon(x, y);
+      this.drawResourceIcon(ctx, x, y);
     }
-    this.ctx.restore();
+    ctx.restore();
   }
 
-  private drawResourceIcon(x: number, y: number) {
+  private drawResourceIcon(ctx: CanvasRenderingContext2D, x: number, y: number) {
     const size = 14 / this.scale;
     const padding = 2 / this.scale;
     
     // 1. Shadow for contrast
-    this.ctx.save();
-    this.ctx.shadowBlur = 10 / this.scale;
-    this.ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+    ctx.save();
+    ctx.shadowBlur = 10 / this.scale;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
     
     // 2. Background Slate/Slate Box
-    const grad = this.ctx.createLinearGradient(x, y - size/2, x, y + size/2);
+    const grad = ctx.createLinearGradient(x, y - size/2, x, y + size/2);
     grad.addColorStop(0, '#3f3f46'); // zinc-700
     grad.addColorStop(1, '#18181b'); // zinc-900
 
-    this.ctx.fillStyle = grad;
-    this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
-    this.ctx.lineWidth = 1 / this.scale;
+    ctx.fillStyle = grad;
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+    ctx.lineWidth = 1 / this.scale;
     
-    this.ctx.beginPath();
-    this.ctx.roundRect(x - size/2 - padding, y - size/2 - padding, size + padding*2, size + padding*2, 4 / this.scale);
-    this.ctx.fill();
-    this.ctx.stroke();
-    this.ctx.restore();
+    ctx.beginPath();
+    ctx.roundRect(x - size/2 - padding, y - size/2 - padding, size + padding*2, size + padding*2, 4 / this.scale);
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
 
     // 3. Hammer (Palu) Drawing
     const s = 1.2 / this.scale; // Scale factor for the icon itself
 
     // Handle (Wood)
-    this.ctx.fillStyle = '#78350f'; // amber-900
-    this.ctx.beginPath();
-    this.ctx.roundRect(x - 1*s, y - 1*s, 2*s, 6*s, 0.5*s);
-    this.ctx.fill();
+    ctx.fillStyle = '#78350f'; // amber-900
+    ctx.beginPath();
+    ctx.roundRect(x - 1*s, y - 1*s, 2*s, 6*s, 0.5*s);
+    ctx.fill();
 
     // Head (Polished Steel)
-    this.ctx.fillStyle = '#f8fafc'; // slate-50
-    this.ctx.beginPath();
-    this.ctx.roundRect(x - 5*s, y - 5*s, 10*s, 4.5*s, 1*s);
-    this.ctx.fill();
+    ctx.fillStyle = '#f8fafc'; // slate-50
+    ctx.beginPath();
+    ctx.roundRect(x - 5*s, y - 5*s, 10*s, 4.5*s, 1*s);
+    ctx.fill();
     
     // Head Secondary (Shadow side)
-    this.ctx.fillStyle = '#cbd5e1'; // slate-300
-    this.ctx.beginPath();
-    this.ctx.roundRect(x - 5*s, y - 2*s, 10*s, 1.5*s, 1*s);
-    this.ctx.fill();
+    ctx.fillStyle = '#cbd5e1'; // slate-300
+    ctx.beginPath();
+    ctx.roundRect(x - 5*s, y - 2*s, 10*s, 1.5*s, 1*s);
+    ctx.fill();
   }
 }

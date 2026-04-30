@@ -82,32 +82,30 @@ export function useAIGameSync() {
         return;
       }
 
-      // 2. Update AI Budget (Kas Negara) — adds daily income for all 206 NPC nations
-      // SKIP these if backend sync already handled it, but keep as fallback if npcStates is missing
+      // 2. Update AI Budget & Population FALLBACKS (ONLY if backend sync didn't provide data)
       if (!data.npcStates) {
         try {
           aiBudgetStorage.updateAll(gameDate, userCountry);
         } catch (e) { /* silent */ }
 
-        // 3. Update AI Population (Populasi) — grows population daily for all NPC nations
         try {
           aiPopulationStorage.updateAll(gameDate, userCountry);
         } catch (e) { /* silent */ }
+
+        // 4. Update AI Happiness (Kepuasan) — small daily decay
+        try {
+          aiHappinessStorage.dailyDecay(dateStr, userCountry);
+        } catch (e) { /* silent */ }
+        
+        // 5. AI Construction & Defense Completion
+        try {
+          EksekutorPembangunanAI.checkCompletion(gameDate);
+          EksekutorPertahananAI.checkCompletion(gameDate);
+        } catch (e) { /* silent */ }
       }
 
-      // 4. Update AI Happiness (Kepuasan) — small daily decay
+      // 6. AI Defense Thinking & Geopolitical Pulse
       try {
-        aiHappinessStorage.dailyDecay(dateStr, userCountry);
-      } catch (e) { /* silent */ }
-
-      // 5. AI Construction & Defense Completion
-      try {
-        // A. Check for completed BUILDING projects (was missing — caused AI counts to never increment)
-        EksekutorPembangunanAI.checkCompletion(gameDate);
-
-        // B. Check for completed DEFENSE projects
-        EksekutorPertahananAI.checkCompletion(gameDate);
-
         // B. Process a batch of NPCs for defense thinking
         const npcCountries = countries.filter(c => c.name_en !== userCountry);
         const startIdx = batchIndexRef.current;

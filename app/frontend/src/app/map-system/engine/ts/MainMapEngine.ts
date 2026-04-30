@@ -6,13 +6,13 @@ export class MainMapEngine extends BaseMapEngine {
   public playerCountryName: string | null = null;
   public targetCountryName: string | null = null;
 
-  protected drawBackground(): void {
+  protected drawBackground(ctx: CanvasRenderingContext2D): void {
     // Ocean Background - Tactical Blue
-    this.ctx.fillStyle = '#1e3a8a';
-    this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   }
 
-  protected drawFeature(feature: GeoJsonFeature): void {
+  protected drawFeature(feature: GeoJsonFeature, ctx: CanvasRenderingContext2D): void {
     const continent = feature.properties.CONTINENT || 'Unknown';
     const name = (feature.properties.NAME || 'Unknown').toLowerCase();
     const nameLong = (feature.properties.NAME_LONG || '').toLowerCase();
@@ -44,23 +44,19 @@ export class MainMapEngine extends BaseMapEngine {
       lineWidth = Math.max(2 / this.scale, 1);
     }
 
-    this.ctx.beginPath();
-    this.ctx.fillStyle = color;
-    this.ctx.strokeStyle = borderColor;
-    this.ctx.lineWidth = lineWidth;
+    const path = this.getPathForFeature(feature);
+    if (!path) return;
 
-    const { type, coordinates } = feature.geometry;
-    if (type === 'Polygon') this.drawPolygon(coordinates);
-    else if (type === 'MultiPolygon') {
-      for (const polygon of coordinates) this.drawPolygon(polygon);
-    }
+    ctx.fillStyle = color;
+    ctx.strokeStyle = borderColor;
+    ctx.lineWidth = lineWidth;
 
-    this.ctx.fill();
-    this.ctx.stroke();
+    ctx.fill(path);
+    ctx.stroke(path);
 
     // Pulse microstates
     const isTiny = feature.properties.TINY > 0 || feature.properties.LABELRANK > 5;
-    if (isTiny && this.scale < 3) this.drawMicrostatePulse(feature);
+    if (isTiny && this.scale < 3) this.drawMicrostatePulse(feature, ctx);
   }
 
   public activeInvasions: any[] = [];
@@ -68,15 +64,24 @@ export class MainMapEngine extends BaseMapEngine {
   private gameState = timeStorage.getState();
   private lastSaveTime = 0;
 
-  constructor(ctx: CanvasRenderingContext2D, width: number, height: number) {
-    super(ctx, width, height);
+  private simulationWorker: Worker | null = null;
+
+  constructor(ctx: CanvasRenderingContext2D, width: number, height: number, tacticalCtx: CanvasRenderingContext2D) {
+    super(ctx, width, height, tacticalCtx);
     
     // Subscribe to time storage for animation sync
     timeStorage.subscribe((date, paused, speed) => {
       this.gameState = { gameDate: date, isPaused: paused, speed: speed };
+      this.simulationWorker?.postMessage({ 
+        type: 'UPDATE_STATE', 
+        payload: { isPaused: paused, speed: speed } 
+      });
     });
 
     if (typeof window !== 'undefined') {
+      // Initialize Web Worker for high-performance simulation
+      this.initSimulationWorker();
+      
       // Load saved invasions
       this.loadInvasionsFromStorage();
 
@@ -100,18 +105,15 @@ export class MainMapEngine extends BaseMapEngine {
             this.activeInvasions.push(newInvasion);
           }
           
+          this.simulationWorker?.postMessage({ type: 'ADD_INVASION', payload: newInvasion });
           this.saveInvasionsToStorage();
-
-          if (!this.isAnimatingInvasions) {
-            this.isAnimatingInvasions = true;
-            this.animateInvasions();
-          }
           this.requestRender();
         }
       });
 
       window.addEventListener('CLEAR_INVASIONS', () => {
         this.activeInvasions = [];
+        this.simulationWorker?.postMessage({ type: 'INIT_INVASIONS', payload: [] });
         localStorage.removeItem('active_invasions');
         this.requestRender();
       });
@@ -119,19 +121,11 @@ export class MainMapEngine extends BaseMapEngine {
       window.addEventListener('REMOVE_INVASION', (e: any) => {
         if (e.detail && e.detail.target) {
             const target = String(e.detail.target).toLowerCase().trim();
-            const originalCount = this.activeInvasions.length;
-            
             this.activeInvasions = this.activeInvasions.filter(inv => {
               const invTarget = String(inv.target || '').toLowerCase().trim();
               return invTarget !== target;
             });
-
-            // If nothing changed but we expect it to, or just to be safe for player peace
-            if (this.activeInvasions.length === originalCount && originalCount > 0) {
-                // Fallback: Clear everything if it's likely the player's primary invasion
-                this.activeInvasions = [];
-            }
-
+            this.simulationWorker?.postMessage({ type: 'REMOVE_INVASION', payload: { target } });
             this.saveInvasionsToStorage();
             this.requestRender();
         }
@@ -139,10 +133,35 @@ export class MainMapEngine extends BaseMapEngine {
     }
   }
 
+  private initSimulationWorker() {
+    if (typeof Worker === 'undefined') return;
+    
+    // In Next.js, we use this pattern for Workers
+    this.simulationWorker = new Worker(new URL('./workers/MapSimulationWorker.ts', import.meta.url));
+    
+    this.simulationWorker.onmessage = (e) => {
+      const { type, payload } = e.data;
+      
+      if (type === 'TICK' || type === 'STATE_SYNC') {
+        // High-speed update from worker
+        this.activeInvasions = payload;
+        this.requestRender();
+      } else if (type === 'INVASION_ARRIVED') {
+        this.saveInvasionsToStorage();
+      }
+    };
+
+    // Initial state sync
+    this.simulationWorker.postMessage({ 
+        type: 'UPDATE_STATE', 
+        payload: { isPaused: this.gameState.isPaused, speed: this.gameState.speed } 
+    });
+    this.simulationWorker.postMessage({ type: 'INIT_INVASIONS', payload: this.activeInvasions });
+  }
+
   private saveInvasionsToStorage() {
     if (typeof window === 'undefined') return;
     try {
-        // Serialized without screenPos as it's computed every frame
         const toSave = this.activeInvasions.map(inv => ({
             path: inv.path,
             units: inv.units,
@@ -165,69 +184,30 @@ export class MainMapEngine extends BaseMapEngine {
             const parsed = JSON.parse(saved);
             this.activeInvasions = parsed;
             
-            // Rebuild Path2D for each loaded invasion
             this.activeInvasions.forEach(inv => {
                 if (inv.path && inv.path.pathCoordinates) {
-                    // Create path2d using raw coordinates
-                    const path2d = new Path2D();
-                    inv.path.pathCoordinates.forEach((c: any, idx: number) => {
-                        const p = this.projector.project(c.lon, c.lat);
-                        if (idx === 0) path2d.moveTo(p.x, p.y);
-                        else path2d.lineTo(p.x, p.y);
-                    });
-                    // Store the generated path2d back (though it's not serialized)
-                    // We need a place to store it. In drawInvasionPaths, we use path.path2d.
-                    // But path is the object from localStorage, it doesn't have the path2d property yet.
-                    inv.path.path2d = path2d;
+                    this.cacheInvasionPixels(inv);
                 }
             });
 
-            if (this.activeInvasions.length > 0 && !this.isAnimatingInvasions) {
-                this.isAnimatingInvasions = true;
-                this.animateInvasions();
-            }
+            this.simulationWorker?.postMessage({ type: 'INIT_INVASIONS', payload: this.activeInvasions });
         }
     } catch (e) {
         console.error("Failed to load invasions", e);
     }
   }
 
-  private animateInvasions = () => {
-    let active = false;
-    for (let i = this.activeInvasions.length - 1; i >= 0; i--) {
-        const inv = this.activeInvasions[i];
-        
-        if (!this.gameState.isPaused) {
-            inv.progress += inv.speed * (this.gameState.speed || 1);
-        }
-        
-        if (inv.progress > 1) {
-            // Mark as arrived instead of removing
-            if (!inv.arrived) {
-                inv.progress = 1;
-                inv.arrived = true;
-                this.saveInvasionsToStorage(); // Save state when arrived
-            }
-            active = true; // Keep animating for the pulse effect
-        } else {
-            active = true;
-        }
-    }
-    
-    this.requestRender();
-    
-    // Periodically save progress (every 2 seconds)
-    const now = performance.now();
-    if (now - this.lastSaveTime > 2000) {
-        this.saveInvasionsToStorage();
-        this.lastSaveTime = now;
-    }
-    
-    if (active) {
-        requestAnimationFrame(this.animateInvasions);
-    } else {
-        this.isAnimatingInvasions = false;
-    }
+  private cacheInvasionPixels(inv: any) {
+    if (!inv.path || !inv.path.pathCoordinates) return;
+    inv.path.pixels = inv.path.pathCoordinates.map((c: any) => 
+        this.projector.project(c.lon, c.lat)
+    );
+  }
+
+  public resize(width: number, height: number) {
+    super.resize(width, height);
+    // Re-cache all pixels on resize
+    this.activeInvasions.forEach(inv => this.cacheInvasionPixels(inv));
   }
 
   protected drawOverlays(): void {
@@ -237,8 +217,8 @@ export class MainMapEngine extends BaseMapEngine {
 
   private drawInvasionPaths(): void {
     if (!this.activeInvasions || this.activeInvasions.length === 0) return;
+    const ctx = this.tacticalCtx;
 
-    // Cache Path2D objects
     if (!(this as any).svgPaths && typeof Path2D !== 'undefined') {
         (this as any).svgPaths = {
             pesawat: new Path2D(PESAWAT_PATH),
@@ -247,123 +227,91 @@ export class MainMapEngine extends BaseMapEngine {
         };
     }
 
-    this.ctx.save();
+    ctx.save();
     for (const invasion of this.activeInvasions) {
-        // Fallback for old data structure if needed
         const path = invasion.path || invasion;
-        
         if (!path.pathCoordinates || path.pathCoordinates.length === 0) continue;
 
-        // 1. Draw Path
-        this.ctx.beginPath();
+        if (!path.pixels) this.cacheInvasionPixels(invasion);
+        const pixels = path.pixels;
+
+        // 1. Draw Path (Optimized)
+        ctx.beginPath();
         if (path.style && path.style.isDashed) {
-            this.ctx.setLineDash(path.style.dashArray.map((d: number) => d / this.scale));
+            ctx.setLineDash(path.style.dashArray.map((d: number) => d / this.scale));
         } else {
-            this.ctx.setLineDash([]);
+            ctx.setLineDash([]);
         }
 
         const strokeColor = path.style ? path.style.color : '#ef4444';
-        this.ctx.strokeStyle = strokeColor;
-        this.ctx.lineWidth = path.style ? path.style.lineWidth / this.scale : 3 / this.scale;
+        ctx.strokeStyle = strokeColor;
+        ctx.lineWidth = path.style ? path.style.lineWidth / this.scale : 3 / this.scale;
         
-        this.ctx.shadowBlur = 10 / this.scale;
-        this.ctx.shadowColor = strokeColor;
-
-        const p0 = this.projector.project(path.pathCoordinates[0].lon, path.pathCoordinates[0].lat);
-        this.ctx.moveTo(p0.x, p0.y);
-
-        for (let i = 1; i < path.pathCoordinates.length; i++) {
-            const p = this.projector.project(path.pathCoordinates[i].lon, path.pathCoordinates[i].lat);
-            this.ctx.lineTo(p.x, p.y);
+        ctx.moveTo(pixels[0].x, pixels[0].y);
+        for (let i = 1; i < pixels.length; i++) {
+            ctx.lineTo(pixels[i].x, pixels[i].y);
         }
-
-        this.ctx.stroke();
+        ctx.stroke();
         
-        // 2. Draw Units along the path if it's an animating object
+        // 2. Draw Units
         if (invasion.progress !== undefined && invasion.units) {
-            this.ctx.setLineDash([]); // Reset line dash for icons
+            ctx.setLineDash([]); 
             
-            // Get current coordinate based on progress
-            const totalCoords = path.pathCoordinates.length - 1;
+            const totalCoords = pixels.length - 1;
             const floatIndex = invasion.progress * totalCoords;
-            let index = Math.floor(floatIndex);
             
-            // Clamp index to prevent out of bounds
-            if (index >= totalCoords) index = totalCoords - 1;
+            if (invasion.arrived) {
+                const pos = pixels[totalCoords];
+                const time = performance.now();
+                const pulse = (Math.sin(time / 200) + 1) / 2;
+                const radius = (15 + pulse * 10) / this.scale;
+                
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(239, 68, 68, ${0.2 + pulse * 0.3})`;
+                ctx.fill();
+                
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, 5 / this.scale, 0, Math.PI * 2);
+                ctx.fillStyle = '#ef4444';
+                ctx.fill();
+                
+                invasion.screenPos = { x: pos.x, y: pos.y };
+            } else {
+                if (!invasion._cachedTypes) {
+                    invasion._cachedTypes = Array.from(new Set(invasion.units.map((u: any) => u.type)));
+                }
+                const types = invasion._cachedTypes;
+                
+                let trailOffset = 0;
+                types.forEach((type: string) => {
+                    const trailIdx = Math.max(0, floatIndex - trailOffset);
+                    const t1 = Math.floor(trailIdx);
+                    const tFrac = trailIdx - t1;
+                    const tp1 = pixels[t1];
+                    const tp2 = pixels[Math.min(totalCoords, t1 + 1)];
 
-            if (index >= 0 && index < path.pathCoordinates.length - 1) {
-                const fraction = floatIndex - index;
-                const c1 = path.pathCoordinates[index];
-                const c2 = path.pathCoordinates[index + 1];
-                
-                // If progress is exactly 1, use the destination coordinate
-                const currentLon = invasion.progress >= 1 ? path.pathCoordinates[totalCoords].lon : c1.lon + (c2.lon - c1.lon) * fraction;
-                const currentLat = invasion.progress >= 1 ? path.pathCoordinates[totalCoords].lat : c1.lat + (c2.lat - c1.lat) * fraction;
-                
-                const pos = this.projector.project(currentLon, currentLat);
-                
-                // If arrived, draw pulsing battlefield marker
-                if (invasion.arrived) {
-                    const pulse = (Math.sin(performance.now() / 200) + 1) / 2; // 0 to 1
-                    const radius = (15 + pulse * 10) / this.scale;
-                    
-                    this.ctx.beginPath();
-                    this.ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
-                    this.ctx.fillStyle = `rgba(239, 68, 68, ${0.3 + pulse * 0.4})`;
-                    this.ctx.fill();
-                    
-                    this.ctx.beginPath();
-                    this.ctx.arc(pos.x, pos.y, 5 / this.scale, 0, Math.PI * 2);
-                    this.ctx.fillStyle = '#ef4444';
-                    this.ctx.fill();
-                    
-                    // Store projected pos for hit detection
-                    invasion.screenPos = { x: pos.x, y: pos.y };
-                } else {
-                    // Calculate rotation angle to point unit towards destination
-                    const nextPos = this.projector.project(c2.lon, c2.lat);
-                    const angle = Math.atan2(nextPos.y - pos.y, nextPos.x - pos.x);
+                    if (tp1 && tp2) {
+                        const cx = tp1.x + (tp2.x - tp1.x) * tFrac;
+                        const cy = tp1.y + (tp2.y - tp1.y) * tFrac;
 
-                    // Draw unique icons based on deployed units
-                    const types = Array.from(new Set(invasion.units.map((u: any) => u.type)));
-                    
-                    this.ctx.save();
-                    this.ctx.translate(pos.x, pos.y);
-                    
-                    this.ctx.shadowBlur = 10 / this.scale;
-                    this.ctx.shadowColor = 'rgba(0, 0, 0, 0.8)'; 
-                    
-                    let offsetX = 0;
-                    
-                    types.forEach((type: any) => {
-                        this.ctx.save();
-                        
-                        const offsetPosLon = currentLon - (c2.lon - c1.lon) * offsetX;
-                        const offsetPosLat = currentLat - (c2.lat - c1.lat) * offsetX;
-                        const cPos = this.projector.project(offsetPosLon, offsetPosLat);
-                        
-                        this.ctx.translate(cPos.x - pos.x, cPos.y - pos.y);
-                        
+                        ctx.save();
+                        ctx.translate(cx, cy);
                         const unitSize = 40 / this.scale; 
                         const unitScale = unitSize / 24; 
-                        this.ctx.scale(unitScale, unitScale);
-                        this.ctx.translate(-12, -12); 
-                        
-                        this.ctx.fillStyle = '#ef4444'; 
-                        
+                        ctx.scale(unitScale, unitScale);
+                        ctx.translate(-12, -12); 
+                        ctx.fillStyle = '#ef4444'; 
                         const path2d = (this as any).svgPaths[type] || (this as any).svgPaths.tank;
-                        this.ctx.fill(path2d);
-                        
-                        this.ctx.restore();
-                        offsetX += 0.8; 
-                    });
-                    
-                    this.ctx.restore();
-                }
+                        ctx.fill(path2d);
+                        ctx.restore();
+                    }
+                    trailOffset += 0.8; 
+                });
             }
         }
     }
-    this.ctx.restore();
+    ctx.restore();
   }
 
   public getInvasionAt(mouseX: number, mouseY: number): any | null {
@@ -390,9 +338,10 @@ export class MainMapEngine extends BaseMapEngine {
 
   private drawCapitals() {
     if (!this.countries || this.countries.length === 0) return;
-    this.ctx.save();
-    this.ctx.shadowBlur = 4 / this.scale;
-    this.ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+    const ctx = this.tacticalCtx;
+    ctx.save();
+    ctx.shadowBlur = 4 / this.scale;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
 
     for (const country of this.countries) {
       const lat = country.lat !== undefined ? country.lat : country.latitude;
@@ -402,22 +351,20 @@ export class MainMapEngine extends BaseMapEngine {
       if (lat === undefined || lon === undefined) continue;
       const { x, y } = this.projector.project(Number(lon), Number(lat));
 
-      // Draw Capital Star
       const outerRadius = Math.max(3.5 / this.scale, 0.8);
       const innerRadius = outerRadius / 2.5;
-      this.drawStar(x, y, 5, outerRadius, innerRadius);
-      this.ctx.fillStyle = '#22d3ee';
-      this.ctx.fill();
+      this.drawStar(ctx, x, y, 5, outerRadius, innerRadius);
+      ctx.fillStyle = '#22d3ee';
+      ctx.fill();
 
-      // Labels at high zoom
       if (this.scale > 4.5 && capitalName) {
-        this.ctx.font = `bold ${10 / this.scale}px "Cascadia Code", monospace`;
-        this.ctx.fillStyle = '#22d3ee';
-        this.ctx.textAlign = 'center';
-        this.ctx.shadowBlur = 2 / this.scale;
-        this.ctx.fillText(capitalName.toUpperCase(), x, y - (6 / this.scale));
+        ctx.font = `bold ${10 / this.scale}px "Cascadia Code", monospace`;
+        ctx.fillStyle = '#22d3ee';
+        ctx.textAlign = 'center';
+        ctx.shadowBlur = 2 / this.scale;
+        ctx.fillText(capitalName.toUpperCase(), x, y - (6 / this.scale));
       }
     }
-    this.ctx.restore();
+    ctx.restore();
   }
 }

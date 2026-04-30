@@ -468,8 +468,8 @@ func main() {
 // ═══════════════════════════════════════════════════════════
 
 func simulationEngine() {
-	// Base tick rate: 10ms (Ultra high resolution for precise scaling)
-	ticker := time.NewTicker(10 * time.Millisecond)
+	// Base tick rate: 100ms (Optimized: 10x less CPU usage than 10ms)
+	ticker := time.NewTicker(100 * time.Millisecond)
 	acc := 0 
 
 	for range ticker.C {
@@ -483,16 +483,15 @@ func simulationEngine() {
 			continue
 		}
 
-		// Precise Accumulator: 10ms * 100 = 1000ms (1 second)
-		// 1x speed -> increment 1 -> 1 day per 1000ms
-		// 2x speed -> increment 2 -> 2 days per 1000ms (1 day per 500ms)
-		// 3x speed -> increment 3 -> 3 days per 1000ms (1 day per 333.3ms)
+		// Optimized Accumulator: 100ms base
+		// 1x speed -> +1 -> 10 ticks = 1000ms
+		// 2x speed -> +2 -> 5 ticks = 500ms
+		// 3x speed -> +3 -> ~3.3 ticks = 333ms
 		acc += speed
-		if acc < 100 {
+		if acc < 10 {
 			continue
 		}
-		// Use subtraction instead of reset to preserve fractional progress and prevent drift
-		acc -= 100
+		acc -= 10
 
 		// === ADVANCE ONE GAME DAY ===
 		core.GlobalState.Mu.Lock()

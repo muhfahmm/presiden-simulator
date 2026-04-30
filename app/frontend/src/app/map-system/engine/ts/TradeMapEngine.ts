@@ -14,8 +14,8 @@ export class TradeMapEngine extends BaseMapEngine {
   private activeRoutesCache: Record<number, { pts: Point[], pixels: { x: number, y: number }[] }> = {};
   private gameState = timeStorage.getState();
 
-  constructor(ctx: CanvasRenderingContext2D, width: number, height: number) {
-    super(ctx, width, height);
+  constructor(ctx: CanvasRenderingContext2D, width: number, height: number, tacticalCtx: CanvasRenderingContext2D) {
+    super(ctx, width, height, tacticalCtx);
     
     // Subscribe to time storage for animation sync
     timeStorage.subscribe((date, paused, speed) => {
@@ -59,13 +59,13 @@ export class TradeMapEngine extends BaseMapEngine {
     this.requestRender();
   }
 
-  protected drawBackground(): void {
+  protected drawBackground(ctx: CanvasRenderingContext2D): void {
     // Ocean Background - Tactical Blue (Standardized)
-    this.ctx.fillStyle = '#1e3a8a';
-    this.ctx.fillRect(0, 0, this.width, this.height);
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(0, 0, this.width, this.height);
   }
 
-  protected drawFeature(feature: GeoJsonFeature): void {
+  protected drawFeature(feature: GeoJsonFeature, ctx: CanvasRenderingContext2D): void {
     const continent = feature.properties.CONTINENT || 'Unknown';
     const name = (feature.properties.NAME || '').toLowerCase();
     
@@ -87,31 +87,27 @@ export class TradeMapEngine extends BaseMapEngine {
       lineWidth = Math.max(2 / this.scale, 1);
     }
 
-    this.ctx.beginPath();
-    this.ctx.fillStyle = color;
-    this.ctx.strokeStyle = borderColor;
-    this.ctx.lineWidth = lineWidth;
+    const path = this.getPathForFeature(feature);
+    if (!path) return;
 
-    const { type, coordinates } = feature.geometry;
-    if (type === 'Polygon') this.drawPolygon(coordinates);
-    else if (type === 'MultiPolygon') {
-      for (const polygon of coordinates) this.drawPolygon(polygon);
-    }
+    ctx.fillStyle = color;
+    ctx.strokeStyle = borderColor;
+    ctx.lineWidth = lineWidth;
 
-    this.ctx.fill();
-    this.ctx.stroke();
+    ctx.fill(path);
+    ctx.stroke(path);
   }
 
-
-
   protected drawOverlays(): void {
+    const ctx = this.tacticalCtx;
+    
     // 1. Draw Hubs
     internationalHubs.forEach(h => {
       const { x, y } = this.projector.project(h.lon, h.lat);
-      this.ctx.beginPath();
-      this.ctx.arc(x, y, 3 / this.scale, 0, Math.PI * 2);
-      this.ctx.fillStyle = h.fill || "#ffffff";
-      this.ctx.fill();
+      ctx.beginPath();
+      ctx.arc(x, y, 3 / this.scale, 0, Math.PI * 2);
+      ctx.fillStyle = h.fill || "#ffffff";
+      ctx.fill();
     });
 
     // 2. Update time for animations
@@ -119,8 +115,6 @@ export class TradeMapEngine extends BaseMapEngine {
     const deltaTime = this.lastTimestamp === 0 ? 0 : now - this.lastTimestamp;
     this.lastTimestamp = now;
 
-    // Handle Resize Invalidation (If projector dimensions don't match cache, clear it)
-    // We can just check if width/height changed since last draw
     if ((this as any)._lastW !== this.width || (this as any)._lastH !== this.height) {
         this.activeRoutesCache = {};
         (this as any)._lastW = this.width;
@@ -128,7 +122,6 @@ export class TradeMapEngine extends BaseMapEngine {
     }
 
     if (!this.gameState.isPaused) {
-      // Just request render if not paused to keep smoothedAngle moving towards target
       this.requestRender();
     }
 
@@ -139,14 +132,6 @@ export class TradeMapEngine extends BaseMapEngine {
       if (!isNaN(dt.getTime())) {
         dt.setHours(0, 0, 0, 0);
         return dt.getTime();
-      }
-      if (typeof d === 'string' && d.includes('-')) {
-        const p = d.split('-');
-        if (p.length === 3) {
-          const dt2 = new Date(`${p[2]}-${p[1]}-${p[0]}`); 
-          dt2.setHours(0, 0, 0, 0);
-          if (!isNaN(dt2.getTime())) return dt2.getTime();
-        }
       }
       return 0;
     };
@@ -164,14 +149,14 @@ export class TradeMapEngine extends BaseMapEngine {
       if (!data) return;
 
       // Draw Route Line
-      this.ctx.beginPath();
-      this.ctx.moveTo(data.pixels[0].x, data.pixels[0].y);
-      for (let i = 1; i < data.pixels.length; i++) this.ctx.lineTo(data.pixels[i].x, data.pixels[i].y);
-      this.ctx.lineWidth = 2 / this.scale;
-      this.ctx.strokeStyle = tx.type === 'buy' ? "rgba(239, 68, 68, 0.3)" : "rgba(16, 185, 129, 0.3)";
-      this.ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(data.pixels[0].x, data.pixels[0].y);
+      for (let i = 1; i < data.pixels.length; i++) ctx.lineTo(data.pixels[i].x, data.pixels[i].y);
+      ctx.lineWidth = 2 / this.scale;
+      ctx.strokeStyle = tx.type === 'buy' ? "rgba(239, 68, 68, 0.3)" : "rgba(16, 185, 129, 0.3)";
+      ctx.stroke();
 
-      // --- HIGH PRECISION GAME-TIME SYNCHRONIZED ANIMATION ---
+      // Physics/Animation
       const totalDays = Number(tx.totalDays) || 10;
       const MS_PER_DAY = 24 * 60 * 60 * 1000;
       const totalGameMs = totalDays * MS_PER_DAY;
@@ -181,46 +166,29 @@ export class TradeMapEngine extends BaseMapEngine {
       gameNowDt.setHours(0, 0, 0, 0);
       const gameNow = gameNowDt.getTime();
       
-      // Calculate target progress based purely on current game date
       const targetProgress = Math.min(1, Math.max(0, (gameNow - gameStart) / totalGameMs));
-      
-      // INITIALIZATION: Start at the current target
       if ((tx as any)._visualProgress === undefined) {
         (tx as any)._visualProgress = targetProgress;
       }
 
       const diff = targetProgress - ((tx as any)._visualProgress || 0);
 
-      // SMOOTH CONTINUOUS MOVEMENT:
-      // We maintain a "Cruising Velocity" so the plane never stops between date updates.
       if (!this.gameState.isPaused) {
         const frameRateFactor = (deltaTime || 16.6) / 16.6;
-        
-        // 1. Calculate Nominal Speed (How much progress we should make per frame)
-        // Assumption: 1 game day = ~12 seconds at 1x speed. 
         const dayInRealMs = 12000; 
         const nominalVelocity = ((deltaTime || 16.6) / dayInRealMs) * (1 / totalDays) * this.gameState.speed;
-        
         (tx as any)._visualProgress += nominalVelocity;
-
-        // 2. Soft-Sync Logic:
-        // We compare our visual position with the official game date (targetProgress).
-        // If we are drifting too far, we gently pull the plane back into sync.
         
-        // If we are more than 0.1 days ahead/behind, apply correction
         const threshold = (1 / totalDays) * 0.1; 
         if (Math.abs(diff) > threshold) {
-          // Gently lerp towards the target (pulling force)
           (tx as any)._visualProgress += diff * 0.02 * frameRateFactor;
         }
       } else if (diff < -0.1) {
-        // If the game date reset completely, snap the plane back
         (tx as any)._visualProgress = targetProgress;
       }
 
       const progress = Math.min(1, Math.max(0, (tx as any)._visualProgress));
       
-      // Cleanup check
       if (progress >= 1 && !(tx as any)._cleanupRequested) {
         (tx as any)._cleanupRequested = true;
         setTimeout(() => {
@@ -229,8 +197,6 @@ export class TradeMapEngine extends BaseMapEngine {
       }
 
       const { pixels } = data;
-      
-      // Calculate distances once if not present in cache
       if (!(data as any).lengths) {
         (data as any).lengths = [];
         (data as any).totalLen = 0;
@@ -244,7 +210,6 @@ export class TradeMapEngine extends BaseMapEngine {
       const totalLen = (data as any).totalLen;
       const targetDist = progress * totalLen;
       
-      // Helper to get point and angle at distance
       const getPointAtDist = (d: number) => {
         let curDist = 0;
         for (let i = 0; i < (data as any).lengths.length; i++) {
@@ -265,7 +230,6 @@ export class TradeMapEngine extends BaseMapEngine {
 
       const pos = getPointAtDist(targetDist);
       
-      // --- DIRECTION & ROTATION (Physics) ---
       let targetAngle = 0;
       const lookAhead = 5;
       if (targetDist + lookAhead <= totalLen) {
@@ -276,58 +240,51 @@ export class TradeMapEngine extends BaseMapEngine {
         targetAngle = Math.atan2(pos.y - pBehind.y, pos.x - pBehind.x);
       }
 
-      // Smooth Rotation (Inertia)
       if ((tx as any)._prevAngle === undefined) (tx as any)._prevAngle = targetAngle;
-      
       let angleDiff = targetAngle - (tx as any)._prevAngle;
       while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
       while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
       
-      // Normalized to 60fps
       const frameFactor = Math.max(0.1, (deltaTime || 16.6) / 16.6);
       const lerpFactor = Math.min(1, 0.15 * frameFactor); 
       const smoothedAngle = (tx as any)._prevAngle + angleDiff * lerpFactor;
       (tx as any)._prevAngle = smoothedAngle;
 
-      this.ctx.save();
-      this.ctx.translate(pos.x, pos.y);
-      this.ctx.rotate(smoothedAngle);
-      this.ctx.fillStyle = "#ffffff";
-      
-      // Add a subtle drop shadow for depth
-      this.ctx.shadowBlur = 4 / this.scale;
-      this.ctx.shadowColor = "rgba(0,0,0,0.5)";
-      this.ctx.shadowOffsetY = 2 / this.scale;
-      
-      this.drawPlaneIcon();
-      this.ctx.restore();
+      ctx.save();
+      ctx.translate(pos.x, pos.y);
+      ctx.rotate(smoothedAngle);
+      ctx.fillStyle = "#ffffff";
+      ctx.shadowBlur = 4 / this.scale;
+      ctx.shadowColor = "rgba(0,0,0,0.5)";
+      ctx.shadowOffsetY = 2 / this.scale;
+      this.drawPlaneIcon(ctx);
+      ctx.restore();
     });
 
-    // Keep animating if not paused and there are active transactions
     if (!this.gameState.isPaused && this.activeTransactions.length > 0) {
       this.requestRender();
     }
   }
 
-  private drawPlaneIcon() {
+  private drawPlaneIcon(ctx: CanvasRenderingContext2D) {
     const s = 1 / this.scale;
-    this.ctx.beginPath();
-    this.ctx.moveTo(8 * s, 0);
-    this.ctx.lineTo(1 * s, -1.5 * s);
-    this.ctx.lineTo(0, -6 * s);
-    this.ctx.lineTo(-1.5 * s, -6 * s);
-    this.ctx.lineTo(-1 * s, -1.5 * s);
-    this.ctx.lineTo(-5 * s, -1.5 * s);
-    this.ctx.lineTo(-6.5 * s, -3.5 * s);
-    this.ctx.lineTo(-7 * s, -3.5 * s);
-    this.ctx.lineTo(-7 * s, 3.5 * s);
-    this.ctx.lineTo(-6.5 * s, 3.5 * s);
-    this.ctx.lineTo(-5 * s, 1.5 * s);
-    this.ctx.lineTo(-1 * s, 1.5 * s);
-    this.ctx.lineTo(-1.5 * s, 6 * s);
-    this.ctx.lineTo(0, 6 * s);
-    this.ctx.lineTo(1 * s, 1.5 * s);
-    this.ctx.closePath();
-    this.ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(8 * s, 0);
+    ctx.lineTo(1 * s, -1.5 * s);
+    ctx.lineTo(0, -6 * s);
+    ctx.lineTo(-1.5 * s, -6 * s);
+    ctx.lineTo(-1 * s, -1.5 * s);
+    ctx.lineTo(-5 * s, -1.5 * s);
+    ctx.lineTo(-6.5 * s, -3.5 * s);
+    ctx.lineTo(-7 * s, -3.5 * s);
+    ctx.lineTo(-7 * s, 3.5 * s);
+    ctx.lineTo(-6.5 * s, 3.5 * s);
+    ctx.lineTo(-5 * s, 1.5 * s);
+    ctx.lineTo(-1 * s, 1.5 * s);
+    ctx.lineTo(-1.5 * s, 6 * s);
+    ctx.lineTo(0, 6 * s);
+    ctx.lineTo(1 * s, 1.5 * s);
+    ctx.closePath();
+    ctx.fill();
   }
 }

@@ -28,6 +28,10 @@ interface MapContainerProps {
   externalCountries?: any[];
 }
 
+// Global Cache to prevent redundant fetching/parsing on remount
+let globalGeoData: GeoJsonData | null = null;
+let globalCountryData: any[] | null = null;
+
 export default function MapContainer({ 
   mode = 'MAIN', 
   userCountry, 
@@ -45,12 +49,13 @@ export default function MapContainer({
   onResetMode,
   externalCountries
 }: MapContainerProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const baseCanvasRef = useRef<HTMLCanvasElement>(null);
+  const tacticalCanvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef<BaseMapEngine | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [data, setData] = useState<GeoJsonData | null>(null);
-  const [countries, setCountries] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState<GeoJsonData | null>(globalGeoData);
+  const [countries, setCountries] = useState<any[]>(globalCountryData || []);
+  const [isLoading, setIsLoading] = useState(!globalGeoData);
 
   // Interaction State
   const [transform, setTransform] = useState({ scale: 1, x: 0, y: 0 });
@@ -64,6 +69,17 @@ export default function MapContainer({
     const maxRetries = 3;
 
     async function loadData() {
+      if (globalGeoData && (globalCountryData || (externalCountries && externalCountries.length > 0))) {
+          setData(globalGeoData);
+          if (externalCountries && externalCountries.length > 0) {
+              setCountries(externalCountries);
+          } else if (globalCountryData) {
+              setCountries(globalCountryData);
+          }
+          setIsLoading(false);
+          return;
+      }
+
       try {
         const fetchGeo = fetch('/data/world.json');
         const fetchCountries = externalCountries && externalCountries.length > 0 
@@ -74,12 +90,15 @@ export default function MapContainer({
 
         if (!geoRes.ok) throw new Error('Failed to load geography');
         const geoJson = await geoRes.json();
+        
+        globalGeoData = geoJson;
         setData(geoJson);
 
         if (externalCountries && externalCountries.length > 0) {
           setCountries(externalCountries);
         } else if (countryRes && countryRes.ok) {
           const countryList = await countryRes.json();
+          globalCountryData = countryList;
           setCountries(countryList);
         }
 
@@ -100,32 +119,35 @@ export default function MapContainer({
 
   // Initialize/Swap Engine
   useEffect(() => {
-    if (!canvasRef.current || !data || !containerRef.current) return;
+    if (!baseCanvasRef.current || !tacticalCanvasRef.current || !data || !containerRef.current) return;
 
-    const ctx = canvasRef.current.getContext('2d');
-    if (!ctx) return;
+    const baseCtx = baseCanvasRef.current.getContext('2d', { alpha: false });
+    const tacticalCtx = tacticalCanvasRef.current.getContext('2d');
+    if (!baseCtx || !tacticalCtx) return;
 
     const width = containerRef.current.clientWidth;
     const height = containerRef.current.clientHeight;
 
-    canvasRef.current.width = width;
-    canvasRef.current.height = height;
+    baseCanvasRef.current.width = width;
+    baseCanvasRef.current.height = height;
+    tacticalCanvasRef.current.width = width;
+    tacticalCanvasRef.current.height = height;
 
     // Instantiate Correct Engine based on Mode
     let engine: BaseMapEngine;
     switch (mode) {
       case 'DIPLOMACY':
-        engine = new DiplomacyMapEngine(ctx, width, height);
+        engine = new DiplomacyMapEngine(baseCtx, width, height, tacticalCtx);
         break;
       case 'SDA':
-        engine = new SDAMapEngine(ctx, width, height);
+        engine = new SDAMapEngine(baseCtx, width, height, tacticalCtx);
         break;
       case 'TRADE':
-        engine = new TradeMapEngine(ctx, width, height);
+        engine = new TradeMapEngine(baseCtx, width, height, tacticalCtx);
         break;
       case 'MAIN':
       default:
-        engine = new MainMapEngine(ctx, width, height);
+        engine = new MainMapEngine(baseCtx, width, height, tacticalCtx);
         break;
     }
 
@@ -134,11 +156,15 @@ export default function MapContainer({
     engineRef.current = engine;
 
     const handleResize = () => {
-      if (!containerRef.current || !canvasRef.current || !engineRef.current) return;
+      if (!containerRef.current || !baseCanvasRef.current || !tacticalCanvasRef.current || !engineRef.current) return;
       const newWidth = containerRef.current.clientWidth;
       const newHeight = containerRef.current.clientHeight;
-      canvasRef.current.width = newWidth;
-      canvasRef.current.height = newHeight;
+      
+      baseCanvasRef.current.width = newWidth;
+      baseCanvasRef.current.height = newHeight;
+      tacticalCanvasRef.current.width = newWidth;
+      tacticalCanvasRef.current.height = newHeight;
+      
       engineRef.current.resize(newWidth, newHeight);
     };
 
@@ -149,35 +175,30 @@ export default function MapContainer({
             engineRef.current.stopRenderLoop();
         }
     };
-  }, [data, countries, mode]); // Only re-init when fundamental data or mode changes
+  }, [data, countries, mode]);
 
   // Sync Transform, Selections & Specialized Data
   useEffect(() => {
     if (!engineRef.current) return;
     const engine = engineRef.current;
         
-    // 1. Common Selections
     if (engine instanceof MainMapEngine || engine instanceof DiplomacyMapEngine || engine instanceof SDAMapEngine || engine instanceof TradeMapEngine) {
       (engine as any).playerCountryName = userCountry || null;
       (engine as any).targetCountryName = targetName || selectedName || null;
     }
         
-    // 2. Diplomacy Specifics
     if (engine instanceof DiplomacyMapEngine) {
       engine.updateRelations();
     }
 
-    // 3. Trade Specifics
     if (engine instanceof TradeMapEngine) {
       engine.setTransactions(transactions);
     }
     
-    // 4. SDA Specifics
     if (engine instanceof SDAMapEngine) {
       engine.onSelectSDA = onSelectSDA || null;
     }
 
-    // 5. Global State
     engine.setRelations(relations);
     engine.setTransform(transform.scale, transform.x, transform.y);
   }, [
@@ -197,8 +218,6 @@ export default function MapContainer({
   useEffect(() => {
     if (!data || !containerRef.current || isDragging) return;
     
-    // Only focus if we have coordinates and it's an internal selection (carousel/search)
-    // or if selectedName is set and we found it (fallback)
     let lat = selectedLat;
     let lon = selectedLon;
 
@@ -240,13 +259,12 @@ export default function MapContainer({
     e.preventDefault();
     const zoomSpeed = 0.005;
     const newScale = Math.min(Math.max(transform.scale - e.deltaY * zoomSpeed, 1.0), 10);
-    const rect = canvasRef.current?.getBoundingClientRect(); if (!rect) return;
+    const rect = tacticalCanvasRef.current?.getBoundingClientRect(); if (!rect) return;
     const mouseX = e.clientX - rect.left, mouseY = e.clientY - rect.top;
     const scaleRatio = newScale / transform.scale;
     let newX = mouseX - (mouseX - transform.x) * scaleRatio, newY = mouseY - (mouseY - transform.y) * scaleRatio;
     
-    // Clamp bounds
-    const width = canvasRef.current?.width || 0, height = canvasRef.current?.height || 0;
+    const width = tacticalCanvasRef.current?.width || 0, height = tacticalCanvasRef.current?.height || 0;
     if (newScale <= 1.0) { newX = 0; newY = 0; }
     else {
       newX = Math.min(Math.max(newX, width * (1 - newScale)), 0);
@@ -261,7 +279,7 @@ export default function MapContainer({
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!isDragging || transform.scale <= 1.0) {
-      const rect = canvasRef.current?.getBoundingClientRect();
+      const rect = tacticalCanvasRef.current?.getBoundingClientRect();
       if (rect && engineRef.current && !isDragging) {
         const mouseX = e.clientX - rect.left, mouseY = e.clientY - rect.top;
         const engine = engineRef.current;
@@ -301,16 +319,22 @@ export default function MapContainer({
         </div>
       )}
 
-      <canvas ref={canvasRef} 
-        className={`w-full h-full block transition-opacity duration-1000 ${isDragging ? 'cursor-grabbing' : isHoveringStar ? 'cursor-pointer' : 'cursor-grab'}`}
+      {/* Layer 1: Base Map (Static Countries & Oceans) */}
+      <canvas ref={baseCanvasRef} 
+        className="absolute inset-0 w-full h-full block"
+        style={{ opacity: isLoading ? 0 : 1 }}
+      />
+
+      {/* Layer 2: Tactical Layer (Dynamic Invasions & Units) */}
+      <canvas ref={tacticalCanvasRef} 
+        className={`absolute inset-0 w-full h-full block transition-opacity duration-1000 ${isDragging ? 'cursor-grabbing' : isHoveringStar ? 'cursor-pointer' : 'cursor-grab'}`}
         onClick={(e) => {
-          const rect = canvasRef.current?.getBoundingClientRect();
+          const rect = tacticalCanvasRef.current?.getBoundingClientRect();
           if (!rect || !engineRef.current) return;
           
           const mouseX = e.clientX - rect.left;
           const mouseY = e.clientY - rect.top;
 
-          // 1. Check for Invasion Markers first (Battlefields)
           const engine = engineRef.current;
           if (engine && (engine as any).getInvasionAt) {
             const invasion = (engine as any).getInvasionAt(mouseX, mouseY);
@@ -318,11 +342,10 @@ export default function MapContainer({
               window.dispatchEvent(new CustomEvent('OPEN_WAR_REPORT', { 
                 detail: invasion 
               }));
-              return; // Stop here, jangan buka modal negara
+              return;
             }
           }
 
-          // 2. Fallback to Country Selection
           const country = engine.getCountryAt(mouseX, mouseY);
           if (country) {
             if (mode === 'SDA' && onSelectSDA) {

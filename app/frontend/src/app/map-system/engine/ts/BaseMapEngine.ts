@@ -26,54 +26,52 @@ export const CONTINENT_COLORS: Record<string, string> = {
 };
 
 export abstract class BaseMapEngine {
-  protected ctx: CanvasRenderingContext2D;
+  protected ctx: CanvasRenderingContext2D; // Base Layer
+  protected tacticalCtx: CanvasRenderingContext2D; // Dynamic Layer
   protected projector: Projector;
   protected data: GeoJsonData | null = null;
   protected countries: any[] = [];
   protected selectedCountryName: string | null = null;
   protected selectedCountryCode: string | null = null;
-  protected needsUpdate: boolean = false;
+  protected needsBaseUpdate: boolean = true;
+  protected needsTacticalUpdate: boolean = true;
   protected isLoopRunning: boolean = false;
-
-  // Caching System
-  private staticCache: HTMLCanvasElement | null = null;
-  private staticCtx: CanvasRenderingContext2D | null = null;
-  private isCacheDirty: boolean = true;
 
   // Transformation State
   protected scale: number = 1;
   protected offsetX: number = 0;
   protected offsetY: number = 0;
-  protected relations: any[] = []; // ID-based relations
+  protected relations: any[] = [];
   protected width: number;
   protected height: number;
   private animationFrameId: number | null = null;
 
-  constructor(ctx: CanvasRenderingContext2D, width: number, height: number) {
+  protected offscreenCanvas: HTMLCanvasElement | null = null;
+  protected offscreenCtx: CanvasRenderingContext2D | null = null;
+  protected lastRenderedScale: number = -1;
+
+  constructor(ctx: CanvasRenderingContext2D, width: number, height: number, tacticalCtx: CanvasRenderingContext2D) {
     this.ctx = ctx;
+    this.tacticalCtx = tacticalCtx;
     this.width = width;
     this.height = height;
     this.projector = new Projector(width, height);
-    this.initCache();
+    
+    if (typeof document !== 'undefined') {
+        this.offscreenCanvas = document.createElement('canvas');
+        this.offscreenCanvas.width = width;
+        this.offscreenCanvas.height = height;
+        this.offscreenCtx = this.offscreenCanvas.getContext('2d', { alpha: false });
+    }
+    
     this.startRenderLoop();
-  }
-
-  private initCache() {
-    if (typeof document === 'undefined') return;
-    this.staticCache = document.createElement('canvas');
-    this.staticCache.width = this.width;
-    this.staticCache.height = this.height;
-    this.staticCtx = this.staticCache.getContext('2d');
   }
 
   private startRenderLoop() {
     if (this.isLoopRunning) return;
     this.isLoopRunning = true;
     const loop = () => {
-      if (this.needsUpdate) {
-        this.needsUpdate = false;
-        this.executeRender();
-      }
+      this.executeRender();
       this.animationFrameId = requestAnimationFrame(loop);
     };
     this.animationFrameId = requestAnimationFrame(loop);
@@ -87,16 +85,17 @@ export abstract class BaseMapEngine {
   }
 
   public requestRender() {
-    this.needsUpdate = true;
+    this.needsTacticalUpdate = true;
   }
 
   public invalidateCache() {
-    this.isCacheDirty = true;
+    this.needsBaseUpdate = true;
     this.requestRender();
   }
 
   public setData(data: GeoJsonData) {
     this.data = data;
+    this.path2dCache.clear();
     this.invalidateCache();
   }
 
@@ -118,79 +117,113 @@ export abstract class BaseMapEngine {
     }
   }
 
+  protected lastOffscreenX: number = 0;
+  protected lastOffscreenY: number = 0;
+
   public setTransform(scale: number, offsetX: number, offsetY: number) {
     if (this.scale !== scale || this.offsetX !== offsetX || this.offsetY !== offsetY) {
+        const scaleChanged = Math.abs(this.scale - scale) > 0.01;
+        const distMoved = Math.sqrt(Math.pow(this.offsetX - offsetX, 2) + Math.pow(this.offsetY - offsetY, 2));
+        
+        // If scale changed or we moved too far, invalidate base
+        if (scaleChanged || distMoved > this.width / 2) {
+            this.needsBaseUpdate = true;
+        }
+        
         this.scale = scale;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
-        this.invalidateCache();
+        this.requestRender();
     }
-  }
-
-  public render() {
-    this.requestRender();
   }
 
   protected executeRender() {
     if (!this.data) return;
 
-    // 1. Update Static Cache if Dirty
-    if (this.isCacheDirty || !this.staticCache || this.staticCache.width !== this.width || this.staticCache.height !== this.height) {
-      this.renderToCache();
-      this.isCacheDirty = false;
+    // 1. Update Base Cache (Offscreen Snapshot) if needed
+    if (this.needsBaseUpdate || !this.offscreenCtx) {
+      this.updateOffscreenCache();
+      this.needsBaseUpdate = false;
     }
 
-    // 2. Clear Main Canvas
-    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
-    this.ctx.clearRect(0, 0, this.width, this.height);
-
-    // 3. Draw Cached Background Map
-    if (this.staticCache) {
-      this.ctx.drawImage(this.staticCache, 0, 0);
+    // 2. Blit Snapshot to Main Canvas
+    const ctx = this.ctx;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, this.width, this.height);
+    
+    if (this.offscreenCanvas) {
+        // Calculate relative offset from where the offscreen was last captured
+        const relX = this.offsetX - this.lastOffscreenX;
+        const relY = this.offsetY - this.lastOffscreenY;
+        ctx.drawImage(this.offscreenCanvas, relX, relY);
     }
 
-    // 4. Draw Specialized Overlays (Dynamic Layer)
-    this.ctx.setTransform(this.scale, 0, 0, this.scale, this.offsetX, this.offsetY);
+    // 3. Update Tactical Layer
+    this.renderTacticalLayer();
+  }
+
+  private updateOffscreenCache() {
+    if (!this.offscreenCtx || !this.offscreenCanvas || !this.data) return;
+    
+    const ctx = this.offscreenCtx;
+    const scale = this.scale;
+    const offX = this.offsetX;
+    const offY = this.offsetY;
+    
+    // Snapshot the CURRENT view
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.fillStyle = '#0f172a'; 
+    ctx.fillRect(0, 0, this.width, this.height);
+
+    this.drawBackground(ctx);
+
+    // Draw with current scale and offsets
+    ctx.setTransform(scale, 0, 0, scale, offX, offY);
+    
+    for (const feature of this.data.features) {
+      this.drawFeature(feature, ctx);
+    }
+    
+    // Remember where we took this snapshot
+    this.lastOffscreenX = offX;
+    this.lastOffscreenY = offY;
+    this.lastRenderedScale = scale;
+  }
+
+  private renderTacticalLayer() {
+    const tctx = this.tacticalCtx;
+    tctx.setTransform(1, 0, 0, 1, 0, 0);
+    tctx.clearRect(0, 0, this.width, this.height);
+    
+    tctx.setTransform(this.scale, 0, 0, this.scale, this.offsetX, this.offsetY);
     this.drawOverlays();
   }
 
-  private renderToCache() {
-    if (!this.staticCtx || !this.data || !this.staticCache) return;
-    
-    const sctx = this.staticCtx;
-    sctx.setTransform(1, 0, 0, 1, 0, 0);
-    sctx.clearRect(0, 0, this.width, this.height);
-
-    // Background
-    sctx.fillStyle = '#070b14';
-    sctx.fillRect(0, 0, this.width, this.height);
-
-    // Custom Background (e.g. Ocean)
-    const originalCtx = this.ctx;
-    this.ctx = sctx; // Temporarily swap ctx for drawBackground/drawFeature
-    this.drawBackground();
-
-    // Map Transform
-    sctx.setTransform(this.scale, 0, 0, this.scale, this.offsetX, this.offsetY);
-
-    // Countries
-    for (const feature of this.data.features) {
-      this.drawFeature(feature);
-    }
-
-    this.ctx = originalCtx; // Restore original ctx
-  }
-
-  // Hook for subclasses to draw custom backgrounds (like ocean textures)
-  protected abstract drawBackground(): void;
-
-  // Hook for subclasses to draw custom feature styles
-  protected abstract drawFeature(feature: GeoJsonFeature): void;
-
-  // Hook for subclasses to draw things on top of land (Capitals, Routes, Icons)
+  protected abstract drawBackground(ctx: CanvasRenderingContext2D): void;
+  protected abstract drawFeature(feature: GeoJsonFeature, ctx: CanvasRenderingContext2D): void;
   protected abstract drawOverlays(): void;
 
-  protected drawPolygon(polygon: number[][][]) {
+  protected path2dCache: Map<string, Path2D> = new Map();
+  protected getPathForFeature(feature: GeoJsonFeature): Path2D | null {
+    const id = feature.properties.ADM0_A3 || feature.properties.NAME || JSON.stringify(feature.properties);
+    if (this.path2dCache.has(id)) return this.path2dCache.get(id) || null;
+
+    const path = new Path2D();
+    const { type, coordinates } = feature.geometry;
+
+    if (type === 'Polygon') {
+        this.drawPolygon(coordinates, path);
+    } else if (type === 'MultiPolygon') {
+        for (const polygon of coordinates) {
+            this.drawPolygon(polygon, path);
+        }
+    }
+
+    this.path2dCache.set(id, path);
+    return path;
+  }
+
+  protected drawPolygon(polygon: number[][][], path: Path2D) {
     const rings = polygon;
     for (let i = 0; i < rings.length; i++) {
         const ring = rings[i];
@@ -199,35 +232,40 @@ export abstract class BaseMapEngine {
         for (let j = 0; j < ring.length; j++) {
             const [lng, lat] = ring[j];
             const { x, y } = this.projector.project(lng, lat);
-            if (j === 0) this.ctx.moveTo(x, y);
-            else this.ctx.lineTo(x, y);
+            if (j === 0) path.moveTo(x, y);
+            else path.lineTo(x, y);
         }
     }
   }
 
-  protected drawStar(cx: number, cy: number, spikes: number, outerRadius: number, innerRadius: number) {
+  protected drawStar(ctx: CanvasRenderingContext2D, cx: number, cy: number, spikes: number, outerRadius: number, innerRadius: number) {
     let rot = Math.PI / 2 * 3;
     let x = cx, y = cy;
     const step = Math.PI / spikes;
-    this.ctx.beginPath();
-    this.ctx.moveTo(cx, cy - outerRadius);
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - outerRadius);
     for (let i = 0; i < spikes; i++) {
         x = cx + Math.cos(rot) * outerRadius; y = cy + Math.sin(rot) * outerRadius;
-        this.ctx.lineTo(x, y); rot += step;
+        ctx.lineTo(x, y); rot += step;
         x = cx + Math.cos(rot) * innerRadius; y = cy + Math.sin(rot) * innerRadius;
-        this.ctx.lineTo(x, y); rot += step;
+        ctx.lineTo(x, y); rot += step;
     }
-    this.ctx.lineTo(cx, cy - outerRadius); this.ctx.closePath();
+    ctx.lineTo(cx, cy - outerRadius); ctx.closePath();
   }
 
-  protected drawMicrostatePulse(feature: GeoJsonFeature) {
+  protected drawMicrostatePulse(feature: GeoJsonFeature, ctx: CanvasRenderingContext2D) {
     const labelX = feature.properties.LABEL_X, labelY = feature.properties.LABEL_Y;
     if (labelX === undefined || labelY === undefined) return;
     const { x, y } = this.projector.project(labelX, labelY);
-    this.ctx.beginPath();
-    this.ctx.arc(x, y, 2 / this.scale, 0, Math.PI * 2);
-    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-    this.ctx.fill();
+    
+    // Ensure we have a valid context
+    const drawCtx = ctx || this.ctx;
+    if (!drawCtx) return;
+
+    drawCtx.beginPath();
+    drawCtx.arc(x, y, 2 / this.scale, 0, Math.PI * 2);
+    drawCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+    drawCtx.fill();
   }
 
   public getCountryAt(mouseX: number, mouseY: number): any | null {
@@ -252,10 +290,6 @@ export abstract class BaseMapEngine {
   public resize(width: number, height: number) {
     this.width = width;
     this.height = height;
-    if (this.staticCache) {
-      this.staticCache.width = width;
-      this.staticCache.height = height;
-    }
     this.projector.updateDimensions(width, height);
     this.invalidateCache();
   }

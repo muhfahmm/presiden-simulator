@@ -8,8 +8,8 @@ export class DiplomacyMapEngine extends BaseMapEngine {
   public targetCountryName: string | null = null;
   private relationsCache: Map<string, { hex: string; score: number }> = new Map();
 
-  constructor(ctx: CanvasRenderingContext2D, width: number, height: number) {
-    super(ctx, width, height);
+  constructor(ctx: CanvasRenderingContext2D, width: number, height: number, tacticalCtx: CanvasRenderingContext2D) {
+    super(ctx, width, height, tacticalCtx);
   }
 
   public updateRelations() {
@@ -36,7 +36,7 @@ export class DiplomacyMapEngine extends BaseMapEngine {
         return;
       }
 
-      const targetId = relationStorage.normalizeTargetId(name, this.countries);
+      const targetId = relationStorage.normalizeTargetId(name);
       const userRelations = (allRelations as any)[userId];
       const relationData = Array.isArray(userRelations)
         ? userRelations.find((item: any) => item.name?.toLowerCase().trim() === targetId)
@@ -55,16 +55,16 @@ export class DiplomacyMapEngine extends BaseMapEngine {
       }
     });
     
-    this.requestRender();
+    this.invalidateCache();
   }
 
-  protected drawBackground(): void {
+  protected drawBackground(ctx: CanvasRenderingContext2D): void {
     // Ocean Background - Tactical Blue (Standardized)
-    this.ctx.fillStyle = '#1e3a8a';
-    this.ctx.fillRect(0, 0, this.width, this.height);
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(0, 0, this.width, this.height);
   }
 
-  protected drawFeature(feature: GeoJsonFeature): void {
+  protected drawFeature(feature: GeoJsonFeature, ctx: CanvasRenderingContext2D): void {
     const name = (feature.properties.NAME || '').toLowerCase();
     const nameLong = (feature.properties.NAME_LONG || '').toLowerCase();
     const nameId = (feature.properties.NAME_ID || '').toLowerCase();
@@ -86,25 +86,22 @@ export class DiplomacyMapEngine extends BaseMapEngine {
     let borderColor = isPlayer ? '#34d399' : 'rgba(255, 255, 255, 0.6)';
     let lineWidth = isPlayer ? Math.max(2 / this.scale, 1) : Math.max(0.7 / this.scale, 0.4);
 
-    this.ctx.beginPath();
-    this.ctx.fillStyle = color;
-    this.ctx.strokeStyle = borderColor;
-    this.ctx.lineWidth = lineWidth;
+    const path = this.getPathForFeature(feature);
+    if (!path) return;
 
-    const { type, coordinates } = feature.geometry;
-    if (type === 'Polygon') this.drawPolygon(coordinates);
-    else if (type === 'MultiPolygon') {
-      for (const polygon of coordinates) this.drawPolygon(polygon);
-    }
+    ctx.fillStyle = color;
+    ctx.strokeStyle = borderColor;
+    ctx.lineWidth = lineWidth;
 
-    this.ctx.fill();
-    this.ctx.stroke();
+    ctx.fill(path);
+    ctx.stroke(path);
   }
 
   protected drawOverlays(): void {
     if (!this.countries || this.countries.length === 0) return;
+    const ctx = this.tacticalCtx;
     
-    this.ctx.save();
+    ctx.save();
     for (const center of this.countries) {
       const lat = center.lat !== undefined ? center.lat : center.latitude;
       const lon = center.lon !== undefined ? center.lon : center.longitude;
@@ -116,29 +113,29 @@ export class DiplomacyMapEngine extends BaseMapEngine {
 
       if (!isPlayer && !isTarget) {
         // Small static dot
-        this.ctx.beginPath();
+        ctx.beginPath();
         const nameIdKey = center.name_id?.toLowerCase();
         const relData = nameIdKey ? this.relationsCache.get(nameIdKey) : null;
-        this.ctx.arc(x, y, 4 / this.scale, 0, Math.PI * 2); 
-        this.ctx.fillStyle = relData?.hex || "#475569";
-        this.ctx.fill();
+        ctx.arc(x, y, 4 / this.scale, 0, Math.PI * 2); 
+        ctx.fillStyle = relData?.hex || "#475569";
+        ctx.fill();
         continue;
       }
 
-      this.ctx.beginPath();
-      this.ctx.arc(x, y, 6 / this.scale, 0, Math.PI * 2);
+      ctx.beginPath();
+      ctx.arc(x, y, 6 / this.scale, 0, Math.PI * 2);
       if (isPlayer) {
-        this.ctx.fillStyle = "#22d3ee";
-        this.ctx.shadowColor = "#22d3ee";
-        this.ctx.shadowBlur = 15 / this.scale;
+        ctx.fillStyle = "#22d3ee";
+        ctx.shadowColor = "#22d3ee";
+        ctx.shadowBlur = 15 / this.scale;
       } else {
-        this.ctx.fillStyle = "#f59e0b";
-        this.ctx.shadowColor = "#f59e0b";
-        this.ctx.shadowBlur = 15 / this.scale;
+        ctx.fillStyle = "#f59e0b";
+        ctx.shadowColor = "#f59e0b";
+        ctx.shadowBlur = 15 / this.scale;
       }
-      this.ctx.fill();
-      this.ctx.shadowBlur = 0;
+      ctx.fill();
+      ctx.shadowBlur = 0;
     }
-    this.ctx.restore();
+    ctx.restore();
   }
 }

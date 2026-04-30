@@ -11,12 +11,17 @@ export interface AIHappinessData {
   [countryNameEn: string]: number;
 }
 
+// High-performance in-memory cache
+let memoryCache: AIHappinessData | null = null;
+let saveTimeout: NodeJS.Timeout | null = null;
+
 export const aiHappinessStorage = {
   /**
-   * Get all happiness data, initializing if empty.
+   * Get all happiness data, initializing from memory cache or database.
    */
   getAll: (): AIHappinessData => {
     if (typeof window === 'undefined') return {};
+    if (memoryCache) return memoryCache;
     
     const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true";
     
@@ -24,18 +29,38 @@ export const aiHappinessStorage = {
       const stored = localStorage.getItem(AI_HAPPINESS_KEY);
       if (stored && stored !== 'undefined' && stored !== 'null') {
         try {
-          const parsed = JSON.parse(stored);
-          if (Object.keys(parsed).length > 0) return parsed;
+          memoryCache = JSON.parse(stored);
+          if (memoryCache && Object.keys(memoryCache).length > 0) return memoryCache;
         } catch (e) {
           console.error("Failed to parse AI happiness", e);
         }
       }
-    } else {
-      console.log(`[AI HAPPINESS] Fresh session detected in getAll() - forcing defaults.`);
     }
 
     // Default to 55%
-    return aiHappinessStorage.resetToDefault();
+    memoryCache = aiHappinessStorage.resetToDefault();
+    return memoryCache;
+  },
+
+  /**
+   * Internal helper to save to localStorage with debouncing (every 5 seconds)
+   */
+  _saveToDisk: (force: boolean = false) => {
+    if (!memoryCache || typeof window === 'undefined') return;
+    
+    if (saveTimeout && !force) return; // Wait for existing timeout
+    
+    const performSave = () => {
+        localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(memoryCache));
+        saveTimeout = null;
+    };
+
+    if (force) {
+        if (saveTimeout) clearTimeout(saveTimeout);
+        performSave();
+    } else {
+        saveTimeout = setTimeout(performSave, 5000); // 5 second debounce
+    }
   },
 
   /**
@@ -49,7 +74,8 @@ export const aiHappinessStorage = {
       initialData[c.name_en] = 55.0;
     });
 
-    localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(initialData));
+    memoryCache = initialData;
+    aiHappinessStorage._saveToDisk(true); // Force save
     localStorage.removeItem(LAST_PROCESSED_HAPPINESS_KEY);
     return initialData;
   },
@@ -135,10 +161,9 @@ export const aiHappinessStorage = {
    * Update happiness for a specific country manually.
    */
   updateSatisfaction: (countryNameEn: string, newValue: number) => {
-    if (typeof window === 'undefined') return;
     const data = aiHappinessStorage.getAll();
     data[countryNameEn] = Math.max(0, Math.min(100, newValue));
-    localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(data));
+    aiHappinessStorage._saveToDisk();
     window.dispatchEvent(new Event('ai_happiness_updated'));
   },
 
@@ -179,8 +204,8 @@ export const aiHappinessStorage = {
     });
 
     if (hasChanged) {
-      localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(data));
       localStorage.setItem(LAST_PROCESSED_HAPPINESS_KEY, dateStr);
+      aiHappinessStorage._saveToDisk();
       window.dispatchEvent(new Event('ai_happiness_updated'));
     }
   },
@@ -215,7 +240,7 @@ export const aiHappinessStorage = {
     });
 
     if (hasChanged) {
-      localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(currentData));
+      aiHappinessStorage._saveToDisk();
       window.dispatchEvent(new Event('ai_happiness_updated'));
     }
   }

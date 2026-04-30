@@ -12,12 +12,17 @@ export interface AIBudgetData {
   [countryNameEn: string]: number;
 }
 
+// High-performance in-memory cache
+let memoryCache: AIBudgetData | null = null;
+let saveTimeout: NodeJS.Timeout | null = null;
+
 export const aiBudgetStorage = {
   /**
-   * Get all budgets, initializing from database if empty.
+   * Get all budgets, initializing from memory cache or database.
    */
   getAll: (): AIBudgetData => {
     if (typeof window === 'undefined') return {};
+    if (memoryCache) return memoryCache;
     
     const isFreshSession = typeof window !== 'undefined' && localStorage.getItem("em_fresh_session") === "true";
     
@@ -25,18 +30,38 @@ export const aiBudgetStorage = {
       const stored = localStorage.getItem(AI_BUDGET_KEY);
       if (stored && stored !== 'undefined' && stored !== 'null') {
         try {
-          const parsed = JSON.parse(stored);
-          if (Object.keys(parsed).length > 0) return parsed;
+          memoryCache = JSON.parse(stored);
+          if (memoryCache && Object.keys(memoryCache).length > 0) return memoryCache;
         } catch (e) {
           console.error("Failed to parse AI budgets", e);
         }
       }
-    } else {
-      console.log(`[AI BUDGET] Fresh session detected in getAll() - forcing defaults.`);
     }
 
     // Fallback to defaults
-    return aiBudgetStorage.resetToDefault();
+    memoryCache = aiBudgetStorage.resetToDefault();
+    return memoryCache;
+  },
+
+  /**
+   * Internal helper to save to localStorage with debouncing (every 5 seconds)
+   */
+  _saveToDisk: (force: boolean = false) => {
+    if (!memoryCache || typeof window === 'undefined') return;
+    
+    if (saveTimeout && !force) return; // Wait for existing timeout
+    
+    const performSave = () => {
+        localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(memoryCache));
+        saveTimeout = null;
+    };
+
+    if (force) {
+        if (saveTimeout) clearTimeout(saveTimeout);
+        performSave();
+    } else {
+        saveTimeout = setTimeout(performSave, 5000); // 5 second debounce
+    }
   },
 
   /**
@@ -45,85 +70,46 @@ export const aiBudgetStorage = {
   resetToDefault: (): AIBudgetData => {
     if (typeof window === 'undefined') return {};
     
-    // DEBUG: Log reset action
     console.log(`[AI BUDGET] Resetting all AI budgets to database defaults...`);
-    
-    // Aggressive: Explicitly remove key first to ensure clean slate
     localStorage.removeItem(AI_BUDGET_KEY);
     localStorage.removeItem(LAST_PROCESSED_KEY);
     
     const initialData: AIBudgetData = {};
     countries.forEach(c => {
-      // Ensure we pull from the correct property and handle string/number
       const rawValue = typeof c.anggaran === 'string' 
         ? Number(c.anggaran.replace(/\./g, '')) 
         : Number(c.anggaran);
-      
-      // ALIGNMENT FIX: Use raw value from database to match player budget scale
       initialData[c.name_en] = (rawValue || 0);
-      
-      // DEBUG: Log Malaysia specifically
-      if (c.name_en === 'Malaysia') {
-        console.log(`[AI BUDGET] Malaysia default anggaran: ${rawValue}`);
-      }
     });
 
-    localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(initialData));
-    console.log(`[AI BUDGET] Reset complete. Total countries: ${countries.length}`);
+    memoryCache = initialData;
+    aiBudgetStorage._saveToDisk(true); // Force save on reset
     return initialData;
   },
 
   /**
-   * Initialize (legacy wrapper for getAll).
-   */
-  initialize: (): AIBudgetData => {
-    return aiBudgetStorage.getAll();
-  },
-
-  /**
    * Get the current budget for a specific country.
-   * If fresh session flag is set, returns database default and clears the flag.
    */
   getBudget: (countryNameEn: string): number => {
-    if (typeof window === 'undefined') return 0;
-    
-    // Check for fresh session flag - if set, STRICTLY return database default
-    const isFreshSession = localStorage.getItem("em_fresh_session") === "true";
-    if (isFreshSession) {
-      const country = countries.find(c => c.name_en === countryNameEn);
-      if (country) {
-        const defaultBudget = typeof country.anggaran === 'string'
-          ? Number(country.anggaran.replace(/\./g, ''))
-          : Number(country.anggaran) || 0;
-        console.log(`[AI BUDGET] Reset detected - providing default for ${countryNameEn}: ${defaultBudget}`);
-        return defaultBudget;
-      }
-    }
-    
     const data = aiBudgetStorage.getAll();
     return data[countryNameEn] || 0;
   },
 
   /**
-   * Update all AI budgets based on their daily income.
-   * Prevents overwriting with stale data during game reset.
+   * Update all AI budgets (Fallback for local simulation)
    */
   updateAll: (gameDate: Date, userCountryEn: string) => {
     if (typeof window === 'undefined') return;
 
     const dateStr = gameDate.toISOString().split('T')[0];
     const lastProcessed = localStorage.getItem(LAST_PROCESSED_KEY);
-    
     if (lastProcessed === dateStr) return; 
 
-    // Use getAll() which ensures we have valid data
     const data = aiBudgetStorage.getAll();
     let hasChanged = false;
 
     countries.forEach(c => {
-      // Robust user check: check both ID and English Name
       if (c.name_en === userCountryEn || c.name_id === userCountryEn) return;
-
       const dailyIncome = aiBudgetStorage.calculateDailyIncome(c);
       if (dailyIncome !== 0) {
         data[c.name_en] = (data[c.name_en] || 0) + dailyIncome;
@@ -132,8 +118,8 @@ export const aiBudgetStorage = {
     });
 
     if (hasChanged) {
-      localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(data));
       localStorage.setItem(LAST_PROCESSED_KEY, dateStr);
+      aiBudgetStorage._saveToDisk(); // Debounced save
       window.dispatchEvent(new Event('ai_budget_updated'));
     }
   },
@@ -142,7 +128,6 @@ export const aiBudgetStorage = {
    * Calculate daily tax income for a country.
    */
   calculateDailyIncome: (country: any): number => {
-    // scale delta to match the budget units (already in millions/raw units in DB)
     const deltas = aiBuildingStorage.getAllBuildingDeltas(country.name_en);
     return calculateDailyBudgetDelta(country, deltas);
   },
@@ -151,23 +136,19 @@ export const aiBudgetStorage = {
    * Update budget for a specific country manually.
    */
   updateBudgetManual: (countryNameEn: string, amount: number) => {
-    if (typeof window === 'undefined') return;
     const data = aiBudgetStorage.getAll();
     data[countryNameEn] = (data[countryNameEn] || 0) + amount;
-    localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(data));
+    aiBudgetStorage._saveToDisk();
     window.dispatchEvent(new Event('ai_budget_updated'));
   },
 
   clear: () => {
-    if (typeof window === 'undefined') return;
     aiBudgetStorage.resetToDefault();
-    // Explicitly dispatch to notify any listeners
     window.dispatchEvent(new Event('ai_budget_updated'));
   },
 
   /**
-   * Sync all NPC budgets from backend data.
-   * This makes the Go server the single source of truth.
+   * Sync all NPC budgets from backend data (Source of Truth)
    */
   syncFromBackend: (npcStates: Record<string, any>) => {
     if (typeof window === 'undefined' || !npcStates) return;
@@ -179,8 +160,6 @@ export const aiBudgetStorage = {
       const state = npcStates[nationName];
       if (state && typeof state.budget === 'number') {
         const serverBudget = state.budget;
-        
-        // Only update if value is different
         if (currentData[nationName] !== serverBudget) {
           currentData[nationName] = serverBudget;
           hasChanged = true;
@@ -189,7 +168,8 @@ export const aiBudgetStorage = {
     });
 
     if (hasChanged) {
-      localStorage.setItem(AI_BUDGET_KEY, JSON.stringify(currentData));
+      aiBudgetStorage._saveToDisk(); // Debounced save
+      // Note: we still dispatch event to keep UI updated, but UI components should also throttle
       window.dispatchEvent(new Event('ai_budget_updated'));
     }
   }

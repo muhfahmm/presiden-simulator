@@ -88,13 +88,41 @@ export const getNormalizedUser = (): string => {
 };
 
 let inMemoryMatrix: RelationMatrix | null = null;
+let saveTimeout: NodeJS.Timeout | null = null;
+
+/**
+ * Internal helper to save to localStorage with debouncing (every 10 seconds for the large matrix)
+ */
+const _saveToDiskDebounced = (prunedMatrix: RelationMatrix, oldMatrix: RelationMatrix, normalizedUser: string) => {
+    if (saveTimeout) clearTimeout(saveTimeout);
+
+    const performSave = () => {
+        try {
+            const json = JSON.stringify(prunedMatrix);
+            localStorage.setItem(RELATION_MATRIX_KEY, json);
+            inMemoryMatrix = prunedMatrix;
+            
+            // Track Deltas for UI Trending
+            import("./RelationDelta").then(({ relationDeltaStorage }) => {
+                relationDeltaStorage.updateFromMatrix(oldMatrix, prunedMatrix, normalizedUser);
+            });
+
+            dispatchRelationUpdate();
+            saveTimeout = null;
+        } catch (e) {
+            console.error("[RELATION-MATRIX] Storage Quota Exceeded!", e);
+        }
+    };
+
+    saveTimeout = setTimeout(performSave, 10000); // 10 second debounce for the giant matrix
+};
 
 /**
  * Mengambil data matriks hubungan global dari storage atau memori.
  */
 export const getGlobalRelationMatrix = (): RelationMatrix => {
     if (typeof window === 'undefined') return {};
-    if (inMemoryMatrix) return inMemoryMatrix;
+    if (inMemoryMatrix && Object.keys(inMemoryMatrix).length > 0) return inMemoryMatrix;
 
     const data = localStorage.getItem(RELATION_MATRIX_KEY);
     if (!data) return {};
@@ -115,6 +143,7 @@ export const saveGlobalRelationMatrix = (matrix: RelationMatrix) => {
     const prunedMatrix: RelationMatrix = {};
     const normalizedUser = getNormalizedUser();
     
+    // Pruning logic - expensive nested loop
     Object.keys(matrix).forEach(rawSourceId => {
         const sourceId = normalizeId(rawSourceId);
         const prunedTargets: Record<string, RelationEntry> = {};
@@ -139,22 +168,14 @@ export const saveGlobalRelationMatrix = (matrix: RelationMatrix) => {
         }
     });
 
-    try {
-        const oldMatrix = getGlobalRelationMatrix();
-        const json = JSON.stringify(prunedMatrix);
-        localStorage.setItem(RELATION_MATRIX_KEY, json);
-        inMemoryMatrix = prunedMatrix;
-        
-        // Track Deltas for UI Trending (Rising/Falling)
-        import("./RelationDelta").then(({ relationDeltaStorage }) => {
-            relationDeltaStorage.updateFromMatrix(oldMatrix, prunedMatrix, normalizedUser);
-        });
+    const oldMatrix = getGlobalRelationMatrix();
+    
+    // Update memory immediately for UI reactivity
+    inMemoryMatrix = prunedMatrix;
+    dispatchRelationUpdate();
 
-        // Dispatch centralized update signal
-        dispatchRelationUpdate();
-    } catch (e) {
-        console.error("[RELATION-MATRIX] Storage Quota Exceeded!", e);
-    }
+    // Debounce the expensive disk write and delta calculation
+    _saveToDiskDebounced(prunedMatrix, oldMatrix, normalizedUser);
 };
 
 /**
