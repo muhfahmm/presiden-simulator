@@ -264,7 +264,15 @@ export default function MapContainer({
       const rect = canvasRef.current?.getBoundingClientRect();
       if (rect && engineRef.current && !isDragging) {
         const mouseX = e.clientX - rect.left, mouseY = e.clientY - rect.top;
-        setIsHoveringStar(!!engineRef.current.getCountryAt(mouseX, mouseY));
+        const engine = engineRef.current;
+        const isCountry = !!engine.getCountryAt(mouseX, mouseY);
+        let isBattlefield = false;
+        
+        if (engine && (engine as any).getInvasionAt) {
+          isBattlefield = !!(engine as any).getInvasionAt(mouseX, mouseY);
+        }
+        
+        setIsHoveringStar(isCountry || isBattlefield);
       }
       return;
     }
@@ -298,7 +306,24 @@ export default function MapContainer({
         onClick={(e) => {
           const rect = canvasRef.current?.getBoundingClientRect();
           if (!rect || !engineRef.current) return;
-          const country = engineRef.current.getCountryAt(e.clientX - rect.left, e.clientY - rect.top);
+          
+          const mouseX = e.clientX - rect.left;
+          const mouseY = e.clientY - rect.top;
+
+          // 1. Check for Invasion Markers first (Battlefields)
+          const engine = engineRef.current;
+          if (engine && (engine as any).getInvasionAt) {
+            const invasion = (engine as any).getInvasionAt(mouseX, mouseY);
+            if (invasion) {
+              window.dispatchEvent(new CustomEvent('OPEN_WAR_REPORT', { 
+                detail: invasion 
+              }));
+              return; // Stop here, jangan buka modal negara
+            }
+          }
+
+          // 2. Fallback to Country Selection
+          const country = engine.getCountryAt(mouseX, mouseY);
           if (country) {
             if (mode === 'SDA' && onSelectSDA) {
               onSelectSDA({ 

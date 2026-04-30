@@ -19,6 +19,7 @@ import ArmadaMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi
 import ArmadaPolisiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/4_armada_polisi/ArmadaPolisiModal";
 import ManajemenPertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/5_manajemen_pertahanan/ManajemenPertahananModal";
 import PBBModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB";
+import MisiSeranganModal from "./4_pertahanan/1_komando_pertahanan/1_misi_serangan/1_misi_serangan";
 import OrgIntlModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/OrgIntlModal";
 import TingkatHubunganModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/3_tingkat_hubungan/TingkatHubunganModal";
 import BantuanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/4_bantuan/BantuanModal";
@@ -161,6 +162,13 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}
         preselectedTarget={activeMenu.startsWith("Komando Pertahanan:Misi Serangan:") ? activeMenu.split(":")[2] : undefined}
+        data={countryData}
+      />
+      <MisiSeranganModal
+        isOpen={activeMenu === "Komando Pertahanan:Misi Serangan" || activeMenu.startsWith("Komando Pertahanan:Misi Serangan:")}
+        onClose={() => setActiveMenu("Komando Pertahanan")}
+        setActiveMenu={setActiveMenu}
+        activeMenu={activeMenu}
         data={countryData}
       />
       <ArmadaMiliterModal

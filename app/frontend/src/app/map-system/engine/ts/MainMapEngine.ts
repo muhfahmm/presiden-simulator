@@ -66,6 +66,7 @@ export class MainMapEngine extends BaseMapEngine {
   public activeInvasions: any[] = [];
   private isAnimatingInvasions = false;
   private gameState = timeStorage.getState();
+  private lastSaveTime = 0;
 
   constructor(ctx: CanvasRenderingContext2D, width: number, height: number) {
     super(ctx, width, height);
@@ -76,15 +77,21 @@ export class MainMapEngine extends BaseMapEngine {
     });
 
     if (typeof window !== 'undefined') {
+      // Load saved invasions
+      this.loadInvasionsFromStorage();
+
       window.addEventListener('SPAWN_INVASION_UNITS', (e: any) => {
         if (e.detail && e.detail.path) {
           this.activeInvasions.push({
             path: e.detail.path,
             units: e.detail.units || [],
+            target: e.detail.targetCountry?.name_id || e.detail.target,
             progress: 0,
             speed: 0.001 + (Math.random() * 0.001) // random speed
           });
           
+          this.saveInvasionsToStorage();
+
           if (!this.isAnimatingInvasions) {
             this.isAnimatingInvasions = true;
             this.animateInvasions();
@@ -92,6 +99,65 @@ export class MainMapEngine extends BaseMapEngine {
           this.requestRender();
         }
       });
+
+      window.addEventListener('CLEAR_INVASIONS', () => {
+        this.activeInvasions = [];
+        localStorage.removeItem('active_invasions');
+        this.requestRender();
+      });
+    }
+  }
+
+  private saveInvasionsToStorage() {
+    if (typeof window === 'undefined') return;
+    try {
+        // Serialized without screenPos as it's computed every frame
+        const toSave = this.activeInvasions.map(inv => ({
+            path: inv.path,
+            units: inv.units,
+            target: inv.target,
+            progress: inv.progress,
+            speed: inv.speed,
+            arrived: inv.arrived
+        }));
+        localStorage.setItem('active_invasions', JSON.stringify(toSave));
+    } catch (e) {
+        console.error("Failed to save invasions", e);
+    }
+  }
+
+  private loadInvasionsFromStorage() {
+    if (typeof window === 'undefined') return;
+    try {
+        const saved = localStorage.getItem('active_invasions');
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            this.activeInvasions = parsed;
+            
+            // Rebuild Path2D for each loaded invasion
+            this.activeInvasions.forEach(inv => {
+                if (inv.path && inv.path.pathCoordinates) {
+                    // Create path2d using raw coordinates
+                    const path2d = new Path2D();
+                    inv.path.pathCoordinates.forEach((c: any, idx: number) => {
+                        const p = this.projector.project(c.lon, c.lat);
+                        if (idx === 0) path2d.moveTo(p.x, p.y);
+                        else path2d.lineTo(p.x, p.y);
+                    });
+                    // Store the generated path2d back (though it's not serialized)
+                    // We need a place to store it. In drawInvasionPaths, we use path.path2d.
+                    // But path is the object from localStorage, it doesn't have the path2d property yet.
+                    inv.path.path2d = path2d;
+                }
+            });
+
+            if (this.activeInvasions.length > 0 && !this.isAnimatingInvasions) {
+                this.isAnimatingInvasions = true;
+                this.animateInvasions();
+            }
+        }
+    } catch (e) {
+        console.error("Failed to load invasions", e);
     }
   }
 
@@ -105,14 +171,26 @@ export class MainMapEngine extends BaseMapEngine {
         }
         
         if (inv.progress > 1) {
-            // Remove finished invasion
-            this.activeInvasions.splice(i, 1);
+            // Mark as arrived instead of removing
+            if (!inv.arrived) {
+                inv.progress = 1;
+                inv.arrived = true;
+                this.saveInvasionsToStorage(); // Save state when arrived
+            }
+            active = true; // Keep animating for the pulse effect
         } else {
             active = true;
         }
     }
     
     this.requestRender();
+    
+    // Periodically save progress (every 2 seconds)
+    const now = performance.now();
+    if (now - this.lastSaveTime > 2000) {
+        this.saveInvasionsToStorage();
+        this.lastSaveTime = now;
+    }
     
     if (active) {
         requestAnimationFrame(this.animateInvasions);
@@ -177,65 +255,106 @@ export class MainMapEngine extends BaseMapEngine {
             // Get current coordinate based on progress
             const totalCoords = path.pathCoordinates.length - 1;
             const floatIndex = invasion.progress * totalCoords;
-            const index = Math.floor(floatIndex);
+            let index = Math.floor(floatIndex);
             
-            if (index >= 0 && index < totalCoords) {
+            // Clamp index to prevent out of bounds
+            if (index >= totalCoords) index = totalCoords - 1;
+
+            if (index >= 0 && index < path.pathCoordinates.length - 1) {
                 const fraction = floatIndex - index;
                 const c1 = path.pathCoordinates[index];
                 const c2 = path.pathCoordinates[index + 1];
                 
-                const currentLon = c1.lon + (c2.lon - c1.lon) * fraction;
-                const currentLat = c1.lat + (c2.lat - c1.lat) * fraction;
+                // If progress is exactly 1, use the destination coordinate
+                const currentLon = invasion.progress >= 1 ? path.pathCoordinates[totalCoords].lon : c1.lon + (c2.lon - c1.lon) * fraction;
+                const currentLat = invasion.progress >= 1 ? path.pathCoordinates[totalCoords].lat : c1.lat + (c2.lat - c1.lat) * fraction;
                 
                 const pos = this.projector.project(currentLon, currentLat);
                 
-                // Calculate rotation angle to point unit towards destination
-                const nextPos = this.projector.project(c2.lon, c2.lat);
-                const angle = Math.atan2(nextPos.y - pos.y, nextPos.x - pos.x);
+                // If arrived, draw pulsing battlefield marker
+                if (invasion.arrived) {
+                    const pulse = (Math.sin(performance.now() / 200) + 1) / 2; // 0 to 1
+                    const radius = (15 + pulse * 10) / this.scale;
+                    
+                    this.ctx.beginPath();
+                    this.ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
+                    this.ctx.fillStyle = `rgba(239, 68, 68, ${0.3 + pulse * 0.4})`;
+                    this.ctx.fill();
+                    
+                    this.ctx.beginPath();
+                    this.ctx.arc(pos.x, pos.y, 5 / this.scale, 0, Math.PI * 2);
+                    this.ctx.fillStyle = '#ef4444';
+                    this.ctx.fill();
+                    
+                    // Store projected pos for hit detection
+                    invasion.screenPos = { x: pos.x, y: pos.y };
+                } else {
+                    // Calculate rotation angle to point unit towards destination
+                    const nextPos = this.projector.project(c2.lon, c2.lat);
+                    const angle = Math.atan2(nextPos.y - pos.y, nextPos.x - pos.x);
 
-                // Draw unique icons based on deployed units
-                const types = Array.from(new Set(invasion.units.map((u: any) => u.type)));
-                
-                this.ctx.save();
-                this.ctx.translate(pos.x, pos.y);
-                
-                this.ctx.shadowBlur = 10 / this.scale;
-                this.ctx.shadowColor = 'rgba(0, 0, 0, 0.8)'; 
-                
-                let offsetX = 0;
-                
-                types.forEach((type: any) => {
+                    // Draw unique icons based on deployed units
+                    const types = Array.from(new Set(invasion.units.map((u: any) => u.type)));
+                    
                     this.ctx.save();
+                    this.ctx.translate(pos.x, pos.y);
                     
-                    // The offset is backward so they form a convoy line
-                    const offsetPosLon = currentLon - (c2.lon - c1.lon) * offsetX;
-                    const offsetPosLat = currentLat - (c2.lat - c1.lat) * offsetX;
-                    const cPos = this.projector.project(offsetPosLon, offsetPosLat);
+                    this.ctx.shadowBlur = 10 / this.scale;
+                    this.ctx.shadowColor = 'rgba(0, 0, 0, 0.8)'; 
                     
-                    // We move to the relative offset position
-                    this.ctx.translate(cPos.x - pos.x, cPos.y - pos.y);
+                    let offsetX = 0;
                     
-                    // The SVG paths are mapped to a 24x24 viewBox.
-                    // We must scale them down and center them.
-                    const unitSize = 40 / this.scale; 
-                    const unitScale = unitSize / 24; 
-                    this.ctx.scale(unitScale, unitScale);
-                    this.ctx.translate(-12, -12); // Center the 24x24 svg
-                    
-                    this.ctx.fillStyle = '#ef4444'; // Red for enemy/target
-                    
-                    const path2d = (this as any).svgPaths[type] || (this as any).svgPaths.tank;
-                    this.ctx.fill(path2d);
+                    types.forEach((type: any) => {
+                        this.ctx.save();
+                        
+                        const offsetPosLon = currentLon - (c2.lon - c1.lon) * offsetX;
+                        const offsetPosLat = currentLat - (c2.lat - c1.lat) * offsetX;
+                        const cPos = this.projector.project(offsetPosLon, offsetPosLat);
+                        
+                        this.ctx.translate(cPos.x - pos.x, cPos.y - pos.y);
+                        
+                        const unitSize = 40 / this.scale; 
+                        const unitScale = unitSize / 24; 
+                        this.ctx.scale(unitScale, unitScale);
+                        this.ctx.translate(-12, -12); 
+                        
+                        this.ctx.fillStyle = '#ef4444'; 
+                        
+                        const path2d = (this as any).svgPaths[type] || (this as any).svgPaths.tank;
+                        this.ctx.fill(path2d);
+                        
+                        this.ctx.restore();
+                        offsetX += 0.8; 
+                    });
                     
                     this.ctx.restore();
-                    offsetX += 0.8; // distance between units behind
-                });
-                
-                this.ctx.restore();
+                }
             }
         }
     }
     this.ctx.restore();
+  }
+
+  public getInvasionAt(mouseX: number, mouseY: number): any | null {
+    const hitThreshold = 35; // Ukuran area klik lebih besar agar mudah
+    
+    for (const invasion of this.activeInvasions) {
+        if (!invasion.arrived || !invasion.screenPos) continue;
+        
+        // Konversi koordinat peta ke koordinat layar (Canvas CSS pixels)
+        const screenX = invasion.screenPos.x * this.scale + this.offsetX;
+        const screenY = invasion.screenPos.y * this.scale + this.offsetY;
+        
+        const dx = mouseX - screenX;
+        const dy = mouseY - screenY;
+        
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (dist <= hitThreshold) {
+            return invasion;
+        }
+    }
+    return null;
   }
 
   private drawCapitals() {

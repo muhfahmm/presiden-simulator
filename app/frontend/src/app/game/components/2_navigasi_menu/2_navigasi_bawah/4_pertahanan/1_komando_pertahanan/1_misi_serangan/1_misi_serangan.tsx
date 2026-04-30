@@ -7,6 +7,7 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import { ModalPilihNegara } from "./modals_pilih_negara/ModalPilihNegara";
 import { luncurkanInvasi, landlockedCountries } from "./modals_pilih_negara/logic/InvasiLogic";
 import { calculateTotalMilitaryPower } from "../../3_armada_militer/kekuatanmiliter";
+import { ModalPerang } from "./halaman_perang/ModalPerang";
 
 interface Props {
   isOpen: boolean;
@@ -20,10 +21,20 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
   const [isSelecting, setIsSelecting] = useState(false);
   const [activeTab, setActiveTab] = useState<'darat' | 'udara' | 'laut'>('darat');
   const [deployments, setDeployments] = useState<Record<string, number>>({});
+  const [activeWarReport, setActiveWarReport] = useState<any>(null);
 
   const targetName = activeMenu.startsWith("Komando Pertahanan:Misi Serangan:") 
     ? activeMenu.split(":")[2] 
     : null;
+
+  // Listener untuk membuka laporan perang dari peta
+  useEffect(() => {
+    const handleOpenWarReport = (e: any) => {
+      setActiveWarReport(e.detail);
+    };
+    window.addEventListener('OPEN_WAR_REPORT', handleOpenWarReport);
+    return () => window.removeEventListener('OPEN_WAR_REPORT', handleOpenWarReport);
+  }, []);
 
   const targetCountry = useMemo(() => {
     if (!targetName) return null;
@@ -105,7 +116,7 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
     setDeployments(prev => ({ ...prev, [key]: val }));
   };
 
-  if (!isOpen || !data) return null;
+  if (!isOpen && !activeWarReport) return null;
 
   const getCountryCode = (emoji: string) => {
     const chars = [...emoji];
@@ -114,8 +125,10 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
   };
 
   return (
-    <div className="absolute inset-0 bg-black/60 z-[80] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-300">
-      <div className="bg-zinc-950/90 border border-red-500/20 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-[0_0_100px_rgba(239,68,68,0.1)] flex flex-col relative animate-in zoom-in-95 duration-500">
+    <>
+    {isOpen && (
+      <div className="absolute inset-0 bg-black/60 z-[80] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-300">
+        <div className="bg-zinc-950/90 border border-red-500/20 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-[0_0_100px_rgba(239,68,68,0.1)] flex flex-col relative animate-in zoom-in-95 duration-500">
         
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
@@ -414,8 +427,8 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
       </div>
 
       <ModalPilihNegara 
-        isOpen={isSelecting}
-        onClose={() => setIsSelecting(false)}
+        isOpen={isSelecting} 
+        onClose={() => setIsSelecting(false)} 
         onSelect={(c) => {
           setActiveMenu(`Komando Pertahanan:Misi Serangan:${c.name_id}`);
           setIsSelecting(false);
@@ -423,5 +436,13 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
         playerCountryId={data.name_id}
       />
     </div>
+    )}
+      {activeWarReport && (
+        <ModalPerang 
+          invasion={activeWarReport} 
+          onClose={() => setActiveWarReport(null)} 
+        />
+      )}
+    </>
   );
 }
