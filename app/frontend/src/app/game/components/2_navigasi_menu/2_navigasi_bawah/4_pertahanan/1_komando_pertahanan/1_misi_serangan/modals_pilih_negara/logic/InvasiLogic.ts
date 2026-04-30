@@ -1,7 +1,7 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 
 // List of landlocked countries (tidak memiliki laut)
-const landlockedCountries = [
+export const landlockedCountries = [
   "Afghanistan", "Andorra", "Armenia", "Austria", "Azerbaijan", "Belarus", 
   "Bhutan", "Bolivia", "Botswana", "Burkina Faso", "Burundi", "Central African Republic", 
   "Chad", "Czech Republic", "Eswatini", "Ethiopia", "Hungary", "Kazakhstan", 

@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { X, Swords, Target, Shield, Zap, Clock, AlertTriangle, Globe, Info } from "lucide-react";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { ModalPilihNegara } from "./modals_pilih_negara/ModalPilihNegara";
-import { luncurkanInvasi } from "./modals_pilih_negara/logic/InvasiLogic";
+import { luncurkanInvasi, landlockedCountries } from "./modals_pilih_negara/logic/InvasiLogic";
 
 interface Props {
   isOpen: boolean;
@@ -34,6 +34,7 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
 
   const tabGroups = {
     darat: [
+      { key: 'infanteri', label: 'Infanteri' },
       { key: 'tank_tempur_utama', label: 'Main Battle Tank' },
       { key: 'apc_ifv', label: 'APC / IFV' },
       { key: 'artileri_berat', label: 'Artileri Berat' },
@@ -62,6 +63,27 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
       { key: 'kapal_logistik', label: 'Kapal Logistik' }
     ]
   };
+
+  // Initialize deployments to 0
+  useEffect(() => {
+    if (!data || Object.keys(deployments).length > 0) return;
+    const initial: Record<string, number> = {};
+    
+    // Set all available units to 0 initially
+    initial['infanteri'] = 0;
+    
+    if (data.armada_militer.darat) {
+      Object.keys(data.armada_militer.darat).forEach((k) => { initial[k] = 0; });
+    }
+    if (data.armada_militer.laut) {
+      Object.keys(data.armada_militer.laut).forEach((k) => { initial[k] = 0; });
+    }
+    if (data.armada_militer.udara) {
+      Object.keys(data.armada_militer.udara).forEach((k) => { initial[k] = 0; });
+    }
+    
+    setDeployments(initial);
+  }, [data]);
 
   const handleSliderChange = (key: string, val: number) => {
     setDeployments(prev => ({ ...prev, [key]: val }));
@@ -120,7 +142,6 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
         </div>
 
         {/* Content */}
-        {/* Content */}
         <div className="flex-1 overflow-hidden p-8 relative z-10 flex flex-col text-left">
           {targetCountry ? (
             <div className="w-full h-full grid grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -163,54 +184,90 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
 
                   {/* TABS */}
                   <div className="flex bg-zinc-900/50 p-1 rounded-2xl w-full border border-zinc-800/50">
-                    {['darat', 'laut', 'udara'].map((tab) => (
+                    {['darat', 'laut', 'udara'].map((tab) => {
+                      const isLandlocked = targetCountry 
+                        ? landlockedCountries.some(c => c.toLowerCase() === targetCountry.name_id.toLowerCase())
+                        : false;
+                      const isDisabled = tab === 'laut' && isLandlocked;
+                      
+                      return (
                       <button 
                         key={tab}
+                        disabled={isDisabled}
                         onClick={() => setActiveTab(tab as any)}
                         className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
                           activeTab === tab 
                             ? 'bg-red-600 text-white shadow-lg shadow-red-500/20' 
+                            : isDisabled
+                            ? 'text-zinc-700 cursor-not-allowed bg-zinc-950/50 border border-zinc-800/30'
                             : 'text-zinc-500 hover:text-white hover:bg-zinc-800/50'
                         }`}
+                        title={isDisabled ? "Negara target tidak memiliki akses laut (Landlocked)" : ""}
                       >
                         Armada {tab}
+                        {isDisabled && <AlertTriangle className="inline-block ml-2 h-3 w-3 text-red-900/50" />}
                       </button>
-                    ))}
+                    )})}
                   </div>
 
                   {/* UNIT SLIDERS */}
                   <div className="grid grid-cols-3 gap-3 h-[240px] content-start w-full text-left">
-                    {tabGroups[activeTab].map((unit) => {
-                      const maxAvailable = (data.armada_militer as any)[activeTab]?.[unit.key] || 0;
-                      if (maxAvailable <= 0) return null;
-                      
-                      const currentVal = deployments[unit.key] || 0;
+                    {(() => {
+                      const isLandlocked = targetCountry 
+                        ? landlockedCountries.some(c => c.toLowerCase() === targetCountry.name_id.toLowerCase())
+                        : false;
+                        
+                      if (activeTab === 'laut' && isLandlocked) {
+                        return (
+                          <div className="col-span-3 text-center py-10 border border-dashed border-rose-900/30 rounded-2xl bg-zinc-950/30 h-[76px] flex flex-col items-center justify-center">
+                             <span className="text-xs font-black text-rose-500/50 uppercase tracking-widest italic">Akses Laut Tertutup</span>
+                             <span className="text-[9px] font-bold text-zinc-600 mt-1">Negara target berstatus Landlocked</span>
+                          </div>
+                        );
+                      }
                       
                       return (
-                        <div key={unit.key} className="bg-zinc-950/50 border border-zinc-800/50 p-3 rounded-xl flex flex-col justify-between gap-2 group hover:border-red-500/30 transition-all h-[76px]">
-                           <div className="flex justify-between items-start">
-                              <span className="text-[11px] font-black text-zinc-300 group-hover:text-white uppercase tracking-wider transition-colors line-clamp-1">{unit.label}</span>
-                              <span className="text-[10px] font-bold text-red-400 bg-red-500/10 border border-red-500/20 px-2 py-0.5 rounded-md tabular-nums shrink-0 ml-2">
-                                {currentVal.toLocaleString()}
-                              </span>
-                           </div>
-                           <input 
-                              type="range" 
-                              min="0" 
-                              max={maxAvailable} 
-                              value={currentVal} 
-                              onChange={(e) => handleSliderChange(unit.key, parseInt(e.target.value))}
-                              className="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-red-500 hover:accent-red-400 transition-all"
-                           />
-                        </div>
+                        <>
+                          {tabGroups[activeTab].map((unit) => {
+                            const maxAvailable = unit.key === 'infanteri'
+                              ? (data.armada_militer.barak || 0) * 10000
+                              : (data.armada_militer as any)[activeTab]?.[unit.key] || 0;
+                              
+                            if (maxAvailable <= 0) return null;
+                            
+                            const currentVal = deployments[unit.key] || 0;
+                            
+                            return (
+                              <div key={unit.key} className="bg-zinc-950/50 border border-zinc-800/50 p-3 rounded-xl flex flex-col justify-between gap-2 group hover:border-red-500/30 transition-all h-[76px]">
+                                 <div className="flex justify-between items-start">
+                                    <span className="text-[11px] font-black text-zinc-300 group-hover:text-white uppercase tracking-wider transition-colors line-clamp-1">{unit.label}</span>
+                                    <span className="text-[10px] font-bold text-red-400 bg-red-500/10 border border-red-500/20 px-2 py-0.5 rounded-md tabular-nums shrink-0 ml-2">
+                                      {currentVal.toLocaleString()} / {maxAvailable.toLocaleString()}
+                                    </span>
+                                 </div>
+                                 <input 
+                                    type="range" 
+                                    min="0" 
+                                    max={maxAvailable} 
+                                    value={currentVal} 
+                                    onChange={(e) => handleSliderChange(unit.key, parseInt(e.target.value))}
+                                    className="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-red-500 hover:accent-red-400 transition-all"
+                                 />
+                              </div>
+                            );
+                          })}
+                          
+                          {tabGroups[activeTab].every(unit => {
+                              const m = unit.key === 'infanteri' ? (data.armada_militer.barak || 0) * 10000 : (data.armada_militer as any)[activeTab]?.[unit.key] || 0;
+                              return m <= 0;
+                          }) && (
+                             <div className="col-span-3 text-center py-10 border border-dashed border-zinc-800 rounded-2xl bg-zinc-950/30 h-[76px] flex items-center justify-center">
+                                 <span className="text-xs font-black text-zinc-600 uppercase tracking-widest italic">Tidak Ada Unit Tersedia</span>
+                             </div>
+                          )}
+                        </>
                       );
-                    })}
-                    
-                    {tabGroups[activeTab].every(unit => ((data.armada_militer as any)[activeTab]?.[unit.key] || 0) <= 0) && (
-                       <div className="col-span-3 text-center py-10 border border-dashed border-zinc-800 rounded-2xl bg-zinc-950/30 h-[76px] flex items-center justify-center">
-                           <span className="text-xs font-black text-zinc-600 uppercase tracking-widest italic">Tidak Ada Unit Tersedia</span>
-                       </div>
-                    )}
+                    })()}
                   </div>
                </div>
 
