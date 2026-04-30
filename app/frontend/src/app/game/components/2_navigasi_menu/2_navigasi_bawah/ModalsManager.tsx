@@ -20,6 +20,7 @@ import ArmadaMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi
 import ArmadaPolisiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/4_armada_polisi/ArmadaPolisiModal";
 import ManajemenPertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/5_manajemen_pertahanan/ManajemenPertahananModal";
 import { ModalPerang } from "./4_pertahanan/1_komando_pertahanan/1_misi_serangan/modals_perbandingan/ModalPerang";
+import { BattlePage } from "./4_pertahanan/1_komando_pertahanan/1_misi_serangan/pages/BattlePage";
 import PBBModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB";
 import MisiSeranganModal from "./4_pertahanan/1_komando_pertahanan/1_misi_serangan/1_misi_serangan";
 import OrgIntlModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/OrgIntlModal";
@@ -333,6 +334,18 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
           onClose={() => {
             setActiveWarReport(null);
             setActiveMenu("Peta Taktis"); // Kembali ke map
+          }} 
+          onStartBattle={() => {
+            setActiveMenu(`BattlePage:${activeWarReport.target}`);
+          }}
+        />
+      )}
+
+      {activeMenu.startsWith("BattlePage:") && activeWarReport && (
+        <BattlePage 
+          invasion={activeWarReport} 
+          onBack={() => {
+            setActiveMenu("Peta Taktis");
           }} 
         />
       )}

@@ -6,9 +6,10 @@ import { calculateTotalMilitaryPower } from "../../../3_armada_militer/kekuatanm
 interface ModalPerangProps {
   invasion: any;
   onClose: () => void;
+  onStartBattle: () => void;
 }
 
-export const ModalPerang: React.FC<ModalPerangProps> = ({ invasion, onClose }) => {
+export const ModalPerang: React.FC<ModalPerangProps> = ({ invasion, onClose, onStartBattle }) => {
   const targetName = invasion.target;
   const deployedUnits = invasion.units;
 
@@ -147,6 +148,7 @@ export const ModalPerang: React.FC<ModalPerangProps> = ({ invasion, onClose }) =
             Mundur / Batalkan
           </button>
           <button 
+            onClick={onStartBattle}
             className="flex-2 py-4 px-12 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all flex items-center justify-center gap-3"
           >
             <Sword className="h-4 w-4" />
