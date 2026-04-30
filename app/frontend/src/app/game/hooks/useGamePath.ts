@@ -1,9 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { countries } from "@/app/database/data/negara/benua/index";
 
 export function useGamePath(path: string[]) {
+  const router = useRouter();
   let initialMenu = "Peta Taktis";
   const category = path[0];
   const subMenu = path[1];
@@ -139,7 +141,8 @@ export function useGamePath(path: string[]) {
       "perdagangan": "trade",
       "kedutaan": "embassy",
       "pakta": "pact",
-      "aliansi": "alliance"
+      "aliansi": "alliance",
+      "pbb": "pbb"
     };
     initialMenu = `Menu:Inbox:${filterMap[filter] || "all"}`;
   } else if (category === 'populasi') {
@@ -267,6 +270,7 @@ export function useGamePath(path: string[]) {
       "Menu:Inbox:embassy": "/game/inbox/kedutaan",
       "Menu:Inbox:pact": "/game/inbox/pakta",
       "Menu:Inbox:alliance": "/game/inbox/aliansi",
+      "Menu:Inbox:pbb": "/game/inbox/pbb",
       "Menu:Riset": "/game/riset",
       "Kepuasan": "/game/kepuasan",
 
@@ -413,9 +417,9 @@ export function useGamePath(path: string[]) {
 
     targetPath = targetPath || "/game";
     if (window.location.pathname !== targetPath) {
-      window.history.pushState(null, '', targetPath);
+      router.replace(targetPath, { scroll: false });
     }
-  }, [activeMenu]);
+  }, [activeMenu, router]);
 
   // Global Event Listeners for Game-wide triggers (like map markers)
   useEffect(() => {

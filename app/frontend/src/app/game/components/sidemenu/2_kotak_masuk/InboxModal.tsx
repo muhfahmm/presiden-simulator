@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useState, useEffect, useMemo, ChangeEvent } from 'react';
 import { 
   X, 
   Mail, 
@@ -15,6 +15,12 @@ import { countries as centersData } from '@/app/pilih_negara/data/negara/benua/i
 import { getGlobalRelationMatrix, getNormalizedUser, normalizeId } from '@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler';
 import { relationStorage } from '../../modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage';
 import { unSecurityCouncilStorage } from '../../2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage';
+import { AiTradeService } from "../../AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/services/AiTradeService";
+import { tradeStorage } from "../../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/TradeStorage";
+import { budgetStorage } from "../../1_navbar/3_kas_negara";
+import { AiDiplomacyService } from "@/app/game/logic/ai/ai_diplomacy_engine/services/AiDiplomacyService";
+import { timeStorage } from "../../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
+import { calculateShippingDays } from "../../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/tradeData";
 
 // Modular Tab Components
 import { AllList } from './0_semua/AllList';
@@ -23,6 +29,7 @@ import { TradeList } from './2_perdagangan/TradeList';
 import { EmbassyList } from './3_kedutaan/EmbassyList';
 import { PactList } from './4_pakta/PactList';
 import { AllianceList } from './5_aliansi/AllianceList';
+import { PBBList } from './6_pbb/PBBList';
 
 interface InboxModalProps {
   isOpen: boolean;
@@ -32,14 +39,34 @@ interface InboxModalProps {
 }
 
 export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu }: InboxModalProps) {
-  const [messages, setMessages] = React.useState<InboxItem[]>([]);
-  const [expandedId, setExpandedId] = React.useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const [messages, setMessages] = useState<InboxItem[]>([]);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
   
   // Derivasi filter dari URL/activeMenu state
   const filter = activeMenu.startsWith("Menu:Inbox:") ? activeMenu.split(":")[2] : "all";
 
-  React.useEffect(() => {
+  // Sync URL with active tab when open
+  useEffect(() => {
+    if (isOpen && activeMenu.startsWith("Menu:Inbox:")) {
+      const tab = activeMenu.split(":")[2];
+      const tabPathMap: Record<string, string> = {
+        all: 'semua',
+        finance: 'keuangan',
+        trade: 'perdagangan',
+        embassy: 'kedutaan',
+        pact: 'pakta',
+        alliance: 'aliansi',
+        pbb: 'pbb'
+      };
+      const path = `/game/inbox/${tabPathMap[tab] || 'semua'}`;
+      if (window.location.pathname !== path) {
+        window.history.replaceState(null, '', path);
+      }
+    }
+  }, [isOpen, activeMenu]);
+
+  useEffect(() => {
     if (isOpen) {
       setMessages(inboxStorage.getMessages());
     }
@@ -50,7 +77,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
   }, [isOpen]);
 
   // Logic to get active trade partners
-  const tradePartners = React.useMemo(() => {
+  const tradePartners = useMemo(() => {
     if (!isOpen) return [];
     const userCountryRaw = localStorage.getItem('selected_country') || "Indonesia";
     const userCountryData = centersData.find((c: any) => 
@@ -66,17 +93,20 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
   }, [isOpen]);
 
   // Hitung jumlah unread per kategori untuk ditampilkan di badge tab
-  const unreadCounts = React.useMemo(() => {
+  const unreadCounts = useMemo(() => {
     const counts: Record<string, number> = {
-      all: 0, finance: 0, trade: 0, embassy: 0, pact: 0, alliance: 0
+      all: 0, finance: 0, trade: 0, embassy: 0, pact: 0, alliance: 0, pbb: 0
     };
 
-    messages.forEach(msg => {
+    messages.forEach((msg: InboxItem) => {
       if (msg.read) return;
 
       counts.all++;
 
-      if (msg.category === 'finance') counts.finance++;
+      const subj = msg.subject.toLowerCase();
+      
+      if (msg.category === 'pbb' || subj.includes('usulan sidang:')) counts.pbb++;
+      else if (msg.category === 'finance') counts.finance++;
       else if (msg.category === 'trade') {
         counts.trade++;
       }
@@ -84,7 +114,6 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
       else if (msg.category === 'pact') counts.pact++;
       else if (msg.category === 'alliance') counts.alliance++;
       else if (msg.category === 'defense') {
-        const subj = msg.subject.toLowerCase();
         if (subj.includes('pakta')) counts.pact++;
         else if (subj.includes('aliansi')) counts.alliance++;
       }
@@ -97,16 +126,10 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
   if (!isOpen) return null;
 
   const handleAction = (msg: InboxItem, action: 'accept' | 'decline') => {
-    const { AiTradeService } = require("../../AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/services/AiTradeService");
-    const { tradeStorage } = require("../../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/TradeStorage");
-    const { budgetStorage } = require("../../1_navbar/3_kas_negara");
-
     if (action === 'accept') {
         if (msg.metadata) {
             const { type, id } = msg.metadata;
             console.log(`[INBOX] Processing Acceptance: ${type} - ${id}`);
-            
-            const { AiDiplomacyService } = require("@/app/game/logic/ai/ai_diplomacy_engine/services/AiDiplomacyService");
             
             let success = false;
             
@@ -197,15 +220,12 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
             const session = localStorage.getItem('game_session');
             const userCountry = session ? JSON.parse(session).country : "Indonesia";
 
-            const { timeStorage } = require("../../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage");
             const gameDate = timeStorage.getState().gameDate;
 
-            // Helper to normalize country name
             const normalizeCountry = (name: string) => {
                 return name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
             };
 
-            const { calculateShippingDays } = require("../../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/tradeData");
             const duration = calculateShippingDays(normalizeCountry(country));
 
             // Trigger Map Animation & Delayed Settlement
@@ -239,7 +259,6 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
                 const countryName = countryMatch?.[1] || sourceMatch?.[1] || "";
                 
                 if (countryName) {
-                    const { AiDiplomacyService } = require("@/app/game/logic/ai/ai_diplomacy_engine/services/AiDiplomacyService");
                     const treatyType = isPactMsg ? 'pact' : 'alliance';
                     
                     // Extract duration from title if present (e.g., "5 TAHUN")
@@ -287,12 +306,15 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
         searchTerm
     };
 
+    const filter = activeMenu.startsWith("Menu:Inbox:") ? activeMenu.split(":")[2] : "all";
+
     switch (filter) {
         case 'finance': return <FinanceList {...commonProps} />;
         case 'trade': return <TradeList {...commonProps} />;
         case 'embassy': return <EmbassyList {...commonProps} />;
         case 'pact': return <PactList {...commonProps} />;
         case 'alliance': return <AllianceList {...commonProps} />;
+        case 'pbb': return <PBBList {...commonProps} />;
         default: return <AllList {...commonProps} />;
     }
   };
@@ -357,7 +379,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
                 type="text" 
                 placeholder="CARI PESAN..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
                 className="bg-zinc-950/50 border border-zinc-800 rounded-2xl pl-12 pr-6 py-2.5 text-[11px] font-bold text-white placeholder:text-zinc-700 focus:outline-none focus:border-zinc-700 w-64 transition-all"
               />
             </div>
@@ -375,6 +397,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
               { id: 'finance', label: 'keuangan' },
               { id: 'trade', label: 'perdagangan' },
               { id: 'embassy', label: 'kedutaan' },
+              { id: 'pbb', label: 'pbb' },
               { id: 'pact', label: 'pakta' },
               { id: 'alliance', label: 'aliansi' }
             ].map((tab) => {

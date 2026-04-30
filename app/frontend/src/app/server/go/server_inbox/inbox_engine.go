@@ -128,5 +128,18 @@ func GetInitialInboxBatch(dateStr string) []core.InboxItem {
 			Read:          false,
 			Time:          dateStr,
 		},
+		{
+			ID:            "init-pbb",
+			Sender:        "Markas Besar PBB",
+			Subject:       "Selamat Datang di Hub PBB",
+			Content:       "Pusat monitoring PBB telah diaktifkan. Di sini Anda akan menerima pemberitahuan mengenai usulan sidang, hasil pemungutan suara, dan agenda geopolitik internasional lainnya. Pastikan Anda memantau tab ini secara rutin untuk menjaga pengaruh diplomatik negara Anda.",
+			Timestamp:     time.Now().UnixMilli(),
+			Priority:      "high",
+			Category:      "pbb",
+			IsProposal:    false,
+			ProposalLabel: "SISTEM",
+			Read:          false,
+			Time:          dateStr,
+		},
 	}
 }

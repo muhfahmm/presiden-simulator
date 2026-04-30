@@ -1,3 +1,4 @@
+declare var require: any;
 
 const STORAGE_KEY = "em_un_voting_data";
 
@@ -159,7 +160,7 @@ export const unVotingStorage = {
         subject: `USULAN SIDANG: ${voting.proposer}`,
         content: `${voting.proposer} mengajukan resolusi "${voting.name}" untuk negara ${voting.targetCountry}. Sidang telah dibuka di Markas PBB.`,
         priority: 'high',
-        category: 'diplomacy'
+        category: 'pbb'
       });
     } catch (e) {
       console.error("[PBB Notif] Gagal mengirim notifikasi:", e);

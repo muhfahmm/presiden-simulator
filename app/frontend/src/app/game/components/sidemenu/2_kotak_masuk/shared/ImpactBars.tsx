@@ -9,7 +9,7 @@ interface ImpactBarsProps {
   content?: string;
 }
 
-export const ImpactBars: React.FC<ImpactBarsProps> = ({ source, subject, content }) => {
+export const ImpactBars = ({ source, subject, content }: ImpactBarsProps) => {
   const src = source.toLowerCase();
   const sub = subject.toLowerCase();
   const con = (content || '').toLowerCase();

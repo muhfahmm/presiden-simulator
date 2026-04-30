@@ -1,5 +1,6 @@
 import { gameStorage } from "@/app/game/gamestorage";
 import { getInitialAgreements } from "@/app/pilih_negara/data/database_mitra_perdagangan/agreementsRegistry";
+import { embassyStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage";
 
 export interface InboxItem {
   id: string;
@@ -8,7 +9,7 @@ export interface InboxItem {
   time: string;
   read: boolean;
   priority: 'low' | 'medium' | 'high';
-  category?: 'finance' | 'trade' | 'pact' | 'alliance' | 'embassy' | 'intelligence' | 'general' | 'defense' | 'diplomacy';
+  category?: 'finance' | 'trade' | 'pact' | 'alliance' | 'embassy' | 'intelligence' | 'general' | 'defense' | 'diplomacy' | 'pbb';
   isProposal?: boolean;
   proposalLabel?: string;
   status?: 'pending' | 'accepted' | 'rejected';
@@ -36,7 +37,78 @@ export const inboxStorage = {
     if (typeof window === 'undefined') return [];
     try {
       const data = localStorage.getItem(key);
-      const parsed: InboxItem[] = data ? JSON.parse(data) : [];
+      let parsed: InboxItem[] = data ? JSON.parse(data) : [];
+
+      // Ensure default welcome messages exist for all categories
+      const welcomeConfigs = [
+        {
+          id: 'init-pbb',
+          category: 'pbb',
+          source: 'Markas Besar PBB',
+          subject: 'Selamat Datang di Hub PBB',
+          content: 'Pusat monitoring PBB telah diaktifkan. Di sini Anda akan menerima pemberitahuan mengenai usulan sidang, hasil pemungutan suara, dan agenda geopolitik internasional lainnya. Pastikan Anda memantau tab ini secara rutin untuk menjaga pengaruh diplomatik negara Anda.'
+        },
+        {
+          id: 'init-finance',
+          category: 'finance',
+          source: 'Kementerian Keuangan',
+          subject: 'Laporan Fiskal & Anggaran',
+          content: 'Tab Keuangan akan memberikan update berkala mengenai kondisi ekonomi negara, termasuk perubahan GDP, neraca pembayaran, dan status hutang luar negeri. Gunakan data ini untuk menyesuaikan kebijakan pajak dan anggaran pembangunan Anda.'
+        },
+        {
+          id: 'init-trade',
+          category: 'trade',
+          source: 'Kementerian Perdagangan',
+          subject: 'Hub Perdagangan Global',
+          content: 'Semua tawaran ekspor, impor, dan perjanjian kemitraan ekonomi akan muncul di sini. Pastikan Anda merespon tawaran dari mitra strategis dengan cepat untuk menjaga stabilitas pasokan sumber daya nasional.'
+        },
+        {
+          id: 'init-embassy',
+          category: 'embassy',
+          source: 'Kementerian Luar Negeri',
+          subject: 'Pusat Hubungan Diplomatik',
+          content: 'Komunikasi antar negara dimulai dari sini. Anda akan menerima notifikasi mengenai pembukaan kedutaan besar baru, kunjungan diplomatik, dan perkembangan hubungan bilateral dengan negara-negara di seluruh dunia.'
+        },
+        {
+          id: 'init-pact',
+          category: 'pact',
+          source: 'Sekretariat Pakta Keamanan',
+          subject: 'Monitor Pakta Non-Agresi',
+          content: 'Tab ini khusus untuk memantau status pakta non-agresi yang Anda miliki. Anda akan menerima peringatan jika pakta akan segera berakhir atau jika ada tawaran pakta baru dari negara tetangga untuk mencegah konflik militer.'
+        },
+        {
+          id: 'init-alliance',
+          category: 'alliance',
+          source: 'Pusat Komando Aliansi',
+          subject: 'Koordinasi Aliansi Pertahanan',
+          content: 'Selamat datang di pusat komando aliansi. Di sini Anda akan mengelola kerjasama militer tingkat tinggi. Semua tawaran aliansi pertahanan dan bantuan militer akan dikirimkan melalui saluran komunikasi terenkripsi ini.'
+        }
+      ];
+
+      let addedAny = false;
+      const now = Date.now();
+      
+      welcomeConfigs.forEach((config, index) => {
+        const hasWelcome = parsed.some(m => m.id === config.id || (m.category === config.category && (m.subject.includes('Selamat Datang') || m.subject === config.subject)));
+        if (!hasWelcome) {
+          parsed.unshift({
+            id: config.id,
+            source: config.source,
+            subject: config.subject,
+            content: config.content,
+            time: 'SISTEM',
+            read: false,
+            priority: 'high',
+            category: config.category as any,
+            timestamp: now - (index * 1000) // Slight offset for stable sorting
+          });
+          addedAny = true;
+        }
+      });
+
+      if (addedAny) {
+        parsed.sort((a, b) => b.timestamp - a.timestamp);
+      }
 
       // Auto-filter redundant or non-whitelisted items whenever messages are retrieved
       return parsed.filter(msg => {
@@ -59,7 +131,6 @@ export const inboxStorage = {
         // 2. Redundancy filter for Embassy Proposals
         if (msg.category === 'embassy' && msg.isProposal && country && !msg.status) {
           try {
-            const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
             if (embassyStorage.getEmbassyStatus(country) === 'completed') {
               // console.log(`[INBOX] Filtering redundant embassy proposal from ${country}`);
               return false;
@@ -71,7 +142,6 @@ export const inboxStorage = {
         const isAdvancedProposal = msg.isProposal && ['trade', 'pact', 'alliance', 'defense', 'diplomacy'].includes(msg.category || '');
         if (isAdvancedProposal && country) {
           try {
-            const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
             const status = embassyStorage.getEmbassyStatus(country);
             if (status !== 'completed') return false;
           } catch (e) { }
@@ -108,7 +178,6 @@ export const inboxStorage = {
           // AUTO-HEAL: If already accepted, ensure embassy storage is synced
           if (msg.status === 'accepted' && rawCountry && rawCountry !== 'Negara') {
             try {
-              const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
               if (embassyStorage.getEmbassyStatus(rawCountry) !== 'completed') {
                 console.log(`[INBOX] Auto-healing embassy status for ${rawCountry}`);
                 embassyStorage.updateEmbassyStatus(rawCountry, 'completed');
@@ -295,7 +364,6 @@ export const inboxStorage = {
 
       if (country) {
         try {
-          const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
           const hasEmbassy = embassyStorage.getEmbassyStatus(country) === 'completed';
           if (!hasEmbassy) {
             console.log(`[INBOX] BLOCKED: ${msg.category} proposal from ${country} requires an embassy first!`);
@@ -321,7 +389,6 @@ export const inboxStorage = {
 
       if (country) {
         try {
-          const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
           if (embassyStorage.getEmbassyStatus(country) === 'completed') {
             console.log(`[INBOX] Blocked redundant embassy proposal from ${country}`);
             return;
@@ -531,7 +598,6 @@ export const inboxStorage = {
         }
         if (country) {
           try {
-            const { embassyStorage } = require("@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage");
             if (embassyStorage.getEmbassyStatus(country) !== 'completed') return false;
           } catch (e) {}
         }

@@ -15,14 +15,14 @@ interface TradeListProps {
   searchTerm: string;
 }
 
-export const TradeList: React.FC<TradeListProps> = ({
+export const TradeList = ({
   messages,
   expandedId,
   setExpandedId,
   handleAction,
   tradePartners,
   searchTerm
-}) => {
+}: TradeListProps) => {
   const filteredMessages = useMemo(() => {
     // 1. Get current matrix and user info for strict filtering
     const matrix = getGlobalRelationMatrix();
@@ -47,9 +47,12 @@ export const TradeList: React.FC<TradeListProps> = ({
     );
 
     return messages
-    .filter(msg => msg.category === 'trade')
-    .filter(msg => {
-      // Basic type filters
+    .filter((msg: InboxItem) => msg.category === 'trade')
+    .filter((msg: InboxItem) => {
+      // 1. Allow default welcome message and system notifications
+      if (msg.id === 'init-trade' || msg.time === 'SISTEM') return true;
+
+      // 2. Existing type filters for trade proposals
       const subj = msg.subject.toLowerCase();
       const label = msg.proposalLabel || '';
       
@@ -61,7 +64,7 @@ export const TradeList: React.FC<TradeListProps> = ({
       
       return isExport || isImport || isActivation || isPartnership || isContract;
     })
-    .filter(msg => 
+    .filter((msg: InboxItem) => 
       msg.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 
       msg.source.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -78,7 +81,7 @@ export const TradeList: React.FC<TradeListProps> = ({
 
   return (
     <div className="w-full space-y-4">
-      {filteredMessages.map((msg) => (
+      {filteredMessages.map((msg: InboxItem) => (
         <InboxCard 
           key={msg.id}
           msg={msg}

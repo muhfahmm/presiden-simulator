@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { ChevronRight, CheckCircle2, Trash2 } from 'lucide-react';
 import { inboxStorage, InboxItem } from '../inboxStorage';
 import { getCategoryTheme } from './CategoryTheme';
 import { ImpactBars } from './ImpactBars';
 
 interface InboxCardProps {
+  key?: any;
   msg: InboxItem;
   isExpanded: boolean;
   onToggle: (id: string | null) => void;
@@ -12,13 +13,13 @@ interface InboxCardProps {
   tradePartners: string[];
 }
 
-export const InboxCard: React.FC<InboxCardProps> = ({ 
+export const InboxCard = ({ 
   msg, 
   isExpanded, 
   onToggle, 
   handleAction,
   tradePartners 
-}) => {
+}: InboxCardProps) => {
   // Only treat as "Premium Offer" if it's a trade proposal from an EXISTING active partner
   const countryMatch = msg.source.match(/\(([^)]+)\)/);
   const sourceCountry = countryMatch ? countryMatch[1].trim().toLowerCase() : "";
@@ -61,6 +62,7 @@ export const InboxCard: React.FC<InboxCardProps> = ({
                   if (msg.proposalLabel === 'SISTEM' || msg.proposalLabel === 'INFO') return 'Informasi';
                   const cat = msg.category || 'general';
                   const subj = msg.subject.toLowerCase();
+                  if (cat === 'pbb' || subj.includes('usulan sidang:')) return 'PBB';
                   if (cat === 'defense' || cat === 'pact') return subj.includes('aliansi') ? 'aliansi' : 'pakta';
                   if (cat === 'diplomacy' || cat === 'embassy') return 'kedutaan';
                   if (cat === 'finance') return 'keuangan';
@@ -117,7 +119,7 @@ export const InboxCard: React.FC<InboxCardProps> = ({
         </div>
         <div className="flex items-center gap-4">
           <button 
-            onClick={(e) => {
+            onClick={(e: MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               if (confirm('HAPUS PESAN INI?')) {
                 inboxStorage.deleteMessage(msg.id);

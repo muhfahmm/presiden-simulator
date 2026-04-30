@@ -12,16 +12,16 @@ interface AllListProps {
   searchTerm: string;
 }
 
-export const AllList: React.FC<AllListProps> = ({
+export const AllList = ({
   messages,
   expandedId,
   setExpandedId,
   handleAction,
   tradePartners,
   searchTerm
-}) => {
+}: AllListProps) => {
   const filteredMessages = messages
-    .filter(msg => {
+    .filter((msg: InboxItem) => {
       // For the "All" tab, we just show everything that matches the search term
       // and passes general trade filtering if it is a trade message
       if (msg.category === 'trade') {
@@ -40,7 +40,7 @@ export const AllList: React.FC<AllListProps> = ({
       }
       return true;
     })
-    .filter(msg => 
+    .filter((msg: InboxItem) => 
       msg.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 
       msg.source.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -56,7 +56,7 @@ export const AllList: React.FC<AllListProps> = ({
 
   return (
     <div className="w-full space-y-4">
-      {filteredMessages.map((msg) => (
+      {filteredMessages.map((msg: InboxItem) => (
         <InboxCard 
           key={msg.id}
           msg={msg}

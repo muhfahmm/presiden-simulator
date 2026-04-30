@@ -12,17 +12,18 @@ interface EmbassyListProps {
   searchTerm: string;
 }
 
-export const EmbassyList: React.FC<EmbassyListProps> = ({
+export const EmbassyList = ({
   messages,
   expandedId,
   setExpandedId,
   handleAction,
   tradePartners,
   searchTerm
-}) => {
+}: EmbassyListProps) => {
   const filteredMessages = messages
-    .filter(msg => (msg.category === 'embassy' || msg.category === 'diplomacy'))
-    .filter(msg => 
+    .filter((msg: InboxItem) => (msg.category === 'embassy' || msg.category === 'diplomacy'))
+    .filter((msg: InboxItem) => !msg.subject.toLowerCase().includes('usulan sidang:'))
+    .filter((msg: InboxItem) => 
       msg.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 
       msg.source.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -38,7 +39,7 @@ export const EmbassyList: React.FC<EmbassyListProps> = ({
 
   return (
     <div className="w-full space-y-4">
-      {filteredMessages.map((msg) => (
+      {filteredMessages.map((msg: InboxItem) => (
         <InboxCard 
           key={msg.id}
           msg={msg}

@@ -1,10 +1,15 @@
 import React from 'react';
 import { 
   DollarSign, Briefcase, Shield, Building2, Handshake, Mail, Info, 
-  ArrowUpRight, ArrowDownLeft
+  ArrowUpRight, ArrowDownLeft, Globe
 } from 'lucide-react';
 
-export const getCategoryTheme = (category: string = 'general', isSystem: boolean = false, isProposal: boolean = false, subject: string = '') => {
+export const getCategoryTheme = (
+  category: string = 'general', 
+  isSystem: boolean = false, 
+  isProposal: boolean | any = false, 
+  subject: string = ''
+): any => {
   if (isSystem) return {
     bg: 'bg-blue-500/10', border: 'border-blue-500/30', text: 'text-blue-400', indicator: 'bg-blue-500', icon: <Info className="h-4 w-4" />,
     glow: 'shadow-[0_0_20px_rgba(59,130,246,0.1)]'
@@ -60,6 +65,10 @@ export const getCategoryTheme = (category: string = 'general', isSystem: boolean
     case 'embassy': return { 
       bg: 'bg-purple-500/5', border: 'border-purple-500/20', text: 'text-purple-400', indicator: 'bg-purple-500', icon: <Building2 className="h-4 w-4" />,
       glow: 'shadow-[0_0_30_rgba(168,85,247,0.15)]'
+    };
+    case 'pbb': return { 
+      bg: 'bg-cyan-500/5', border: 'border-cyan-500/20', text: 'text-cyan-400', indicator: 'bg-cyan-500', icon: <Globe className="h-4 w-4" />,
+      glow: 'shadow-[0_0_30px_rgba(6,182,212,0.15)]'
     };
     default: return { 
       bg: 'bg-zinc-900/50', border: 'border-zinc-800', text: 'text-zinc-400', indicator: 'bg-zinc-700', icon: <Mail className="h-4 w-4" />,
