@@ -81,9 +81,13 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       const targetName = parts[1]?.split(":")[0]; // Handle laporan_Negara or laporan_Negara:war_page
       const saved = localStorage.getItem('active_invasions');
       if (saved) {
-        const parsed = JSON.parse(saved);
-        const inv = parsed.find((i: any) => i.target === targetName);
-        if (inv) setActiveWarReport(inv);
+        try {
+          const parsed = JSON.parse(saved);
+          const inv = parsed.find((i: any) => i.target === targetName);
+          if (inv) setActiveWarReport(inv);
+        } catch (e) {
+          console.error("Failed to parse active_invasions in ModalsManager", e);
+        }
       }
     }
 
@@ -346,7 +350,7 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         <BattlePage 
           invasion={activeWarReport} 
           onBack={() => {
-            setActiveMenu("Peta Taktis");
+            setActiveMenu(`laporan_${activeWarReport.target}`);
           }} 
         />
       )}

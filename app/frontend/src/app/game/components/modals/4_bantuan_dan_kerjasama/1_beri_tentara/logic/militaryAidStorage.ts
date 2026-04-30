@@ -37,7 +37,13 @@ export const militaryAidStorage = {
   getAid: (): AidData => {
     if (typeof window === "undefined") return {};
     const stored = localStorage.getItem(AID_STORAGE_KEY);
-    return stored ? JSON.parse(stored) : {};
+    if (!stored) return {};
+    try {
+      return JSON.parse(stored);
+    } catch (e) {
+      console.error("Failed to parse military aid storage", e);
+      return {};
+    }
   },
 
   getAidForCountry: (targetId: string): Record<string, number> => {

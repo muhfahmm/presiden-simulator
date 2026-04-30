@@ -1,6 +1,12 @@
 "use client"
-import React, { useState, useEffect } from 'react';
-import { Sword, Shield, Target, ArrowLeft, Bomb, Zap, Loader2, Trophy, Skull } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Sword, Shield, Target, ArrowLeft, Bomb, Zap, Loader2, Trophy, Skull, Plane, Ship, Truck, Users, Rocket, ShieldAlert, Car, Anchor, RadioTower, Activity, Satellite } from 'lucide-react';
+import { countries } from "@/app/database/data/negara/benua/index";
+import { militaryAidStorage } from "@/app/game/components/modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
+import { hitungAtrisiUnit, analisisStrategi, getUnitMatchupMultiplier, getDynamicNarratives } from "./logic/EngineJembatan";
+import * as MilPower from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/3_armada_militer/kekuatanmiliter";
+import { SHINTO_ALUTSISTA_QUALITY } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/logic/11_shinto/1_plus/plus";
+import { NASIONALISME_MILITARY_DAMAGE_BONUS } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/logic/7_nasionalisme/1_plus/plus";
 
 interface BattlePageProps {
   invasion: any;
@@ -13,21 +19,94 @@ export const BattlePage: React.FC<BattlePageProps> = ({ invasion, onBack }) => {
   const [playerStrength, setPlayerStrength] = useState(100);
   const [enemyStrength, setEnemyStrength] = useState(100);
 
+  // Get target country data
+  const targetCountry = useMemo(() => {
+    return countries.find(c => c.name_id === invasion.target);
+  }, [invasion.target]);
+
+  // Local state for units to track losses
+  const [playerUnits, setPlayerUnits] = useState<any[]>(invasion?.units ? invasion.units.map((u: any) => ({ ...u })) : []);
+  const [enemyUnits, setEnemyUnits] = useState<any[]>([]);
+
+  // Initialize enemy units from target country data
+  useEffect(() => {
+    if (targetCountry && targetCountry.armada_militer) {
+      const am = targetCountry.armada_militer;
+      const aidData = militaryAidStorage.getAid();
+      const targetAid = targetCountry ? (aidData[targetCountry.name_en?.toLowerCase()] || aidData[targetCountry.name_id?.toLowerCase()] || {}) : {};
+
+      const units = [
+        // DARAT
+        { type: 'Pasukan Infanteri', count: ((am.barak || 0) + (targetAid.barak || 0)) * 10000, icon: Users, cat: 'darat' },
+        { type: 'Main Battle Tank', count: (am.darat?.tank_tempur_utama || 0) + (targetAid.tank_tempur_utama || 0), icon: Truck, cat: 'darat' },
+        { type: 'APC / IFV', count: (am.darat?.apc_ifv || 0) + (targetAid.apc_ifv || 0), icon: Truck, cat: 'darat' },
+        { type: 'Artileri Berat', count: (am.darat?.artileri_berat || 0) + (targetAid.artileri_berat || 0), icon: Target, cat: 'darat' },
+        { type: 'MLRS Rocket', count: (am.darat?.sistem_peluncur_roket || 0) + (targetAid.sistem_peluncur_roket || 0), icon: Rocket, cat: 'darat' },
+        { type: 'Mobile SAM', count: (am.darat?.pertahanan_udara_mobile || 0) + (targetAid.pertahanan_udara_mobile || 0), icon: ShieldAlert, cat: 'darat' },
+        { type: 'Kendaraan Taktis', count: (am.darat?.kendaraan_taktis || 0) + (targetAid.kendaraan_taktis || 0), icon: Car, cat: 'darat' },
+        
+        // LAUT
+        { type: 'Kapal Induk Konvensional', count: (am.laut?.kapal_induk || 0) + (targetAid.kapal_induk || 0), icon: Anchor, cat: 'laut' },
+        { type: 'Kapal Induk Nuklir', count: (am.laut?.kapal_induk_nuklir || 0) + (targetAid.kapal_induk_nuklir || 0), icon: Anchor, cat: 'laut' },
+        { type: 'Kapal Destroyer', count: (am.laut?.kapal_destroyer || 0) + (targetAid.kapal_destroyer || 0), icon: Ship, cat: 'laut' },
+        { type: 'Kapal Korvet', count: (am.laut?.kapal_korvet || 0) + (targetAid.kapal_korvet || 0), icon: Ship, cat: 'laut' },
+        { type: 'Kapal Selam Nuklir', count: (am.laut?.kapal_selam_nuklir || 0) + (targetAid.kapal_selam_nuklir || 0), icon: RadioTower, cat: 'laut' },
+        { type: 'Kapal Selam Regular', count: (am.laut?.kapal_selam_regular || 0) + (targetAid.kapal_selam_regular || 0), icon: RadioTower, cat: 'laut' },
+        { type: 'Kapal Ranjau', count: (am.laut?.kapal_ranjau || 0) + (targetAid.kapal_ranjau || 0), icon: Anchor, cat: 'laut' },
+        { type: 'Kapal Logistik', count: (am.laut?.kapal_logistik || 0) + (targetAid.kapal_logistik || 0), icon: Ship, cat: 'laut' },
+        
+        // UDARA
+        { type: 'Jet Stealth', count: (am.udara?.jet_tempur_siluman || 0) + (targetAid.jet_tempur_siluman || 0), icon: Plane, cat: 'udara' },
+        { type: 'Jet Interceptor', count: (am.udara?.jet_tempur_interceptor || 0) + (targetAid.jet_tempur_interceptor || 0), icon: Plane, cat: 'udara' },
+        { type: 'Pesawat Pengebom', count: (am.udara?.pesawat_pengebom || 0) + (targetAid.pesawat_pengebom || 0), icon: Bomb, cat: 'udara' },
+        { type: 'Heli Serang', count: (am.udara?.helikopter_serang || 0) + (targetAid.helikopter_serang || 0), icon: Activity, cat: 'udara' },
+        { type: 'Pesawat Intai', count: (am.udara?.pesawat_pengintai || 0) + (targetAid.pesawat_pengintai || 0), icon: Satellite, cat: 'udara' },
+        { type: 'Drone UAV', count: (am.udara?.drone_intai_uav || 0) + (targetAid.drone_intai_uav || 0), icon: Satellite, cat: 'udara' },
+        { type: 'Drone Kamikaze', count: (am.udara?.drone_kamikaze || 0) + (targetAid.drone_kamikaze || 0), icon: Satellite, cat: 'udara' },
+        { type: 'Pesawat Angkut', count: (am.udara?.pesawat_angkut || 0) + (targetAid.pesawat_angkut || 0), icon: Plane, cat: 'udara' },
+      ];
+      setEnemyUnits(units);
+    }
+  }, [targetCountry]);
+
   useEffect(() => {
     if (phase === 'fighting') {
       const interval = setInterval(() => {
-        setPlayerStrength(prev => Math.max(0, prev - Math.random() * 5));
-        setEnemyStrength(prev => Math.max(0, prev - Math.random() * 6));
+        // Decrease unit counts using polyglot logic (C++ Bridge + Matchup Matrix)
+        setPlayerUnits((prevUnits: any[]) => prevUnits.map((u: any) => {
+            // Pilih satu unit musuh secara acak untuk disimulasikan sebagai penyerang unit ini
+            const randomEnemy = enemyUnits[Math.floor(Math.random() * enemyUnits.length)];
+            const matchup = getUnitMatchupMultiplier(randomEnemy?.type || "", u.type);
+            
+            // Hitung atrisi dengan pengali efektivitas (Matchup)
+            const loss = hitungAtrisiUnit(u.count, (enemyPowerScore / (enemyUnits.length || 1)) * matchup, 0.3);
+            return {
+                ...u,
+                count: Math.max(0, u.count - loss)
+            };
+        }));
+
+        setEnemyUnits((prevEnemy: any[]) => prevEnemy.map((u: any) => {
+            // Pilih satu unit pemain secara acak sebagai penyerang
+            const randomPlayer = playerUnits[Math.floor(Math.random() * playerUnits.length)];
+            const matchup = getUnitMatchupMultiplier(randomPlayer?.type || "", u.type);
+
+            const loss = hitungAtrisiUnit(u.count, (playerPowerScore / (playerUnits.length || 1)) * matchup, 0.5);
+            return {
+                ...u,
+                count: Math.max(0, u.count - loss)
+            };
+        }));
+
+        // Generate dynamic narratives based on actual units (Python Bridge)
+        const availableLogs = getDynamicNarratives(playerUnits, enemyUnits);
+        const randomLog = availableLogs[Math.floor(Math.random() * availableLogs.length)];
         
-        const logs = [
-          "Pasukan darat melakukan penetrasi...",
-          "Serangan udara berhasil menghancurkan bunker musuh.",
-          "Pertahanan musuh mulai goyah!",
-          "Artileri lawan memberikan tembakan balasan.",
-          "Skuadron jet tempur menguasai wilayah udara."
-        ];
-        const randomLog = logs[Math.floor(Math.random() * logs.length)];
-        setBattleLog(prev => [randomLog, ...prev].slice(0, 5));
+        setBattleLog(prev => [randomLog, ...prev].slice(0, 50));
+
+        // Update overall strength percentages based on remaining Power Score
+        setPlayerStrength(prev => Math.max(0, prev - (Math.random() * 3)));
+        setEnemyStrength(prev => Math.max(0, prev - (Math.random() * 4)));
       }, 1000);
 
       return () => clearInterval(interval);
@@ -39,6 +118,58 @@ export const BattlePage: React.FC<BattlePageProps> = ({ invasion, onBack }) => {
       setPhase('result');
     }
   }, [playerStrength, enemyStrength]);
+
+  // Helper to get power for individual unit card (SINKRON DENGAN kekuatanmiliter.ts)
+  const getUnitPowerValue = (type: string, count: number, country?: any) => {
+    let p = 1;
+    const t = type.toLowerCase();
+    
+    // Mapping ke konstanta pusat
+    if (t.includes('tank')) p = MilPower.TANK_POWER_PER_UNIT;
+    else if (t.includes('apc')) p = MilPower.APC_POWER_PER_UNIT;
+    else if (t.includes('artileri')) p = MilPower.ARTILLERY_POWER_PER_UNIT;
+    else if (t.includes('rocket')) p = MilPower.ROCKET_POWER_PER_UNIT;
+    else if (t.includes('sam')) p = MilPower.SAM_POWER_PER_UNIT;
+    else if (t.includes('taktis')) p = MilPower.TACTICAL_POWER_PER_UNIT;
+    else if (t.includes('induk konvensional')) p = MilPower.CARRIER_POWER_PER_UNIT;
+    else if (t.includes('induk nuklir')) p = MilPower.NUCLEAR_CARRIER_POWER_PER_UNIT;
+    else if (t.includes('destroyer')) p = MilPower.DESTROYER_POWER_PER_UNIT;
+    else if (t.includes('korvet')) p = MilPower.CORVETTE_POWER_PER_UNIT;
+    else if (t.includes('selam nuklir')) p = MilPower.SUBMARINE_POWER_PER_UNIT;
+    else if (t.includes('selam regular')) p = MilPower.REGULAR_SUB_POWER_PER_UNIT;
+    else if (t.includes('ranjau')) p = MilPower.MINE_SHIP_POWER_PER_UNIT;
+    else if (t.includes('logistik')) p = MilPower.LOGISTICS_POWER_PER_UNIT;
+    else if (t.includes('stealth')) p = MilPower.STEALTH_POWER_PER_UNIT;
+    else if (t.includes('interceptor')) p = MilPower.INTERCEPTOR_POWER_PER_UNIT;
+    else if (t.includes('pengebom')) p = MilPower.BOMBER_POWER_PER_UNIT;
+    else if (t.includes('heli')) p = MilPower.ATTACK_HELI_POWER_PER_UNIT;
+    else if (t.includes('intai')) p = MilPower.RECON_POWER_PER_UNIT;
+    else if (t.includes('uav')) p = MilPower.UAV_POWER_PER_UNIT;
+    else if (t.includes('kamikaze')) p = MilPower.KAMIKAZE_POWER_PER_UNIT;
+    else if (t.includes('angkut')) p = MilPower.TRANSPORT_POWER_PER_UNIT;
+    // player units fallback from invasion data (generic names)
+    else if (t === 'tank') p = MilPower.TANK_POWER_PER_UNIT;
+    else if (t === 'pesawat') p = MilPower.INTERCEPTOR_POWER_PER_UNIT; // Default to interceptor for generic
+    else if (t === 'kapal') p = MilPower.DESTROYER_POWER_PER_UNIT; // Default to destroyer for generic
+    
+    // Apply Multipliers (Religion/Ideology)
+    let multiplier = 1.0;
+    if (country) {
+        if (country.religion === "Shinto") multiplier *= SHINTO_ALUTSISTA_QUALITY;
+        if (country.ideology === "Nasionalisme") multiplier *= (1.0 + NASIONALISME_MILITARY_DAMAGE_BONUS);
+    }
+
+    return Math.ceil(count * p * multiplier);
+  };
+
+  // Calculate real-time power score
+  const playerPowerScore = useMemo(() => {
+    return playerUnits.reduce((acc, u) => acc + getUnitPowerValue(u.type, u.count), 0);
+  }, [playerUnits]);
+
+  const enemyPowerScore = useMemo(() => {
+    return enemyUnits.reduce((acc, u) => acc + getUnitPowerValue(u.type, u.count, targetCountry), 0);
+  }, [enemyUnits, targetCountry]);
 
   return (
     <div className="fixed inset-0 z-[200] bg-zinc-950 flex flex-col overflow-hidden text-white font-sans">
@@ -80,7 +211,10 @@ export const BattlePage: React.FC<BattlePageProps> = ({ invasion, onBack }) => {
             <div className="flex-1 space-y-3">
                 <div className="flex justify-between items-end">
                     <span className="text-emerald-500 font-black text-xl italic uppercase tracking-tighter">Pasukan Indonesia</span>
-                    <span className="text-4xl font-black tabular-nums">{Math.ceil(playerStrength)}%</span>
+                    <div className="flex items-baseline gap-3">
+                        <span className="text-[10px] font-black text-emerald-500/50 uppercase tracking-widest">Power: {Math.ceil(playerPowerScore).toLocaleString()}</span>
+                        <span className="text-4xl font-black tabular-nums">{Math.ceil(playerStrength)}%</span>
+                    </div>
                 </div>
                 <div className="h-4 bg-zinc-900 rounded-full border border-zinc-800 overflow-hidden p-0.5">
                     <div 
@@ -99,7 +233,10 @@ export const BattlePage: React.FC<BattlePageProps> = ({ invasion, onBack }) => {
             <div className="flex-1 space-y-3 text-right">
                 <div className="flex justify-between items-end flex-row-reverse">
                     <span className="text-red-500 font-black text-xl italic uppercase tracking-tighter">Pasukan {invasion.target}</span>
-                    <span className="text-4xl font-black tabular-nums">{Math.ceil(enemyStrength)}%</span>
+                    <div className="flex items-baseline gap-3 flex-row-reverse">
+                        <span className="text-[10px] font-black text-red-500/50 uppercase tracking-widest">Power: {Math.ceil(enemyPowerScore).toLocaleString()}</span>
+                        <span className="text-4xl font-black tabular-nums">{Math.ceil(enemyStrength)}%</span>
+                    </div>
                 </div>
                 <div className="h-4 bg-zinc-900 rounded-full border border-zinc-800 overflow-hidden p-0.5 flex justify-end">
                     <div 
@@ -115,14 +252,18 @@ export const BattlePage: React.FC<BattlePageProps> = ({ invasion, onBack }) => {
             {/* Units list */}
             <div className="col-span-3 space-y-4 overflow-y-auto pr-4">
                 <h3 className="text-xs font-black text-zinc-500 uppercase tracking-[0.2em] mb-6">Armada Dikerahkan</h3>
-                {invasion.units.map((unit: any, i: number) => (
+                {playerUnits.map((unit: any, i: number) => (
                     <div key={i} className="p-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl flex items-center gap-4 group hover:border-emerald-500/30 transition-all">
                         <div className="w-10 h-10 bg-zinc-950 rounded-xl border border-zinc-800 flex items-center justify-center">
                             <Zap className="h-4 w-4 text-emerald-500" />
                         </div>
                         <div>
                             <p className="text-xs font-black text-white uppercase tracking-tight">{unit.type}</p>
-                            <p className="text-[10px] font-bold text-zinc-500">{unit.count.toLocaleString()} UNIT</p>
+                            <div className="flex items-center gap-2 mt-0.5">
+                                <p className="text-[10px] font-bold text-zinc-500">{Math.ceil(unit.count).toLocaleString()} UNIT</p>
+                                <span className="text-[10px] text-zinc-700">•</span>
+                                <p className="text-[10px] font-black text-emerald-500/70">{getUnitPowerValue(unit.type, unit.count).toLocaleString()} POWER</p>
+                            </div>
                         </div>
                     </div>
                 ))}
@@ -190,29 +331,32 @@ export const BattlePage: React.FC<BattlePageProps> = ({ invasion, onBack }) => {
                 )}
             </div>
 
-            {/* Strategic Intel */}
-            <div className="col-span-3 space-y-6">
-                <div className="p-6 bg-zinc-900/50 border border-zinc-800 rounded-3xl space-y-4">
-                    <div className="flex items-center gap-3">
-                        <Target className="h-5 w-5 text-red-500" />
-                        <h4 className="text-xs font-black uppercase tracking-widest text-zinc-300">Intelijen Lapangan</h4>
-                    </div>
-                    <div className="space-y-4">
-                        <div className="bg-zinc-950 p-3 rounded-xl border border-zinc-800/50">
-                            <span className="text-[9px] font-black text-zinc-500 uppercase block mb-1">Target Lokasi</span>
-                            <span className="text-sm font-black text-white">{invasion.target}</span>
+            {/* Enemy Units sidebar */}
+            <div className="col-span-3 space-y-4 overflow-y-auto pl-4 border-l border-zinc-800/30">
+                <h3 className="text-xs font-black text-zinc-500 uppercase tracking-[0.2em] mb-6 text-right">Armada Musuh</h3>
+                {enemyUnits.map((unit: any, i: number) => (
+                    <div key={i} className="p-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl flex items-center justify-end gap-4 group hover:border-red-500/30 transition-all">
+                        <div className="text-right">
+                            <p className="text-xs font-black text-white uppercase tracking-tight">{unit.type}</p>
+                            <div className="flex items-center justify-end gap-2 mt-0.5">
+                                <p className="text-[10px] font-black text-rose-500/70">{getUnitPowerValue(unit.type, unit.count).toLocaleString()} POWER</p>
+                                <span className="text-[10px] text-zinc-700">•</span>
+                                <p className="text-[10px] font-bold text-zinc-500">{Math.ceil(unit.count).toLocaleString()} UNIT</p>
+                            </div>
                         </div>
-                        <div className="bg-zinc-950 p-3 rounded-xl border border-zinc-800/50">
-                            <span className="text-[9px] font-black text-zinc-500 uppercase block mb-1">Waktu Operasi</span>
-                            <span className="text-sm font-black text-white">{new Date().toLocaleTimeString()}</span>
+                        <div className="w-10 h-10 bg-zinc-950 rounded-xl border border-zinc-800 flex items-center justify-center">
+                            <unit.icon className="h-4 w-4 text-red-500" />
                         </div>
                     </div>
-                </div>
-
-                <div className="p-6 bg-emerald-500/5 border border-emerald-500/10 rounded-3xl">
-                    <h4 className="text-emerald-500 font-black text-xs uppercase tracking-widest mb-3">Saran Strategis</h4>
-                    <p className="text-zinc-400 text-[10px] leading-relaxed font-bold">
-                        Pantau terus tingkat persediaan logistik. Pastikan dukungan udara tetap aktif untuk meminimalisir korban jiwa.
+                ))}
+                
+                <div className="mt-8 p-6 bg-red-500/5 border border-red-500/10 rounded-3xl">
+                    <h4 className="text-red-500 font-black text-xs uppercase tracking-widest mb-3">Analisis Strategis (Python)</h4>
+                    <p className="text-white text-[11px] font-black uppercase mb-2">
+                        {analisisStrategi(playerPowerScore, enemyPowerScore).rekomendasi}
+                    </p>
+                    <p className="text-zinc-400 text-[10px] leading-relaxed font-bold italic">
+                        Probabilitas Kemenangan: {analisisStrategi(playerPowerScore, enemyPowerScore).probabilitas}%
                     </p>
                 </div>
             </div>
