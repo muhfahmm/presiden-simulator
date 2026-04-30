@@ -120,25 +120,25 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-12 no-scrollbar relative z-10 flex flex-col items-center justify-center text-center">
+        <div className="flex-1 overflow-hidden p-8 relative z-10 flex flex-col items-center justify-center text-center">
           {targetCountry ? (
-            <div className="max-w-xl w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-               <div className="flex flex-col items-center gap-4">
+            <div className="max-w-5xl w-full space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
+               <div className="flex flex-col items-center gap-3">
                   <div className="relative">
-                    <div className="w-32 h-20 rounded-2xl overflow-hidden border-4 border-red-500/30 shadow-[0_0_40px_rgba(239,68,68,0.2)]">
+                    <div className="w-24 h-16 rounded-2xl overflow-hidden border-4 border-red-500/30 shadow-[0_0_40px_rgba(239,68,68,0.2)]">
                        <img 
                           src={`https://flagcdn.com/w160/${getCountryCode(targetCountry.flag)}.png`} 
                           alt={targetCountry.name_id}
                           className="w-full h-full object-cover"
                        />
                     </div>
-                    <div className="absolute -bottom-4 -right-4 p-3 bg-zinc-950 border border-red-500/40 rounded-2xl shadow-xl">
-                       <Target className="h-6 w-6 text-red-500 animate-pulse" />
+                    <div className="absolute -bottom-3 -right-3 p-2 bg-zinc-950 border border-red-500/40 rounded-xl shadow-xl">
+                       <Target className="h-5 w-5 text-red-500 animate-pulse" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-4xl font-black text-white uppercase italic tracking-tighter">{targetCountry.name_id}</h3>
-                    <p className="text-red-500 font-black text-[10px] uppercase tracking-[0.4em] mt-1">Target Teridentifikasi</p>
+                    <h3 className="text-3xl font-black text-white uppercase italic tracking-tighter">{targetCountry.name_id}</h3>
+                    <p className="text-red-500 font-black text-[9px] uppercase tracking-[0.4em] mt-1">Target Teridentifikasi</p>
                   </div>
                </div>
 
@@ -148,10 +148,10 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
                     { label: 'Kesiapan', value: 'OPTIMAL', icon: Zap, color: 'text-yellow-400' },
                     { label: 'Resiko', value: 'MEDIUM', icon: AlertTriangle, color: 'text-orange-500' }
                   ].map((stat, i) => (
-                    <div key={i} className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-3xl flex flex-col items-center gap-2">
-                       <stat.icon className={`h-5 w-5 ${stat.color}`} />
+                    <div key={i} className="bg-zinc-900/50 border border-zinc-800 p-3 rounded-2xl flex flex-col items-center gap-2">
+                       <stat.icon className={`h-4 w-4 ${stat.color}`} />
                        <span className="text-[8px] font-black text-zinc-500 uppercase tracking-widest">{stat.label}</span>
-                       <span className="text-sm font-black text-white italic">{stat.value}</span>
+                       <span className="text-xs font-black text-white italic">{stat.value}</span>
                     </div>
                   ))}
                </div>
@@ -174,7 +174,7 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
                </div>
 
                {/* UNIT SLIDERS */}
-               <div className="space-y-3 max-h-40 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent pr-2 w-full text-left">
+               <div className="grid grid-cols-4 gap-3 h-[170px] content-start w-full text-left">
                  {tabGroups[activeTab].map((unit) => {
                    const maxAvailable = (data.armada_militer as any)[activeTab]?.[unit.key] || 0;
                    if (maxAvailable <= 0) return null;
@@ -182,10 +182,10 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
                    const currentVal = deployments[unit.key] || 0;
                    
                    return (
-                     <div key={unit.key} className="bg-zinc-950/50 border border-zinc-800/50 p-3 rounded-2xl flex flex-col gap-2 group hover:border-red-500/30 transition-all">
-                        <div className="flex justify-between items-center">
-                           <span className="text-xs font-black text-zinc-300 group-hover:text-white uppercase tracking-wider transition-colors">{unit.label}</span>
-                           <span className="text-[10px] font-bold text-red-400 bg-red-500/10 border border-red-500/20 px-2 py-0.5 rounded-md tabular-nums">
+                     <div key={unit.key} className="bg-zinc-950/50 border border-zinc-800/50 p-3 rounded-xl flex flex-col justify-between gap-2 group hover:border-red-500/30 transition-all h-[76px]">
+                        <div className="flex justify-between items-start">
+                           <span className="text-sm font-black text-zinc-300 group-hover:text-white uppercase tracking-wider transition-colors line-clamp-1">{unit.label}</span>
+                           <span className="text-xs font-bold text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-md tabular-nums shrink-0 ml-2">
                              {currentVal} / {maxAvailable}
                            </span>
                         </div>
@@ -195,15 +195,15 @@ export default function MisiSeranganModal({ isOpen, onClose, data, activeMenu, s
                            max={maxAvailable} 
                            value={currentVal} 
                            onChange={(e) => handleSliderChange(unit.key, parseInt(e.target.value))}
-                           className="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-red-500 hover:accent-red-400 transition-all"
+                           className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-red-500 hover:accent-red-400 transition-all"
                         />
                      </div>
                    );
                  })}
                  
                  {tabGroups[activeTab].every(unit => ((data.armada_militer as any)[activeTab]?.[unit.key] || 0) <= 0) && (
-                    <div className="text-center py-6 border border-dashed border-zinc-800 rounded-2xl bg-zinc-950/30">
-                        <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest italic">Tidak Ada Unit Tersedia</span>
+                    <div className="col-span-2 text-center py-10 border border-dashed border-zinc-800 rounded-2xl bg-zinc-950/30 h-[92px] flex items-center justify-center">
+                        <span className="text-xs font-black text-zinc-600 uppercase tracking-widest italic">Tidak Ada Unit Tersedia</span>
                     </div>
                  )}
                </div>
