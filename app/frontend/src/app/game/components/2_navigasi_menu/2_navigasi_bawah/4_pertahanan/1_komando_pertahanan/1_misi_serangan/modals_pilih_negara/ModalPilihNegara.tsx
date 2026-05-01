@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Globe, Search, Swords, Target } from 'lucide-react';
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 
 interface ModalPilihNegaraProps {
@@ -141,3 +141,4 @@ export const ModalPilihNegara: React.FC<ModalPilihNegaraProps> = ({
     </div>
   );
 };
+

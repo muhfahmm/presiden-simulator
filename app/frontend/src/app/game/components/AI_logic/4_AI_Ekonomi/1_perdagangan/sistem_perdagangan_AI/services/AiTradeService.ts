@@ -12,7 +12,7 @@ import { tradeStorage } from '@/app/game/components/2_navigasi_menu/2_navigasi_b
 import { timeStorage } from '@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage';
 import { gameStorage } from '@/app/game/gamestorage';
 import { formatGameDate } from '@/app/game/components/1_navbar/5_navigasi_waktu/gameTime';
-import { countries } from '@/app/database/data/negara/benua/index';
+import { countries } from '@/app/database/data/negara/index';
 import { aiTradeOfferStorage, AiTradeOffer } from '@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/aiTradeOfferStorage';
 import { tradeContractStorage, TradeContract } from '@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/tradeContractStorage';
 import { tradeAgreementStorage, TradeAgreementProposal } from '@/app/game/components/AI_logic/4_AI_Ekonomi/1_perdagangan/sistem_perdagangan_AI/storage/tradeAgreementStorage';
@@ -671,3 +671,4 @@ export const AiTradeService = {
         return true;
     }
 };
+

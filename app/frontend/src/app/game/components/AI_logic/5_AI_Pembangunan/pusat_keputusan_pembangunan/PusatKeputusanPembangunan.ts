@@ -1,6 +1,6 @@
 "use client"
 
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { aiPopulationStorage } from "@/app/game/components/modals/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { aiBuildingStorage } from "../antarmuka_data_pembangunan/AIBuildingStorage";
@@ -200,4 +200,5 @@ export class PusatKeputusanPembangunan {
     }
   }
 }
+
 

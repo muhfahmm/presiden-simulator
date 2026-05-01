@@ -4,12 +4,12 @@ import { Hammer, ChevronLeft, Coins, Calculator, Box, MapPin, Activity, CheckCir
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { historiImportStorage } from "./HistoriImportStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { tradeStorage } from "../../TradeStorage";
 import { importStockStorage } from "../../ImportStockStorage";
-import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
+import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/index";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { getNationalLogisticsMultiplier } from "../../tradeData";
 
@@ -422,3 +422,4 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
     </div>
   );
 };
+

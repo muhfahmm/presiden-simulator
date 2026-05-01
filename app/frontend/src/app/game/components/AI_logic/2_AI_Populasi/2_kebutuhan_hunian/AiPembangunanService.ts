@@ -3,7 +3,7 @@ import { aiPopulationStorage } from "@/app/game/components/modals/1_info_strateg
 import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaStorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { gameStorage } from "@/app/game/gamestorage";
 import { getStoredGameDate, addDays } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { SocialCareService } from "../3_kesejahteraan_sosial/SocialCareService";
@@ -106,4 +106,5 @@ export class AiPembangunanService {
         console.log(`[AI Construction] Successfully queued ${quantity} units of ${label}.`);
     }
 }
+
 

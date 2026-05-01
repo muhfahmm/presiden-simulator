@@ -17,7 +17,7 @@ import { getInitialAgreements } from "@/app/database/data/database_mitra_perdaga
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage"
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
-import { countries } from "@/app/database/data/negara/benua/index"
+import { countries } from "@/app/database/data/negara/index"
 import { gameStorage } from "@/app/game/gamestorage"
 
 
@@ -1088,3 +1088,4 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
     </div>
   );
 }
+

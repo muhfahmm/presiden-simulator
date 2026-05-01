@@ -1,5 +1,5 @@
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { historiImportStorage } from "./ekspor_impor/impor/HistoriImportStorage";
 import { historiEksporStorage } from "./ekspor_impor/ekspor/HistoriEksporStorage";
@@ -150,4 +150,5 @@ export const tradeStorage = {
     window.dispatchEvent(new CustomEvent('trade_storage_updated'));
   }
 };
+
 

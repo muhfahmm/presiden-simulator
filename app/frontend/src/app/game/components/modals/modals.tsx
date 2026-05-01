@@ -50,7 +50,7 @@ import { COUNTRY_REGIONS, getRegion } from "./2_diplomasi_hubungan/1_kedutaan/lo
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara";
 import { gameStorage } from "@/app/game/gamestorage";
 import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
-import { countries as centersData, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
+import { countries as centersData, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/index";
 
 function getContinent(countryNameId: string): string {
   const lower = countryNameId.toLowerCase();
@@ -677,3 +677,4 @@ function TabButton({ icon, active, onClick, label }: { icon: React.ReactNode, ac
     </button>
   );
 }
+

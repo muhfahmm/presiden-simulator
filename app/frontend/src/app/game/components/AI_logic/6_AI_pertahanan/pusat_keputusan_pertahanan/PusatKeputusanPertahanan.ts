@@ -1,6 +1,6 @@
 "use client"
 
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { aiDefenseStorage } from "../antarmuka_data_pertahanan/AIDefenseStorage";
 import { armadaMiliterRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer";
@@ -77,3 +77,4 @@ export class PusatKeputusanPertahanan {
         }
     }
 }
+

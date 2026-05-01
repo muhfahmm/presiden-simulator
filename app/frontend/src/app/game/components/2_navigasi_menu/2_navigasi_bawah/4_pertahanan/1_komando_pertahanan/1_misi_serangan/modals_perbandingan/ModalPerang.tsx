@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { X, Sword, Shield, Target, Users, Plane, Ship, Truck, Heart } from 'lucide-react';
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { calculateTotalMilitaryPower } from "../../../3_armada_militer/kekuatanmiliter";
 import * as MilPower from "../../../3_armada_militer/kekuatanmiliter";
 import { analisisStrategi } from "../pages/logic/EngineJembatan";
@@ -240,3 +240,4 @@ export const ModalPerang: React.FC<ModalPerangProps> = ({ invasion, onClose, onS
     </div>
   );
 };
+

@@ -5,7 +5,7 @@ import {
   X, Landmark, Globe, Zap, Coins, TrendingUp, Search, 
   ChevronRight, ArrowUpRight, Info 
 } from "lucide-react";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { embassyStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage";
 import { relationStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 
@@ -206,4 +206,5 @@ export default function KedutaanBesarModal({
     </div>
   );
 }
+
 

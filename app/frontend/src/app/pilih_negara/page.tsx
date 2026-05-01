@@ -8,7 +8,7 @@ import {
   Globe2, Landmark, Users, Coins, TrendingUp, Globe, Church, Scale, Search, ShieldAlert 
 } from "lucide-react";
 import MapContainer from "../map-system/components/MapContainer";
-import { countries } from "./data/negara/benua/index";
+import { countries } from "./data/negara/index";
 import { gameStorage } from "../game/gamestorage";
 import { taxStorage } from "../game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { buildingStorage } from "../game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
@@ -481,3 +481,4 @@ function StatItem({ icon, label, value, suffix }: { icon: React.ReactNode, label
     </div>
   );
 }
+

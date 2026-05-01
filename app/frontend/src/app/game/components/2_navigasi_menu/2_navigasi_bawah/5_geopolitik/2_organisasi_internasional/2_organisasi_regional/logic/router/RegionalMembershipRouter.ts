@@ -1,7 +1,7 @@
 import { unMembershipStorage } from "../../../1_organisasi_PBB/logic/unMembershipStorage";
 import { OrganizationMembers } from "@/app/pilih_negara/data/database_organisasi_internasional/index";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { RegionalRequirements } from "../python/requirements/RegionalRequirements";
 
 /**
@@ -119,3 +119,4 @@ class RegionalMembershipRouter {
 }
 
 export const regionalMembershipRouter = new RegionalMembershipRouter();
+

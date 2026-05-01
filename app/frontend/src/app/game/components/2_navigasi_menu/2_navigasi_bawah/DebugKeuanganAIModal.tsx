@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { X, Bug, Info, Search, TrendingUp, Wallet, Landmark, Globe, Activity, LayoutGrid, List } from "lucide-react"
-import { countries } from "@/app/database/data/negara/benua/index"
+import { countries } from "@/app/database/data/negara/index"
 import { gameStorage } from "@/app/game/gamestorage"
 import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage"
 
@@ -206,3 +206,4 @@ export default function DebugKeuanganAIModal({ isOpen, onClose, activeMenu, setA
     </div>
   )
 }
+

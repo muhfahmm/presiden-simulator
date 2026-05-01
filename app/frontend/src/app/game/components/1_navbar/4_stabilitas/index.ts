@@ -1,5 +1,5 @@
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 const STABILITY_STORAGE_KEY = "em_stability_data";
 
@@ -125,7 +125,7 @@ export const stabilityStorage = {
 
     const { calculateStabilityDelta } = require("./StabilityDeltaLogic");
     const { gameStorage } = require("@/app/game/gamestorage");
-    const { countries } = require("@/app/database/data/negara/benua/index");
+    const { countries } = require("@/app/database/data/negara/index");
 
     const data = stabilityStorage.getData();
     const session = gameStorage.getSession();
@@ -140,4 +140,5 @@ export const stabilityStorage = {
     }
   }
 };
+
 

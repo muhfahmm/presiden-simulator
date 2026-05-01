@@ -1,5 +1,5 @@
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 const POPULATION_STORAGE_KEY = "em_population_data";
 
@@ -116,4 +116,5 @@ export const populationStorage = {
     window.dispatchEvent(new Event('population_updated'));
   }
 };
+
 

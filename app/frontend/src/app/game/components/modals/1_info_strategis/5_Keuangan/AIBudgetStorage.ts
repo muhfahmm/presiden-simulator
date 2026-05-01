@@ -1,6 +1,6 @@
 "use client"
 
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { calculateDailyBudgetDelta } from "@/app/game/components/1_navbar/3_kas_negara/BudgetDeltaLogic";
 import { aiBuildingStorage } from "@/app/game/components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 
@@ -174,3 +174,4 @@ export const aiBudgetStorage = {
     }
   }
 };
+

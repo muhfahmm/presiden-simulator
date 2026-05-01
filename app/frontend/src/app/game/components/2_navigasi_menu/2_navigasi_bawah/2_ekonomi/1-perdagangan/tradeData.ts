@@ -1,5 +1,5 @@
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 
 // SEPARATE PRICE MAPS (1-1,000,000 scale - Integers only)
@@ -241,3 +241,4 @@ export const calculateShippingDays = (partner: string | null): number => {
     const baseDays = (baseRange[0] + baseRange[1]) / 2;
     return Math.max(1, Math.floor(baseDays * speedupMultiplier));
 };
+

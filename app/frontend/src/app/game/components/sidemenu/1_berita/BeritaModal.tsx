@@ -21,7 +21,7 @@ import {
   resolveNestedValue, 
   detectConstructionDetails 
 } from './buildingLookupUtility';
-import { countries } from '@/app/database/data/negara/benua/index';
+import { countries } from '@/app/database/data/negara/index';
 
 // Modular Tab Components
 import { AllList } from './0_semua/AllList';
@@ -241,3 +241,4 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
     </div>
   );
 }
+

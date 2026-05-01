@@ -15,7 +15,7 @@ import ModalsManager from "@/app/game/components/2_navigasi_menu/2_navigasi_bawa
 import GameOverOverlay from "@/app/game/components/6_overlays/GameOverOverlay";
 import WelcomeOverlay from "@/app/game/components/6_overlays/WelcomeOverlay";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import GameNavbar from "@/app/game/components/1_navbar";
 import { initAiDiplomacy } from "../logic/ai/ai_diplomacy_engine/AiGlobalDiplomacy";
 import { newsStorage } from "../components/sidemenu/1_berita/newsStorage";

@@ -9,7 +9,7 @@ import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import Perbandingan from "./1_menu_modal/1_umumkan_perang/perbandingan";
 import MaterialRequirement, { getBuildingRequirement } from "../../3_pembangunan/1-produksi/MaterialRequirement";
 
@@ -1397,4 +1397,5 @@ function BuildingCard({ item, onBuild, construction, tankCapacity, hasUraniumMin
     </div>
   )
 }
+
 

@@ -5,7 +5,7 @@ import { Globe, Crown, Users, Info, Calendar } from "lucide-react";
 import { useMemo } from "react";
 import { unSecurityCouncilStorage, UNSCMember } from "./storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 export default function DewanKeamananTab() {
   const [members, setMembers] = useState<UNSCMember[]>([]);
@@ -243,3 +243,4 @@ export default function DewanKeamananTab() {
     </div>
   );
 }
+

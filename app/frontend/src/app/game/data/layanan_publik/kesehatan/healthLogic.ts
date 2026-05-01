@@ -1,6 +1,6 @@
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 
 const IDEAL_RATIO = {
@@ -42,3 +42,4 @@ export const getNationalHealthImpact = () => {
     coveragePercent: Math.min(100, (healthCoverage * 100))
   };
 };
+

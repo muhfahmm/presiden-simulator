@@ -4,7 +4,7 @@ import React from 'react';
 import { Globe, ArrowUpRight, ArrowDownLeft, Check, X, HeartHandshake } from 'lucide-react';
 import { debtAiStorage, DebtOffer } from '../storage/DebtAiStorage';
 import { DebtAiService } from '../services/DebtAiService';
-import { countries } from '@/app/database/data/negara/benua/index';
+import { countries } from '@/app/database/data/negara/index';
 
 interface BilateralDebtPanelProps {
     offers: DebtOffer[];
@@ -128,3 +128,4 @@ export const BilateralDebtPanel: React.FC<BilateralDebtPanelProps> = ({ offers, 
         </div>
     );
 };
+

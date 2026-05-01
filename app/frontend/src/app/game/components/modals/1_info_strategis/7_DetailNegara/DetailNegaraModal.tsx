@@ -9,7 +9,7 @@ import {
   TrendingDown, Crosshair
 } from "lucide-react";
 import { formatGameDate, getStoredGameDate, isWithin7Days } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { 
   KAPASITAS_LISTRIK_METADATA,
   pabrikMiliterRate
@@ -1522,4 +1522,5 @@ function getProductionIcon(key: string) {
   
   return <Pickaxe size={iconSize} className="text-amber-500" />;
 }
+
 

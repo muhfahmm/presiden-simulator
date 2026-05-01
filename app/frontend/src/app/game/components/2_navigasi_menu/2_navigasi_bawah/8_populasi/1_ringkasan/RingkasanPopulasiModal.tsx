@@ -5,7 +5,7 @@ import { X, Users, Info, TrendingUp, ShieldAlert, BadgeDollarSign, Activity, Use
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { calculateDetailedPopulationMetrics } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { priceStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
@@ -235,3 +235,4 @@ export default function RingkasanPopulasiModal({
     </div>
   );
 }
+

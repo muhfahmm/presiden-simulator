@@ -1,4 +1,4 @@
-import { countries } from "../../../../pilih_negara/data/negara/benua/index";
+import { countries } from "../../../../pilih_negara/data/negara/index";
 import { regionalMembershipRouter } from "../../../components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/2_organisasi_regional/logic/router/RegionalMembershipRouter";
 import { RegionalMovementEngine } from "../../../components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/2_organisasi_regional/logic/python/membership_movement/RegionalMovementEngine";
 import { aiBudgetStorage } from "../../../components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
@@ -110,3 +110,4 @@ export class GeopoliticalPulse {
         }
     }
 }
+

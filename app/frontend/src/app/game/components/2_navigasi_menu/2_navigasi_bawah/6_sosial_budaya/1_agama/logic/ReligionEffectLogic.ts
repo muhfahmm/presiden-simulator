@@ -7,7 +7,7 @@ import {
   afrikaCountries, 
   saCountries, 
   oceaniaCountries 
-} from "@/app/database/data/negara/benua/index";
+} from "@/app/database/data/negara/index";
 import { ISLAM_DIPLOMACY_WEST_PENALTY, ISLAM_PENALTY_REGIONS } from "./1_islam/2_minus/minus";
 import { ORTODOKS_DIPLOMACY_GLOBAL_PENALTY } from "./4_ortodoks/2_minus/minus";
 import { HINDU_MUSLIM_DIPLOMACY_PENALTY } from "./5_hindu/2_minus/minus";
@@ -146,3 +146,4 @@ export function getDiplomacyCostModifier(targetCountryNameId: string, currentRel
 
   return 1.0;
 }
+

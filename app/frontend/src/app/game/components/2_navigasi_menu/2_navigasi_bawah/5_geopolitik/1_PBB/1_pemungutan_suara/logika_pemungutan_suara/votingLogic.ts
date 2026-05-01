@@ -1,5 +1,5 @@
 
-import { countries as countriesData } from "@/app/pilih_negara/data/negara/benua/index";
+import { countries as countriesData } from "@/app/pilih_negara/data/negara/index";
 import { embassyStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage";
 import { unVotingStorage } from "./unVotingStorage";
 import geoDataRaw from "./geopolitical_data.json";
@@ -237,3 +237,4 @@ export const simulateUNVote = (
     }
   };
 };
+

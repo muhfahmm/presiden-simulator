@@ -6,7 +6,7 @@ import { happinessStorage } from "@/app/game/components/1_navbar/1_kepuasan/happ
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { DATA_ACARA, acaraStorage } from "@/app/game/components/1_navbar/1_kepuasan/acara/acaraStorage";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
 import { getStoredGameDate, formatGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { aiThinkingStorage } from "../../global_event/aiThinkingStorage";
@@ -157,4 +157,5 @@ export class AiHunianService {
       }
   }
 }
+
 

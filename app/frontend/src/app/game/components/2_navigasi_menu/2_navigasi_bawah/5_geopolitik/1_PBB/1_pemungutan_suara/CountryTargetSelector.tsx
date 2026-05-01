@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { Search, Globe, X, Check } from "lucide-react";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 interface CountryTargetSelectorProps {
   userCountry: string;
@@ -107,3 +107,4 @@ export function CountryTargetSelector({ userCountry, onSelect, onClose }: Countr
     </div>
   );
 }
+

@@ -6,7 +6,7 @@ import { aiProductionStorage } from "../antarmuka_data_pembangunan/AIProductionS
 import { getBuildingRequirement } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/1-produksi/MaterialRequirement";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
 import { addDays, formatGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 export class EksekutorPembangunanAI {
   /**
@@ -139,4 +139,5 @@ export class EksekutorPembangunanAI {
     });
   }
 }
+
 

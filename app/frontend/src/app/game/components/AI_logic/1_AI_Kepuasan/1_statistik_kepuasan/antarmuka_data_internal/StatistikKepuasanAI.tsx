@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { aiHappinessStorage } from "@/app/game/components/modals/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { aiRootCauseStorage } from "@/app/game/components/modals/1_info_strategis/6_Kepuasan/socialDiagnosisStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 export default function StatistikKepuasanAI() {
   const [happinessData, setHappinessData] = useState(() => aiHappinessStorage.getAll());
@@ -148,3 +148,4 @@ export default function StatistikKepuasanAI() {
     </div>
   );
 }
+

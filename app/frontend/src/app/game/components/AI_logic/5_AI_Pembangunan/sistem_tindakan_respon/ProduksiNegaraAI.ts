@@ -2,7 +2,7 @@
 
 import { aiProductionStorage } from "../antarmuka_data_pembangunan/AIProductionStorage";
 import { aiBuildingStorage } from "../antarmuka_data_pembangunan/AIBuildingStorage";
-import { countries } from "@/app/database/data/negara/benua";
+import { countries } from "@/app/database/data/negara";
 import { gameStorage } from "@/app/game/gamestorage";
 
 /**
@@ -106,3 +106,4 @@ export const produksiNegaraAI = {
     }
   }
 };
+

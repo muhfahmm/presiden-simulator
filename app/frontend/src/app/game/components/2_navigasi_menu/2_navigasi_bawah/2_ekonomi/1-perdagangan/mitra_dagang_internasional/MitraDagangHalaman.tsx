@@ -1,6 +1,6 @@
 import React from "react";
 import { Plus, Globe } from "lucide-react";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 interface MitraDagangHalamanProps {
     activePartnersList: any[];
@@ -93,3 +93,4 @@ export const MitraDagangHalaman: React.FC<MitraDagangHalamanProps> = ({ activePa
         </div>
     );
 };
+

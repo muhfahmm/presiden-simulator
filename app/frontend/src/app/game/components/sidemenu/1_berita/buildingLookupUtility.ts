@@ -15,7 +15,7 @@ import { armadaPolisiRate } from '@/app/database/data/semua_fitur_negara/2_perta
 import { pertahananRate } from '@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan';
 import { komandoPertahananRate } from '@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan';
 import { pabrikMiliterRate } from '@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer';
-import { countries } from '@/app/database/data/negara/benua/index';
+import { countries } from '@/app/database/data/negara/index';
 
 // Aggregate ALL rate definitions into one lookup
 export const ALL_BUILDING_RATES: Record<string, any> = {
@@ -311,3 +311,4 @@ export const detectConstructionDetails = (subject: string, content: string, sour
     isAI: source.toLowerCase().includes('kantor berita')
   };
 };
+

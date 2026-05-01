@@ -84,7 +84,7 @@ export const getCountryRegion = (countryName: string): Continent => {
     if (asean.includes(name)) return 'ASEAN';
 
     // We can use the existing continent database for mapping
-    const { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } = require("@/app/database/data/negara/benua/index");
+    const { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } = require("@/app/database/data/negara/index");
 
     if (asiaCountries.some((c: any) => (c.name_id || '').toLowerCase() === name || (c.name_en || '').toLowerCase() === name)) return 'ASIA_NON_ASEAN';
     if (eropaCountries.some((c: any) => (c.name_id || '').toLowerCase() === name || (c.name_en || '').toLowerCase() === name)) return 'EUROPE';
@@ -105,3 +105,4 @@ export const getBaseShippingRange = (originCountry: string, destCountry: string)
     
     return TravelMatrix[originRegion][destRegion] || [10, 20];
 };
+

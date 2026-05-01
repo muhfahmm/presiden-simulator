@@ -1,7 +1,7 @@
 import { UNGroup, getCountriesByGroup, UN_GROUPS_CONFIG, getCountryUNGroup } from "./unGroups";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 const STORAGE_KEY = "em_un_security_council";
 
@@ -352,3 +352,4 @@ export const unSecurityCouncilStorage = {
     });
   }
 };
+

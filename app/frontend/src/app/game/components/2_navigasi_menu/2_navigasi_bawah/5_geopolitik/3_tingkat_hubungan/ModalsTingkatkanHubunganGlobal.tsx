@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Heart, X, TrendingUp, Sparkles, ShieldCheck, ArrowRight, Coins, Zap, Globe2 } from "lucide-react";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { relationStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
-import { countries as centersData } from "@/app/database/data/negara/benua/index";
+import { countries as centersData } from "@/app/database/data/negara/index";
 
 interface ModalsTingkatkanHubunganGlobalProps {
   isOpen: boolean;
@@ -198,4 +198,5 @@ export default function ModalsTingkatkanHubunganGlobal({
     </div>
   );
 }
+
 

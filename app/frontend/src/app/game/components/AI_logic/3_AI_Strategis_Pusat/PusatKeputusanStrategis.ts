@@ -3,7 +3,7 @@
 import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { aiHappinessStorage } from "@/app/game/components/modals/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { calculateDailyBudgetDelta } from "@/app/game/components/1_navbar/3_kas_negara/BudgetDeltaLogic";
 import { aiBuildingStorage } from "../5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 
@@ -61,3 +61,4 @@ export class PusatKeputusanStrategis {
         }
     }
 }
+

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 export function useGamePath(path: string[]) {
   const router = useRouter();
@@ -397,3 +397,4 @@ export function useGamePath(path: string[]) {
 
   return { activeMenu, setActiveMenu };
 }
+

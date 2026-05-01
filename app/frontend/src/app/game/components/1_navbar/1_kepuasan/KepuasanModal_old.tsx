@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { happinessStorage, HappinessStats } from "./happinessStorage";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 
 interface KepuasanModalProps {
@@ -235,3 +235,4 @@ export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, on
     </div>
   );
 }
+

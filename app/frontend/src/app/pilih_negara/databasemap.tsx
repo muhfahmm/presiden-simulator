@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "./data/negara/benua/index";
+import { countries as centersData } from "./data/negara/index";
 
 interface WorldMapCanvasProps {
   selectedCountry: string;
@@ -230,3 +230,4 @@ export default function WorldMapCanvas({ selectedCountry, onSelect }: WorldMapCa
     />
   );
 }
+

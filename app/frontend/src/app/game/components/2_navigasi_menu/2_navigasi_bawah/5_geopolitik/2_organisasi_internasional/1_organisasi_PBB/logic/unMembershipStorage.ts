@@ -1,7 +1,7 @@
 import { gameStorage } from "@/app/game/gamestorage";
 import { OrganizationMembers } from "@/app/pilih_negara/data/database_organisasi_internasional/index";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
-import { countries, naCountries, saCountries } from "@/app/database/data/negara/benua/index";
+import { countries, naCountries, saCountries } from "@/app/database/data/negara/index";
 import { formatGameDate, getStoredGameDate } from "../../../../../../1_navbar/5_navigasi_waktu/gameTime";
 
 /**
@@ -267,3 +267,4 @@ class UNMembershipStorage {
 }
 
 export const unMembershipStorage = new UNMembershipStorage();
+

@@ -7,7 +7,7 @@ import ModalsTingkatkanHubunganGlobal from "./ModalsTingkatkanHubunganGlobal";
 import { allRelations } from "@/app/database/data/database_hubungan_antar_negara/index";
 
 import { unSecurityCouncilStorage } from "../1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
-import { countries as centersData } from "@/app/database/data/negara/benua/index";
+import { countries as centersData } from "@/app/database/data/negara/index";
 import { relationStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { timeStorage } from "../../2_ekonomi/1-perdagangan/timeStorage";
 
@@ -474,4 +474,5 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
     </div>
   );
 }
+
 

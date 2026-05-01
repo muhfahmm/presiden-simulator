@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import { History, Search, Filter, ShieldAlert, Ban, FileText, Calendar, Globe, ThumbsUp, ThumbsDown, Loader2, ChevronDown } from "lucide-react";
 import { unVotingStorage, VotingHistoryItem } from "../1_pemungutan_suara/logika_pemungutan_suara/unVotingStorage";
-import { countries } from "@/app/pilih_negara/data/negara/benua/index";
+import { countries } from "@/app/pilih_negara/data/negara/index";
 import { VotingMemberDetailsModal } from "../1_pemungutan_suara/VotingMemberDetailsModal";
 
 export default function HistoriTab() {
@@ -343,3 +343,4 @@ export default function HistoriTab() {
     </div>
   );
 }
+

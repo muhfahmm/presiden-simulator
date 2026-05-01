@@ -1,7 +1,7 @@
 "use client"
 
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { gameStorage } from "@/app/game/gamestorage";
 
 /**
@@ -60,3 +60,4 @@ export const PeningkatanLogic = {
         return breakdown.darat.value + breakdown.kereta.value + breakdown.maritim_udara.value;
     }
 };
+

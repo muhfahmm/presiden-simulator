@@ -2,7 +2,7 @@
 
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 export type NuclearStatus = 'none' | 'constructing' | 'active';
 
@@ -213,3 +213,4 @@ export const nuclearStorage = {
   getStatus: () => nuclearStorage.getData().status,
   getDaysRemaining: () => nuclearStorage.getData().daysRemaining
 };
+

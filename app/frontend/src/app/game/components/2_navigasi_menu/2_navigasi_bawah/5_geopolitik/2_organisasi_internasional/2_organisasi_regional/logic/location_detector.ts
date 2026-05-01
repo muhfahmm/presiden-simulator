@@ -5,7 +5,7 @@ import {
     naCountries, 
     saCountries, 
     oceaniaCountries 
-} from "@/app/database/data/negara/benua/index";
+} from "@/app/database/data/negara/index";
 
 /**
  * Utility to automatically detect a country's continent and region.
@@ -41,3 +41,4 @@ export const detectLocation = (countryName: string) => {
 
     return { continent: "Unknown", region: "Unknown" };
 };
+

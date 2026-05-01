@@ -39,7 +39,7 @@ import {
 } from "@/app/database/data/semua_fitur_negara";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 interface KelistrikanModalProps {
@@ -282,21 +282,21 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
       value: (currentDataWithDeltas.hunian?.rumah_subsidi || 0) * hunianRate.rumah_subsidi.konsumsi_listrik, 
       icon: Home, 
       color: "text-blue-400", 
-      description: hunianRate.rumah_subsidi.desc 
+      description: hunianRate.rumah_subsidi.deskripsi 
     },
     { 
       name: hunianRate.apartemen.label, 
       value: (currentDataWithDeltas.hunian?.apartemen || 0) * hunianRate.apartemen.konsumsi_listrik, 
       icon: Home, 
       color: "text-indigo-400", 
-      description: hunianRate.apartemen.desc 
+      description: hunianRate.apartemen.deskripsi 
     },
     { 
       name: hunianRate.mansion.label, 
       value: (currentDataWithDeltas.hunian?.mansion || 0) * hunianRate.mansion.konsumsi_listrik, 
       icon: Home, 
       color: "text-purple-400", 
-      description: hunianRate.mansion.desc 
+      description: hunianRate.mansion.deskripsi 
     },
   ];
 
@@ -507,3 +507,4 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
     </div>
   );
 }
+

@@ -5,7 +5,7 @@
 
 import { getGlobalRelationMatrix, getRelationScore, updateMatrixScore, updateMatrixScoresBatch, normalizeId } from "./RelationMatrix";
 import { dispatchRelationUpdate } from "./RelationEvents";
-import { countries as centersData } from "@/app/pilih_negara/data/negara/benua/index";
+import { countries as centersData } from "@/app/pilih_negara/data/negara/index";
 
 export const RelationPersistence = {
     /**
@@ -85,3 +85,4 @@ export const RelationPersistence = {
         console.log(`[RELATION-PERSISTENCE] Matrix synced from server. Reset: ${isReset}`);
     }
 };
+

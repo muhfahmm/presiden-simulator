@@ -1,5 +1,5 @@
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { gameStorage } from "@/app/game/gamestorage";
 
 const STORAGE_KEY = "em_research_progress_v1";
@@ -252,4 +252,5 @@ export const researchStorage = {
     return 'locked';
   }
 };
+
 

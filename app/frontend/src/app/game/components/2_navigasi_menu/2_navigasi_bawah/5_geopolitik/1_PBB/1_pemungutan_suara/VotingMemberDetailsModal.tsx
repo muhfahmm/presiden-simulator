@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { X, Check, X as CloseIcon, Minus, Globe, MessageSquare, DollarSign, Loader2 } from "lucide-react";
-import { countries as allCountriesData } from "@/app/pilih_negara/data/negara/benua/index";
+import { countries as allCountriesData } from "@/app/pilih_negara/data/negara/index";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara/index";
 import { unVotingStorage } from "./logika_pemungutan_suara/unVotingStorage";
 import { getRelation } from "./logika_pemungutan_suara/votingLogic";
@@ -397,3 +397,4 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
     </div>
   );
 }
+

@@ -1,7 +1,7 @@
 import { unMembershipStorage } from "../unMembershipStorage";
 import { OrganizationMembers } from "@/app/pilih_negara/data/database_organisasi_internasional/index";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 /**
  * MembershipRouter: Bridges the Python AI logic results and the TS Frontend state.
@@ -131,3 +131,4 @@ class MembershipRouter {
 }
 
 export const membershipRouter = new MembershipRouter();
+

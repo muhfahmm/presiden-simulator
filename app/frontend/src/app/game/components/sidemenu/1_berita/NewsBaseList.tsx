@@ -13,7 +13,7 @@ import {
   Handshake
 } from 'lucide-react';
 import { NewsItem } from './newsStorage';
-import { countries } from '@/app/database/data/negara/benua/index';
+import { countries } from '@/app/database/data/negara/index';
 import { useRouter } from 'next/navigation';
 import { 
   detectConstructionDetails, 
@@ -450,3 +450,4 @@ export const NewsBaseList = ({
     </div>
   );
 };
+

@@ -9,7 +9,7 @@ import {
 } from "@/app/database/data/semua_fitur_negara";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 import { calculateUraniumMetrics } from "./logic/uraniumLogic";
 
@@ -234,3 +234,4 @@ export default function UraniumModal({ isOpen, onClose, setActiveMenu }: Uranium
     </div>
   );
 }
+

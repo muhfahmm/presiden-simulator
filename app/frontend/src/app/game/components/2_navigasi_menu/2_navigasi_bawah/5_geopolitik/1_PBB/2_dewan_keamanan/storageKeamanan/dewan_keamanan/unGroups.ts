@@ -1,4 +1,4 @@
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 export type UNGroup = "African Group" | "Asia-Pacific Group" | "Eastern European Group" | "GRULAC" | "WEOG";
 
@@ -244,3 +244,4 @@ export const getCountriesByGroup = (group: UNGroup): string[] => {
     .map(c => c.name_id)
     .filter(name => getCountryUNGroup(name) === group);
 };
+

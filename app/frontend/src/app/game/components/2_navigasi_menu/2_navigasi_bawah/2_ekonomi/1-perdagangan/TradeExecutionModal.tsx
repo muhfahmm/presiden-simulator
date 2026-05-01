@@ -5,7 +5,7 @@ import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/ap
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { tradeStorage } from "./TradeStorage";
 
 interface TradeExecutionModalProps {
@@ -575,3 +575,4 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
     </>
   );
 };
+

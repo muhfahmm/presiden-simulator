@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { Search, MapPin, Globe, Users, SearchSlash, Command, CheckCircle2, Crown, Sparkles } from "lucide-react";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { OrganizationMembers } from "@/app/database/data/database_organisasi_internasional/index";
 import { gameStorage } from "@/app/game/gamestorage";
 import { unMembershipStorage } from "./1_organisasi_PBB/logic/unMembershipStorage";
@@ -185,3 +185,4 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
         </div>
     );
 }
+

@@ -1,4 +1,4 @@
-import { countries as centersData } from "@/app/pilih_negara/data/negara/benua/index";
+import { countries as centersData } from "@/app/pilih_negara/data/negara/index";
 import { RELATION_EVENTS, dispatchRelationUpdate } from "./RelationEvents";
 
 export const RELATION_MATRIX_KEY = 'em_global_relation_matrix';
@@ -322,3 +322,4 @@ export const hardClearMatrix = () => {
     dispatchRelationUpdate();
     console.log("[RELATION-MATRIX] Nuclear wipe complete.");
 };
+

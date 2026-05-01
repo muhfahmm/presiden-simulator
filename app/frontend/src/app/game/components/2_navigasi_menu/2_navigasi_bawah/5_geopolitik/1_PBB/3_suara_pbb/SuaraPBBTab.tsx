@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Search, Crown } from "lucide-react"
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 
 function getTier(vote: number): { label: string; color: string; bg: string } {
   if (vote >= 139) return { label: "Sangat Berpengaruh", color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" };
@@ -162,3 +162,4 @@ export default function SuaraPBBTab({ currentData }: SuaraPBBTabProps) {
     </div>
   );
 }
+

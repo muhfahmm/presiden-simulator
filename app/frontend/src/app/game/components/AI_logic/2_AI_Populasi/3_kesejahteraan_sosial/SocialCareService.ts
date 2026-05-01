@@ -2,7 +2,7 @@ import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { aiPopulationStorage } from "@/app/game/components/modals/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 import { gameStorage } from "@/app/game/gamestorage";
 
 const SOCIAL_STORAGE_KEY = "em_ai_social_welfare_data";
@@ -86,4 +86,5 @@ export class SocialCareService {
         return this.getSocialStats().povertyReductionFactor;
     }
 }
+
 

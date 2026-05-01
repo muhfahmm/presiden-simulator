@@ -8,7 +8,7 @@ import { aliansiStorage } from '@/app/game/components/modals/2_diplomasi_hubunga
 import { newsStorage } from '@/app/game/components/sidemenu/1_berita/newsStorage';
 import { formatGameDate } from '@/app/game/components/1_navbar/5_navigasi_waktu/gameTime';
 import { matrixManager } from "../../../AI_logic/8_geopolitik_advanced/frontend/matrix_manager";
-import { countries } from "@/app/pilih_negara/data/negara/benua/index";
+import { countries } from "@/app/pilih_negara/data/negara/index";
 
 
 export const RelationEngine = {
@@ -178,3 +178,4 @@ export const RelationEngine = {
         });
     }
 };
+

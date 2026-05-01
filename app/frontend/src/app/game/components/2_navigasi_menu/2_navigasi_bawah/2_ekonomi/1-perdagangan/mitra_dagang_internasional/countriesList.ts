@@ -1,2 +1,3 @@
-import { countries } from "@/app/database/data/negara/benua/index";
+import { countries } from "@/app/database/data/negara/index";
 export { countries };
+
