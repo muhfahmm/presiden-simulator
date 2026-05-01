@@ -57,8 +57,23 @@ export default function MapContainer({
   const [countries, setCountries] = useState<any[]>(globalCountryData || []);
   const [isLoading, setIsLoading] = useState(!globalGeoData);
 
-  // Interaction State
-  const [transform, setTransform] = useState({ scale: 1, x: 0, y: 0 });
+  // Interaction State (Persistent)
+  const [transform, setTransform] = useState(() => {
+    if (typeof window !== 'undefined') {
+        try {
+            const saved = sessionStorage.getItem('map_camera_state');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                return { 
+                    scale: parsed.scale || 1, 
+                    x: parsed.offsetX || 0, 
+                    y: parsed.offsetY || 0 
+                };
+            }
+        } catch (e) {}
+    }
+    return { scale: 1, x: 0, y: 0 };
+  });
   const [isDragging, setIsDragging] = useState(false);
   const [lastMousePos, setLastMousePos] = useState({ x: 0, y: 0 });
   const [isHoveringStar, setIsHoveringStar] = useState(false);
@@ -135,25 +150,40 @@ export default function MapContainer({
 
     // Instantiate Correct Engine based on Mode
     let engine: BaseMapEngine;
-    switch (mode) {
-      case 'DIPLOMACY':
-        engine = new DiplomacyMapEngine(baseCtx, width, height, tacticalCtx);
-        break;
-      case 'SDA':
-        engine = new SDAMapEngine(baseCtx, width, height, tacticalCtx);
-        break;
-      case 'TRADE':
-        engine = new TradeMapEngine(baseCtx, width, height, tacticalCtx);
-        break;
-      case 'MAIN':
-      default:
-        engine = new MainMapEngine(baseCtx, width, height, tacticalCtx);
-        break;
+    
+    // Check if we can reuse existing engine if mode is same
+    if (engineRef.current && (
+        (mode === 'MAIN' && engineRef.current instanceof MainMapEngine) ||
+        (mode === 'DIPLOMACY' && engineRef.current instanceof DiplomacyMapEngine) ||
+        (mode === 'SDA' && engineRef.current instanceof SDAMapEngine) ||
+        (mode === 'TRADE' && engineRef.current instanceof TradeMapEngine)
+    )) {
+        engine = engineRef.current;
+        engine.updateContexts(baseCtx, tacticalCtx);
+        engine.resize(width, height);
+    } else {
+        // Stop old engine if exists
+        if (engineRef.current) engineRef.current.stopRenderLoop();
+        
+        switch (mode) {
+            case 'DIPLOMACY':
+                engine = new DiplomacyMapEngine(baseCtx, width, height, tacticalCtx);
+                break;
+            case 'SDA':
+                engine = new SDAMapEngine(baseCtx, width, height, tacticalCtx);
+                break;
+            case 'TRADE':
+                engine = new TradeMapEngine(baseCtx, width, height, tacticalCtx);
+                break;
+            case 'MAIN':
+            default:
+                engine = new MainMapEngine(baseCtx, width, height, tacticalCtx);
+                break;
+        }
+        engine.setData(data);
+        engine.setCountries(countries);
+        engineRef.current = engine;
     }
-
-    engine.setData(data);
-    engine.setCountries(countries);
-    engineRef.current = engine;
 
     const handleResize = () => {
       if (!containerRef.current || !baseCanvasRef.current || !tacticalCanvasRef.current || !engineRef.current) return;
@@ -171,9 +201,8 @@ export default function MapContainer({
     window.addEventListener('resize', handleResize);
     return () => {
         window.removeEventListener('resize', handleResize);
-        if (engineRef.current) {
-            engineRef.current.stopRenderLoop();
-        }
+        // Do NOT stop loop here to keep it alive during micro-remounts
+        // It will be stopped by the next mount if mode changes
     };
   }, [data, countries, mode]);
 

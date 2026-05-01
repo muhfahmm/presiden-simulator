@@ -21,60 +21,25 @@ import { DebtAiService } from "@/app/game/components/2_navigasi_menu/2_navigasi_
 
 // timeStorage handles all Go Server synchronization internally.
 
+import { simulationManager } from "@/app/game/components/SimulationManager";
+
 export default function GameTimeControls() {
   const [state, setState] = useState(timeStorage.getState());
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
+    // Start the background simulation manager (runs outside React)
+    simulationManager.start();
+
     const unsubscribe = timeStorage.subscribe((date, paused, speed) => {
       setState({ gameDate: date, isPaused: paused, speed: speed });
     });
     return () => unsubscribe();
   }, []);
 
-  // Handle daily side effects — LIGHTWEIGHT ONLY
-  // Budget, Population, Happiness, Stability → Now handled by Go Server via SSE
-  useEffect(() => {
-    if (state.isPaused) return;
-
-    // Dedup: skip if already processed this game day
-    const budgetData = budgetStorage.getData();
-    const currentDateStr = state.gameDate.toISOString().split('T')[0];
-    const lastProcessedStr = budgetData.lastProcessedDate ? new Date(budgetData.lastProcessedDate).toISOString().split('T')[0] : null;
-    if (currentDateStr === lastProcessedStr) return;
-
-    // Mark as processed (for dedup)
-    budgetStorage.updateCumulativeProduction({}, state.gameDate);
-
-    // ══════════════════════════════════════════════════════
-    // MIGRATED TO GO SERVER:
-    // - Budget (dailyIncome) → processPlayerDay() in Go
-    // - Population growth    → processPlayerDay() in Go
-    // - Happiness decay      → processPlayerDay() in Go
-    // - Stability drift      → processPlayerDay() in Go
-    // ══════════════════════════════════════════════════════
-
-    // Nuclear & Research Progress (lightweight, stays client-side)
-    nuclearStorage.updateProgress(state.gameDate);
-    researchStorage.updateProgress(state.gameDate);
-    DebtAiService.checkMonthlyUpdate();
-
-    // UN Security Council (Calendar Events — lightweight date checks)
-    if (state.gameDate.getMonth() === 0 && state.gameDate.getDate() === 1) {
-      unSecurityCouncilStorage.performRotation(state.gameDate.getFullYear());
-    }
-    if (state.gameDate.getMonth() === 5 && state.gameDate.getDate() === 1) {
-      unSecurityCouncilStorage.checkElectionOpening(state.gameDate.getFullYear());
-    }
-    if (state.gameDate.getMonth() === 5 && state.gameDate.getDate() === 15) {
-      unSecurityCouncilStorage.conductElection(state.gameDate.getFullYear());
-    }
-    if (state.gameDate.getMonth() === 6 && state.gameDate.getDate() === 1) {
-      unSecurityCouncilStorage.promoteElectedMembers(state.gameDate.getFullYear());
-    }
-
-  }, [state.gameDate, state.isPaused]);
+  // Removed heavy daily side effects from React loop.
+  // They now run in SimulationManager.ts using queueMicrotask.
 
   return (
     <div className="flex items-center gap-3 px-4 py-2 bg-amber-800/10 rounded-xl border border-amber-800/10 shadow-sm backdrop-blur-md">

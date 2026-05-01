@@ -2,6 +2,7 @@ import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
+import { storageSafety } from "@/app/game/utils/storageSafety";
 
 const BUDGET_STORAGE_KEY = "em_budget_data";
 
@@ -15,14 +16,22 @@ export const budgetStorage = {
   clear: () => {
     if (typeof window !== "undefined") {
       localStorage.removeItem(BUDGET_STORAGE_KEY);
+      budgetStorage.inMemoryData = null; // Clear cache
       // Force re-initialization from database defaults
       budgetStorage.getData();
       window.dispatchEvent(new Event('budget_storage_updated'));
     }
   },
+  
+  // In-memory cache for high-speed simulation
+  inMemoryData: null as BudgetData | null,
+
   // Get all budget data, with migration fallback
   getData: (): BudgetData => {
     if (typeof window === 'undefined') return { anggaran: 0, cumulativeProduction: {} };
+
+    // Use memory cache if available
+    if (budgetStorage.inMemoryData) return budgetStorage.inMemoryData;
 
     const stored = localStorage.getItem(BUDGET_STORAGE_KEY);
     const session = gameStorage.getSession() as any;
@@ -79,10 +88,23 @@ export const budgetStorage = {
 
   saveData: (data: BudgetData) => {
     if (typeof window === 'undefined') return;
-    localStorage.setItem(BUDGET_STORAGE_KEY, JSON.stringify(data));
+    
+    // Update in-memory cache ONLY for high performance
+    budgetStorage.inMemoryData = data;
 
-    // Dispatch event for UI updates
+    // Dispatch event for UI updates (asynchronous)
     setTimeout(() => window.dispatchEvent(new Event('budget_storage_updated')), 0);
+  },
+
+  // Persist to actual LocalStorage (Call this only on pause or month end)
+  persist: () => {
+    if (typeof window === 'undefined' || !budgetStorage.inMemoryData) return;
+    try {
+        const success = storageSafety.setItem(BUDGET_STORAGE_KEY, JSON.stringify(budgetStorage.inMemoryData));
+        if (success) console.log("[STORAGE] Budget persisted to LocalStorage");
+    } catch (e) {
+        console.error("[STORAGE] Quota exceeded or save error", e);
+    }
   },
 
   getBudget: (): number => {
@@ -126,8 +148,6 @@ export const budgetStorage = {
       const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
       if (diffDays >= 1) {
-        console.log(`[PRODUCTION] Processing ${diffDays} days of production...`);
-        
         const session = gameStorage.getSession();
         const countryName = session?.country || "Indonesia";
         const countryData = countries.find(c => c.name_id === countryName || c.name_en === countryName);

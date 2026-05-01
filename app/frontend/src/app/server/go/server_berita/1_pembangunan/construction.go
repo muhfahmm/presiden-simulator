@@ -128,12 +128,11 @@ func processWeeklyConstruction(dateStr string) bool {
 		nationsBuilt++
 
 		// Generate news ONLY if player has an embassy in this nation
-		playerCountry := core.GlobalState.Player.Country
-		kPlayer := strings.ToLower(strings.TrimSpace(playerCountry))
-		kTarget := strings.ToLower(strings.TrimSpace(nation))
+		playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
+		kTarget := core.NormalizeNationName(nation)
 		
 		hasEmbassy := false
-		if rels, ok := core.GlobalState.Relationships[kPlayer]; ok && rels[kTarget] != nil && rels[kTarget].E == 1 {
+		if rels, ok := core.GlobalState.Relationships[playerCountry]; ok && rels[kTarget] != nil && rels[kTarget].E == 1 {
 			hasEmbassy = true
 		}
 
@@ -323,12 +322,12 @@ func processSmartConstruction(dateStr string) {
 					newsMu.Lock()
 					if newsCount < newsLimit {
 						// Filter: Only news if player has embassy
-						kPlayer := strings.ToLower(strings.TrimSpace(playerCountry))
-						kTarget := strings.ToLower(strings.TrimSpace(nation))
+						normalizedPlayer := core.NormalizeNationName(playerCountry)
+						kTarget := core.NormalizeNationName(nation)
 						
 						hasEmbassy := false
 						core.GlobalState.Mu.Lock()
-						if rels, ok := core.GlobalState.Relationships[kPlayer]; ok && rels[kTarget] != nil && rels[kTarget].E == 1 {
+						if rels, ok := core.GlobalState.Relationships[normalizedPlayer]; ok && rels[kTarget] != nil && rels[kTarget].E == 1 {
 							hasEmbassy = true
 						}
 						core.GlobalState.Mu.Unlock()

@@ -1,4 +1,5 @@
 "use client"
+import { storageSafety } from "@/app/game/utils/storageSafety";
 
 export interface DebtOffer {
     id: string;
@@ -38,8 +39,30 @@ class DebtAiStorage {
 
     saveData(data: { offers: DebtOffer[], activeDebts: ActiveDebt[] }) {
         if (typeof window === 'undefined') return;
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
-        window.dispatchEvent(new Event('debt_storage_updated'));
+        
+        // CAP: Keep only last 50 offers and 100 active debts to save space
+        const cappedData = {
+            offers: data.offers.slice(-50),
+            activeDebts: data.activeDebts.slice(-100)
+        };
+
+        try {
+            storageSafety.setItem(this.STORAGE_KEY, JSON.stringify(cappedData));
+            window.dispatchEvent(new Event('debt_storage_updated'));
+        } catch (e) {
+            console.warn("[DebtAiStorage] Quota exceeded, trimming further...");
+            // Emergency trim: keep only 20 items
+            const emergencyData = {
+                offers: data.offers.slice(-20),
+                activeDebts: data.activeDebts.slice(-30)
+            };
+            try {
+                localStorage.setItem(this.STORAGE_KEY, JSON.stringify(emergencyData));
+                window.dispatchEvent(new Event('debt_storage_updated'));
+            } catch (err) {
+                console.error("[DebtAiStorage] Critical: Storage full even after emergency trim");
+            }
+        }
     }
 
     // Offers

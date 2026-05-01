@@ -78,8 +78,11 @@ export const newsStorage = {
     try {
       localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(news));
     } catch (e) {
-      const trimmed = news.slice(0, 1000);
-      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
+      // Quota exceeded — keep only 150 items
+      const trimmed = news.slice(0, 150);
+      try {
+        localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
+      } catch (err) {}
     }
     window.dispatchEvent(new Event("news_updated"));
   },
@@ -154,9 +157,11 @@ export const newsStorage = {
       newsStorage.processConstructionEffects(merged);
       newsStorage.processMembershipEffects(merged);
     } catch (e) {
-      // Quota exceeded — only trim if absolutely necessary
-      const trimmed = merged.slice(0, 1000);
-      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
+      // Quota exceeded — aggressively trim to 150 items
+      const trimmed = merged.slice(0, 150);
+      try {
+        localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
+      } catch (err) {}
     }
     window.dispatchEvent(new Event("news_updated"));
   },
@@ -482,9 +487,11 @@ export const newsStorage = {
       // Trigger side-effects for AI construction
       newsStorage.processConstructionEffects(updated);
     } catch (e) {
-      // Quota exceeded — keep up to 1000 items
-      const trimmed = updated.slice(0, 1000);
-      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
+      // Quota exceeded — keep up to 150 items
+      const trimmed = updated.slice(0, 150);
+      try {
+        localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
+      } catch (err) {}
     }
     window.dispatchEvent(new Event("news_updated"));
   },

@@ -11,6 +11,7 @@ import { RegionalRequirements } from "../python/requirements/RegionalRequirement
 class RegionalMembershipRouter {
     private AI_STATE_KEY = "em_dynamic_regional_memberships";
     private requirements: RegionalRequirements;
+    private inMemoryState: Record<string, Record<string, boolean>> | null = null;
 
     constructor() {
         this.requirements = new RegionalRequirements();
@@ -18,14 +19,30 @@ class RegionalMembershipRouter {
 
     private getAIState(): Record<string, Record<string, boolean>> {
         if (typeof window === "undefined") return {};
+        if (this.inMemoryState) return this.inMemoryState;
+
         const stored = localStorage.getItem(this.AI_STATE_KEY);
-        return stored ? JSON.parse(stored) : {};
+        try {
+            this.inMemoryState = stored ? JSON.parse(stored) : {};
+        } catch (e) {
+            this.inMemoryState = {};
+        }
+        return this.inMemoryState!;
     }
 
     private saveAIState(state: Record<string, Record<string, boolean>>) {
         if (typeof window === "undefined") return;
-        localStorage.setItem(this.AI_STATE_KEY, JSON.stringify(state));
+        this.inMemoryState = state; // Update RAM cache
         window.dispatchEvent(new Event("regional_membership_updated"));
+    }
+
+    public persist() {
+        if (typeof window === "undefined" || !this.inMemoryState) return;
+        try {
+            localStorage.setItem(this.AI_STATE_KEY, JSON.stringify(this.inMemoryState));
+        } catch (e) {
+            console.warn("[REGIONAL] Quota exceeded. Data in RAM only.");
+        }
     }
 
     /**
@@ -52,7 +69,6 @@ class RegionalMembershipRouter {
                 const isMember = (item.action === 'join');
                 
                 if (wasMember !== isMember) {
-                    // Before syncing AI, check eligibility (AI must also follow rules)
                     const eligibility = this.checkEligibility(country, item.org_id);
                     if (eligibility.eligible) {
                         currentState[country][item.org_id] = isMember;
@@ -60,11 +76,12 @@ class RegionalMembershipRouter {
                         if (isMember) {
                             unMembershipStorage.recordJoinDate(item.org_id, country);
                         } else {
-                            // Remove join date
                             const dates = unMembershipStorage.getJoinDates();
                             if (dates[item.org_id]) {
                                 delete dates[item.org_id][country.toLowerCase()];
-                                localStorage.setItem("em_org_join_dates", JSON.stringify(dates));
+                                try {
+                                    localStorage.setItem("em_org_join_dates", JSON.stringify(dates));
+                                } catch (e) {}
                             }
                         }
                     }
@@ -74,8 +91,6 @@ class RegionalMembershipRouter {
 
         this.saveAIState(currentState);
     }
-
-
 
     public getConsolidatedMembers(orgId: string): string[] {
         const dbMembers = [...(OrganizationMembers[orgId] || [])];

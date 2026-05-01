@@ -43,24 +43,31 @@ export const aiHappinessStorage = {
   },
 
   /**
-   * Internal helper to save to localStorage with debouncing (every 5 seconds)
+   * Internal helper to save to localStorage with safety catch
    */
   _saveToDisk: (force: boolean = false) => {
     if (!memoryCache || typeof window === 'undefined') return;
     
-    if (saveTimeout && !force) return; // Wait for existing timeout
-    
     const performSave = () => {
-        localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(memoryCache));
+        try {
+            localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(memoryCache));
+        } catch (e) {
+            console.warn("[STORAGE] AI Happiness Quota Exceeded. Using RAM only.");
+        }
         saveTimeout = null;
     };
 
     if (force) {
         if (saveTimeout) clearTimeout(saveTimeout);
         performSave();
-    } else {
-        saveTimeout = setTimeout(performSave, 5000); // 5 second debounce
+    } else if (!saveTimeout) {
+        saveTimeout = setTimeout(performSave, 10000); // 10 second debounce
     }
+  },
+
+  // Persist to actual LocalStorage (Call this only on pause or month end)
+  persist: () => {
+    aiHappinessStorage._saveToDisk(true);
   },
 
   /**
@@ -148,7 +155,7 @@ export const aiHappinessStorage = {
           }
         });
 
-        localStorage.setItem(AI_HAPPINESS_KEY, JSON.stringify(data));
+        // Don't save to disk immediately, wait for persistence trigger
         localStorage.setItem(LAST_PROCESSED_HAPPINESS_KEY, dateStr);
         window.dispatchEvent(new Event('ai_happiness_updated'));
       }

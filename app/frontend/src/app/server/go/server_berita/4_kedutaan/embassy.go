@@ -2,14 +2,13 @@ package kedutaan
 
 import (
 	"fmt"
-	"strings"
 	"emserver/core"
 )
 
 // ensureRelation initializes a relationship object if it doesn't exist
 func ensureRelation(n1, n2 string) *core.Relationship {
-	k1 := strings.ToLower(strings.TrimSpace(n1))
-	k2 := strings.ToLower(strings.TrimSpace(n2))
+	k1 := core.NormalizeNationName(n1)
+	k2 := core.NormalizeNationName(n2)
 
 	if core.GlobalState.Relationships[k1] == nil {
 		core.GlobalState.Relationships[k1] = make(map[string]*core.Relationship)
@@ -21,12 +20,12 @@ func ensureRelation(n1, n2 string) *core.Relationship {
 }
 
 func GenerateBilateralNews(dateStr string) {
-	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
 	
 	// LAYER 1: Filter out player's country from the pool
 	available := make([]string, 0)
 	for _, n := range core.NpcNations {
-		if strings.ToLower(strings.TrimSpace(n)) != playerCountry {
+		if core.NormalizeNationName(n) != playerCountry {
 			available = append(available, n)
 		}
 	}

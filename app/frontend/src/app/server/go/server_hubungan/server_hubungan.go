@@ -53,7 +53,7 @@ func InitializeRelationshipsLocked() error {
 			}
 
 			// Extract source country name from filename (e.g., "67_indonesia.ts" -> "indonesia")
-			sourceName := simplifyFilename(file.Name())
+			sourceName := core.NormalizeNationName(simplifyFilename(file.Name()))
 			if sourceName == "" {
 				continue
 			}
@@ -74,7 +74,7 @@ func InitializeRelationshipsLocked() error {
 			seenTargets := make(map[string]bool)
 
 			for _, match := range matches {
-				targetName := strings.ToLower(strings.TrimSpace(match[1]))
+				targetName := core.NormalizeNationName(match[1])
 				
 				// Prevent duplicates (e.g., if Singapura exists twice in Malaysia's file)
 				if seenTargets[targetName] {
@@ -141,13 +141,15 @@ func UpdateDailyRelationsLocked() {
 			
 			// If it's the player, we check player stability
 			var sStab, tStab float64
-			if source == strings.ToLower(core.GlobalState.Player.Country) {
+			normalizedPlayer := core.NormalizeNationName(core.GlobalState.Player.Country)
+			
+			if source == normalizedPlayer {
 				sStab = core.GlobalState.Player.Stability
 			} else if sourceState != nil {
 				sStab = sourceState.Stability
 			}
 			
-			if target == strings.ToLower(core.GlobalState.Player.Country) {
+			if target == normalizedPlayer {
 				tStab = core.GlobalState.Player.Stability
 			} else if targetState != nil {
 				tStab = targetState.Stability

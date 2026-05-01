@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"strings"
 	"sync"
 	"time"
 )
@@ -209,4 +210,9 @@ func AddInboxItemLocked(sender, subject, content, category, priority string, isP
 	if len(GlobalState.Inbox) > 200 {
 		GlobalState.Inbox = GlobalState.Inbox[:200]
 	}
+}
+
+// NormalizeNationName converts a nation name to lowercase and replaces spaces with underscores.
+func NormalizeNationName(name string) string {
+	return strings.ToLower(strings.ReplaceAll(strings.TrimSpace(name), " ", "_"))
 }

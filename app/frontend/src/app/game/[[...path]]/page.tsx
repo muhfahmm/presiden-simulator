@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import MapRenderer from "@/app/game/components/2_navigasi_menu/1_navigasi_atas/MapRenderer";
 import MapCategorySelector from "../components/2_navigasi_menu/1_navigasi_atas/MapCategorySelector";
@@ -100,7 +100,7 @@ export default function GamePage() {
 
   const countryData = countries.find(c => c.name_id === userCountry || c.name_en === userCountry) || countries[0];
 
-  const handleSelect = (name: string) => {
+  const handleSelect = React.useCallback((name: string) => {
     if (!name) return;
     if (name === userCountry) {
       setTargetCountry(null);
@@ -119,7 +119,11 @@ export default function GamePage() {
         setIsMenuOpen(true);
       }
     }
-  };
+  }, [userCountry, mapMode, countries, setActiveMenu, setIsMenuOpen, setTargetCountry]);
+
+  const handleSelectSDA = React.useCallback((data: any) => {
+    setSelectedCountrySDA(data);
+  }, [setSelectedCountrySDA]);
 
   return (
     <div className="flex min-h-screen bg-zinc-950 text-white font-sans relative overflow-hidden">
@@ -174,7 +178,7 @@ export default function GamePage() {
             targetCountry={targetCountry}
             geoData={geoData}
             onSelect={handleSelect}
-            onSelectSDA={(data) => setSelectedCountrySDA(data)}
+            onSelectSDA={handleSelectSDA}
             countries={countries}
           />
 

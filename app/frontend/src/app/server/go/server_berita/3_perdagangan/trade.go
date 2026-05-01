@@ -8,35 +8,31 @@ import (
 
 // hasEmbassyBetween checks if two NPC nations have an active embassy relationship (E=1)
 func hasEmbassyBetween(n1, n2 string) bool {
-	k1 := strings.ToLower(strings.TrimSpace(n1))
-	k2 := strings.ToLower(strings.TrimSpace(n2))
+	k1 := core.NormalizeNationName(n1)
+	k2 := core.NormalizeNationName(n2)
 
 	// Check n1 -> n2
 	if rels, ok := core.GlobalState.Relationships[k1]; ok {
-		for k, rel := range rels {
-			if strings.ToLower(k) == k2 && rel != nil && rel.E == 1 {
-				return true
-			}
+		if rel, ok := rels[k2]; ok && rel != nil && rel.E == 1 {
+			return true
 		}
 	}
 	// Check n2 -> n1
 	if rels, ok := core.GlobalState.Relationships[k2]; ok {
-		for k, rel := range rels {
-			if strings.ToLower(k) == k1 && rel != nil && rel.E == 1 {
-				return true
-			}
+		if rel, ok := rels[k1]; ok && rel != nil && rel.E == 1 {
+			return true
 		}
 	}
 	return false
 }
 
 func GenerateBilateralNews(dateStr string) {
-	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
 	
 	// LAYER 1: Filter out player's country from the pool
 	available := make([]string, 0)
 	for _, n := range core.NpcNations {
-		if strings.ToLower(strings.TrimSpace(n)) != playerCountry {
+		if core.NormalizeNationName(n) != playerCountry {
 			available = append(available, n)
 		}
 	}
@@ -106,10 +102,10 @@ func formatPrice(n int) string {
 }
 
 func GenerateFlashNews(dateStr string) {
-	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
 	available := make([]string, 0)
 	for _, n := range core.NpcNations {
-		if strings.ToLower(strings.TrimSpace(n)) != playerCountry {
+		if core.NormalizeNationName(n) != playerCountry {
 			available = append(available, n)
 		}
 	}
@@ -136,10 +132,10 @@ func GenerateBatch(dateStr string, count int) {
 	// Generate 1 bilateral agreement news per batch to keep it special
 	GenerateBilateralNews(dateStr)
 	
-	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
 	available := make([]string, 0)
 	for _, n := range core.NpcNations {
-		if strings.ToLower(strings.TrimSpace(n)) != playerCountry {
+		if core.NormalizeNationName(n) != playerCountry {
 			available = append(available, n)
 		}
 	}

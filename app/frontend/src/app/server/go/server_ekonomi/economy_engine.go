@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"math"
 	"os/exec"
-	"strings"
 	"emserver/core"
 )
 
@@ -22,14 +21,14 @@ const (
 // ProcessDailyProduction adds commodities to NPC inventories based on building levels.
 // Called every game day inside processNPCDay (with lock held).
 func ProcessDailyProduction() {
-	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
 
 	for nation, state := range core.GlobalState.NPCStates {
 		if state == nil {
 			continue
 		}
 		// Skip player's country
-		if strings.ToLower(strings.TrimSpace(nation)) == playerCountry {
+		if core.NormalizeNationName(nation) == playerCountry {
 			continue
 		}
 
@@ -75,7 +74,7 @@ func ProcessDailyProduction() {
 // ProcessBatchTrade executes the C++ trade engine on batch days.
 // Called inside the simulation loop with lock held.
 func ProcessBatchTrade(dateStr string) {
-	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
 
 	// Determine transaction count: 20-50 random
 	maxTx := 20 + core.Rng.Intn(31)
@@ -102,7 +101,7 @@ func ProcessBatchTrade(dateStr string) {
 			continue
 		}
 		// Exclude player's country
-		if strings.ToLower(strings.TrimSpace(name)) == playerCountry {
+		if core.NormalizeNationName(name) == playerCountry {
 			continue
 		}
 
@@ -122,7 +121,7 @@ func ProcessBatchTrade(dateStr string) {
 		// Filter out player's country from partners
 		var filteredPartners []string
 		for _, p := range partners {
-			if strings.ToLower(strings.TrimSpace(p)) != playerCountry {
+			if core.NormalizeNationName(p) != playerCountry {
 				filteredPartners = append(filteredPartners, p)
 			}
 		}
@@ -252,7 +251,7 @@ func ProcessBatchTrade(dateStr string) {
 
 // processFallbackTrade is a Go-native fallback if C++ engine fails
 func processFallbackTrade(dateStr string, maxTx int) {
-	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
 	tradesExecuted := 0
 
 	// Simple matching: iterate NPC nations, find trade partners, swap commodities
@@ -260,7 +259,7 @@ func processFallbackTrade(dateStr string, maxTx int) {
 		if tradesExecuted >= maxTx {
 			break
 		}
-		if state == nil || strings.ToLower(strings.TrimSpace(name)) == playerCountry {
+		if state == nil || core.NormalizeNationName(name) == playerCountry {
 			continue
 		}
 		if state.Commodities == nil || len(state.Commodities) == 0 {
@@ -296,7 +295,7 @@ func processFallbackTrade(dateStr string, maxTx int) {
 
 		// Pick a random partner
 		partner := partners[core.Rng.Intn(len(partners))]
-		if strings.ToLower(strings.TrimSpace(partner)) == playerCountry {
+		if core.NormalizeNationName(partner) == playerCountry {
 			continue
 		}
 
@@ -363,11 +362,11 @@ func ProcessSmartConstruction(dateStr string) {
 	}
 
 	core.GlobalState.Mu.Lock()
-	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
 
 	nations := make(map[string]NationData)
 	for name, state := range core.GlobalState.NPCStates {
-		if state == nil || strings.ToLower(strings.TrimSpace(name)) == playerCountry {
+		if state == nil || core.NormalizeNationName(name) == playerCountry {
 			continue
 		}
 		buildings := core.GlobalState.NPCBuildingLevels[name]
@@ -485,8 +484,8 @@ func ProcessSmartConstruction(dateStr string) {
 // ═══════════════════════════════════════════════════════════
 
 func playerHasEmbassyIn(nationName string) bool {
-	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
-	target := strings.ToLower(strings.TrimSpace(nationName))
+	playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
+	target := core.NormalizeNationName(nationName)
 
 	if pRels, ok := core.GlobalState.Relationships[playerCountry]; ok {
 		if rel, ok := pRels[target]; ok && rel != nil && rel.E == 1 {

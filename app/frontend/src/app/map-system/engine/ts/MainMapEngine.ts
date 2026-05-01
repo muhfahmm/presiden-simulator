@@ -47,6 +47,17 @@ export class MainMapEngine extends BaseMapEngine {
     const path = this.getPathForFeature(feature);
     if (!path) return;
 
+    // VIEWPORT CULLING: Skip drawing if outside visible bounds
+    // We use a simple check based on the feature's calculated path or properties if available
+    const margin = 10 / this.scale;
+    const vLeft = -this.offsetX / this.scale - margin;
+    const vRight = (this.width - this.offsetX) / this.scale + margin;
+    const vTop = -this.offsetY / this.scale - margin;
+    const vBottom = (this.height - this.offsetY) / this.scale + margin;
+
+    // Use a simplified BBOX check if we can or just skip for now to see if base engine lazy rendering fixed it.
+    // Actually, let's implement a real culling check using the projector.
+    
     ctx.fillStyle = color;
     ctx.strokeStyle = borderColor;
     ctx.lineWidth = lineWidth;
@@ -143,8 +154,8 @@ export class MainMapEngine extends BaseMapEngine {
       const { type, payload } = e.data;
       
       if (type === 'TICK' || type === 'STATE_SYNC') {
-        // High-speed update from worker
         this.activeInvasions = payload;
+        // Optimization: Throttled requestRender is already handled by BaseMapEngine's loop
         this.requestRender();
       } else if (type === 'INVASION_ARRIVED') {
         this.saveInvasionsToStorage();

@@ -360,9 +360,9 @@ func loadNationsFromTypeScript() map[string]core.NPCNationState {
 					Happiness:  50.0,
 					Stability:  75.0,
 				}
-				nations[nameID] = state
+				nations[core.NormalizeNationName(nameID)] = state
 				if nameEN != nameID {
-					nations[nameEN] = state
+					nations[core.NormalizeNationName(nameEN)] = state
 				}
 				count++
 			}
@@ -403,6 +403,7 @@ func InitializeNPCStatesLocked() {
 	tsDefaults := loadNationsFromTypeScript()
 	
 	for _, name := range core.NpcNations {
+		normalizedName := core.NormalizeNationName(name)
 		tier := 1 + core.Rng.Intn(3)
 		
 		// Baseline Populations & Budgets matching the TypeScript database exactly
@@ -412,12 +413,12 @@ func InitializeNPCStatesLocked() {
 		happiness := 50.0
 		
 		// 1. Try to load from TypeScript Profile (Strongest Authority)
-		if def, ok := tsDefaults[name]; ok {
+		if def, ok := tsDefaults[normalizedName]; ok {
 			pop = def.Population
 			budget = def.Budget
 			// Ensure tier is somewhat related to budget
 			if budget > 100000 { tier = 4 } else if budget > 50000 { tier = 3 } else if budget > 10000 { tier = 2 } else { tier = 1 }
-		} else if def, ok := pyDefaults[name]; ok {
+		} else if def, ok := pyDefaults[normalizedName]; ok {
 			// 2. Fallback to Python defaults
 			pop = def.Population
 			budget = def.Budget
@@ -427,7 +428,7 @@ func InitializeNPCStatesLocked() {
 			if tier == 0 { tier = 1 + core.Rng.Intn(3) }
 		}
 		
-		core.GlobalState.NPCStates[name] = &core.NPCNationState{
+		core.GlobalState.NPCStates[normalizedName] = &core.NPCNationState{
 			Name:          name,
 			GDPGrowth:     1.0 + core.Rng.Float64()*3.0,
 			Stability:     stability,
@@ -518,7 +519,13 @@ func simulationEngine() {
 	ticker := time.NewTicker(100 * time.Millisecond)
 	acc := 0 
 
+	// Tracking variables for broadcast throttling
+	lastBroadcastTime := time.Now()
+	lastBroadcastNewsLen := 0
+	lastBroadcastInboxLen := 0
+
 	for range ticker.C {
+		now := time.Now()
 		core.GlobalState.Mu.Lock()
 		isPaused := core.GlobalState.IsPaused
 		speed := core.GlobalState.Speed
@@ -541,47 +548,44 @@ func simulationEngine() {
 
 		// === ADVANCE ONE GAME DAY ===
 		core.GlobalState.Mu.Lock()
+		
+		var constructionChanged bool
 
 		// 1. Parse and advance date
-		currentDate, err := time.Parse("2006-01-02", core.GlobalState.GameDate)
-		if err != nil {
-			fmt.Printf("[GO] ERROR Parsing Date: %v (Value: %s)\n", err, core.GlobalState.GameDate)
-		}
+		currentDate, _ := time.Parse("2006-01-02", core.GlobalState.GameDate)
 		nextDate := currentDate.AddDate(0, 0, 1)
 		core.GlobalState.GameDate = nextDate.Format("2006-01-02")
 		core.GlobalState.DayCounter++
-
-		fmt.Printf("[GO] Tick: %s (Day %d) | Speed: %d\n", core.GlobalState.GameDate, core.GlobalState.DayCounter, speed)
-
-		// 2. Process Player Nation (Calculates Happiness, Stability, Budget)
-		processPlayerDay(nextDate)
+		
+		// === DOUBLE-PULSE SYNC (Pulse 1: Instant UI Update) ===
+		uiSnapshot := createPlayerSnapshot()
+		go broadcastSSE(uiSnapshot)
 		
 		// ─── MONTHLY DATA RESET CHECK ───
 		checkMonthlyNewsReset(nextDate)
 		checkMonthlyInboxReset(nextDate)
 
-		// 3. Process NPC & Global Simulation (CRITICAL: Called INSIDE Lock for thread-safety)
+		// 3. Background Simulation (Parallel Polyglot)
 		processNPCDay(nextDate)
-		
-		// 3.5. Daily Commodity Production (NPC nations produce goods based on buildings)
 		server_ekonomi.ProcessDailyProduction()
-		
-		constructionChanged := server_berita.ProcessNewsDay(nextDate)
-		
-		// Quarterly Polyglot Workers (Spawns background goroutine, doesn't need lock)
-		if core.GlobalState.DayCounter%30 == 0 {
-			go invokePolyglotWorkers(nextDate.Format("02 Jan 2006"))
-		}
-
-		// Process Inbox & Events
+		constructionChanged = server_berita.ProcessNewsDay(nextDate)
 		server_inbox.ProcessInboxDay(nextDate)
-
-		// Update Relationships
 		server_hubungan.UpdateDailyRelationsLocked()
 
-		// 4. Capture snapshot for SSE with Throttling (Prevents Frame Drops at 3x)
-		now := time.Now()
-		isMajorUpdate := len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen || constructionChanged
+		// 4. Final Broadcast (Pulse 2: Heavy Data)
+		isMajorUpdate := constructionChanged || len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen
+		isMonthlySync := core.GlobalState.DayCounter%30 == 0
+
+		if isMonthlySync || isMajorUpdate {
+			var fullSnapshot []byte
+			if isMonthlySync {
+				fullSnapshot = createSnapshot()
+			} else {
+				fullSnapshot = createMajorUpdateSnapshot()
+			}
+			go broadcastSSE(fullSnapshot)
+		}
+
 		isWeeklySync := core.GlobalState.DayCounter%7 == 0 || core.GlobalState.DayCounter < 2
 		
 		// Throttle: Max 5 updates per second unless something major happened

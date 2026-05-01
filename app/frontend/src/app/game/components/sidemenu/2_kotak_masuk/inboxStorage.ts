@@ -18,8 +18,8 @@ export interface InboxItem {
   content?: string;
 }
 
-const MAX_INBOX_MESSAGES = 500; // Increased but capped at a safe limit to prevent QuotaExceededError
-const CONTENT_TRIM_THRESHOLD = 50; // Trim content for messages older than this to save space
+const MAX_INBOX_MESSAGES = 100; // Aggressively capped to prevent QuotaExceededError
+const CONTENT_TRIM_THRESHOLD = 20; // Trim content for messages older than this to save space
 
 export const inboxStorage = {
   clear: () => {
@@ -418,18 +418,15 @@ export const inboxStorage = {
     } catch (e) {
       console.warn("Inbox storage full, attempting emergency trim", e);
       try {
-        // First attempt: keep only latest 50 and trim them
-        const emergency = trimmedMessages.slice(0, 50);
+        // First attempt: keep only latest 30 and trim them
+        const emergency = limitedMessages.slice(0, 30);
         localStorage.setItem(key, JSON.stringify(emergency));
       } catch (e2) {
-        console.warn("Emergency trim to 50 failed, attempting aggressive cleanup", e2);
         try {
           // Second attempt: clear entire inbox and save new message only
           localStorage.removeItem(key);
           localStorage.setItem(key, JSON.stringify([newMessage]));
-        } catch (e3) {
-          console.error("Critical: Failed to save inbox - storage completely full", e3);
-        }
+        } catch (e3) {}
       }
     }
 
@@ -633,7 +630,11 @@ export const inboxStorage = {
       // NEW: Prune any old garbage if the player has changed or whitelist updated
       inboxStorage.pruneNonWhitelisted();
     } catch (e) {
-      console.error("Failed to sync inbox from server", e);
+      // Quota exceeded — trim and retry
+      const trimmed = limited.slice(0, 50);
+      try {
+          localStorage.setItem(key, JSON.stringify(trimmed));
+      } catch (err) {}
     }
   }
 };

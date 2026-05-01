@@ -1,0 +1,56 @@
+=========================================
+RANCANGAN SETUP & RUN - PRESIDENT SIMULATOR
+=========================================
+
+Proyek ini menggunakan arsitektur multi-bahasa (Next.js, Go, Rust, Python). 
+Ikuti langkah-langkah di bawah ini untuk menginstal dan menjalankan aplikasi.
+
+PRASYARAT (Pastikan perangkat sudah terinstall):
+1. Node.js (Versi 18 ke atas) & npm
+2. Go (Versi 1.20 ke atas)
+3. Python (Versi 3.9 ke atas)
+4. Rust & Cargo (Untuk Core Engine)
+
+-----------------------------------------
+LANGKAH-LANGKAH SETUP MANUAL:
+-----------------------------------------
+
+1. Instalasi Dependensi Node.js
+   Perintah: npm install
+   Deskripsi: Mengunduh semua library frontend (React, Next.js, Framer Motion, dll).
+
+2. Inisialisasi Data AI (Penting)
+   Perintah: npm run dev:ai:data
+   Deskripsi: Menjalankan script Python untuk menyiapkan dataset awal geopolitik.
+
+3. Menjalankan Aplikasi & Server (Concurrent)
+   Perintah: npm run dev
+   Deskripsi: Perintah ini akan menjalankan 4 terminal sekaligus:
+   - NEXT.JS (Port 4000): Antarmuka Game.
+   - GO SERVER: Backend utama (Logika Kas Negara, Hubungan, dll).
+   - AI RUST ENGINE: Mesin simulasi performa tinggi.
+   - AI GO BACKEND: API Gateway untuk sistem AI.
+
+-----------------------------------------
+CARA CEPAT (AUTOMATED SETUP):
+-----------------------------------------
+Jika Anda ingin melakukan semuanya secara otomatis (install -> data gen -> run), 
+cukup jalankan perintah:
+
+   npm run setup
+
+-----------------------------------------
+AKSES APLIKASI:
+-----------------------------------------
+Setelah server berjalan, buka browser Anda dan akses:
+URL: http://localhost:4000/game
+
+-----------------------------------------
+CATATAN TAMBAHAN:
+-----------------------------------------
+- Pastikan koneksi internet stabil saat 'npm install'.
+- Jika terjadi error pada Rust engine, pastikan 'cargo' sudah terdaftar di PATH.
+- Backend Go memerlukan file 'main.go' di folder 'src/app/server/go'.
+
+Dibuat oleh: Antigravity AI
+Tanggal: 1 Mei 2026

@@ -2,7 +2,6 @@ package trade
 
 import (
 	"fmt"
-	"strings"
 	"time"
 	"emserver/core"
 )
@@ -35,7 +34,7 @@ var tradePartnersWhitelist = map[string][]string{
 
 // isWhitelistedPartner checks if the given nation is an allowed trade partner for the current player country
 func isWhitelistedPartner(nation string) bool {
-	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
 	if playerCountry == "" {
 		return true // Allow all if player country not set yet
 	}
@@ -45,9 +44,9 @@ func isWhitelistedPartner(nation string) bool {
 		return true // Allow all if no whitelist defined for this player country
 	}
 
-	target := strings.ToLower(strings.TrimSpace(nation))
+	target := core.NormalizeNationName(nation)
 	for _, a := range allowed {
-		if strings.ToLower(strings.TrimSpace(a)) == target {
+		if core.NormalizeNationName(a) == target {
 			return true
 		}
 	}
@@ -57,8 +56,8 @@ func isWhitelistedPartner(nation string) bool {
 
 // hasEmbassy checks if a given NPC nation has an active embassy with the player
 func hasEmbassy(npcNation string) bool {
-	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
-	npcKey := strings.ToLower(strings.TrimSpace(npcNation))
+	playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
+	npcKey := core.NormalizeNationName(npcNation)
 
 	if playerCountry == "" {
 		return false
@@ -66,19 +65,15 @@ func hasEmbassy(npcNation string) bool {
 
 	// Check NPC -> Player direction
 	if rels, ok := core.GlobalState.Relationships[npcKey]; ok {
-		for k, rel := range rels {
-			if strings.ToLower(k) == playerCountry && rel != nil && rel.E == 1 {
-				return true
-			}
+		if rel, ok := rels[playerCountry]; ok && rel != nil && rel.E == 1 {
+			return true
 		}
 	}
 
 	// Check Player -> NPC direction
 	if rels, ok := core.GlobalState.Relationships[playerCountry]; ok {
-		for k, rel := range rels {
-			if strings.ToLower(k) == npcKey && rel != nil && rel.E == 1 {
-				return true
-			}
+		if rel, ok := rels[npcKey]; ok && rel != nil && rel.E == 1 {
+			return true
 		}
 	}
 

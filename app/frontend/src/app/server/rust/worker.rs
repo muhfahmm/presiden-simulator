@@ -18,13 +18,14 @@ struct SimulationBatch {
 
 fn main() {
     println!("Rust Simulation Engine: STANDBY (Ready for 100 Nations)");
+    println!("HEARTBEAT_READY"); // Signal to Go that Time Master is active
+    
     let stdin = io::stdin();
     for line in stdin.lock().lines() {
         if let Ok(line_str) = line {
             if let Ok(mut batch) = serde_json::from_str::<SimulationBatch>(&line_str) {
                 // Process each nation in the batch (High Performance Rust Loop)
                 for nation in &mut batch.nations {
-                    // Simple Rust Simulation Logic for 100 Nations
                     nation.population *= 1.00002;
                     nation.budget += nation.daily_income * 0.95;
                     
@@ -35,7 +36,6 @@ fn main() {
                     }
                 }
                 
-                // Return processed data to Go Master
                 if let Ok(output) = serde_json::to_string(&batch) {
                     println!("{}", output);
                 }

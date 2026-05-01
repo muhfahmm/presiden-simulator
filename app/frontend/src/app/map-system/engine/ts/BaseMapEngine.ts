@@ -49,6 +49,8 @@ export abstract class BaseMapEngine {
   protected offscreenCanvas: HTMLCanvasElement | null = null;
   protected offscreenCtx: CanvasRenderingContext2D | null = null;
   protected lastRenderedScale: number = -1;
+  protected isInteracting: boolean = false;
+  protected interactionTimer: NodeJS.Timeout | null = null;
 
   constructor(ctx: CanvasRenderingContext2D, width: number, height: number, tacticalCtx: CanvasRenderingContext2D) {
     this.ctx = ctx;
@@ -62,6 +64,18 @@ export abstract class BaseMapEngine {
         this.offscreenCanvas.width = width;
         this.offscreenCanvas.height = height;
         this.offscreenCtx = this.offscreenCanvas.getContext('2d', { alpha: false });
+        
+        // LOAD CAMERA STATE
+        try {
+            const savedState = sessionStorage.getItem('map_camera_state');
+            if (savedState) {
+                const { scale, offsetX, offsetY } = JSON.parse(savedState);
+                this.scale = scale || 1;
+                this.offsetX = offsetX || 0;
+                this.offsetY = offsetY || 0;
+                this.needsBaseUpdate = true;
+            }
+        } catch (e) {}
     }
     
     this.startRenderLoop();
@@ -71,8 +85,12 @@ export abstract class BaseMapEngine {
     if (this.isLoopRunning) return;
     this.isLoopRunning = true;
     const loop = () => {
-      this.executeRender();
-      this.animationFrameId = requestAnimationFrame(loop);
+      if (this.isLoopRunning) {
+        if (this.needsBaseUpdate || this.needsTacticalUpdate) {
+          this.executeRender();
+        }
+        this.animationFrameId = requestAnimationFrame(loop);
+      }
     };
     this.animationFrameId = requestAnimationFrame(loop);
   }
@@ -96,7 +114,44 @@ export abstract class BaseMapEngine {
   public setData(data: GeoJsonData) {
     this.data = data;
     this.path2dCache.clear();
+    this.bboxCache.clear();
+    
+    // Pre-calculate BBOX for all features for fast culling
+    if (this.data && this.data.features) {
+        for (const feature of this.data.features) {
+            this.calculateAndCacheBBox(feature);
+        }
+    }
+    
     this.invalidateCache();
+  }
+
+  private bboxCache: Map<string, { minX: number, minY: number, maxX: number, maxY: number }> = new Map();
+  private calculateAndCacheBBox(feature: GeoJsonFeature) {
+    const id = this.getFeatureId(feature);
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    
+    const processRings = (rings: number[][][]) => {
+        for (const ring of rings) {
+            for (const [lng, lat] of ring) {
+                const { x, y } = this.projector.project(lng, lat);
+                if (x < minX) minX = x; if (x > maxX) maxX = x;
+                if (y < minY) minY = y; if (y > maxY) maxY = y;
+            }
+        }
+    };
+
+    if (feature.geometry.type === 'Polygon') {
+        processRings(feature.geometry.coordinates);
+    } else if (feature.geometry.type === 'MultiPolygon') {
+        for (const poly of feature.geometry.coordinates) processRings(poly);
+    }
+    
+    this.bboxCache.set(id, { minX, minY, maxX, maxY });
+  }
+
+  private getFeatureId(feature: GeoJsonFeature): string {
+    return feature.properties.ADM0_A3 || feature.properties.NAME || JSON.stringify(feature.properties);
   }
 
   public setCountries(countries: any[]) {
@@ -122,18 +177,31 @@ export abstract class BaseMapEngine {
 
   public setTransform(scale: number, offsetX: number, offsetY: number) {
     if (this.scale !== scale || this.offsetX !== offsetX || this.offsetY !== offsetY) {
-        const scaleChanged = Math.abs(this.scale - scale) > 0.01;
-        const distMoved = Math.sqrt(Math.pow(this.offsetX - offsetX, 2) + Math.pow(this.offsetY - offsetY, 2));
-        
-        // If scale changed or we moved too far, invalidate base
-        if (scaleChanged || distMoved > this.width / 2) {
-            this.needsBaseUpdate = true;
-        }
-        
         this.scale = scale;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
+        
+        // Mark as interacting to enable high-speed bitmap scaling
+        this.isInteracting = true;
+        
+        // Debounce: Wait for 150ms of stillness before a high-quality vector redraw
+        if (this.interactionTimer) clearTimeout(this.interactionTimer);
+        this.interactionTimer = setTimeout(() => {
+            this.isInteracting = false;
+            this.needsBaseUpdate = true;
+            this.requestRender();
+        }, 150);
+
         this.requestRender();
+
+        // SAVE CAMERA STATE
+        try {
+            sessionStorage.setItem('map_camera_state', JSON.stringify({
+                scale: this.scale,
+                offsetX: this.offsetX,
+                offsetY: this.offsetY
+            }));
+        } catch (e) {}
     }
   }
 
@@ -152,14 +220,26 @@ export abstract class BaseMapEngine {
     ctx.clearRect(0, 0, this.width, this.height);
     
     if (this.offscreenCanvas) {
-        // Calculate relative offset from where the offscreen was last captured
-        const relX = this.offsetX - this.lastOffscreenX;
-        const relY = this.offsetY - this.lastOffscreenY;
-        ctx.drawImage(this.offscreenCanvas, relX, relY);
+        if (this.isInteracting && this.lastRenderedScale > 0) {
+            // BITMAP INTERPOLATION: Scale the last high-quality snapshot
+            // This is hardware accelerated and extremely fast.
+            const s = this.scale / this.lastRenderedScale;
+            const dx = this.offsetX - (this.lastOffscreenX * s);
+            const dy = this.offsetY - (this.lastOffscreenY * s);
+            const dw = this.width * s;
+            const dh = this.height * s;
+            ctx.drawImage(this.offscreenCanvas, dx, dy, dw, dh);
+        } else {
+            // Static Blit
+            const relX = this.offsetX - this.lastOffscreenX;
+            const relY = this.offsetY - this.lastOffscreenY;
+            ctx.drawImage(this.offscreenCanvas, relX, relY);
+        }
     }
 
     // 3. Update Tactical Layer
     this.renderTacticalLayer();
+    this.needsTacticalUpdate = false;
   }
 
   private updateOffscreenCache() {
@@ -176,11 +256,28 @@ export abstract class BaseMapEngine {
     ctx.fillRect(0, 0, this.width, this.height);
 
     this.drawBackground(ctx);
-
+    
+    // Viewport Culling Bounds
+    const margin = 50 / scale; // Buffer to prevent flickering at edges
+    const vLeft = -offX / scale - margin;
+    const vRight = (this.width - offX) / scale + margin;
+    const vTop = -offY / scale - margin;
+    const vBottom = (this.height - offY) / scale + margin;
+    
     // Draw with current scale and offsets
     ctx.setTransform(scale, 0, 0, scale, offX, offY);
     
     for (const feature of this.data.features) {
+      const id = this.getFeatureId(feature);
+      const bbox = this.bboxCache.get(id);
+      
+      // CULLING LOGIC: Skip if country's bounding box is entirely outside viewport
+      if (bbox) {
+          if (bbox.maxX < vLeft || bbox.minX > vRight || bbox.maxY < vTop || bbox.minY > vBottom) {
+              continue;
+          }
+      }
+      
       this.drawFeature(feature, ctx);
     }
     
@@ -285,6 +382,13 @@ export abstract class BaseMapEngine {
         if (Math.sqrt(dx * dx + dy * dy) <= hitThreshold) return country;
     }
     return null;
+  }
+
+  public updateContexts(ctx: CanvasRenderingContext2D, tacticalCtx: CanvasRenderingContext2D) {
+    this.ctx = ctx;
+    this.tacticalCtx = tacticalCtx;
+    this.needsBaseUpdate = true;
+    this.requestRender();
   }
 
   public resize(width: number, height: number) {

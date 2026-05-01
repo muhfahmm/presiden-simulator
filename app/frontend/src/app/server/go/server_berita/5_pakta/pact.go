@@ -2,17 +2,16 @@ package pakta
 
 import (
 	"fmt"
-	"strings"
 	"emserver/core"
 )
 
 func GeneratePactNews(dateStr string) {
-	playerCountry := strings.ToLower(strings.TrimSpace(core.GlobalState.Player.Country))
+	playerCountry := core.NormalizeNationName(core.GlobalState.Player.Country)
 	
 	// LAYER 1: Filter out player's country from the pool
 	available := make([]string, 0)
 	for _, n := range core.NpcNations {
-		if strings.ToLower(strings.TrimSpace(n)) != playerCountry {
+		if core.NormalizeNationName(n) != playerCountry {
 			available = append(available, n)
 		}
 	}
@@ -30,8 +29,8 @@ func GeneratePactNews(dateStr string) {
 
 
 	// Logic: News only appears if embassy (E) exists
-	k1 := strings.ToLower(strings.TrimSpace(n1))
-	k2 := strings.ToLower(strings.TrimSpace(n2))
+	k1 := core.NormalizeNationName(n1)
+	k2 := core.NormalizeNationName(n2)
 
 	rels1, ok1 := core.GlobalState.Relationships[k1]
 	if !ok1 || rels1[k2] == nil || rels1[k2].E == 0 {
