@@ -372,7 +372,7 @@ export abstract class BaseMapEngine {
 
   public getCountryAt(mouseX: number, mouseY: number): any | null {
     if (!this.countries || this.countries.length === 0) return null;
-    const hitThreshold = 15;
+    const hitThreshold = 25; // Increased for better click responsiveness on stars
 
     for (const country of this.countries) {
         const lat = country.lat !== undefined ? country.lat : country.latitude;

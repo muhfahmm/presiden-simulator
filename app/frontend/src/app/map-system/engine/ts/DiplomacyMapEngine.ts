@@ -122,7 +122,7 @@ export class DiplomacyMapEngine extends BaseMapEngine {
         continue;
       }
 
-      const outerRadius = Math.max(7.0 / this.scale, 1.5);
+      const outerRadius = Math.max(5.5 / this.scale, 1.2);
       const innerRadius = outerRadius / 2.2;
       this.drawStar(ctx, x, y, 5, outerRadius, innerRadius);
 
