@@ -387,14 +387,24 @@ export class MainMapEngine extends BaseMapEngine {
 
       const capitalName = country.capital || country.ibukota;
       if (this.scale > 4.5 && capitalName) {
-        ctx.font = `bold ${10 / this.scale}px "Cascadia Code", monospace`;
+        // Calculate absolute screen coordinates to render HD text
+        const screenX = x * this.scale + this.offsetX;
+        const screenY = y * this.scale + this.offsetY;
+
+        ctx.save();
+        ctx.resetTransform(); // Reset canvas transform to draw crisp text
+        
+        ctx.font = `bold 12px "Cascadia Code", monospace`;
         ctx.fillStyle = '#22d3ee';
         ctx.textAlign = 'center';
         // Stroke instead of shadow for performance and clarity
         ctx.strokeStyle = 'rgba(0,0,0,0.8)';
-        ctx.lineWidth = 2 / this.scale;
-        ctx.strokeText(capitalName.toUpperCase(), x, y - (6 / this.scale));
-        ctx.fillText(capitalName.toUpperCase(), x, y - (6 / this.scale));
+        ctx.lineWidth = 3;
+        
+        ctx.strokeText(capitalName.toUpperCase(), screenX, screenY - 10);
+        ctx.fillText(capitalName.toUpperCase(), screenX, screenY - 10);
+        
+        ctx.restore();
       }
     }
     ctx.restore();
