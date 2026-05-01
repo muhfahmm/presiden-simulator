@@ -525,15 +525,197 @@ func main() {
 	http.HandleFunc("/api/game/update-policy", handleUpdatePolicy)
 	http.HandleFunc("/api/ai/run", handleAIRun)
 
+	http.HandleFunc("/api/game/save", handleSave)
+	http.HandleFunc("/api/game/load", handleLoad)
+	http.HandleFunc("/api/game/list-saves", handleListSaves)
+
 	fmt.Println("═══════════════════════════════════════════════")
 	fmt.Println("[GO] Server-Authoritative Simulation Engine v2")
 	fmt.Println("[GO] AI Construction Simulation: ACTIVE")
 	fmt.Println("[GO] Listening on :8081")
 	fmt.Println("═══════════════════════════════════════════════")
-	err := http.ListenAndServe(":8081", nil)
+	handler := corsMiddleware(http.DefaultServeMux)
+	err := http.ListenAndServe(":8081", handler)
 	if err != nil {
 		fmt.Printf("[GO] FATAL: Server failed to start: %v\n", err)
 	}
+}
+
+func corsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+		w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+		
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+		
+		next.ServeHTTP(w, r)
+	})
+}
+
+// ═══════════════════════════════════════════════════════════
+// SAVE & LOAD HANDLERS
+// ═══════════════════════════════════════════════════════════
+
+func handleSave(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	core.GlobalState.Mu.Lock()
+	defer core.GlobalState.Mu.Unlock()
+
+	// 1. Save main session (UPSERT based on country_name for now)
+	query := `
+		INSERT INTO game_sessions (country_name, current_budget, current_population, happiness, stability, game_date, day_counter)
+		VALUES ($1, $2, $3, $4, $5, $6, $7)
+		ON CONFLICT (country_name) DO UPDATE SET
+			current_budget = EXCLUDED.current_budget,
+			current_population = EXCLUDED.current_population,
+			happiness = EXCLUDED.happiness,
+			stability = EXCLUDED.stability,
+			game_date = EXCLUDED.game_date,
+			day_counter = EXCLUDED.day_counter,
+			last_saved = CURRENT_TIMESTAMP
+		RETURNING id;
+	`
+	
+	var sessionID string
+	err := db_connect.DB.QueryRow(query, 
+		core.GlobalState.Player.Country,
+		core.GlobalState.Player.Budget,
+		core.GlobalState.Player.Population,
+		core.GlobalState.Player.Happiness,
+		core.GlobalState.Player.Stability,
+		core.GlobalState.Player.GameDate,
+		core.GlobalState.Player.DayCounter,
+	).Scan(&sessionID)
+
+	if err != nil {
+		fmt.Printf("[DB] Save error (Session): %v\n", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// 2. Save buildings
+	for key, count := range core.GlobalState.Player.Buildings {
+		_, err = db_connect.DB.Exec(`
+			INSERT INTO session_buildings (session_id, building_key, count)
+			VALUES ($1, $2, $3)
+			ON CONFLICT (session_id, building_key) DO UPDATE SET count = EXCLUDED.count;
+		`, sessionID, key, count)
+	}
+
+	// 3. Save NPC States
+	for name, state := range core.GlobalState.NPCStates {
+		_, err = db_connect.DB.Exec(`
+			INSERT INTO session_npc_states (session_id, npc_name, population, budget, happiness, stability, daily_income)
+			VALUES ($1, $2, $3, $4, $5, $6, $7)
+			ON CONFLICT (session_id, npc_name) DO UPDATE SET
+				population = EXCLUDED.population,
+				budget = EXCLUDED.budget,
+				happiness = EXCLUDED.happiness,
+				stability = EXCLUDED.stability,
+				daily_income = EXCLUDED.daily_income;
+		`, sessionID, name, state.Population, state.Budget, state.Happiness, state.Stability, state.DailyIncome)
+	}
+
+	fmt.Printf("[DB] Progress saved for %s (Session: %s)\n", core.GlobalState.Player.Country, sessionID)
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]string{"status": "success", "session_id": sessionID})
+}
+
+func handleListSaves(w http.ResponseWriter, r *http.Request) {
+	rows, err := db_connect.DB.Query(`SELECT id, country_name, current_budget, game_date, last_saved FROM game_sessions ORDER BY last_saved DESC`)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer rows.Close()
+
+	var saves []map[string]interface{}
+	for rows.Next() {
+		var id, country, date, lastSaved string
+		var budget float64
+		rows.Scan(&id, &country, &budget, &date, &lastSaved)
+		saves = append(saves, map[string]interface{}{
+			"id": id,
+			"country": country,
+			"budget": budget,
+			"date": date,
+			"lastSaved": lastSaved,
+		})
+	}
+	json.NewEncoder(w).Encode(saves)
+}
+
+func handleLoad(w http.ResponseWriter, r *http.Request) {
+	sessionID := r.URL.Query().Get("id")
+	if sessionID == "" {
+		http.Error(w, "Session ID required", http.StatusBadRequest)
+		return
+	}
+
+	core.GlobalState.Mu.Lock()
+	defer core.GlobalState.Mu.Unlock()
+
+	// 1. Load Session
+	var country, date string
+	var budget, pop, happy, stab float64
+	var dayCounter int
+	err := db_connect.DB.QueryRow(`
+		SELECT country_name, current_budget, current_population, happiness, stability, game_date, day_counter 
+		FROM game_sessions WHERE id = $1`, sessionID).Scan(&country, &budget, &pop, &happy, &stab, &date, &dayCounter)
+	
+	if err != nil {
+		http.Error(w, "Save not found", http.StatusNotFound)
+		return
+	}
+
+	// 2. Hydrate Player
+	core.GlobalState.Player.Country = country
+	core.GlobalState.Player.Budget = budget
+	core.GlobalState.Player.Population = pop
+	core.GlobalState.Player.Happiness = happy
+	core.GlobalState.Player.Stability = stab
+	core.GlobalState.Player.GameDate = date
+	core.GlobalState.Player.DayCounter = dayCounter
+	core.GlobalState.Player.Initialized = true
+	
+	// Reset buildings before loading
+	core.GlobalState.Player.Buildings = make(map[string]int)
+	bRows, _ := db_connect.DB.Query(`SELECT building_key, count FROM session_buildings WHERE session_id = $1`, sessionID)
+	for bRows.Next() {
+		var key string
+		var count int
+		bRows.Scan(&key, &count)
+		core.GlobalState.Player.Buildings[key] = count
+	}
+	bRows.Close()
+
+	// 3. Load NPC States
+	npcRows, _ := db_connect.DB.Query(`SELECT npc_name, population, budget, happiness, stability, daily_income FROM session_npc_states WHERE session_id = $1`, sessionID)
+	for npcRows.Next() {
+		var name string
+		var pop, budget, happy, stab, income float64
+		npcRows.Scan(&name, &pop, &budget, &happy, &stab, &income)
+		if state, ok := core.GlobalState.NPCStates[name]; ok {
+			state.Population = pop
+			state.Budget = budget
+			state.Happiness = happy
+			state.Stability = stab
+			state.DailyIncome = income
+		}
+	}
+	npcRows.Close()
+
+	fmt.Printf("[DB] Session LOADED: %s (%s)\n", country, sessionID)
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]string{"status": "loaded", "country": country})
 }
 
 // ═══════════════════════════════════════════════════════════

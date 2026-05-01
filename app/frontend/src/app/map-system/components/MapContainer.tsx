@@ -228,6 +228,7 @@ export default function MapContainer({
       engine.onSelectSDA = onSelectSDA || null;
     }
 
+    engine.setCountries(countries);
     engine.setRelations(relations);
     engine.setTransform(transform.scale, transform.x, transform.y);
   }, [

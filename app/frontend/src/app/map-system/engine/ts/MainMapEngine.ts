@@ -378,8 +378,8 @@ export class MainMapEngine extends BaseMapEngine {
       // Viewport Culling: Skip if outside visible area
       if (x < vLeft || x > vRight || y < vTop || y > vBottom) continue;
 
-      const outerRadius = Math.max(3.5 / this.scale, 0.8);
-      const innerRadius = outerRadius / 2.5;
+      const outerRadius = Math.max(6.0 / this.scale, 1.2);
+      const innerRadius = outerRadius / 2.2;
       
       this.drawStar(ctx, x, y, 5, outerRadius, innerRadius);
       ctx.fillStyle = '#22d3ee';

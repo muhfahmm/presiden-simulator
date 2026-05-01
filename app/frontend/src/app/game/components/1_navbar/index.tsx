@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Heart, Users, Coins, Shield, LogOut, RotateCcw, TrendingUp, TrendingDown, Clock, Activity, Zap, PieChart, BarChart3, Landmark, Percent, Receipt } from "lucide-react";
+import { Heart, Users, Coins, Shield, LogOut, RotateCcw, TrendingUp, TrendingDown, Clock, Activity, Zap, PieChart, BarChart3, Landmark, Percent, Receipt, Save } from "lucide-react";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { HappinessBreakdown } from "@/app/game/components/1_navbar/1_kepuasan";
 import { gameStorage } from "@/app/game/gamestorage";
@@ -113,6 +113,28 @@ export default function GameNavbar({
                     {countryData.name_id}
                   </span>
                 </div>
+
+                {/* SAVE BUTTON */}
+                <button
+                  onClick={async () => {
+                    try {
+                      const response = await fetch("http://localhost:8081/api/game/save", { method: "POST" });
+                      if (response.ok) {
+                        const data = await response.json();
+                        alert(`Progres berhasil disimpan ke Database!\nSession ID: ${data.session_id}`);
+                      } else {
+                        alert("Gagal menyimpan progres.");
+                      }
+                    } catch (err) {
+                      console.error("Save error:", err);
+                      alert("Error koneksi ke server.");
+                    }
+                  }}
+                  className="ml-2 p-1.5 rounded-lg bg-amber-800/10 hover:bg-emerald-500/20 text-amber-900/60 hover:text-emerald-700 transition-all border border-transparent hover:border-emerald-500/30 group"
+                  title="Simpan Progres ke PostgreSQL"
+                >
+                  <Save className="h-4 w-4" />
+                </button>
               </div>
             );
           })()}

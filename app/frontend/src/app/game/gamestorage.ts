@@ -107,7 +107,7 @@ export const gameStorage = {
       startTime: Date.now(),
       isWelcomeSeen: false,
     };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     localStorage.setItem("selectedCountry", country);
     localStorage.removeItem("em_game_date"); // Reset date for new game
     localStorage.setItem("em_fresh_session", "true");
@@ -172,7 +172,7 @@ export const gameStorage = {
 
   getSession: (): GameSession | null => {
     if (typeof window === 'undefined') return null;
-    const data = window.localStorage.getItem(STORAGE_KEY);
+    const data = window.sessionStorage.getItem(STORAGE_KEY);
     if (!data) return null;
     try {
       const session = JSON.parse(data);
@@ -196,7 +196,7 @@ export const gameStorage = {
     const session = gameStorage.getSession();
     if (session) {
       session.isWelcomeSeen = seen;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     }
   },
 
@@ -210,7 +210,7 @@ export const gameStorage = {
     // Hard stop timer first to prevent race condition ghost writes
     timeStorage.clear();
 
-    localStorage.removeItem(STORAGE_KEY);
+    sessionStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem("selectedCountry");
     localStorage.removeItem("em_game_date");
     localStorage.setItem("em_fresh_session", "true");
@@ -460,7 +460,7 @@ export const gameStorage = {
     session.isWelcomeSeen = true;
     delete session.cumulativeProduction;
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     localStorage.removeItem("em_game_date");
 
     // Modular cleanup for all systems

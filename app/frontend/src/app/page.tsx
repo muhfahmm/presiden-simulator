@@ -26,6 +26,7 @@ export default function Home() {
   return (
     <MainMenuLayer 
       onStart={() => router.push("/pilih_negara")} 
+      onLoad={() => router.push("/load-game")}
     />
   );
 }

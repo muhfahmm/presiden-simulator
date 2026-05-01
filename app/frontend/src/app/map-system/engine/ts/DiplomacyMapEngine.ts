@@ -122,16 +122,18 @@ export class DiplomacyMapEngine extends BaseMapEngine {
         continue;
       }
 
-      ctx.beginPath();
-      ctx.arc(x, y, 6 / this.scale, 0, Math.PI * 2);
+      const outerRadius = Math.max(7.0 / this.scale, 1.5);
+      const innerRadius = outerRadius / 2.2;
+      this.drawStar(ctx, x, y, 5, outerRadius, innerRadius);
+
       if (isPlayer) {
         ctx.fillStyle = "#22d3ee";
         ctx.shadowColor = "#22d3ee";
-        ctx.shadowBlur = 15 / this.scale;
+        ctx.shadowBlur = 20 / this.scale;
       } else {
         ctx.fillStyle = "#f59e0b";
         ctx.shadowColor = "#f59e0b";
-        ctx.shadowBlur = 15 / this.scale;
+        ctx.shadowBlur = 20 / this.scale;
       }
       ctx.fill();
       ctx.shadowBlur = 0;

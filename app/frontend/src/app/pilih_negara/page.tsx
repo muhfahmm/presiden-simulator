@@ -121,7 +121,11 @@ export default function DatabasePage() {
           </div>
 
           <div className="flex items-center gap-4">
-            <StatItem label="Ibukota" value={hasSelection ? currentData.capital : "-"} icon={<Landmark size={14} className="text-amber-800" />} />
+            <StatItem 
+              label="Ibukota" 
+              value={hasSelection ? currentData.capital : "-"} 
+              icon={<Landmark size={14} className="text-amber-800" />} 
+            />
             <StatItem 
               label="Populasi" 
               value={hasSelection ? (currentData.name_en === "Indonesia" ? populationStorage.getPopulation().toLocaleString('id-ID') : currentData.jumlah_penduduk) : "-"} 
@@ -176,7 +180,7 @@ export default function DatabasePage() {
               <span className="text-[10px] font-black text-amber-950 italic tracking-wider uppercase">
                 {currentData.name_id}
               </span>
-              <span className="text-[8px] font-black text-amber-800/60 uppercase tracking-[0.15em] leading-none mt-0.5">
+              <span className="text-[10px] font-black text-amber-800 uppercase tracking-widest leading-none mt-1">
                 {currentData.capital}
               </span>
             </div>
@@ -195,14 +199,15 @@ export default function DatabasePage() {
               isInternal={isInternalSelection.current}
               onSelectCountry={(c) => {
                 const matched = countries.find(tc => 
-                  tc.name_id.toLowerCase() === c.nama_negara.toLowerCase() || 
-                  tc.name_en.toLowerCase() === c.nama_negara.toLowerCase()
+                  tc.name_id.toLowerCase() === (c.nama_negara || c.name_id)?.toLowerCase() || 
+                  tc.name_en.toLowerCase() === (c.nama_negara || c.name_en)?.toLowerCase()
                 );
                 if (matched) {
                   isInternalSelection.current = false;
                   setSelectedCountry(matched.name_en);
                 }
               }} 
+              externalCountries={countries}
             />
           ) : (
             <MapContainer 
@@ -211,14 +216,15 @@ export default function DatabasePage() {
               targetName={null}
               onSelectCountry={(c) => {
                 const matched = countries.find(tc => 
-                  tc.name_id.toLowerCase() === c.nama_negara.toLowerCase() || 
-                  tc.name_en.toLowerCase() === c.nama_negara.toLowerCase()
+                  tc.name_id.toLowerCase() === (c.nama_negara || c.name_id)?.toLowerCase() || 
+                  tc.name_en.toLowerCase() === (c.nama_negara || c.name_en)?.toLowerCase()
                 );
                 if (matched) {
                   isInternalSelection.current = false;
                   setSelectedCountry(matched.name_en);
                 }
               }} 
+              externalCountries={countries}
             />
           )}
         </div>
@@ -368,12 +374,12 @@ export default function DatabasePage() {
                   </div>
 
                   <div className="flex flex-col items-center gap-1">
-                    <span className={`text-[11px] font-black text-center line-clamp-1 px-1 uppercase tracking-wider transition-colors ${
+                    <span className={`text-[12px] font-black text-center line-clamp-1 px-1 uppercase tracking-wider transition-colors ${
                       selectedCountry === c.name_en ? 'text-amber-400' : 'text-zinc-200 group-hover:text-white'
                     }`}>
                       {c.name_id}
                     </span>
-                    <span className="text-[9px] font-black text-zinc-300 uppercase tracking-[0.15em] group-hover:text-white transition-colors">
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest group-hover:text-zinc-200 transition-colors">
                       {c.capital}
                     </span>
                   </div>

@@ -1,14 +1,16 @@
 "use client"
 
-import { Play, Settings, Trophy, LogOut } from "lucide-react";
+import { Play, Settings, Trophy, LogOut, Database } from "lucide-react";
 import ParticleCanvas from "./ParticleCanvas";
 import GameEmblem from "./GameEmblem";
+import { gameStorage } from "@/app/game/gamestorage";
 
 interface MainMenuLayerProps {
   onStart: () => void;
+  onLoad: () => void;
 }
 
-export default function MainMenuLayer({ onStart }: MainMenuLayerProps) {
+export default function MainMenuLayer({ onStart, onLoad }: MainMenuLayerProps) {
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-black font-sans text-white overflow-hidden">
       <ParticleCanvas />
@@ -39,12 +41,23 @@ export default function MainMenuLayer({ onStart }: MainMenuLayerProps) {
         {/* Menu Actions */}
         <div className="flex flex-col w-full gap-4">
           <button 
-            onClick={onStart}
+            onClick={() => {
+              gameStorage.clearSession();
+              onStart();
+            }}
             className="group relative flex items-center justify-center gap-3 w-full py-4.5 rounded-xl bg-gradient-to-r from-red-600 to-red-500 font-bold text-lg hover:from-red-500 hover:to-orange-500 transition-all shadow-[0_8px_30px_rgb(220,38,38,0.3)] hover:shadow-red-500/40 active:scale-[0.98] overflow-hidden"
           >
             <div className="absolute inset-x-0 -top-full h-full bg-white/20 skew-y-12 transition-all duration-500 group-hover:top-full" />
             <Play className="h-5 w-5 fill-white group-hover:animate-pulse" />
             <span>Mulai Permainan</span>
+          </button>
+
+          <button 
+            onClick={onLoad}
+            className="group relative flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-zinc-900/80 border-2 border-emerald-500/30 font-bold text-lg text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500/50 transition-all shadow-[0_4px_20px_rgba(16,185,129,0.1)] hover:shadow-emerald-500/20 active:scale-[0.98]"
+          >
+            <Database className="h-5 w-5" />
+            <span>Muat Permainan (SQL)</span>
           </button>
 
           <div className="grid gap-3">
