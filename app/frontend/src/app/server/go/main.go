@@ -20,6 +20,7 @@ import (
 	"emserver/server_inbox"
 	"emserver/server_berita"
 	"emserver/server_ekonomi"
+	"emserver/db_connect"
 )
 
 // Hyper-Polyglot Worker Pool
@@ -65,6 +66,18 @@ var (
 	lastBroadcastNewsLen  int
 	lastBroadcastInboxLen int
 )
+
+// Smart Throttling Thresholds
+type BroadcastThresholds struct {
+	Budget     float64
+	Happiness  float64
+	Stability  float64
+	Population float64
+	GameDate   string
+	LastSync   time.Time
+}
+
+var lastSentStats BroadcastThresholds
 
 
 func init() {
@@ -451,6 +464,16 @@ func InitializeNPCStatesLocked() {
 // ═══════════════════════════════════════════════════════════
 
 func main() {
+	// 0. Connect to PostgreSQL
+	if _, err := db_connect.ConnectPostgres(); err != nil {
+		fmt.Printf("[DB] Warning: Could not connect to PostgreSQL: %v\n", err)
+		fmt.Println("[DB] Game will continue using memory-only mode (No Persistence).")
+	} else {
+		defer db_connect.CloseDB()
+		// Auto-Seed on Startup
+		go db_connect.SeedCountries()
+	}
+
 	// 1. Load Relationship Database
 	if err := server_hubungan.InitializeRelationships(); err != nil {
 		fmt.Printf("[GO] Warning: Could not initialize international relationships: %v\n", err)
@@ -507,7 +530,10 @@ func main() {
 	fmt.Println("[GO] AI Construction Simulation: ACTIVE")
 	fmt.Println("[GO] Listening on :8081")
 	fmt.Println("═══════════════════════════════════════════════")
-	http.ListenAndServe(":8081", nil)
+	err := http.ListenAndServe(":8081", nil)
+	if err != nil {
+		fmt.Printf("[GO] FATAL: Server failed to start: %v\n", err)
+	}
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -557,9 +583,40 @@ func simulationEngine() {
 		core.GlobalState.GameDate = nextDate.Format("2006-01-02")
 		core.GlobalState.DayCounter++
 		
-		// === DOUBLE-PULSE SYNC (Pulse 1: Instant UI Update) ===
-		uiSnapshot := createPlayerSnapshot()
-		go broadcastSSE(uiSnapshot)
+		// === SMART SSE THROTTLING (Pulse 1: Efficient UI Update) ===
+		shouldPulse := false
+		p := core.GlobalState.Player
+		
+		// 1. Threshold checks for "Pulse" (Instant UI Update)
+		budgetDiff := math.Abs(p.Budget - lastSentStats.Budget)
+		happyDiff := math.Abs(p.Happiness - lastSentStats.Happiness)
+		popDiff := math.Abs(p.Population - lastSentStats.Population)
+		
+		// Pulse if:
+		// - Budget changed > 0.5% or > 1000 units
+		// - Happiness changed > 0.1
+		// - Population changed > 500
+		// - Date changed (ensures clock keeps moving)
+		// - Or forced by major update
+		if budgetDiff > (lastSentStats.Budget*0.005) || budgetDiff > 1000 || 
+		   happyDiff > 0.1 || popDiff > 500 || 
+		   core.GlobalState.GameDate != lastSentStats.GameDate ||
+		   now.Sub(lastSentStats.LastSync) >= 2*time.Second {
+			shouldPulse = true
+		}
+
+		if shouldPulse {
+			uiSnapshot := createPlayerSnapshot()
+			go broadcastSSE(uiSnapshot)
+			
+			// Update last sent stats
+			lastSentStats.Budget = p.Budget
+			lastSentStats.Happiness = p.Happiness
+			lastSentStats.Stability = p.Stability
+			lastSentStats.Population = p.Population
+			lastSentStats.GameDate = core.GlobalState.GameDate
+			lastSentStats.LastSync = now
+		}
 		
 		// ─── MONTHLY DATA RESET CHECK ───
 		checkMonthlyNewsReset(nextDate)
@@ -572,33 +629,19 @@ func simulationEngine() {
 		server_inbox.ProcessInboxDay(nextDate)
 		server_hubungan.UpdateDailyRelationsLocked()
 
-		// 4. Final Broadcast (Pulse 2: Heavy Data)
+		// 4. Final Broadcast (Pulse 2: Heavy Data Throttling)
 		isMajorUpdate := constructionChanged || len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen
 		isMonthlySync := core.GlobalState.DayCounter%30 == 0
-
-		if isMonthlySync || isMajorUpdate {
-			var fullSnapshot []byte
-			if isMonthlySync {
-				fullSnapshot = createSnapshot()
-			} else {
-				fullSnapshot = createMajorUpdateSnapshot()
-			}
-			go broadcastSSE(fullSnapshot)
-		}
-
 		isWeeklySync := core.GlobalState.DayCounter%7 == 0 || core.GlobalState.DayCounter < 2
-		
-		// Throttle: Max 5 updates per second unless something major happened
-		shouldBroadcast := isMajorUpdate || isWeeklySync || now.Sub(lastBroadcastTime) >= 200*time.Millisecond
 
-		if shouldBroadcast {
+		// Heavy data (NPC states, News, Inbox) is only sent on major events, weekly, or monthly
+		// This prevents the React UI from choking on massive JSON payloads every second
+		if isMonthlySync || isMajorUpdate || isWeeklySync || now.Sub(lastBroadcastTime) >= 5*time.Second {
 			var snapshot []byte
-			if isWeeklySync {
+			if isMonthlySync || isWeeklySync {
 				snapshot = createSnapshot()
-			} else if isMajorUpdate {
-				snapshot = createMajorUpdateSnapshot()
 			} else {
-				snapshot = createPlayerSnapshot()
+				snapshot = createMajorUpdateSnapshot()
 			}
 			
 			lastBroadcastTime = now
