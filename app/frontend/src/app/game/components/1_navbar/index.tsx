@@ -402,7 +402,7 @@ export default function GameNavbar({
                       setSaveStatus({ show: true, status: 'error' });
                     }
                   }}
-                  className="ml-2 p-1.5 rounded-lg bg-amber-800/10 hover:bg-emerald-500/20 text-amber-900/60 hover:text-emerald-700 transition-all border border-transparent hover:border-emerald-500/30 group"
+                  className="cursor-pointer ml-2 p-1.5 rounded-lg bg-amber-800/10 hover:bg-emerald-500/20 text-amber-900/60 hover:text-emerald-700 transition-all border border-transparent hover:border-emerald-500/30 group"
                   title="Simpan Progres ke PostgreSQL"
                 >
                   <Save className="h-4 w-4" />
@@ -440,7 +440,7 @@ export default function GameNavbar({
 
           <button
             onClick={() => setShowResetModal(true)}
-            className="p-1.5 rounded-lg bg-amber-800/10 hover:bg-rose-500/20 text-amber-900/60 hover:text-rose-700 transition-all border border-transparent hover:border-rose-500/30 group"
+            className="cursor-pointer p-1.5 rounded-lg bg-amber-800/10 hover:bg-rose-500/20 text-amber-900/60 hover:text-rose-700 transition-all border border-transparent hover:border-rose-500/30 group"
             title="Reset Progress"
           >
             <RotateCcw size={16} className="group-hover:rotate-[-90deg] transition-transform duration-500" />
@@ -448,7 +448,7 @@ export default function GameNavbar({
 
           <button
             onClick={() => setShowLogoutModal(true)}
-            className="ml-2 p-2 rounded-lg bg-amber-800/10 hover:bg-rose-500/20 text-amber-900/60 hover:text-rose-700 transition-all border border-amber-800/10 group shadow-sm"
+            className="cursor-pointer ml-2 p-2 rounded-lg bg-amber-800/10 hover:bg-rose-500/20 text-amber-900/60 hover:text-rose-700 transition-all border border-amber-800/10 group shadow-sm"
             title="Akhiri Sesi"
           >
             <LogOut className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
