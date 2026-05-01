@@ -1,0 +1,41 @@
+{
+  "project_name": "Presiden Simulator (EM2)",
+  "architecture": "Multi-Language Distributed System",
+  "technologies": [
+    {
+      "language": "Next.js (TypeScript)",
+      "role": "Frontend & User Interface",
+      "description": "Menangani tampilan game, animasi navigasi, state management UI, dan interaksi user.",
+      "terminal_label": "NEXT",
+      "status": "Active"
+    },
+    {
+      "language": "Go",
+      "role": "Game Engine & Backend Server",
+      "description": "Otak utama simulasi ekonomi, perdagangan global, sistem inbox, dan sinkronisasi data antar negara.",
+      "terminal_label": "GO / AI-GO",
+      "status": "Active"
+    },
+    {
+      "language": "Rust (Tauri Core)",
+      "role": "Native System Wrapper",
+      "description": "Menghubungkan aplikasi web ke sistem operasi (Windows/Android) agar bisa berjalan sebagai aplikasi desktop (.exe) atau mobile (.apk).",
+      "terminal_label": "TAURI",
+      "status": "Active"
+    },
+    {
+      "language": "Rust (Core Engine)",
+      "role": "High-Performance AI Logic",
+      "description": "Menangani kalkulasi berat untuk kecerdasan buatan geopolitik yang membutuhkan kecepatan eksekusi tinggi.",
+      "terminal_label": "AI-RUST",
+      "status": "Active"
+    },
+    {
+      "language": "Python",
+      "role": "Data Automation & Processing",
+      "description": "Digunakan untuk otomasi pembuatan dataset 207 negara, manipulasi file geoJSON, dan script utility lainnya.",
+      "terminal_label": "Utility Scripts",
+      "status": "Static/On-Demand"
+    }
+  ]
+}

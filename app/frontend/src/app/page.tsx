@@ -6,11 +6,21 @@ import LoadingLayer from "@/components/LoadingLayer";
 import MainMenuLayer from "@/components/MainMenuLayer";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => {
+    if (typeof window !== "undefined") {
+      return !sessionStorage.getItem("app_loaded");
+    }
+    return true;
+  });
   const router = useRouter();
 
+  const handleComplete = () => {
+    sessionStorage.setItem("app_loaded", "true");
+    setIsLoading(false);
+  };
+
   if (isLoading) {
-    return <LoadingLayer onComplete={() => setIsLoading(false)} />;
+    return <LoadingLayer onComplete={handleComplete} />;
   }
 
   return (

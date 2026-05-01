@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { 
   HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight, X,
   Globe2, Landmark, Users, Coins, TrendingUp, Globe, Church, Scale, Search, ShieldAlert 
@@ -48,6 +49,9 @@ export default function DatabasePage() {
   }, []);
 
   useEffect(() => {
+    // Prefetch the game route to speed up compilation
+    router.prefetch("/game");
+    
     // Check for active session
     if (gameStorage.hasActiveSession()) {
       router.push("/game");
@@ -286,13 +290,13 @@ export default function DatabasePage() {
         
         {/* Left Action: Kembali */}
         <div className="pointer-events-auto">
-          <button
-            onClick={() => router.push("/")}
+          <Link
+            href="/"
             className="flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 font-bold hover:bg-zinc-800 hover:border-zinc-700 transition cursor-pointer active:scale-95 text-sm text-zinc-400 hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
             Kembali
-          </button>
+          </Link>
         </div>
 
         {/* Carousel with Chevrons (Absolute Centered) */}

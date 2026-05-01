@@ -15,6 +15,10 @@ npm run dev
 Lokasi: c:\fhm\em\app\frontend\src\app\server\go
 > Server ini berjalan otomatis saat 'npm run dev' dipanggil.
 
+# Lokasi Konfigurasi Tauri (Desktop/Mobile)
+Lokasi: c:\fhm\em\app\frontend\src-tauri\tauri.conf.json
+> Gunakan file ini untuk mengubah Icon, Identifier (Bundle), atau Title Aplikasi.
+
 # Cara Jalankan (Hanya Server / Backend)
 Pilihan 1 (Lewat NPM):
 cd "c:\fhm\em\app\frontend"
@@ -28,6 +32,21 @@ go run main.go
 cd "c:\fhm\em\app\frontend"
 npx tauri dev
 
+# Cara Build (Produksi Desktop - EXE)
+cd "c:\fhm\em\app\frontend"
+npx tauri build
+> Hasil (.exe): src-tauri/target/release/bundle/msi/
+
+# Cara Masuk (Mode Mobile - Tauri Android)
+Inisialisasi (Sekali saja):
+cd "c:\fhm\em\app\frontend"
+npx tauri android init
+
+Jalankan:
+cd "c:\fhm\em\app\frontend"
+npx tauri android dev
+
+
 # Tutup / Force Stop (Jika Macet)
 Stop Game: taskkill /F /IM node.exe
 Stop Server: taskkill /F /IM goserver.exe
@@ -37,3 +56,11 @@ Stop Semua: taskkill /F /IM main.exe
 git add .
 git commit -m "presiden-simulator: unified daily sync update"
 git push origin main
+
+# Teknologi yang Digunakan (Multi-Language)
+Detail Lengkap: c:\fhm\em\app\frontend\project_tech_stack.json
+1. Next.js (TypeScript) -> Frontend & UI (Label: NEXT)
+2. Go -> Game Engine & Backend (Label: GO & AI-GO)
+3. Rust (Tauri) -> Native Wrapper Desktop & Mobile
+4. Rust (Core Engine) -> High-Performance AI Logic (Label: AI-RUST)
+5. Python -> Data Generator & Script Otomasi
