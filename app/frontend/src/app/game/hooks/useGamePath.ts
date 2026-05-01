@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import * as React from "react";
 import { useRouter } from "next/navigation";
 import { countries } from "@/app/database/data/negara/benua/index";
 
@@ -208,14 +208,14 @@ export function useGamePath(path: string[]) {
     }
   }
 
-  const [activeMenu, setActiveMenu] = useState<string>(initialMenu);
+  const [activeMenu, setActiveMenu] = React.useState(initialMenu);
 
   // Sync state with URL path changes (important for back/forward and direct URL access)
-  useEffect(() => {
+  React.useEffect(() => {
     setActiveMenu(initialMenu);
   }, [path.join('/')]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const menuToPath: Record<string, string> = {
       "Ekonomi": "/game/ekonomi",
       "Menu:Pajak": "/game/ekonomi/pajak",
@@ -422,7 +422,7 @@ export function useGamePath(path: string[]) {
   }, [activeMenu, router]);
 
   // Global Event Listeners for Game-wide triggers (like map markers)
-  useEffect(() => {
+  React.useEffect(() => {
     const handleHalamanMisi = (e: any) => {
       setActiveMenu(`Komando Pertahanan:PerbandinganMisi:${e.detail.target}:${e.detail.missionId}`);
     };
