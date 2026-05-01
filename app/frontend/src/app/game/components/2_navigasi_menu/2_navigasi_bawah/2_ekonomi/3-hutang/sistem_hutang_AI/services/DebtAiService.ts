@@ -1,6 +1,6 @@
 "use client"
 
-import { countries } from '@/app/database/data/negara/index';
+import { countries } from '@/app/database/data/semua_fitur_negara/0_profiles/index';
 import { OrganizationMembers } from '@/app/database/data/database_organisasi_internasional/index';
 import { getGlobalRelationMatrix, initializeMatrixData } from '@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler';
 import { debtAiStorage, DebtOffer, ActiveDebt } from '../storage/DebtAiStorage';

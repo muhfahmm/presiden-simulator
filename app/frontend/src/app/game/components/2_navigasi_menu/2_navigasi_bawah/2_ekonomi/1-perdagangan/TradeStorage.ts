@@ -1,5 +1,5 @@
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { historiImportStorage } from "./ekspor_impor/impor/HistoriImportStorage";
 import { historiEksporStorage } from "./ekspor_impor/ekspor/HistoriEksporStorage";

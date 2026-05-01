@@ -9,7 +9,7 @@ import {
   TrendingDown, Crosshair
 } from "lucide-react";
 import { formatGameDate, getStoredGameDate, isWithin7Days } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { 
   KAPASITAS_LISTRIK_METADATA,
   pabrikMiliterRate

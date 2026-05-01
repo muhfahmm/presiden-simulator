@@ -49,7 +49,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import KontrakPenelitianModal from "@/app/game/components/modals/2_diplomasi_hubungan/5_kontrak_penelitian/KontrakPenelitianModal";
 import KirimPasukanModal from "@/app/game/components/modals/2_diplomasi_hubungan/6_kirim_pasukan/KirimPasukanModal";
 import { relationStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 
 import { useTradeNewsEngine } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/berita/useTradeNewsEngine";
 

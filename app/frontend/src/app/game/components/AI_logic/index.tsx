@@ -12,7 +12,7 @@ import { aiBudgetStorage } from "../modals/1_info_strategis/5_Keuangan/AIBudgetS
 import { EksekutorPembangunanAI } from "./5_AI_Pembangunan/sistem_tindakan_respon/EksekutorPembangunanAI";
 import { PusatKeputusanStrategis } from "./3_AI_Strategis_Pusat/PusatKeputusanStrategis";
 import { aiProductionStorage } from "./5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 import { getStoredGameDate } from "../1_navbar/5_navigasi_waktu/gameTime";

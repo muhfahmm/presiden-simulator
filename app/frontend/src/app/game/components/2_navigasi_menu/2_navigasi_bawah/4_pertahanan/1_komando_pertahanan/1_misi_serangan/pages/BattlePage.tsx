@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Sword, Shield, Target, ArrowLeft, Bomb, Zap, Loader2, Trophy, Skull, Plane, Ship, Truck, Users, Rocket, ShieldAlert, Car, Anchor, RadioTower, Activity, Satellite, Play, Pause, Clock, Calendar, Heart, Users as UsersIcon, Coins, RotateCcw, LogOut } from 'lucide-react';
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { militaryAidStorage } from "@/app/game/components/modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
 import { hitungAtrisiUnit, analisisStrategi, getUnitMatchupMultiplier, getDynamicNarratives, getTerrainData } from "./logic/EngineJembatan";
 import * as MilPower from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/3_armada_militer/kekuatanmiliter";

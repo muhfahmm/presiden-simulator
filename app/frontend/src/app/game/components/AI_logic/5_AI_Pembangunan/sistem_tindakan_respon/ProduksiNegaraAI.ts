@@ -2,7 +2,7 @@
 
 import { aiProductionStorage } from "../antarmuka_data_pembangunan/AIProductionStorage";
 import { aiBuildingStorage } from "../antarmuka_data_pembangunan/AIBuildingStorage";
-import { countries } from "@/app/database/data/negara";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles";
 import { gameStorage } from "@/app/game/gamestorage";
 
 /**

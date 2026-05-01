@@ -1,7 +1,7 @@
 "use client"
 
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { gameStorage } from "@/app/game/gamestorage";
 
 /**

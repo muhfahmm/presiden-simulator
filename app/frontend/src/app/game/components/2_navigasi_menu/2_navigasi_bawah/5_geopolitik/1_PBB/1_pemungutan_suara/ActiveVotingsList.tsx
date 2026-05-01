@@ -3,7 +3,7 @@
 
 import { Clock, Globe, Loader2, ChevronRight } from "lucide-react";
 import { ActiveVoting } from "./logika_pemungutan_suara/unVotingStorage";
-import { countries } from "@/app/pilih_negara/data/negara/index";
+import { countries } from "@/app/pilih_negara/data/semua_fitur_negara/0_profiles/index";
 import { useState } from "react";
 import { VotingMemberDetailsModal } from "./VotingMemberDetailsModal";
 

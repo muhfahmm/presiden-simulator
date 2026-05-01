@@ -13,7 +13,7 @@ import {
   Handshake
 } from 'lucide-react';
 import { NewsItem } from './newsStorage';
-import { countries } from '@/app/database/data/negara/index';
+import { countries } from '@/app/database/data/semua_fitur_negara/0_profiles/index';
 import { useRouter } from 'next/navigation';
 import { 
   detectConstructionDetails, 

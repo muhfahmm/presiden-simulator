@@ -2,7 +2,7 @@
 
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { gameStorage } from "@/app/game/gamestorage";
 import { AiHunianService } from "@/app/game/components/AI_logic/2_AI_Populasi/2_kebutuhan_hunian/AiHunianService";
 

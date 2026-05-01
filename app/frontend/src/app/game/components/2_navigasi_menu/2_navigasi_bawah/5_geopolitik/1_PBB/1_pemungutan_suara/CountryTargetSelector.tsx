@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { Search, Globe, X, Check } from "lucide-react";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 
 interface CountryTargetSelectorProps {
   userCountry: string;

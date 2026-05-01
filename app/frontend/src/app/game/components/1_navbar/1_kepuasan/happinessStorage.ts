@@ -1,7 +1,7 @@
 "use client"
 
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { formatGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";

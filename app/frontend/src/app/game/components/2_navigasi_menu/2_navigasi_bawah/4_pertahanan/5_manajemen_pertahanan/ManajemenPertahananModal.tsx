@@ -7,7 +7,7 @@ import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 
 import MaterialRequirement, { getBuildingRequirement } from "../../3_pembangunan/1-produksi/MaterialRequirement";
 import { pertahananRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan";

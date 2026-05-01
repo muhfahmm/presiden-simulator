@@ -4,7 +4,7 @@ import React from 'react';
 import { Globe, ArrowUpRight, ArrowDownLeft, Check, X, HeartHandshake } from 'lucide-react';
 import { debtAiStorage, DebtOffer } from '../storage/DebtAiStorage';
 import { DebtAiService } from '../services/DebtAiService';
-import { countries } from '@/app/database/data/negara/index';
+import { countries } from '@/app/database/data/semua_fitur_negara/0_profiles/index';
 
 interface BilateralDebtPanelProps {
     offers: DebtOffer[];

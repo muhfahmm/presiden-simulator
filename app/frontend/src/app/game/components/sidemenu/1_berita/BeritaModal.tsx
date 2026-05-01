@@ -21,7 +21,7 @@ import {
   resolveNestedValue, 
   detectConstructionDetails 
 } from './buildingLookupUtility';
-import { countries } from '@/app/database/data/negara/index';
+import { countries } from '@/app/database/data/semua_fitur_negara/0_profiles/index';
 
 // Modular Tab Components
 import { AllList } from './0_semua/AllList';

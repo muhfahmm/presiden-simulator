@@ -1,7 +1,7 @@
 "use client"
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 
 const STORAGE_KEY = "em_price_data_v3";
 

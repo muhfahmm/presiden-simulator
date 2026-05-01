@@ -4,7 +4,7 @@ import { InboxItem } from '../inboxStorage';
 import { InboxCard } from '../shared/InboxCard';
 import { getGlobalRelationMatrix, getNormalizedUser, normalizeId } from '@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler';
 import { getInitialAgreements } from '@/app/pilih_negara/data/database_mitra_perdagangan/agreementsRegistry';
-import { countries as centersData } from '@/app/pilih_negara/data/negara/index';
+import { countries as centersData } from '@/app/pilih_negara/data/semua_fitur_negara/0_profiles/index';
 
 interface TradeListProps {
   messages: InboxItem[];

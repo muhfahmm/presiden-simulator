@@ -1,5 +1,5 @@
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 
 const POPULATION_STORAGE_KEY = "em_population_data";
 

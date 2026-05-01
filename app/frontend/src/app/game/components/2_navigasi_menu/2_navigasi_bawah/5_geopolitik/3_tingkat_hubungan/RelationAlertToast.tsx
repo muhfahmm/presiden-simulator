@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ShieldAlert, X, TrendingDown, Zap } from 'lucide-react';
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 
 interface AlertDetail {

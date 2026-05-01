@@ -1,7 +1,7 @@
 import { UNGroup, getCountriesByGroup, UN_GROUPS_CONFIG, getCountryUNGroup } from "./unGroups";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 
 const STORAGE_KEY = "em_un_security_council";
 

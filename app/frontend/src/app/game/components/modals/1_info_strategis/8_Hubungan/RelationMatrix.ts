@@ -1,4 +1,4 @@
-import { countries as centersData } from "@/app/pilih_negara/data/negara/index";
+import { countries as centersData } from "@/app/pilih_negara/data/semua_fitur_negara/0_profiles/index";
 import { RELATION_EVENTS, dispatchRelationUpdate } from "./RelationEvents";
 
 export const RELATION_MATRIX_KEY = 'em_global_relation_matrix';

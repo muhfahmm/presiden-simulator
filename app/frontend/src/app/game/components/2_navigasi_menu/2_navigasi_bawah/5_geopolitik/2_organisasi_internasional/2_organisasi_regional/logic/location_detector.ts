@@ -5,7 +5,7 @@ import {
     naCountries, 
     saCountries, 
     oceaniaCountries 
-} from "@/app/database/data/negara/index";
+} from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 
 /**
  * Utility to automatically detect a country's continent and region.

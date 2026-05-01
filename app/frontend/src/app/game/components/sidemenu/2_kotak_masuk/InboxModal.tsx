@@ -11,7 +11,7 @@ import {
 import { inboxStorage, InboxItem } from './inboxStorage';
 import { embassyStorage } from '../../modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage';
 import { getInitialAgreements } from '@/app/pilih_negara/data/database_mitra_perdagangan/agreementsRegistry';
-import { countries as centersData } from '@/app/pilih_negara/data/negara/index';
+import { countries as centersData } from '@/app/pilih_negara/data/semua_fitur_negara/0_profiles/index';
 import { getGlobalRelationMatrix, getNormalizedUser, normalizeId } from '@/app/game/logic/ai/ai_diplomacy_engine/services/MatrixHandler';
 import { relationStorage } from '../../modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage';
 import { unSecurityCouncilStorage } from '../../2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage';

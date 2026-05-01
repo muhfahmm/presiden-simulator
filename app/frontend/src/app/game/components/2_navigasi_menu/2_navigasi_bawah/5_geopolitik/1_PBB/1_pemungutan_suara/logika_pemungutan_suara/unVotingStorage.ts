@@ -214,7 +214,7 @@ export const unVotingStorage = {
     const lastProcessedDay = localStorage.getItem("em_un_last_ai_resolution_day");
     if (lastProcessedDay === dayKey) return; 
 
-    const { countries: allCountriesData } = require("@/app/pilih_negara/data/negara/index");
+    const { countries: allCountriesData } = require("@/app/pilih_negara/data/semua_fitur_negara/0_profiles/index");
     const userCountry = localStorage.getItem('selected_country') || "Indonesia";
     
     const availableProposers = (allCountriesData || []).filter((c: any) => c.name_id !== userCountry);
@@ -426,7 +426,7 @@ export const unVotingStorage = {
 
     state.activeVotings.forEach(v => {
       if (Math.random() < 0.25) {
-        const { countries: allCountriesData } = require("@/app/pilih_negara/data/negara/index");
+        const { countries: allCountriesData } = require("@/app/pilih_negara/data/semua_fitur_negara/0_profiles/index");
         const details = v.finalResults?.details;
         if (!details) return;
 

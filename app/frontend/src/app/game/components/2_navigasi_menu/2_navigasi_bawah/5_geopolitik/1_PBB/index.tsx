@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { X, Globe, Shield, Gavel, Crown, History } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 
 // Import Modular Tabs
 import PemungutanSuaraTab from "./1_pemungutan_suara/PemungutanSuaraTab";

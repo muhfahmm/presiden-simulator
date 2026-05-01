@@ -15,7 +15,7 @@ import { armadaPolisiRate } from '@/app/database/data/semua_fitur_negara/2_perta
 import { pertahananRate } from '@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan';
 import { komandoPertahananRate } from '@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan';
 import { pabrikMiliterRate } from '@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer';
-import { countries } from '@/app/database/data/negara/index';
+import { countries } from '@/app/database/data/semua_fitur_negara/0_profiles/index';
 
 // Aggregate ALL rate definitions into one lookup
 export const ALL_BUILDING_RATES: Record<string, any> = {

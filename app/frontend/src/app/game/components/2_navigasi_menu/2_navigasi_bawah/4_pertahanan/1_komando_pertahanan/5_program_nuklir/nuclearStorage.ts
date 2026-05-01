@@ -2,7 +2,7 @@
 
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 
 export type NuclearStatus = 'none' | 'constructing' | 'active';
 

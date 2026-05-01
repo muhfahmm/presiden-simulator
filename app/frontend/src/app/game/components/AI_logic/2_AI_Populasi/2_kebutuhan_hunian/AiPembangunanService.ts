@@ -3,7 +3,7 @@ import { aiPopulationStorage } from "@/app/game/components/modals/1_info_strateg
 import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaStorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { gameStorage } from "@/app/game/gamestorage";
 import { getStoredGameDate, addDays } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { SocialCareService } from "../3_kesejahteraan_sosial/SocialCareService";

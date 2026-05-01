@@ -1,7 +1,7 @@
 import { gameStorage } from "@/app/game/gamestorage";
 import { OrganizationMembers } from "@/app/pilih_negara/data/database_organisasi_internasional/index";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
-import { countries, naCountries, saCountries } from "@/app/database/data/negara/index";
+import { countries, naCountries, saCountries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { formatGameDate, getStoredGameDate } from "../../../../../../1_navbar/5_navigasi_waktu/gameTime";
 
 /**

@@ -4,7 +4,7 @@ import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5
 import { aiDefenseStorage } from "../antarmuka_data_pertahanan/AIDefenseStorage";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
 import { addDays, formatGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 
 // Metadata lookup for ALL defense buildings across all 5 sectors
 import { komandoPertahananRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan";

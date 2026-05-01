@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { calculatePopulationHappiness } from "@/app/game/components/1_navbar/1_kepuasan";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { lawStorage } from "./2_database_undang_undang/lawStorage";
 import { ideologyStorage } from "../6_sosial_budaya/2_ideologi/ideologyStorage";
 import { religionStorage } from "../6_sosial_budaya/1_agama/religionStorage";

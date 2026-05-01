@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { X, FileText, Scale, Coins, Smile, Meh, Frown, Angry, AlertCircle, TrendingUp, RefreshCw, Wallet, Globe, Shield, ShieldAlert, Info, Users, ArrowRightLeft, Landmark, BarChart3, Tag } from "lucide-react"
-import { countries } from "@/app/database/data/negara/index"
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index"
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index"
 import { gameStorage } from "@/app/game/gamestorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"

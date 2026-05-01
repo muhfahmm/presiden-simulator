@@ -6,8 +6,8 @@ import { historiEksporStorage } from "./HistoriEksporStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { tradeStorage } from "../../TradeStorage";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/negara/index";
-import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
+import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { getNationalLogisticsMultiplier } from "../../tradeData";
 

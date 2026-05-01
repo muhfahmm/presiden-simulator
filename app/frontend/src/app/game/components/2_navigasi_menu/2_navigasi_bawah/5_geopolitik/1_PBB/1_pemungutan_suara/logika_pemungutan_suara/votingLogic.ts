@@ -1,5 +1,5 @@
 
-import { countries as countriesData } from "@/app/pilih_negara/data/negara/index";
+import { countries as countriesData } from "@/app/pilih_negara/data/semua_fitur_negara/0_profiles/index";
 import { embassyStorage } from "@/app/game/components/modals/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage";
 import { unVotingStorage } from "./unVotingStorage";
 import geoDataRaw from "./geopolitical_data.json";

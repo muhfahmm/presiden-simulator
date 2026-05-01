@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Check, X, Minus, Gavel, Globe, Loader2, Search, ChevronRight } from "lucide-react";
 import { checkProposalPermission } from "./logika_pemungutan_suara/proposalPermissions";
 import { unVotingStorage } from "./logika_pemungutan_suara/unVotingStorage";
-import { countries as allCountries } from "@/app/pilih_negara/data/negara/index";
+import { countries as allCountries } from "@/app/pilih_negara/data/semua_fitur_negara/0_profiles/index";
 import { simulateUNVote } from "./logika_pemungutan_suara/votingLogic";
 import { VotingMemberDetailsModal } from "./VotingMemberDetailsModal";
 import { terapkanPenaltiDiterima } from "./logika_pemungutan_suara/dampak_hubungan/penaltiDiterima";

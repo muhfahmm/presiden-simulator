@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { X, Swords, Target, Shield, Zap, Clock, AlertTriangle, Globe, Info } from "lucide-react";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { ModalPilihNegara } from "./modals_pilih_negara/ModalPilihNegara";
 import { luncurkanInvasi, landlockedCountries } from "./modals_pilih_negara/logic/InvasiLogic";
 import { calculateTotalMilitaryPower } from "../../3_armada_militer/kekuatanmiliter";

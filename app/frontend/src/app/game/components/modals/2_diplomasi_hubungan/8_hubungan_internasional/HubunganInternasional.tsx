@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, memo } from "react";
 import { Globe2, X, Search, ArrowUpDown, Users, Loader2 } from "lucide-react";
-import { countries as centersData, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/index";
+import { countries as centersData, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { RelationPersistence } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationPersistence";
 import { getRelationScore, getNormalizedUser } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix";
 import { RELATION_EVENTS } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationEvents";

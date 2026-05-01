@@ -5,7 +5,7 @@
 
 import { getGlobalRelationMatrix, getRelationScore, updateMatrixScore, updateMatrixScoresBatch, normalizeId } from "./RelationMatrix";
 import { dispatchRelationUpdate } from "./RelationEvents";
-import { countries as centersData } from "@/app/pilih_negara/data/negara/index";
+import { countries as centersData } from "@/app/pilih_negara/data/semua_fitur_negara/0_profiles/index";
 
 export const RelationPersistence = {
     /**

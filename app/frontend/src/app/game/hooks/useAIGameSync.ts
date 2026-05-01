@@ -6,7 +6,7 @@ import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5
 import { aiPopulationStorage } from "@/app/game/components/modals/1_info_strategis/2_Populasi/AIPopulationStorage";
 import { aiHappinessStorage } from "@/app/game/components/modals/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { EksekutorPertahananAI } from "../components/AI_logic/6_AI_pertahanan/sistem_tindakan_respon/EksekutorPertahananAI";
 import { EksekutorPembangunanAI } from "../components/AI_logic/5_AI_Pembangunan/sistem_tindakan_respon/EksekutorPembangunanAI";
 import { PusatKeputusanPertahanan } from "../components/AI_logic/6_AI_pertahanan/pusat_keputusan_pertahanan/PusatKeputusanPertahanan";

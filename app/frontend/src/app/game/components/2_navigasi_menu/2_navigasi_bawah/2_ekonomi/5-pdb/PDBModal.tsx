@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { X, TrendingUp, Search, Globe, Landmark, Coins, Activity, Info, ArrowRightLeft, FileText, BarChart3, Tag } from "lucide-react";
-import { countries } from "@/app/database/data/negara/index";
+import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 
