@@ -49,6 +49,10 @@ export function useGamePath(path: string[]) {
     else if (subMenu === 'hutang') initialMenu = "Menu:Hutang";
     else if (subMenu === 'pemasukkan-pengeluaran') initialMenu = "Menu:Budget";
     else if (subMenu === 'harga') initialMenu = "Menu:Harga";
+    else if (subMenu === 'pdb') initialMenu = "Menu:PDB";
+    else initialMenu = "Ekonomi";
+  } else if (category === 'economics') {
+    if (subMenu === 'PDB') initialMenu = "Menu:PDB";
     else initialMenu = "Ekonomi";
   } else if (category === 'pembangunan') {
     if (subMenu === 'produksi') initialMenu = "Menu:Produksi";
@@ -222,6 +226,7 @@ export function useGamePath(path: string[]) {
       "Menu:Hutang": "/game/ekonomi/hutang",
       "Menu:Budget": "/game/ekonomi/pemasukkan-pengeluaran",
       "Menu:Harga": "/game/ekonomi/harga",
+      "Menu:PDB": "/game/economics/PDB",
       "Pembangunan": "/game/pembangunan",
       "Menu:Produksi": "/game/pembangunan/produksi",
       "Menu:ProduksiMiliter": "/game/pembangunan/produksi-militer",

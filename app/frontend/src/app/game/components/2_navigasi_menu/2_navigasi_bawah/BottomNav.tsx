@@ -56,6 +56,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
       { id: "Menu:Pajak", label: "Manajemen Pajak", icon: FileText },
       { id: "Menu:Hutang", label: "Pinjaman & Hutang", icon: CreditCard },
       { id: "Menu:Budget", label: "Pemasukkan & Pengeluaran", icon: BarChart3 },
+      { id: "Menu:PDB", label: "PDB Nasional & Dunia", icon: TrendingUp },
       { id: "Menu:Harga", label: "Kontrol Harga Rakyat", icon: Tag },
     ],
     "Pembangunan": [

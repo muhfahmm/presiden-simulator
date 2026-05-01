@@ -6,6 +6,7 @@ import PerdaganganModal from "@/app/game/components/2_navigasi_menu/2_navigasi_b
 import PajakModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/PajakModal";
 import HutangModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/3-hutang/HutangModal";
 import PemasukkanPengeluaranModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/PemasukkanPengeluaranModal";
+import PDBModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/5-pdb/PDBModal";
 import HargaModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/HargaModal";
 
 // Other Modals
@@ -143,6 +144,12 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       />
       <PemasukkanPengeluaranModal
         isOpen={activeMenu === "Menu:Budget"}
+        onClose={() => setActiveMenu("Ekonomi")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
+      />
+      <PDBModal
+        isOpen={activeMenu === "Menu:PDB"}
         onClose={() => setActiveMenu("Ekonomi")}
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}

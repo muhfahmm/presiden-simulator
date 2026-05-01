@@ -81,7 +81,7 @@ export default function GameTimeControls() {
       {/* Date Display */}
       <div className="flex items-center gap-3 group mr-1">
         <Calendar size={16} className="text-amber-700 group-hover:scale-110 transition-transform" />
-        <span className="text-sm font-black text-amber-950 tracking-widest tabular-nums italic">
+        <span suppressHydrationWarning className="text-sm font-black text-amber-950 tracking-widest tabular-nums italic">
           {isMounted ? formatGameDate(state.gameDate) : formatGameDate(INITIAL_GAME_DATE)}
         </span>
       </div>

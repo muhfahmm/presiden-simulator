@@ -1,4 +1,4 @@
-export const INITIAL_GAME_DATE = new Date(); // Sesuaikan dengan tanggal real life saat ini
+export const INITIAL_GAME_DATE = new Date("2026-01-01"); // Fixed date to prevent hydration mismatch
 const DATE_STORAGE_KEY = "em_game_date";
 
 export function formatGameDate(date: Date): string {
