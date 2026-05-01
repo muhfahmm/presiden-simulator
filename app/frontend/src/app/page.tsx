@@ -1,17 +1,18 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import LoadingLayer from "@/components/LoadingLayer";
 import MainMenuLayer from "@/components/MainMenuLayer";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(() => {
-    if (typeof window !== "undefined") {
-      return !sessionStorage.getItem("app_loaded");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && sessionStorage.getItem("app_loaded")) {
+      setIsLoading(false);
     }
-    return true;
-  });
+  }, []);
   const router = useRouter();
 
   const handleComplete = () => {

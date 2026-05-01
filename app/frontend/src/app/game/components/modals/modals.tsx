@@ -321,6 +321,7 @@ export default function StrategyModal({
             <div>
               <h2 className="font-bold text-2xl text-amber-500 tracking-tight">
                 {targetCountry}
+                {(countryEntry as any).ibukota ? ` - ${(countryEntry as any).ibukota}` : (countryEntry as any).capital ? ` - ${(countryEntry as any).capital}` : ''}
               </h2>
               <p className="text-sm text-zinc-400 flex items-center gap-2">
                 Hubungan: <span className={`font-semibold ${relationColor}`}>{finalScore.toFixed(1)} ({relationLabel})</span>
