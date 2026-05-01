@@ -470,6 +470,22 @@ func main() {
 		fmt.Println("[DB] Game will continue using memory-only mode (No Persistence).")
 	} else {
 		defer db_connect.CloseDB()
+		
+		// Auto-Migration: Ensure UNIQUE constraint for ON CONFLICT to work
+		_, err := db_connect.DB.Exec(`
+			DO $$ 
+			BEGIN 
+				IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'game_sessions_country_name_key') THEN 
+					ALTER TABLE game_sessions ADD CONSTRAINT game_sessions_country_name_key UNIQUE (country_name); 
+				END IF; 
+			END $$;
+		`)
+		if err != nil {
+			fmt.Printf("[DB] Migration Warning: %v\n", err)
+		} else {
+			fmt.Println("[DB] Migration Successful: Unique constraint ensured.")
+		}
+
 		// Auto-Seed on Startup
 		go db_connect.SeedCountries()
 	}
@@ -528,6 +544,7 @@ func main() {
 	http.HandleFunc("/api/game/save", handleSave)
 	http.HandleFunc("/api/game/load", handleLoad)
 	http.HandleFunc("/api/game/list-saves", handleListSaves)
+	http.HandleFunc("/api/game/delete-save", handleDeleteSave)
 
 	fmt.Println("═══════════════════════════════════════════════")
 	fmt.Println("[GO] Server-Authoritative Simulation Engine v2")
@@ -566,13 +583,51 @@ func handleSave(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	core.GlobalState.Mu.Lock()
-	defer core.GlobalState.Mu.Unlock()
+	// 1. Decode payload from frontend
+	var payload struct {
+		Country    string         `json:"country"`
+		Budget     float64        `json:"budget"`
+		Population float64        `json:"population"`
+		Happiness  float64        `json:"happiness"`
+		Stability  float64        `json:"stability"`
+		GameDate   string         `json:"gameDate"`
+		DayCounter int            `json:"dayCounter"`
+		Buildings  map[string]int `json:"buildings"`
+	}
 
-	// 1. Save main session (UPSERT based on country_name for now)
+	if err := json.NewDecoder(r.Body).Decode(&payload); err != nil {
+		fmt.Printf("[DB] Save error (Decode): %v\n", err)
+		http.Error(w, "Invalid request body", http.StatusBadRequest)
+		return
+	}
+
+	fmt.Printf("[DB] Received save request: Country=%s, Date=%s, Budget=%.2f\n", payload.Country, payload.GameDate, payload.Budget)
+
+	// Validation: Ensure we have at least a country and a date
+	if payload.Country == "" || payload.GameDate == "" {
+		fmt.Printf("[DB] Save rejected: Missing data (Country: '%s', Date: '%s')\n", payload.Country, payload.GameDate)
+		http.Error(w, "Missing country or game date", http.StatusBadRequest)
+		return
+	}
+
+	core.GlobalState.Mu.Lock()
+	// Sync global state with incoming data for other systems to use
+	core.GlobalState.Player.Country = payload.Country
+	core.GlobalState.Player.Budget = payload.Budget
+	core.GlobalState.Player.Population = payload.Population
+	core.GlobalState.Player.Happiness = payload.Happiness
+	core.GlobalState.Player.Stability = payload.Stability
+	core.GlobalState.Player.GameDate = payload.GameDate
+	core.GlobalState.Player.DayCounter = payload.DayCounter
+	core.GlobalState.Player.Buildings = payload.Buildings
+	core.GlobalState.Mu.Unlock()
+
+	// 2. Save main session (UPSERT based on country_name)
+	fmt.Printf("[DB] Executing SQL Save for %s (Date: %s, Day: %d)\n", payload.Country, payload.GameDate, payload.DayCounter)
+	
 	query := `
 		INSERT INTO game_sessions (country_name, current_budget, current_population, happiness, stability, game_date, day_counter)
-		VALUES ($1, $2, $3, $4, $5, $6, $7)
+		VALUES ($1, $2, $3, $4, $5, $6::DATE, $7)
 		ON CONFLICT (country_name) DO UPDATE SET
 			current_budget = EXCLUDED.current_budget,
 			current_population = EXCLUDED.current_population,
@@ -586,13 +641,13 @@ func handleSave(w http.ResponseWriter, r *http.Request) {
 	
 	var sessionID string
 	err := db_connect.DB.QueryRow(query, 
-		core.GlobalState.Player.Country,
-		core.GlobalState.Player.Budget,
-		core.GlobalState.Player.Population,
-		core.GlobalState.Player.Happiness,
-		core.GlobalState.Player.Stability,
-		core.GlobalState.Player.GameDate,
-		core.GlobalState.Player.DayCounter,
+		payload.Country,
+		payload.Budget,
+		payload.Population,
+		payload.Happiness,
+		payload.Stability,
+		payload.GameDate,
+		payload.DayCounter,
 	).Scan(&sessionID)
 
 	if err != nil {
@@ -651,6 +706,54 @@ func handleListSaves(w http.ResponseWriter, r *http.Request) {
 		})
 	}
 	json.NewEncoder(w).Encode(saves)
+}
+
+func handleDeleteSave(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	var payload struct {
+		SessionID string `json:"session_id"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&payload); err != nil {
+		http.Error(w, "Invalid payload", http.StatusBadRequest)
+		return
+	}
+
+	if payload.SessionID == "" {
+		http.Error(w, "Session ID required", http.StatusBadRequest)
+		return
+	}
+
+	if db_connect.DB == nil {
+		http.Error(w, "Database connection not available", http.StatusInternalServerError)
+		return
+	}
+
+	// 1. Delete the main session
+	// Note: Because of ON DELETE CASCADE in the schema, all related records in
+	// session_buildings, session_npc_states, session_relationships, etc. 
+	// will be automatically deleted by PostgreSQL.
+	fmt.Printf("[DB] Deleting session with ID: %s\n", payload.SessionID)
+	result, err := db_connect.DB.Exec("DELETE FROM game_sessions WHERE id = $1", payload.SessionID)
+	if err != nil {
+		fmt.Printf("[DB] Delete Error: %v\n", err)
+		http.Error(w, fmt.Sprintf("Database error: %v", err), http.StatusInternalServerError)
+		return
+	}
+
+	rowsAffected, _ := result.RowsAffected()
+	if rowsAffected == 0 {
+		fmt.Printf("[DB] Warning: No session found with ID %s\n", payload.SessionID)
+		http.Error(w, "Sesi tidak ditemukan", http.StatusNotFound)
+		return
+	}
+
+	fmt.Printf("[DB] ✓ Successfully deleted session: %s\n", payload.SessionID)
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]string{"status": "success"})
 }
 
 func handleLoad(w http.ResponseWriter, r *http.Request) {

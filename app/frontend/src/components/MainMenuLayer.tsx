@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react";
 import { Play, Settings, Trophy, LogOut, Database } from "lucide-react";
 import ParticleCanvas from "./ParticleCanvas";
 import GameEmblem from "./GameEmblem";
@@ -11,6 +12,14 @@ interface MainMenuLayerProps {
 }
 
 export default function MainMenuLayer({ onStart, onLoad }: MainMenuLayerProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return <div className="fixed inset-0 bg-black" />;
+
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-black font-sans text-white overflow-hidden">
       <ParticleCanvas />

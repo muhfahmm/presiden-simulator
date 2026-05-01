@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Database, Calendar, Coins, ArrowLeft, Loader2, Trash2 } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { AlertTriangle, Trash2 as TrashIcon, Database, Calendar, Coins, ArrowLeft, Loader2 } from "lucide-react";
 import ParticleCanvas from "@/components/ParticleCanvas";
 
 interface SaveGame {
@@ -13,9 +14,77 @@ interface SaveGame {
   lastSaved: string;
 }
 
+function DeleteConfirmModal({ 
+  show, 
+  countryName,
+  onConfirm, 
+  onClose 
+}: { 
+  show: boolean; 
+  countryName: string;
+  onConfirm: () => void; 
+  onClose: () => void;
+}) {
+  return (
+    <AnimatePresence>
+      {show && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="absolute inset-0 bg-black/60 backdrop-blur-md"
+          />
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            className="relative bg-zinc-900 border border-red-500/20 rounded-[2rem] p-8 max-w-sm w-full shadow-[0_20px_50px_rgba(220,38,38,0.15)] overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent pointer-events-none" />
+
+            <div className="flex flex-col items-center text-center gap-6 relative z-10">
+              <div className="h-20 w-20 rounded-full bg-red-500/10 border-2 border-red-500/30 flex items-center justify-center text-red-500">
+                <AlertTriangle size={40} />
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-xl font-black text-zinc-100 italic tracking-tight uppercase">
+                  Hapus Data Sesi?
+                </h3>
+                <p className="text-zinc-400 text-xs font-medium leading-relaxed px-4">
+                  Data kedaulatan <span className="text-red-400 font-bold underline">{countryName}</span> akan dihapus secara permanen dari database PostgreSQL.
+                </p>
+              </div>
+
+              <div className="w-full flex flex-col gap-3">
+                <button
+                  onClick={onConfirm}
+                  className="w-full py-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-widest text-xs shadow-lg shadow-red-600/20 transition-all active:scale-95 flex items-center justify-center gap-2"
+                >
+                  <TrashIcon size={14} />
+                  Hapus Permanen
+                </button>
+                <button
+                  onClick={onClose}
+                  className="w-full py-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-black uppercase tracking-widest text-xs transition-all active:scale-95"
+                >
+                  Batalkan
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export default function LoadGamePage() {
   const [saves, setSaves] = useState<SaveGame[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [deleteTarget, setDeleteTarget] = useState<SaveGame | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -40,12 +109,33 @@ export default function LoadGamePage() {
     try {
       const response = await fetch(`http://localhost:8081/api/game/load?id=${id}`);
       if (response.ok) {
-        // Redirect to game page
         router.push("/game");
       } else {
         alert("Gagal memuat save game.");
       }
     } catch (err) {
+      alert("Error koneksi ke server.");
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!deleteTarget) return;
+
+    try {
+      const response = await fetch("http://localhost:8081/api/game/delete-save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ session_id: deleteTarget.id })
+      });
+
+      if (response.ok) {
+        setSaves(prev => prev.filter(s => s.id !== deleteTarget.id));
+        setDeleteTarget(null);
+      } else {
+        alert("Gagal menghapus data.");
+      }
+    } catch (err) {
+      console.error("Delete error:", err);
       alert("Error koneksi ke server.");
     }
   };
@@ -152,9 +242,15 @@ export default function LoadGamePage() {
                   <span className="text-zinc-400">{new Date(save.lastSaved).toLocaleString('id-ID')}</span>
                 </div>
 
-                <div className="absolute right-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                   <button className="p-2 text-zinc-600 hover:text-red-500 transition-colors">
-                      <Trash2 className="h-4 w-4" />
+                <div className="absolute right-4 bottom-4 z-20">
+                   <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setDeleteTarget(save);
+                    }}
+                    className="p-3 rounded-xl bg-red-500/0 hover:bg-red-500/10 text-zinc-600 hover:text-red-500 transition-all duration-300 border border-transparent hover:border-red-500/20"
+                   >
+                      <TrashIcon className="h-5 w-5" />
                    </button>
                 </div>
               </div>
@@ -162,6 +258,13 @@ export default function LoadGamePage() {
           </div>
         )}
       </main>
+
+      <DeleteConfirmModal 
+        show={!!deleteTarget}
+        countryName={deleteTarget?.country || ""}
+        onConfirm={handleDelete}
+        onClose={() => setDeleteTarget(null)}
+      />
 
       <footer className="relative z-10 p-6 text-center text-[10px] text-zinc-700 font-mono tracking-widest uppercase border-t border-white/5">
         Presiden Simulator Persistence System v1.0 - SQL Powered

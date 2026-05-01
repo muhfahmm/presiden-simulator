@@ -146,11 +146,8 @@ export default function GamePageClient() {
           populationDelta={populationDelta}
           setActiveMenu={setActiveMenu}
           onLogout={() => {
-            if (confirm("Apakah Anda yakin ingin mengakhiri sesi simulasi ini? Semua kemajuan akan hilang.")) {
-              window.dispatchEvent(new CustomEvent('CLEAR_INVASIONS'));
-              gameStorage.clearSession();
-              router.push("/pilih_negara");
-            }
+            window.dispatchEvent(new CustomEvent('CLEAR_INVASIONS'));
+            gameStorage.clearSession();
           }}
         />
       )}
