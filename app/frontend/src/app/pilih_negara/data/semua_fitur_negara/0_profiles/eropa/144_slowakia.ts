@@ -5,7 +5,7 @@ export const slowakia_profile = {
   "lon": 19.5,
   "lat": 48.66666666,
   "flag": "🇸🇰",
-  "jumlah_penduduk": 5446771,
+  "jumlah_penduduk": 5447,
   "anggaran": 1264,
   "pendapatan_nasional": "3611",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const slowakia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 20160,
-    "harga_telur": 43540,
-    "harga_bbm": 14980,
-    "harga_listrik": 2240,
-    "harga_air": 5200,
-    "harga_obat": 126320,
-    "harga_pendidikan": 387120
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 20.16,
+    "harga_telur": 43.54,
+    "harga_bbm": 14.98,
+    "harga_listrik": 2.24,
+    "harga_air": 5.2,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -116,17 +116,17 @@ export const korea_utara: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 15550,
-    "harga_bbm": 8560,
-    "harga_listrik": 1600,
-    "harga_air": 4160,
-    "harga_obat": 157900,
-    "harga_pendidikan": 967800
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 15.55,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.6,
+    "harga_air": 4.16,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

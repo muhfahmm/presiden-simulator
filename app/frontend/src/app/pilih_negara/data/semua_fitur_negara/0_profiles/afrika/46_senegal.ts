@@ -5,7 +5,7 @@ export const senegal_profile = {
   "lon": -14,
   "lat": 14,
   "flag": "🇸🇳",
-  "jumlah_penduduk": 15854360,
+  "jumlah_penduduk": 15854,
   "anggaran": 272,
   "pendapatan_nasional": "778",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const senegal: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 43540,
-    "harga_bbm": 14980,
-    "harga_listrik": 2240,
-    "harga_air": 10400,
-    "harga_obat": 157900,
-    "harga_pendidikan": 387120
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 43.54,
+    "harga_bbm": 14.98,
+    "harga_listrik": 2.24,
+    "harga_air": 10.4,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

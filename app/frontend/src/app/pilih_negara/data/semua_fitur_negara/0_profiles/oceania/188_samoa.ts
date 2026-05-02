@@ -5,7 +5,7 @@ export const samoa_profile = {
   "lon": -172.33333333,
   "lat": -13.58333333,
   "flag": "🇼🇸",
-  "jumlah_penduduk": 196130,
+  "jumlah_penduduk": 196,
   "anggaran": 10,
   "pendapatan_nasional": "25",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const samoa: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 8000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 28800,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 1280,
-    "harga_air": 4160,
-    "harga_obat": 126320,
-    "harga_pendidikan": 483900
+    "harga_beras": 8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 28.8,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.28,
+    "harga_air": 4.16,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

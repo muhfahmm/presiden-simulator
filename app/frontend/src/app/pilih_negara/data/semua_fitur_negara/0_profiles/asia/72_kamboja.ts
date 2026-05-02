@@ -5,7 +5,7 @@ export const kamboja_profile = {
   "lon": 104.91,
   "lat": 11.55,
   "flag": "🇰🇭",
-  "jumlah_penduduk": 16249798,
+  "jumlah_penduduk": 16250,
   "anggaran": 292,
   "pendapatan_nasional": "833",
   "religion": "Buddha",
@@ -116,17 +116,17 @@ export const kamboja: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 14400,
-    "harga_telur": 43540,
-    "harga_bbm": 21400,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 315800,
-    "harga_pendidikan": 483900
+    "harga_beras": 32,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 14.4,
+    "harga_telur": 43.54,
+    "harga_bbm": 21.4,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

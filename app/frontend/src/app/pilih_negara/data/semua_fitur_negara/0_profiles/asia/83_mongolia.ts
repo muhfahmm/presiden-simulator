@@ -5,7 +5,7 @@ export const mongolia_profile = {
   "lon": 105,
   "lat": 46,
   "flag": "🇲🇳",
-  "jumlah_penduduk": 3170208,
+  "jumlah_penduduk": 3170,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Buddha",
@@ -116,17 +116,17 @@ export const mongolia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 30800,
-    "harga_gula": 28800,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 1280,
-    "harga_air": 2600,
-    "harga_obat": 157900,
-    "harga_pendidikan": 677460
+    "harga_beras": 16,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 30.8,
+    "harga_gula": 28.8,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.28,
+    "harga_air": 2.6,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

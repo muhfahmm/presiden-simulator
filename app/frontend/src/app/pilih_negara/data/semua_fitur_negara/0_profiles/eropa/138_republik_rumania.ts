@@ -5,7 +5,7 @@ export const republik_rumania_profile = {
   "lon": 25,
   "lat": 46,
   "flag": "🇷🇴",
-  "jumlah_penduduk": 19466145,
+  "jumlah_penduduk": 19466,
   "anggaran": 3403,
   "pendapatan_nasional": "9723",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const republik_rumania: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 20500,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 387120
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 20.5,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

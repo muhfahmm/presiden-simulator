@@ -116,17 +116,17 @@ export const ceko: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 28800,
-    "harga_telur": 43540,
-    "harga_bbm": 8560,
-    "harga_listrik": 1600,
-    "harga_air": 4160,
-    "harga_obat": 221060,
-    "harga_pendidikan": 387120
+    "harga_beras": 16,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 28.8,
+    "harga_telur": 43.54,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.6,
+    "harga_air": 4.16,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

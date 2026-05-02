@@ -5,7 +5,7 @@ export const guatemala_profile = {
   "lon": -90.25,
   "lat": 15.5,
   "flag": "🇬🇹",
-  "jumlah_penduduk": 17247807,
+  "jumlah_penduduk": 17248,
   "anggaran": 924,
   "pendapatan_nasional": "2639",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const guatemala: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 800,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 387120
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 0.8,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

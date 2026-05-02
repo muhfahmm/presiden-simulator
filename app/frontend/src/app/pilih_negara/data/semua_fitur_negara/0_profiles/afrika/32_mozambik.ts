@@ -5,7 +5,7 @@ export const mozambik_profile = {
   "lon": 35,
   "lat": -18.25,
   "flag": "🇲🇿",
-  "jumlah_penduduk": 29495962,
+  "jumlah_penduduk": 29496,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const mozambik: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 14400,
-    "harga_telur": 24880,
-    "harga_bbm": 14980,
-    "harga_listrik": 2240,
-    "harga_air": 7280,
-    "harga_obat": 157900,
-    "harga_pendidikan": 967800
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 14.4,
+    "harga_telur": 24.88,
+    "harga_bbm": 14.98,
+    "harga_listrik": 2.24,
+    "harga_air": 7.28,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

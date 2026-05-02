@@ -5,7 +5,7 @@ export const laos_profile = {
   "lon": 102.63,
   "lat": 17.97,
   "flag": "🇱🇦",
-  "jumlah_penduduk": 7061507,
+  "jumlah_penduduk": 7062,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Buddha",
@@ -116,17 +116,17 @@ export const laos: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 20500,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 11520,
-    "harga_telur": 24880,
-    "harga_bbm": 5350,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 315800,
-    "harga_pendidikan": 677460
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 20.5,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 11.52,
+    "harga_telur": 24.88,
+    "harga_bbm": 5.35,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

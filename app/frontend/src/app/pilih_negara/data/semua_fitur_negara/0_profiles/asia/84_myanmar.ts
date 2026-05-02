@@ -5,7 +5,7 @@ export const myanmar_profile = {
   "lon": 96.07,
   "lat": 19.76,
   "flag": "🇲🇲",
-  "jumlah_penduduk": 53708395,
+  "jumlah_penduduk": 53708,
   "anggaran": 583,
   "pendapatan_nasional": "1667",
   "religion": "Buddha",
@@ -116,17 +116,17 @@ export const myanmar: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 1280,
-    "harga_air": 4160,
-    "harga_obat": 78950,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.28,
+    "harga_air": 4.16,
+    "harga_obat": 78.95,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

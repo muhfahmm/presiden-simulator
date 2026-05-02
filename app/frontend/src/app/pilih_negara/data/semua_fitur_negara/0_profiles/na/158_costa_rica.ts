@@ -5,7 +5,7 @@ export const costa_rica_profile = {
   "lon": -84,
   "lat": 10,
   "flag": "🇨🇷",
-  "jumlah_penduduk": 4999441,
+  "jumlah_penduduk": 4999,
   "anggaran": 681,
   "pendapatan_nasional": "1945",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const costa_rica: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 11520,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 11.52,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

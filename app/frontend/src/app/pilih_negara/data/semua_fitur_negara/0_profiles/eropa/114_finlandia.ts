@@ -5,7 +5,7 @@ export const finlandia_profile = {
   "lon": 24.93,
   "lat": 60.16,
   "flag": "🇫🇮",
-  "jumlah_penduduk": 5515525,
+  "jumlah_penduduk": 5516,
   "anggaran": 2917,
   "pendapatan_nasional": "8334",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const finlandia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 8000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 20160,
-    "harga_telur": 24880,
-    "harga_bbm": 8560,
-    "harga_listrik": 1600,
-    "harga_air": 7280,
-    "harga_obat": 157900,
-    "harga_pendidikan": 967800
+    "harga_beras": 8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 20.16,
+    "harga_telur": 24.88,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.6,
+    "harga_air": 7.28,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

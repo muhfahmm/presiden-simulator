@@ -116,17 +116,17 @@ export const kepulauan_faroe: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 28800,
-    "harga_telur": 43540,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 483900
+    "harga_beras": 32,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 28.8,
+    "harga_telur": 43.54,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

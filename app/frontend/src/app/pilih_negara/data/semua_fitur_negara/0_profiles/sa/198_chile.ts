@@ -5,7 +5,7 @@ export const chile_profile = {
   "lon": -71,
   "lat": -30,
   "flag": "🇨🇱",
-  "jumlah_penduduk": 18729160,
+  "jumlah_penduduk": 18729,
   "anggaran": 3257,
   "pendapatan_nasional": "9306",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const chile: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 11520,
-    "harga_telur": 15550,
-    "harga_bbm": 5350,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 677460
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 11.52,
+    "harga_telur": 15.55,
+    "harga_bbm": 5.35,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

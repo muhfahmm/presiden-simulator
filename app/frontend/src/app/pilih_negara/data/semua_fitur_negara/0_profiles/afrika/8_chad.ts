@@ -5,7 +5,7 @@ export const chad_profile = {
   "lon": 19,
   "lat": 15,
   "flag": "🇹🇩",
-  "jumlah_penduduk": 15477751,
+  "jumlah_penduduk": 15478,
   "anggaran": 117,
   "pendapatan_nasional": "333",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const chad: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 11520,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 11.52,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

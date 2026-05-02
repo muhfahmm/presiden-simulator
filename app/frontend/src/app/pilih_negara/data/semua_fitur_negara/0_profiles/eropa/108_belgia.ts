@@ -5,7 +5,7 @@ export const belgia_profile = {
   "lon": 4.35,
   "lat": 50.85,
   "flag": "🇧🇪",
-  "jumlah_penduduk": 11433256,
+  "jumlah_penduduk": 11433,
   "anggaran": 6077,
   "pendapatan_nasional": "17362",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const belgia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 10400,
-    "harga_obat": 78950,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 10.4,
+    "harga_obat": 78.95,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

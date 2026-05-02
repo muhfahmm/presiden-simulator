@@ -16,7 +16,7 @@ export const komersialRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Pusat Perbelanjaan & Mall Nasional",
     waktu_pembangunan: 50,
-    biaya_pembangunan: 48750000,
+    biaya_pembangunan: 48750,
     lowongan_kerja: 25000,
     konsumsi_listrik: 650,
     efek: "Meningkatkan kas negara"
@@ -29,7 +29,7 @@ export const komersialRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Kompleks Hotel & Resort Internasional",
     waktu_pembangunan: 35,
-    biaya_pembangunan: 63750000,
+    biaya_pembangunan: 63750,
     lowongan_kerja: 8500,
     konsumsi_listrik: 350,
     efek: "Meningkatkan kas negara"
@@ -42,7 +42,7 @@ export const komersialRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Pusat Perdagangan & Logistik Tekstil",
     waktu_pembangunan: 20,
-    biaya_pembangunan: 26250000,
+    biaya_pembangunan: 26250,
     lowongan_kerja: 12000,
     konsumsi_listrik: 150,
     efek: "Meningkatkan kas negara"

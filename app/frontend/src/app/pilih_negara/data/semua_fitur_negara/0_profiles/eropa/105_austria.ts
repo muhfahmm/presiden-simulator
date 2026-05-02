@@ -5,7 +5,7 @@ export const austria_profile = {
   "lon": 16.37,
   "lat": 48.2,
   "flag": "🇦🇹",
-  "jumlah_penduduk": 8840521,
+  "jumlah_penduduk": 8841,
   "anggaran": 4959,
   "pendapatan_nasional": "14168",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const austria: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 20500,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 20160,
-    "harga_telur": 31100,
-    "harga_bbm": 14980,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 315800,
-    "harga_pendidikan": 967800
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 20.5,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 20.16,
+    "harga_telur": 31.1,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

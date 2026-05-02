@@ -5,7 +5,7 @@ export const kuba_profile = {
   "lon": -80,
   "lat": 21.5,
   "flag": "🇨🇺",
-  "jumlah_penduduk": 11338138,
+  "jumlah_penduduk": 11338,
   "anggaran": 1021,
   "pendapatan_nasional": "2917",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const kuba: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 5350,
-    "harga_listrik": 1280,
-    "harga_air": 7280,
-    "harga_obat": 221060,
-    "harga_pendidikan": 241950
+    "harga_beras": 16,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 5.35,
+    "harga_listrik": 1.28,
+    "harga_air": 7.28,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const palestina_profile = {
   "lon": 35.2,
   "lat": 31.9,
   "flag": "🇵🇸",
-  "jumlah_penduduk": 4569087,
+  "jumlah_penduduk": 4569,
   "anggaran": 194,
   "pendapatan_nasional": "556",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const palestina: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 20160,
-    "harga_telur": 24880,
-    "harga_bbm": 8560,
-    "harga_listrik": 1600,
-    "harga_air": 4160,
-    "harga_obat": 315800,
-    "harga_pendidikan": 483900
+    "harga_beras": 32,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 20.16,
+    "harga_telur": 24.88,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.6,
+    "harga_air": 4.16,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

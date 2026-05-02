@@ -5,7 +5,7 @@ export const china_profile = {
   "lon": 116.4,
   "lat": 39.9,
   "flag": "🇨🇳",
-  "jumlah_penduduk": 1392730000,
+  "jumlah_penduduk": 1392730,
   "anggaran": 180167,
   "pendapatan_nasional": "514763",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const china: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 15550,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 2600,
-    "harga_obat": 315800,
-    "harga_pendidikan": 387120
+    "harga_beras": 32,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 15.55,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 2.6,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

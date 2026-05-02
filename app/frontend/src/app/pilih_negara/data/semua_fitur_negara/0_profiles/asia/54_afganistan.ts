@@ -5,7 +5,7 @@ export const afganistan_profile = {
   "lon": 69.16,
   "lat": 34.54,
   "flag": "🇦🇫",
-  "jumlah_penduduk": 37172386,
+  "jumlah_penduduk": 37172,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const afganistan: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 24880,
-    "harga_bbm": 5350,
-    "harga_listrik": 1280,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 677460
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 24.88,
+    "harga_bbm": 5.35,
+    "harga_listrik": 1.28,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const montenegro_profile = {
   "lon": 19.3,
   "lat": 42.5,
   "flag": "🇲🇪",
-  "jumlah_penduduk": 631219,
+  "jumlah_penduduk": 631,
   "anggaran": 68,
   "pendapatan_nasional": "194",
   "religion": "Kristen Ortodoks",
@@ -116,17 +116,17 @@ export const montenegro: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 62200,
-    "harga_bbm": 14980,
-    "harga_listrik": 1600,
-    "harga_air": 7280,
-    "harga_obat": 126320,
-    "harga_pendidikan": 677460
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 62.2,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.6,
+    "harga_air": 7.28,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

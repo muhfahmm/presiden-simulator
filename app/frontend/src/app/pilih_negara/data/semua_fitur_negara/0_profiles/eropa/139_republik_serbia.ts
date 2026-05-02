@@ -5,7 +5,7 @@ export const republik_serbia_profile = {
   "lon": 21,
   "lat": 44,
   "flag": "🇷🇸",
-  "jumlah_penduduk": 6963764,
+  "jumlah_penduduk": 6964,
   "anggaran": 661,
   "pendapatan_nasional": "1889",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const republik_serbia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 14400,
-    "harga_telur": 43540,
-    "harga_bbm": 14980,
-    "harga_listrik": 2240,
-    "harga_air": 10400,
-    "harga_obat": 157900,
-    "harga_pendidikan": 241950
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 14.4,
+    "harga_telur": 43.54,
+    "harga_bbm": 14.98,
+    "harga_listrik": 2.24,
+    "harga_air": 10.4,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

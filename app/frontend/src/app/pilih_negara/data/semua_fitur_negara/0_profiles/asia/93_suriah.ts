@@ -5,7 +5,7 @@ export const suriah_profile = {
   "lon": 38,
   "lat": 35,
   "flag": "🇸🇾",
-  "jumlah_penduduk": 16906283,
+  "jumlah_penduduk": 16906,
   "anggaran": 117,
   "pendapatan_nasional": "333",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const suriah: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 11520,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 387120
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 11.52,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

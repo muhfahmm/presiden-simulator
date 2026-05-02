@@ -5,7 +5,7 @@ export const trinidad_dan_tobago_profile = {
   "lon": -61,
   "lat": 11,
   "flag": "🇹🇹",
-  "jumlah_penduduk": 1389858,
+  "jumlah_penduduk": 1390,
   "anggaran": 243,
   "pendapatan_nasional": "694",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const trinidad_dan_tobago: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 14980,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 126320,
-    "harga_pendidikan": 387120
+    "harga_beras": 32,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

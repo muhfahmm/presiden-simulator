@@ -5,7 +5,7 @@ export const el_salvador_profile = {
   "lon": -88.91666666,
   "lat": 13.83333333,
   "flag": "🇸🇻",
-  "jumlah_penduduk": 6420744,
+  "jumlah_penduduk": 6421,
   "anggaran": 311,
   "pendapatan_nasional": "889",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const el_salvador: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 43540,
-    "harga_bbm": 14980,
-    "harga_listrik": 2240,
-    "harga_air": 4160,
-    "harga_obat": 126320,
-    "harga_pendidikan": 677460
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 43.54,
+    "harga_bbm": 14.98,
+    "harga_listrik": 2.24,
+    "harga_air": 4.16,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

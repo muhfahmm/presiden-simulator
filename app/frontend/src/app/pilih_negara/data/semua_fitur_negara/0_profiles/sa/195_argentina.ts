@@ -5,7 +5,7 @@ export const argentina_profile = {
   "lon": -58.38,
   "lat": -34.6,
   "flag": "🇦🇷",
-  "jumlah_penduduk": 44494502,
+  "jumlah_penduduk": 44495,
   "anggaran": 6223,
   "pendapatan_nasional": "17779",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const argentina: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 15550,
-    "harga_bbm": 14980,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 15.55,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const tonga_profile = {
   "lon": -175,
   "lat": -20,
   "flag": "🇹🇴",
-  "jumlah_penduduk": 103197,
+  "jumlah_penduduk": 103,
   "anggaran": 10,
   "pendapatan_nasional": "15",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const tonga: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 8000,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 30800,
-    "harga_gula": 11520,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 1280,
-    "harga_air": 10400,
-    "harga_obat": 315800,
-    "harga_pendidikan": 483900
+    "harga_beras": 8,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 30.8,
+    "harga_gula": 11.52,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.28,
+    "harga_air": 10.4,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

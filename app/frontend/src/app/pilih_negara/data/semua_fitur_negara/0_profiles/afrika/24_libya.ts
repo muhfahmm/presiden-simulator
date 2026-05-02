@@ -5,7 +5,7 @@ export const libya_profile = {
   "lon": 13.1,
   "lat": 32.53,
   "flag": "🇱🇾",
-  "jumlah_penduduk": 6678567,
+  "jumlah_penduduk": 6679,
   "anggaran": 408,
   "pendapatan_nasional": "1167",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const libya: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 15550,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 4160,
-    "harga_obat": 221060,
-    "harga_pendidikan": 387120
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 15.55,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 4.16,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

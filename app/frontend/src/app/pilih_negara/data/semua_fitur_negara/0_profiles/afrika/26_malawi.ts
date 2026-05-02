@@ -5,7 +5,7 @@ export const malawi_profile = {
   "lon": 33.47,
   "lat": -13.59,
   "flag": "🇲🇼",
-  "jumlah_penduduk": 18143315,
+  "jumlah_penduduk": 18143,
   "anggaran": 117,
   "pendapatan_nasional": "333",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const malawi: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 62200,
-    "harga_bbm": 5350,
-    "harga_listrik": 800,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 387120
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 62.2,
+    "harga_bbm": 5.35,
+    "harga_listrik": 0.8,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

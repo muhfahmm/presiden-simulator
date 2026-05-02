@@ -5,7 +5,7 @@ export const guiana_prancis_profile = {
   "lon": -53,
   "lat": 4,
   "flag": "🇬🇫",
-  "jumlah_penduduk": 290691,
+  "jumlah_penduduk": 291,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const guiana_prancis: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 28800,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 800,
-    "harga_air": 4160,
-    "harga_obat": 315800,
-    "harga_pendidikan": 387120
+    "harga_beras": 16,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 28.8,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 0.8,
+    "harga_air": 4.16,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

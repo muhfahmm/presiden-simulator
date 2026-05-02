@@ -5,7 +5,7 @@ export const paraguay_profile = {
   "lon": -58,
   "lat": -23,
   "flag": "🇵🇾",
-  "jumlah_penduduk": 6956071,
+  "jumlah_penduduk": 6956,
   "anggaran": 428,
   "pendapatan_nasional": "1222",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const paraguay: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 11520,
-    "harga_telur": 43540,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 4160,
-    "harga_obat": 221060,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 11.52,
+    "harga_telur": 43.54,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 4.16,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

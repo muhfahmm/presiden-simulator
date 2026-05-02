@@ -5,7 +5,7 @@ export const liberia_profile = {
   "lon": -9.5,
   "lat": 6.5,
   "flag": "🇱🇷",
-  "jumlah_penduduk": 4818977,
+  "jumlah_penduduk": 4819,
   "anggaran": 39,
   "pendapatan_nasional": "111",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const liberia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 20160,
-    "harga_telur": 62200,
-    "harga_bbm": 14980,
-    "harga_listrik": 2240,
-    "harga_air": 5200,
-    "harga_obat": 78950,
-    "harga_pendidikan": 241950
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 20.16,
+    "harga_telur": 62.2,
+    "harga_bbm": 14.98,
+    "harga_listrik": 2.24,
+    "harga_air": 5.2,
+    "harga_obat": 78.95,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

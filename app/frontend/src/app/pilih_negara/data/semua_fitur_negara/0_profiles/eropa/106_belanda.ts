@@ -5,7 +5,7 @@ export const belanda_profile = {
   "lon": 4.9,
   "lat": 52.36,
   "flag": "🇳🇱",
-  "jumlah_penduduk": 17231624,
+  "jumlah_penduduk": 17232,
   "anggaran": 10598,
   "pendapatan_nasional": "30280",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const belanda: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 7200,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 315800,
-    "harga_pendidikan": 677460
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 7.2,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

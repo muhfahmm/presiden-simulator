@@ -5,7 +5,7 @@ export const indonesia_profile = {
   "lon": 106.84,
   "lat": -6.2,
   "flag": "🇮🇩",
-  "jumlah_penduduk": 267663435,
+  "jumlah_penduduk": 267663,
   "anggaran": 13807,
   "pendapatan_nasional": "39448",
   "religion": "Islam",
@@ -122,17 +122,17 @@ export const indonesia: CountryData = {
   // 13. Ã°Å¸â€ºâ€™ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 62200,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 2600,
-    "harga_obat": 157900,
-    "harga_pendidikan": 483900
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 62.2,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 2.6,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 483.9
   },
   // =============================================================
   // 15. Ã°Å¸Å’Â GEOPOLITIK & HUBUNGAN INTERNASIONAL

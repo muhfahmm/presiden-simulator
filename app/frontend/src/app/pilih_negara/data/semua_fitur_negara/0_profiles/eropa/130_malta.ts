@@ -5,7 +5,7 @@ export const malta_profile = {
   "lon": 14.3,
   "lat": 35.53,
   "flag": "🇲🇹",
-  "jumlah_penduduk": 484630,
+  "jumlah_penduduk": 485,
   "anggaran": 194,
   "pendapatan_nasional": "556",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const malta: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 20500,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 20160,
-    "harga_telur": 15550,
-    "harga_bbm": 8560,
-    "harga_listrik": 1280,
-    "harga_air": 4160,
-    "harga_obat": 157900,
-    "harga_pendidikan": 677460
+    "harga_beras": 16,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 20.5,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 20.16,
+    "harga_telur": 15.55,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.28,
+    "harga_air": 4.16,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

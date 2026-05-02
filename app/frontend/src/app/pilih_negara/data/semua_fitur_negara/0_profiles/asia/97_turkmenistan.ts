@@ -5,7 +5,7 @@ export const turkmenistan_profile = {
   "lon": 60,
   "lat": 40,
   "flag": "🇹🇲",
-  "jumlah_penduduk": 5850908,
+  "jumlah_penduduk": 5851,
   "anggaran": 438,
   "pendapatan_nasional": "1250",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const turkmenistan: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 31100,
-    "harga_bbm": 14980,
-    "harga_listrik": 800,
-    "harga_air": 5200,
-    "harga_obat": 315800,
-    "harga_pendidikan": 967800
+    "harga_beras": 16,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 31.1,
+    "harga_bbm": 14.98,
+    "harga_listrik": 0.8,
+    "harga_air": 5.2,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

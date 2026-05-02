@@ -5,7 +5,7 @@ export const inggris_profile = {
   "lon": -0.12,
   "lat": 51.5,
   "flag": "🇬🇧",
-  "jumlah_penduduk": 66460344,
+  "jumlah_penduduk": 66460,
   "anggaran": 34030,
   "pendapatan_nasional": "97230",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const inggris: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 20160,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 1280,
-    "harga_air": 7280,
-    "harga_obat": 221060,
-    "harga_pendidikan": 677460
+    "harga_beras": 16,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 20.16,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.28,
+    "harga_air": 7.28,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

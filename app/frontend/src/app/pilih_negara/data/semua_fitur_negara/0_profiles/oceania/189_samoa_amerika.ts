@@ -116,17 +116,17 @@ export const samoa_amerika: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 31100,
-    "harga_bbm": 8560,
-    "harga_listrik": 2240,
-    "harga_air": 7280,
-    "harga_obat": 221060,
-    "harga_pendidikan": 967800
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 31.1,
+    "harga_bbm": 8.56,
+    "harga_listrik": 2.24,
+    "harga_air": 7.28,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

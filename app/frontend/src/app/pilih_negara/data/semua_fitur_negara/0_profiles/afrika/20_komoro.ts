@@ -5,7 +5,7 @@ export const komoro_profile = {
   "lon": 44.25,
   "lat": -12.16666666,
   "flag": "🇰🇲",
-  "jumlah_penduduk": 832322,
+  "jumlah_penduduk": 832,
   "anggaran": 13,
   "pendapatan_nasional": "36",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const komoro: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 7200,
-    "harga_telur": 31100,
-    "harga_bbm": 21400,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 126320,
-    "harga_pendidikan": 967800
+    "harga_beras": 16,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 7.2,
+    "harga_telur": 31.1,
+    "harga_bbm": 21.4,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

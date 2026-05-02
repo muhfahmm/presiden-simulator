@@ -5,7 +5,7 @@ export const israel_profile = {
   "lon": 35.21,
   "lat": 31.76,
   "flag": "🇮🇱",
-  "jumlah_penduduk": 8882800,
+  "jumlah_penduduk": 8883,
   "anggaran": 5056,
   "pendapatan_nasional": "14446",
   "religion": "Yahudi",
@@ -116,17 +116,17 @@ export const israel: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 28800,
-    "harga_telur": 62200,
-    "harga_bbm": 10700,
-    "harga_listrik": 800,
-    "harga_air": 7280,
-    "harga_obat": 126320,
-    "harga_pendidikan": 483900
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 28.8,
+    "harga_telur": 62.2,
+    "harga_bbm": 10.7,
+    "harga_listrik": 0.8,
+    "harga_air": 7.28,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

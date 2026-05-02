@@ -116,17 +116,17 @@ export const kosovo: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 28800,
-    "harga_telur": 31100,
-    "harga_bbm": 8560,
-    "harga_listrik": 2240,
-    "harga_air": 10400,
-    "harga_obat": 315800,
-    "harga_pendidikan": 483900
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 28.8,
+    "harga_telur": 31.1,
+    "harga_bbm": 8.56,
+    "harga_listrik": 2.24,
+    "harga_air": 10.4,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

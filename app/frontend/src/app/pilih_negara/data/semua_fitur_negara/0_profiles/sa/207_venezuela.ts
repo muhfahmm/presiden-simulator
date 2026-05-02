@@ -5,7 +5,7 @@ export const venezuela_profile = {
   "lon": -66,
   "lat": 8,
   "flag": "🇻🇪",
-  "jumlah_penduduk": 28870195,
+  "jumlah_penduduk": 28870,
   "anggaran": 924,
   "pendapatan_nasional": "2639",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const venezuela: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 20500,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 20160,
-    "harga_telur": 15550,
-    "harga_bbm": 8560,
-    "harga_listrik": 3200,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 241950
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 20.5,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 20.16,
+    "harga_telur": 15.55,
+    "harga_bbm": 8.56,
+    "harga_listrik": 3.2,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

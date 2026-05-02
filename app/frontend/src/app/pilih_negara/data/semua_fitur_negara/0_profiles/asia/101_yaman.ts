@@ -5,7 +5,7 @@ export const yaman_profile = {
   "lon": 48,
   "lat": 15,
   "flag": "🇾🇪",
-  "jumlah_penduduk": 28498687,
+  "jumlah_penduduk": 28499,
   "anggaran": 214,
   "pendapatan_nasional": "611",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const yaman: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 28800,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 2600,
-    "harga_obat": 157900,
-    "harga_pendidikan": 483900
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 28.8,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 2.6,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

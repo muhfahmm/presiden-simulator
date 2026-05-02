@@ -5,7 +5,7 @@ export const islandia_profile = {
   "lon": -18,
   "lat": 65,
   "flag": "🇮🇸",
-  "jumlah_penduduk": 352721,
+  "jumlah_penduduk": 353,
   "anggaran": 292,
   "pendapatan_nasional": "833",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const islandia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 15550,
-    "harga_bbm": 8560,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 387120
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 15.55,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

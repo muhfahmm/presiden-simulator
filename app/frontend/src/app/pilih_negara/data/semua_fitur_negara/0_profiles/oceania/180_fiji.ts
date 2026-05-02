@@ -5,7 +5,7 @@ export const fiji_profile = {
   "lon": 175,
   "lat": -18,
   "flag": "🇫🇯",
-  "jumlah_penduduk": 883483,
+  "jumlah_penduduk": 883,
   "anggaran": 49,
   "pendapatan_nasional": "139",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const fiji: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 8560,
-    "harga_listrik": 2240,
-    "harga_air": 7280,
-    "harga_obat": 157900,
-    "harga_pendidikan": 241950
+    "harga_beras": 32,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 8.56,
+    "harga_listrik": 2.24,
+    "harga_air": 7.28,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

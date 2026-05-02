@@ -5,7 +5,7 @@ export const djibouti_profile = {
   "lon": 43,
   "lat": 11.5,
   "flag": "🇩🇯",
-  "jumlah_penduduk": 958920,
+  "jumlah_penduduk": 959,
   "anggaran": 39,
   "pendapatan_nasional": "111",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const djibouti: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 30800,
-    "harga_gula": 20160,
-    "harga_telur": 62200,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 7280,
-    "harga_obat": 221060,
-    "harga_pendidikan": 483900
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 30.8,
+    "harga_gula": 20.16,
+    "harga_telur": 62.2,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 7.28,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

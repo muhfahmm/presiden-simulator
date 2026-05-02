@@ -30,7 +30,7 @@ export const afrika_selatan_profile = {
   "lon": 28.18,
   "lat": -25.74,
   "flag": "🇿🇦",
-  "jumlah_penduduk": 57779622,
+  "jumlah_penduduk": 57780,
   "anggaran": 3938,
   "pendapatan_nasional": "11251",
   "religion": "Protestan",
@@ -117,17 +117,17 @@ export const afrika_selatan: CountryData = {
   // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 11520,
-    "harga_telur": 31100,
-    "harga_bbm": 14980,
-    "harga_listrik": 1280,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 11.52,
+    "harga_telur": 31.1,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.28,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const eswatini_profile = {
   "lon": 31.5,
   "lat": -26.5,
   "flag": "🇸🇿",
-  "jumlah_penduduk": 1136191,
+  "jumlah_penduduk": 1136,
   "anggaran": 44,
   "pendapatan_nasional": "125",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const eswatini: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 20500,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 8560,
-    "harga_listrik": 2240,
-    "harga_air": 7280,
-    "harga_obat": 157900,
-    "harga_pendidikan": 677460
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 20.5,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 8.56,
+    "harga_listrik": 2.24,
+    "harga_air": 7.28,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

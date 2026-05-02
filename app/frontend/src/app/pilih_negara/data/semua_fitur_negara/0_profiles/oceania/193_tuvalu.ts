@@ -116,17 +116,17 @@ export const tuvalu: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 10400,
-    "harga_obat": 157900,
-    "harga_pendidikan": 677460
+    "harga_beras": 16,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 10.4,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

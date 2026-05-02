@@ -5,7 +5,7 @@ export const madagaskar_profile = {
   "lon": 47.31,
   "lat": -18.55,
   "flag": "🇲🇬",
-  "jumlah_penduduk": 26262368,
+  "jumlah_penduduk": 26262,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const madagaskar: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 20160,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 800,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 483900
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 20.16,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 0.8,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const saint_vincent_dan_grenadine_profile = {
   "lon": -61.2,
   "lat": 13.25,
   "flag": "🇻🇨",
-  "jumlah_penduduk": 110210,
+  "jumlah_penduduk": 110,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const saint_vincent_dan_grenadine: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 20160,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 5200,
-    "harga_obat": 78950,
-    "harga_pendidikan": 967800
+    "harga_beras": 32,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 20.16,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 5.2,
+    "harga_obat": 78.95,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

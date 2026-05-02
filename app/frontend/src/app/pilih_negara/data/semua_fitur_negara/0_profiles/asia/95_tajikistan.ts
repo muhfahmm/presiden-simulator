@@ -5,7 +5,7 @@ export const tajikistan_profile = {
   "lon": 71,
   "lat": 39,
   "flag": "🇹🇯",
-  "jumlah_penduduk": 9100837,
+  "jumlah_penduduk": 9101,
   "anggaran": 117,
   "pendapatan_nasional": "333",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const tajikistan: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 20500,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 43540,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 4160,
-    "harga_obat": 157900,
-    "harga_pendidikan": 387120
+    "harga_beras": 16,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 20.5,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 43.54,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 4.16,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

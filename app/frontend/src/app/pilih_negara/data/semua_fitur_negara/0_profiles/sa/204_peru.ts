@@ -5,7 +5,7 @@ export const peru_profile = {
   "lon": -76,
   "lat": -10,
   "flag": "🇵🇪",
-  "jumlah_penduduk": 31989256,
+  "jumlah_penduduk": 31989,
   "anggaran": 2528,
   "pendapatan_nasional": "7223",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const peru: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 43540,
-    "harga_bbm": 5350,
-    "harga_listrik": 1600,
-    "harga_air": 4160,
-    "harga_obat": 126320,
-    "harga_pendidikan": 483900
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 43.54,
+    "harga_bbm": 5.35,
+    "harga_listrik": 1.6,
+    "harga_air": 4.16,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

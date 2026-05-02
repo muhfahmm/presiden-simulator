@@ -5,7 +5,7 @@ export const mali_profile = {
   "lon": -8,
   "lat": 12.39,
   "flag": "🇲🇱",
-  "jumlah_penduduk": 19077690,
+  "jumlah_penduduk": 19078,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const mali: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 14980,
-    "harga_listrik": 1280,
-    "harga_air": 10400,
-    "harga_obat": 78950,
-    "harga_pendidikan": 387120
+    "harga_beras": 32,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.28,
+    "harga_air": 10.4,
+    "harga_obat": 78.95,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

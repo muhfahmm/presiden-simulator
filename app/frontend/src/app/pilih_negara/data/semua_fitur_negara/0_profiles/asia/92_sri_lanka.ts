@@ -5,7 +5,7 @@ export const sri_lanka_profile = {
   "lon": 81,
   "lat": 7,
   "flag": "🇱🇰",
-  "jumlah_penduduk": 21670000,
+  "jumlah_penduduk": 21670,
   "anggaran": 729,
   "pendapatan_nasional": "2084",
   "religion": "Buddha",
@@ -116,17 +116,17 @@ export const sri_lanka: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 7200,
-    "harga_telur": 43540,
-    "harga_bbm": 21400,
-    "harga_listrik": 1280,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 387120
+    "harga_beras": 32,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 7.2,
+    "harga_telur": 43.54,
+    "harga_bbm": 21.4,
+    "harga_listrik": 1.28,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

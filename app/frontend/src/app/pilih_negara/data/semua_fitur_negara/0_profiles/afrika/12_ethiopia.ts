@@ -5,7 +5,7 @@ export const ethiopia_profile = {
   "lon": 38,
   "lat": 8,
   "flag": "🇪🇹",
-  "jumlah_penduduk": 109224559,
+  "jumlah_penduduk": 109225,
   "anggaran": 1507,
   "pendapatan_nasional": "4306",
   "religion": "Kristen Ortodoks",
@@ -116,17 +116,17 @@ export const ethiopia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 7280,
-    "harga_obat": 157900,
-    "harga_pendidikan": 677460
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 7.28,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

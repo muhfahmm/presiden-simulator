@@ -5,7 +5,7 @@ export const mauritius_profile = {
   "lon": 57.55,
   "lat": -20.28333333,
   "flag": "🇲🇺",
-  "jumlah_penduduk": 1265303,
+  "jumlah_penduduk": 1265,
   "anggaran": 136,
   "pendapatan_nasional": "389",
   "religion": "Hindu",
@@ -116,17 +116,17 @@ export const mauritius: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 30800,
-    "harga_gula": 28800,
-    "harga_telur": 62200,
-    "harga_bbm": 14980,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 315800,
-    "harga_pendidikan": 241950
+    "harga_beras": 32,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 30.8,
+    "harga_gula": 28.8,
+    "harga_telur": 62.2,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const kamerun_profile = {
   "lon": 12,
   "lat": 6,
   "flag": "🇨🇲",
-  "jumlah_penduduk": 25216237,
+  "jumlah_penduduk": 25216,
   "anggaran": 438,
   "pendapatan_nasional": "1250",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const kamerun: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 7200,
-    "harga_telur": 43540,
-    "harga_bbm": 8560,
-    "harga_listrik": 2240,
-    "harga_air": 7280,
-    "harga_obat": 157900,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 7.2,
+    "harga_telur": 43.54,
+    "harga_bbm": 8.56,
+    "harga_listrik": 2.24,
+    "harga_air": 7.28,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

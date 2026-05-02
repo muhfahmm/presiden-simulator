@@ -5,7 +5,7 @@ export const spanyol_profile = {
   "lon": -3.7,
   "lat": 40.41,
   "flag": "🇪🇸",
-  "jumlah_penduduk": 46796540,
+  "jumlah_penduduk": 46797,
   "anggaran": 15362,
   "pendapatan_nasional": "43892",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const spanyol: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 31100,
-    "harga_bbm": 8560,
-    "harga_listrik": 1600,
-    "harga_air": 10400,
-    "harga_obat": 157900,
-    "harga_pendidikan": 483900
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 31.1,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.6,
+    "harga_air": 10.4,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

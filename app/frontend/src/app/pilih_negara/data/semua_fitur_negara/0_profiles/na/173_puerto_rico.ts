@@ -5,7 +5,7 @@ export const puerto_rico_profile = {
   "lon": -66.5,
   "lat": 18.25,
   "flag": "🇵🇷",
-  "jumlah_penduduk": 3195153,
+  "jumlah_penduduk": 3195,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const puerto_rico: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 2600,
-    "harga_obat": 221060,
-    "harga_pendidikan": 241950
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 2.6,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

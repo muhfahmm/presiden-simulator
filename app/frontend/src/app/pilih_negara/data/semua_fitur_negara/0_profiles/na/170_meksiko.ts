@@ -5,7 +5,7 @@ export const meksiko_profile = {
   "lon": -102,
   "lat": 23,
   "flag": "🇲🇽",
-  "jumlah_penduduk": 126190788,
+  "jumlah_penduduk": 126191,
   "anggaran": 17404,
   "pendapatan_nasional": "49726",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const meksiko: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 14980,
-    "harga_listrik": 3200,
-    "harga_air": 10400,
-    "harga_obat": 157900,
-    "harga_pendidikan": 387120
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 14.98,
+    "harga_listrik": 3.2,
+    "harga_air": 10.4,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

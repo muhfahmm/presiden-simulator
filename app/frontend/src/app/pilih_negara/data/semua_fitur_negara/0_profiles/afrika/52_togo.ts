@@ -5,7 +5,7 @@ export const togo_profile = {
   "lon": 1.16666666,
   "lat": 8,
   "flag": "🇹🇬",
-  "jumlah_penduduk": 7889094,
+  "jumlah_penduduk": 7889,
   "anggaran": 88,
   "pendapatan_nasional": "250",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const togo: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 20160,
-    "harga_telur": 31100,
-    "harga_bbm": 8560,
-    "harga_listrik": 1280,
-    "harga_air": 5200,
-    "harga_obat": 78950,
-    "harga_pendidikan": 483900
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 20.16,
+    "harga_telur": 31.1,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.28,
+    "harga_air": 5.2,
+    "harga_obat": 78.95,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

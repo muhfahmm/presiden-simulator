@@ -5,7 +5,7 @@ export const republik_uganda_profile = {
   "lon": 32,
   "lat": 1,
   "flag": "🇺🇬",
-  "jumlah_penduduk": 42723139,
+  "jumlah_penduduk": 42723,
   "anggaran": 486,
   "pendapatan_nasional": "1389",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const republik_uganda: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 62200,
-    "harga_bbm": 8560,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 78950,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 62.2,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 78.95,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

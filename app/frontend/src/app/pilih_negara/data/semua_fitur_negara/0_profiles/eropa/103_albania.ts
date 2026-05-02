@@ -5,7 +5,7 @@ export const albania_profile = {
   "lon": 19.81,
   "lat": 41.32,
   "flag": "🇦🇱",
-  "jumlah_penduduk": 2866376,
+  "jumlah_penduduk": 2866,
   "anggaran": 214,
   "pendapatan_nasional": "611",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const albania: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 24880,
-    "harga_bbm": 14980,
-    "harga_listrik": 1600,
-    "harga_air": 4160,
-    "harga_obat": 157900,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 24.88,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.6,
+    "harga_air": 4.16,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

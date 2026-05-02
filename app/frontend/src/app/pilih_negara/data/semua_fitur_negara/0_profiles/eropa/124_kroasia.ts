@@ -5,7 +5,7 @@ export const kroasia_profile = {
   "lon": 15.5,
   "lat": 45.16666666,
   "flag": "🇭🇷",
-  "jumlah_penduduk": 4087843,
+  "jumlah_penduduk": 4088,
   "anggaran": 758,
   "pendapatan_nasional": "2167",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const kroasia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 800,
-    "harga_air": 4160,
-    "harga_obat": 126320,
-    "harga_pendidikan": 483900
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 0.8,
+    "harga_air": 4.16,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

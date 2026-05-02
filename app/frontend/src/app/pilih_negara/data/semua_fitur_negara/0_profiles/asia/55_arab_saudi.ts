@@ -5,7 +5,7 @@ export const arab_saudi_profile = {
   "lon": 46.67,
   "lat": 24.71,
   "flag": "🇸🇦",
-  "jumlah_penduduk": 33699947,
+  "jumlah_penduduk": 33700,
   "anggaran": 10793,
   "pendapatan_nasional": "30836",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const arab_saudi: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 62200,
-    "harga_bbm": 21400,
-    "harga_listrik": 2240,
-    "harga_air": 10400,
-    "harga_obat": 315800,
-    "harga_pendidikan": 241950
+    "harga_beras": 32,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 62.2,
+    "harga_bbm": 21.4,
+    "harga_listrik": 2.24,
+    "harga_air": 10.4,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

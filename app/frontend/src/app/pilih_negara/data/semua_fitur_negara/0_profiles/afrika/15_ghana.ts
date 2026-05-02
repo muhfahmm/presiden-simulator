@@ -5,7 +5,7 @@ export const ghana_profile = {
   "lon": -2,
   "lat": 8,
   "flag": "🇬🇭",
-  "jumlah_penduduk": 29767108,
+  "jumlah_penduduk": 29767,
   "anggaran": 739,
   "pendapatan_nasional": "2111",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const ghana: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 14980,
-    "harga_listrik": 1600,
-    "harga_air": 7280,
-    "harga_obat": 315800,
-    "harga_pendidikan": 677460
+    "harga_beras": 32,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.6,
+    "harga_air": 7.28,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

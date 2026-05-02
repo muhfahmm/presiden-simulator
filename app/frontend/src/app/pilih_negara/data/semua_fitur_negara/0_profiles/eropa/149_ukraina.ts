@@ -5,7 +5,7 @@ export const ukraina_profile = {
   "lon": 30.52,
   "lat": 50.45,
   "flag": "🇺🇦",
-  "jumlah_penduduk": 44622516,
+  "jumlah_penduduk": 44623,
   "anggaran": 1556,
   "pendapatan_nasional": "4445",
   "religion": "Kristen Ortodoks",
@@ -116,17 +116,17 @@ export const ukraina: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 1280,
-    "harga_air": 7280,
-    "harga_obat": 315800,
-    "harga_pendidikan": 387120
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.28,
+    "harga_air": 7.28,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const bosnia_dan_hercegovina_profile = {
   "lon": 18,
   "lat": 44,
   "flag": "🇧🇦",
-  "jumlah_penduduk": 3323929,
+  "jumlah_penduduk": 3324,
   "anggaran": 233,
   "pendapatan_nasional": "667",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const bosnia_dan_hercegovina: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 28800,
-    "harga_telur": 62200,
-    "harga_bbm": 8560,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 677460
+    "harga_beras": 16,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 28.8,
+    "harga_telur": 62.2,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const irak_profile = {
   "lon": 44.36,
   "lat": 33.31,
   "flag": "🇮🇶",
-  "jumlah_penduduk": 38433600,
+  "jumlah_penduduk": 38434,
   "anggaran": 2606,
   "pendapatan_nasional": "7445",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const irak: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 30800,
-    "harga_gula": 11520,
-    "harga_telur": 31100,
-    "harga_bbm": 5350,
-    "harga_listrik": 1600,
-    "harga_air": 10400,
-    "harga_obat": 126320,
-    "harga_pendidikan": 677460
+    "harga_beras": 16,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 30.8,
+    "harga_gula": 11.52,
+    "harga_telur": 31.1,
+    "harga_bbm": 5.35,
+    "harga_listrik": 1.6,
+    "harga_air": 10.4,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

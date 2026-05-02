@@ -5,7 +5,7 @@ export const burkina_faso_profile = {
   "lon": -2,
   "lat": 13,
   "flag": "🇧🇫",
-  "jumlah_penduduk": 19751535,
+  "jumlah_penduduk": 19752,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const burkina_faso: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 14400,
-    "harga_telur": 43540,
-    "harga_bbm": 8560,
-    "harga_listrik": 1280,
-    "harga_air": 10400,
-    "harga_obat": 221060,
-    "harga_pendidikan": 967800
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 14.4,
+    "harga_telur": 43.54,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.28,
+    "harga_air": 10.4,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

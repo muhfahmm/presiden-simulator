@@ -5,7 +5,7 @@ export const mauritania_profile = {
   "lon": -12,
   "lat": 20,
   "flag": "🇲🇷",
-  "jumlah_penduduk": 4403319,
+  "jumlah_penduduk": 4403,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const mauritania: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 8000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 28800,
-    "harga_telur": 31100,
-    "harga_bbm": 5350,
-    "harga_listrik": 1600,
-    "harga_air": 7280,
-    "harga_obat": 78950,
-    "harga_pendidikan": 387120
+    "harga_beras": 8,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 28.8,
+    "harga_telur": 31.1,
+    "harga_bbm": 5.35,
+    "harga_listrik": 1.6,
+    "harga_air": 7.28,
+    "harga_obat": 78.95,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

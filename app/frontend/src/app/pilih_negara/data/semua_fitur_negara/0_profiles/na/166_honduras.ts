@@ -5,7 +5,7 @@ export const honduras_profile = {
   "lon": -86.5,
   "lat": 15,
   "flag": "🇭🇳",
-  "jumlah_penduduk": 9587522,
+  "jumlah_penduduk": 9588,
   "anggaran": 311,
   "pendapatan_nasional": "889",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const honduras: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 43540,
-    "harga_bbm": 14980,
-    "harga_listrik": 3200,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 241950
+    "harga_beras": 16,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 43.54,
+    "harga_bbm": 14.98,
+    "harga_listrik": 3.2,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

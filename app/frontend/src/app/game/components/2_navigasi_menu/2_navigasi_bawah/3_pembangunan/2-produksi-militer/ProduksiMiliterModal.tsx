@@ -352,7 +352,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
         label: val.label,
         icon: getMilitaryIcon(val.dataKey),
         desc: val.deskripsi,
-        cost: val.biaya_pembangunan,
+        cost: (val.biaya_pembangunan || 5000) / 1000,
         buildTime: val.waktu_pembangunan,
         lowongan_kerja: val.lowongan_kerja,
         count: Number(currentData.pabrik_militer?.[val.dataKey as keyof typeof currentData.pabrik_militer] || 0) + ((buildingDeltas[val.dataKey] as number) || 0),

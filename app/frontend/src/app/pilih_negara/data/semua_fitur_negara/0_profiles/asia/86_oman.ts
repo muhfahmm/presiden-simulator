@@ -5,7 +5,7 @@ export const oman_profile = {
   "lon": 57,
   "lat": 21,
   "flag": "🇴🇲",
-  "jumlah_penduduk": 4829483,
+  "jumlah_penduduk": 4829,
   "anggaran": 1021,
   "pendapatan_nasional": "2917",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const oman: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 28800,
-    "harga_telur": 24880,
-    "harga_bbm": 14980,
-    "harga_listrik": 1280,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 241950
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 28.8,
+    "harga_telur": 24.88,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.28,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

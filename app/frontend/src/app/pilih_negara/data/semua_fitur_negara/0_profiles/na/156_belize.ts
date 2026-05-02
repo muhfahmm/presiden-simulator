@@ -5,7 +5,7 @@ export const belize_profile = {
   "lon": -88.75,
   "lat": 17.25,
   "flag": "🇧🇿",
-  "jumlah_penduduk": 383071,
+  "jumlah_penduduk": 383,
   "anggaran": 24,
   "pendapatan_nasional": "69",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const belize: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 11520,
-    "harga_telur": 24880,
-    "harga_bbm": 14980,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 241950
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 11.52,
+    "harga_telur": 24.88,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

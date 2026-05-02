@@ -5,7 +5,7 @@ export const maroko_profile = {
   "lon": -5,
   "lat": 32,
   "flag": "🇲🇦",
-  "jumlah_penduduk": 36029138,
+  "jumlah_penduduk": 36029,
   "anggaran": 1313,
   "pendapatan_nasional": "3750",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const maroko: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 43540,
-    "harga_bbm": 8560,
-    "harga_listrik": 1600,
-    "harga_air": 2600,
-    "harga_obat": 78950,
-    "harga_pendidikan": 677460
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 43.54,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.6,
+    "harga_air": 2.6,
+    "harga_obat": 78.95,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

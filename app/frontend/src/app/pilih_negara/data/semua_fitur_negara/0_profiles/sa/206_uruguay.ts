@@ -5,7 +5,7 @@ export const uruguay_profile = {
   "lon": -56,
   "lat": -33,
   "flag": "🇺🇾",
-  "jumlah_penduduk": 3449299,
+  "jumlah_penduduk": 3449,
   "anggaran": 700,
   "pendapatan_nasional": "2000",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const uruguay: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 14400,
-    "harga_telur": 62200,
-    "harga_bbm": 21400,
-    "harga_listrik": 3200,
-    "harga_air": 4160,
-    "harga_obat": 221060,
-    "harga_pendidikan": 483900
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 14.4,
+    "harga_telur": 62.2,
+    "harga_bbm": 21.4,
+    "harga_listrik": 3.2,
+    "harga_air": 4.16,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const eritrea_profile = {
   "lon": 39,
   "lat": 15,
   "flag": "🇪🇷",
-  "jumlah_penduduk": 6213972,
+  "jumlah_penduduk": 6214,
   "anggaran": 24,
   "pendapatan_nasional": "69",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const eritrea: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 7200,
-    "harga_telur": 43540,
-    "harga_bbm": 21400,
-    "harga_listrik": 2240,
-    "harga_air": 5200,
-    "harga_obat": 315800,
-    "harga_pendidikan": 483900
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 7.2,
+    "harga_telur": 43.54,
+    "harga_bbm": 21.4,
+    "harga_listrik": 2.24,
+    "harga_air": 5.2,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

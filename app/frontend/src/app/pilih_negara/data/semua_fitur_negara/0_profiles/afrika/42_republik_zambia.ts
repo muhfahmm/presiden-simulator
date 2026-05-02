@@ -5,7 +5,7 @@ export const republik_zambia_profile = {
   "lon": 30,
   "lat": -15,
   "flag": "🇿🇲",
-  "jumlah_penduduk": 17351822,
+  "jumlah_penduduk": 17352,
   "anggaran": 272,
   "pendapatan_nasional": "778",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const republik_zambia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 28800,
-    "harga_telur": 24880,
-    "harga_bbm": 14980,
-    "harga_listrik": 1600,
-    "harga_air": 4160,
-    "harga_obat": 157900,
-    "harga_pendidikan": 967800
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 28.8,
+    "harga_telur": 24.88,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.6,
+    "harga_air": 4.16,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

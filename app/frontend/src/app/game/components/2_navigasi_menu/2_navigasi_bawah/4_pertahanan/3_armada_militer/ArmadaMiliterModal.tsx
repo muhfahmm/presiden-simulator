@@ -274,7 +274,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
           // Map Indonesian to English keys for BuildingCard compatibility
           const translatedUnit = {
             ...unit,
-            biaya: (unit as any).biaya_pembangunan,
+            biaya: ((unit as any).biaya_pembangunan) / 1000,
             consumption: (unit as any).konsumsi_listrik || 0,
             desc: (unit as any).deskripsi
           };

@@ -5,7 +5,7 @@ export const amerika_serikat_profile = {
   "lon": -77.03,
   "lat": 38.9,
   "flag": "🇺🇸",
-  "jumlah_penduduk": 326687501,
+  "jumlah_penduduk": 326688,
   "anggaran": 280022,
   "pendapatan_nasional": "800064",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const amerika_serikat: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 31100,
-    "harga_bbm": 5350,
-    "harga_listrik": 800,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 967800
+    "harga_beras": 32,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 31.1,
+    "harga_bbm": 5.35,
+    "harga_listrik": 0.8,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

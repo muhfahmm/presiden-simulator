@@ -107,21 +107,13 @@ export const newsStorage = {
             (currentGameDate.includes("-") ? (currentGameDate.startsWith("01-") ? currentGameDate.substring(3) : currentGameDate.substring(0, 7)) : "reset") 
             : "monthly";
 
-          if (lastWipe !== monthYearKey) {
-            console.log(`[NewsStorage] 🧹 Monthly Reset Enforced for ${monthYearKey} (${currentGameDate})`);
-            localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify([]));
-            localStorage.setItem("em_last_monthly_wipe", monthYearKey);
-            window.dispatchEvent(new Event("news_updated"));
-            return; // Hentikan proses sync untuk tick ini
-          }
-
-          // Jika sudah di-wipe tapi server masih kirim berita di hari yang sama (tanggal 1), 
-          // paksa tetap kosong agar user melihat angka 0.
-          if (serverNews.length > 0) {
-            localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify([]));
-            window.dispatchEvent(new Event("news_updated"));
-            return;
-          }
+        if (lastWipe !== monthYearKey) {
+          console.log(`[NewsStorage] 🧹 Monthly Reset Enforced for ${monthYearKey} (${currentGameDate})`);
+          localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify([]));
+          localStorage.setItem("em_last_monthly_wipe", monthYearKey);
+          window.dispatchEvent(new Event("news_updated"));
+          return; // Hentikan proses sync untuk tick ini
+        }
         }
       } catch (e) { /* Ignore errors */ }
     }
@@ -148,6 +140,15 @@ export const newsStorage = {
     // 2. Local news (non-server) is kept.
     // 3. Stale server news (those in local storage but not in current server list) is PURGED.
     const merged = [...mapped, ...localNews].sort((a: NewsItem, b: NewsItem) => b.timestamp - a.timestamp);
+
+    // NEW: Alert for fresh arrivals (latest news only)
+    if (mapped.length > 0) {
+      const latest = mapped[0];
+      const isNew = !current.some(item => item.id === latest.id);
+      if (isNew) {
+        window.dispatchEvent(new CustomEvent("new_news_alert", { detail: latest }));
+      }
+    }
 
     console.log(`[NewsStorage] Sync Complete (Strict Authority). Server: ${mapped.length}, Local Preserved: ${localNews.length}, Total: ${merged.length}`);
 

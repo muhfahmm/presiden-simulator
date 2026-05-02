@@ -5,7 +5,7 @@ export const lebanon_profile = {
   "lon": 35.83333333,
   "lat": 33.83333333,
   "flag": "🇱🇧",
-  "jumlah_penduduk": 6848925,
+  "jumlah_penduduk": 6849,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const lebanon: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 14400,
-    "harga_telur": 24880,
-    "harga_bbm": 21400,
-    "harga_listrik": 800,
-    "harga_air": 7280,
-    "harga_obat": 157900,
-    "harga_pendidikan": 241950
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 14.4,
+    "harga_telur": 24.88,
+    "harga_bbm": 21.4,
+    "harga_listrik": 0.8,
+    "harga_air": 7.28,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

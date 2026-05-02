@@ -5,7 +5,7 @@ export const jamaika_profile = {
   "lon": -77.5,
   "lat": 18.25,
   "flag": "🇯🇲",
-  "jumlah_penduduk": 2934855,
+  "jumlah_penduduk": 2935,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const jamaika: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 8000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 20160,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 7280,
-    "harga_obat": 221060,
-    "harga_pendidikan": 677460
+    "harga_beras": 8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 20.16,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 7.28,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

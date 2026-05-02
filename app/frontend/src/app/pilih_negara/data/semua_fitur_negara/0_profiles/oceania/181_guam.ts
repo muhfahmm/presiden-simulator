@@ -5,7 +5,7 @@ export const guam_profile = {
   "lon": 144.78333333,
   "lat": 13.46666666,
   "flag": "🇬🇺",
-  "jumlah_penduduk": 165768,
+  "jumlah_penduduk": 166,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const guam: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 31100,
-    "harga_bbm": 8560,
-    "harga_listrik": 1600,
-    "harga_air": 7280,
-    "harga_obat": 315800,
-    "harga_pendidikan": 677460
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 31.1,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.6,
+    "harga_air": 7.28,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

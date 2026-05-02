@@ -5,7 +5,7 @@ export const tunisia_profile = {
   "lon": 9,
   "lat": 34,
   "flag": "🇹🇳",
-  "jumlah_penduduk": 11565204,
+  "jumlah_penduduk": 11565,
   "anggaran": 457,
   "pendapatan_nasional": "1306",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const tunisia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 20500,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 7200,
-    "harga_telur": 43540,
-    "harga_bbm": 8560,
-    "harga_listrik": 2240,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 20.5,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 7.2,
+    "harga_telur": 43.54,
+    "harga_bbm": 8.56,
+    "harga_listrik": 2.24,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

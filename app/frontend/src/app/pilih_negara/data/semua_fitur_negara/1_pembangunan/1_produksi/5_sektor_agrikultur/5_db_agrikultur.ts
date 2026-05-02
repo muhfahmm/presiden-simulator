@@ -10,7 +10,7 @@ export const agrikulturRate = {
     produksi: 95000,
     satuan: "KG",
     waktu_pembangunan: 15,
-    biaya_pembangunan: 1200000,
+    biaya_pembangunan: 1200,
     lowongan_kerja: 8500,
     konsumsi_listrik: 12
   },
@@ -22,7 +22,7 @@ export const agrikulturRate = {
     produksi: 75000,
     satuan: "KG",
     waktu_pembangunan: 15,
-    biaya_pembangunan: 1000000,
+    biaya_pembangunan: 1000,
     lowongan_kerja: 6000,
     item: "Gandum",
     konsumsi_listrik: 10
@@ -35,7 +35,7 @@ export const agrikulturRate = {
     produksi: 82000,
     satuan: "KG",
     waktu_pembangunan: 12,
-    biaya_pembangunan: 850000,
+    biaya_pembangunan: 850,
     lowongan_kerja: 5000,
     konsumsi_listrik: 8
   },
@@ -47,7 +47,7 @@ export const agrikulturRate = {
     produksi: 12000,
     satuan: "KG",
     waktu_pembangunan: 10,
-    biaya_pembangunan: 650000,
+    biaya_pembangunan: 650,
     lowongan_kerja: 4500,
     konsumsi_listrik: 5
   },
@@ -59,7 +59,7 @@ export const agrikulturRate = {
     produksi: 55000,
     satuan: "KG",
     waktu_pembangunan: 10,
-    biaya_pembangunan: 750000,
+    biaya_pembangunan: 750,
     lowongan_kerja: 4000,
     konsumsi_listrik: 10
   },
@@ -71,7 +71,7 @@ export const agrikulturRate = {
     produksi: 150000,
     satuan: "LITER",
     waktu_pembangunan: 60,
-    biaya_pembangunan: 6000000,
+    biaya_pembangunan: 6000,
     lowongan_kerja: 18000,
     konsumsi_listrik: 45
   },
@@ -83,7 +83,7 @@ export const agrikulturRate = {
     produksi: 15000,
     satuan: "KG",
     waktu_pembangunan: 20,
-    biaya_pembangunan: 2500000,
+    biaya_pembangunan: 2500,
     lowongan_kerja: 12000,
     konsumsi_listrik: 15
   },
@@ -95,7 +95,7 @@ export const agrikulturRate = {
     produksi: 12000,
     satuan: "KG",
     waktu_pembangunan: 30,
-    biaya_pembangunan: 2800000,
+    biaya_pembangunan: 2800,
     lowongan_kerja: 10000,
     konsumsi_listrik: 18
   },
@@ -107,7 +107,7 @@ export const agrikulturRate = {
     produksi: 10000,
     satuan: "KG",
     waktu_pembangunan: 35,
-    biaya_pembangunan: 3500000,
+    biaya_pembangunan: 3500,
     lowongan_kerja: 9000,
     konsumsi_listrik: 20
   },
@@ -119,7 +119,7 @@ export const agrikulturRate = {
     produksi: 85000,
     satuan: "KG",
     waktu_pembangunan: 20,
-    biaya_pembangunan: 1800000,
+    biaya_pembangunan: 1800,
     lowongan_kerja: 11000,
     konsumsi_listrik: 22
   },
@@ -131,7 +131,7 @@ export const agrikulturRate = {
     produksi: 65000,
     satuan: "KG",
     waktu_pembangunan: 5,
-    biaya_pembangunan: 500000,
+    biaya_pembangunan: 500,
     lowongan_kerja: 5500,
     konsumsi_listrik: 10
   },
@@ -143,7 +143,7 @@ export const agrikulturRate = {
     produksi: 35000,
     satuan: "KG",
     waktu_pembangunan: 40,
-    biaya_pembangunan: 3200000,
+    biaya_pembangunan: 3200,
     lowongan_kerja: 12000,
     konsumsi_listrik: 25
   },
@@ -155,7 +155,7 @@ export const agrikulturRate = {
     produksi: 60000,
     satuan: "KG",
     waktu_pembangunan: 15,
-    biaya_pembangunan: 1500000,
+    biaya_pembangunan: 1500,
     lowongan_kerja: 8000,
     konsumsi_listrik: 15
   },
@@ -167,7 +167,7 @@ export const agrikulturRate = {
     produksi: 25000,
     satuan: "KG",
     waktu_pembangunan: 25,
-    biaya_pembangunan: 2000000,
+    biaya_pembangunan: 2000,
     lowongan_kerja: 10000,
     konsumsi_listrik: 18
   },

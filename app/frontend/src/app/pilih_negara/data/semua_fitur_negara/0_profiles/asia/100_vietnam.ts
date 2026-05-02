@@ -5,7 +5,7 @@ export const vietnam_profile = {
   "lon": 105.83,
   "lat": 21.02,
   "flag": "🇻🇳",
-  "jumlah_penduduk": 95540395,
+  "jumlah_penduduk": 95540,
   "anggaran": 4181,
   "pendapatan_nasional": "11945",
   "religion": "Ateisme",
@@ -116,17 +116,17 @@ export const vietnam: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 28800,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 2600,
-    "harga_obat": 157900,
-    "harga_pendidikan": 483900
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 28.8,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 2.6,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

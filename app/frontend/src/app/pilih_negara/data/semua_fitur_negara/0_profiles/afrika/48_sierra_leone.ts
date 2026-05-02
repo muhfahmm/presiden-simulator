@@ -5,7 +5,7 @@ export const sierra_leone_profile = {
   "lon": -11.5,
   "lat": 8.5,
   "flag": "🇸🇱",
-  "jumlah_penduduk": 7650154,
+  "jumlah_penduduk": 7650,
   "anggaran": 39,
   "pendapatan_nasional": "111",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const sierra_leone: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 30800,
-    "harga_gula": 20160,
-    "harga_telur": 62200,
-    "harga_bbm": 5350,
-    "harga_listrik": 3200,
-    "harga_air": 5200,
-    "harga_obat": 126320,
-    "harga_pendidikan": 677460
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 30.8,
+    "harga_gula": 20.16,
+    "harga_telur": 62.2,
+    "harga_bbm": 5.35,
+    "harga_listrik": 3.2,
+    "harga_air": 5.2,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

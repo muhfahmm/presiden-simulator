@@ -5,7 +5,7 @@ export const luksemburg_profile = {
   "lon": 6.07,
   "lat": 49.36,
   "flag": "🇱🇺",
-  "jumlah_penduduk": 607950,
+  "jumlah_penduduk": 608,
   "anggaran": 846,
   "pendapatan_nasional": "2417",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const luksemburg: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 11520,
-    "harga_telur": 62200,
-    "harga_bbm": 5350,
-    "harga_listrik": 1600,
-    "harga_air": 10400,
-    "harga_obat": 157900,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 11.52,
+    "harga_telur": 62.2,
+    "harga_bbm": 5.35,
+    "harga_listrik": 1.6,
+    "harga_air": 10.4,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

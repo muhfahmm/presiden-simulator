@@ -5,7 +5,7 @@ export const grenada_profile = {
   "lon": -61.66666666,
   "lat": 12.11666666,
   "flag": "🇬🇩",
-  "jumlah_penduduk": 111454,
+  "jumlah_penduduk": 111,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const grenada: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 43540,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 4160,
-    "harga_obat": 315800,
-    "harga_pendidikan": 387120
+    "harga_beras": 16,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 43.54,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 4.16,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

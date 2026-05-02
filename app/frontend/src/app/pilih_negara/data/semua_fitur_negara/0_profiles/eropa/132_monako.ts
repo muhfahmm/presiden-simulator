@@ -116,17 +116,17 @@ export const monako: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 24880,
-    "harga_bbm": 8560,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 126320,
-    "harga_pendidikan": 387120
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 24.88,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

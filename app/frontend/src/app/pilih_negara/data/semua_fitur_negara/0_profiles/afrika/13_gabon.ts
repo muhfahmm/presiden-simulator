@@ -5,7 +5,7 @@ export const gabon_profile = {
   "lon": 11.75,
   "lat": -1,
   "flag": "🇬🇦",
-  "jumlah_penduduk": 2119275,
+  "jumlah_penduduk": 2119,
   "anggaran": 194,
   "pendapatan_nasional": "556",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const gabon: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 24880,
-    "harga_bbm": 14980,
-    "harga_listrik": 800,
-    "harga_air": 10400,
-    "harga_obat": 78950,
-    "harga_pendidikan": 677460
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 24.88,
+    "harga_bbm": 14.98,
+    "harga_listrik": 0.8,
+    "harga_air": 10.4,
+    "harga_obat": 78.95,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

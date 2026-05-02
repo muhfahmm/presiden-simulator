@@ -5,7 +5,7 @@ export const swedia_profile = {
   "lon": 18.06,
   "lat": 59.32,
   "flag": "🇸🇪",
-  "jumlah_penduduk": 10175214,
+  "jumlah_penduduk": 10175,
   "anggaran": 5834,
   "pendapatan_nasional": "16668",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const swedia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 30800,
-    "harga_gula": 11520,
-    "harga_telur": 62200,
-    "harga_bbm": 5350,
-    "harga_listrik": 3200,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 30.8,
+    "harga_gula": 11.52,
+    "harga_telur": 62.2,
+    "harga_bbm": 5.35,
+    "harga_listrik": 3.2,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

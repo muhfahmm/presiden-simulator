@@ -5,7 +5,7 @@ export const republik_sudan_profile = {
   "lon": 30,
   "lat": 15,
   "flag": "🇸🇩",
-  "jumlah_penduduk": 41801533,
+  "jumlah_penduduk": 41802,
   "anggaran": 243,
   "pendapatan_nasional": "694",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const republik_sudan: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 8000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 24880,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 241950
+    "harga_beras": 8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 24.88,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const uni_emirat_arab_profile = {
   "lon": 54.37,
   "lat": 24.45,
   "flag": "🇦🇪",
-  "jumlah_penduduk": 9630959,
+  "jumlah_penduduk": 9631,
   "anggaran": 4959,
   "pendapatan_nasional": "14168",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const uni_emirat_arab: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 11520,
-    "harga_telur": 43540,
-    "harga_bbm": 8560,
-    "harga_listrik": 3200,
-    "harga_air": 7280,
-    "harga_obat": 126320,
-    "harga_pendidikan": 677460
+    "harga_beras": 16,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 11.52,
+    "harga_telur": 43.54,
+    "harga_bbm": 8.56,
+    "harga_listrik": 3.2,
+    "harga_air": 7.28,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

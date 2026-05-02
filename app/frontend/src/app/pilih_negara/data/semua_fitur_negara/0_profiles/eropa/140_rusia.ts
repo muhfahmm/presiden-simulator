@@ -5,7 +5,7 @@ export const rusia_profile = {
   "lon": 37.61,
   "lat": 55.75,
   "flag": "🇷🇺",
-  "jumlah_penduduk": 144478050,
+  "jumlah_penduduk": 144478,
   "anggaran": 19640,
   "pendapatan_nasional": "56116",
   "religion": "Kristen Ortodoks",
@@ -116,17 +116,17 @@ export const rusia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 14400,
-    "harga_telur": 15550,
-    "harga_bbm": 21400,
-    "harga_listrik": 1280,
-    "harga_air": 4160,
-    "harga_obat": 126320,
-    "harga_pendidikan": 677460
+    "harga_beras": 32,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 14.4,
+    "harga_telur": 15.55,
+    "harga_bbm": 21.4,
+    "harga_listrik": 1.28,
+    "harga_air": 4.16,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const kenya_profile = {
   "lon": 38,
   "lat": 1,
   "flag": "🇰🇪",
-  "jumlah_penduduk": 51393010,
+  "jumlah_penduduk": 51393,
   "anggaran": 1070,
   "pendapatan_nasional": "3056",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const kenya: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 30800,
-    "harga_gula": 28800,
-    "harga_telur": 43540,
-    "harga_bbm": 14980,
-    "harga_listrik": 1600,
-    "harga_air": 4160,
-    "harga_obat": 221060,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 30.8,
+    "harga_gula": 28.8,
+    "harga_telur": 43.54,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.6,
+    "harga_air": 4.16,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

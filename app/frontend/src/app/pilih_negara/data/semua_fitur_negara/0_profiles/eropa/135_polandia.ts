@@ -5,7 +5,7 @@ export const polandia_profile = {
   "lon": 21.01,
   "lat": 52.22,
   "flag": "🇵🇱",
-  "jumlah_penduduk": 37974750,
+  "jumlah_penduduk": 37975,
   "anggaran": 8167,
   "pendapatan_nasional": "23335",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const polandia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 15550,
-    "harga_bbm": 10700,
-    "harga_listrik": 1280,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 387120
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 15.55,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.28,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

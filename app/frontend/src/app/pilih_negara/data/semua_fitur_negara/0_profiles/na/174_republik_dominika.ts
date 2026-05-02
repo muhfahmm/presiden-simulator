@@ -5,7 +5,7 @@ export const republik_dominika_profile = {
   "lon": -70.66666666,
   "lat": 19,
   "flag": "🇩🇴",
-  "jumlah_penduduk": 10627165,
+  "jumlah_penduduk": 10627,
   "anggaran": 1070,
   "pendapatan_nasional": "3056",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const republik_dominika: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 11520,
-    "harga_telur": 31100,
-    "harga_bbm": 8560,
-    "harga_listrik": 3200,
-    "harga_air": 7280,
-    "harga_obat": 157900,
-    "harga_pendidikan": 241950
+    "harga_beras": 32,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 11.52,
+    "harga_telur": 31.1,
+    "harga_bbm": 8.56,
+    "harga_listrik": 3.2,
+    "harga_air": 7.28,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

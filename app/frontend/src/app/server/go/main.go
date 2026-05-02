@@ -197,6 +197,7 @@ func parseTypeScriptBuildings(content []byte, defaultSector string) []core.Build
 		biayaMatch := regexp.MustCompile(`biaya_pembangunan:\s*(\d+)`).FindStringSubmatch(block)
 		if len(biayaMatch) >= 2 {
 			fmt.Sscanf(biayaMatch[1], "%d", &biaya)
+			// Database is now pre-normalized (no trailing 000s)
 		}
 		
 		// Extract Waktu
@@ -526,10 +527,10 @@ func main() {
 	core.GlobalState.Mu.Unlock()
 
 	// 4. Initialize Hyper-Polyglot Workers (CPP, Rust, Java, Python)
-	cppWorker = initWorker("CPP", "src/app/server/cpp/worker.exe")
-	rustWorker = initWorker("RUST", "cargo", "run", "--manifest-path", "src/app/server/rust/Cargo.toml", "--release")
-	javaWorker = initWorker("JAVA", "java", "-cp", "src/app/server/java", "Worker")
-	pythonWorker = initWorker("PYTHON", "python", "src/app/server/python/worker.py")
+	cppWorker = initWorker("CPP", "../cpp/worker.exe")
+	rustWorker = initWorker("RUST", "cargo", "run", "--manifest-path", "../rust/Cargo.toml", "--release")
+	javaWorker = initWorker("JAVA", "java", "-cp", "../java", "Worker")
+	pythonWorker = initWorker("PYTHON", "python", "../python/worker.py")
 
 	// 5. Start the Global Ticker (Simulation Engine)
 	go simulationEngine()
@@ -1393,7 +1394,7 @@ func invokeQuarterlyEconomicAI(date time.Time, quarter int) {
 	jsonPayload, _ := json.Marshal(payload)
 
 	// 2. Execute Python Worker (Economic Strategy + Heatmap)
-	cmd := exec.Command("python", "src/app/server/python/strategy.py")
+	cmd := exec.Command("python", "../python/strategy.py")
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
 		fmt.Printf("[GO] Error: Failed to open stdin for Python worker: %v\n", err)
@@ -1484,25 +1485,25 @@ func invokeQuarterlyEconomicAI(date time.Time, quarter int) {
 
 func invokePolyglotWorkers(dateStr string) {
 	// C++ Worker (Specialized Geometric Logic)
-	cppOut, err := exec.Command("src/app/server/cpp/map_engine/map_engine.exe").Output()
+	cppOut, err := exec.Command("../cpp/map_engine/map_engine.exe").Output()
 	if err == nil && len(cppOut) > 0 {
 		core.AddNewsItem("C++ Engine", "Kalkulasi Infrastruktur Global", string(cppOut), "construction", "low", dateStr)
 	}
 
 	// Python Worker (Strategic Heatmaps)
-	pyOut, err := exec.Command("python", "src/app/server/python/map_engine/map_engine.py").Output()
+	pyOut, err := exec.Command("python", "../python/map_engine/map_engine.py").Output()
 	if err == nil && len(pyOut) > 0 {
 		core.AddNewsItem("Python AI", "Analisis Strategi Ekonomi", string(pyOut), "economy", "low", dateStr)
 	}
 
 	// Rust Worker (Massive Matrix Drift)
-	rustOut, err := exec.Command("src/app/server/rust/map_engine/map_engine.exe").Output()
+	rustOut, err := exec.Command("../rust/map_engine/map_engine.exe").Output()
 	if err == nil && len(rustOut) > 0 {
 		core.AddNewsItem("Rust Engine", "Pemrosesan Data Militer", string(rustOut), "global", "low", dateStr)
 	}
 
 	// Java Worker (Naming Normalization)
-	javaOut, err := exec.Command("java", "-cp", "src/app/server/java/map_engine", "map_engine").Output()
+	javaOut, err := exec.Command("java", "-cp", "../java/map_engine", "map_engine").Output()
 	if err == nil && len(javaOut) > 0 {
 		core.AddNewsItem("Java Logic", "Manajemen Diplomasi Global", string(javaOut), "diplomacy", "low", dateStr)
 	}

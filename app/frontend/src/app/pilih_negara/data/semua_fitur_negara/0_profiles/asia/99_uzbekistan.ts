@@ -5,7 +5,7 @@ export const uzbekistan_profile = {
   "lon": 64,
   "lat": 41,
   "flag": "🇺🇿",
-  "jumlah_penduduk": 32955400,
+  "jumlah_penduduk": 32955,
   "anggaran": 875,
   "pendapatan_nasional": "2500",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const uzbekistan: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 30800,
-    "harga_gula": 14400,
-    "harga_telur": 24880,
-    "harga_bbm": 5350,
-    "harga_listrik": 2240,
-    "harga_air": 10400,
-    "harga_obat": 157900,
-    "harga_pendidikan": 483900
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 30.8,
+    "harga_gula": 14.4,
+    "harga_telur": 24.88,
+    "harga_bbm": 5.35,
+    "harga_listrik": 2.24,
+    "harga_air": 10.4,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

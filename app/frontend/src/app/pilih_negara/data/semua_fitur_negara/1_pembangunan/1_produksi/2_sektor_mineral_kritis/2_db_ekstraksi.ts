@@ -10,7 +10,7 @@ export const mineralKritisRate = {
     produksi: 150,
     satuan: "KG",
     waktu_pembangunan: 120,
-    biaya_pembangunan: 6000000,
+    biaya_pembangunan: 6000,
     lowongan_kerja: 1000,
     konsumsi_listrik: 80
   },
@@ -22,7 +22,7 @@ export const mineralKritisRate = {
     produksi: 100,
     satuan: "KG",
     waktu_pembangunan: 240,
-    biaya_pembangunan: 7500000,
+    biaya_pembangunan: 7500,
     lowongan_kerja: 500,
     konsumsi_listrik: 150
   },
@@ -34,7 +34,7 @@ export const mineralKritisRate = {
     produksi: 15000,
     satuan: "TON",
     waktu_pembangunan: 90,
-    biaya_pembangunan: 1500000,
+    biaya_pembangunan: 1500,
     lowongan_kerja: 2000,
     konsumsi_listrik: 120
   },
@@ -46,7 +46,7 @@ export const mineralKritisRate = {
     produksi: 25000,
     satuan: "BARREL",
     waktu_pembangunan: 150,
-    biaya_pembangunan: 4500000,
+    biaya_pembangunan: 4500,
     lowongan_kerja: 300,
     konsumsi_listrik: 150
   },
@@ -58,7 +58,7 @@ export const mineralKritisRate = {
     produksi: 5000,
     satuan: "MMSCFD",
     waktu_pembangunan: 120,
-    biaya_pembangunan: 4000000,
+    biaya_pembangunan: 4000,
     lowongan_kerja: 200,
     konsumsi_listrik: 130
   },
@@ -70,7 +70,7 @@ export const mineralKritisRate = {
     produksi: 10000,
     satuan: "TON",
     waktu_pembangunan: 45,
-    biaya_pembangunan: 500000,
+    biaya_pembangunan: 500,
     lowongan_kerja: 400,
     konsumsi_listrik: 45
   },
@@ -82,7 +82,7 @@ export const mineralKritisRate = {
     produksi: 12000,
     satuan: "TON",
     waktu_pembangunan: 180,
-    biaya_pembangunan: 5000000,
+    biaya_pembangunan: 5000,
     lowongan_kerja: 1500,
     konsumsi_listrik: 320
   },
@@ -94,7 +94,7 @@ export const mineralKritisRate = {
     produksi: 8000,
     satuan: "TON",
     waktu_pembangunan: 210,
-    biaya_pembangunan: 5500000,
+    biaya_pembangunan: 5500,
     lowongan_kerja: 1200,
     konsumsi_listrik: 250
   },
@@ -106,7 +106,7 @@ export const mineralKritisRate = {
     produksi: 14000,
     satuan: "TON",
     waktu_pembangunan: 120,
-    biaya_pembangunan: 3500000,
+    biaya_pembangunan: 3500,
     lowongan_kerja: 1500,
     konsumsi_listrik: 240
   },
@@ -118,7 +118,7 @@ export const mineralKritisRate = {
     produksi: 18000,
     satuan: "TON",
     waktu_pembangunan: 90,
-    biaya_pembangunan: 3000000,
+    biaya_pembangunan: 3000,
     lowongan_kerja: 1400,
     konsumsi_listrik: 550
   },
@@ -130,7 +130,7 @@ export const mineralKritisRate = {
     produksi: 500,
     satuan: "KG",
     waktu_pembangunan: 360,
-    biaya_pembangunan: 9000000,
+    biaya_pembangunan: 9000,
     lowongan_kerja: 800,
     konsumsi_listrik: 380
   },
@@ -142,7 +142,7 @@ export const mineralKritisRate = {
     produksi: 25000,
     satuan: "TON",
     waktu_pembangunan: 90,
-    biaya_pembangunan: 2500000,
+    biaya_pembangunan: 2500,
     lowongan_kerja: 1800,
     konsumsi_listrik: 180
   },

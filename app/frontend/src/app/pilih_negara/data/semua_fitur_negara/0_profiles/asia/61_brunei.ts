@@ -5,7 +5,7 @@ export const brunei_profile = {
   "lon": 114.94,
   "lat": 4.89,
   "flag": "🇧🇳",
-  "jumlah_penduduk": 428962,
+  "jumlah_penduduk": 429,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const brunei: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 20500,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 14400,
-    "harga_telur": 43540,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 5200,
-    "harga_obat": 78950,
-    "harga_pendidikan": 967800
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 20.5,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 14.4,
+    "harga_telur": 43.54,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 5.2,
+    "harga_obat": 78.95,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const niger_profile = {
   "lon": 8,
   "lat": 16,
   "flag": "🇳🇪",
-  "jumlah_penduduk": 22442948,
+  "jumlah_penduduk": 22443,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const niger: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 7200,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 4160,
-    "harga_obat": 157900,
-    "harga_pendidikan": 677460
+    "harga_beras": 32,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 7.2,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 4.16,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

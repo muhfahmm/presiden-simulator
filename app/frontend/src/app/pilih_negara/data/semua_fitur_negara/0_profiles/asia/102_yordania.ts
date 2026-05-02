@@ -5,7 +5,7 @@ export const yordania_profile = {
   "lon": 36,
   "lat": 31,
   "flag": "🇯🇴",
-  "jumlah_penduduk": 9956011,
+  "jumlah_penduduk": 9956,
   "anggaran": 457,
   "pendapatan_nasional": "1306",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const yordania: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 21400,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 241950
+    "harga_beras": 16,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 21.4,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

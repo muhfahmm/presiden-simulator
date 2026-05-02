@@ -18,7 +18,7 @@ export const kesehatanRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Rumah Sakit Umum Pusat (RSUP)",
     waktu_pembangunan: 45,
-    biaya_pembangunan: 82500000,
+    biaya_pembangunan: 82500,
     lowongan_kerja: 18000,
     konsumsi_listrik: 850,
     efek: "Mengurangi jumlah kematian akibat pandemi dan epidemi sebesar 0.05%"
@@ -31,7 +31,7 @@ export const kesehatanRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Rumah Sakit Daerah (RSUD)",
     waktu_pembangunan: 30,
-    biaya_pembangunan: 33750000,
+    biaya_pembangunan: 33750,
     lowongan_kerja: 4500,
     konsumsi_listrik: 120,
     efek: "Mengurangi jumlah kematian akibat pandemi dan epidemi sebesar 0.03%"
@@ -44,7 +44,7 @@ export const kesehatanRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Laboratorium Medik & Diagnostik Nasional",
     waktu_pembangunan: 15,
-    biaya_pembangunan: 18750000,
+    biaya_pembangunan: 18750,
     lowongan_kerja: 2500,
     konsumsi_listrik: 75,
     efek: "Mengurangi jumlah kematian akibat pandemi dan epidemi sebesar 0.01%"

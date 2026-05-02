@@ -5,7 +5,7 @@ export const siprus_profile = {
   "lon": 33,
   "lat": 35,
   "flag": "🇨🇾",
-  "jumlah_penduduk": 1189265,
+  "jumlah_penduduk": 1189,
   "anggaran": 292,
   "pendapatan_nasional": "833",
   "religion": "Kristen Ortodoks",
@@ -116,17 +116,17 @@ export const siprus: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 7200,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 7.2,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

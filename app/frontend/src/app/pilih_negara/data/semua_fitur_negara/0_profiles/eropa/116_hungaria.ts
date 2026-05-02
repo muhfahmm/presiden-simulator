@@ -5,7 +5,7 @@ export const hungaria_profile = {
   "lon": 20,
   "lat": 47,
   "flag": "🇭🇺",
-  "jumlah_penduduk": 9775564,
+  "jumlah_penduduk": 9776,
   "anggaran": 2042,
   "pendapatan_nasional": "5834",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const hungaria: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 43540,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 126320,
-    "harga_pendidikan": 241950
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 43.54,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 241.95
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

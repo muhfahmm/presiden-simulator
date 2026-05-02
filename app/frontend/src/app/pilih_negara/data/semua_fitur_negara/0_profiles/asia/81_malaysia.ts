@@ -5,7 +5,7 @@ export const malaysia_profile = {
   "lon": 101.68,
   "lat": 3.13,
   "flag": "🇲🇾",
-  "jumlah_penduduk": 31528585,
+  "jumlah_penduduk": 31529,
   "anggaran": 3889,
   "pendapatan_nasional": "11112",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const malaysia: CountryData = {
   // 13. Ã°Å¸â€ºâ€™ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 8000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 14400,
-    "harga_telur": 15550,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 10400,
-    "harga_obat": 221060,
-    "harga_pendidikan": 483900
+    "harga_beras": 8,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 14.4,
+    "harga_telur": 15.55,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 10.4,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. Ã°Å¸Å’Â GEOPOLITIK & HUBUNGAN INTERNASIONAL

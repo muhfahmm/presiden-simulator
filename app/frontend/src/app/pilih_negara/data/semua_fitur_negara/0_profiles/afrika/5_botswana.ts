@@ -5,7 +5,7 @@ export const botswana_profile = {
   "lon": 24,
   "lat": -22,
   "flag": "🇧🇼",
-  "jumlah_penduduk": 2254126,
+  "jumlah_penduduk": 2254,
   "anggaran": 194,
   "pendapatan_nasional": "556",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const botswana: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 24880,
-    "harga_bbm": 21400,
-    "harga_listrik": 1280,
-    "harga_air": 7280,
-    "harga_obat": 221060,
-    "harga_pendidikan": 677460
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 24.88,
+    "harga_bbm": 21.4,
+    "harga_listrik": 1.28,
+    "harga_air": 7.28,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

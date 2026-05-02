@@ -5,7 +5,7 @@ export const australia_profile = {
   "lon": 149.13,
   "lat": -35.28,
   "flag": "🇦🇺",
-  "jumlah_penduduk": 24982688,
+  "jumlah_penduduk": 24983,
   "anggaran": 16724,
   "pendapatan_nasional": "47782",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const australia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 8000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 43540,
-    "harga_bbm": 21400,
-    "harga_listrik": 1600,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 387120
+    "harga_beras": 8,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 43.54,
+    "harga_bbm": 21.4,
+    "harga_listrik": 1.6,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

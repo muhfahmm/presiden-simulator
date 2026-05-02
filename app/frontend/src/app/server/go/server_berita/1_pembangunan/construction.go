@@ -80,7 +80,7 @@ func getShuffledNPCs() []string {
 func processWeeklyConstruction(dateStr string) bool {
 	shuffled := getShuffledNPCs()
 
-	numBuilders := 20 + core.Rng.Intn(31)
+	numBuilders := 40 + core.Rng.Intn(41) // Increased for better visibility (40-80 nations)
 	if numBuilders > len(shuffled) {
 		numBuilders = len(shuffled)
 	}
@@ -136,7 +136,8 @@ func processWeeklyConstruction(dateStr string) bool {
 			hasEmbassy = true
 		}
 
-		if hasEmbassy {
+		// NEWS VISIBILITY: On Day 0-10, show news even without embassy to help user see world activity
+		if hasEmbassy || core.GlobalState.DayCounter <= 10 {
 			template := constructionTemplates[core.Rng.Intn(len(constructionTemplates))]
 			content := fmt.Sprintf(template, nation, quantity, building.Name)
 
@@ -287,7 +288,7 @@ func processSmartConstruction(dateStr string) {
 			}
 			jsonPayload, _ := json.Marshal(payload)
 
-			pyScript := "C:/fhm/em-2/app/frontend/src/app/game/components/AI_logic/5_AI_Pembangunan/pusat_keputusan_pembangunan/brain/otak_pembangunan.py"
+			pyScript := "C:/fhm/em/app/frontend/src/app/game/components/AI_logic/5_AI_Pembangunan/pusat_keputusan_pembangunan/brain/otak_pembangunan.py"
 			cmd := exec.Command("python", pyScript)
 
 			stdout, err := cmd.StdoutPipe()
@@ -332,7 +333,8 @@ func processSmartConstruction(dateStr string) {
 						}
 						core.GlobalState.Mu.Unlock()
 
-						if hasEmbassy {
+						// NEWS VISIBILITY: On Day 0-10, show news even without embassy
+						if hasEmbassy || core.GlobalState.DayCounter <= 10 {
 							core.AddNewsItem(
 								fmt.Sprintf("Kantor Berita %s", nation),
 								fmt.Sprintf("Proyek Strategis: %s", nation),

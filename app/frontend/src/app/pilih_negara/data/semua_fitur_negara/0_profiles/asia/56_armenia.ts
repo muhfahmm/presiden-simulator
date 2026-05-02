@@ -5,7 +5,7 @@ export const armenia_profile = {
   "lon": 44.51,
   "lat": 40.19,
   "flag": "🇦🇲",
-  "jumlah_penduduk": 2951776,
+  "jumlah_penduduk": 2952,
   "anggaran": 214,
   "pendapatan_nasional": "611",
   "religion": "Kristen Ortodoks",
@@ -116,17 +116,17 @@ export const armenia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 14400,
-    "harga_telur": 43540,
-    "harga_bbm": 10700,
-    "harga_listrik": 1280,
-    "harga_air": 7280,
-    "harga_obat": 221060,
-    "harga_pendidikan": 967800
+    "harga_beras": 16,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 14.4,
+    "harga_telur": 43.54,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.28,
+    "harga_air": 7.28,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

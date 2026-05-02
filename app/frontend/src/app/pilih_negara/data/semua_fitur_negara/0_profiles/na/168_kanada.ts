@@ -5,7 +5,7 @@ export const kanada_profile = {
   "lon": -75.69,
   "lat": 45.42,
   "flag": "🇨🇦",
-  "jumlah_penduduk": 37057765,
+  "jumlah_penduduk": 37058,
   "anggaran": 21780,
   "pendapatan_nasional": "62227",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const kanada: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 82000,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 20160,
-    "harga_telur": 24880,
-    "harga_bbm": 8560,
-    "harga_listrik": 1280,
-    "harga_air": 10400,
-    "harga_obat": 157900,
-    "harga_pendidikan": 387120
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 82,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 20.16,
+    "harga_telur": 24.88,
+    "harga_bbm": 8.56,
+    "harga_listrik": 1.28,
+    "harga_air": 10.4,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

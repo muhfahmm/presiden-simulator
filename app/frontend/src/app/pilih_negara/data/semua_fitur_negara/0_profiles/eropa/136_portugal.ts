@@ -5,7 +5,7 @@ export const portugal_profile = {
   "lon": -9.13,
   "lat": 38.72,
   "flag": "🇵🇹",
-  "jumlah_penduduk": 10283822,
+  "jumlah_penduduk": 10284,
   "anggaran": 2722,
   "pendapatan_nasional": "7778",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const portugal: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 8000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 800,
-    "harga_air": 2600,
-    "harga_obat": 157900,
-    "harga_pendidikan": 677460
+    "harga_beras": 8,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 0.8,
+    "harga_air": 2.6,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

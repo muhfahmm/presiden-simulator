@@ -5,7 +5,7 @@ export const saint_lucia_profile = {
   "lon": -60.96666666,
   "lat": 13.88333333,
   "flag": "🇱🇨",
-  "jumlah_penduduk": 181889,
+  "jumlah_penduduk": 182,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const saint_lucia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 28800,
-    "harga_telur": 15550,
-    "harga_bbm": 14980,
-    "harga_listrik": 1280,
-    "harga_air": 7280,
-    "harga_obat": 126320,
-    "harga_pendidikan": 387120
+    "harga_beras": 16,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 28.8,
+    "harga_telur": 15.55,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.28,
+    "harga_air": 7.28,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

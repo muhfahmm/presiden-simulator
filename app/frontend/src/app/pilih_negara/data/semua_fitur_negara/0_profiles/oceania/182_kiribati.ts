@@ -5,7 +5,7 @@ export const kiribati_profile = {
   "lon": 173,
   "lat": 1.41666666,
   "flag": "🇰🇮",
-  "jumlah_penduduk": 115847,
+  "jumlah_penduduk": 116,
   "anggaran": 10,
   "pendapatan_nasional": "15",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const kiribati: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 1280,
-    "harga_air": 5200,
-    "harga_obat": 157900,
-    "harga_pendidikan": 387120
+    "harga_beras": 16,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.28,
+    "harga_air": 5.2,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

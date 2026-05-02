@@ -5,7 +5,7 @@ export const georgia_profile = {
   "lon": 43.5,
   "lat": 42,
   "flag": "🇬🇪",
-  "jumlah_penduduk": 3726549,
+  "jumlah_penduduk": 3727,
   "anggaran": 243,
   "pendapatan_nasional": "694",
   "religion": "Kristen Ortodoks",
@@ -116,17 +116,17 @@ export const georgia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 1280,
-    "harga_air": 7280,
-    "harga_obat": 157900,
-    "harga_pendidikan": 677460
+    "harga_beras": 32,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.28,
+    "harga_air": 7.28,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

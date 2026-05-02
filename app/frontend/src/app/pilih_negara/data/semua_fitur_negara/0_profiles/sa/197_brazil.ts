@@ -5,7 +5,7 @@ export const brazil_profile = {
   "lon": -47.88,
   "lat": -15.79,
   "flag": "🇧🇷",
-  "jumlah_penduduk": 209469333,
+  "jumlah_penduduk": 209469,
   "anggaran": 22655,
   "pendapatan_nasional": "64727",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const brazil: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 21400,
-    "harga_listrik": 1600,
-    "harga_air": 4160,
-    "harga_obat": 126320,
-    "harga_pendidikan": 967800
+    "harga_beras": 16,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 21.4,
+    "harga_listrik": 1.6,
+    "harga_air": 4.16,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 967.8
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

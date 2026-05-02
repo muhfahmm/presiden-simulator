@@ -5,7 +5,7 @@ export const tahiti_profile = {
   "lon": -140,
   "lat": -15,
   "flag": "🇵🇫",
-  "jumlah_penduduk": 277679,
+  "jumlah_penduduk": 278,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const tahiti: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 20160,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 1600,
-    "harga_air": 7280,
-    "harga_obat": 157900,
-    "harga_pendidikan": 677460
+    "harga_beras": 32,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 20.16,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 1.6,
+    "harga_air": 7.28,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const kongo_profile = {
   "lon": 15,
   "lat": -1,
   "flag": "🇨🇬",
-  "jumlah_penduduk": 5244363,
+  "jumlah_penduduk": 5244,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const kongo: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 8000,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 32800,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 31100,
-    "harga_bbm": 21400,
-    "harga_listrik": 2240,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 387120
+    "harga_beras": 8,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 32.8,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 31.1,
+    "harga_bbm": 21.4,
+    "harga_listrik": 2.24,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

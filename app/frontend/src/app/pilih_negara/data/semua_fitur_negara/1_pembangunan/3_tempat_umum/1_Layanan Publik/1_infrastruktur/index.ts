@@ -21,7 +21,7 @@ export const infrastrukturRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Jalur Sepeda",
     waktu_pembangunan: 5,
-    biaya_pembangunan: 3750000,
+    biaya_pembangunan: 3750,
     lowongan_kerja: 500,
     konsumsi_listrik: 10,
     efek: "Meningkatkan kepuasan 0.1%"
@@ -34,7 +34,7 @@ export const infrastrukturRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Jalan Raya / Tol",
     waktu_pembangunan: 20,
-    biaya_pembangunan: 37500000,
+    biaya_pembangunan: 37500,
     lowongan_kerja: 5500,
     konsumsi_listrik: 85,
     efek: "Meningkatkan kepuasan 0.3%"
@@ -47,7 +47,7 @@ export const infrastrukturRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Terminal Bus",
     waktu_pembangunan: 15,
-    biaya_pembangunan: 18750000,
+    biaya_pembangunan: 18750,
     lowongan_kerja: 3500,
     konsumsi_listrik: 120,
     efek: "Meningkatkan kepuasan 0.5%"
@@ -60,7 +60,7 @@ export const infrastrukturRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Jalur Kereta Api",
     waktu_pembangunan: 30,
-    biaya_pembangunan: 56250000,
+    biaya_pembangunan: 56250,
     lowongan_kerja: 12000,
     konsumsi_listrik: 450,
     efek: "Meningkatkan kepuasan 0.5%"
@@ -73,7 +73,7 @@ export const infrastrukturRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Kereta Bawah Tanah (Subway)",
     waktu_pembangunan: 40,
-    biaya_pembangunan: 71250000,
+    biaya_pembangunan: 71250,
     lowongan_kerja: 18000,
     konsumsi_listrik: 850,
     efek: "Meningkatkan kepuasan 0.1%"
@@ -86,7 +86,7 @@ export const infrastrukturRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Pelabuhan Laut",
     waktu_pembangunan: 50,
-    biaya_pembangunan: 90000000,
+    biaya_pembangunan: 90000,
     lowongan_kerja: 45000,
     konsumsi_listrik: 1200,
     efek: "Mempercepat Estimasi Waktu Pengiriman ekspor-impor 0.5%"
@@ -99,7 +99,7 @@ export const infrastrukturRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Bandara Internasional",
     waktu_pembangunan: 60,
-    biaya_pembangunan: 112500000,
+    biaya_pembangunan: 112500,
     lowongan_kerja: 65000,
     konsumsi_listrik: 1800,
     efek: "Mempercepat Estimasi Waktu Pengiriman ekspor-impor 0.3%"
@@ -112,7 +112,7 @@ export const infrastrukturRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Helipad",
     waktu_pembangunan: 7,
-    biaya_pembangunan: 11250000,
+    biaya_pembangunan: 11250,
     lowongan_kerja: 800,
     konsumsi_listrik: 45,
     efek: "Mempercepat Estimasi Waktu Pengiriman ekspor-impor 0.1%"

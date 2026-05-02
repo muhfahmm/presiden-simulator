@@ -21,7 +21,7 @@ export const olahragaRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Pusat Akuatik Nasional",
     waktu_pembangunan: 7,
-    biaya_pembangunan: 9000000,
+    biaya_pembangunan: 9000,
     lowongan_kerja: 600,
     konsumsi_listrik: 45,
     efek: "Meningkatkan kas negara"
@@ -34,7 +34,7 @@ export const olahragaRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Sirkuit Balap Internasional",
     waktu_pembangunan: 40,
-    biaya_pembangunan: 71250000,
+    biaya_pembangunan: 71250,
     lowongan_kerja: 8000,
     konsumsi_listrik: 350,
     efek: "Meningkatkan kas negara"
@@ -47,7 +47,7 @@ export const olahragaRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Stadion Utama Internasional",
     waktu_pembangunan: 60,
-    biaya_pembangunan: 97500000,
+    biaya_pembangunan: 97500,
     lowongan_kerja: 25000,
     konsumsi_listrik: 950,
     efek: "Meningkatkan kas negara"
@@ -60,7 +60,7 @@ export const olahragaRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Pusat Kebugaran & Olahraga Terpadu",
     waktu_pembangunan: 15,
-    biaya_pembangunan: 18750000,
+    biaya_pembangunan: 18750,
     lowongan_kerja: 1500,
     konsumsi_listrik: 85,
     efek: "Meningkatkan kas negara"
@@ -73,7 +73,7 @@ export const olahragaRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Fasilitas Golf Nasional",
     waktu_pembangunan: 25,
-    biaya_pembangunan: 41250000,
+    biaya_pembangunan: 41250,
     lowongan_kerja: 3500,
     konsumsi_listrik: 120,
     efek: "Meningkatkan kas negara"
@@ -86,7 +86,7 @@ export const olahragaRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Arena E-Sports Global",
     waktu_pembangunan: 30,
-    biaya_pembangunan: 56250000,
+    biaya_pembangunan: 56250,
     lowongan_kerja: 5000,
     konsumsi_listrik: 450,
     efek: "Meningkatkan kas negara"
@@ -99,7 +99,7 @@ export const olahragaRate: Record<string, any> = {
     satuan: "Unit",
     deskripsi: "Sirkuit Gokart Profesional",
     waktu_pembangunan: 10,
-    biaya_pembangunan: 13500000,
+    biaya_pembangunan: 13500,
     lowongan_kerja: 1200,
     konsumsi_listrik: 120,
     efek: "Meningkatkan kas negara"

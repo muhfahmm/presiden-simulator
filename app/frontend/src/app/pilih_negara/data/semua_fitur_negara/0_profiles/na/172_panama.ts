@@ -5,7 +5,7 @@ export const panama_profile = {
   "lon": -80,
   "lat": 9,
   "flag": "🇵🇦",
-  "jumlah_penduduk": 4176873,
+  "jumlah_penduduk": 4177,
   "anggaran": 739,
   "pendapatan_nasional": "2111",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const panama: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 20500,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 21400,
-    "harga_listrik": 1600,
-    "harga_air": 7280,
-    "harga_obat": 126320,
-    "harga_pendidikan": 483900
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 20.5,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 21.4,
+    "harga_listrik": 1.6,
+    "harga_air": 7.28,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

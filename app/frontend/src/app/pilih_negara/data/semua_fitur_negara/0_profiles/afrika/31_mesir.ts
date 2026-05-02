@@ -5,7 +5,7 @@ export const mesir_profile = {
   "lon": 31.23,
   "lat": 30.04,
   "flag": "🇪🇬",
-  "jumlah_penduduk": 98423595,
+  "jumlah_penduduk": 98424,
   "anggaran": 3841,
   "pendapatan_nasional": "10973",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const mesir: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 62200,
-    "harga_bbm": 14980,
-    "harga_listrik": 2240,
-    "harga_air": 7280,
-    "harga_obat": 126320,
-    "harga_pendidikan": 677460
+    "harga_beras": 16,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 62.2,
+    "harga_bbm": 14.98,
+    "harga_listrik": 2.24,
+    "harga_air": 7.28,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const prancis_profile = {
   "lon": 2,
   "lat": 46,
   "flag": "🇫🇷",
-  "jumlah_penduduk": 66977107,
+  "jumlah_penduduk": 66977,
   "anggaran": 30433,
   "pendapatan_nasional": "86951",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const prancis: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 21560,
-    "harga_gula": 14400,
-    "harga_telur": 24880,
-    "harga_bbm": 5350,
-    "harga_listrik": 1600,
-    "harga_air": 7280,
-    "harga_obat": 221060,
-    "harga_pendidikan": 677460
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 21.56,
+    "harga_gula": 14.4,
+    "harga_telur": 24.88,
+    "harga_bbm": 5.35,
+    "harga_listrik": 1.6,
+    "harga_air": 7.28,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 677.46
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

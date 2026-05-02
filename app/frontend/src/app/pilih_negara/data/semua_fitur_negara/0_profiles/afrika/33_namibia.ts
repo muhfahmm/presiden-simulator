@@ -5,7 +5,7 @@ export const namibia_profile = {
   "lon": 17,
   "lat": -22,
   "flag": "🇳🇦",
-  "jumlah_penduduk": 2448255,
+  "jumlah_penduduk": 2448,
   "anggaran": 126,
   "pendapatan_nasional": "361",
   "religion": "Protestan",
@@ -116,17 +116,17 @@ export const namibia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 31100,
-    "harga_bbm": 21400,
-    "harga_listrik": 1600,
-    "harga_air": 7280,
-    "harga_obat": 126320,
-    "harga_pendidikan": 483900
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 31.1,
+    "harga_bbm": 21.4,
+    "harga_listrik": 1.6,
+    "harga_air": 7.28,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -5,7 +5,7 @@ export const maldives_profile = {
   "lon": 73.3,
   "lat": 4.1,
   "flag": "🇲🇻",
-  "jumlah_penduduk": 515696,
+  "jumlah_penduduk": 516,
   "anggaran": 63,
   "pendapatan_nasional": "181",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const maldives: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 208200,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 20160,
-    "harga_telur": 43540,
-    "harga_bbm": 10700,
-    "harga_listrik": 3200,
-    "harga_air": 2600,
-    "harga_obat": 78950,
-    "harga_pendidikan": 387120
+    "harga_beras": 16,
+    "harga_daging_sapi": 208.2,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 20.16,
+    "harga_telur": 43.54,
+    "harga_bbm": 10.7,
+    "harga_listrik": 3.2,
+    "harga_air": 2.6,
+    "harga_obat": 78.95,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

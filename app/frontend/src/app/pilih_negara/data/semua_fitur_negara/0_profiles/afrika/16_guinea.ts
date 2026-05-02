@@ -5,7 +5,7 @@ export const guinea_profile = {
   "lon": -10,
   "lat": 11,
   "flag": "🇬🇳",
-  "jumlah_penduduk": 12414318,
+  "jumlah_penduduk": 12414,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const guinea: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 104100,
-    "harga_ayam": 57400,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 11520,
-    "harga_telur": 43540,
-    "harga_bbm": 14980,
-    "harga_listrik": 1280,
-    "harga_air": 5200,
-    "harga_obat": 126320,
-    "harga_pendidikan": 483900
+    "harga_beras": 16,
+    "harga_daging_sapi": 104.1,
+    "harga_ayam": 57.4,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 11.52,
+    "harga_telur": 43.54,
+    "harga_bbm": 14.98,
+    "harga_listrik": 1.28,
+    "harga_air": 5.2,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

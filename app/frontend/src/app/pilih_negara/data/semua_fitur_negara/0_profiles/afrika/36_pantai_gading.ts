@@ -5,7 +5,7 @@ export const pantai_gading_profile = {
   "lon": -5,
   "lat": 8,
   "flag": "🇨🇮",
-  "jumlah_penduduk": 25069229,
+  "jumlah_penduduk": 25069,
   "anggaran": 681,
   "pendapatan_nasional": "1945",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const pantai_gading: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 12800,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 7700,
-    "harga_gula": 14400,
-    "harga_telur": 31100,
-    "harga_bbm": 10700,
-    "harga_listrik": 2240,
-    "harga_air": 4160,
-    "harga_obat": 126320,
-    "harga_pendidikan": 483900
+    "harga_beras": 12.8,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 7.7,
+    "harga_gula": 14.4,
+    "harga_telur": 31.1,
+    "harga_bbm": 10.7,
+    "harga_listrik": 2.24,
+    "harga_air": 4.16,
+    "harga_obat": 126.32,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

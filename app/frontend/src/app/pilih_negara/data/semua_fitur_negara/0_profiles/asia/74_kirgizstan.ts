@@ -5,7 +5,7 @@ export const kirgizstan_profile = {
   "lon": 75,
   "lat": 41,
   "flag": "🇰🇬",
-  "jumlah_penduduk": 6322800,
+  "jumlah_penduduk": 6323,
   "anggaran": 117,
   "pendapatan_nasional": "333",
   "religion": "Islam",
@@ -116,17 +116,17 @@ export const kirgizstan: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 16000,
-    "harga_daging_sapi": 52050,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 14400,
-    "harga_telur": 43540,
-    "harga_bbm": 10700,
-    "harga_listrik": 800,
-    "harga_air": 5200,
-    "harga_obat": 315800,
-    "harga_pendidikan": 387120
+    "harga_beras": 16,
+    "harga_daging_sapi": 52.05,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 14.4,
+    "harga_telur": 43.54,
+    "harga_bbm": 10.7,
+    "harga_listrik": 0.8,
+    "harga_air": 5.2,
+    "harga_obat": 315.8,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

@@ -34,7 +34,7 @@ export const komandoPertahananRate = {
     deskripsi: "Pusat Komando Strategis Nasional",
 
     waktu_pembangunan: 90,
-    biaya_pembangunan: 900000, // Reduced from 1.2M
+    biaya_pembangunan: 900, // Reduced from 1.2M
     lowongan_kerja: 15000,
     konsumsi_listrik: 850
   },
@@ -45,7 +45,7 @@ export const komandoPertahananRate = {
     deskripsi: "Bunker Komando Pertahanan Nasional",
 
     waktu_pembangunan: 120,
-    biaya_pembangunan: 637500, // Reduced from 850k
+    biaya_pembangunan: 637.5, // Reduced from 850k
     lowongan_kerja: 8000,
     konsumsi_listrik: 450
   },
@@ -56,7 +56,7 @@ export const komandoPertahananRate = {
     deskripsi: "Pusat Komando Operasi Wilayah",
 
     waktu_pembangunan: 60,
-    biaya_pembangunan: 337500, // Reduced from 450k
+    biaya_pembangunan: 337.5, // Reduced from 450k
     lowongan_kerja: 12000,
     konsumsi_listrik: 350
   },
@@ -66,7 +66,7 @@ export const komandoPertahananRate = {
     label: "Program Nuklir",
     deskripsi: "Fasilitas Riset Nuklir dan Pengayaan Uranium",
     waktu_pembangunan: 360,
-    biaya_pembangunan: 50000000,
+    biaya_pembangunan: 50000,
     groupId: "nuklir"
   },
   "misil_nuklir": {
@@ -75,7 +75,7 @@ export const komandoPertahananRate = {
     label: "ICBM (Misil Nuklir)",
     deskripsi: "Peluru Kendali Balistik Antar Benua (ICBM)",
     waktu_pembangunan: 180,
-    biaya_pembangunan: 25000000,
+    biaya_pembangunan: 25000,
     groupId: "nuklir"
   }
 };

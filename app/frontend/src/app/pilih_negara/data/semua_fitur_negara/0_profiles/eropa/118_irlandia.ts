@@ -5,7 +5,7 @@ export const irlandia_profile = {
   "lon": -8,
   "lat": 53,
   "flag": "🇮🇪",
-  "jumlah_penduduk": 4867309,
+  "jumlah_penduduk": 4867,
   "anggaran": 5153,
   "pendapatan_nasional": "14723",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const irlandia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 22400,
-    "harga_daging_sapi": 145740,
-    "harga_ayam": 20500,
-    "harga_minyak_goreng": 12320,
-    "harga_gula": 20160,
-    "harga_telur": 31100,
-    "harga_bbm": 8560,
-    "harga_listrik": 3200,
-    "harga_air": 10400,
-    "harga_obat": 157900,
-    "harga_pendidikan": 387120
+    "harga_beras": 22.4,
+    "harga_daging_sapi": 145.74,
+    "harga_ayam": 20.5,
+    "harga_minyak_goreng": 12.32,
+    "harga_gula": 20.16,
+    "harga_telur": 31.1,
+    "harga_bbm": 8.56,
+    "harga_listrik": 3.2,
+    "harga_air": 10.4,
+    "harga_obat": 157.9,
+    "harga_pendidikan": 387.12
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL

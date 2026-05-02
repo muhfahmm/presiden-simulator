@@ -5,7 +5,7 @@ export const italia_profile = {
   "lon": 12.49,
   "lat": 41.9,
   "flag": "🇮🇹",
-  "jumlah_penduduk": 60421760,
+  "jumlah_penduduk": 60422,
   "anggaran": 22655,
   "pendapatan_nasional": "64727",
   "religion": "Katolik",
@@ -116,17 +116,17 @@ export const italia: CountryData = {
   // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
-    "harga_beras": 32000,
-    "harga_daging_sapi": 83280,
-    "harga_ayam": 41000,
-    "harga_minyak_goreng": 15400,
-    "harga_gula": 28800,
-    "harga_telur": 24880,
-    "harga_bbm": 21400,
-    "harga_listrik": 800,
-    "harga_air": 5200,
-    "harga_obat": 221060,
-    "harga_pendidikan": 483900
+    "harga_beras": 32,
+    "harga_daging_sapi": 83.28,
+    "harga_ayam": 41,
+    "harga_minyak_goreng": 15.4,
+    "harga_gula": 28.8,
+    "harga_telur": 24.88,
+    "harga_bbm": 21.4,
+    "harga_listrik": 0.8,
+    "harga_air": 5.2,
+    "harga_obat": 221.06,
+    "harga_pendidikan": 483.9
   },
     // =============================================================
   // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
