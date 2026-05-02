@@ -916,6 +916,7 @@ func simulationEngine() {
 		checkMonthlyInboxReset(nextDate)
 
 		// 3. Background Simulation (Parallel Polyglot)
+		processPlayerDay(nextDate)
 		processNPCDay(nextDate)
 		server_ekonomi.ProcessDailyProduction()
 		constructionChanged = server_berita.ProcessNewsDay(nextDate)
@@ -981,12 +982,17 @@ func processPlayerDay(date time.Time) {
 	core.GlobalState.Player.Budget = math.Round(core.GlobalState.Player.Budget + core.GlobalState.Player.DailyIncome)
 
 	// 2. Population: Grow based on population size
-	growthRate := 0.00003
+	// We use the same base rate as NPCs (1.00002) for baseline stability
+	growthRate := 0.000025
 	popGrowth := core.GlobalState.Player.Population * growthRate
-	popGrowth += float64(core.Rng.Intn(500)) - 250
+	
+	// Add small random noise
+	popGrowth += float64(core.Rng.Intn(100)) - 50
+	
 	if popGrowth < 0 {
 		popGrowth = 0
 	}
+	
 	core.GlobalState.Player.PopulationDelta = math.Round(popGrowth)
 	core.GlobalState.Player.Population = math.Round(core.GlobalState.Player.Population + popGrowth)
 
