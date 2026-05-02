@@ -115,7 +115,7 @@ export const newsStorage = {
           return; // Hentikan proses sync untuk tick ini
         }
         }
-      } catch (e) { /* Ignore errors */ }
+      } catch (e) { /* Ignore erors */ }
     }
 
     // Map server news to our format
