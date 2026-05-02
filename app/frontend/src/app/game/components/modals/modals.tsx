@@ -359,9 +359,6 @@ export default function StrategyModal({
                 <InfoRow label="Ideologi Negara" value={
                   <IdeologyRow ideology={countryEntry?.ideology} />
                 } />
-                <InfoRow label="Kepuasan Rakyat" value={
-                  <SatisfactionRow value={liveStats.satisfaction} />
-                } />
                 <div className="pt-2 border-t border-zinc-800/40 mt-1 space-y-2.5">
                   <InfoRow label="Populasi Nasional" value={
                     <PopulasiRow total={liveStats.popTotal} delta={liveStats.popDelta} />

@@ -55,6 +55,16 @@ export default function HistoriTab() {
     return matchesSearch && matchesFilter && matchesStatus;
   });
 
+  // FINAL SAFETY DEDUPLICATION for React Keys
+  const uniqueFiltered: any[] = [];
+  const seenIds = new Set();
+  for (const res of filteredResolutions) {
+    if (!seenIds.has(res.id)) {
+      seenIds.add(res.id);
+      uniqueFiltered.push(res);
+    }
+  }
+
   return (
     <div className="flex-1 overflow-hidden flex flex-col p-8 gap-8 animate-in fade-in duration-300">
       
@@ -161,14 +171,14 @@ export default function HistoriTab() {
         
         <div className="pr-4">
            <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">
-             Menampilkan {filteredResolutions.length} dari {resolutions.length} Arsip
+             Menampilkan {uniqueFiltered.length} dari {resolutions.length} Arsip
            </span>
         </div>
       </div>
 
       {/* Resolutions List */}
       <div className="flex-1 overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
-        {filteredResolutions.length === 0 ? (
+        {uniqueFiltered.length === 0 ? (
           <div className="h-full flex flex-col items-center justify-center opacity-40 text-center gap-6 max-w-sm mx-auto">
              <div className="p-6 rounded-full bg-zinc-900 border border-zinc-800 animate-pulse">
                <FileText className="h-12 w-12 text-zinc-500" strokeWidth={1.5} />
@@ -193,7 +203,7 @@ export default function HistoriTab() {
           </div>
         ) : (
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-            {filteredResolutions.map((res) => (
+            {uniqueFiltered.map((res) => (
               <div 
                 key={res.id}
                 className="p-6 rounded-[32px] bg-zinc-900/40 border border-zinc-800/50 hover:bg-zinc-900/60 hover:border-zinc-700/50 transition-all group flex flex-col gap-4 relative overflow-hidden"

@@ -74,34 +74,60 @@ export const unVotingStorage = {
   getData: (): UNVotingState => {
     if (typeof window === 'undefined') return { votingHistory: [], activeVotings: [] };
     
-    // Use memory cache if available
-    if (unVotingStorage.inMemoryData) return unVotingStorage.inMemoryData;
-
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) return { votingHistory: [], activeVotings: [] };
-    try {
-      const data = JSON.parse(stored);
-      const history = Array.isArray(data.votingHistory) ? data.votingHistory : 
-                      Array.isArray(data.passedResolutions) ? data.passedResolutions : [];
-      const active = Array.isArray(data.activeVotings) ? data.activeVotings : [];
-      
-      unVotingStorage.inMemoryData = {
-        votingHistory: history,
-        activeVotings: active
-      };
-
-      return unVotingStorage.inMemoryData;
-    } catch (e) {
-      console.error("[PBB Storage] Gagal membaca data:", e);
-      return { votingHistory: [], activeVotings: [] };
+    let rawData: UNVotingState;
+    if (unVotingStorage.inMemoryData) {
+      rawData = unVotingStorage.inMemoryData;
+    } else {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (!stored) return { votingHistory: [], activeVotings: [] };
+      try {
+        const data = JSON.parse(stored);
+        const history = Array.isArray(data.votingHistory) ? data.votingHistory : 
+                        Array.isArray(data.passedResolutions) ? data.passedResolutions : [];
+        const active = Array.isArray(data.activeVotings) ? data.activeVotings : [];
+        rawData = { votingHistory: history, activeVotings: active };
+      } catch (e) {
+        console.error("[PBB Storage] Gagal membaca data:", e);
+        return { votingHistory: [], activeVotings: [] };
+      }
     }
+
+    // ALWAYS DEDUPLICATE BEFORE RETURNING TO UI
+    const uniqueHistory: VotingHistoryItem[] = [];
+    const seenIds = new Set();
+    (rawData.votingHistory || []).forEach((item: VotingHistoryItem) => {
+      if (!seenIds.has(item.id)) {
+        seenIds.add(item.id);
+        uniqueHistory.push(item);
+      }
+    });
+
+    unVotingStorage.inMemoryData = {
+      ...rawData,
+      votingHistory: uniqueHistory
+    };
+
+    return unVotingStorage.inMemoryData;
   },
 
   saveData: (data: UNVotingState) => {
     if (typeof window === 'undefined') return;
     
+    // FINAL DEDUPLICATION SAFETY
+    const uniqueHistory: VotingHistoryItem[] = [];
+    const seenIds = new Set();
+    (data.votingHistory || []).forEach(item => {
+      if (!seenIds.has(item.id)) {
+        seenIds.add(item.id);
+        uniqueHistory.push(item);
+      }
+    });
+
     // Update memory cache
-    unVotingStorage.inMemoryData = data;
+    unVotingStorage.inMemoryData = {
+      ...data,
+      votingHistory: uniqueHistory
+    };
 
     // Dispatch event for UI updates (Async)
     setTimeout(() => window.dispatchEvent(new Event("un_voting_updated")), 0);
@@ -140,7 +166,7 @@ export const unVotingStorage = {
     
     const newVoting: ActiveVoting = {
       ...voting,
-      id: `vote-${Date.now()}`,
+      id: `vote-${Date.now()}-${Math.floor(Math.random() * 10000)}`,
       progress: 0,
       userVote: 'SETUJU', 
       proposer: userCountry,
@@ -169,7 +195,7 @@ export const unVotingStorage = {
     
     const newVoting: ActiveVoting = {
       ...voting,
-      id: `ai-vote-${Date.now()}`,
+      id: `ai-vote-${Date.now()}-${Math.floor(Math.random() * 10000)}`,
       progress: 0,
       userVote: undefined, 
       finalResults: {
@@ -332,7 +358,7 @@ export const unVotingStorage = {
     const state = unVotingStorage.getData();
     const newItem: VotingHistoryItem = {
       ...item,
-      id: `res-${Date.now()}`,
+      id: `res-${Date.now()}-${Math.floor(Math.random() * 10000)}`,
       passedDate: new Date().toLocaleDateString('id-ID')
     };
     unVotingStorage.saveData({

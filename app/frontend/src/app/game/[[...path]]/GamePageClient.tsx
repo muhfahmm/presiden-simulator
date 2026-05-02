@@ -56,12 +56,19 @@ export default function GamePageClient() {
       aiBudgetStorage.clear();
       aiPopulationStorage.clear();
       // Reset relation scores too for absolute consistency
+      // Reset relation scores too for absolute consistency
       import("../components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage").then(({ relationStorage }) => {
         relationStorage.clear();
       });
+
+      // Reset PBB Voting data to default (Empty)
+      import("../components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/1_pemungutan_suara/logika_pemungutan_suara/unVotingStorage").then(({ unVotingStorage }) => {
+        unVotingStorage.clear();
+      });
+
       localStorage.removeItem('active_invasions');
       window.dispatchEvent(new CustomEvent('CLEAR_INVASIONS'));
-      console.log("[GAME PAGE] AI, Relation, and Invasion storages reset complete");
+      console.log("[GAME PAGE] AI, Relation, PBB, and Invasion storages reset complete");
     }
   }, []);
 

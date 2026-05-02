@@ -475,8 +475,12 @@ export default function GameNavbar({
 
             // STEP 2: Reset localStorage
             gameStorage.resetCurrentSessionToDefaults();
+
+            // STEP 3: Reset PBB Data
+            const { unVotingStorage } = await import("../2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/1_pemungutan_suara/logika_pemungutan_suara/unVotingStorage");
+            unVotingStorage.clear();
             
-            // STEP 3: Hard reload with cache bust
+            // STEP 4: Hard reload with cache bust
             const cacheUuid = Date.now() + "_" + Math.random().toString(36).substring(2, 9);
             window.location.href = window.location.origin + "/game?cb=" + cacheUuid;
           } catch (err) {
