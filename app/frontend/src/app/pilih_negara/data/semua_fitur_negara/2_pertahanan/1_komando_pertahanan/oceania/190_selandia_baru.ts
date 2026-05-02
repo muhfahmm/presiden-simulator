@@ -5,9 +5,12 @@ export const selandia_baru_strategis = {
     "intelijen": 40,
     "status_nuklir": false,
     "intel_radar": selandia_baru_intelijen,
-    "operasi_strategis": { "misi_serangan": 25,
+    "operasi_strategis": {
+      "misi_serangan": 25,
       "misi_mata_mata": 32,
       "misi_sabotase": 23,
-      "manajemen_wilayah": 30,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

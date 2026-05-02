@@ -14,6 +14,7 @@ export interface SektorMiliterStrategis {
     misi_sabotase: number;
     manajemen_wilayah: number;
     program_nuklir: number;
+    misil_nuklir: number;
   };
   intel_radar?: {
     sistem_satelit: number;

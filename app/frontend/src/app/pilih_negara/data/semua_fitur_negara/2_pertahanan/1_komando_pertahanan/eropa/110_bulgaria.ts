@@ -5,9 +5,12 @@ export const bulgaria_strategis = {
     "intelijen": 35,
     "status_nuklir": false,
     "intel_radar": bulgaria_intelijen,
-    "operasi_strategis": { "misi_serangan": 23,
+    "operasi_strategis": {
+      "misi_serangan": 23,
       "misi_mata_mata": 33,
       "misi_sabotase": 10,
-      "manajemen_wilayah": 8,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

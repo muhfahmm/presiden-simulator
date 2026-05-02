@@ -5,9 +5,12 @@ export const palestina_strategis = {
     "intelijen": 16,
     "status_nuklir": false,
     "intel_radar": palestina_intelijen,
-    "operasi_strategis": { "misi_serangan": 23,
+    "operasi_strategis": {
+      "misi_serangan": 23,
       "misi_mata_mata": 5,
       "misi_sabotase": 25,
-      "manajemen_wilayah": 38,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

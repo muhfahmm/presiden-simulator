@@ -5,9 +5,12 @@ export const vietnam_strategis = {
     "intelijen": 40,
     "status_nuklir": false,
     "intel_radar": vietnam_intelijen,
-    "operasi_strategis": { "misi_serangan": 40,
+    "operasi_strategis": {
+      "misi_serangan": 40,
       "misi_mata_mata": 16,
       "misi_sabotase": 9,
-      "manajemen_wilayah": 27,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

@@ -5,10 +5,12 @@ export const burkina_faso_strategis = {
     "intelijen": 28,
     "status_nuklir": false,
     "intel_radar": burkina_faso_intelijen,
-    "operasi_strategis": { "misi_serangan": 32,
+    "operasi_strategis": {
+      "misi_serangan": 32,
       "misi_mata_mata": 27,
       "misi_sabotase": 10,
-      "manajemen_wilayah": 8,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

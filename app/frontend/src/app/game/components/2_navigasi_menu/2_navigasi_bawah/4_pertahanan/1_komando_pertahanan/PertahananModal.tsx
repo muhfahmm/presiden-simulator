@@ -4,6 +4,7 @@ import { useState } from "react";
 import { X, Shield, Swords, Eye, Bomb, Map as MapIcon, Radiation, Zap, Truck, Anchor, Plane, Search, Crosshair, Target, Clock, Loader2, EyeOff } from "lucide-react"
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import ProgramNuklirModal from "./5_program_nuklir/5_program_nuklir";
+import { nuclearStorage } from "./5_program_nuklir/nuclearStorage";
 
 
 interface ModalProps {
@@ -49,10 +50,17 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
       color: "text-rose-500",
       items: [
         { label: "Misi Serangan", icon: Swords, desc: "Operasi Aktif", value: "SIAGA", color: "text-red-500", btnLabel: "Mulai Misi" },
-        { label: "Misi Mata-mata", icon: Eye, desc: "Agen Lapangan", value: security.operasi_strategis?.misi_mata_mata ?? 0, color: "text-indigo-400", btnLabel: "Mulai Misi" },
+        { label: "Misi Mata-mata", icon: Eye, desc: "Agen Mata-Mata", value: security.operasi_strategis?.misi_mata_mata ?? 0, color: "text-indigo-400", btnLabel: "Mulai Misi" },
         { label: "Misi Sabotase", icon: Bomb, desc: "Target Sabotase", value: security.operasi_strategis?.misi_sabotase ?? 0, color: "text-orange-500", btnLabel: "Mulai Misi" },
         { label: "Kontrol Wilayah", icon: MapIcon, desc: "Manajemen Administrasi", value: `${security.operasi_strategis?.manajemen_wilayah ?? 0}%`, color: "text-emerald-500", btnLabel: "Lihat Wilayah" },
-        { label: "Program Nuklir", icon: Radiation, desc: "Kesiapan Strategis", value: `${security.operasi_strategis?.program_nuklir ?? 0}%`, color: "text-yellow-500", btnLabel: "Lihat Program Nuklir" },
+        { 
+          label: "Program Nuklir", 
+          icon: Radiation, 
+          desc: "Kesiapan Strategis", 
+          value: `${Math.round(nuclearStorage.getData().uraniumPurity)}%`, 
+          color: "text-yellow-500", 
+          btnLabel: "Lihat Program Nuklir" 
+        },
       ]
     },
     {

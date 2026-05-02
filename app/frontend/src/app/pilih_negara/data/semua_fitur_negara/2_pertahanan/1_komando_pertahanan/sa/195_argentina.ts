@@ -5,9 +5,12 @@ export const argentina_strategis = {
     "intelijen": 35,
     "status_nuklir": true,
     "intel_radar": argentina_intelijen,
-    "operasi_strategis": { "misi_serangan": 34,
+    "operasi_strategis": {
+      "misi_serangan": 34,
       "misi_mata_mata": 20,
       "misi_sabotase": 40,
-      "manajemen_wilayah": 27,
-      "program_nuklir": 80 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 80,
+      "misil_nuklir": 0
+    }
   } as const;

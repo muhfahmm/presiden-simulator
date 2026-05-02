@@ -5,9 +5,12 @@ export const maldives_strategis = {
     "intelijen": 33,
     "status_nuklir": false,
     "intel_radar": maldives_intelijen,
-    "operasi_strategis": { "misi_serangan": 6,
+    "operasi_strategis": {
+      "misi_serangan": 6,
       "misi_mata_mata": 7,
       "misi_sabotase": 9,
-      "manajemen_wilayah": 36,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

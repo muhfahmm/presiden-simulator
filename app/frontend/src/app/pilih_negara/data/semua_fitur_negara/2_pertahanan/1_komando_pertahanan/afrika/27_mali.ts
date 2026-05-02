@@ -5,10 +5,12 @@ export const mali_strategis = {
     "intelijen": 14,
     "status_nuklir": false,
     "intel_radar": mali_intelijen,
-    "operasi_strategis": { "misi_serangan": 5,
+    "operasi_strategis": {
+      "misi_serangan": 5,
       "misi_mata_mata": 30,
       "misi_sabotase": 1,
-      "manajemen_wilayah": 3,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

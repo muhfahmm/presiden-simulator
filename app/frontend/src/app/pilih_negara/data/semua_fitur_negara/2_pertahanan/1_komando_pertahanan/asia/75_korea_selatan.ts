@@ -5,9 +5,12 @@ export const korea_selatan_strategis = {
     "intelijen": 35,
     "status_nuklir": true,
     "intel_radar": korea_selatan_intelijen,
-    "operasi_strategis": { "misi_serangan": 10,
+    "operasi_strategis": {
+      "misi_serangan": 10,
       "misi_mata_mata": 29,
       "misi_sabotase": 37,
-      "manajemen_wilayah": 35,
-      "program_nuklir": 100 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 100,
+      "misil_nuklir": 0
+    }
   } as const;

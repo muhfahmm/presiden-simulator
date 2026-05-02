@@ -5,9 +5,12 @@ export const hong_kong_strategis = {
     "intelijen": 28,
     "status_nuklir": false,
     "intel_radar": hong_kong_intelijen,
-    "operasi_strategis": { "misi_serangan": 39,
+    "operasi_strategis": {
+      "misi_serangan": 39,
       "misi_mata_mata": 10,
       "misi_sabotase": 32,
-      "manajemen_wilayah": 3,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

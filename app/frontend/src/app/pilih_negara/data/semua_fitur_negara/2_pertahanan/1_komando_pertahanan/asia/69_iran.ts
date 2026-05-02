@@ -5,9 +5,12 @@ export const iran_strategis = {
     "intelijen": 13,
     "status_nuklir": true,
     "intel_radar": iran_intelijen,
-    "operasi_strategis": { "misi_serangan": 28,
+    "operasi_strategis": {
+      "misi_serangan": 28,
       "misi_mata_mata": 19,
       "misi_sabotase": 6,
-      "manajemen_wilayah": 24,
-      "program_nuklir": 80 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 80,
+      "misil_nuklir": 0
+    }
   } as const;

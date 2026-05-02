@@ -5,9 +5,12 @@ export const curacao_strategis = {
     "intelijen": 27,
     "status_nuklir": false,
     "intel_radar": curacao_intelijen,
-    "operasi_strategis": { "misi_serangan": 20,
+    "operasi_strategis": {
+      "misi_serangan": 20,
       "misi_mata_mata": 4,
       "misi_sabotase": 40,
-      "manajemen_wilayah": 16,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

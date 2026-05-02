@@ -5,10 +5,12 @@ export const togo_strategis = {
     "intelijen": 32,
     "status_nuklir": false,
     "intel_radar": togo_intelijen,
-    "operasi_strategis": { "misi_serangan": 19,
+    "operasi_strategis": {
+      "misi_serangan": 19,
       "misi_mata_mata": 23,
       "misi_sabotase": 18,
-      "manajemen_wilayah": 35,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

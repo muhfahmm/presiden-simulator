@@ -5,9 +5,12 @@ export const trinidad_dan_tobago_strategis = {
     "intelijen": 35,
     "status_nuklir": false,
     "intel_radar": trinidad_dan_tobago_intelijen,
-    "operasi_strategis": { "misi_serangan": 30,
+    "operasi_strategis": {
+      "misi_serangan": 30,
       "misi_mata_mata": 19,
       "misi_sabotase": 8,
-      "manajemen_wilayah": 21,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

@@ -5,9 +5,12 @@ export const meksiko_strategis = {
     "intelijen": 21,
     "status_nuklir": true,
     "intel_radar": meksiko_intelijen,
-    "operasi_strategis": { "misi_serangan": 38,
+    "operasi_strategis": {
+      "misi_serangan": 38,
       "misi_mata_mata": 34,
       "misi_sabotase": 8,
-      "manajemen_wilayah": 12,
-      "program_nuklir": 80 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 80,
+      "misil_nuklir": 0
+    }
   } as const;

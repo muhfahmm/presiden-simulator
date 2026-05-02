@@ -5,9 +5,12 @@ export const haiti_strategis = {
     "intelijen": 22,
     "status_nuklir": false,
     "intel_radar": haiti_intelijen,
-    "operasi_strategis": { "misi_serangan": 24,
+    "operasi_strategis": {
+      "misi_serangan": 24,
       "misi_mata_mata": 38,
       "misi_sabotase": 4,
-      "manajemen_wilayah": 24,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

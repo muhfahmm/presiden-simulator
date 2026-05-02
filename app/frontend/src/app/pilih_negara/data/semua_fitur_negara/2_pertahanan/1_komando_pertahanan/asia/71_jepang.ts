@@ -5,9 +5,12 @@ export const jepang_strategis = {
     "intelijen": 3,
     "status_nuklir": true,
     "intel_radar": jepang_intelijen,
-    "operasi_strategis": { "misi_serangan": 33,
+    "operasi_strategis": {
+      "misi_serangan": 33,
       "misi_mata_mata": 19,
       "misi_sabotase": 17,
-      "manajemen_wilayah": 40,
-      "program_nuklir": 95 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 95,
+      "misil_nuklir": 0
+    }
   } as const;

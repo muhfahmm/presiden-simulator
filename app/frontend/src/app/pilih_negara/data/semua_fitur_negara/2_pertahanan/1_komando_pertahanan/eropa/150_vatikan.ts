@@ -5,9 +5,12 @@ export const vatikan_strategis = {
     "intelijen": 39,
     "status_nuklir": false,
     "intel_radar": vatikan_intelijen,
-    "operasi_strategis": { "misi_serangan": 39,
+    "operasi_strategis": {
+      "misi_serangan": 39,
       "misi_mata_mata": 28,
       "misi_sabotase": 23,
-      "manajemen_wilayah": 25,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

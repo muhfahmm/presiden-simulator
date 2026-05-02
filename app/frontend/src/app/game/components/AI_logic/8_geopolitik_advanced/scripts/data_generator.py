@@ -6,12 +6,12 @@ import re
 import json
 
 # Paths
-BASE_DATA_DIR = r"c:\fhm\em\app\frontend\src\app\pilih_negara\data"
+BASE_DATA_DIR = r"c:\fhm\em-2\app\frontend\src\app\pilih_negara\data"
 PROFILES_DIR = os.path.join(BASE_DATA_DIR, "semua_fitur_negara", "0_profiles")
 ORGS_DIR = os.path.join(BASE_DATA_DIR, "database_organisasi_internasional")
 HUBUNGAN_DIR = os.path.join(BASE_DATA_DIR, "database_hubungan_antar_negara")
-OUTPUT_DIR = r"c:\fhm\em\app\frontend\src\app\game\components\AI_logic\8_geopolitik_advanced\data\python"
-JSON_OUTPUT_PATH = r"c:\fhm\em\app\frontend\src\app\game\components\2_navigasi_menu\2_navigasi_bawah\5_geopolitik\1_PBB\1_pemungutan_suara\logika_pemungutan_suara\geopolitical_data.json"
+OUTPUT_DIR = r"c:\fhm\em-2\app\frontend\src\app\game\components\AI_logic\8_geopolitik_advanced\data\python"
+JSON_OUTPUT_PATH = r"c:\fhm\em-2\app\frontend\src\app\game\components\2_navigasi_menu\2_navigasi_bawah\5_geopolitik\1_PBB\1_pemungutan_suara\logika_pemungutan_suara\geopolitical_data.json"
 
 def parse_ts_file(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:

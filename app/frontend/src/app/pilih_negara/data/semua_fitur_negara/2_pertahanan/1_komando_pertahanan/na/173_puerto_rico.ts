@@ -5,9 +5,12 @@ export const puerto_rico_strategis = {
     "intelijen": 25,
     "status_nuklir": false,
     "intel_radar": puerto_rico_intelijen,
-    "operasi_strategis": { "misi_serangan": 38,
+    "operasi_strategis": {
+      "misi_serangan": 38,
       "misi_mata_mata": 37,
       "misi_sabotase": 37,
-      "manajemen_wilayah": 30,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

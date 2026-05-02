@@ -5,9 +5,12 @@ export const yordania_strategis = {
     "intelijen": 17,
     "status_nuklir": false,
     "intel_radar": yordania_intelijen,
-    "operasi_strategis": { "misi_serangan": 39,
+    "operasi_strategis": {
+      "misi_serangan": 39,
       "misi_mata_mata": 28,
       "misi_sabotase": 16,
-      "manajemen_wilayah": 24,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

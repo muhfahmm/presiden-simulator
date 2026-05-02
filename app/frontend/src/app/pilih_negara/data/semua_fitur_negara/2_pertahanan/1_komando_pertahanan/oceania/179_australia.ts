@@ -5,9 +5,12 @@ export const australia_strategis = {
     "intelijen": 20,
     "status_nuklir": false,
     "intel_radar": australia_intelijen,
-    "operasi_strategis": { "misi_serangan": 9,
+    "operasi_strategis": {
+      "misi_serangan": 9,
       "misi_mata_mata": 17,
       "misi_sabotase": 36,
-      "manajemen_wilayah": 1,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

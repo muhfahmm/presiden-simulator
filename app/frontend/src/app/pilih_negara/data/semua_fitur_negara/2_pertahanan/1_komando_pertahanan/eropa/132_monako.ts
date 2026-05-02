@@ -5,9 +5,12 @@ export const monako_strategis = {
     "intelijen": 28,
     "status_nuklir": false,
     "intel_radar": monako_intelijen,
-    "operasi_strategis": { "misi_serangan": 8,
+    "operasi_strategis": {
+      "misi_serangan": 8,
       "misi_mata_mata": 23,
       "misi_sabotase": 38,
-      "manajemen_wilayah": 11,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

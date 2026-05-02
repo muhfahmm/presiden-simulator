@@ -5,9 +5,12 @@ export const kanada_strategis = {
     "intelijen": 30,
     "status_nuklir": true,
     "intel_radar": kanada_intelijen,
-    "operasi_strategis": { "misi_serangan": 16,
+    "operasi_strategis": {
+      "misi_serangan": 16,
       "misi_mata_mata": 23,
       "misi_sabotase": 37,
-      "manajemen_wilayah": 2,
-      "program_nuklir": 95 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 95,
+      "misil_nuklir": 0
+    }
   } as const;

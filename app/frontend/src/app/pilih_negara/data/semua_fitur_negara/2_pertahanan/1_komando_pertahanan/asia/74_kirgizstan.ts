@@ -5,9 +5,12 @@ export const kirgizstan_strategis = {
     "intelijen": 24,
     "status_nuklir": false,
     "intel_radar": kirgizstan_intelijen,
-    "operasi_strategis": { "misi_serangan": 29,
+    "operasi_strategis": {
+      "misi_serangan": 29,
       "misi_mata_mata": 28,
       "misi_sabotase": 40,
-      "manajemen_wilayah": 21,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

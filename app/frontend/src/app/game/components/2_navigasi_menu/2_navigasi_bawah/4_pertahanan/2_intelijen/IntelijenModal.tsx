@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, Fragment } from "react";
-import { X, Zap, Shield, Eye, Target, Radar, Satellite, Cpu, Radio, Search, ShieldAlert, Clock, Loader2, Info, Flame, Users, TrendingUp, TrendingDown, Activity, Globe, Bomb, Radiation, Map as MapIcon, RadioTower, EyeOff, Briefcase, Layers, Hammer, TreePine } from "lucide-react"
+import { X, Zap, Shield, Eye, Target, Radar, Satellite, Cpu, Radio, Search, ShieldAlert, Clock, Loader2, Info, Flame, Users, TrendingUp, TrendingDown, Activity, Globe, Bomb, Radiation, Map as MapIcon, RadioTower, EyeOff, Briefcase, Layers, Hammer, TreePine, Crosshair } from "lucide-react"
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/semua_fitur_negara";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
@@ -208,6 +208,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
       title: "Infrastruktur Intelijen & Radar",
       icon: Search,
       color: "text-cyan-400",
+      isStatusOnly: false,
       items: [
         {
           ...intelijenRate["sistem_satelit"],
@@ -223,7 +224,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
           ...intelijenRate["jaringan_radar"],
           key: "jaringan_radar",
           groupId: "infra",
-          icon: Radar,
+          icon: Crosshair,
           cost: intelijenRate["jaringan_radar"].biaya_pembangunan,
           biaya_pembangunan: intelijenRate["jaringan_radar"].biaya_pembangunan,
           waktu_pembangunan: intelijenRate["jaringan_radar"].waktu_pembangunan,
@@ -248,7 +249,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
       color: "text-rose-500",
       isStatusOnly: true,
       items: [
-        { key: "spionase", label: "Operasi Spionase", icon: Eye, deskripsi: "Agen Lapangan", value: `${currentData.militer_strategis?.operasi_strategis?.misi_mata_mata || 0} Agen`, color: "text-indigo-400" },
+        { key: "spionase", label: "Operasi Spionase", icon: Eye, deskripsi: "Agen Mata-Mata", value: `${currentData.militer_strategis?.operasi_strategis?.misi_mata_mata || 0} Agen`, color: "text-indigo-400" },
         { key: "sabotase", label: "Misi Sabotase", icon: Bomb, deskripsi: "Target Teridentifikasi", value: `${currentData.militer_strategis?.operasi_strategis?.misi_sabotase || 0} Target`, color: "text-orange-500" },
         { key: "nuklir", label: "Program Nuklir", icon: Radiation, deskripsi: "Kesiapan Strategis", value: `${currentData.militer_strategis?.operasi_strategis?.program_nuklir || 0}% Ready`, color: "text-yellow-500" },
         { key: "wilayah", label: "Manajemen Wilayah", icon: MapIcon, deskripsi: "Kontrol Administrasi", value: `${currentData.militer_strategis?.operasi_strategis?.manajemen_wilayah || 0}% Kontrol`, color: "text-emerald-500" }

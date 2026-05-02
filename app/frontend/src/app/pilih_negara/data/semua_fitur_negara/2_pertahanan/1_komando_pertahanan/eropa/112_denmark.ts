@@ -5,9 +5,12 @@ export const denmark_strategis = {
     "intelijen": 24,
     "status_nuklir": false,
     "intel_radar": denmark_intelijen,
-    "operasi_strategis": { "misi_serangan": 1,
+    "operasi_strategis": {
+      "misi_serangan": 1,
       "misi_mata_mata": 11,
       "misi_sabotase": 38,
-      "manajemen_wilayah": 31,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

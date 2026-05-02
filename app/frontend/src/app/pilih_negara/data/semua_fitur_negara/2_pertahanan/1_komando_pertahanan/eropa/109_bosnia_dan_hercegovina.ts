@@ -5,9 +5,12 @@ export const bosnia_dan_hercegovina_strategis = {
     "intelijen": 9,
     "status_nuklir": false,
     "intel_radar": bosnia_dan_hercegovina_intelijen,
-    "operasi_strategis": { "misi_serangan": 30,
+    "operasi_strategis": {
+      "misi_serangan": 30,
       "misi_mata_mata": 22,
       "misi_sabotase": 11,
-      "manajemen_wilayah": 15,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

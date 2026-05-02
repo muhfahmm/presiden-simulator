@@ -5,9 +5,12 @@ export const gibraltar_strategis = {
     "intelijen": 39,
     "status_nuklir": false,
     "intel_radar": gibraltar_intelijen,
-    "operasi_strategis": { "misi_serangan": 25,
+    "operasi_strategis": {
+      "misi_serangan": 25,
       "misi_mata_mata": 27,
       "misi_sabotase": 15,
-      "manajemen_wilayah": 39,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

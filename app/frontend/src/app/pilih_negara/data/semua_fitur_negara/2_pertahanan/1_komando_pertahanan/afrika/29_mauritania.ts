@@ -5,10 +5,12 @@ export const mauritania_strategis = {
     "intelijen": 5,
     "status_nuklir": false,
     "intel_radar": mauritania_intelijen,
-    "operasi_strategis": { "misi_serangan": 27,
+    "operasi_strategis": {
+      "misi_serangan": 27,
       "misi_mata_mata": 11,
       "misi_sabotase": 32,
-      "manajemen_wilayah": 24,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

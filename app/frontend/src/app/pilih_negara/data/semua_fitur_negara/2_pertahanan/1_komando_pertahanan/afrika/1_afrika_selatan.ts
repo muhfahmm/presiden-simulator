@@ -5,10 +5,12 @@ export const afrika_selatan_strategis = {
     "intelijen": 23,
     "status_nuklir": true,
     "intel_radar": afrika_selatan_intelijen,
-    "operasi_strategis": { "misi_serangan": 15,
+    "operasi_strategis": {
+      "misi_serangan": 15,
       "misi_mata_mata": 11,
       "misi_sabotase": 26,
-      "manajemen_wilayah": 10,
-      "program_nuklir": 80
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 80,
+      "misil_nuklir": 0
+    }
   } as const;

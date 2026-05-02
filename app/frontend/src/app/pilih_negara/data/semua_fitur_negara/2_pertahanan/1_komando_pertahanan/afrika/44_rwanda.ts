@@ -5,10 +5,12 @@ export const rwanda_strategis = {
     "intelijen": 40,
     "status_nuklir": false,
     "intel_radar": rwanda_intelijen,
-    "operasi_strategis": { "misi_serangan": 34,
+    "operasi_strategis": {
+      "misi_serangan": 34,
       "misi_mata_mata": 29,
       "misi_sabotase": 24,
-      "manajemen_wilayah": 15,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

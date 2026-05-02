@@ -5,9 +5,12 @@ export const saint_lucia_strategis = {
     "intelijen": 24,
     "status_nuklir": false,
     "intel_radar": saint_lucia_intelijen,
-    "operasi_strategis": { "misi_serangan": 1,
+    "operasi_strategis": {
+      "misi_serangan": 1,
       "misi_mata_mata": 11,
       "misi_sabotase": 30,
-      "manajemen_wilayah": 11,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

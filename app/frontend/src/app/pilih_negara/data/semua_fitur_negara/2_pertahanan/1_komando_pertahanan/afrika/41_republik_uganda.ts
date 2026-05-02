@@ -5,10 +5,12 @@ export const republik_uganda_strategis = {
     "intelijen": 22,
     "status_nuklir": false,
     "intel_radar": republik_uganda_intelijen,
-    "operasi_strategis": { "misi_serangan": 23,
+    "operasi_strategis": {
+      "misi_serangan": 23,
       "misi_mata_mata": 24,
       "misi_sabotase": 25,
-      "manajemen_wilayah": 15,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

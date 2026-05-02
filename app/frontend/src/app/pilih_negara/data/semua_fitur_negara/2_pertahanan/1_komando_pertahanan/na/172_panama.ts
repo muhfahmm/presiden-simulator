@@ -5,9 +5,12 @@ export const panama_strategis = {
     "intelijen": 4,
     "status_nuklir": false,
     "intel_radar": panama_intelijen,
-    "operasi_strategis": { "misi_serangan": 19,
+    "operasi_strategis": {
+      "misi_serangan": 19,
       "misi_mata_mata": 2,
       "misi_sabotase": 35,
-      "manajemen_wilayah": 10,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

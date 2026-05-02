@@ -5,9 +5,12 @@ export const laos_strategis = {
     "intelijen": 18,
     "status_nuklir": false,
     "intel_radar": laos_intelijen,
-    "operasi_strategis": { "misi_serangan": 36,
+    "operasi_strategis": {
+      "misi_serangan": 36,
       "misi_mata_mata": 16,
       "misi_sabotase": 30,
-      "manajemen_wilayah": 18,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

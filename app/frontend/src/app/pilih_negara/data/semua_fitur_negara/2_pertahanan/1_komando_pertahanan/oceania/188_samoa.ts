@@ -5,9 +5,12 @@ export const samoa_strategis = {
     "intelijen": 39,
     "status_nuklir": false,
     "intel_radar": samoa_intelijen,
-    "operasi_strategis": { "misi_serangan": 10,
+    "operasi_strategis": {
+      "misi_serangan": 10,
       "misi_mata_mata": 38,
       "misi_sabotase": 2,
-      "manajemen_wilayah": 30,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

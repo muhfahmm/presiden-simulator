@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { X, Radiation, Rocket, Bomb, Shield, Zap, AlertTriangle, Lock, ArrowRight } from "lucide-react";
+import { X, Radiation, Rocket, Bomb, Shield, Zap, AlertTriangle, Lock, ArrowRight, Globe, Database, Search } from "lucide-react";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import ModalsHargaProgramNuklir from "./modals_harga_program_nuklir";
 import ModalsBerhasilMembuatProgramNuklir from "./modals_berhasil_membuat_program_nuklir";
@@ -9,7 +9,9 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { nuclearStorage } from "../nuclearStorage";
 
 // Sub-modules
-import ProgramNuklirRiset from "../1_ada_program/1_program_nuklir/ProgramNuklirRiset";
+import ProgramNuklirRiset from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/1_ada_program/1_program_nuklir/ProgramNuklirRiset";
+import MonitoringNegaraNuklir from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/2_tidak_ada_program/MonitoringNegaraNuklir";
+import DaftarProgramNuklirDunia from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/2_tidak_ada_program/DaftarProgramNuklirDunia";
 
 interface Props {
   isOpen: boolean;
@@ -18,7 +20,7 @@ interface Props {
 }
 
 export default function ModalsProgramNuklir({ isOpen, onClose, data }: Props) {
-  const [view, setView] = useState<'main' | 'riset'>('main');
+  const [view, setView] = useState<'main' | 'riset' | 'monitoring' | 'database'>('main');
   const [status, setStatus] = useState(nuclearStorage.getStatus());
   const [showPriceModal, setShowPriceModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -75,6 +77,30 @@ export default function ModalsProgramNuklir({ isOpen, onClose, data }: Props) {
       border: "border-rose-500/20",
       isLocked: status !== 'active',
       btnLabel: "Akses Modul"
+    },
+    {
+      id: "monitoring",
+      title: "Monitoring Global",
+      subtitle: "Negara Pemilik Misil",
+      desc: "Pantau persebaran hulu ledak nuklir dan kekuatan strategis negara-negara di seluruh dunia.",
+      icon: Globe,
+      color: "text-cyan-500",
+      bg: "bg-cyan-500/10",
+      border: "border-cyan-500/20",
+      isLocked: false,
+      btnLabel: "Lihat Data"
+    },
+    {
+      id: "database",
+      title: "Database Program",
+      subtitle: "Arsip Program Nuklir",
+      desc: "Akses data intelijen mengenai status dan progres pengembangan nuklir negara-negara asing.",
+      icon: Database,
+      color: "text-indigo-500",
+      bg: "bg-indigo-500/10",
+      border: "border-indigo-500/20",
+      isLocked: false,
+      btnLabel: "Buka Arsip"
     }
   ];
 
@@ -108,6 +134,14 @@ export default function ModalsProgramNuklir({ isOpen, onClose, data }: Props) {
               data={data} 
               onBack={() => setView('main')} 
             />
+          ) : view === 'monitoring' ? (
+            <MonitoringNegaraNuklir 
+              onBack={() => setView('main')} 
+            />
+          ) : view === 'database' ? (
+            <DaftarProgramNuklirDunia 
+              onBack={() => setView('main')} 
+            />
           ) : (
             <div className="flex flex-col gap-8">
               <div className={`${status === 'active' ? 'bg-emerald-500/5 border-emerald-500/10' : 'bg-yellow-500/5 border-yellow-500/10'} border rounded-3xl p-6 flex items-center gap-4`}>
@@ -120,17 +154,23 @@ export default function ModalsProgramNuklir({ isOpen, onClose, data }: Props) {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {cards.map((card) => (
                   <div 
                     key={card.id} 
                     onClick={() => {
-                      if (!card.isLocked && card.id === "program") {
-                        if (status === 'active') setView('riset');
-                        else setShowPriceModal(true);
+                      if (!card.isLocked) {
+                        if (card.id === "program") {
+                          if (status === 'active') setView('riset');
+                          else setShowPriceModal(true);
+                        } else if (card.id === "monitoring") {
+                          setView('monitoring');
+                        } else if (card.id === "database") {
+                          setView('database');
+                        }
                       }
                     }}
-                    className={`bg-zinc-950/40 border border-zinc-800/80 rounded-[36px] p-8 ${!card.isLocked ? "group hover:border-zinc-700 cursor-pointer shadow-lg hover:shadow-yellow-500/5" : "opacity-70 grayscale-[0.5]"} transition-all flex flex-col items-center text-center relative overflow-hidden h-[420px]`}
+                    className={`bg-zinc-950/40 border border-zinc-800/80 rounded-[36px] p-6 ${!card.isLocked ? "group hover:border-zinc-700 cursor-pointer shadow-lg hover:shadow-yellow-500/5" : "opacity-70 grayscale-[0.5]"} transition-all flex flex-col items-center text-center relative overflow-hidden h-[420px]`}
                   >
                     {/* Icon Area */}
                     <div className={`w-24 h-24 ${card.bg} rounded-[28px] border ${card.border} flex items-center justify-center mb-6 ${!card.isLocked ? "group-hover:scale-110" : ""} transition-transform duration-500 shadow-xl relative z-10`}>
@@ -161,6 +201,10 @@ export default function ModalsProgramNuklir({ isOpen, onClose, data }: Props) {
                             if (card.id === "program") {
                               if (status === 'active') setView('riset');
                               else setShowPriceModal(true);
+                            } else if (card.id === "monitoring") {
+                              setView('monitoring');
+                            } else if (card.id === "database") {
+                              setView('database');
                             }
                           }}
                           className="w-full py-4 rounded-2xl bg-zinc-950 border border-zinc-800 text-zinc-500 group-hover:text-white group-hover:bg-zinc-900 group-hover:border-zinc-700 font-bold text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 cursor-pointer"

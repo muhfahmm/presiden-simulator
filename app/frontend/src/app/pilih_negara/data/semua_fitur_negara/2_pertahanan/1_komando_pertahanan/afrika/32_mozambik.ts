@@ -5,10 +5,12 @@ export const mozambik_strategis = {
     "intelijen": 33,
     "status_nuklir": false,
     "intel_radar": mozambik_intelijen,
-    "operasi_strategis": { "misi_serangan": 24,
+    "operasi_strategis": {
+      "misi_serangan": 24,
       "misi_mata_mata": 3,
       "misi_sabotase": 30,
-      "manajemen_wilayah": 5,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

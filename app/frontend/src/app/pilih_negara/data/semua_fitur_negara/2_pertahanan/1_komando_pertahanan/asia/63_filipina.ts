@@ -5,9 +5,12 @@ export const filipina_strategis = {
     "intelijen": 40,
     "status_nuklir": false,
     "intel_radar": filipina_intelijen,
-    "operasi_strategis": { "misi_serangan": 25,
+    "operasi_strategis": {
+      "misi_serangan": 25,
       "misi_mata_mata": 16,
       "misi_sabotase": 7,
-      "manajemen_wilayah": 25,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

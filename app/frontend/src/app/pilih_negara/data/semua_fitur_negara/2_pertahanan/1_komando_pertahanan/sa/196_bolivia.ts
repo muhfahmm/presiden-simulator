@@ -5,9 +5,12 @@ export const bolivia_strategis = {
     "intelijen": 35,
     "status_nuklir": false,
     "intel_radar": bolivia_intelijen,
-    "operasi_strategis": { "misi_serangan": 9,
+    "operasi_strategis": {
+      "misi_serangan": 9,
       "misi_mata_mata": 33,
       "misi_sabotase": 6,
-      "manajemen_wilayah": 33,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

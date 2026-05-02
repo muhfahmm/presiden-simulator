@@ -5,9 +5,12 @@ export const turkmenistan_strategis = {
     "intelijen": 18,
     "status_nuklir": false,
     "intel_radar": turkmenistan_intelijen,
-    "operasi_strategis": { "misi_serangan": 11,
+    "operasi_strategis": {
+      "misi_serangan": 11,
       "misi_mata_mata": 34,
       "misi_sabotase": 2,
-      "manajemen_wilayah": 3,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

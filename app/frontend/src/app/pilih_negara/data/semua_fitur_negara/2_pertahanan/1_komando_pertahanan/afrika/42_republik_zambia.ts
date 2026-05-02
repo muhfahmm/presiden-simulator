@@ -5,10 +5,12 @@ export const republik_zambia_strategis = {
     "intelijen": 3,
     "status_nuklir": false,
     "intel_radar": republik_zambia_intelijen,
-    "operasi_strategis": { "misi_serangan": 23,
+    "operasi_strategis": {
+      "misi_serangan": 23,
       "misi_mata_mata": 34,
       "misi_sabotase": 6,
-      "manajemen_wilayah": 28,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

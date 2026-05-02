@@ -5,9 +5,12 @@ export const taiwan_strategis = {
     "intelijen": 24,
     "status_nuklir": false,
     "intel_radar": taiwan_intelijen,
-    "operasi_strategis": { "misi_serangan": 20,
+    "operasi_strategis": {
+      "misi_serangan": 20,
       "misi_mata_mata": 10,
       "misi_sabotase": 22,
-      "manajemen_wilayah": 26,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

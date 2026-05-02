@@ -44,6 +44,7 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/components/1_navbar/3_kas_negara/BudgetDeltaLogic";
 import { GameSession, gameStorage } from "@/app/game/gamestorage";
 import { aiThinkingStorage } from "@/app/game/components/AI_logic/global_event/aiThinkingStorage";
+import { nuclearStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/nuclearStorage";
 import { Brain } from "lucide-react";
 import BuildingInfoModal from "./BuildingInfoModal";
 import { getBuildingInfo, BuildingInfo } from "./BuildingInfoData";
@@ -628,7 +629,13 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                       const items = [
                         { key: "waktu_respon", label: "Waktu Respon Nasional", value: strategis?.waktu_respon, unit: "Menit", color: "text-emerald-500" },
                         { key: "intelijen", label: "Kapasitas Intelijen", value: strategis?.intelijen, unit: "Level", color: "text-violet-500" },
-                        { key: "status_nuklir", label: "Status Program Nuklir", value: strategis?.status_nuklir ? "AKTIF" : "NONAKTIF", unit: "", color: strategis?.status_nuklir ? "text-red-500" : "text-zinc-500" },
+                        { 
+                          key: "status_nuklir", 
+                          label: "Status Program Nuklir", 
+                          value: (isUser ? nuclearStorage.getStatus() === 'active' : strategis?.status_nuklir) ? "AKTIF" : "NONAKTIF", 
+                          unit: "", 
+                          color: (isUser ? nuclearStorage.getStatus() === 'active' : strategis?.status_nuklir) ? "text-red-500" : "text-zinc-500" 
+                        },
                       ];
                       return items.map(item => (
                         <div key={item.key} className="bg-zinc-950/60 border border-zinc-800/60 p-5 rounded-2xl">
@@ -650,7 +657,11 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                           const elementId = `ops_${key}`;
                           const isHighlit = elementId === highlitCard || key === highlitCard;
                           const deltaVal = defenseDeltas[key] || 0;
-                          const displayVal = (typeof val === 'number' ? val : Number(val)) + deltaVal;
+                          
+                          // If User and nuclear program, get value from nuclearStorage
+                          const displayVal = (isUser && key === 'program_nuklir') 
+                            ? Math.round(nuclearStorage.getData().uraniumPurity) 
+                            : (typeof val === 'number' ? val : Number(val)) + deltaVal;
                           return (
                             <div 
                               id={elementId}
@@ -674,7 +685,9 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
                                     if (hasRecentDelta || isBuilding) {
                                       return (
                                         <>
-                                          <span className="text-sm font-bold text-zinc-500/70">{Number(val || 0).toLocaleString('id-ID')}</span>
+                                          <span className="text-sm font-bold text-zinc-500/70">
+                                            {((isUser && key === 'program_nuklir') ? 0 : Number(val || 0)).toLocaleString('id-ID')}
+                                          </span>
                                           <span className="text-[8px] font-black text-zinc-600">ke</span>
                                           <p className="text-lg font-black text-white">{displayVal + inProgress}</p>
                                         </>

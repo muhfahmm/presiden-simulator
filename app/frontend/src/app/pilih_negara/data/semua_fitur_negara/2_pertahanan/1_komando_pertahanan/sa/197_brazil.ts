@@ -5,9 +5,12 @@ export const brazil_strategis = {
     "intelijen": 30,
     "status_nuklir": true,
     "intel_radar": brazil_intelijen,
-    "operasi_strategis": { "misi_serangan": 26,
+    "operasi_strategis": {
+      "misi_serangan": 26,
       "misi_mata_mata": 5,
       "misi_sabotase": 10,
-      "manajemen_wilayah": 36,
-      "program_nuklir": 80 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 80,
+      "misil_nuklir": 0
+    }
   } as const;

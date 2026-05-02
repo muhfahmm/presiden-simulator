@@ -5,9 +5,12 @@ export const kuba_strategis = {
     "intelijen": 30,
     "status_nuklir": false,
     "intel_radar": kuba_intelijen,
-    "operasi_strategis": { "misi_serangan": 1,
+    "operasi_strategis": {
+      "misi_serangan": 1,
       "misi_mata_mata": 6,
       "misi_sabotase": 20,
-      "manajemen_wilayah": 20,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

@@ -5,10 +5,12 @@ export const chad_strategis = {
     "intelijen": 30,
     "status_nuklir": false,
     "intel_radar": chad_intelijen,
-    "operasi_strategis": { "misi_serangan": 29,
+    "operasi_strategis": {
+      "misi_serangan": 29,
       "misi_mata_mata": 20,
       "misi_sabotase": 35,
-      "manajemen_wilayah": 9,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

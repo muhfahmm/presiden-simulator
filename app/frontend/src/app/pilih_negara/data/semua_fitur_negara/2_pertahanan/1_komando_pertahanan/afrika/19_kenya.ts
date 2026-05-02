@@ -5,10 +5,12 @@ export const kenya_strategis = {
     "intelijen": 32,
     "status_nuklir": false,
     "intel_radar": kenya_intelijen,
-    "operasi_strategis": { "misi_serangan": 39,
+    "operasi_strategis": {
+      "misi_serangan": 39,
       "misi_mata_mata": 34,
       "misi_sabotase": 39,
-      "manajemen_wilayah": 24,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

@@ -5,9 +5,12 @@ export const paraguay_strategis = {
     "intelijen": 19,
     "status_nuklir": false,
     "intel_radar": paraguay_intelijen,
-    "operasi_strategis": { "misi_serangan": 19,
+    "operasi_strategis": {
+      "misi_serangan": 19,
       "misi_mata_mata": 6,
       "misi_sabotase": 32,
-      "manajemen_wilayah": 1,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

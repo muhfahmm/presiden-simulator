@@ -5,9 +5,12 @@ export const guatemala_strategis = {
     "intelijen": 11,
     "status_nuklir": false,
     "intel_radar": guatemala_intelijen,
-    "operasi_strategis": { "misi_serangan": 38,
+    "operasi_strategis": {
+      "misi_serangan": 38,
       "misi_mata_mata": 22,
       "misi_sabotase": 23,
-      "manajemen_wilayah": 30,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

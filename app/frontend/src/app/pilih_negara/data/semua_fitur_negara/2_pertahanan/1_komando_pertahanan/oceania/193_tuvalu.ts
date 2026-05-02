@@ -5,9 +5,12 @@ export const tuvalu_strategis = {
     "intelijen": 13,
     "status_nuklir": false,
     "intel_radar": tuvalu_intelijen,
-    "operasi_strategis": { "misi_serangan": 27,
+    "operasi_strategis": {
+      "misi_serangan": 27,
       "misi_mata_mata": 19,
       "misi_sabotase": 5,
-      "manajemen_wilayah": 12,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

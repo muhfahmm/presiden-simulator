@@ -9,7 +9,8 @@ export const indonesia_strategis = {
       "misi_serangan": 20,
       "misi_mata_mata": 39,
       "misi_sabotase": 23,
-      "manajemen_wilayah": 40,
-      "program_nuklir": 0
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
     }
   } as const;

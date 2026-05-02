@@ -5,10 +5,12 @@ export const pantai_gading_strategis = {
     "intelijen": 38,
     "status_nuklir": false,
     "intel_radar": pantai_gading_intelijen,
-    "operasi_strategis": { "misi_serangan": 8,
+    "operasi_strategis": {
+      "misi_serangan": 8,
       "misi_mata_mata": 3,
       "misi_sabotase": 31,
-      "manajemen_wilayah": 17,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

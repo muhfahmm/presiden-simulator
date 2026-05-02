@@ -5,9 +5,12 @@ export const tajikistan_strategis = {
     "intelijen": 9,
     "status_nuklir": false,
     "intel_radar": tajikistan_intelijen,
-    "operasi_strategis": { "misi_serangan": 14,
+    "operasi_strategis": {
+      "misi_serangan": 14,
       "misi_mata_mata": 21,
       "misi_sabotase": 24,
-      "manajemen_wilayah": 1,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

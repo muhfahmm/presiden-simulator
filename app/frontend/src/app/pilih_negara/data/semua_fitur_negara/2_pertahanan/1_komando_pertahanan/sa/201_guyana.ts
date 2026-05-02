@@ -5,9 +5,12 @@ export const guyana_strategis = {
     "intelijen": 14,
     "status_nuklir": false,
     "intel_radar": guyana_intelijen,
-    "operasi_strategis": { "misi_serangan": 38,
+    "operasi_strategis": {
+      "misi_serangan": 38,
       "misi_mata_mata": 3,
       "misi_sabotase": 31,
-      "manajemen_wilayah": 9,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

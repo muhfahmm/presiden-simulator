@@ -5,10 +5,12 @@ export const eswatini_strategis = {
     "intelijen": 23,
     "status_nuklir": false,
     "intel_radar": eswatini_intelijen,
-    "operasi_strategis": { "misi_serangan": 19,
+    "operasi_strategis": {
+      "misi_serangan": 19,
       "misi_mata_mata": 12,
       "misi_sabotase": 24,
-      "manajemen_wilayah": 6,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

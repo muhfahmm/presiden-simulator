@@ -5,9 +5,12 @@ export const costa_rica_strategis = {
     "intelijen": 18,
     "status_nuklir": false,
     "intel_radar": costa_rica_intelijen,
-    "operasi_strategis": { "misi_serangan": 29,
+    "operasi_strategis": {
+      "misi_serangan": 29,
       "misi_mata_mata": 35,
       "misi_sabotase": 3,
-      "manajemen_wilayah": 19,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

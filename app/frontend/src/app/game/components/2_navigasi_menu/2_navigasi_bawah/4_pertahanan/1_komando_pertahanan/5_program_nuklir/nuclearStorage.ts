@@ -95,17 +95,9 @@ export const nuclearStorage = {
         c.name_id === countryId
       );
 
-      // If country already has a nuclear program in the database/metadata (> 0%)
-      const defaultStatus: NuclearStatus = (countryData?.militer_strategis?.operasi_strategis?.program_nuklir ?? 0) > 0 
-        ? 'active' 
-        : 'none';
-
-      const initialData: NuclearData = {
-        ...nuclearStorage.getDefaultData(defaultStatus),
-        uraniumPurity: defaultStatus === 'active' ? 85 : 0, 
-        wasteAmount: defaultStatus === 'active' ? 150 : 0,
-        tacticalWarheads: defaultStatus === 'active' ? 2 : 0,
-      };
+      // NEW LOGIC: User always starts at 0, regardless of DB status.
+      // AI/NPCs keep their status because they don't use this player-only storage.
+      const initialData: NuclearData = nuclearStorage.getDefaultData('none');
 
       // Save initial state so it's persistent
       nuclearStorage.saveData(initialData);

@@ -5,10 +5,12 @@ export const guinea_strategis = {
     "intelijen": 19,
     "status_nuklir": false,
     "intel_radar": guinea_intelijen,
-    "operasi_strategis": { "misi_serangan": 1,
+    "operasi_strategis": {
+      "misi_serangan": 1,
       "misi_mata_mata": 21,
       "misi_sabotase": 35,
-      "manajemen_wilayah": 10,
-      "program_nuklir": 0
-  }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

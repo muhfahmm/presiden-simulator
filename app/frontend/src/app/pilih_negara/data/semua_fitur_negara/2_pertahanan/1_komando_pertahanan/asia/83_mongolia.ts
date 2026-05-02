@@ -5,9 +5,12 @@ export const mongolia_strategis = {
     "intelijen": 33,
     "status_nuklir": false,
     "intel_radar": mongolia_intelijen,
-    "operasi_strategis": { "misi_serangan": 4,
+    "operasi_strategis": {
+      "misi_serangan": 4,
       "misi_mata_mata": 35,
       "misi_sabotase": 33,
-      "manajemen_wilayah": 4,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

@@ -5,9 +5,12 @@ export const finlandia_strategis = {
     "intelijen": 4,
     "status_nuklir": true,
     "intel_radar": finlandia_intelijen,
-    "operasi_strategis": { "misi_serangan": 23,
+    "operasi_strategis": {
+      "misi_serangan": 23,
       "misi_mata_mata": 17,
       "misi_sabotase": 12,
-      "manajemen_wilayah": 2,
-      "program_nuklir": 80 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 80,
+      "misil_nuklir": 0
+    }
   } as const;

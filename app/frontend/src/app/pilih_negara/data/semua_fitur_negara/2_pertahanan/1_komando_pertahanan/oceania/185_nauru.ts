@@ -5,9 +5,12 @@ export const nauru_strategis = {
     "intelijen": 24,
     "status_nuklir": false,
     "intel_radar": nauru_intelijen,
-    "operasi_strategis": { "misi_serangan": 25,
+    "operasi_strategis": {
+      "misi_serangan": 25,
       "misi_mata_mata": 34,
       "misi_sabotase": 9,
-      "manajemen_wilayah": 6,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

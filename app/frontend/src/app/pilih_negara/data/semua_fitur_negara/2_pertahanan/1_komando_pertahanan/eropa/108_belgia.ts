@@ -5,9 +5,12 @@ export const belgia_strategis = {
     "intelijen": 36,
     "status_nuklir": true,
     "intel_radar": belgia_intelijen,
-    "operasi_strategis": { "misi_serangan": 34,
+    "operasi_strategis": {
+      "misi_serangan": 34,
       "misi_mata_mata": 27,
       "misi_sabotase": 1,
-      "manajemen_wilayah": 23,
-      "program_nuklir": 80 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 80,
+      "misil_nuklir": 0
+    }
   } as const;

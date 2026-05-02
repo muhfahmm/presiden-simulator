@@ -5,9 +5,12 @@ export const uni_emirat_arab_strategis = {
     "intelijen": 5,
     "status_nuklir": true,
     "intel_radar": uni_emirat_arab_intelijen,
-    "operasi_strategis": { "misi_serangan": 32,
+    "operasi_strategis": {
+      "misi_serangan": 32,
       "misi_mata_mata": 23,
       "misi_sabotase": 37,
-      "manajemen_wilayah": 17,
-      "program_nuklir": 80 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 80,
+      "misil_nuklir": 0
+    }
   } as const;

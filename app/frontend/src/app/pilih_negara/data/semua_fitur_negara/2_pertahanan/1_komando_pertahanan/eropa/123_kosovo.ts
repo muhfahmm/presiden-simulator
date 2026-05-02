@@ -5,9 +5,12 @@ export const kosovo_strategis = {
     "intelijen": 7,
     "status_nuklir": false,
     "intel_radar": kosovo_intelijen,
-    "operasi_strategis": { "misi_serangan": 29,
+    "operasi_strategis": {
+      "misi_serangan": 29,
       "misi_mata_mata": 4,
       "misi_sabotase": 37,
-      "manajemen_wilayah": 6,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

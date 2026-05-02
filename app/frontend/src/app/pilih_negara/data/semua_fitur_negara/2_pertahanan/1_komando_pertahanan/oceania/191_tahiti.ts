@@ -5,9 +5,12 @@ export const tahiti_strategis = {
     "intelijen": 34,
     "status_nuklir": false,
     "intel_radar": tahiti_intelijen,
-    "operasi_strategis": { "misi_serangan": 36,
+    "operasi_strategis": {
+      "misi_serangan": 36,
       "misi_mata_mata": 2,
       "misi_sabotase": 1,
-      "manajemen_wilayah": 21,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

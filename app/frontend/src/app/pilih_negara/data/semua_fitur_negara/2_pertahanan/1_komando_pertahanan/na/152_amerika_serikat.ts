@@ -5,9 +5,12 @@ export const amerika_serikat_strategis = {
     "intelijen": 6,
     "status_nuklir": true,
     "intel_radar": amerika_serikat_intelijen,
-    "operasi_strategis": { "misi_serangan": 39,
+    "operasi_strategis": {
+      "misi_serangan": 39,
       "misi_mata_mata": 39,
       "misi_sabotase": 21,
-      "manajemen_wilayah": 26,
-      "program_nuklir": 100 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 100,
+      "misil_nuklir": 5044
+    }
   } as const;

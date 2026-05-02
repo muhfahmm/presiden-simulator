@@ -5,9 +5,12 @@ export const kolombia_strategis = {
     "intelijen": 39,
     "status_nuklir": false,
     "intel_radar": kolombia_intelijen,
-    "operasi_strategis": { "misi_serangan": 2,
+    "operasi_strategis": {
+      "misi_serangan": 2,
       "misi_mata_mata": 17,
       "misi_sabotase": 2,
-      "manajemen_wilayah": 22,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

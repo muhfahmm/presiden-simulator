@@ -5,9 +5,12 @@ export const luksemburg_strategis = {
     "intelijen": 20,
     "status_nuklir": false,
     "intel_radar": luksemburg_intelijen,
-    "operasi_strategis": { "misi_serangan": 11,
+    "operasi_strategis": {
+      "misi_serangan": 11,
       "misi_mata_mata": 30,
       "misi_sabotase": 5,
-      "manajemen_wilayah": 20,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

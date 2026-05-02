@@ -5,9 +5,12 @@ export const ukraina_strategis = {
     "intelijen": 37,
     "status_nuklir": true,
     "intel_radar": ukraina_intelijen,
-    "operasi_strategis": { "misi_serangan": 2,
+    "operasi_strategis": {
+      "misi_serangan": 2,
       "misi_mata_mata": 35,
       "misi_sabotase": 30,
-      "manajemen_wilayah": 29,
-      "program_nuklir": 95 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 95,
+      "misil_nuklir": 0
+    }
   } as const;

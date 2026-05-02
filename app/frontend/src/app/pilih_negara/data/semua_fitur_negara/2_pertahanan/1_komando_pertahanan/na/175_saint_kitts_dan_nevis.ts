@@ -5,9 +5,12 @@ export const saint_kitts_dan_nevis_strategis = {
     "intelijen": 11,
     "status_nuklir": false,
     "intel_radar": saint_kitts_dan_nevis_intelijen,
-    "operasi_strategis": { "misi_serangan": 17,
+    "operasi_strategis": {
+      "misi_serangan": 17,
       "misi_mata_mata": 20,
       "misi_sabotase": 4,
-      "manajemen_wilayah": 11,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;

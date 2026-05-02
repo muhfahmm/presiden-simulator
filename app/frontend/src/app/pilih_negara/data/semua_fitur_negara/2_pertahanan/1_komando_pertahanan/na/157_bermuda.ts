@@ -5,9 +5,12 @@ export const bermuda_strategis = {
     "intelijen": 39,
     "status_nuklir": false,
     "intel_radar": bermuda_intelijen,
-    "operasi_strategis": { "misi_serangan": 15,
+    "operasi_strategis": {
+      "misi_serangan": 15,
       "misi_mata_mata": 32,
       "misi_sabotase": 28,
-      "manajemen_wilayah": 30,
-      "program_nuklir": 0 }
+      "manajemen_wilayah": 0,
+      "program_nuklir": 0,
+      "misil_nuklir": 0
+    }
   } as const;
