@@ -1,9 +1,13 @@
-export const INITIAL_GAME_DATE = new Date("2026-01-01"); // Fixed date to prevent hydration mismatch
+export const INITIAL_GAME_DATE = new Date("2026-05-02"); // Fixed date to prevent hydration mismatch
 const DATE_STORAGE_KEY = "em_game_date";
 
 export function formatGameDate(date: Date): string {
   const day = String(date.getUTCDate()).padStart(2, '0');
-  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+  const monthNames = [
+    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+    "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+  ];
+  const month = monthNames[date.getUTCMonth()];
   const year = date.getUTCFullYear();
   return `${day}-${month}-${year}`;
 }
@@ -46,8 +50,13 @@ export function getGameWeekIndex(date: Date): number {
  * Parses a date string in "DD-MM-YYYY" format back into a Date object.
  */
 export function parseFormattedDate(dateStr: string): Date {
-  const [d, m, y] = dateStr.split('-').map(Number);
-  return new Date(Date.UTC(y, m - 1, d));
+  const [d, monthName, y] = dateStr.split('-');
+  const monthNames = [
+    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+    "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+  ];
+  const m = monthNames.indexOf(monthName) + 1;
+  return new Date(Date.UTC(Number(y), m - 1, Number(d)));
 }
 
 /**
