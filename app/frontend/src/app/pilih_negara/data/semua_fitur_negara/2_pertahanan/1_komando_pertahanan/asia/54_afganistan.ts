@@ -7,8 +7,8 @@ export const afganistan_strategis = {
     "intel_radar": afganistan_intelijen,
     "operasi_strategis": {
       "misi_serangan": 33,
-      "misi_mata_mata": 3,
-      "misi_sabotase": 9,
+      "agen_mata_mata": 3,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

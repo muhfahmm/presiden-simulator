@@ -7,8 +7,8 @@ export const selandia_baru_strategis = {
     "intel_radar": selandia_baru_intelijen,
     "operasi_strategis": {
       "misi_serangan": 25,
-      "misi_mata_mata": 32,
-      "misi_sabotase": 23,
+      "agen_mata_mata": 32,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

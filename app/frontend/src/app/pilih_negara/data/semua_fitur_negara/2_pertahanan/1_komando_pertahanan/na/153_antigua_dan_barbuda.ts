@@ -7,8 +7,8 @@ export const antigua_dan_barbuda_strategis = {
     "intel_radar": antigua_dan_barbuda_intelijen,
     "operasi_strategis": {
       "misi_serangan": 17,
-      "misi_mata_mata": 11,
-      "misi_sabotase": 25,
+      "agen_mata_mata": 11,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

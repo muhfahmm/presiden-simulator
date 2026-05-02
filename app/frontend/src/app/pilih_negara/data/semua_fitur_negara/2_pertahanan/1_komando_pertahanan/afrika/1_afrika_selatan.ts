@@ -7,8 +7,8 @@ export const afrika_selatan_strategis = {
     "intel_radar": afrika_selatan_intelijen,
     "operasi_strategis": {
       "misi_serangan": 15,
-      "misi_mata_mata": 11,
-      "misi_sabotase": 26,
+      "agen_mata_mata": 11,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 80,
       "misil_nuklir": 0

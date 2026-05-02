@@ -7,8 +7,8 @@ export const meksiko_strategis = {
     "intel_radar": meksiko_intelijen,
     "operasi_strategis": {
       "misi_serangan": 38,
-      "misi_mata_mata": 34,
-      "misi_sabotase": 8,
+      "agen_mata_mata": 34,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 80,
       "misil_nuklir": 0

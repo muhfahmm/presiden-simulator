@@ -7,8 +7,8 @@ export const suriname_strategis = {
     "intel_radar": suriname_intelijen,
     "operasi_strategis": {
       "misi_serangan": 24,
-      "misi_mata_mata": 18,
-      "misi_sabotase": 7,
+      "agen_mata_mata": 18,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

@@ -7,8 +7,8 @@ export const latvia_strategis = {
     "intel_radar": latvia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 13,
-      "misi_mata_mata": 16,
-      "misi_sabotase": 37,
+      "agen_mata_mata": 16,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

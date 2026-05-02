@@ -7,8 +7,8 @@ export const sudan_selatan_strategis = {
     "intel_radar": sudan_selatan_intelijen,
     "operasi_strategis": {
       "misi_serangan": 39,
-      "misi_mata_mata": 9,
-      "misi_sabotase": 30,
+      "agen_mata_mata": 9,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

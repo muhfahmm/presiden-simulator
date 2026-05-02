@@ -7,8 +7,8 @@ export const guam_strategis = {
     "intel_radar": guam_intelijen,
     "operasi_strategis": {
       "misi_serangan": 12,
-      "misi_mata_mata": 22,
-      "misi_sabotase": 5,
+      "agen_mata_mata": 22,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

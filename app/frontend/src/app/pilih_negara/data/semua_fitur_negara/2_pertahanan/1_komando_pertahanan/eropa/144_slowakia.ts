@@ -7,8 +7,8 @@ export const slowakia_strategis = {
     "intel_radar": slowakia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 23,
-      "misi_mata_mata": 38,
-      "misi_sabotase": 26,
+      "agen_mata_mata": 38,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 80,
       "misil_nuklir": 0

@@ -7,8 +7,8 @@ export const italia_strategis = {
     "intel_radar": italia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 26,
-      "misi_mata_mata": 19,
-      "misi_sabotase": 1,
+      "agen_mata_mata": 19,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

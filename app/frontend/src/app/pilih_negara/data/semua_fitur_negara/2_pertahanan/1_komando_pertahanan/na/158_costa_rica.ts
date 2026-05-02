@@ -7,8 +7,8 @@ export const costa_rica_strategis = {
     "intel_radar": costa_rica_intelijen,
     "operasi_strategis": {
       "misi_serangan": 29,
-      "misi_mata_mata": 35,
-      "misi_sabotase": 3,
+      "agen_mata_mata": 35,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

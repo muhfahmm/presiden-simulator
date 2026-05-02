@@ -7,8 +7,8 @@ export const india_strategis = {
     "intel_radar": india_intelijen,
     "operasi_strategis": {
       "misi_serangan": 17,
-      "misi_mata_mata": 19,
-      "misi_sabotase": 4,
+      "agen_mata_mata": 19,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 100,
       "misil_nuklir": 180

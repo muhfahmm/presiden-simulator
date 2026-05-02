@@ -7,8 +7,8 @@ export const kroasia_strategis = {
     "intel_radar": kroasia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 25,
-      "misi_mata_mata": 28,
-      "misi_sabotase": 39,
+      "agen_mata_mata": 28,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

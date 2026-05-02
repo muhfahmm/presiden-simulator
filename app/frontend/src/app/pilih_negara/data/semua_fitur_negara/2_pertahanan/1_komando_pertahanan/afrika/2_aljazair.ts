@@ -7,8 +7,8 @@ export const aljazair_strategis = {
     "intel_radar": aljazair_intelijen,
     "operasi_strategis": {
       "misi_serangan": 32,
-      "misi_mata_mata": 8,
-      "misi_sabotase": 14,
+      "agen_mata_mata": 8,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

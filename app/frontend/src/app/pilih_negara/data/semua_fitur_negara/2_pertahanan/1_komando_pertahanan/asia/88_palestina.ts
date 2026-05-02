@@ -7,8 +7,8 @@ export const palestina_strategis = {
     "intel_radar": palestina_intelijen,
     "operasi_strategis": {
       "misi_serangan": 23,
-      "misi_mata_mata": 5,
-      "misi_sabotase": 25,
+      "agen_mata_mata": 5,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

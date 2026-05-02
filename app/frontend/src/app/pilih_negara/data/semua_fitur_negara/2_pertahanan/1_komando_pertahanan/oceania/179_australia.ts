@@ -7,8 +7,8 @@ export const australia_strategis = {
     "intel_radar": australia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 9,
-      "misi_mata_mata": 17,
-      "misi_sabotase": 36,
+      "agen_mata_mata": 17,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

@@ -7,8 +7,8 @@ export const hong_kong_strategis = {
     "intel_radar": hong_kong_intelijen,
     "operasi_strategis": {
       "misi_serangan": 39,
-      "misi_mata_mata": 10,
-      "misi_sabotase": 32,
+      "agen_mata_mata": 10,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

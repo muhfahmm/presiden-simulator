@@ -7,8 +7,8 @@ export const nepal_strategis = {
     "intel_radar": nepal_intelijen,
     "operasi_strategis": {
       "misi_serangan": 17,
-      "misi_mata_mata": 17,
-      "misi_sabotase": 31,
+      "agen_mata_mata": 17,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

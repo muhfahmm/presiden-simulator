@@ -7,8 +7,8 @@ export const samoa_amerika_strategis = {
     "intel_radar": samoa_amerika_intelijen,
     "operasi_strategis": {
       "misi_serangan": 13,
-      "misi_mata_mata": 11,
-      "misi_sabotase": 37,
+      "agen_mata_mata": 11,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

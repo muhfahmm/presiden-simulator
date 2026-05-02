@@ -10,7 +10,7 @@ export interface SektorMiliterStrategis {
   status_nuklir?: boolean;
   operasi_strategis?: {
     misi_serangan: number;
-    misi_mata_mata: number;
+    agen_mata_mata: number;
     misi_sabotase: number;
     manajemen_wilayah: number;
     program_nuklir: number;

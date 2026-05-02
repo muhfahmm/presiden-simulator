@@ -7,8 +7,8 @@ export const qatar_strategis = {
     "intel_radar": qatar_intelijen,
     "operasi_strategis": {
       "misi_serangan": 1,
-      "misi_mata_mata": 20,
-      "misi_sabotase": 20,
+      "agen_mata_mata": 20,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

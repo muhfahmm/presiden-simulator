@@ -7,8 +7,8 @@ export const maroko_strategis = {
     "intel_radar": maroko_intelijen,
     "operasi_strategis": {
       "misi_serangan": 29,
-      "misi_mata_mata": 23,
-      "misi_sabotase": 3,
+      "agen_mata_mata": 23,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

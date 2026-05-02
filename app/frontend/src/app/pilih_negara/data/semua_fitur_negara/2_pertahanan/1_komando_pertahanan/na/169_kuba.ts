@@ -7,8 +7,8 @@ export const kuba_strategis = {
     "intel_radar": kuba_intelijen,
     "operasi_strategis": {
       "misi_serangan": 1,
-      "misi_mata_mata": 6,
-      "misi_sabotase": 20,
+      "agen_mata_mata": 6,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

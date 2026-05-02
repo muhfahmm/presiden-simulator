@@ -7,8 +7,8 @@ export const republik_zambia_strategis = {
     "intel_radar": republik_zambia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 23,
-      "misi_mata_mata": 34,
-      "misi_sabotase": 6,
+      "agen_mata_mata": 34,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

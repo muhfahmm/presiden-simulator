@@ -7,8 +7,8 @@ export const sao_tome_dan_principe_strategis = {
     "intel_radar": sao_tome_dan_principe_intelijen,
     "operasi_strategis": {
       "misi_serangan": 36,
-      "misi_mata_mata": 14,
-      "misi_sabotase": 18,
+      "agen_mata_mata": 14,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

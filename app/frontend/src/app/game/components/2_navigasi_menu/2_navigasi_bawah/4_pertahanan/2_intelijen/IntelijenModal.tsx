@@ -249,7 +249,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
       color: "text-rose-500",
       isStatusOnly: true,
       items: [
-        { key: "spionase", label: "Operasi Spionase", icon: Eye, deskripsi: "Agen Mata-Mata", value: `${currentData.militer_strategis?.operasi_strategis?.misi_mata_mata || 0} Agen`, color: "text-indigo-400" },
+        { key: "spionase", label: "Operasi Spionase", icon: Eye, deskripsi: "Agen Mata-Mata", value: `${currentData.militer_strategis?.operasi_strategis?.agen_mata_mata || 0} Agen`, color: "text-indigo-400" },
         { key: "sabotase", label: "Misi Sabotase", icon: Bomb, deskripsi: "Target Teridentifikasi", value: `${currentData.militer_strategis?.operasi_strategis?.misi_sabotase || 0} Target`, color: "text-orange-500" },
         { key: "nuklir", label: "Program Nuklir", icon: Radiation, deskripsi: "Kesiapan Strategis", value: `${currentData.militer_strategis?.operasi_strategis?.program_nuklir || 0}% Ready`, color: "text-yellow-500" },
         { key: "wilayah", label: "Manajemen Wilayah", icon: MapIcon, deskripsi: "Kontrol Administrasi", value: `${currentData.militer_strategis?.operasi_strategis?.manajemen_wilayah || 0}% Kontrol`, color: "text-emerald-500" }

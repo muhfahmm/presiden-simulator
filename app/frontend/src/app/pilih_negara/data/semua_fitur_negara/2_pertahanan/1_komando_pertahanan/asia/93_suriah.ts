@@ -7,8 +7,8 @@ export const suriah_strategis = {
     "intel_radar": suriah_intelijen,
     "operasi_strategis": {
       "misi_serangan": 18,
-      "misi_mata_mata": 2,
-      "misi_sabotase": 32,
+      "agen_mata_mata": 2,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

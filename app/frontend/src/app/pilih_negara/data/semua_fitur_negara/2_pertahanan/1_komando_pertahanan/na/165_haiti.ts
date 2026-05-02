@@ -7,8 +7,8 @@ export const haiti_strategis = {
     "intel_radar": haiti_intelijen,
     "operasi_strategis": {
       "misi_serangan": 24,
-      "misi_mata_mata": 38,
-      "misi_sabotase": 4,
+      "agen_mata_mata": 38,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

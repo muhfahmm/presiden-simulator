@@ -7,8 +7,8 @@ export const kosovo_strategis = {
     "intel_radar": kosovo_intelijen,
     "operasi_strategis": {
       "misi_serangan": 29,
-      "misi_mata_mata": 4,
-      "misi_sabotase": 37,
+      "agen_mata_mata": 4,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

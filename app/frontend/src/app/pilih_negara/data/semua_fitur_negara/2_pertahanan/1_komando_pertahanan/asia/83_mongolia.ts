@@ -7,8 +7,8 @@ export const mongolia_strategis = {
     "intel_radar": mongolia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 4,
-      "misi_mata_mata": 35,
-      "misi_sabotase": 33,
+      "agen_mata_mata": 35,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

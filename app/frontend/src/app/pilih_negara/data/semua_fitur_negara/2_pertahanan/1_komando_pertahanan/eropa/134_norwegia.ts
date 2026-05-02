@@ -7,8 +7,8 @@ export const norwegia_strategis = {
     "intel_radar": norwegia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 4,
-      "misi_mata_mata": 7,
-      "misi_sabotase": 39,
+      "agen_mata_mata": 7,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

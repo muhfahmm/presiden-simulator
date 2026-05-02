@@ -7,8 +7,8 @@ export const armenia_strategis = {
     "intel_radar": armenia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 29,
-      "misi_mata_mata": 14,
-      "misi_sabotase": 19,
+      "agen_mata_mata": 14,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 80,
       "misil_nuklir": 0

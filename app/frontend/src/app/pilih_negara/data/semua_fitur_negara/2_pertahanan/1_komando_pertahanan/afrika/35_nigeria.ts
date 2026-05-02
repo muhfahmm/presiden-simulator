@@ -7,8 +7,8 @@ export const nigeria_strategis = {
     "intel_radar": nigeria_intelijen,
     "operasi_strategis": {
       "misi_serangan": 5,
-      "misi_mata_mata": 15,
-      "misi_sabotase": 35,
+      "agen_mata_mata": 15,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

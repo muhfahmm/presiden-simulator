@@ -7,8 +7,8 @@ export const tunisia_strategis = {
     "intel_radar": tunisia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 32,
-      "misi_mata_mata": 27,
-      "misi_sabotase": 15,
+      "agen_mata_mata": 27,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

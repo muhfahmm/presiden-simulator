@@ -7,8 +7,8 @@ export const benin_strategis = {
     "intel_radar": benin_intelijen,
     "operasi_strategis": {
       "misi_serangan": 30,
-      "misi_mata_mata": 20,
-      "misi_sabotase": 18,
+      "agen_mata_mata": 20,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

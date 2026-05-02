@@ -7,8 +7,8 @@ export const myanmar_strategis = {
     "intel_radar": myanmar_intelijen,
     "operasi_strategis": {
       "misi_serangan": 17,
-      "misi_mata_mata": 16,
-      "misi_sabotase": 37,
+      "agen_mata_mata": 16,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

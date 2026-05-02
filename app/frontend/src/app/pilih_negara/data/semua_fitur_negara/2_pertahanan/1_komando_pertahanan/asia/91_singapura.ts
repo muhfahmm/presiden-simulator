@@ -7,8 +7,8 @@ export const singapura_strategis = {
     "intel_radar": singapura_intelijen,
     "operasi_strategis": {
       "misi_serangan": 21,
-      "misi_mata_mata": 19,
-      "misi_sabotase": 38,
+      "agen_mata_mata": 19,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

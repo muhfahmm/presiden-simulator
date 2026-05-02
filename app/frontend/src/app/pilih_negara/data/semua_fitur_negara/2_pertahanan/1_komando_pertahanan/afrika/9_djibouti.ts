@@ -7,8 +7,8 @@ export const djibouti_strategis = {
     "intel_radar": djibouti_intelijen,
     "operasi_strategis": {
       "misi_serangan": 7,
-      "misi_mata_mata": 1,
-      "misi_sabotase": 4,
+      "agen_mata_mata": 1,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

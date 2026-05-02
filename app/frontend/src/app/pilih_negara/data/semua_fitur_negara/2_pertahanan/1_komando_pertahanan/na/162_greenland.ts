@@ -7,8 +7,8 @@ export const greenland_strategis = {
     "intel_radar": greenland_intelijen,
     "operasi_strategis": {
       "misi_serangan": 28,
-      "misi_mata_mata": 36,
-      "misi_sabotase": 4,
+      "agen_mata_mata": 36,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

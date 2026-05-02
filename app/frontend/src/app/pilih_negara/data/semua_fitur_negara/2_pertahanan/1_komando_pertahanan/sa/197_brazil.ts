@@ -7,8 +7,8 @@ export const brazil_strategis = {
     "intel_radar": brazil_intelijen,
     "operasi_strategis": {
       "misi_serangan": 26,
-      "misi_mata_mata": 5,
-      "misi_sabotase": 10,
+      "agen_mata_mata": 5,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 80,
       "misil_nuklir": 0

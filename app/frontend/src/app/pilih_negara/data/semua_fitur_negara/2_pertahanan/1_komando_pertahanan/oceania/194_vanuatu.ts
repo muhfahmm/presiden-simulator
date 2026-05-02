@@ -7,8 +7,8 @@ export const vanuatu_strategis = {
     "intel_radar": vanuatu_intelijen,
     "operasi_strategis": {
       "misi_serangan": 34,
-      "misi_mata_mata": 39,
-      "misi_sabotase": 6,
+      "agen_mata_mata": 39,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

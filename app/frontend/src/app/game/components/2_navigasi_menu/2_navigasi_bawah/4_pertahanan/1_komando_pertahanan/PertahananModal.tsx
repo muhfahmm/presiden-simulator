@@ -50,7 +50,7 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
       color: "text-rose-500",
       items: [
         { label: "Misi Serangan", icon: Swords, desc: "Operasi Aktif", value: "SIAGA", color: "text-red-500", btnLabel: "Mulai Misi" },
-        { label: "Misi Mata-mata", icon: Eye, desc: "Agen Mata-Mata", value: security.operasi_strategis?.misi_mata_mata ?? 0, color: "text-indigo-400", btnLabel: "Mulai Misi" },
+        { label: "Agen Mata-Mata", icon: Eye, desc: "Agen Aktif", value: security.operasi_strategis?.agen_mata_mata ?? 0, color: "text-indigo-400", btnLabel: "Mulai Misi" },
         { label: "Misi Sabotase", icon: Bomb, desc: "Target Sabotase", value: security.operasi_strategis?.misi_sabotase ?? 0, color: "text-orange-500", btnLabel: "Mulai Misi" },
         { label: "Kontrol Wilayah", icon: MapIcon, desc: "Manajemen Administrasi", value: `${security.operasi_strategis?.manajemen_wilayah ?? 0}%`, color: "text-emerald-500", btnLabel: "Lihat Wilayah" },
         { 

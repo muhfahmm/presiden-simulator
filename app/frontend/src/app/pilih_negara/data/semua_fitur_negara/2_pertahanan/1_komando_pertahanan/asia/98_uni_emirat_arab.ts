@@ -7,8 +7,8 @@ export const uni_emirat_arab_strategis = {
     "intel_radar": uni_emirat_arab_intelijen,
     "operasi_strategis": {
       "misi_serangan": 32,
-      "misi_mata_mata": 23,
-      "misi_sabotase": 37,
+      "agen_mata_mata": 23,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 80,
       "misil_nuklir": 0

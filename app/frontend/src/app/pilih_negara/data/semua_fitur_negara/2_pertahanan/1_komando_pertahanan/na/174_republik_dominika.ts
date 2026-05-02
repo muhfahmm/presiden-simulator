@@ -7,8 +7,8 @@ export const republik_dominika_strategis = {
     "intel_radar": republik_dominika_intelijen,
     "operasi_strategis": {
       "misi_serangan": 24,
-      "misi_mata_mata": 17,
-      "misi_sabotase": 30,
+      "agen_mata_mata": 17,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

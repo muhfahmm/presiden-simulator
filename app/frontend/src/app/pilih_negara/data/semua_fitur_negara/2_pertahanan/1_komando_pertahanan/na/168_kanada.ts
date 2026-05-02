@@ -7,8 +7,8 @@ export const kanada_strategis = {
     "intel_radar": kanada_intelijen,
     "operasi_strategis": {
       "misi_serangan": 16,
-      "misi_mata_mata": 23,
-      "misi_sabotase": 37,
+      "agen_mata_mata": 23,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 95,
       "misil_nuklir": 0

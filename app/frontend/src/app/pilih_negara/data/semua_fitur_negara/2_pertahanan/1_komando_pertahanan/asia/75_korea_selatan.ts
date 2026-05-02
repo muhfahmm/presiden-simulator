@@ -7,8 +7,8 @@ export const korea_selatan_strategis = {
     "intel_radar": korea_selatan_intelijen,
     "operasi_strategis": {
       "misi_serangan": 10,
-      "misi_mata_mata": 29,
-      "misi_sabotase": 37,
+      "agen_mata_mata": 29,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 100,
       "misil_nuklir": 0

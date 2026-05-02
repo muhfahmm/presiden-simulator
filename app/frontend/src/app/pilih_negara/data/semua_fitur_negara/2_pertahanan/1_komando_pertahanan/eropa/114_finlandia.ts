@@ -7,8 +7,8 @@ export const finlandia_strategis = {
     "intel_radar": finlandia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 23,
-      "misi_mata_mata": 17,
-      "misi_sabotase": 12,
+      "agen_mata_mata": 17,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 80,
       "misil_nuklir": 0

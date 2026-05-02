@@ -7,8 +7,8 @@ export const swiss_strategis = {
     "intel_radar": swiss_intelijen,
     "operasi_strategis": {
       "misi_serangan": 9,
-      "misi_mata_mata": 11,
-      "misi_sabotase": 16,
+      "agen_mata_mata": 11,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 80,
       "misil_nuklir": 0

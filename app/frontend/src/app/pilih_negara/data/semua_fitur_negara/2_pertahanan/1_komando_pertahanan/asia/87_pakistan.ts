@@ -7,8 +7,8 @@ export const pakistan_strategis = {
     "intel_radar": pakistan_intelijen,
     "operasi_strategis": {
       "misi_serangan": 4,
-      "misi_mata_mata": 8,
-      "misi_sabotase": 4,
+      "agen_mata_mata": 8,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 100,
       "misil_nuklir": 170

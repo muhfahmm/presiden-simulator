@@ -7,8 +7,8 @@ export const ethiopia_strategis = {
     "intel_radar": ethiopia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 11,
-      "misi_mata_mata": 9,
-      "misi_sabotase": 2,
+      "agen_mata_mata": 9,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

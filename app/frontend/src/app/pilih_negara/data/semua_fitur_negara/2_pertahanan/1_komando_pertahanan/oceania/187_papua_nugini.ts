@@ -7,8 +7,8 @@ export const papua_nugini_strategis = {
     "intel_radar": papua_nugini_intelijen,
     "operasi_strategis": {
       "misi_serangan": 29,
-      "misi_mata_mata": 37,
-      "misi_sabotase": 28,
+      "agen_mata_mata": 37,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

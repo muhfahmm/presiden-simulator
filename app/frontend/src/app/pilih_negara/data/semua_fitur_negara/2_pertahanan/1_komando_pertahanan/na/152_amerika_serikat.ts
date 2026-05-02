@@ -7,8 +7,8 @@ export const amerika_serikat_strategis = {
     "intel_radar": amerika_serikat_intelijen,
     "operasi_strategis": {
       "misi_serangan": 39,
-      "misi_mata_mata": 39,
-      "misi_sabotase": 21,
+      "agen_mata_mata": 39,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 100,
       "misil_nuklir": 5044

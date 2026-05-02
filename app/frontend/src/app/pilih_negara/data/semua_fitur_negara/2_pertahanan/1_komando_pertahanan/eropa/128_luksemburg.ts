@@ -7,8 +7,8 @@ export const luksemburg_strategis = {
     "intel_radar": luksemburg_intelijen,
     "operasi_strategis": {
       "misi_serangan": 11,
-      "misi_mata_mata": 30,
-      "misi_sabotase": 5,
+      "agen_mata_mata": 30,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

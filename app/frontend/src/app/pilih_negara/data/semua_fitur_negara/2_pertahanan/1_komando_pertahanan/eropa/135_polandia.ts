@@ -7,8 +7,8 @@ export const polandia_strategis = {
     "intel_radar": polandia_intelijen,
     "operasi_strategis": {
       "misi_serangan": 9,
-      "misi_mata_mata": 24,
-      "misi_sabotase": 36,
+      "agen_mata_mata": 24,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

@@ -7,8 +7,8 @@ export const maldives_strategis = {
     "intel_radar": maldives_intelijen,
     "operasi_strategis": {
       "misi_serangan": 6,
-      "misi_mata_mata": 7,
-      "misi_sabotase": 9,
+      "agen_mata_mata": 7,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

@@ -7,8 +7,8 @@ export const makedonia_utara_strategis = {
     "intel_radar": makedonia_utara_intelijen,
     "operasi_strategis": {
       "misi_serangan": 15,
-      "misi_mata_mata": 36,
-      "misi_sabotase": 26,
+      "agen_mata_mata": 36,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

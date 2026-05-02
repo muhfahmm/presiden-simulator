@@ -7,8 +7,8 @@ export const taiwan_strategis = {
     "intel_radar": taiwan_intelijen,
     "operasi_strategis": {
       "misi_serangan": 20,
-      "misi_mata_mata": 10,
-      "misi_sabotase": 22,
+      "agen_mata_mata": 10,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

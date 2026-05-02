@@ -7,8 +7,8 @@ export const ceko_strategis = {
     "intel_radar": ceko_intelijen,
     "operasi_strategis": {
       "misi_serangan": 8,
-      "misi_mata_mata": 24,
-      "misi_sabotase": 29,
+      "agen_mata_mata": 24,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0

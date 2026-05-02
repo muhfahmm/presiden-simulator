@@ -7,8 +7,8 @@ export const madagaskar_strategis = {
     "intel_radar": madagaskar_intelijen,
     "operasi_strategis": {
       "misi_serangan": 33,
-      "misi_mata_mata": 9,
-      "misi_sabotase": 1,
+      "agen_mata_mata": 9,
+      "misi_sabotase": 0,
       "manajemen_wilayah": 0,
       "program_nuklir": 0,
       "misil_nuklir": 0
