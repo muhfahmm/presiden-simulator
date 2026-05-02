@@ -12,8 +12,7 @@ import { countries } from "./data/semua_fitur_negara/0_profiles/index";
 import { gameStorage } from "../game/gamestorage";
 import { taxStorage } from "../game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { buildingStorage } from "../game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { populationStorage } from "../game/components/1_navbar/2_populasi";
-import { budgetStorage } from "../game/components/1_navbar/3_kas_negara";
+
 import { CountryData } from "./data/semua_fitur_negara";
 import { calculateBudgetBreakdown } from "../game/components/1_navbar/3_kas_negara/BudgetDeltaLogic";
 import { motion, useSpring, useTransform } from "framer-motion";
@@ -128,12 +127,12 @@ export default function DatabasePage() {
             />
             <StatItem 
               label="Populasi" 
-              value={hasSelection ? (currentData.name_en === "Indonesia" ? populationStorage.getPopulation().toLocaleString('id-ID') : currentData.jumlah_penduduk) : "-"} 
+              value={hasSelection ? currentData.jumlah_penduduk : "-"} 
               icon={<Users size={14} className="text-amber-800" />} 
             />
             <StatItem 
               label="Kas Negara" 
-              value={hasSelection ? (currentData.name_en === "Indonesia" ? budgetStorage.getBudget().toLocaleString('id-ID') : currentData.anggaran) : "-"} 
+              value={hasSelection ? currentData.anggaran : "-"} 
               suffix=" EM" 
               icon={<Landmark size={14} className="text-amber-700" />} 
             />

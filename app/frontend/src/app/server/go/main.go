@@ -227,7 +227,7 @@ func loadBuildingsFromTypeScript() error {
 	core.BuildingTypes = []core.BuildingType{}
 	
 	// Use absolute path to ensure files are found regardless of where the binary is run
-	basePath := "c:/fhm/em-2/app/frontend/src/app/pilih_negara/data/semua_fitur_negara/"
+	basePath := "c:/fhm/em/app/frontend/src/app/pilih_negara/data/semua_fitur_negara/"
 	
 	fmt.Printf("[GO] Loading buildings from absolute path: %s\n", basePath)
 	
@@ -319,7 +319,7 @@ func loadBuildingsFromTypeScript() error {
 // loadNationsFromTypeScript reads baseline stats for all 207 nations from TypeScript database files
 func loadNationsFromTypeScript() map[string]core.NPCNationState {
 	nations := make(map[string]core.NPCNationState)
-	basePath := "c:/fhm/em-2/app/frontend/src/app/pilih_negara/data/semua_fitur_negara/0_profiles/"
+	basePath := "c:/fhm/em/app/frontend/src/app/pilih_negara/data/semua_fitur_negara/0_profiles/"
 	continents := []string{"asia", "afrika", "eropa", "na", "sa", "oceania"}
 
 	count := 0
@@ -389,7 +389,7 @@ func loadNationsFromTypeScript() map[string]core.NPCNationState {
 func loadDefaultsFromPython() map[string]core.NPCNationState {
 	defaults := make(map[string]core.NPCNationState)
 	
-	pyScript := "C:/fhm/em-2/app/frontend/src/app/server/python/localstorage.py"
+	pyScript := "C:/fhm/em/app/frontend/src/app/server/python/localstorage.py"
 	cmd := exec.Command("python", pyScript, "--reset")
 	out, err := cmd.Output()
 	if err != nil {
@@ -428,21 +428,21 @@ func InitializeNPCStatesLocked() {
 		// 1. Try to load from TypeScript Profile (Strongest Authority)
 		if def, ok := tsDefaults[normalizedName]; ok {
 			pop = def.Population
-			// Scale budget by 1000x to match building costs (Millions of EM)
-			budget = def.Budget * 1000.0 
+			// Use raw budget from TypeScript Profile
+			budget = def.Budget 
 			// Ensure tier is somewhat related to budget
 			if budget > 100000000 { tier = 4 } else if budget > 50000000 { tier = 3 } else if budget > 10000000 { tier = 2 } else { tier = 1 }
 		} else if def, ok := pyDefaults[normalizedName]; ok {
 			// 2. Fallback to Python defaults
 			pop = def.Population
-			budget = def.Budget * 1000.0
+			budget = def.Budget
 			happiness = def.Happiness
 			stability = def.Stability
 			tier = def.EconomicTier
 			if tier == 0 { tier = 1 + core.Rng.Intn(3) }
 		} else {
 			// 3. Last fallback: use tier
-			budget = float64(tier) * 500000.0
+			budget = float64(tier) * 5000.0
 		}
 		
 		core.GlobalState.NPCStates[normalizedName] = &core.NPCNationState{
@@ -1870,11 +1870,7 @@ func handleInitPlayer(w http.ResponseWriter, r *http.Request) {
 		core.GlobalState.DayCounter = 0
 		core.GlobalState.IsPaused = true
 		
-		// HARD-FORCE INDONESIA BASELINE
-		if init.Country == "Indonesia" {
-			core.GlobalState.Player.Budget = 13807 * 1000 // Scale to match building costs (13M EM)
-			fmt.Println("[GO] Indonesia Sovereignty Enforced: Budget set to 13.8M.")
-		}
+		// Removed: Hard-forced baseline was causing "000" scale issues
 	}
 
 	fmt.Printf("[GO] Player initialized: %s | Budget: %.0f | Pop: %.0f | Happy: %.1f%% | Income: +%.0f/day\n",

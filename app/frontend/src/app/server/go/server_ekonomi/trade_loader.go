@@ -29,7 +29,7 @@ func Initialize() error {
 func loadTradePartnerGraph() error {
 	core.TradePartnerGraph = make(map[string][]string)
 
-	basePath := "c:/fhm/em-2/app/frontend/src/app/pilih_negara/data/database_mitra_perdagangan/"
+	basePath := "c:/fhm/em/app/frontend/src/app/pilih_negara/data/database_mitra_perdagangan/"
 	continents := []string{"asia", "afrika", "eropa", "na", "sa", "oceania"}
 
 	// Regex to extract country name from filename (e.g., "67_indonesia.ts" -> "indonesia")
