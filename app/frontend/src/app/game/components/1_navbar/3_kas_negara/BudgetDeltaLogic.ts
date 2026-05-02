@@ -124,7 +124,6 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
  * Calculates the net change in national budget for one game day.
  */
 export function calculateDailyBudgetDelta(countryData: CountryData, buildingDeltas: Record<string, number>): number {
-  const currentBuildings = buildingStorage.getData().buildingDeltas || {};
-  const breakdown = calculateBudgetBreakdown(countryData, currentBuildings);
+  const breakdown = calculateBudgetBreakdown(countryData, buildingDeltas);
   return breakdown.dailyDelta;
 }

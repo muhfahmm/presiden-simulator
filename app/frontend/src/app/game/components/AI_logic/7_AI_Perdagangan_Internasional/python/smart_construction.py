@@ -86,12 +86,15 @@ def score_building(nation: dict, building: dict) -> float:
     # ─── Budget-based scoring ───
     
     # Rich nations invest in production (long-term)
-    if budget > 50000:
+    if budget > 10000000:
         if sector in ["Manufaktur", "Agrikultur", "Peternakan", "Perikanan", "Mineral Kritis", "Listrik Nasional"]:
             score += 3.0
-    elif budget > 10000:
+    elif budget > 1000000:
         if sector in ["Manufaktur", "Agrikultur"]:
             score += 1.5
+    elif budget > 100000:
+        if sector in ["Manufaktur"]:
+            score += 1.0
     
     # ─── Affordability penalty ───
     if biaya > 0:
@@ -163,7 +166,7 @@ def decide_for_nation(nation_name: str, nation: dict, building_types: list) -> d
         reason = f"Kebahagiaan rendah ({happiness:.0f}%), prioritas layanan publik"
     elif stability < 50 and sector in ["Intelijen", "Armada Militer", "Armada Polisi", "Manajemen Pertahanan", "Komando Pertahanan"]:
         reason = f"Stabilitas rendah ({stability:.0f}%), prioritas pertahanan"
-    elif budget > 30000:
+    elif budget > 1000000:
         reason = f"Anggaran tinggi, investasi sektor {sector.lower()}"
     else:
         reason = f"Pembangunan strategis sektor {sector.lower()}"

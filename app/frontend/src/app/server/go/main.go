@@ -428,17 +428,21 @@ func InitializeNPCStatesLocked() {
 		// 1. Try to load from TypeScript Profile (Strongest Authority)
 		if def, ok := tsDefaults[normalizedName]; ok {
 			pop = def.Population
-			budget = def.Budget
+			// Scale budget by 1000x to match building costs (Millions of EM)
+			budget = def.Budget * 1000.0 
 			// Ensure tier is somewhat related to budget
-			if budget > 100000 { tier = 4 } else if budget > 50000 { tier = 3 } else if budget > 10000 { tier = 2 } else { tier = 1 }
+			if budget > 100000000 { tier = 4 } else if budget > 50000000 { tier = 3 } else if budget > 10000000 { tier = 2 } else { tier = 1 }
 		} else if def, ok := pyDefaults[normalizedName]; ok {
 			// 2. Fallback to Python defaults
 			pop = def.Population
-			budget = def.Budget
+			budget = def.Budget * 1000.0
 			happiness = def.Happiness
 			stability = def.Stability
 			tier = def.EconomicTier
 			if tier == 0 { tier = 1 + core.Rng.Intn(3) }
+		} else {
+			// 3. Last fallback: use tier
+			budget = float64(tier) * 500000.0
 		}
 		
 		core.GlobalState.NPCStates[normalizedName] = &core.NPCNationState{
@@ -1184,9 +1188,10 @@ func processNPCDay(date time.Time) {
 	}
 	wg.Wait()
 
-	// AI Batch Processing every 5 days
+	// AI Smart Construction every 5 days (Background Brain)
 	if core.GlobalState.DayCounter % 5 == 0 {
-		go runAIBatch()
+		dateStr := date.Format("2006-01-02")
+		go server_ekonomi.ProcessSmartConstruction(dateStr)
 	}
 }
 
@@ -1867,8 +1872,8 @@ func handleInitPlayer(w http.ResponseWriter, r *http.Request) {
 		
 		// HARD-FORCE INDONESIA BASELINE
 		if init.Country == "Indonesia" {
-			core.GlobalState.Player.Budget = 13807
-			fmt.Println("[GO] Indonesia Sovereignty Enforced: Budget set to 13807.")
+			core.GlobalState.Player.Budget = 13807 * 1000 // Scale to match building costs (13M EM)
+			fmt.Println("[GO] Indonesia Sovereignty Enforced: Budget set to 13.8M.")
 		}
 	}
 

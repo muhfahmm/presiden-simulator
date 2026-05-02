@@ -463,15 +463,23 @@ func ProcessSmartConstruction(dateStr string) {
 		state.Budget = math.Max(0, state.Budget-float64(d.Cost))
 		applied++
 
-		// Generate construction news (embassy-gated)
-		if playerHasEmbassyIn(d.Nation) {
+		// Generate construction news (embassy-gated, but allow some global visibility)
+		isEmbassy := playerHasEmbassyIn(d.Nation)
+		shouldShow := isEmbassy || core.Rng.Intn(100) < 30 // 30% chance for non-embassy global news
+		
+		if shouldShow {
 			subj := fmt.Sprintf("Pembangunan Infrastruktur %s: %s", d.BuildingName, d.Nation)
 			content := fmt.Sprintf("Pemerintah %s memulai proyek pembangunan %d unit %s. %s",
 				d.Nation, d.Quantity, d.BuildingName, d.Reason)
 
+			priority := "low"
+			if isEmbassy {
+				priority = "medium"
+			}
+
 			core.AddNewsItemLocked(
 				fmt.Sprintf("Kantor Berita %s", d.Nation),
-				subj, content, "construction", "medium", dateStr,
+				subj, content, "construction", priority, dateStr,
 			)
 		}
 	}
