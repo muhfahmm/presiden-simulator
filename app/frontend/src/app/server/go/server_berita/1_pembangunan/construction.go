@@ -287,7 +287,7 @@ func processSmartConstruction(dateStr string) {
 			}
 			jsonPayload, _ := json.Marshal(payload)
 
-			pyScript := "C:/fhm/em/app/frontend/src/app/game/components/AI_logic/5_AI_Pembangunan/pusat_keputusan_pembangunan/brain/otak_pembangunan.py"
+			pyScript := "C:/fhm/em-2/app/frontend/src/app/game/components/AI_logic/5_AI_Pembangunan/pusat_keputusan_pembangunan/brain/otak_pembangunan.py"
 			cmd := exec.Command("python", pyScript)
 
 			stdout, err := cmd.StdoutPipe()

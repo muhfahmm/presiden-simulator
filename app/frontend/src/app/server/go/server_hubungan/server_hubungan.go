@@ -25,7 +25,7 @@ func InitializeRelationshipsLocked() error {
 	// Always wipe and re-initialize for a fresh load (essential for Reset functionality)
 	core.GlobalState.Relationships = make(map[string]map[string]*core.Relationship)
 
-	basePath := "c:/fhm/em/app/frontend/src/app/pilih_negara/data/database_hubungan_antar_negara"
+	basePath := "c:/fhm/em-2/app/frontend/src/app/pilih_negara/data/database_hubungan_antar_negara"
 	
 	// Regions to scan
 	regions := []string{"afrika", "asia", "eropa", "na", "oceania", "sa"}

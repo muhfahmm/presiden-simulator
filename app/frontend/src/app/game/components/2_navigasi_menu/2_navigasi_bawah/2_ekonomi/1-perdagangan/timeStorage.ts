@@ -26,7 +26,18 @@ class TimeStorage {
         const data = e.detail;
         if (data.gameDate) {
           const newDate = new Date(data.gameDate);
-          this.gameDate = newDate;
+          
+          // Defensive: Ensure date is valid before updating state
+          if (isNaN(newDate.getTime())) {
+            console.error(`[TimeStorage] Received invalid date from server: ${data.gameDate}`);
+            return;
+          }
+
+          if (this.gameDate.getTime() !== newDate.getTime()) {
+            // console.log(`[TimeStorage] Date Advanced: ${data.gameDate}`);
+            this.gameDate = newDate;
+            saveGameDate(newDate); 
+          }
           
           // LOCKING MECHANISM: Don't let SSE override our manual choice during LOCK_DURATION
           const now = Date.now();
@@ -35,12 +46,8 @@ class TimeStorage {
           if (!isLocked) {
             this.isPaused = data.isPaused;
             this.speed = data.speed;
-          } else {
-            // Even if locked, we still want to log what's happening
-            // console.log(`[TimeStorage] SSE Ignored (Locked): Server Speed ${data.speed}, Local Speed ${this.speed}`);
           }
           
-          saveGameDate(newDate); 
           this.notify();
         }
       });

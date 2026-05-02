@@ -14,8 +14,8 @@ import (
 // ═══════════════════════════════════════════════════════════
 
 const (
-	CPP_TRADE_ENGINE = "C:/fhm/em/app/frontend/src/app/game/components/AI_logic/7_AI_Perdagangan_Internasional/cpp/trade_engine.exe"
-	PY_SMART_BUILD   = "C:/fhm/em/app/frontend/src/app/game/components/AI_logic/7_AI_Perdagangan_Internasional/python/smart_construction.py"
+	CPP_TRADE_ENGINE = "C:/fhm/em-2/app/frontend/src/app/game/components/AI_logic/7_AI_Perdagangan_Internasional/cpp/trade_engine.exe"
+	PY_SMART_BUILD   = "C:/fhm/em-2/app/frontend/src/app/game/components/AI_logic/7_AI_Perdagangan_Internasional/python/smart_construction.py"
 )
 
 // ProcessDailyProduction adds commodities to NPC inventories based on building levels.

@@ -227,7 +227,7 @@ func loadBuildingsFromTypeScript() error {
 	core.BuildingTypes = []core.BuildingType{}
 	
 	// Use absolute path to ensure files are found regardless of where the binary is run
-	basePath := "c:/fhm/em/app/frontend/src/app/pilih_negara/data/semua_fitur_negara/"
+	basePath := "c:/fhm/em-2/app/frontend/src/app/pilih_negara/data/semua_fitur_negara/"
 	
 	fmt.Printf("[GO] Loading buildings from absolute path: %s\n", basePath)
 	
@@ -319,7 +319,7 @@ func loadBuildingsFromTypeScript() error {
 // loadNationsFromTypeScript reads baseline stats for all 207 nations from TypeScript database files
 func loadNationsFromTypeScript() map[string]core.NPCNationState {
 	nations := make(map[string]core.NPCNationState)
-	basePath := "c:/fhm/em/app/frontend/src/app/pilih_negara/data/semua_fitur_negara/0_profiles/"
+	basePath := "c:/fhm/em-2/app/frontend/src/app/pilih_negara/data/semua_fitur_negara/0_profiles/"
 	continents := []string{"asia", "afrika", "eropa", "na", "sa", "oceania"}
 
 	count := 0
@@ -389,7 +389,7 @@ func loadNationsFromTypeScript() map[string]core.NPCNationState {
 func loadDefaultsFromPython() map[string]core.NPCNationState {
 	defaults := make(map[string]core.NPCNationState)
 	
-	pyScript := "C:/fhm/em/app/frontend/src/app/server/python/localstorage.py"
+	pyScript := "C:/fhm/em-2/app/frontend/src/app/server/python/localstorage.py"
 	cmd := exec.Command("python", pyScript, "--reset")
 	out, err := cmd.Output()
 	if err != nil {
@@ -836,24 +836,29 @@ func simulationEngine() {
 	lastBroadcastInboxLen := 0
 
 	for range ticker.C {
-		now := time.Now()
-		core.GlobalState.Mu.Lock()
-		isPaused := core.GlobalState.IsPaused
-		speed := core.GlobalState.Speed
-		core.GlobalState.Mu.Unlock()
+		func() {
+			defer func() {
+				if r := recover(); r != nil {
+					fmt.Printf("[CRITICAL] Simulation Engine Panic: %v\n", r)
+				}
+			}()
+
+			now := time.Now()
+			core.GlobalState.Mu.Lock()
+			isPaused := core.GlobalState.IsPaused
+			speed := core.GlobalState.Speed
+			gDate := core.GlobalState.GameDate
+			core.GlobalState.Mu.Unlock()
 
 		if isPaused {
 			acc = 0
-			continue
+			return
 		}
 
 		// Optimized Accumulator: 100ms base
-		// 1x speed -> +1 -> 10 ticks = 1000ms
-		// 2x speed -> +2 -> 5 ticks = 500ms
-		// 3x speed -> +3 -> ~3.3 ticks = 333ms
 		acc += speed
 		if acc < 10 {
-			continue
+			return
 		}
 		acc -= 10
 
@@ -863,11 +868,20 @@ func simulationEngine() {
 		var constructionChanged bool
 
 		// 1. Parse and advance date
-		currentDate, _ := time.Parse("2006-01-02", core.GlobalState.GameDate)
+		currentDate, err := time.Parse("2006-01-02", gDate)
+		if err != nil {
+			fmt.Printf("[ERROR] Failed to parse GameDate '%s': %v. Resetting to baseline.\n", gDate, err)
+			currentDate, _ = time.Parse("2006-01-02", "2026-05-02")
+		}
+		
 		nextDate := currentDate.AddDate(0, 0, 1)
-		core.GlobalState.GameDate = nextDate.Format("2006-01-02")
+		nextDateStr := nextDate.Format("2006-01-02")
+		
+		core.GlobalState.GameDate = nextDateStr
 		core.GlobalState.DayCounter++
 		
+		fmt.Printf("[GO] Date Advanced: %s (Day %d) | Speed: %dx\n", nextDateStr, core.GlobalState.DayCounter, speed)
+
 		// === SMART SSE THROTTLING (Pulse 1: Efficient UI Update) ===
 		shouldPulse := false
 		p := core.GlobalState.Player
@@ -877,12 +891,6 @@ func simulationEngine() {
 		happyDiff := math.Abs(p.Happiness - lastSentStats.Happiness)
 		popDiff := math.Abs(p.Population - lastSentStats.Population)
 		
-		// Pulse if:
-		// - Budget changed > 0.5% or > 1000 units
-		// - Happiness changed > 0.1
-		// - Population changed > 500
-		// - Date changed (ensures clock keeps moving)
-		// - Or forced by major update
 		if budgetDiff > (lastSentStats.Budget*0.005) || budgetDiff > 1000 || 
 		   happyDiff > 0.1 || popDiff > 500 || 
 		   core.GlobalState.GameDate != lastSentStats.GameDate ||
@@ -919,8 +927,6 @@ func simulationEngine() {
 		isMonthlySync := core.GlobalState.DayCounter%30 == 0
 		isWeeklySync := core.GlobalState.DayCounter%7 == 0 || core.GlobalState.DayCounter < 2
 
-		// Heavy data (NPC states, News, Inbox) is only sent on major events, weekly, or monthly
-		// This prevents the React UI from choking on massive JSON payloads every second
 		if isMonthlySync || isMajorUpdate || isWeeklySync || now.Sub(lastBroadcastTime) >= 5*time.Second {
 			var snapshot []byte
 			if isMonthlySync || isWeeklySync {
@@ -936,12 +942,8 @@ func simulationEngine() {
 			go broadcastSSE(snapshot)
 		}
 
-		core.GlobalState.Mu.Unlock()
-
 		// Check for Month Change (Quarterly Detection)
 		if nextDate.Month() != core.GlobalState.LastProcessedMonth {
-			// (News reset now handled by checkMonthlyNewsReset called at start of tick)
-			
 			oldMonth := nextDate.Month() - 1
 			if oldMonth == 0 { oldMonth = 12 }
 			
@@ -955,7 +957,13 @@ func simulationEngine() {
 				}
 				go invokeQuarterlyEconomicAI(nextDate, quarter)
 			}
+			core.GlobalState.LastProcessedMonth = nextDate.Month()
 		}
+
+		core.GlobalState.Mu.Unlock()
+		}()
+
+		// The loop is driven by a ticker. External code handles the lock.
 	}
 }
 
