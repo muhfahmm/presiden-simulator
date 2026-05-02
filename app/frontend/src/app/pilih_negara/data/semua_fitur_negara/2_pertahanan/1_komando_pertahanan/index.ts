@@ -59,5 +59,23 @@ export const komandoPertahananRate = {
     biaya_pembangunan: 337500, // Reduced from 450k
     lowongan_kerja: 12000,
     konsumsi_listrik: 350
+  },
+  "program_nuklir": {
+    key: "program_nuklir",
+    dataKey: "program_nuklir",
+    label: "Program Nuklir",
+    deskripsi: "Fasilitas Riset Nuklir dan Pengayaan Uranium",
+    waktu_pembangunan: 360,
+    biaya_pembangunan: 50000000,
+    groupId: "nuklir"
+  },
+  "misil_nuklir": {
+    key: "misil_nuklir",
+    dataKey: "misil_nuklir",
+    label: "ICBM (Misil Nuklir)",
+    deskripsi: "Peluru Kendali Balistik Antar Benua (ICBM)",
+    waktu_pembangunan: 180,
+    biaya_pembangunan: 25000000,
+    groupId: "nuklir"
   }
 };

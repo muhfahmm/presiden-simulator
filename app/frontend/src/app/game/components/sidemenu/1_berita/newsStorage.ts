@@ -13,7 +13,7 @@ export interface NewsItem {
   time: string;
   read: boolean;
   priority: 'low' | 'medium' | 'high';
-  category: 'global' | 'diplomacy' | 'conflict' | 'economy' | 'construction' | 'finance' | 'trade' | 'organizations';
+  category: 'global' | 'diplomacy' | 'conflict' | 'economy' | 'construction' | 'finance' | 'trade' | 'organizations' | 'nuclear';
   timestamp: number;
 }
 

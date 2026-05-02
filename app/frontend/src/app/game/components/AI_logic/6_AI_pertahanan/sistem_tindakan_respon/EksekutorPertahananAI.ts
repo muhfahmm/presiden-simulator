@@ -39,6 +39,7 @@ const SECTOR_DISPLAY: Record<string, string> = {
   "fleet": "Armada Polisi",
   "air": "Polisi Udara",
   "special": "Pasukan Khusus",
+  "nuklir": "Komando Strategis Nuklir",
 };
 
 // Category for news: construction for berita_internasional
@@ -157,6 +158,29 @@ export class EksekutorPertahananAI {
         },
       ];
 
+      // 6.b SPECIAL TEMPLATES FOR NUCLEAR (Ultra Dramatic)
+      if (sector === "nuklir") {
+        priority = "high";
+        newsTemplates.push(
+          {
+            subject: `☢️ BREAKING: ${countryNameId} Inisiasi Program Nuklir Strategis`,
+            content:
+              `Dunia dikejutkan dengan pengumuman resmi ${countryNameId} yang memulai pengembangan ${displayLabel}. ` +
+              `Investasi sebesar ${formattedCost} EM telah dialokasikan untuk fasilitas pengayaan uranium. ` +
+              `Komunitas internasional menyatakan keprihatinan mendalam atas pergeseran postur pertahanan ${countryNameId}. ` +
+              `Proyek rahasia ini diperkirakan akan mengubah keseimbangan kekuatan regional dalam ${buildTime} hari ke depan.`,
+          },
+          {
+            subject: `🚀 ${countryNameId} Kembangkan Teknologi ICBM ${transitionText}`,
+            content:
+              `Laporan intelijen mengonfirmasi bahwa ${countryNameId} telah memulai produksi ${displayLabel}. ` +
+              `Dengan anggaran fantastis ${formattedCost} EM, proyek ini bertujuan membangun sistem penangkal nuklir mandiri. ` +
+              `Analis militer memperingatkan bahwa langkah ${countryNameId} ini dapat memicu perlombaan senjata baru. ` +
+              `Fasilitas ${displaySector} kini dijaga ketat selama masa pembangunan ${buildTime} hari.`,
+          }
+        );
+      }
+
       // Randomly pick a news template for variety
       const template = newsTemplates[Math.floor(Math.random() * newsTemplates.length)];
 
@@ -164,7 +188,7 @@ export class EksekutorPertahananAI {
         source: `Kementerian Pertahanan ${countryNameId}`,
         subject: template.subject,
         content: template.content,
-        category: NEWS_CATEGORY,
+        category: sector === "nuklir" ? "nuclear" : NEWS_CATEGORY,
         time: dateKey,
         priority: priority,
       });
