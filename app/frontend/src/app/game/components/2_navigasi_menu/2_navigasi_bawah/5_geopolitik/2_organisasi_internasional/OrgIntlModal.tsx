@@ -134,6 +134,81 @@ const ORGANIZATIONS: Organization[] = [
   { id: "oecd", displayId: "18", name: "Organisasi Kerja Sama dan Pembangunan Ekonomi (OECD)", desc: "Standarisasi kebijakan ekonomi dan tata kelola negara maju.", focus: "Standar Kebijakan", icon: Scale, flag: "📈", color: "text-cyan-700", benefit: "Standar Global", impact: "Ease of Doing Business +20%", category: "REGIONAL", region: "Maju" }
 ];
 
+const REGIONAL_INFO: Record<string, { pros: string[]; cons: string[] }> = {
+  asean: {
+    pros: ["Akses Pasar Bebas", "Stabilitas Regional", "Bebas Visa Antar Anggota"],
+    cons: ["Sengketa Wilayah", "Persaingan Industri", "Kesenjangan Pembangunan"]
+  },
+  eu: {
+    pros: ["Pasar Tunggal", "Mata Uang Euro", "Bebas Visa & Kerja"],
+    cons: ["Birokrasi Ketat", "Biaya Keanggotaan", "Kehilangan Kedaulatan"]
+  },
+  arab_league: {
+    pros: ["Solidaritas Arab", "Blok Politik Kuat", "Kerjasama Budaya"],
+    cons: ["Konflik Internal", "Ketidakstabilan", "Dominasi Geopolitik"]
+  },
+  au: {
+    pros: ["Integrasi Afrika", "Stabilitas Politik", "Pasar Masa Depan"],
+    cons: ["Masalah Infrastruktur", "Ketidakstabilan", "Ketergantungan Donor"]
+  },
+  oic: {
+    pros: ["Solidaritas Muslim", "Blok Suara PBB", "Kerjasama Syariah"],
+    cons: ["Perbedaan Ideologi", "Ketegangan Regional", "Hanya Fokus Agama"]
+  },
+  brics: {
+    pros: ["Ekonomi Alternatif", "Investasi NDB", "Kedaulatan Finansial"],
+    cons: ["Perbedaan Kepentingan", "Dominasi China", "Fluktuasi Mata Uang"]
+  },
+  nato: {
+    pros: ["Payung Keamanan", "Teknologi Militer", "Pertahanan Kolektif"],
+    cons: ["Target Musuh Utama", "Anggaran Militer", "Ketergantungan AS"]
+  },
+  opec: {
+    pros: ["Kontrol Harga Minyak", "Stabilitas Energi", "Pendapatan Tinggi"],
+    cons: ["Kuota Produksi", "Fluktuasi Harga", "Tekanan Dunia Barat"]
+  },
+  g20: {
+    pros: ["Pengaruh Global", "Akses Kebijakan", "Forum Ekonomi Utama"],
+    cons: ["Hanya Konsultasi", "Kewajiban Global", "Protes Anti-Global"]
+  },
+  apec: {
+    pros: ["Fasilitasi Dagang", "Dialog Pasifik", "Riset Teknologi"],
+    cons: ["Bukan Perjanjian", "Persaingan AS-China", "Implementasi Lambat"]
+  },
+  sco: {
+    pros: ["Keamanan Eurasia", "Stabilitas Energi", "Blok Anti-Teror"],
+    cons: ["Sentimen Anti-Barat", "Dominasi Rusia-China", "Ketegangan Perbatasan"]
+  },
+  oas: {
+    pros: ["Kerjasama Amerika", "Bantuan Demokrasi", "Dialog Keamanan"],
+    cons: ["Intervensi Luar", "Kesenjangan Ekonomi", "Polarisasi Politik"]
+  },
+  gcc: {
+    pros: ["Integrasi Teluk", "Dana Investasi", "Keamanan Kolektif"],
+    cons: ["Ketergantungan Minyak", "Tensi Regional", "Persaingan Antar Raja"]
+  },
+  mercosur: {
+    pros: ["Pasar Bersama Latin", "Tarif Eksternal", "Mobilitas Tenaga Kerja"],
+    cons: ["Krisis Argentina", "Dominasi Brasil", "Ketidakpastian Hukum"]
+  },
+  commonwealth: {
+    pros: ["Jaringan Global", "Beasiswa & Riset", "Standar Hukum"],
+    cons: ["Kaitan Kolonial", "Hanya Seremonial", "Pengaruh Inggris"]
+  },
+  g7: {
+    pros: ["Elite Global", "Standar Ekonomi", "Kepemimpinan Barat"],
+    cons: ["Eksklusivitas", "Target Kritik Global", "Pertumbuhan Melambat"]
+  },
+  quad: {
+    pros: ["Teknologi Tinggi", "Keamanan Maritim", "Alternatif Infrastruktur"],
+    cons: ["Tensi dengan China", "Kewajiban Militer", "Bukan Aliansi Formal"]
+  },
+  oecd: {
+    pros: ["Standar Kebijakan", "Prestise Global", "Data & Analisis"],
+    cons: ["Reformasi Menyakitkan", "Pajak Minimum", "Eksklusif Negara Kaya"]
+  }
+};
+
 export default function OrgIntlModal({ 
   isOpen, 
   onClose, 
@@ -150,6 +225,7 @@ export default function OrgIntlModal({
   const [currentCountry, setCurrentCountry] = useState("");
   const [selectedOrgId, setSelectedOrgId] = useState<string | null>(null);
   const [viewingMembersOrgId, setViewingMembersOrgId] = useState<string | null>(null);
+  const [showInfoId, setShowInfoId] = useState<string | null>(null);
   const [currentCash, setCurrentCash] = useState(budgetStorage.getData().anggaran);
   const [currentDate, setCurrentDate] = useState("");
 
@@ -428,6 +504,9 @@ export default function OrgIntlModal({
                     }
                 }
 
+                const isShowingInfo = showInfoId === org.id;
+                const regInfo = REGIONAL_INFO[org.id];
+
                 return (
                 <div key={org.id} className={`group p-6 rounded-[32px] transition-all duration-500 flex flex-col gap-6 relative backdrop-blur-sm shadow-xl overflow-hidden ${
                     isNewMember
@@ -439,7 +518,7 @@ export default function OrgIntlModal({
                   <div className={`rounded-2xl p-4 relative overflow-hidden h-[120px] flex flex-col justify-center ${
                       isNewMember ? "bg-purple-900/20 border border-purple-500/30" : "bg-zinc-900/40 border border-zinc-800/30"
                   }`}>
-                     <div className="absolute top-2 right-2 p-1.5 opacity-5 group-hover:opacity-10 transition-opacity">
+                     <div className="absolute top-2 right-2 p-1.5 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
                         <org.icon size={60} />
                      </div>
                      <div className="flex items-center gap-2 mb-1.5">
@@ -461,43 +540,109 @@ export default function OrgIntlModal({
                              </span>
                          )}
                      </div>
-                     <h4 className="text-lg font-black text-amber-500 uppercase italic leading-none tracking-tight pr-4">
-                        {org.name}
-                     </h4>
+                     <div className="flex items-start justify-between gap-3">
+                        <h4 className="text-[13px] font-black text-amber-500 uppercase italic leading-tight tracking-tight pr-2 group-hover:text-amber-400 transition-colors">
+                            {org.name}
+                        </h4>
+                        <button 
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setShowInfoId(isShowingInfo ? null : org.id);
+                            }}
+                            title="Informasi Strategis"
+                            className={`p-2.5 rounded-xl border transition-all duration-300 transform active:scale-90 hover:scale-110 shrink-0 shadow-lg cursor-pointer ${
+                              isShowingInfo 
+                              ? 'bg-amber-500 border-amber-400 text-zinc-950 shadow-amber-500/40 ring-4 ring-amber-500/20' 
+                              : 'bg-zinc-800/80 border-zinc-700 text-zinc-400 hover:text-amber-500 hover:border-amber-500/50 hover:bg-amber-500/10'
+                            }`}
+                        >
+                            <Info size={18} strokeWidth={2.5} fill={isShowingInfo ? "currentColor" : "none"} />
+                        </button>
+                     </div>
                   </div>
 
-                  {/* Row 3: Detail Dampak Strategis */}
-                  <div className="flex flex-col gap-2">
-                    <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-4 py-3 flex items-center justify-between group hover:border-cyan-500/20 transition-all shadow-inner">
-                       <div className="flex items-center gap-3">
-                          <div className="p-2 bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
-                             <Zap size={14} className="text-cyan-500" />
-                          </div>
-                          <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Dampak Utama</span>
-                       </div>
-                       <div className="text-right">
-                          <span className="text-[11px] font-black text-cyan-500 uppercase italic whitespace-nowrap">{org.impact}</span>
-                       </div>
-                    </div>
+                  {/* Row 3: Detail Dampak Strategis / Plus Minus */}
+                  <div className="flex flex-col gap-2 min-h-[105px]">
+                    {isShowingInfo && regInfo ? (
+                        <div 
+                          onClick={() => setShowInfoId(null)}
+                          className="bg-zinc-950/90 border border-amber-500/40 rounded-2xl p-4 py-3 flex flex-col gap-3 animate-in fade-in zoom-in-95 duration-300 shadow-[0_0_30px_rgba(245,158,11,0.1)] h-full cursor-pointer group/info relative overflow-hidden active:scale-[0.99] transition-transform"
+                        >
+                            {/* Decorative Background */}
+                            <div className="absolute -right-4 -bottom-4 opacity-5 group-hover/info:opacity-10 transition-opacity">
+                                <Info size={80} />
+                            </div>
 
-                    <div className="bg-zinc-950/50 border border-zinc-900/50 rounded-2xl p-4 py-3 flex items-center justify-between group hover:border-purple-500/20 transition-all">
-                       <div className="flex items-center gap-3">
-                          <div className="p-2 bg-purple-500/10 rounded-lg">
-                             <Globe size={14} className="text-purple-500" />
-                          </div>
-                          <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Negara Terdaftar</span>
-                       </div>
-                       <div className="text-right">
-                          <span className="text-[11px] font-black text-purple-400 uppercase italic">
-                            {(() => {
-                               const dbMembers = OrganizationMembers[org.id] || [];
-                               const userInDb = dbMembers.includes(currentCountry.toLowerCase());
-                               const userJoined = unMembershipStorage.getJoinedOrganizations().includes(org.id);
-                               return (org.category === 'UN' ? unMembershipStorage.getConsolidatedMembers(org.id) : regionalMembershipRouter.getConsolidatedMembers(org.id)).length;
-                            })()} Negara
-                          </span>
-                       </div>
-                    </div>
+                            <div className="flex flex-col gap-2 relative z-10">
+                                <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.6)]" /> 
+                                    Keuntungan Strategis
+                                </span>
+                                <div className="flex flex-col gap-2 pl-1">
+                                    {regInfo.pros.map((p, i) => (
+                                        <p key={i} className="text-[11px] font-black text-white leading-tight flex items-start gap-2">
+                                            <span className="text-emerald-400 mt-0.5 shrink-0 shadow-sm">+</span> 
+                                            <span className="opacity-100 transition-opacity">{p}</span>
+                                        </p>
+                                    ))}
+                                </div>
+                            </div>
+                            
+                            <div className="w-full h-px bg-zinc-800/50 my-1" />
+                            
+                            <div className="flex flex-col gap-2 relative z-10">
+                                <span className="text-[10px] font-black text-rose-400 uppercase tracking-widest flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.6)]" /> 
+                                    Risiko & Konsekuensi
+                                </span>
+                                <div className="flex flex-col gap-2 pl-1">
+                                    {regInfo.cons.map((c, i) => (
+                                        <p key={i} className="text-[11px] font-bold text-zinc-200 leading-tight flex items-start gap-2">
+                                            <span className="text-rose-400 mt-0.5 shrink-0 shadow-sm">-</span> 
+                                            <span className="opacity-90 group-hover/info:opacity-100 transition-opacity">{c}</span>
+                                        </p>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="mt-auto pt-2 border-t border-zinc-800/50 flex justify-center">
+                               <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em] group-hover/info:text-amber-500 transition-colors">Klik untuk Kembali</span>
+                            </div>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="bg-zinc-950 border border-zinc-900 rounded-2xl p-4 py-3 flex items-center justify-between group hover:border-cyan-500/20 transition-all shadow-inner">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
+                                    <Zap size={14} className="text-cyan-500" />
+                                </div>
+                                <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Dampak Utama</span>
+                            </div>
+                            <div className="text-right">
+                                <span className="text-[11px] font-black text-cyan-500 uppercase italic whitespace-nowrap">{org.impact}</span>
+                            </div>
+                            </div>
+
+                            <div className="bg-zinc-950/50 border border-zinc-900/50 rounded-2xl p-4 py-3 flex items-center justify-between group hover:border-purple-500/20 transition-all">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 bg-purple-500/10 rounded-lg">
+                                    <Globe size={14} className="text-purple-500" />
+                                </div>
+                                <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Negara Terdaftar</span>
+                            </div>
+                            <div className="text-right">
+                                <span className="text-[11px] font-black text-purple-400 uppercase italic">
+                                    {(() => {
+                                    const dbMembers = OrganizationMembers[org.id] || [];
+                                    const userInDb = dbMembers.includes(currentCountry.toLowerCase());
+                                    const userJoined = unMembershipStorage.getJoinedOrganizations().includes(org.id);
+                                    return (org.category === 'UN' ? unMembershipStorage.getConsolidatedMembers(org.id) : regionalMembershipRouter.getConsolidatedMembers(org.id)).length;
+                                    })()} Negara
+                                </span>
+                            </div>
+                            </div>
+                        </>
+                    )}
                   </div>
 
                   {/* ACTION BUTTONS */}
