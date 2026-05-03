@@ -84,10 +84,12 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
               
               <div className="flex gap-4 items-start mb-4 relative z-10">
                 {/* Left Reason Sidebar */}
-                <div className="flex flex-col items-center gap-2 px-3 py-4 rounded-2xl bg-zinc-950/50 border border-zinc-800/50 group-hover:border-cyan-500/20 transition-colors w-[100px] shrink-0">
-                  <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest text-center">Analisis Utama</span>
-                  <div className="h-0.5 w-4 bg-zinc-800 rounded-full" />
-                  <p className="text-xs font-black text-cyan-400 text-center uppercase leading-tight tracking-tight">
+                <div className="flex flex-col items-center gap-2 px-4 py-5 rounded-3xl bg-zinc-950/50 border border-zinc-800/50 group-hover:border-cyan-500/20 transition-colors w-[120px] shrink-0">
+                  <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest text-center">Analisis Utama</span>
+
+                  <div className="h-0.5 w-6 bg-zinc-800 rounded-full" />
+                  <p className="text-sm font-black text-cyan-400 text-center uppercase leading-tight tracking-tight">
+
 
                     {(() => {
                       const firstCountry = vote.finalResults?.details?.supporters[0] || vote.finalResults?.details?.opponents[0] || "";
@@ -102,32 +104,38 @@ export function ActiveVotingsList({ votings }: ActiveVotingsListProps) {
                 <div className="flex-1 flex flex-col gap-4">
                   <div className="flex justify-between items-start">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-xl bg-zinc-950 border border-zinc-800 group-hover:border-cyan-500/30 transition-colors">
-                        <Loader2 className="h-4 w-4 text-cyan-400 animate-spin" />
+                      <div className="p-2.5 rounded-xl bg-zinc-950 border border-zinc-800 group-hover:border-cyan-500/30 transition-colors">
+                        <Loader2 className="h-5 w-5 text-cyan-400 animate-spin" />
                       </div>
                       <div>
-                        <h5 className="text-[10px] font-black text-white uppercase tracking-tight leading-none mb-1">{vote.name}</h5>
-                        <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-widest">{vote.category}</span>
+                        <h5 className="text-sm font-black text-white uppercase tracking-tight leading-none mb-1.5">{vote.name}</h5>
+                        <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">{vote.category}</span>
                       </div>
+
                     </div>
-                    <div className="flex flex-col items-end gap-1">
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-zinc-950 border border-zinc-800">
-                          <Clock className="h-2 w-2 text-cyan-500" />
-                          <span className="text-[8px] font-black text-zinc-400 uppercase tracking-widest">{Math.floor((vote.progress / 100) * 30)}/30 HARI</span>
+                    <div className="flex flex-col items-end gap-1.5">
+                      <div className="flex items-center gap-2.5">
+                        <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-zinc-950 border border-zinc-800">
+                          <Clock className="h-3 w-3 text-cyan-500" />
+                          <span className="text-[10px] font-black text-zinc-300 uppercase tracking-widest">{Math.floor((vote.progress / 100) * 30)}/30 HARI</span>
                         </div>
-                        <span className="text-[11px] font-black text-cyan-400">{Math.floor(vote.progress)}%</span>
+
+                        <span className="text-sm font-black text-cyan-400">{Math.floor(vote.progress)}%</span>
                       </div>
                       <div className="flex flex-col items-end">
-                        <span className="text-[9px] font-black text-zinc-500 uppercase tracking-tighter">{totalVoted}/{totalCountriesInApp} Negara</span>
-                        <span className="text-[7px] font-bold text-zinc-600 uppercase tracking-tight">{totalWeightedVoted}/{totalWeightInApp} Bobot Suara</span>
+                        <span className="text-[11px] font-black text-zinc-400 uppercase tracking-tighter">{totalVoted}/{totalCountriesInApp} Negara</span>
+                        <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-tight">{totalWeightedVoted}/{totalWeightInApp} Bobot Suara</span>
                       </div>
+
                     </div>
+
                   </div>
 
                   {/* Description / Detail Alasan */}
-                  <div className="px-5 py-3 rounded-xl bg-cyan-500/[0.02] border border-cyan-500/5 group-hover:border-cyan-500/10 transition-colors">
-                    <p className="text-[11px] text-zinc-400 leading-relaxed font-medium italic">
+                  <div className="px-6 py-4 rounded-2xl bg-cyan-500/[0.02] border border-cyan-500/5 group-hover:border-cyan-500/10 transition-colors">
+                    <p className="text-[13px] text-zinc-200 leading-relaxed font-medium italic">
+
+
 
                       "{(() => {
                         const firstCountry = vote.finalResults?.details?.supporters[0] || vote.finalResults?.details?.opponents[0] || "";
