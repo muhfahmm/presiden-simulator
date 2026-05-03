@@ -30,6 +30,7 @@ import { EmbassyList } from './3_kedutaan/EmbassyList';
 import { PactList } from './4_pakta/PactList';
 import { AllianceList } from './5_aliansi/AllianceList';
 import { PBBList } from './6_pbb/PBBList';
+import { RelationshipList } from './7_hubungan/RelationshipList';
 
 interface InboxModalProps {
   isOpen: boolean;
@@ -57,7 +58,8 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
         embassy: 'kedutaan',
         pact: 'pakta',
         alliance: 'aliansi',
-        pbb: 'pbb'
+        pbb: 'pbb',
+        relationship: 'hubungan'
       };
       const path = `/game/inbox/${tabPathMap[tab] || 'semua'}`;
       if (window.location.pathname !== path) {
@@ -95,7 +97,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
   // Hitung jumlah unread per kategori untuk ditampilkan di badge tab
   const unreadCounts = useMemo(() => {
     const counts: Record<string, number> = {
-      all: 0, finance: 0, trade: 0, embassy: 0, pact: 0, alliance: 0, pbb: 0
+      all: 0, finance: 0, trade: 0, embassy: 0, pact: 0, alliance: 0, pbb: 0, relationship: 0
     };
 
     messages.forEach((msg: InboxItem) => {
@@ -118,6 +120,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
         else if (subj.includes('aliansi')) counts.alliance++;
       }
       else if (msg.category === 'diplomacy') counts.embassy++;
+      else if (msg.category === 'relationship') counts.relationship++;
     });
 
     return counts;
@@ -315,6 +318,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
         case 'pact': return <PactList {...commonProps} />;
         case 'alliance': return <AllianceList {...commonProps} />;
         case 'pbb': return <PBBList {...commonProps} />;
+        case 'relationship': return <RelationshipList {...commonProps} />;
         default: return <AllList {...commonProps} />;
     }
   };
@@ -399,7 +403,8 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
               { id: 'embassy', label: 'kedutaan' },
               { id: 'pbb', label: 'pbb' },
               { id: 'pact', label: 'pakta' },
-              { id: 'alliance', label: 'aliansi' }
+              { id: 'alliance', label: 'aliansi' },
+              { id: 'relationship', label: 'hubungan' }
             ].map((tab) => {
               const isActive = filter === tab.id;
               const unread = unreadCounts[tab.id as keyof typeof unreadCounts];

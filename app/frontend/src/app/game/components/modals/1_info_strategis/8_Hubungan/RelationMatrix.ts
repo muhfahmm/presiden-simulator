@@ -266,6 +266,45 @@ export const updateMatrixScoresBatch = (sourceId: string, updates: Record<string
 };
 
 /**
+ * Tambah skor hubungan berdasarkan bantuan uang
+ * Formula: 1000 uang = +0.1 poin
+ * Maksimum kenaikan: +5 poin per transaksi (agar tidak terlalu ekstrem)
+ * Cap: maksimum 100 (hubungan sempurna)
+ * 
+ * @param sourceId - Negara pemberi bantuan (AI)
+ * @param targetId - Negara penerima bantuan (User)
+ * @param amount - Jumlah uang yang diberikan
+ * @returns Skor baru setelah update
+ */
+export const addRelationScoreFromAid = (sourceId: string, targetId: string, amount: number): number => {
+    const sId = normalizeId(sourceId);
+    const tId = normalizeId(targetId);
+    
+    const matrix = getGlobalRelationMatrix();
+    if (!matrix[sId]) matrix[sId] = {};
+    if (!matrix[sId][tId]) {
+        matrix[sId][tId] = { s: 50, e: 0, p: 0, a: 0, t: 0 };
+    }
+    
+    // Hitung kenaikan: 1000 = 0.1 poin
+    const pointsGain = (amount / 1000) * 0.1;
+    
+    // Cap kenaikan maksimum +5 poin per transaksi
+    const cappedGain = Math.min(pointsGain, 5);
+    
+    // Skor baru (cap maksimum 100)
+    const currentScore = matrix[sId][tId].s;
+    const newScore = Math.min(currentScore + cappedGain, 100);
+    
+    matrix[sId][tId].s = newScore;
+    saveGlobalRelationMatrix(matrix);
+    
+    console.log(`[RELATION-UPDATE] ${sourceId} → ${targetId}: ${currentScore.toFixed(2)} + ${cappedGain.toFixed(2)} = ${newScore.toFixed(2)} (dari bantuan ${amount})`);
+    
+    return newScore;
+};
+
+/**
  * Cek apakah sebuah relationship adalah "Netral Default"
  */
 const isDefaultNeutral = (entry: RelationEntry): boolean => {

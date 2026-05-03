@@ -1,7 +1,8 @@
 import React from 'react';
 import { 
   DollarSign, Briefcase, Shield, Building2, Handshake, Mail, Info, 
-  ArrowUpRight, ArrowDownLeft, Globe
+  ArrowUpRight, ArrowDownLeft, Globe, Banknote, HeartCrack,
+  Gift, Star, AlertTriangle, Wrench, TrendingUp
 } from 'lucide-react';
 
 export const getCategoryTheme = (
@@ -14,6 +15,63 @@ export const getCategoryTheme = (
     bg: 'bg-blue-500/10', border: 'border-blue-500/30', text: 'text-blue-400', indicator: 'bg-blue-500', icon: <Info className="h-4 w-4" />,
     glow: 'shadow-[0_0_20px_rgba(59,130,246,0.1)]'
   };
+
+  // DIPLOMATIC GIFTS - Tier based colors
+  const lowerSubject = subject.toLowerCase();
+  
+  // Sahabat Strategis (80-100) - GREEN/GOLD
+  if (category === 'relationship' && (lowerSubject.includes('persahabatan') || lowerSubject.includes('token'))) {
+    return {
+      bg: 'bg-emerald-500/15', border: 'border-emerald-400/50', text: 'text-emerald-400', indicator: 'bg-emerald-500', icon: <Star className="h-4 w-4" />,
+      glow: 'shadow-[0_0_40px_rgba(16,185,129,0.3)]'
+    };
+  }
+  
+  // Mitra Baik (60-79) - BLUE
+  if (category === 'relationship' && lowerSubject.includes('dukungan')) {
+    return {
+      bg: 'bg-blue-500/15', border: 'border-blue-400/50', text: 'text-blue-400', indicator: 'bg-blue-500', icon: <Gift className="h-4 w-4" />,
+      glow: 'shadow-[0_0_40px_rgba(59,130,246,0.3)]'
+    };
+  }
+  
+  // Hubungan Netral (40-59) - PURPLE
+  if (category === 'relationship' && lowerSubject.includes('investasi')) {
+    return {
+      bg: 'bg-purple-500/15', border: 'border-purple-400/50', text: 'text-purple-400', indicator: 'bg-purple-500', icon: <TrendingUp className="h-4 w-4" />,
+      glow: 'shadow-[0_0_40px_rgba(168,85,247,0.3)]'
+    };
+  }
+  
+  // Hubungan Tegang (20-39) - ORANGE
+  if (category === 'relationship' && lowerSubject.includes('stabilisasi')) {
+    return {
+      bg: 'bg-orange-500/15', border: 'border-orange-400/50', text: 'text-orange-400', indicator: 'bg-orange-500', icon: <Wrench className="h-4 w-4" />,
+      glow: 'shadow-[0_0_40px_rgba(249,115,22,0.3)]'
+    };
+  }
+  
+  // Hubungan Krisis (0-19) - RED
+  if (category === 'relationship' && (lowerSubject.includes('darurat') || lowerSubject.includes('bantuan'))) {
+    return {
+      bg: 'bg-rose-500/15', border: 'border-rose-400/50', text: 'text-rose-400', indicator: 'bg-rose-500', icon: <AlertTriangle className="h-4 w-4" />,
+      glow: 'shadow-[0_0_40px_rgba(244,63,94,0.3)]'
+    };
+  }
+  
+  // Default Financial Aid - CYAN (fallback)
+  const isFinancialAid = category === 'relationship' && (
+    lowerSubject.includes('bantuan') ||
+    lowerSubject.includes('kirim') ||
+    lowerSubject.includes('💰')
+  );
+  
+  if (isFinancialAid) {
+    return {
+      bg: 'bg-cyan-500/15', border: 'border-cyan-400/50', text: 'text-cyan-400', indicator: 'bg-cyan-500', icon: <Banknote className="h-4 w-4" />,
+      glow: 'shadow-[0_0_40px_rgba(6,182,212,0.3)]'
+    };
+  }
 
   if (isProposal && category === 'trade') {
     const metadata = typeof isProposal === 'object' ? (isProposal as any) : null;
@@ -69,6 +127,10 @@ export const getCategoryTheme = (
     case 'pbb': return { 
       bg: 'bg-cyan-500/5', border: 'border-cyan-500/20', text: 'text-cyan-400', indicator: 'bg-cyan-500', icon: <Globe className="h-4 w-4" />,
       glow: 'shadow-[0_0_30px_rgba(6,182,212,0.15)]'
+    };
+    case 'relationship': return {
+      bg: 'bg-cyan-500/10', border: 'border-cyan-500/30', text: 'text-cyan-400', indicator: 'bg-cyan-500', icon: <HeartCrack className="h-4 w-4" />,
+      glow: 'shadow-[0_0_30px_rgba(6,182,212,0.2)]'
     };
     default: return { 
       bg: 'bg-zinc-900/50', border: 'border-zinc-800', text: 'text-zinc-400', indicator: 'bg-zinc-700', icon: <Mail className="h-4 w-4" />,

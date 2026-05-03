@@ -29,6 +29,15 @@ export const InboxCard = ({
   const isExport = msg.metadata?.type === 'purchase_request' || msg.subject.toLowerCase().includes('ekspor');
   const isImport = msg.metadata?.type === 'product_offer' || msg.subject.toLowerCase().includes('impor');
   const isContract = msg.metadata?.type === 'contract' || msg.metadata?.type === 'trade_contract' || msg.subject.toLowerCase().includes('kontrak');
+  const lowerSubject = msg.subject.toLowerCase();
+  const isMoneyOffer = msg.proposalLabel === 'BANTUAN' || msg.metadata?.type === 'money_offer' || (msg.category === 'relationship' && lowerSubject.includes('bantuan keuangan'));
+  
+  // Tier-based diplomatic gifts
+  const isSahabatGift = msg.category === 'relationship' && (lowerSubject.includes('persahabatan') || lowerSubject.includes('token'));
+  const isMitraGift = msg.category === 'relationship' && lowerSubject.includes('dukungan');
+  const isNetralInvest = msg.category === 'relationship' && lowerSubject.includes('investasi');
+  const isTegangStab = msg.category === 'relationship' && lowerSubject.includes('stabilisasi');
+  const isKrisisDarurat = msg.category === 'relationship' && (lowerSubject.includes('darurat') || (lowerSubject.includes('bantuan') && !lowerSubject.includes('keuangan')));
   
   const theme = getCategoryTheme(
     msg.category, 
@@ -43,10 +52,35 @@ export const InboxCard = ({
     <div 
       className={`group relative border rounded-[32px] overflow-hidden transition-all duration-300 ${
         isExpanded 
-          ? `ring-1 ${isExport ? 'ring-emerald-500/50 bg-emerald-950/20' : isImport ? 'ring-rose-500/50 bg-rose-950/20' : isContract ? 'ring-indigo-500/50 bg-indigo-950/20' : isTransactionOffer ? 'ring-indigo-500/50 bg-indigo-950/20' : isPartnerOffer ? 'ring-amber-500/50 bg-amber-950/20' : 'ring-zinc-700 bg-zinc-900/50'}` 
-          : `bg-zinc-900/30 ${isExport ? 'border-emerald-500/30 hover:border-emerald-400 hover:bg-emerald-900/20' : isImport ? 'border-rose-500/30 hover:border-rose-400 hover:bg-rose-900/20' : isContract ? 'border-indigo-500/30 hover:border-indigo-400 hover:bg-indigo-900/20' : isTransactionOffer ? 'border-indigo-500/30 hover:border-indigo-400 hover:bg-indigo-900/20' : isPartnerOffer ? 'border-amber-500/30 hover:border-amber-400 hover:bg-amber-900/20' : 'border-zinc-800/50 hover:border-zinc-700 hover:bg-zinc-900/40'}`
-      }`}
-    >
+          ? `ring-1 ${
+              isSahabatGift ? 'ring-emerald-500/50 bg-emerald-950/20' :
+              isMitraGift ? 'ring-blue-500/50 bg-blue-950/20' :
+              isNetralInvest ? 'ring-purple-500/50 bg-purple-950/20' :
+              isTegangStab ? 'ring-orange-500/50 bg-orange-950/20' :
+              isKrisisDarurat ? 'ring-rose-500/50 bg-rose-950/20' :
+              isMoneyOffer ? 'ring-cyan-500/50 bg-cyan-950/20' : 
+              isExport ? 'ring-emerald-500/50 bg-emerald-950/20' : 
+              isImport ? 'ring-rose-500/50 bg-rose-950/20' : 
+              isContract ? 'ring-indigo-500/50 bg-indigo-950/20' : 
+              isTransactionOffer ? 'ring-indigo-500/50 bg-indigo-950/20' : 
+              isPartnerOffer ? 'ring-amber-500/50 bg-amber-950/20' : 
+              'ring-zinc-700 bg-zinc-900/50'
+            }` 
+          : `bg-zinc-900/30 ${
+              isSahabatGift ? 'border-emerald-500/30 hover:border-emerald-400 hover:bg-emerald-900/20' :
+              isMitraGift ? 'border-blue-500/30 hover:border-blue-400 hover:bg-blue-900/20' :
+              isNetralInvest ? 'border-purple-500/30 hover:border-purple-400 hover:bg-purple-900/20' :
+              isTegangStab ? 'border-orange-500/30 hover:border-orange-400 hover:bg-orange-900/20' :
+              isKrisisDarurat ? 'border-rose-500/30 hover:border-rose-400 hover:bg-rose-900/20' :
+              isMoneyOffer ? 'border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-900/20' : 
+              isExport ? 'border-emerald-500/30 hover:border-emerald-400 hover:bg-emerald-900/20' : 
+              isImport ? 'border-rose-500/30 hover:border-rose-400 hover:bg-rose-900/20' : 
+              isContract ? 'border-indigo-500/30 hover:border-indigo-400 hover:bg-indigo-900/20' : 
+              isTransactionOffer ? 'border-indigo-500/30 hover:border-indigo-400 hover:bg-indigo-900/20' : 
+              isPartnerOffer ? 'border-amber-500/30 hover:border-amber-400 hover:bg-amber-900/20' : 
+              'border-zinc-800/50 hover:border-zinc-700 hover:bg-zinc-900/40'
+            }`
+      }`}>
       <div 
         className="p-6 cursor-pointer flex items-center justify-between"
         onClick={() => onToggle(isExpanded ? null : msg.id)}
@@ -79,6 +113,12 @@ export const InboxCard = ({
                 <span className={`text-[9px] font-black px-2 py-0.5 rounded-md border animate-pulse transition-colors duration-500 ${
                   msg.status === 'accepted' ? 'bg-emerald-500 text-black border-emerald-300 animate-none' :
                   msg.status === 'rejected' ? 'bg-rose-500 text-black border-rose-300 animate-none' :
+                  isSahabatGift ? 'bg-emerald-500 text-black border-emerald-300' :
+                  isMitraGift ? 'bg-blue-500 text-black border-blue-300' :
+                  isNetralInvest ? 'bg-purple-500 text-black border-purple-300' :
+                  isTegangStab ? 'bg-orange-500 text-black border-orange-300' :
+                  isKrisisDarurat ? 'bg-rose-500 text-black border-rose-300' :
+                  isMoneyOffer ? 'bg-cyan-500 text-black border-cyan-300' :
                   isExport ? 'bg-emerald-500 text-black border-emerald-300' : 
                   isImport ? 'bg-rose-500 text-black border-rose-300' : 
                   isContract ? 'bg-indigo-500 text-black border-indigo-300' :
@@ -105,6 +145,12 @@ export const InboxCard = ({
               )}
             </div>
             <h4 className={`text-xl font-black mt-1.5 transition-colors uppercase italic tracking-tighter leading-tight ${
+              isSahabatGift ? 'text-emerald-400 group-hover:text-emerald-200' :
+              isMitraGift ? 'text-blue-400 group-hover:text-blue-200' :
+              isNetralInvest ? 'text-purple-400 group-hover:text-purple-200' :
+              isTegangStab ? 'text-orange-400 group-hover:text-orange-200' :
+              isKrisisDarurat ? 'text-rose-400 group-hover:text-rose-200' :
+              isMoneyOffer ? 'text-cyan-400 group-hover:text-cyan-200' :
               isExport ? 'text-emerald-400 group-hover:text-emerald-200' : 
               isImport ? 'text-rose-400 group-hover:text-rose-200' : 
               isContract ? 'text-indigo-400 group-hover:text-indigo-200' :

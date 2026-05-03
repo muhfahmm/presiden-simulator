@@ -9,7 +9,7 @@ export interface InboxItem {
   time: string;
   read: boolean;
   priority: 'low' | 'medium' | 'high';
-  category?: 'finance' | 'trade' | 'pact' | 'alliance' | 'embassy' | 'intelligence' | 'general' | 'defense' | 'diplomacy' | 'pbb';
+  category?: 'finance' | 'trade' | 'pact' | 'alliance' | 'embassy' | 'intelligence' | 'general' | 'defense' | 'diplomacy' | 'pbb' | 'relationship';
   isProposal?: boolean;
   proposalLabel?: string;
   status?: 'pending' | 'accepted' | 'rejected';
@@ -19,7 +19,7 @@ export interface InboxItem {
 }
 
 const MAX_INBOX_MESSAGES = 100; // Aggressively capped to prevent QuotaExceededError
-const CONTENT_TRIM_THRESHOLD = 20; // Trim content for messages older than this to save space
+const CONTENT_TRIM_THRESHOLD = 80; // Trim content only for very old messages (80+) to save space
 
 export const inboxStorage = {
   clear: () => {
@@ -323,8 +323,9 @@ export const inboxStorage = {
    */
   trimOldMessages: (msgs: InboxItem[]): InboxItem[] => {
     return msgs.map((m, index) => {
-      if (index >= CONTENT_TRIM_THRESHOLD && m.content && m.content.length > 100) {
-        return { ...m, content: (m.content.substring(0, 50) + "... [Isi pesan lama dihapus otomatis untuk menghemat ruang]") };
+      // Relaxed trimming: only after 80 messages and only if content is very long
+      if (index >= CONTENT_TRIM_THRESHOLD && m.content && m.content.length > 500) {
+        return { ...m, content: (m.content.substring(0, 300) + "... [Konten lama diringkas]") };
       }
       return m;
     });

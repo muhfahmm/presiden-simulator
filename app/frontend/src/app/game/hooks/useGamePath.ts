@@ -272,6 +272,7 @@ export function useGamePath(path: string[]) {
       "Menu:Inbox:pact": "/game/inbox/pakta",
       "Menu:Inbox:alliance": "/game/inbox/aliansi",
       "Menu:Inbox:pbb": "/game/inbox/pbb",
+      "Menu:Inbox:relationship": "/game/inbox/hubungan",
       "Menu:Riset": "/game/riset",
       "Kepuasan": "/game/kepuasan",
       "Dashboard:Kepuasan": "/game/kepuasan/statistik_kepuasan",
