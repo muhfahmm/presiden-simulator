@@ -219,31 +219,35 @@ export default function HistoriTab() {
                        {res.category.includes("Sanksi") ? <ShieldAlert className="h-4 w-4" /> : res.category.includes("Embargo") ? <Ban className="h-4 w-4" /> : <FileText className="h-4 w-4" />}
                     </div>
                     <div>
-                      <span className="text-[8px] font-black uppercase tracking-widest text-zinc-500 block mb-1">{res.category}</span>
-                      <h4 className="text-sm font-black text-white uppercase tracking-tight italic">{res.name}</h4>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 block mb-1.5">{res.category}</span>
+                      <h4 className="text-base font-black text-white uppercase tracking-tight italic leading-tight">{res.name}</h4>
                     </div>
+
                   </div>
                   <div className="text-right">
                     <div className="flex items-center justify-end gap-2 mb-1">
                        {res.status === 'DITERIMA' ? <ThumbsUp className="h-3 w-3 text-emerald-400" /> : <ThumbsDown className="h-3 w-3 text-rose-400" />}
-                       <span className={`text-[9px] font-black uppercase tracking-widest ${
-                         res.status === 'DITERIMA' ? "text-emerald-400" : "text-rose-400"
-                       }`}>
-                         Status: {res.status}
-                       </span>
+                        <span className={`text-[10px] font-black uppercase tracking-widest ${
+                          res.status === 'DITERIMA' ? "text-emerald-400" : "text-rose-400"
+                        }`}>
+                          Status: {res.status}
+                        </span>
+
                     </div>
-                    <div className="flex items-center justify-end gap-1.5 text-zinc-600">
+                    <div className="flex items-center justify-end gap-1.5 text-zinc-400">
                        <Calendar className="h-3 w-3" />
-                       <span className="text-[9px] font-bold uppercase">{res.passedDate}</span>
+                       <span className="text-[10px] font-bold uppercase">{res.passedDate}</span>
                     </div>
+
                   </div>
                 </div>
 
-                <div className="flex-1 bg-black/20 rounded-2xl p-4 border border-white/5">
-                   <p className="text-[11px] text-zinc-400 leading-relaxed font-medium">
+                <div className="flex-1 bg-black/20 rounded-2xl p-5 border border-white/5">
+                   <p className="text-[13px] text-zinc-200 leading-relaxed font-medium italic">
                       {res.description}
                    </p>
                 </div>
+
 
                 <div className="grid grid-cols-3 gap-2">
                   {(() => {
@@ -267,31 +271,32 @@ export default function HistoriTab() {
                             const results = res.results || require("../1_pemungutan_suara/logika_pemungutan_suara/votingLogic").simulateUNVote(res.targetCountry || "Global", localStorage.getItem('selected_country') || "", res.category);
                             setDetailModal({ type: 'supporters', res: { ...res, results } });
                           }}
-                          className="p-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center hover:bg-emerald-500/10 transition-colors cursor-pointer group/btn"
+                          className="p-2.5 rounded-2xl bg-emerald-500/5 border border-emerald-500/10 text-center hover:bg-emerald-500/10 transition-colors cursor-pointer group/btn"
                         >
-                          <p className="text-[7px] font-black text-emerald-400 uppercase tracking-tighter mb-0.5 group-hover/btn:text-emerald-300">Setuju</p>
-                          <p className="text-sm font-black text-white">{res.results?.yes || 0} <span className="text-zinc-500">({res.results?.weightedYes || 0})</span></p>
+                          <p className="text-[9px] font-black text-emerald-400 uppercase tracking-tighter mb-1 group-hover/btn:text-emerald-300">Setuju</p>
+                          <p className="text-base font-black text-white">{res.results?.yes || 0} <span className="text-zinc-500 text-[10px]">({res.results?.weightedYes || 0})</span></p>
                         </button>
                         <button 
                           onClick={() => {
                             const results = res.results || require("../1_pemungutan_suara/logika_pemungutan_suara/votingLogic").simulateUNVote(res.targetCountry || "Global", localStorage.getItem('selected_country') || "", res.category);
                             setDetailModal({ type: 'opponents', res: { ...res, results } });
                           }}
-                          className="p-2 rounded-xl bg-rose-500/5 border border-rose-500/10 text-center hover:bg-rose-500/10 transition-colors cursor-pointer group/btn"
+                          className="p-2.5 rounded-2xl bg-rose-500/5 border border-rose-500/10 text-center hover:bg-rose-500/10 transition-colors cursor-pointer group/btn"
                         >
-                          <p className="text-[7px] font-black text-rose-400 uppercase tracking-tighter mb-0.5 group-hover/btn:text-rose-300">Tolak</p>
-                          <p className="text-sm font-black text-white">{res.results?.no || 0} <span className="text-zinc-500">({res.results?.weightedNo || 0})</span></p>
+                          <p className="text-[9px] font-black text-rose-400 uppercase tracking-tighter mb-1 group-hover/btn:text-rose-300">Tolak</p>
+                          <p className="text-base font-black text-white">{res.results?.no || 0} <span className="text-zinc-500 text-[10px]">({res.results?.weightedNo || 0})</span></p>
                         </button>
                         <button 
                           onClick={() => {
                             const results = res.results || require("../1_pemungutan_suara/logika_pemungutan_suara/votingLogic").simulateUNVote(res.targetCountry || "Global", localStorage.getItem('selected_country') || "", res.category);
                             setDetailModal({ type: 'abstainers', res: { ...res, results } });
                           }}
-                          className="p-2 rounded-xl bg-zinc-500/5 border border-zinc-500/10 text-center hover:bg-zinc-500/10 transition-all cursor-pointer group/btn"
+                          className="p-2.5 rounded-2xl bg-zinc-500/5 border border-zinc-500/10 text-center hover:bg-zinc-500/10 transition-all cursor-pointer group/btn"
                         >
-                          <p className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter mb-0.5 group-hover/btn:text-zinc-300">Abstain</p>
-                          <p className="text-sm font-black text-white">{res.results?.abstain || 0} <span className="text-zinc-500">({res.results?.weightedAbstain || 0})</span></p>
+                          <p className="text-[9px] font-black text-zinc-400 uppercase tracking-tighter mb-1 group-hover/btn:text-zinc-300">Abstain</p>
+                          <p className="text-base font-black text-white">{res.results?.abstain || 0} <span className="text-zinc-500 text-[10px]">({res.results?.weightedAbstain || 0})</span></p>
                         </button>
+
                       </>
                     );
                   })()}
@@ -299,7 +304,8 @@ export default function HistoriTab() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Negara Target</span>
+                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Negara Target</span>
+
                     <div className="flex items-center gap-2">
                        {(() => {
                          const targetName = res.targetCountry || "Global";
@@ -315,17 +321,20 @@ export default function HistoriTab() {
                              ) : (
                                <Globe className="h-3 w-3 text-zinc-500" />
                              )}
-                             <span className="text-[11px] font-black text-zinc-200 uppercase tracking-tight">{targetName}</span>
+                              <span className="text-xs font-black text-zinc-100 uppercase tracking-tight">{targetName}</span>
+
                            </>
                          );
                        })()}
                     </div>
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Durasi Efek</span>
+                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Durasi Efek</span>
+
                     <div className="flex items-center gap-2 text-indigo-400">
                        <History className="h-3 w-3" />
-                       <span className="text-[10px] font-black uppercase">{res.durationLabel || "PERMANEN"}</span>
+                       <span className="text-[11px] font-black uppercase">{res.durationLabel || "PERMANEN"}</span>
+
                     </div>
                   </div>
                 </div>
