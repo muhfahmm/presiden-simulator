@@ -36,7 +36,11 @@ export default function OrgMembersList({ orgId, orgName, searchQuery, category =
 
         const handleUpdate = () => setRefreshTrigger(prev => prev + 1);
         window.addEventListener("un_membership_updated", handleUpdate);
-        return () => window.removeEventListener("un_membership_updated", handleUpdate);
+        window.addEventListener("regional_membership_updated", handleUpdate);
+        return () => {
+            window.removeEventListener("un_membership_updated", handleUpdate);
+            window.removeEventListener("regional_membership_updated", handleUpdate);
+        };
     }, []);
 
     // Get specific member list for this organization from database

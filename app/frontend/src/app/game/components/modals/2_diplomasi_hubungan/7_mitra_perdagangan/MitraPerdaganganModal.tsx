@@ -6,6 +6,7 @@ import { getInitialAgreements } from "@/app/database/data/database_mitra_perdaga
 import { embassyStorage } from "../1_kedutaan/logic/embassyStorage";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
 import { getStoredGameDate, parseFormattedDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import { regionalMembershipRouter } from "../../../2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/2_organisasi_regional/logic/router/RegionalMembershipRouter";
 
 interface MitraPerdaganganModalProps {
   isOpen: boolean;
@@ -129,8 +130,21 @@ export default function MitraPerdaganganModal({ isOpen, onClose, targetCountry }
         }
       });
 
-      // 3. Merge: news-added entries go to the TOP of the list
-      const merged = [...newsAddedEntries, ...activeAgreements];
+      // 3. Get Regional Trade Partners (from organizations)
+      const regionalPartners = regionalMembershipRouter.getRegionalTradePartners(targetCountry);
+      
+      // Build a set of current mitra names to avoid duplicates if they exist in both bilateral and regional
+      const finalPartnerSet = new Set(activeAgreements.map((e: any) => e.mitra.toLowerCase().trim()));
+      
+      // Filter out regional partners that are already in the bilateral list
+      const uniqueRegionalPartners = regionalPartners.filter(p => !finalPartnerSet.has(p.mitra.toLowerCase().trim()));
+
+      // 4. Merge: news-added entries go to the TOP, then bilateral, then regional
+      const merged = [
+        ...newsAddedEntries.map(e => ({ ...e, source: 'Bilateral' })), 
+        ...activeAgreements.map(e => ({ ...e, source: 'Bilateral' })),
+        ...uniqueRegionalPartners
+      ];
       setAgreements(merged);
       setNewPartnerMap(newMap);
       
@@ -195,7 +209,15 @@ export default function MitraPerdaganganModal({ isOpen, onClose, targetCountry }
                         <p className="text-sm font-black text-zinc-200 uppercase tracking-tight">
                           {agreement.mitra}
                         </p>
-                        <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{agreement.type}</p>
+                        <div className="flex items-center gap-2">
+                           <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{agreement.type}</p>
+                           {agreement.source && (
+                              <>
+                                 <span className="w-1 h-1 rounded-full bg-zinc-700" />
+                                 <p className="text-[9px] font-black text-orange-500/70 uppercase tracking-widest">{agreement.source}</p>
+                              </>
+                           )}
+                        </div>
                      </div>
                   </div>
                   <div className="text-right flex items-center gap-2">

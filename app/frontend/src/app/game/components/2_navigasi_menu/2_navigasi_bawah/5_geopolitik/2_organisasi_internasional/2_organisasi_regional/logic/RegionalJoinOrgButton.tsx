@@ -23,6 +23,7 @@ export default function RegionalJoinOrgButton({
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [eligibility, setEligibility] = useState<{ eligible: boolean, reason: string }>({ eligible: true, reason: "" });
+    const [currentBudget, setCurrentBudget] = useState(budgetStorage.getData().anggaran);
 
     useEffect(() => {
         const userCountry = localStorage.getItem("selectedCountry") || "indonesia";
@@ -34,10 +35,23 @@ export default function RegionalJoinOrgButton({
             setIsMember(joined.includes(orgId));
         };
 
+        const updateBudget = () => {
+            setCurrentBudget(budgetStorage.getData().anggaran);
+        };
+
         checkMembership();
+        updateBudget();
+        
         window.addEventListener("regional_membership_updated", checkMembership);
-        return () => window.removeEventListener("regional_membership_updated", checkMembership);
+        window.addEventListener("budget_storage_updated", updateBudget);
+        
+        return () => {
+            window.removeEventListener("regional_membership_updated", checkMembership);
+            window.removeEventListener("budget_storage_updated", updateBudget);
+        };
     }, [orgId]);
+
+    const isAffordable = currentBudget >= membershipFee;
 
     const handleJoin = async () => {
         if (!eligibility.eligible) return;
@@ -46,14 +60,13 @@ export default function RegionalJoinOrgButton({
         setError(null);
 
         try {
-            const currentCash = budgetStorage.getData().anggaran;
-            if (currentCash < membershipFee) {
+            if (currentBudget < membershipFee) {
                 setError("Anggaran tidak cukup.");
                 setIsLoading(false);
                 return;
             }
 
-            budgetStorage.setBudgetDirect(currentCash - membershipFee);
+            budgetStorage.setBudgetDirect(currentBudget - membershipFee);
             regionalMembershipStorage.joinOrganization(orgId);
             setIsMember(true);
         } catch (err) {
@@ -90,18 +103,26 @@ export default function RegionalJoinOrgButton({
         <div className="flex flex-col items-center gap-4 w-full">
             <button 
                 onClick={handleJoin}
-                disabled={isLoading}
-                className={`group relative overflow-hidden px-10 py-4 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-black uppercase text-[11px] tracking-[0.2em] rounded-full transition-all shadow-[0_10px_30px_-5px_rgba(79,70,229,0.4)] active:scale-95 cursor-pointer flex items-center gap-3 ${className}`}
+                disabled={isLoading || !isAffordable}
+                className={`group relative overflow-hidden px-10 py-4 font-black uppercase text-[11px] tracking-[0.2em] rounded-full transition-all active:scale-95 cursor-pointer flex items-center gap-3 ${
+                    isAffordable 
+                    ? "bg-indigo-600 hover:bg-indigo-500 text-white shadow-[0_10px_30px_-5px_rgba(79,70,229,0.4)]" 
+                    : "bg-zinc-800 text-zinc-500 border border-zinc-700/50 cursor-not-allowed opacity-50"
+                } ${className}`}
             >
-                {isLoading ? <Loader2 size={16} className="animate-spin" /> : <LogIn size={16} />}
-                {isLoading ? "Memproses..." : "Bergabung ke Blok Regional"}
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                {isLoading ? <Loader2 size={16} className="animate-spin" /> : (isAffordable ? <LogIn size={16} /> : <AlertCircle size={16} />)}
+                {isLoading ? "Memproses..." : (isAffordable ? "Bergabung ke Blok Regional" : "Anggaran Tidak Cukup")}
+                {isAffordable && <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />}
             </button>
             <div className="flex flex-col items-center gap-1">
-                <div className="flex items-center gap-2 text-zinc-500 font-bold uppercase text-[9px] tracking-widest">
-                    <Coins size={12} />
+                <button className={`flex items-center gap-3 px-6 py-2.5 rounded-xl font-black uppercase text-[11px] tracking-[0.15em] transition-all cursor-pointer group/fee border ${
+                    isAffordable 
+                    ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-500 hover:bg-emerald-500/20" 
+                    : "bg-rose-500/10 border-rose-500/30 text-rose-500 hover:bg-rose-500/20 shadow-[0_0_15px_rgba(244,63,94,0.1)]"
+                }`}>
+                    <Coins size={14} className={`group-hover/fee:scale-110 transition-transform ${isAffordable ? 'text-emerald-500' : 'text-rose-500'}`} />
                     Iuran Regional: ${membershipFee.toLocaleString()}
-                </div>
+                </button>
                 {error && <div className="text-rose-500 font-bold uppercase text-[9px] tracking-widest">{error}</div>}
             </div>
         </div>

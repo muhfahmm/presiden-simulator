@@ -1,5 +1,6 @@
 import { countries as centersData } from "@/app/pilih_negara/data/semua_fitur_negara/0_profiles/index";
 import { RELATION_EVENTS, dispatchRelationUpdate } from "./RelationEvents";
+import { storageSafety } from "@/app/game/utils/storageSafety";
 
 export const RELATION_MATRIX_KEY = 'em_global_relation_matrix';
 
@@ -104,8 +105,16 @@ const _saveToDiskDebounced = (prunedMatrix: RelationMatrix, oldMatrix: RelationM
     const performSave = () => {
         try {
             const json = JSON.stringify(prunedMatrix);
-            localStorage.setItem(RELATION_MATRIX_KEY, json);
-            inMemoryMatrix = prunedMatrix;
+            const success = storageSafety.setItem(RELATION_MATRIX_KEY, json);
+            
+            if (success) {
+                inMemoryMatrix = prunedMatrix;
+            } else {
+                console.error("[RELATION-MATRIX] Critical: Failed to save matrix even after emergency pruning.");
+                // We keep the inMemoryMatrix as the new matrix so the UI stays up to date 
+                // even if we can't persist to disk this time.
+                inMemoryMatrix = prunedMatrix;
+            }
             
             // Track Deltas for UI Trending
             import("./RelationDelta").then(({ relationDeltaStorage }) => {
@@ -115,7 +124,7 @@ const _saveToDiskDebounced = (prunedMatrix: RelationMatrix, oldMatrix: RelationM
             dispatchRelationUpdate();
             saveTimeout = null;
         } catch (e) {
-            console.error("[RELATION-MATRIX] Storage Quota Exceeded!", e);
+            console.error("[RELATION-MATRIX] Unexpected error during save process", e);
         }
     };
 
@@ -166,7 +175,13 @@ export const saveGlobalRelationMatrix = (matrix: RelationMatrix) => {
                 continue;
             }
 
-            const isSignificantNpcRelation = Math.abs(entry.s - 50) > 0.0001 || entry.e === 1 || entry.p === 1 || entry.a === 1 || entry.t === 1;
+            const isSignificantNpcRelation = 
+                Math.abs(entry.s - 50) > 2.0 || // Only save NPC-NPC if score moved by more than 2 points
+                entry.e === 1 || 
+                entry.p === 1 || 
+                entry.a === 1 || 
+                entry.t === 1;
+
             if (isSignificantNpcRelation) {
                 prunedTargets[targetId] = entry;
                 hasContent = true;

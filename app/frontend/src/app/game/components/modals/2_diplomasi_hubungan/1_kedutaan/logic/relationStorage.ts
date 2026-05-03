@@ -46,5 +46,27 @@ export const relationStorage = {
         const { updateMatrixScore } = require("@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix");
         const newScore = Math.max(0, Math.min(100, current + delta));
         updateMatrixScore(sourceId, targetId, newScore);
+    },
+
+    /**
+     * Batch update for all countries (Global Improvement)
+     */
+    updateAllRelationScores: (delta: number, sourceCountry: string) => {
+        const { updateMatrixScoresBatch } = require("@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix");
+        const { countries } = require("@/app/database/data/semua_fitur_negara/0_profiles/index");
+        
+        const sId = normalizeId(sourceCountry);
+        const updates: Record<string, number> = {};
+        
+        countries.forEach((country: any) => {
+            const tId = normalizeId(country.name_id || country.name_en);
+            if (tId === sId) return;
+
+            const current = getRelationScore(tId, 50, sId);
+            const newScore = Math.max(0, Math.min(100, current + delta));
+            updates[tId] = newScore;
+        });
+
+        updateMatrixScoresBatch(sId, updates);
     }
 };

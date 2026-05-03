@@ -1,4 +1,5 @@
 import { unMembershipStorage } from "../../../1_organisasi_PBB/logic/unMembershipStorage";
+import { regionalMembershipStorage } from "../regionalMembershipStorage";
 import { OrganizationMembers } from "@/app/pilih_negara/data/database_organisasi_internasional/index";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
 import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
@@ -94,7 +95,8 @@ class RegionalMembershipRouter {
 
     public getConsolidatedMembers(orgId: string): string[] {
         const dbMembers = [...(OrganizationMembers[orgId] || [])];
-        const userJoined = unMembershipStorage.getJoinedOrganizations().includes(orgId);
+        const userJoined = unMembershipStorage.getJoinedOrganizations().includes(orgId) || 
+                          regionalMembershipStorage.getJoinedOrganizations().includes(orgId);
         const userCountry = (localStorage.getItem("selectedCountry") || "indonesia").toLowerCase();
         
         let processedMembers = dbMembers;
@@ -115,6 +117,77 @@ class RegionalMembershipRouter {
         });
 
         return Array.from(finalMembers);
+    }
+
+    /**
+     * Get all organizations a country is a member of (consolidated DB + AI).
+     */
+    public getCountryOrganizations(countryName: string): string[] {
+        const countryLower = countryName.toLowerCase();
+        const organizations: string[] = [];
+        const aiState = this.getAIState();
+
+        // Check each organization
+        Object.keys(OrganizationMembers).forEach(orgId => {
+            const dbMembers = OrganizationMembers[orgId] || [];
+            const userCountry = (localStorage.getItem("selectedCountry") || "indonesia").toLowerCase();
+            
+            let isMember = dbMembers.includes(countryLower);
+            
+            // Apply AI/User dynamic changes
+            const dynamicChange = aiState[countryLower]?.[orgId];
+            if (dynamicChange === true) isMember = true;
+            else if (dynamicChange === false) isMember = false;
+
+            // Special case for user country (might not be in DB but joined via UI)
+            if (countryLower === userCountry) {
+                const userJoined = unMembershipStorage.getJoinedOrganizations().includes(orgId) ||
+                                  regionalMembershipStorage.getJoinedOrganizations().includes(orgId);
+                if (userJoined) isMember = true;
+            }
+
+            if (isMember) organizations.push(orgId);
+        });
+
+        return organizations;
+    }
+
+    /**
+     * Get all trade partners derived from shared regional organization memberships.
+     */
+    public getRegionalTradePartners(countryName: string): { mitra: string, type: string, status: string, source: string }[] {
+        const orgs = this.getCountryOrganizations(countryName);
+        const partners: Map<string, { mitra: string, type: string, status: string, source: string }> = new Map();
+        const countryLower = countryName.toLowerCase();
+
+        // List of IDs that are considered Regional Organizations
+        const regionalOrgIds = [
+            'asean', 'eu', 'arab_league', 'au', 'oic', 'brics', 
+            'nato', 'opec', 'g20', 'apec', 'sco', 'oas', 
+            'gcc', 'mercosur', 'commonwealth', 'g7', 'quad', 'oecd'
+        ];
+
+        orgs.forEach(orgId => {
+            // Only consider regional organizations for trade partners
+            if (!regionalOrgIds.includes(orgId)) return;
+
+            const members = this.getConsolidatedMembers(orgId);
+            
+            members.forEach(member => {
+                if (member.toLowerCase() === countryLower) return;
+                
+                if (!partners.has(member)) {
+                    partners.set(member, {
+                        mitra: member,
+                        type: "Perdagangan Regional",
+                        status: "Aktif",
+                        source: orgId.toUpperCase()
+                    });
+                }
+            });
+        });
+
+        return Array.from(partners.values());
     }
 }
 
