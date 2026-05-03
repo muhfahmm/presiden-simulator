@@ -5,7 +5,7 @@ export const arab_saudi_profile = {
   "lon": 46.67,
   "lat": 24.71,
   "flag": "🇸🇦",
-  "jumlah_penduduk": 33700,
+  "jumlah_penduduk": 34110821,
   "anggaran": 10793,
   "pendapatan_nasional": "30836",
   "religion": "Islam",

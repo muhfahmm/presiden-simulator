@@ -5,7 +5,7 @@ export const samoa_profile = {
   "lon": -172.33333333,
   "lat": -13.58333333,
   "flag": "🇼🇸",
-  "jumlah_penduduk": 196,
+  "jumlah_penduduk": 205557,
   "anggaran": 10,
   "pendapatan_nasional": "25",
   "religion": "Protestan",

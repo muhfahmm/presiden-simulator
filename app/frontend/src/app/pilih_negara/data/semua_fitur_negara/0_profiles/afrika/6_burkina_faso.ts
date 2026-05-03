@@ -5,7 +5,7 @@ export const burkina_faso_profile = {
   "lon": -2,
   "lat": 13,
   "flag": "🇧🇫",
-  "jumlah_penduduk": 19752,
+  "jumlah_penduduk": 22185654,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Islam",

@@ -5,7 +5,7 @@ export const peru_profile = {
   "lon": -76,
   "lat": -10,
   "flag": "🇵🇪",
-  "jumlah_penduduk": 31989,
+  "jumlah_penduduk": 33396698,
   "anggaran": 2528,
   "pendapatan_nasional": "7223",
   "religion": "Katolik",

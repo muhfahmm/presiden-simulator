@@ -5,7 +5,7 @@ export const moldova_profile = {
   "lon": 29,
   "lat": 47,
   "flag": "🇲🇩",
-  "jumlah_penduduk": 2706,
+  "jumlah_penduduk": 3334547,
   "anggaran": 156,
   "pendapatan_nasional": "444",
   "religion": "Kristen Ortodoks",

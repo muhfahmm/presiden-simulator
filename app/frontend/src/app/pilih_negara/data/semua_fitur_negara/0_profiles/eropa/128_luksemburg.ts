@@ -5,7 +5,7 @@ export const luksemburg_profile = {
   "lon": 6.07,
   "lat": 49.36,
   "flag": "🇱🇺",
-  "jumlah_penduduk": 608,
+  "jumlah_penduduk": 681973,
   "anggaran": 846,
   "pendapatan_nasional": "2417",
   "religion": "Katolik",

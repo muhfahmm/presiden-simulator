@@ -5,7 +5,7 @@ export const ethiopia_profile = {
   "lon": 38,
   "lat": 8,
   "flag": "🇪🇹",
-  "jumlah_penduduk": 109225,
+  "jumlah_penduduk": 111652998,
   "anggaran": 1507,
   "pendapatan_nasional": "4306",
   "religion": "Kristen Ortodoks",

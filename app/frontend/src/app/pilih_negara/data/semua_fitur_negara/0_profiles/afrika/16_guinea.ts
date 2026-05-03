@@ -5,7 +5,7 @@ export const guinea_profile = {
   "lon": -10,
   "lat": 11,
   "flag": "🇬🇳",
-  "jumlah_penduduk": 12414,
+  "jumlah_penduduk": 17521167,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Islam",

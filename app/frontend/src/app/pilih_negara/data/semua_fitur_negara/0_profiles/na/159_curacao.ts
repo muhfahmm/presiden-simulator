@@ -5,7 +5,7 @@ export const curacao_profile = {
   "lon": -68.933333,
   "lat": 12.116667,
   "flag": "🇨🇼",
-  "jumlah_penduduk": "10M",
+  "jumlah_penduduk": 185482,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

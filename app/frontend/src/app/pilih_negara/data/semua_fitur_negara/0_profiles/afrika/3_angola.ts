@@ -5,7 +5,7 @@ export const angola_profile = {
   "lon": 13.23,
   "lat": -8.83,
   "flag": "🇦🇴",
-  "jumlah_penduduk": 30810,
+  "jumlah_penduduk": 38778554,
   "anggaran": 826,
   "pendapatan_nasional": "2361",
   "religion": "Katolik",

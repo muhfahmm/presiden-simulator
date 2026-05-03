@@ -5,7 +5,7 @@ export const kroasia_profile = {
   "lon": 15.5,
   "lat": 45.16666666,
   "flag": "🇭🇷",
-  "jumlah_penduduk": 4088,
+  "jumlah_penduduk": 3866233,
   "anggaran": 758,
   "pendapatan_nasional": "2167",
   "religion": "Katolik",

@@ -5,7 +5,7 @@ export const ekuador_profile = {
   "lon": -77.5,
   "lat": -2,
   "flag": "🇪🇨",
-  "jumlah_penduduk": 17084,
+  "jumlah_penduduk": 18103660,
   "anggaran": 1118,
   "pendapatan_nasional": "3195",
   "religion": "Katolik",

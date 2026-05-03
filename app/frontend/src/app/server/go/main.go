@@ -74,6 +74,7 @@ type BroadcastThresholds struct {
 	Stability  float64
 	Population float64
 	GameDate   string
+	DayCounter int
 	LastSync   time.Time
 }
 
@@ -545,6 +546,7 @@ func main() {
 	http.HandleFunc("/api/game/reset", handleReset)
 	http.HandleFunc("/api/game/update-policy", handleUpdatePolicy)
 	http.HandleFunc("/api/ai/run", handleAIRun)
+	http.HandleFunc("/api/game/request-relationships", handleRequestRelationships)
 
 	http.HandleFunc("/api/game/save", handleSave)
 	http.HandleFunc("/api/game/load", handleLoad)
@@ -870,7 +872,6 @@ func simulationEngine() {
 		// === ADVANCE ONE GAME DAY ===
 		core.GlobalState.Mu.Lock()
 		
-		var constructionChanged bool
 
 		// 1. Parse and advance date
 		currentDate, err := time.Parse("2006-01-02", gDate)
@@ -885,7 +886,7 @@ func simulationEngine() {
 		core.GlobalState.GameDate = nextDateStr
 		core.GlobalState.DayCounter++
 		
-		fmt.Printf("[GO] Date Advanced: %s (Day %d) | Speed: %dx\n", nextDateStr, core.GlobalState.DayCounter, speed)
+		// fmt.Printf("[GO] Date Advanced: %s (Day %d) | Speed: %dx\n", nextDateStr, core.GlobalState.DayCounter, speed)
 
 		// === SMART SSE THROTTLING (Pulse 1: Efficient UI Update) ===
 		shouldPulse := false
@@ -896,10 +897,19 @@ func simulationEngine() {
 		happyDiff := math.Abs(p.Happiness - lastSentStats.Happiness)
 		popDiff := math.Abs(p.Population - lastSentStats.Population)
 		
-		if budgetDiff > (lastSentStats.Budget*0.005) || budgetDiff > 1000 || 
-		   happyDiff > 0.1 || popDiff > 500 || 
-		   core.GlobalState.GameDate != lastSentStats.GameDate ||
-		   now.Sub(lastSentStats.LastSync) >= 2*time.Second {
+		// Pulse every 7 days OR significant stat change OR every 1.5 seconds real-time
+		daysPassed := core.GlobalState.DayCounter - lastSentStats.DayCounter
+		isNewMonth := nextDate.Day() == 1
+		
+		// Adjust threshold based on current speed
+		pulseThreshold := 7
+		if speed > 5 { pulseThreshold = 10 }
+
+		if budgetDiff > (lastSentStats.Budget*0.02) || budgetDiff > 10000 || 
+		   happyDiff > 1.0 || popDiff > 5000 || 
+		   isNewMonth ||
+		   daysPassed >= pulseThreshold || 
+		   now.Sub(lastSentStats.LastSync) >= 1500*time.Millisecond {
 			shouldPulse = true
 		}
 
@@ -913,6 +923,7 @@ func simulationEngine() {
 			lastSentStats.Stability = p.Stability
 			lastSentStats.Population = p.Population
 			lastSentStats.GameDate = core.GlobalState.GameDate
+			lastSentStats.DayCounter = core.GlobalState.DayCounter
 			lastSentStats.LastSync = now
 		}
 		
@@ -922,20 +933,25 @@ func simulationEngine() {
 
 		// 3. Background Simulation (Parallel Polyglot)
 		processPlayerDay(nextDate)
-		processNPCDay(nextDate)
-		server_ekonomi.ProcessDailyProduction()
-		constructionChanged = server_berita.ProcessNewsDay(nextDate)
+		
+		// Throttled Heavy Tasks: Only run every 2 days to reduce lag
+		if core.GlobalState.DayCounter % 2 == 0 {
+			processNPCDay(nextDate)
+			server_ekonomi.ProcessDailyProduction()
+		}
+		
+		server_berita.ProcessNewsDay(nextDate)
 		server_inbox.ProcessInboxDay(nextDate)
 		server_hubungan.UpdateDailyRelationsLocked()
 
 		// 4. Final Broadcast (Pulse 2: Heavy Data Throttling)
-		isMajorUpdate := constructionChanged || len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen
+		isMajorUpdate := len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen
 		isMonthlySync := core.GlobalState.DayCounter%30 == 0
 		isWeeklySync := core.GlobalState.DayCounter%7 == 0 || core.GlobalState.DayCounter < 2
 
-		if isMonthlySync || isMajorUpdate || isWeeklySync || now.Sub(lastBroadcastTime) >= 5*time.Second {
+		if isMonthlySync || isMajorUpdate || isWeeklySync || now.Sub(lastBroadcastTime) >= 10*time.Second {
 			var snapshot []byte
-			if isMonthlySync || isWeeklySync {
+			if isMonthlySync || isWeeklySync || now.Sub(lastBroadcastTime) >= 10*time.Second {
 				snapshot = createSnapshot()
 			} else {
 				snapshot = createMajorUpdateSnapshot()
@@ -986,13 +1002,30 @@ func processPlayerDay(date time.Time) {
 	// 1. Budget: Add daily income
 	core.GlobalState.Player.Budget = math.Round(core.GlobalState.Player.Budget + core.GlobalState.Player.DailyIncome)
 
-	// 2. Population: Grow based on population size
-	// We use the same base rate as NPCs (1.00002) for baseline stability
-	growthRate := 0.000025
+	// 2. Population: Grow based on population size and happiness
+	// Increased base rate for more visible game progression (approx 5.6% base annual growth)
+	baseGrowthRate := 0.00015
+	
+	// Happiness & Stability Multipliers (Dynamic Growth)
+	// Higher happiness/stability = faster growth (incentivizes good governance)
+	happyBonus := (core.GlobalState.Player.Happiness - 50) / 100.0 // range -0.5 to +0.5
+	stabBonus := (core.GlobalState.Player.Stability - 50) / 100.0   // range -0.3 to +0.5
+	
+	growthRate := baseGrowthRate * (1.0 + happyBonus + stabBonus*0.5)
+	
+	// Ensure a minimum growth rate even in worst cases
+	if growthRate < 0.00005 {
+		growthRate = 0.00005
+	}
+
 	popGrowth := core.GlobalState.Player.Population * growthRate
 	
-	// Add small random noise
-	popGrowth += float64(core.Rng.Intn(100)) - 50
+	// Add proportional random noise (approx +/- 0.01% of population)
+	// This makes the "jumps" in population feel more alive and less predictable
+	noiseRange := int(core.GlobalState.Player.Population * 0.0002)
+	if noiseRange < 50 { noiseRange = 50 } // Minimum noise for visual feedback
+	
+	popGrowth += float64(core.Rng.Intn(noiseRange)) - (float64(noiseRange) / 2.0)
 	
 	if popGrowth < 0 {
 		popGrowth = 0
@@ -1089,9 +1122,9 @@ func calculatePlayerHappiness() {
 }
 
 func checkMonthlyNewsReset(date time.Time) {
-	// 1. TRIM: Always keep it under 300 to prevent lag
-	if len(core.GlobalState.News) > 300 {
-		core.GlobalState.News = core.GlobalState.News[:300]
+	// 1. TRIM: Keep it under 100 to keep SSE payloads fast
+	if len(core.GlobalState.News) > 100 {
+		core.GlobalState.News = core.GlobalState.News[:100]
 	}
 	// 2. MONTHLY RESET: Clear if month changes
 	if date.Month() != core.GlobalState.LastProcessedMonth && core.GlobalState.DayCounter > 0 {
@@ -1114,9 +1147,9 @@ func checkMonthlyNewsReset(date time.Time) {
 }
 
 func checkMonthlyInboxReset(date time.Time) {
-	// 1. TRIM: Always keep it under 200 to prevent lag
-	if len(core.GlobalState.Inbox) > 200 {
-		core.GlobalState.Inbox = core.GlobalState.Inbox[:200]
+	// 1. TRIM: Keep it under 50 for performance
+	if len(core.GlobalState.Inbox) > 50 {
+		core.GlobalState.Inbox = core.GlobalState.Inbox[:50]
 	}
 	// 2. MONTHLY RESET: Clear if month changes
 	if date.Month() != core.GlobalState.LastProcessedMonth && core.GlobalState.DayCounter > 0 {
@@ -1168,21 +1201,29 @@ func processNPCDay(date time.Time) {
 			
 			// Processing Logic based on Language Cluster
 			switch idx {
-			case 0: // CPP: Military/Industrial
+			case 0: // CPP Worker: Military & Industrial Calculations
 				simulateInLanguage(cppWorker, names)
-			case 1: // RUST: Trade/Economy
+			case 1: // RUST Worker: Massive Trade & Economy Matrix Drift
 				simulateInLanguage(rustWorker, names)
-			case 2: // JAVA: Bureaucracy/Ministry
+			case 2: // JAVA Worker: Bureaucracy & Ministry Logic
 				simulateInLanguage(javaWorker, names)
-			case 3: // PYTHON: Social/News
+			case 3: // PYTHON Worker: Social, News & Sentiment Analysis
 				simulateInLanguage(pythonWorker, names)
 			default: // GO: Core Orchestration (Direct processing)
 				for _, name := range names {
 					state := core.GlobalState.NPCStates[name]
 					if state == nil { continue }
-					state.Population = math.Round(state.Population * 1.00002)
+					oldPop := state.Population
+					oldBudget := state.Budget
+					
+					state.Population = math.Round(state.Population * 1.00012)
 					state.Budget += state.DailyIncome * 0.95
 					calculateNPCHappiness(name, state)
+					
+					// Set Dirty flag if change is significant
+					if math.Abs(state.Population - oldPop) > 1 || math.Abs(state.Budget - oldBudget) > 1 {
+						state.Dirty = true
+					}
 				}
 			}
 		}(groupIndex, chunk)
@@ -1203,8 +1244,9 @@ func simulateInLanguage(w *PolyglotWorker, names []string) {
 	for _, name := range names {
 		state := core.GlobalState.NPCStates[name]
 		if state == nil { continue }
-		state.Population = math.Round(state.Population * 1.00002)
+		state.Population = math.Round(state.Population * 1.00008)
 		state.Budget += state.DailyIncome * 0.9
+		state.Dirty = true // Workers always mark as dirty for now
 	}
 }
 
@@ -1546,6 +1588,7 @@ type SyncPayload struct {
 // ═══════════════════════════════════════════════════════════
 
 func createSnapshot() []byte {
+	// Full Snapshot resets Dirty flags
 	payload := SyncPayload{
 		GameDate:   core.GlobalState.GameDate,
 		IsPaused:   core.GlobalState.IsPaused,
@@ -1556,13 +1599,55 @@ func createSnapshot() []byte {
 		Player:     core.GlobalState.Player,
 		NPCStates:  core.GlobalState.NPCStates,
 		NpcBuildingLevels: core.GlobalState.NPCBuildingLevels,
-		Relationships: core.GlobalState.Relationships,
+		Relationships: getPrunedRelationships(),
 		VisualDelta:   map_engine.GlobalVisualState.GetHeatmap(),
 	}
+	
+	// Reset all Dirty flags after full snapshot
+	for _, s := range core.GlobalState.NPCStates {
+		s.Dirty = false
+	}
+	
 	lastBroadcastNewsLen = len(core.GlobalState.News)
 	lastBroadcastInboxLen = len(core.GlobalState.Inbox)
 	data, _ := json.Marshal(payload)
 	return data
+}
+
+// getPrunedRelationships returns only non-neutral relationships
+func getPrunedRelationships() map[string]map[string]*core.Relationship {
+	if !core.GlobalState.RequestFullMatrix && core.GlobalState.DayCounter % 30 != 0 {
+		return nil // Lazy Loading: Send nothing if not requested and not month end
+	}
+
+	pruned := make(map[string]map[string]*core.Relationship)
+	for src, targets := range core.GlobalState.Relationships {
+		prunedTargets := make(map[string]*core.Relationship)
+		for target, rel := range targets {
+			if !rel.Prune() {
+				prunedTargets[target] = rel
+			}
+		}
+		if len(prunedTargets) > 0 {
+			pruned[src] = prunedTargets
+		}
+	}
+	
+	// Reset request flag after fulfilling
+	core.GlobalState.RequestFullMatrix = false
+	return pruned
+}
+
+// getDeltaNPCStates returns only changed nations
+func getDeltaNPCStates() map[string]*core.NPCNationState {
+	delta := make(map[string]*core.NPCNationState)
+	for name, state := range core.GlobalState.NPCStates {
+		if state.Dirty {
+			delta[name] = state
+			state.Dirty = false // Reset after sending
+		}
+	}
+	return delta
 }
 
 // Lightweight snapshot for periodic ticks (bandwidth optimization)
@@ -1573,7 +1658,6 @@ func createPlayerSnapshot() []byte {
 		Speed:      core.GlobalState.Speed,
 		DayCounter: core.GlobalState.DayCounter,
 		Player:     core.GlobalState.Player,
-		Relationships: core.GlobalState.Relationships,
 	}
 	data, _ := json.Marshal(payload)
 	return data
@@ -1592,8 +1676,8 @@ func createMajorUpdateSnapshot() []byte {
 		News:       core.GlobalState.News,
 		Inbox:      core.GlobalState.Inbox,
 		Player:     core.GlobalState.Player,
-		NpcBuildingLevels: core.GlobalState.NPCBuildingLevels,
-		Relationships: core.GlobalState.Relationships,
+		NPCStates:  getDeltaNPCStates(), // Delta update
+		Relationships: getPrunedRelationships(), // Pruned & Lazy
 	}
 	data, _ := json.Marshal(payload)
 	return data
@@ -1657,6 +1741,18 @@ func handleSSE(w http.ResponseWriter, r *http.Request) {
 			flusher.Flush()
 		}
 	}
+}
+
+func handleRequestRelationships(w http.ResponseWriter, r *http.Request) {
+	core.GlobalState.Mu.Lock()
+	core.GlobalState.RequestFullMatrix = true
+	core.GlobalState.Mu.Unlock()
+	
+	fmt.Println("[API] Relationship matrix refresh requested.")
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]string{"status": "queued"})
 }
 
 func broadcastSSE(data []byte) {

@@ -5,7 +5,7 @@ export const tonga_profile = {
   "lon": -175,
   "lat": -20,
   "flag": "🇹🇴",
-  "jumlah_penduduk": 103,
+  "jumlah_penduduk": 100179,
   "anggaran": 10,
   "pendapatan_nasional": "15",
   "religion": "Protestan",

@@ -5,7 +5,7 @@ export const nauru_profile = {
   "lon": 166.91666666,
   "lat": -0.53333333,
   "flag": "🇳🇷",
-  "jumlah_penduduk": 12704,
+  "jumlah_penduduk": 11680,
   "anggaran": 10,
   "pendapatan_nasional": "15",
   "religion": "Protestan",

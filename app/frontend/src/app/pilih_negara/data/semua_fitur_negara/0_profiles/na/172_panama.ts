@@ -5,7 +5,7 @@ export const panama_profile = {
   "lon": -80,
   "lat": 9,
   "flag": "🇵🇦",
-  "jumlah_penduduk": 4177,
+  "jumlah_penduduk": 4064780,
   "anggaran": 739,
   "pendapatan_nasional": "2111",
   "religion": "Katolik",

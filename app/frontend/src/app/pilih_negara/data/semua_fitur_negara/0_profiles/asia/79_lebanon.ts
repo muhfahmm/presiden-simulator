@@ -5,7 +5,7 @@ export const lebanon_profile = {
   "lon": 35.83333333,
   "lat": 33.83333333,
   "flag": "🇱🇧",
-  "jumlah_penduduk": 6849,
+  "jumlah_penduduk": 6093509,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Islam",

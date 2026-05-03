@@ -5,7 +5,7 @@ export const saint_vincent_dan_grenadine_profile = {
   "lon": -61.2,
   "lat": 13.25,
   "flag": "🇻🇨",
-  "jumlah_penduduk": 110,
+  "jumlah_penduduk": 100616,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

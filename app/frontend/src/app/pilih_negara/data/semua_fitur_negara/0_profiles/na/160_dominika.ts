@@ -5,7 +5,7 @@ export const dominika_profile = {
   "lon": -61.33333333,
   "lat": 15.41666666,
   "flag": "🇩🇲",
-  "jumlah_penduduk": 71625,
+  "jumlah_penduduk": 72412,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

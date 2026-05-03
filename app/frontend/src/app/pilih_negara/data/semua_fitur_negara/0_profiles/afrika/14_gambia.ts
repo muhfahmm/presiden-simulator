@@ -5,7 +5,7 @@ export const gambia_profile = {
   "lon": -16.56666666,
   "lat": 13.46666666,
   "flag": "🇬🇲",
-  "jumlah_penduduk": 2280,
+  "jumlah_penduduk": 2422754,
   "anggaran": 21,
   "pendapatan_nasional": "61",
   "religion": "Islam",

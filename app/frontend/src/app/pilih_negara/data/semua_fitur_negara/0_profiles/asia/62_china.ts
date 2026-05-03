@@ -5,7 +5,7 @@ export const china_profile = {
   "lon": 116.4,
   "lat": 39.9,
   "flag": "🇨🇳",
-  "jumlah_penduduk": 1392730,
+  "jumlah_penduduk": 1404890000,
   "anggaran": 180167,
   "pendapatan_nasional": "514763",
   "religion": "Katolik",

@@ -5,7 +5,7 @@ export const guiana_prancis_profile = {
   "lon": -53,
   "lat": 4,
   "flag": "🇬🇫",
-  "jumlah_penduduk": 291,
+  "jumlah_penduduk": 316604,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

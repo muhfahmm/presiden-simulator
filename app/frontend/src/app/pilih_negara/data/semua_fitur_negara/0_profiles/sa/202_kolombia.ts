@@ -5,7 +5,7 @@ export const kolombia_profile = {
   "lon": -72,
   "lat": 4,
   "flag": "🇨🇴",
-  "jumlah_penduduk": 49649,
+  "jumlah_penduduk": 53057212,
   "anggaran": 3306,
   "pendapatan_nasional": "9445",
   "religion": "Katolik",

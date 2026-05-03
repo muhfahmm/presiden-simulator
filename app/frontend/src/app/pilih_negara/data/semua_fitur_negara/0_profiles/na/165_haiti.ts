@@ -5,7 +5,7 @@ export const haiti_profile = {
   "lon": -72.41666666,
   "lat": 19,
   "flag": "🇭🇹",
-  "jumlah_penduduk": 11123,
+  "jumlah_penduduk": 11867032,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

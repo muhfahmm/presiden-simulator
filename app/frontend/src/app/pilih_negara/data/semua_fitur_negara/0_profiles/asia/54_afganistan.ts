@@ -5,7 +5,7 @@ export const afganistan_profile = {
   "lon": 69.16,
   "lat": 34.54,
   "flag": "🇦🇫",
-  "jumlah_penduduk": 37172,
+  "jumlah_penduduk": 43844000,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Islam",

@@ -47,7 +47,9 @@ export const storageSafety = {
             'em_ai_diagnostics',     // Diagnosis logs
             'em_un_voting_history',  // Old UN votes
             'em_last_processed_date',
-            'em_country_data_'       // Individual country caches (Will be re-fetched)
+            'em_country_data_',      // Individual country caches (Will be re-fetched)
+            'em_membership_processed_news',
+            'em_news_effects_processed'
         ];
 
         // 2. Clear exact matches
@@ -69,8 +71,10 @@ export const storageSafety = {
         keysToRemove.forEach(k => localStorage.removeItem(k));
         
         // 4. Aggressive pruning of large arrays in specific keys
-        storageSafety.pruneLargeArray('em_inbox_messages', 20); // Keep only last 20
-        storageSafety.pruneLargeArray('em_debt_ai_data_offers', 5);
+        storageSafety.pruneLargeArray('em_inbox_messages', 15); // Keep only last 15
+        storageSafety.pruneLargeArray('em_debt_ai_data_offers', 3);
+        storageSafety.pruneLargeArray('em_trade_news_data', 30); // Keep only last 30 trade news
+        storageSafety.pruneLargeArray('em_global_news_v1', 50); // Keep only last 50 global news
         
         console.log("[STORAGE SAFETY] Cleanup complete.");
     },

@@ -5,7 +5,7 @@ export const republik_demokratik_kongo_profile = {
   "lon": 25,
   "lat": 0,
   "flag": "🇨🇩",
-  "jumlah_penduduk": 5244,
+  "jumlah_penduduk": 102262808,
   "anggaran": 603,
   "pendapatan_nasional": "1722",
   "religion": "Katolik",

@@ -5,7 +5,7 @@ export const honduras_profile = {
   "lon": -86.5,
   "lat": 15,
   "flag": "🇭🇳",
-  "jumlah_penduduk": 9588,
+  "jumlah_penduduk": 10825703,
   "anggaran": 311,
   "pendapatan_nasional": "889",
   "religion": "Katolik",

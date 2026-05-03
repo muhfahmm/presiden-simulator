@@ -5,7 +5,7 @@ export const yaman_profile = {
   "lon": 48,
   "lat": 15,
   "flag": "🇾🇪",
-  "jumlah_penduduk": 28499,
+  "jumlah_penduduk": 33697000,
   "anggaran": 214,
   "pendapatan_nasional": "611",
   "religion": "Islam",

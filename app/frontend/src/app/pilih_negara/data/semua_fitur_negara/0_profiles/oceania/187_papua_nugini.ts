@@ -5,7 +5,7 @@ export const papua_nugini_profile = {
   "lon": 147,
   "lat": -6,
   "flag": "🇵🇬",
-  "jumlah_penduduk": 8606,
+  "jumlah_penduduk": 10499000,
   "anggaran": 292,
   "pendapatan_nasional": "833",
   "religion": "Protestan",

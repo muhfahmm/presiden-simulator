@@ -5,7 +5,7 @@ export const greenland_profile = {
   "lon": -40,
   "lat": 72,
   "flag": "🇬🇱",
-  "jumlah_penduduk": 56025,
+  "jumlah_penduduk": 55840,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Protestan",

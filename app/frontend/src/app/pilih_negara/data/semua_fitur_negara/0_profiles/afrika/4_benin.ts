@@ -5,7 +5,7 @@ export const benin_profile = {
   "lon": 2.25,
   "lat": 9.5,
   "flag": "🇧🇯",
-  "jumlah_penduduk": 11485,
+  "jumlah_penduduk": 13224860,
   "anggaran": 185,
   "pendapatan_nasional": "528",
   "religion": "Katolik",

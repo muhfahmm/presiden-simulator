@@ -5,7 +5,7 @@ export const singapura_profile = {
   "lon": 103.81,
   "lat": 1.35,
   "flag": "🇸🇬",
-  "jumlah_penduduk": 5639,
+  "jumlah_penduduk": 6110200,
   "anggaran": 4862,
   "pendapatan_nasional": "13890",
   "religion": "Buddha",

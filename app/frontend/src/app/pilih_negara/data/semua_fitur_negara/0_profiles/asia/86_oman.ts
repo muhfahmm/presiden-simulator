@@ -5,7 +5,7 @@ export const oman_profile = {
   "lon": 57,
   "lat": 21,
   "flag": "🇴🇲",
-  "jumlah_penduduk": 4829,
+  "jumlah_penduduk": 5281538,
   "anggaran": 1021,
   "pendapatan_nasional": "2917",
   "religion": "Islam",

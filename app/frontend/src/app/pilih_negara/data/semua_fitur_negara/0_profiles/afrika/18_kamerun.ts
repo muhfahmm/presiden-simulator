@@ -5,7 +5,7 @@ export const kamerun_profile = {
   "lon": 12,
   "lat": 6,
   "flag": "🇨🇲",
-  "jumlah_penduduk": 25216,
+  "jumlah_penduduk": 28088845,
   "anggaran": 438,
   "pendapatan_nasional": "1250",
   "religion": "Katolik",

@@ -5,7 +5,7 @@ export const gabon_profile = {
   "lon": 11.75,
   "lat": -1,
   "flag": "🇬🇦",
-  "jumlah_penduduk": 2119,
+  "jumlah_penduduk": 2233272,
   "anggaran": 194,
   "pendapatan_nasional": "556",
   "religion": "Katolik",

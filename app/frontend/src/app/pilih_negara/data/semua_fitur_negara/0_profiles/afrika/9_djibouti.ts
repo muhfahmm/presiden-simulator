@@ -5,7 +5,7 @@ export const djibouti_profile = {
   "lon": 43,
   "lat": 11.5,
   "flag": "🇩🇯",
-  "jumlah_penduduk": 959,
+  "jumlah_penduduk": 1136455,
   "anggaran": 39,
   "pendapatan_nasional": "111",
   "religion": "Islam",

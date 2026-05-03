@@ -5,7 +5,7 @@ export const tahiti_profile = {
   "lon": -140,
   "lat": -15,
   "flag": "🇵🇫",
-  "jumlah_penduduk": 278,
+  "jumlah_penduduk": 308872,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Protestan",

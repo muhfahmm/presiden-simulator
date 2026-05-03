@@ -5,7 +5,7 @@ export const guam_profile = {
   "lon": 144.78333333,
   "lat": 13.46666666,
   "flag": "🇬🇺",
-  "jumlah_penduduk": 166,
+  "jumlah_penduduk": 167777,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Protestan",

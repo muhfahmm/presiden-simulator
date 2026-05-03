@@ -5,7 +5,7 @@ export const islandia_profile = {
   "lon": -18,
   "lat": 65,
   "flag": "🇮🇸",
-  "jumlah_penduduk": 353,
+  "jumlah_penduduk": 394530,
   "anggaran": 292,
   "pendapatan_nasional": "833",
   "religion": "Protestan",

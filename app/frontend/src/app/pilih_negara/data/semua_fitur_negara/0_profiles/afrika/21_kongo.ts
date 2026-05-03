@@ -5,7 +5,7 @@ export const kongo_profile = {
   "lon": 15,
   "lat": -1,
   "flag": "🇨🇬",
-  "jumlah_penduduk": 5244,
+  "jumlah_penduduk": 6332961,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Katolik",

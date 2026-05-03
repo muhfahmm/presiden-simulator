@@ -5,7 +5,7 @@ export const filipina_profile = {
   "lon": 120.98,
   "lat": 14.59,
   "flag": "🇵🇭",
-  "jumlah_penduduk": 106652,
+  "jumlah_penduduk": 114123600,
   "anggaran": 4230,
   "pendapatan_nasional": "12084",
   "religion": "Katolik",

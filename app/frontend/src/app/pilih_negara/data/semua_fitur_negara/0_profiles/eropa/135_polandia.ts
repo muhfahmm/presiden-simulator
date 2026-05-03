@@ -5,7 +5,7 @@ export const polandia_profile = {
   "lon": 21.01,
   "lat": 52.22,
   "flag": "🇵🇱",
-  "jumlah_penduduk": 37975,
+  "jumlah_penduduk": 37296000,
   "anggaran": 8167,
   "pendapatan_nasional": "23335",
   "religion": "Katolik",

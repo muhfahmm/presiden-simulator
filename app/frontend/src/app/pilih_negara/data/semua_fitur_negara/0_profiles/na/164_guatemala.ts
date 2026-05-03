@@ -5,7 +5,7 @@ export const guatemala_profile = {
   "lon": -90.25,
   "lat": 15.5,
   "flag": "🇬🇹",
-  "jumlah_penduduk": 17248,
+  "jumlah_penduduk": 18312373,
   "anggaran": 924,
   "pendapatan_nasional": "2639",
   "religion": "Katolik",

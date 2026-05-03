@@ -5,7 +5,7 @@ export const siprus_profile = {
   "lon": 33,
   "lat": 35,
   "flag": "🇨🇾",
-  "jumlah_penduduk": 1189,
+  "jumlah_penduduk": 983000,
   "anggaran": 292,
   "pendapatan_nasional": "833",
   "religion": "Kristen Ortodoks",

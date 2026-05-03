@@ -5,7 +5,7 @@ export const saint_lucia_profile = {
   "lon": -60.96666666,
   "lat": 13.88333333,
   "flag": "🇱🇨",
-  "jumlah_penduduk": 182,
+  "jumlah_penduduk": 184100,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

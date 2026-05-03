@@ -5,7 +5,7 @@ export const myanmar_profile = {
   "lon": 96.07,
   "lat": 19.76,
   "flag": "🇲🇲",
-  "jumlah_penduduk": 53708,
+  "jumlah_penduduk": 51375327,
   "anggaran": 583,
   "pendapatan_nasional": "1667",
   "religion": "Buddha",

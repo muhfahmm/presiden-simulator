@@ -5,7 +5,7 @@ export const malta_profile = {
   "lon": 14.3,
   "lat": 35.53,
   "flag": "🇲🇹",
-  "jumlah_penduduk": 485,
+  "jumlah_penduduk": 574250,
   "anggaran": 194,
   "pendapatan_nasional": "556",
   "religion": "Katolik",

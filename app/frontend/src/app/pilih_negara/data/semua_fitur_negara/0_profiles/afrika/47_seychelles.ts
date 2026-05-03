@@ -5,7 +5,7 @@ export const seychelles_profile = {
   "lon": 55.66666666,
   "lat": -4.58333333,
   "flag": "🇸🇨",
-  "jumlah_penduduk": 96762,
+  "jumlah_penduduk": 100447,
   "anggaran": 19,
   "pendapatan_nasional": "56",
   "religion": "Katolik",

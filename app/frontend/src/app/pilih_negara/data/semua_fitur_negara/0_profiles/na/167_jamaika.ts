@@ -5,7 +5,7 @@ export const jamaika_profile = {
   "lon": -77.5,
   "lat": 18.25,
   "flag": "🇯🇲",
-  "jumlah_penduduk": 2935,
+  "jumlah_penduduk": 2774538,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Protestan",

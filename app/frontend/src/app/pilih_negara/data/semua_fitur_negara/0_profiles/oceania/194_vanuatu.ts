@@ -5,7 +5,7 @@ export const vanuatu_profile = {
   "lon": 167,
   "lat": -16,
   "flag": "🇻🇺",
-  "jumlah_penduduk": 293,
+  "jumlah_penduduk": 321409,
   "anggaran": 10,
   "pendapatan_nasional": "28",
   "religion": "Protestan",

@@ -30,7 +30,7 @@ export const afrika_selatan_profile = {
   "lon": 28.18,
   "lat": -25.74,
   "flag": "🇿🇦",
-  "jumlah_penduduk": 57780,
+  "jumlah_penduduk": 63100945,
   "anggaran": 3938,
   "pendapatan_nasional": "11251",
   "religion": "Protestan",

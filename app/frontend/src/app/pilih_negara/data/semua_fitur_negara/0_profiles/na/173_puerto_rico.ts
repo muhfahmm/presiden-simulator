@@ -5,7 +5,7 @@ export const puerto_rico_profile = {
   "lon": -66.5,
   "lat": 18.25,
   "flag": "🇵🇷",
-  "jumlah_penduduk": 3195,
+  "jumlah_penduduk": 3184195,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

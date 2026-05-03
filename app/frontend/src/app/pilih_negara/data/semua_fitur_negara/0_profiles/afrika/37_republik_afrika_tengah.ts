@@ -5,7 +5,7 @@ export const republik_afrika_tengah_profile = {
   "lon": 21,
   "lat": 7,
   "flag": "🇨🇫",
-  "jumlah_penduduk": 4666,
+  "jumlah_penduduk": 5330690,
   "anggaran": 24,
   "pendapatan_nasional": "69",
   "religion": "Protestan",

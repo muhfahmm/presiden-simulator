@@ -5,7 +5,7 @@ export const barbados_profile = {
   "lon": -59.53333333,
   "lat": 13.16666666,
   "flag": "🇧🇧",
-  "jumlah_penduduk": 287,
+  "jumlah_penduduk": 267800,
   "anggaran": 53,
   "pendapatan_nasional": "153",
   "religion": "Protestan",

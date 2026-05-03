@@ -5,7 +5,7 @@ export const guyana_profile = {
   "lon": -59,
   "lat": 5,
   "flag": "🇬🇾",
-  "jumlah_penduduk": 779,
+  "jumlah_penduduk": 956044,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Protestan",

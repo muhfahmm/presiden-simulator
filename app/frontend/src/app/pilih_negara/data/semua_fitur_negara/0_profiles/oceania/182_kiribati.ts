@@ -5,7 +5,7 @@ export const kiribati_profile = {
   "lon": 173,
   "lat": 1.41666666,
   "flag": "🇰🇮",
-  "jumlah_penduduk": 116,
+  "jumlah_penduduk": 134518,
   "anggaran": 10,
   "pendapatan_nasional": "15",
   "religion": "Protestan",

@@ -5,7 +5,7 @@ export const belarus_profile = {
   "lon": 28,
   "lat": 53,
   "flag": "🇧🇾",
-  "jumlah_penduduk": 9483,
+  "jumlah_penduduk": 9056696,
   "anggaran": 681,
   "pendapatan_nasional": "1945",
   "religion": "Kristen Ortodoks",

@@ -5,7 +5,7 @@ export const gibraltar_profile = {
   "lon": -5.35,
   "lat": 36.13333333,
   "flag": "🇬🇮",
-  "jumlah_penduduk": 33718,
+  "jumlah_penduduk": 32688,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

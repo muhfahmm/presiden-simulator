@@ -55,6 +55,11 @@ export default function DiplomacyTab({
     window.addEventListener("embassy_status_updated", updateStatus);
     window.addEventListener("non_aggression_updated", updateStatus);
     window.addEventListener("aliansi_updated", updateStatus);
+
+    // [OPTIMIZATION] Request full relationship matrix from server when opening diplomacy
+    fetch("http://127.0.0.1:8081/api/game/request-relationships", { method: "POST" })
+      .catch(err => console.error("Failed to request relationship refresh:", err));
+
     return () => {
       window.removeEventListener("embassy_status_updated", updateStatus);
       window.removeEventListener("non_aggression_updated", updateStatus);

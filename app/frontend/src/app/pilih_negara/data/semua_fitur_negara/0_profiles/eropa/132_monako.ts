@@ -5,7 +5,7 @@ export const monako_profile = {
   "lon": 7.4,
   "lat": 43.73333333,
   "flag": "🇲🇨",
-  "jumlah_penduduk": 38682,
+  "jumlah_penduduk": 38857,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

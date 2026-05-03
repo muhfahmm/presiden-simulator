@@ -5,7 +5,7 @@ export const georgia_profile = {
   "lon": 43.5,
   "lat": 42,
   "flag": "🇬🇪",
-  "jumlah_penduduk": 3727,
+  "jumlah_penduduk": 3704500,
   "anggaran": 243,
   "pendapatan_nasional": "694",
   "religion": "Kristen Ortodoks",

@@ -5,7 +5,7 @@ export const suriname_profile = {
   "lon": -56,
   "lat": 4,
   "flag": "🇸🇷",
-  "jumlah_penduduk": 576,
+  "jumlah_penduduk": 616500,
   "anggaran": 34,
   "pendapatan_nasional": "97",
   "religion": "Protestan",

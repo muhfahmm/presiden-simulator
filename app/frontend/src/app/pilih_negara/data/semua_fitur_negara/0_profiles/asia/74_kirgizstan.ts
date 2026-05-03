@@ -5,7 +5,7 @@ export const kirgizstan_profile = {
   "lon": 75,
   "lat": 41,
   "flag": "🇰🇬",
-  "jumlah_penduduk": 6323,
+  "jumlah_penduduk": 6132932,
   "anggaran": 117,
   "pendapatan_nasional": "333",
   "religion": "Islam",

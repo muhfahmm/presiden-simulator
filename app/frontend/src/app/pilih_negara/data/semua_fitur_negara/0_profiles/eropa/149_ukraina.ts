@@ -5,7 +5,7 @@ export const ukraina_profile = {
   "lon": 30.52,
   "lat": 50.45,
   "flag": "🇺🇦",
-  "jumlah_penduduk": 44623,
+  "jumlah_penduduk": 36700000,
   "anggaran": 1556,
   "pendapatan_nasional": "4445",
   "religion": "Kristen Ortodoks",

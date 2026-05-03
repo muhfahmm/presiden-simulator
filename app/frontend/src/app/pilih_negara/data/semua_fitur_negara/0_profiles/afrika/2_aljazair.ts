@@ -5,7 +5,7 @@ export const aljazair_profile = {
   "lon": 3.08,
   "lat": 36.73,
   "flag": "🇩🇿",
-  "jumlah_penduduk": 42228,
+  "jumlah_penduduk": 47400000,
   "anggaran": 2334,
   "pendapatan_nasional": "6667",
   "religion": "Islam",

@@ -5,7 +5,7 @@ export const nepal_profile = {
   "lon": 84,
   "lat": 28,
   "flag": "🇳🇵",
-  "jumlah_penduduk": 28088,
+  "jumlah_penduduk": 29164578,
   "anggaran": 389,
   "pendapatan_nasional": "1111",
   "religion": "Hindu",

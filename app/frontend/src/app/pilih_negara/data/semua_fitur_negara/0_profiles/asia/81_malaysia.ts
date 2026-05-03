@@ -5,7 +5,7 @@ export const malaysia_profile = {
   "lon": 101.68,
   "lat": 3.13,
   "flag": "🇲🇾",
-  "jumlah_penduduk": 31529,
+  "jumlah_penduduk": 32776194,
   "anggaran": 3889,
   "pendapatan_nasional": "11112",
   "religion": "Islam",

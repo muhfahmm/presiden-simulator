@@ -5,7 +5,7 @@ export const makedonia_utara_profile = {
   "lon": 22,
   "lat": 41.83333333,
   "flag": "🇲🇰",
-  "jumlah_penduduk": 2084,
+  "jumlah_penduduk": 1836713,
   "anggaran": 136,
   "pendapatan_nasional": "389",
   "religion": "Kristen Ortodoks",

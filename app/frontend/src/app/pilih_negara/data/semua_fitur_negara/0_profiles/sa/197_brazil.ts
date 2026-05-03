@@ -5,7 +5,7 @@ export const brazil_profile = {
   "lon": -47.88,
   "lat": -15.79,
   "flag": "🇧🇷",
-  "jumlah_penduduk": 209469,
+  "jumlah_penduduk": 213421037,
   "anggaran": 22655,
   "pendapatan_nasional": "64727",
   "religion": "Katolik",

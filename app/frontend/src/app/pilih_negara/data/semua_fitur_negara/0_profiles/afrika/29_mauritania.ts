@@ -5,7 +5,7 @@ export const mauritania_profile = {
   "lon": -12,
   "lat": 20,
   "flag": "🇲🇷",
-  "jumlah_penduduk": 4403,
+  "jumlah_penduduk": 5169395,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Islam",

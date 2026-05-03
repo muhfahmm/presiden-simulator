@@ -5,7 +5,7 @@ export const maldives_profile = {
   "lon": 73.3,
   "lat": 4.1,
   "flag": "🇲🇻",
-  "jumlah_penduduk": 516,
+  "jumlah_penduduk": 527799,
   "anggaran": 63,
   "pendapatan_nasional": "181",
   "religion": "Katolik",

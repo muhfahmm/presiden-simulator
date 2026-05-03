@@ -5,7 +5,7 @@ export const costa_rica_profile = {
   "lon": -84,
   "lat": 10,
   "flag": "🇨🇷",
-  "jumlah_penduduk": 4999,
+  "jumlah_penduduk": 5191824,
   "anggaran": 681,
   "pendapatan_nasional": "1945",
   "religion": "Katolik",

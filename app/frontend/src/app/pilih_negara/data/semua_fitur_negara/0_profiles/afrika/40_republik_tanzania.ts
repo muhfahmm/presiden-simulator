@@ -5,7 +5,7 @@ export const republik_tanzania_profile = {
   "lon": 35,
   "lat": -6,
   "flag": "🇹🇿",
-  "jumlah_penduduk": 56318,
+  "jumlah_penduduk": 68153004,
   "anggaran": 729,
   "pendapatan_nasional": "2084",
   "religion": "Katolik",

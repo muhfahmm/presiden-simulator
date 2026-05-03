@@ -5,7 +5,7 @@ export const togo_profile = {
   "lon": 1.16666666,
   "lat": 8,
   "flag": "🇹🇬",
-  "jumlah_penduduk": 7889,
+  "jumlah_penduduk": 9053799,
   "anggaran": 88,
   "pendapatan_nasional": "250",
   "religion": "Katolik",

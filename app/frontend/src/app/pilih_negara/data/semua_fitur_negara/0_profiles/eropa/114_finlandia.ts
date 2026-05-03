@@ -5,7 +5,7 @@ export const finlandia_profile = {
   "lon": 24.93,
   "lat": 60.16,
   "flag": "🇫🇮",
-  "jumlah_penduduk": 5516,
+  "jumlah_penduduk": 5650933,
   "anggaran": 2917,
   "pendapatan_nasional": "8334",
   "religion": "Protestan",

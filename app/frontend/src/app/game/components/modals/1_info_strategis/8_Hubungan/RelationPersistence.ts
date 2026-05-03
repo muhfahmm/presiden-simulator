@@ -80,9 +80,12 @@ export const RelationPersistence = {
         
         // Save using the matrix module (which handles pruning and events)
         const { saveGlobalRelationMatrix } = require("./RelationMatrix");
-        saveGlobalRelationMatrix(mergedMatrix);
         
-        console.log(`[RELATION-PERSISTENCE] Matrix synced from server. Reset: ${isReset}`);
+        // Use a timeout to offload the heavy pruning/merging logic from the main pulse thread
+        setTimeout(() => {
+            saveGlobalRelationMatrix(mergedMatrix);
+            console.log(`[RELATION-PERSISTENCE] Matrix synced from server. Reset: ${isReset}`);
+        }, 0);
     }
 };
 

@@ -5,7 +5,7 @@ export const malawi_profile = {
   "lon": 33.47,
   "lat": -13.59,
   "flag": "🇲🇼",
-  "jumlah_penduduk": 18143,
+  "jumlah_penduduk": 20734262,
   "anggaran": 117,
   "pendapatan_nasional": "333",
   "religion": "Protestan",

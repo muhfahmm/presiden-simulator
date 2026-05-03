@@ -5,7 +5,7 @@ export const denmark_profile = {
   "lon": 12.56,
   "lat": 55.67,
   "flag": "🇩🇰",
-  "jumlah_penduduk": 5794,
+  "jumlah_penduduk": 6029607,
   "anggaran": 3986,
   "pendapatan_nasional": "11390",
   "religion": "Protestan",

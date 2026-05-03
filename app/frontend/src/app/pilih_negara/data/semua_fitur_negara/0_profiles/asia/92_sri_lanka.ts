@@ -5,7 +5,7 @@ export const sri_lanka_profile = {
   "lon": 81,
   "lat": 7,
   "flag": "🇱🇰",
-  "jumlah_penduduk": 21670,
+  "jumlah_penduduk": 21781800,
   "anggaran": 729,
   "pendapatan_nasional": "2084",
   "religion": "Buddha",

@@ -5,7 +5,7 @@ export const uni_emirat_arab_profile = {
   "lon": 54.37,
   "lat": 24.45,
   "flag": "🇦🇪",
-  "jumlah_penduduk": 9631,
+  "jumlah_penduduk": 9541615,
   "anggaran": 4959,
   "pendapatan_nasional": "14168",
   "religion": "Islam",

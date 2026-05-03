@@ -5,7 +5,7 @@ export const mikronesia_profile = {
   "lon": 158.25,
   "lat": 6.91666666,
   "flag": "🇫🇲",
-  "jumlah_penduduk": 113,
+  "jumlah_penduduk": 115107,
   "anggaran": 10,
   "pendapatan_nasional": "15",
   "religion": "Protestan",

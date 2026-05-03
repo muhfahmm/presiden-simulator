@@ -5,7 +5,7 @@ export const republik_serbia_profile = {
   "lon": 21,
   "lat": 44,
   "flag": "🇷🇸",
-  "jumlah_penduduk": 6964,
+  "jumlah_penduduk": 7149077,
   "anggaran": 661,
   "pendapatan_nasional": "1889",
   "religion": "Katolik",

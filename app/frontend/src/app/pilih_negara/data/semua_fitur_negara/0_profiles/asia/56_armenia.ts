@@ -5,7 +5,7 @@ export const armenia_profile = {
   "lon": 44.51,
   "lat": 40.19,
   "flag": "🇦🇲",
-  "jumlah_penduduk": 2952,
+  "jumlah_penduduk": 3076200,
   "anggaran": 214,
   "pendapatan_nasional": "611",
   "religion": "Kristen Ortodoks",

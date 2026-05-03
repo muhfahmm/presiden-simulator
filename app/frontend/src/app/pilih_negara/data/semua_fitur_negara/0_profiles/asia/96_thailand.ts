@@ -5,7 +5,7 @@ export const thailand_profile = {
   "lon": 100.5,
   "lat": 13.75,
   "flag": "🇹🇭",
-  "jumlah_penduduk": 69429,
+  "jumlah_penduduk": 65826149,
   "anggaran": 4959,
   "pendapatan_nasional": "14168",
   "religion": "Buddha",

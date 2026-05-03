@@ -5,7 +5,7 @@ export const belanda_profile = {
   "lon": 4.9,
   "lat": 52.36,
   "flag": "🇳🇱",
-  "jumlah_penduduk": 17232,
+  "jumlah_penduduk": 18137265,
   "anggaran": 10598,
   "pendapatan_nasional": "30280",
   "religion": "Protestan",

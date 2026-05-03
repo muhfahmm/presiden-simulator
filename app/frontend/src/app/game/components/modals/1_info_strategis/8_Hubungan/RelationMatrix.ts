@@ -17,12 +17,15 @@ export interface RelationMatrix {
     };
 }
 
+const idCache = new Map<string, string>();
+
 /**
  * Normalisasi ID Negara
  * Mengonversi nama negara (Inggris/GeoJSON/Lokal) ke ID standar bahasa Indonesia.
  */
 export const normalizeId = (name: string): string => {
     if (!name) return "";
+    if (idCache.has(name)) return idCache.get(name)!;
     
     const geoJsonToIndo: Record<string, string> = {
         "The Bahamas": "bahama",
@@ -58,7 +61,9 @@ export const normalizeId = (name: string): string => {
         c.name_id.toLowerCase().trim() === cleanName ||
         c.name_en.toLowerCase().trim() === cleanName
     );
-    return found ? found.name_id.toLowerCase().trim() : cleanName;
+    const result = found ? found.name_id.toLowerCase().trim() : cleanName;
+    idCache.set(name, result);
+    return result;
 };
 
 /**
@@ -143,30 +148,35 @@ export const saveGlobalRelationMatrix = (matrix: RelationMatrix) => {
     const prunedMatrix: RelationMatrix = {};
     const normalizedUser = getNormalizedUser();
     
-    // Pruning logic - expensive nested loop
-    Object.keys(matrix).forEach(rawSourceId => {
+    // Pruning logic - optimized nested loop
+    const matrixEntries = Object.entries(matrix);
+    for (const [rawSourceId, targets] of matrixEntries) {
         const sourceId = normalizeId(rawSourceId);
         const prunedTargets: Record<string, RelationEntry> = {};
         let hasContent = false;
 
-        Object.keys(matrix[rawSourceId]).forEach(rawTargetId => {
+        const targetEntries = Object.entries(targets);
+        for (const [rawTargetId, entry] of targetEntries) {
             const targetId = normalizeId(rawTargetId);
-            const entry = matrix[rawSourceId][rawTargetId];
             
             const involvesUser = sourceId === normalizedUser || targetId === normalizedUser;
-            const isOfficialPartner = involvesUser && entry.t === 1;
-            const isSignificantNpcRelation = entry.s < 35 || entry.s > 65 || entry.e === 1 || entry.p === 1 || entry.a === 1 || entry.t === 1;
+            if (involvesUser) {
+                prunedTargets[targetId] = entry;
+                hasContent = true;
+                continue;
+            }
 
-            if (involvesUser || isSignificantNpcRelation || isOfficialPartner) {
+            const isSignificantNpcRelation = entry.s < 48 || entry.s > 52 || entry.e === 1 || entry.p === 1 || entry.a === 1 || entry.t === 1;
+            if (isSignificantNpcRelation) {
                 prunedTargets[targetId] = entry;
                 hasContent = true;
             }
-        });
+        }
 
         if (hasContent) {
             prunedMatrix[sourceId] = prunedTargets;
         }
-    });
+    }
 
     const oldMatrix = getGlobalRelationMatrix();
     

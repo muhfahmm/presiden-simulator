@@ -5,7 +5,7 @@ export const uruguay_profile = {
   "lon": -56,
   "lat": -33,
   "flag": "🇺🇾",
-  "jumlah_penduduk": 3449,
+  "jumlah_penduduk": 3485931,
   "anggaran": 700,
   "pendapatan_nasional": "2000",
   "religion": "Katolik",

@@ -5,7 +5,7 @@ export const turkmenistan_profile = {
   "lon": 60,
   "lat": 40,
   "flag": "🇹🇲",
-  "jumlah_penduduk": 5851,
+  "jumlah_penduduk": 6500000,
   "anggaran": 438,
   "pendapatan_nasional": "1250",
   "religion": "Islam",

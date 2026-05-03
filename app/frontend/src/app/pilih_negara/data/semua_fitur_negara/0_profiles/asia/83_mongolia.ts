@@ -5,7 +5,7 @@ export const mongolia_profile = {
   "lon": 105,
   "lat": 46,
   "flag": "🇲🇳",
-  "jumlah_penduduk": 3170,
+  "jumlah_penduduk": 3544835,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Buddha",

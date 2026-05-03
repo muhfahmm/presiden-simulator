@@ -5,7 +5,7 @@ export const grenada_profile = {
   "lon": -61.66666666,
   "lat": 12.11666666,
   "flag": "🇬🇩",
-  "jumlah_penduduk": 111,
+  "jumlah_penduduk": 112579,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

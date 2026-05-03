@@ -5,7 +5,7 @@ export const portugal_profile = {
   "lon": -9.13,
   "lat": 38.72,
   "flag": "🇵🇹",
-  "jumlah_penduduk": 10284,
+  "jumlah_penduduk": 10749635,
   "anggaran": 2722,
   "pendapatan_nasional": "7778",
   "religion": "Katolik",

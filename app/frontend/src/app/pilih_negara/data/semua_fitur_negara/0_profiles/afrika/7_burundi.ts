@@ -5,7 +5,7 @@ export const burundi_profile = {
   "lon": 30,
   "lat": -3.5,
   "flag": "🇧🇮",
-  "jumlah_penduduk": 11175,
+  "jumlah_penduduk": 12332788,
   "anggaran": 34,
   "pendapatan_nasional": "97",
   "religion": "Katolik",

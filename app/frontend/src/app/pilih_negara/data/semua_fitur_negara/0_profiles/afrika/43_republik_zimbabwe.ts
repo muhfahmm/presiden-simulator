@@ -5,7 +5,7 @@ export const republik_zimbabwe_profile = {
   "lon": 30,
   "lat": -20,
   "flag": "🇿🇼",
-  "jumlah_penduduk": 14439,
+  "jumlah_penduduk": 17073087,
   "anggaran": 194,
   "pendapatan_nasional": "556",
   "religion": "Protestan",

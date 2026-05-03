@@ -5,7 +5,7 @@ export const spanyol_profile = {
   "lon": -3.7,
   "lat": 40.41,
   "flag": "🇪🇸",
-  "jumlah_penduduk": 46797,
+  "jumlah_penduduk": 49570725,
   "anggaran": 15362,
   "pendapatan_nasional": "43892",
   "religion": "Katolik",

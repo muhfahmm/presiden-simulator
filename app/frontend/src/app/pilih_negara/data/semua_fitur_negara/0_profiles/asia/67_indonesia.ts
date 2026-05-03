@@ -5,7 +5,7 @@ export const indonesia_profile = {
   "lon": 106.84,
   "lat": -6.2,
   "flag": "🇮🇩",
-  "jumlah_penduduk": 267663,
+  "jumlah_penduduk": 288315089,
   "anggaran": 13807,
   "pendapatan_nasional": "39448",
   "religion": "Islam",

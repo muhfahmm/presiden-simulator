@@ -5,7 +5,7 @@ export const mesir_profile = {
   "lon": 31.23,
   "lat": 30.04,
   "flag": "🇪🇬",
-  "jumlah_penduduk": 98424,
+  "jumlah_penduduk": 107868296,
   "anggaran": 3841,
   "pendapatan_nasional": "10973",
   "religion": "Islam",

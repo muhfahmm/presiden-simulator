@@ -5,7 +5,7 @@ export const republik_uganda_profile = {
   "lon": 32,
   "lat": 1,
   "flag": "🇺🇬",
-  "jumlah_penduduk": 42723,
+  "jumlah_penduduk": 45905417,
   "anggaran": 486,
   "pendapatan_nasional": "1389",
   "religion": "Katolik",

@@ -5,7 +5,7 @@ export const irak_profile = {
   "lon": 44.36,
   "lat": 33.31,
   "flag": "🇮🇶",
-  "jumlah_penduduk": 38434,
+  "jumlah_penduduk": 46118793,
   "anggaran": 2606,
   "pendapatan_nasional": "7445",
   "religion": "Islam",

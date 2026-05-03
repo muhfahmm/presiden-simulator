@@ -5,7 +5,7 @@ export const mali_profile = {
   "lon": -8,
   "lat": 12.39,
   "flag": "🇲🇱",
-  "jumlah_penduduk": 19078,
+  "jumlah_penduduk": 22395489,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Islam",

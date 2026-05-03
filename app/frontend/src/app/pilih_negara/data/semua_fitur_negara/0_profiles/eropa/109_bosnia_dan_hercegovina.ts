@@ -5,7 +5,7 @@ export const bosnia_dan_hercegovina_profile = {
   "lon": 18,
   "lat": 44,
   "flag": "🇧🇦",
-  "jumlah_penduduk": 3324,
+  "jumlah_penduduk": 3210847,
   "anggaran": 233,
   "pendapatan_nasional": "667",
   "religion": "Islam",

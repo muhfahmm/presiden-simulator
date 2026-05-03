@@ -5,7 +5,7 @@ export const kepulauan_faroe_profile = {
   "lon": -7,
   "lat": 62,
   "flag": "🇫🇴",
-  "jumlah_penduduk": 48497,
+  "jumlah_penduduk": 53429,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

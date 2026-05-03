@@ -5,7 +5,7 @@ export const uzbekistan_profile = {
   "lon": 64,
   "lat": 41,
   "flag": "🇺🇿",
-  "jumlah_penduduk": 32955,
+  "jumlah_penduduk": 38236704,
   "anggaran": 875,
   "pendapatan_nasional": "2500",
   "religion": "Islam",

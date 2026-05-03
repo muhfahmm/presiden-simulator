@@ -5,7 +5,7 @@ export const austria_profile = {
   "lon": 16.37,
   "lat": 48.2,
   "flag": "🇦🇹",
-  "jumlah_penduduk": 8841,
+  "jumlah_penduduk": 9159950,
   "anggaran": 4959,
   "pendapatan_nasional": "14168",
   "religion": "Katolik",

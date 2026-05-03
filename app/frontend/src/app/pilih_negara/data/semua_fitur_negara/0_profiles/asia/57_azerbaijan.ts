@@ -5,7 +5,7 @@ export const azerbaijan_profile = {
   "lon": 47.5,
   "lat": 40.5,
   "flag": "🇦🇿",
-  "jumlah_penduduk": 9940,
+  "jumlah_penduduk": 10259701,
   "anggaran": 535,
   "pendapatan_nasional": "1528",
   "religion": "Islam",

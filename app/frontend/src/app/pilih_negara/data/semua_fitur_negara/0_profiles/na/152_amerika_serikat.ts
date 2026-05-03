@@ -5,7 +5,7 @@ export const amerika_serikat_profile = {
   "lon": -77.03,
   "lat": 38.9,
   "flag": "🇺🇸",
-  "jumlah_penduduk": 326688,
+  "jumlah_penduduk": 341784857,
   "anggaran": 280022,
   "pendapatan_nasional": "800064",
   "religion": "Protestan",

@@ -5,7 +5,7 @@ export const mauritius_profile = {
   "lon": 57.55,
   "lat": -20.28333333,
   "flag": "🇲🇺",
-  "jumlah_penduduk": 1265,
+  "jumlah_penduduk": 1241856,
   "anggaran": 136,
   "pendapatan_nasional": "389",
   "religion": "Hindu",

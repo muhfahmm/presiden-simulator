@@ -5,7 +5,7 @@ export const republik_zambia_profile = {
   "lon": 30,
   "lat": -15,
   "flag": "🇿🇲",
-  "jumlah_penduduk": 17352,
+  "jumlah_penduduk": 19693423,
   "anggaran": 272,
   "pendapatan_nasional": "778",
   "religion": "Protestan",

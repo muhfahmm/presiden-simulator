@@ -5,7 +5,7 @@ export const somalia_profile = {
   "lon": 49,
   "lat": 10,
   "flag": "🇸🇴",
-  "jumlah_penduduk": 15008,
+  "jumlah_penduduk": 19655000,
   "anggaran": 78,
   "pendapatan_nasional": "222",
   "religion": "Islam",

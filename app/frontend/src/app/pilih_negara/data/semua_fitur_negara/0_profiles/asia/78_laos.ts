@@ -5,7 +5,7 @@ export const laos_profile = {
   "lon": 102.63,
   "lat": 17.97,
   "flag": "🇱🇦",
-  "jumlah_penduduk": 7062,
+  "jumlah_penduduk": 6961210,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Buddha",

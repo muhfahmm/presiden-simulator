@@ -5,7 +5,7 @@ export const prancis_profile = {
   "lon": 2,
   "lat": 46,
   "flag": "🇫🇷",
-  "jumlah_penduduk": 66977,
+  "jumlah_penduduk": 69081996,
   "anggaran": 30433,
   "pendapatan_nasional": "86951",
   "religion": "Katolik",

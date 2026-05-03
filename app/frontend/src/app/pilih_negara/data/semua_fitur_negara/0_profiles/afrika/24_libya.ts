@@ -5,7 +5,7 @@ export const libya_profile = {
   "lon": 13.1,
   "lat": 32.53,
   "flag": "🇱🇾",
-  "jumlah_penduduk": 6679,
+  "jumlah_penduduk": 7381023,
   "anggaran": 408,
   "pendapatan_nasional": "1167",
   "religion": "Islam",

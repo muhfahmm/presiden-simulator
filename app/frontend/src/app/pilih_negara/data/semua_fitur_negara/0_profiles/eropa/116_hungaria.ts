@@ -5,7 +5,7 @@ export const hungaria_profile = {
   "lon": 20,
   "lat": 47,
   "flag": "🇭🇺",
-  "jumlah_penduduk": 9776,
+  "jumlah_penduduk": 9489000,
   "anggaran": 2042,
   "pendapatan_nasional": "5834",
   "religion": "Katolik",

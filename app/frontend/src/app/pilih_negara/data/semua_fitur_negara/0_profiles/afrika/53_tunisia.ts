@@ -5,7 +5,7 @@ export const tunisia_profile = {
   "lon": 9,
   "lat": 34,
   "flag": "🇹🇳",
-  "jumlah_penduduk": 11565,
+  "jumlah_penduduk": 11972169,
   "anggaran": 457,
   "pendapatan_nasional": "1306",
   "religion": "Islam",

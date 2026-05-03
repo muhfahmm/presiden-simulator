@@ -5,7 +5,7 @@ export const palau_profile = {
   "lon": 134.5,
   "lat": 7.5,
   "flag": "🇵🇼",
-  "jumlah_penduduk": 17907,
+  "jumlah_penduduk": 16733,
   "anggaran": 10,
   "pendapatan_nasional": "15",
   "religion": "Protestan",

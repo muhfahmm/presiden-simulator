@@ -5,7 +5,7 @@ export const republik_sudan_profile = {
   "lon": 30,
   "lat": 15,
   "flag": "🇸🇩",
-  "jumlah_penduduk": 41802,
+  "jumlah_penduduk": 51662000,
   "anggaran": 243,
   "pendapatan_nasional": "694",
   "religion": "Islam",

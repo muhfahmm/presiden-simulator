@@ -5,7 +5,7 @@ export const latvia_profile = {
   "lon": 25,
   "lat": 57,
   "flag": "🇱🇻",
-  "jumlah_penduduk": 1927,
+  "jumlah_penduduk": 1857400,
   "anggaran": 418,
   "pendapatan_nasional": "1195",
   "religion": "Protestan",

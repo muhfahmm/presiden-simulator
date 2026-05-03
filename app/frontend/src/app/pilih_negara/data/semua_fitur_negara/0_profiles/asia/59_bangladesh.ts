@@ -5,7 +5,7 @@ export const bangladesh_profile = {
   "lon": 90,
   "lat": 24,
   "flag": "🇧🇩",
-  "jumlah_penduduk": 161356,
+  "jumlah_penduduk": 169828911,
   "anggaran": 4473,
   "pendapatan_nasional": "12779",
   "religion": "Islam",

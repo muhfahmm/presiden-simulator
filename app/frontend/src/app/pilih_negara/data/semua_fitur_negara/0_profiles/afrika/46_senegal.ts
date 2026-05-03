@@ -5,7 +5,7 @@ export const senegal_profile = {
   "lon": -14,
   "lat": 14,
   "flag": "🇸🇳",
-  "jumlah_penduduk": 15854,
+  "jumlah_penduduk": 19075959,
   "anggaran": 272,
   "pendapatan_nasional": "778",
   "religion": "Islam",

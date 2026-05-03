@@ -5,7 +5,7 @@ export const venezuela_profile = {
   "lon": -66,
   "lat": 8,
   "flag": "🇻🇪",
-  "jumlah_penduduk": 28870,
+  "jumlah_penduduk": 28300000,
   "anggaran": 924,
   "pendapatan_nasional": "2639",
   "religion": "Katolik",

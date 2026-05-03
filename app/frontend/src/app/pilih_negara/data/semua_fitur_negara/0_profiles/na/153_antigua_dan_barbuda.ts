@@ -5,7 +5,7 @@ export const antigua_dan_barbuda_profile = {
   "lon": -61.84,
   "lat": 17.11,
   "flag": "🇦🇬",
-  "jumlah_penduduk": 96286,
+  "jumlah_penduduk": 100772,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

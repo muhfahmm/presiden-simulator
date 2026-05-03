@@ -5,7 +5,7 @@ export const chad_profile = {
   "lon": 19,
   "lat": 15,
   "flag": "🇹🇩",
-  "jumlah_penduduk": 15478,
+  "jumlah_penduduk": 19340757,
   "anggaran": 117,
   "pendapatan_nasional": "333",
   "religion": "Islam",

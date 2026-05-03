@@ -5,7 +5,7 @@ export const kuwait_profile = {
   "lon": 47.97,
   "lat": 29.37,
   "flag": "🇰🇼",
-  "jumlah_penduduk": 4137,
+  "jumlah_penduduk": 4881254,
   "anggaran": 1507,
   "pendapatan_nasional": "4306",
   "religion": "Islam",

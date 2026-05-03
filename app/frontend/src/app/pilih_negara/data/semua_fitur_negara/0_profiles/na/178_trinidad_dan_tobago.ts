@@ -5,7 +5,7 @@ export const trinidad_dan_tobago_profile = {
   "lon": -61,
   "lat": 11,
   "flag": "🇹🇹",
-  "jumlah_penduduk": 1390,
+  "jumlah_penduduk": 1507782,
   "anggaran": 243,
   "pendapatan_nasional": "694",
   "religion": "Katolik",

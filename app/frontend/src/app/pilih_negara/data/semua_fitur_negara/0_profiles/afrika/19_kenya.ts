@@ -5,7 +5,7 @@ export const kenya_profile = {
   "lon": 38,
   "lat": 1,
   "flag": "🇰🇪",
-  "jumlah_penduduk": 51393,
+  "jumlah_penduduk": 53330978,
   "anggaran": 1070,
   "pendapatan_nasional": "3056",
   "religion": "Protestan",

@@ -5,7 +5,7 @@ export const chile_profile = {
   "lon": -71,
   "lat": -30,
   "flag": "🇨🇱",
-  "jumlah_penduduk": 18729,
+  "jumlah_penduduk": 20206953,
   "anggaran": 3257,
   "pendapatan_nasional": "9306",
   "religion": "Katolik",

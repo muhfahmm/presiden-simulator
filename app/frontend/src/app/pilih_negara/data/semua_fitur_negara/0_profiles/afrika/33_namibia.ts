@@ -5,7 +5,7 @@ export const namibia_profile = {
   "lon": 17,
   "lat": -22,
   "flag": "🇳🇦",
-  "jumlah_penduduk": 2448,
+  "jumlah_penduduk": 3022401,
   "anggaran": 126,
   "pendapatan_nasional": "361",
   "religion": "Protestan",

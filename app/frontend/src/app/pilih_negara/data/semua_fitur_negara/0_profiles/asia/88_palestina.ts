@@ -5,7 +5,7 @@ export const palestina_profile = {
   "lon": 35.2,
   "lat": 31.9,
   "flag": "🇵🇸",
-  "jumlah_penduduk": 4569,
+  "jumlah_penduduk": 5495000,
   "anggaran": 194,
   "pendapatan_nasional": "556",
   "religion": "Islam",

@@ -5,7 +5,7 @@ export const brunei_profile = {
   "lon": 114.94,
   "lat": 4.89,
   "flag": "🇧🇳",
-  "jumlah_penduduk": 429,
+  "jumlah_penduduk": 458600,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Islam",

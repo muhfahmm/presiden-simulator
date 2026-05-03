@@ -5,7 +5,7 @@ export const el_salvador_profile = {
   "lon": -88.91666666,
   "lat": 13.83333333,
   "flag": "🇸🇻",
-  "jumlah_penduduk": 6421,
+  "jumlah_penduduk": 6338193,
   "anggaran": 311,
   "pendapatan_nasional": "889",
   "religion": "Katolik",

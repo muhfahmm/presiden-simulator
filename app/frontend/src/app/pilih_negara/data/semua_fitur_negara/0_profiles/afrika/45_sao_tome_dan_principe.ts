@@ -5,7 +5,7 @@ export const sao_tome_dan_principe_profile = {
   "lon": 7,
   "lat": 1,
   "flag": "🇸🇹",
-  "jumlah_penduduk": 211,
+  "jumlah_penduduk": 235536,
   "anggaran": 10,
   "pendapatan_nasional": "17",
   "religion": "Katolik",

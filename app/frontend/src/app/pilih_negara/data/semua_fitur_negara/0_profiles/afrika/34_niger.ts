@@ -5,7 +5,7 @@ export const niger_profile = {
   "lon": 8,
   "lat": 16,
   "flag": "🇳🇪",
-  "jumlah_penduduk": 22443,
+  "jumlah_penduduk": 26333333,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Islam",

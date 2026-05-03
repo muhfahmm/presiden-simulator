@@ -5,7 +5,7 @@ export const belgia_profile = {
   "lon": 4.35,
   "lat": 50.85,
   "flag": "🇧🇪",
-  "jumlah_penduduk": 11433,
+  "jumlah_penduduk": 11930567,
   "anggaran": 6077,
   "pendapatan_nasional": "17362",
   "religion": "Katolik",

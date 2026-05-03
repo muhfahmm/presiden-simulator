@@ -5,7 +5,7 @@ export const lithuania_profile = {
   "lon": 25.19,
   "lat": 54.41,
   "flag": "🇱🇹",
-  "jumlah_penduduk": 2802,
+  "jumlah_penduduk": 2884359,
   "anggaran": 739,
   "pendapatan_nasional": "2111",
   "religion": "Katolik",

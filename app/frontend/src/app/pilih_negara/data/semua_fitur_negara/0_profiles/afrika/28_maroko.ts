@@ -5,7 +5,7 @@ export const maroko_profile = {
   "lon": -5,
   "lat": 32,
   "flag": "🇲🇦",
-  "jumlah_penduduk": 36029,
+  "jumlah_penduduk": 36828330,
   "anggaran": 1313,
   "pendapatan_nasional": "3750",
   "religion": "Islam",

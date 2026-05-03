@@ -5,7 +5,7 @@ export const inggris_profile = {
   "lon": -0.12,
   "lat": 51.5,
   "flag": "🇬🇧",
-  "jumlah_penduduk": 66460,
+  "jumlah_penduduk": 69487000,
   "anggaran": 34030,
   "pendapatan_nasional": "97230",
   "religion": "Protestan",

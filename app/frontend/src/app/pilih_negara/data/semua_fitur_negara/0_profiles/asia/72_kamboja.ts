@@ -5,7 +5,7 @@ export const kamboja_profile = {
   "lon": 104.91,
   "lat": 11.55,
   "flag": "🇰🇭",
-  "jumlah_penduduk": 16250,
+  "jumlah_penduduk": 17577760,
   "anggaran": 292,
   "pendapatan_nasional": "833",
   "religion": "Buddha",

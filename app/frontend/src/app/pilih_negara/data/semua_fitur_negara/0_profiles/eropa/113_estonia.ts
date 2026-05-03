@@ -5,7 +5,7 @@ export const estonia_profile = {
   "lon": 26,
   "lat": 59,
   "flag": "🇪🇪",
-  "jumlah_penduduk": 1322,
+  "jumlah_penduduk": 1374687,
   "anggaran": 389,
   "pendapatan_nasional": "1111",
   "religion": "Protestan",

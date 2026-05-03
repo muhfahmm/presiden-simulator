@@ -5,7 +5,7 @@ export const yunani_profile = {
   "lon": 22,
   "lat": 39,
   "flag": "🇬🇷",
-  "jumlah_penduduk": 10732,
+  "jumlah_penduduk": 10372335,
   "anggaran": 2236,
   "pendapatan_nasional": "6389",
   "religion": "Kristen Ortodoks",

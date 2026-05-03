@@ -5,7 +5,7 @@ export const pantai_gading_profile = {
   "lon": -5,
   "lat": 8,
   "flag": "🇨🇮",
-  "jumlah_penduduk": 25069,
+  "jumlah_penduduk": 28357022,
   "anggaran": 681,
   "pendapatan_nasional": "1945",
   "religion": "Islam",

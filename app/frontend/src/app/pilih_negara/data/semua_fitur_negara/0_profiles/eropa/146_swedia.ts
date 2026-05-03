@@ -5,7 +5,7 @@ export const swedia_profile = {
   "lon": 18.06,
   "lat": 59.32,
   "flag": "🇸🇪",
-  "jumlah_penduduk": 10175,
+  "jumlah_penduduk": 10604061,
   "anggaran": 5834,
   "pendapatan_nasional": "16668",
   "religion": "Protestan",

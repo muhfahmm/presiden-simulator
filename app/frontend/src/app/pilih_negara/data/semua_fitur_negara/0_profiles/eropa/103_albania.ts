@@ -5,7 +5,7 @@ export const albania_profile = {
   "lon": 19.81,
   "lat": 41.32,
   "flag": "🇦🇱",
-  "jumlah_penduduk": 2866,
+  "jumlah_penduduk": 2791765,
   "anggaran": 214,
   "pendapatan_nasional": "611",
   "religion": "Islam",

@@ -5,7 +5,7 @@ export const israel_profile = {
   "lon": 35.21,
   "lat": 31.76,
   "flag": "🇮🇱",
-  "jumlah_penduduk": 8883,
+  "jumlah_penduduk": 10244000,
   "anggaran": 5056,
   "pendapatan_nasional": "14446",
   "religion": "Yahudi",

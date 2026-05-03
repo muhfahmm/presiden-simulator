@@ -5,7 +5,7 @@ export const pakistan_profile = {
   "lon": 73.04,
   "lat": 33.68,
   "flag": "🇵🇰",
-  "jumlah_penduduk": 212215,
+  "jumlah_penduduk": 241499431,
   "anggaran": 3306,
   "pendapatan_nasional": "9445",
   "religion": "Islam",

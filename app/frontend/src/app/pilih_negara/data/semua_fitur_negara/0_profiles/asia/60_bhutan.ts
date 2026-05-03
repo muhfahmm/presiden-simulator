@@ -5,7 +5,7 @@ export const bhutan_profile = {
   "lon": 90.5,
   "lat": 27.5,
   "flag": "🇧🇹",
-  "jumlah_penduduk": 754,
+  "jumlah_penduduk": 784043,
   "anggaran": 27,
   "pendapatan_nasional": "78",
   "religion": "Buddha",

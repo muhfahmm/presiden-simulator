@@ -5,7 +5,7 @@ export const bulgaria_profile = {
   "lon": 25,
   "lat": 43,
   "flag": "🇧🇬",
-  "jumlah_penduduk": 7025,
+  "jumlah_penduduk": 6687717,
   "anggaran": 1021,
   "pendapatan_nasional": "2917",
   "religion": "Kristen Ortodoks",

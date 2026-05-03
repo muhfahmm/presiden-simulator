@@ -5,7 +5,7 @@ export const kazakhstan_profile = {
   "lon": 68,
   "lat": 48,
   "flag": "🇰🇿",
-  "jumlah_penduduk": 18272,
+  "jumlah_penduduk": 20532240,
   "anggaran": 2528,
   "pendapatan_nasional": "7223",
   "religion": "Islam",

@@ -5,7 +5,7 @@ export const paraguay_profile = {
   "lon": -58,
   "lat": -23,
   "flag": "🇵🇾",
-  "jumlah_penduduk": 6956,
+  "jumlah_penduduk": 6142180,
   "anggaran": 428,
   "pendapatan_nasional": "1222",
   "religion": "Katolik",

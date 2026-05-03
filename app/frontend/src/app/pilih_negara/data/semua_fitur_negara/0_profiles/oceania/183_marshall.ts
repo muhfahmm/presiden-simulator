@@ -5,7 +5,7 @@ export const marshall_profile = {
   "lon": 168,
   "lat": 9,
   "flag": "🇲🇭",
-  "jumlah_penduduk": 58413,
+  "jumlah_penduduk": 41996,
   "anggaran": 10,
   "pendapatan_nasional": "15",
   "religion": "Protestan",

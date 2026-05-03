@@ -5,7 +5,7 @@ export const australia_profile = {
   "lon": 149.13,
   "lat": -35.28,
   "flag": "🇦🇺",
-  "jumlah_penduduk": 24983,
+  "jumlah_penduduk": 26177413,
   "anggaran": 16724,
   "pendapatan_nasional": "47782",
   "religion": "Protestan",

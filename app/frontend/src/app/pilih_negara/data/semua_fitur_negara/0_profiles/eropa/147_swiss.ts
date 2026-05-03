@@ -5,7 +5,7 @@ export const swiss_profile = {
   "lon": 8,
   "lat": 47,
   "flag": "🇨🇭",
-  "jumlah_penduduk": 8513,
+  "jumlah_penduduk": 8962300,
   "anggaran": 8848,
   "pendapatan_nasional": "25280",
   "religion": "Katolik",

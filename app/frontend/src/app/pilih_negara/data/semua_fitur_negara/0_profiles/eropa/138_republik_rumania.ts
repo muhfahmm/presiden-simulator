@@ -5,7 +5,7 @@ export const republik_rumania_profile = {
   "lon": 25,
   "lat": 46,
   "flag": "🇷🇴",
-  "jumlah_penduduk": 19466,
+  "jumlah_penduduk": 19036031,
   "anggaran": 3403,
   "pendapatan_nasional": "9723",
   "religion": "Katolik",

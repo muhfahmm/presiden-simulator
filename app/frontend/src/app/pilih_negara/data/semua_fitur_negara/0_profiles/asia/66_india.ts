@@ -5,7 +5,7 @@ export const india_profile = {
   "lon": 77.2,
   "lat": 28.61,
   "flag": "🇮🇳",
-  "jumlah_penduduk": 1352617,
+  "jumlah_penduduk": 1417492000,
   "anggaran": 38309,
   "pendapatan_nasional": "109453",
   "religion": "Hindu",

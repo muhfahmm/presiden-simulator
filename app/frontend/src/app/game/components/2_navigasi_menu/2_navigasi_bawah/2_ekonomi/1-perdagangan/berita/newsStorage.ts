@@ -1,4 +1,5 @@
 import { NewsItem } from "./newsData";
+import { storageSafety } from "@/app/game/utils/storageSafety";
 
 const NEWS_STORAGE_KEY = "em_trade_news_data";
 
@@ -25,7 +26,11 @@ export const newsStorage = {
 
   saveNews: (data: NewsItem[]) => {
     if (typeof window === 'undefined') return;
-    localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(data));
+    
+    // Pruning: Keep only latest 100 news items to save storage quota
+    const prunedData = data.slice(0, 100);
+    
+    storageSafety.setItem(NEWS_STORAGE_KEY, JSON.stringify(prunedData));
     
     // Dispatch event for UI updates
     window.dispatchEvent(new Event('news_storage_updated'));

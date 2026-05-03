@@ -5,7 +5,7 @@ export const guinea_bissau_profile = {
   "lon": -15,
   "lat": 12,
   "flag": "🇬🇼",
-  "jumlah_penduduk": 1874,
+  "jumlah_penduduk": 2201310,
   "anggaran": 18,
   "pendapatan_nasional": "50",
   "religion": "Islam",

@@ -1,9 +1,9 @@
-
 import { detectConstructionDetails } from "./buildingLookupUtility";
 import { aiBuildingStorage } from "../../AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiDefenseStorage } from "../../AI_logic/6_AI_pertahanan/antarmuka_data_pertahanan/AIDefenseStorage";
 import { inboxStorage } from "../2_kotak_masuk/inboxStorage";
 import { formatGameDate, getStoredGameDate } from "../../1_navbar/5_navigasi_waktu/gameTime";
+import { storageSafety } from "@/app/game/utils/storageSafety";
 
 export interface NewsItem {
   id: string;
@@ -75,15 +75,11 @@ export const newsStorage = {
       timestamp: Date.now(),
     };
     news.unshift(newItem);
-    try {
-      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(news));
-    } catch (e) {
-      // Quota exceeded — keep only 150 items
-      const trimmed = news.slice(0, 150);
-      try {
-        localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
-      } catch (err) {}
-    }
+    
+    // Pruning: Keep only latest 150 items to save storage quota
+    const pruned = news.slice(0, 150);
+    storageSafety.setItem(NEWS_STORAGE_KEY, JSON.stringify(pruned));
+    
     window.dispatchEvent(new Event("news_updated"));
   },
 
@@ -152,18 +148,14 @@ export const newsStorage = {
 
     console.log(`[NewsStorage] Sync Complete (Strict Authority). Server: ${mapped.length}, Local Preserved: ${localNews.length}, Total: ${merged.length}`);
 
-    try {
-      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(merged));
-      // Trigger side-effects for AI construction and memberships
-      newsStorage.processConstructionEffects(merged);
-      newsStorage.processMembershipEffects(merged);
-    } catch (e) {
-      // Quota exceeded — aggressively trim to 150 items
-      const trimmed = merged.slice(0, 150);
-      try {
-        localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
-      } catch (err) {}
-    }
+    // Pruning: Keep only latest 150 items to save storage quota
+    const pruned = merged.slice(0, 150);
+    storageSafety.setItem(NEWS_STORAGE_KEY, JSON.stringify(pruned));
+    
+    // Trigger side-effects for AI construction and memberships
+    newsStorage.processConstructionEffects(pruned);
+    newsStorage.processMembershipEffects(pruned);
+    
     window.dispatchEvent(new Event("news_updated"));
   },
 
@@ -285,10 +277,11 @@ export const newsStorage = {
               regionalMembershipRouter.syncAIMemberships(regChanges);
               window.dispatchEvent(new Event("un_membership_updated"));
           }
-          localStorage.setItem(PROCESSED_KEY, JSON.stringify(Array.from(processedIds)));
           if (processedIds.size > 1000) {
               const array = Array.from(processedIds).slice(-500);
-              localStorage.setItem(PROCESSED_KEY, JSON.stringify(array));
+              storageSafety.setItem(PROCESSED_KEY, JSON.stringify(array));
+          } else {
+              storageSafety.setItem(PROCESSED_KEY, JSON.stringify(Array.from(processedIds)));
           }
       }
     } catch (e) {
@@ -483,17 +476,13 @@ export const newsStorage = {
     };
 
     const updated = [newItem, ...currentParsed];
-    try {
-      localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(updated));
-      // Trigger side-effects for AI construction
-      newsStorage.processConstructionEffects(updated);
-    } catch (e) {
-      // Quota exceeded — keep up to 150 items
-      const trimmed = updated.slice(0, 150);
-      try {
-        localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(trimmed));
-      } catch (err) {}
-    }
+    // Pruning: Keep only latest 150 items
+    const pruned = updated.slice(0, 150);
+    storageSafety.setItem(NEWS_STORAGE_KEY, JSON.stringify(pruned));
+    
+    // Trigger side-effects for AI construction
+    newsStorage.processConstructionEffects(pruned);
+    
     window.dispatchEvent(new Event("news_updated"));
   },
 
@@ -578,7 +567,7 @@ export const newsStorage = {
     });
 
     if (changed) {
-      localStorage.setItem(NEWS_EFFECTS_KEY, JSON.stringify(Array.from(processedIds).slice(-200))); // Keep last 200
+      storageSafety.setItem(NEWS_EFFECTS_KEY, JSON.stringify(Array.from(processedIds).slice(-200))); // Keep last 200
     }
   }
 };

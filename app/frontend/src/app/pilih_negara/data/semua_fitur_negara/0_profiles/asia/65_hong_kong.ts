@@ -5,7 +5,7 @@ export const hong_kong_profile = {
   "lon": 114.188,
   "lat": 22.267,
   "flag": "🇭🇰",
-  "jumlah_penduduk": 7451,
+  "jumlah_penduduk": 7414909,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Buddha",

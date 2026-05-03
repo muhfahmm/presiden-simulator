@@ -5,7 +5,7 @@ export const bolivia_profile = {
   "lon": -65,
   "lat": -17,
   "flag": "🇧🇴",
-  "jumlah_penduduk": 11353,
+  "jumlah_penduduk": 11365333,
   "anggaran": 428,
   "pendapatan_nasional": "1222",
   "religion": "Katolik",

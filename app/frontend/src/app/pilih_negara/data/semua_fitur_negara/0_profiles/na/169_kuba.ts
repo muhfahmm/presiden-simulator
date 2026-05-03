@@ -5,7 +5,7 @@ export const kuba_profile = {
   "lon": -80,
   "lat": 21.5,
   "flag": "🇨🇺",
-  "jumlah_penduduk": 11338,
+  "jumlah_penduduk": 9748007,
   "anggaran": 1021,
   "pendapatan_nasional": "2917",
   "religion": "Katolik",

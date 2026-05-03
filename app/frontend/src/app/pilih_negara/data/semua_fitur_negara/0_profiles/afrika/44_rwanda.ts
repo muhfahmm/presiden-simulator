@@ -5,7 +5,7 @@ export const rwanda_profile = {
   "lon": 30,
   "lat": -2,
   "flag": "🇷🇼",
-  "jumlah_penduduk": 12302,
+  "jumlah_penduduk": 14104969,
   "anggaran": 126,
   "pendapatan_nasional": "361",
   "religion": "Katolik",

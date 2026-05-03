@@ -5,7 +5,7 @@ export const nikaragua_profile = {
   "lon": -85,
   "lat": 13,
   "flag": "🇳🇮",
-  "jumlah_penduduk": 6466,
+  "jumlah_penduduk": 6916140,
   "anggaran": 165,
   "pendapatan_nasional": "472",
   "religion": "Katolik",

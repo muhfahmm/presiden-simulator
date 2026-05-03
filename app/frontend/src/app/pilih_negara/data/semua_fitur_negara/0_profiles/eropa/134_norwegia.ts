@@ -5,7 +5,7 @@ export const norwegia_profile = {
   "lon": 10.75,
   "lat": 59.91,
   "flag": "🇳🇴",
-  "jumlah_penduduk": 5312,
+  "jumlah_penduduk": 5627400,
   "anggaran": 5639,
   "pendapatan_nasional": "16112",
   "religion": "Protestan",

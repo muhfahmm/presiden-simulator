@@ -5,7 +5,7 @@ export const sierra_leone_profile = {
   "lon": -11.5,
   "lat": 8.5,
   "flag": "🇸🇱",
-  "jumlah_penduduk": 7650,
+  "jumlah_penduduk": 8642022,
   "anggaran": 39,
   "pendapatan_nasional": "111",
   "religion": "Islam",

@@ -54,6 +54,7 @@ type SimulationState struct {
 	NPCBuildingLevels  map[string]map[string]int    `json:"npcBuildingLevels"`
 	Relationships      map[string]map[string]*Relationship `json:"relationships"` // source -> target -> relationship
 	LastProcessedMonth time.Month                   `json:"lastProcessedMonth"`
+	RequestFullMatrix  bool                         `json:"-"` // Internal flag for lazy loading
 	Mu                 sync.Mutex                   `json:"-"`
 }
 
@@ -96,6 +97,7 @@ type NPCNationState struct {
 	PriceIndex    float64            `json:"priceIndex"`
 	Commodities   map[string]int     `json:"commodities"`   // Key: commodity key (e.g. "padi"), Value: stock qty
 	TradePartners []string           `json:"tradePartners"` // Names of trade partner countries from DB
+	Dirty         bool               `json:"-"`             // Delta update flag
 }
 
 type Relationship struct {

@@ -115,9 +115,9 @@ func InitializeRelationshipsLocked() error {
 // UpdateDailyRelationsLocked advances the simulation for all international relations by one day.
 // IMPORTANT: The caller must already hold core.GlobalState.Mu.Lock()
 func UpdateDailyRelationsLocked() {
-
-	if core.GlobalState.DayCounter % 5 == 0 {
-		fmt.Printf("[HUBUNGAN] Daily drift pulse at Day %d (processing %d nations)...\n", core.GlobalState.DayCounter, len(core.GlobalState.Relationships))
+	// THROTLLING: Only process relationship drift every 7 days (Weekly Drift)
+	if core.GlobalState.DayCounter % 7 != 0 {
+		return
 	}
 
 	for source, targets := range core.GlobalState.Relationships {
@@ -127,20 +127,29 @@ func UpdateDailyRelationsLocked() {
 				continue
 			}
 
-			// 1. Geopolitical Drift (Daily Scale)
-			drift := 0.015 
-			
-			// 2. Random Volatility (Stabilized)
-			volatility := (core.Rng.Float64() - 0.5) * 0.05 // +/- 0.025 jump daily
-			
-			// 3. Stability Alignment
-			// If both countries are very stable, relations tend to improve slightly
+			// 1. Geopolitical Drift (Polarized Daily Scale)
+			// Small positive drift for friends, small negative for rivals to create dynamic polarization
+			drift := 0.0
+			if rel.S > 65 {
+				drift = 0.035 // Stronger positive drift for allies
+			} else if rel.S > 50 {
+				drift = 0.015 // Slight positive drift for friends
+			} else if rel.S < 35 {
+				drift = -0.035 // Stronger negative drift for enemies
+			} else if rel.S < 50 {
+				drift = -0.015 // Slight negative drift for rivals
+			}
+
+			// 2. Random Volatility (Increased to make changes more noticeable)
+			volatility := (core.Rng.Float64() - 0.5) * 0.15 // +/- 0.075 jump daily
+
+			// 3. Status Bonuses & Stability Alignment
 			bonus := 0.0
 			sourceState := core.GlobalState.NPCStates[source]
 			targetState := core.GlobalState.NPCStates[target]
 			
-			// If it's the player, we check player stability
-			var sStab, tStab float64
+			// If both countries are very stable, relations tend to improve slightly
+			sStab, tStab := 50.0, 50.0 // Default to neutral stability
 			normalizedPlayer := core.NormalizeNationName(core.GlobalState.Player.Country)
 			
 			if source == normalizedPlayer {
@@ -156,11 +165,17 @@ func UpdateDailyRelationsLocked() {
 			}
 			
 			if sStab > 80 && tStab > 80 {
-				bonus = 0.01 // Tiny daily improvement for stable neighbors
+				bonus += 0.01 // Tiny daily improvement for stable neighbors
 			} else if sStab < 40 || tStab < 40 {
-				bonus = -0.01 // Tiny daily deterioration if one is unstable
+				bonus -= 0.01 // Tiny daily deterioration if one is unstable
 			}
 
+			// Add specific source stability bonus
+			if sStab > 85 {
+				bonus += 0.005
+			}
+
+			// 4. Final Calculation & Clamping
 			rel.S = math.Max(0, math.Min(100, rel.S + drift + volatility + bonus))
 			
 			// Update status based on score thresholds

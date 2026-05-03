@@ -5,7 +5,7 @@ export const eritrea_profile = {
   "lon": 39,
   "lat": 15,
   "flag": "🇪🇷",
-  "jumlah_penduduk": 6214,
+  "jumlah_penduduk": 3535603,
   "anggaran": 24,
   "pendapatan_nasional": "69",
   "religion": "Islam",

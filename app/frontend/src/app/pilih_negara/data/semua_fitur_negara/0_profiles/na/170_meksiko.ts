@@ -5,7 +5,7 @@ export const meksiko_profile = {
   "lon": -102,
   "lat": 23,
   "flag": "🇲🇽",
-  "jumlah_penduduk": 126191,
+  "jumlah_penduduk": 131001723,
   "anggaran": 17404,
   "pendapatan_nasional": "49726",
   "religion": "Katolik",

@@ -11,6 +11,7 @@ import { EksekutorPertahananAI } from "../components/AI_logic/6_AI_pertahanan/si
 import { EksekutorPembangunanAI } from "../components/AI_logic/5_AI_Pembangunan/sistem_tindakan_respon/EksekutorPembangunanAI";
 import { PusatKeputusanPertahanan } from "../components/AI_logic/6_AI_pertahanan/pusat_keputusan_pertahanan/PusatKeputusanPertahanan";
 import { RelationEngine } from '../components/modals/1_info_strategis/8_Hubungan/RelationEngine';
+import { RelationPersistence } from '../components/modals/1_info_strategis/8_Hubungan/RelationPersistence';
 import { GeopoliticalPulse } from '../logic/ai/geopolitical/GeopoliticalPulse';
 
 /**
@@ -63,8 +64,17 @@ export function useAIGameSync() {
           console.warn("[useAIGameSync] NPC State Sync Error:", e);
         }
       }
+      // 2. Sync Relationships (Diplomasi Bilateral) — Every 2 days to reduce lag
+      if (data.relationships && !isFreshSession && (gameDate.getDate() % 2 === 0 || data.resetTriggered)) {
+        try {
+          console.log(`[useAIGameSync] Syncing ${Object.keys(data.relationships).length} relationship sets from server.`);
+          RelationPersistence.syncFromServer(data.relationships, data.resetTriggered);
+        } catch (e) {
+          console.warn("[useAIGameSync] Relationship Sync Error:", e);
+        }
+      }
 
-      // 1. AI Diplomacy & Global Drift — Process MONTHLY on the 1st
+      // 3. Trigger Local AI logic for Monthly Turn (Fallback/Events)
       try {
         const isFirstDayOfMonth = gameDate.getDate() === 1;
         if (isFirstDayOfMonth) {

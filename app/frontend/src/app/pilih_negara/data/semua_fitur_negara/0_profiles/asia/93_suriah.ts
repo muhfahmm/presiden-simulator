@@ -5,7 +5,7 @@ export const suriah_profile = {
   "lon": 38,
   "lat": 35,
   "flag": "🇸🇾",
-  "jumlah_penduduk": 16906,
+  "jumlah_penduduk": 22125000,
   "anggaran": 117,
   "pendapatan_nasional": "333",
   "religion": "Islam",

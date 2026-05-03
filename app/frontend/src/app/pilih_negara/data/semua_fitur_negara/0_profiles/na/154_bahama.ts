@@ -5,7 +5,7 @@ export const bahama_profile = {
   "lon": -76,
   "lat": 24.25,
   "flag": "🇧🇸",
-  "jumlah_penduduk": 386,
+  "jumlah_penduduk": 398165,
   "anggaran": 136,
   "pendapatan_nasional": "389",
   "religion": "Protestan",

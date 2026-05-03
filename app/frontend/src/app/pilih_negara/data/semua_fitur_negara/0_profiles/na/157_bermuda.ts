@@ -5,7 +5,7 @@ export const bermuda_profile = {
   "lon": -64.75,
   "lat": 32.33333333,
   "flag": "🇧🇲",
-  "jumlah_penduduk": 63973,
+  "jumlah_penduduk": 64636,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Protestan",

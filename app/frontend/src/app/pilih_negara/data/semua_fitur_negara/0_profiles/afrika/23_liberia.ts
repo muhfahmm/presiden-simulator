@@ -5,7 +5,7 @@ export const liberia_profile = {
   "lon": -9.5,
   "lat": 6.5,
   "flag": "🇱🇷",
-  "jumlah_penduduk": 4819,
+  "jumlah_penduduk": 5612817,
   "anggaran": 39,
   "pendapatan_nasional": "111",
   "religion": "Protestan",

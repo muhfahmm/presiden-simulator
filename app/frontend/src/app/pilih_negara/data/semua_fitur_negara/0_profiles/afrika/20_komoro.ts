@@ -5,7 +5,7 @@ export const komoro_profile = {
   "lon": 44.25,
   "lat": -12.16666666,
   "flag": "🇰🇲",
-  "jumlah_penduduk": 832,
+  "jumlah_penduduk": 866628,
   "anggaran": 13,
   "pendapatan_nasional": "36",
   "religion": "Islam",

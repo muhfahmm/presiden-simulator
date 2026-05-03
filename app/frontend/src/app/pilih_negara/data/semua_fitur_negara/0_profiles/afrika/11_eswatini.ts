@@ -5,7 +5,7 @@ export const eswatini_profile = {
   "lon": 31.5,
   "lat": -26.5,
   "flag": "🇸🇿",
-  "jumlah_penduduk": 1136,
+  "jumlah_penduduk": 1242822,
   "anggaran": 44,
   "pendapatan_nasional": "125",
   "religion": "Protestan",

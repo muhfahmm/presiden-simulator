@@ -5,7 +5,7 @@ export const botswana_profile = {
   "lon": 24,
   "lat": -22,
   "flag": "🇧🇼",
-  "jumlah_penduduk": 2254,
+  "jumlah_penduduk": 2675063,
   "anggaran": 194,
   "pendapatan_nasional": "556",
   "religion": "Protestan",

@@ -5,7 +5,7 @@ export const ghana_profile = {
   "lon": -2,
   "lat": 8,
   "flag": "🇬🇭",
-  "jumlah_penduduk": 29767,
+  "jumlah_penduduk": 30832019,
   "anggaran": 739,
   "pendapatan_nasional": "2111",
   "religion": "Protestan",

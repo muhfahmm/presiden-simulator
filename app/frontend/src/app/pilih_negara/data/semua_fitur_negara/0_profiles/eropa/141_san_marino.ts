@@ -5,7 +5,7 @@ export const san_marino_profile = {
   "lon": 12.41666666,
   "lat": 43.76666666,
   "flag": "🇸🇲",
-  "jumlah_penduduk": 33785,
+  "jumlah_penduduk": 34156,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

@@ -5,7 +5,7 @@ export const vietnam_profile = {
   "lon": 105.83,
   "lat": 21.02,
   "flag": "🇻🇳",
-  "jumlah_penduduk": 95540,
+  "jumlah_penduduk": 102300000,
   "anggaran": 4181,
   "pendapatan_nasional": "11945",
   "religion": "Ateisme",

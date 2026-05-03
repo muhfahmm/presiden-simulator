@@ -5,7 +5,7 @@ export const slowakia_profile = {
   "lon": 19.5,
   "lat": 48.66666666,
   "flag": "🇸🇰",
-  "jumlah_penduduk": 5447,
+  "jumlah_penduduk": 5423229,
   "anggaran": 1264,
   "pendapatan_nasional": "3611",
   "religion": "Katolik",

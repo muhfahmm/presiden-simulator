@@ -5,7 +5,7 @@ export const kanada_profile = {
   "lon": -75.69,
   "lat": 45.42,
   "flag": "🇨🇦",
-  "jumlah_penduduk": 37058,
+  "jumlah_penduduk": 41472081,
   "anggaran": 21780,
   "pendapatan_nasional": "62227",
   "religion": "Protestan",

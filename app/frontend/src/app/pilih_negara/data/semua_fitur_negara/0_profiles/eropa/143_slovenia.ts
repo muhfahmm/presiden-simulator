@@ -5,7 +5,7 @@ export const slovenia_profile = {
   "lon": 14.81666666,
   "lat": 46.11666666,
   "flag": "🇸🇮",
-  "jumlah_penduduk": 2074,
+  "jumlah_penduduk": 2123949,
   "anggaran": 632,
   "pendapatan_nasional": "1806",
   "religion": "Katolik",

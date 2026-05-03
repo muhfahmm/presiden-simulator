@@ -5,7 +5,7 @@ export const selandia_baru_profile = {
   "lon": 174.77,
   "lat": -41.28,
   "flag": "🇳🇿",
-  "jumlah_penduduk": 4841,
+  "jumlah_penduduk": 5342000,
   "anggaran": 2431,
   "pendapatan_nasional": "6945",
   "religion": "Protestan",

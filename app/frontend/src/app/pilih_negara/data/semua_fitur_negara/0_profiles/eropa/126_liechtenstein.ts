@@ -5,7 +5,7 @@ export const liechtenstein_profile = {
   "lon": 9.31,
   "lat": 47.08,
   "flag": "🇱🇮",
-  "jumlah_penduduk": 37910,
+  "jumlah_penduduk": 41237,
   "anggaran": 97,
   "pendapatan_nasional": "278",
   "religion": "Katolik",

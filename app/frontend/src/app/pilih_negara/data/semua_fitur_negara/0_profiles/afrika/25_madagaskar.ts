@@ -5,7 +5,7 @@ export const madagaskar_profile = {
   "lon": 47.31,
   "lat": -18.55,
   "flag": "🇲🇬",
-  "jumlah_penduduk": 26262,
+  "jumlah_penduduk": 28915653,
   "anggaran": 146,
   "pendapatan_nasional": "417",
   "religion": "Protestan",

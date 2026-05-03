@@ -5,7 +5,7 @@ export const qatar_profile = {
   "lon": 51.53,
   "lat": 25.28,
   "flag": "🇶🇦",
-  "jumlah_penduduk": 2782,
+  "jumlah_penduduk": 3214609,
   "anggaran": 2139,
   "pendapatan_nasional": "6112",
   "religion": "Islam",

@@ -5,7 +5,7 @@ export const argentina_profile = {
   "lon": -58.38,
   "lat": -34.6,
   "flag": "🇦🇷",
-  "jumlah_penduduk": 44495,
+  "jumlah_penduduk": 46387098,
   "anggaran": 6223,
   "pendapatan_nasional": "17779",
   "religion": "Katolik",

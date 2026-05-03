@@ -5,7 +5,7 @@ export const mozambik_profile = {
   "lon": 35,
   "lat": -18.25,
   "flag": "🇲🇿",
-  "jumlah_penduduk": 29496,
+  "jumlah_penduduk": 30066648,
   "anggaran": 175,
   "pendapatan_nasional": "500",
   "religion": "Katolik",

@@ -5,7 +5,7 @@ export const sudan_selatan_profile = {
   "lon": 30,
   "lat": 7,
   "flag": "🇸🇸",
-  "jumlah_penduduk": 10976,
+  "jumlah_penduduk": 11088796,
   "anggaran": 49,
   "pendapatan_nasional": "139",
   "religion": "Katolik",

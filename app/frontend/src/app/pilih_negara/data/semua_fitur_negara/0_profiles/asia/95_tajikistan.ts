@@ -5,7 +5,7 @@ export const tajikistan_profile = {
   "lon": 71,
   "lat": 39,
   "flag": "🇹🇯",
-  "jumlah_penduduk": 9101,
+  "jumlah_penduduk": 9806453,
   "anggaran": 117,
   "pendapatan_nasional": "333",
   "religion": "Islam",
