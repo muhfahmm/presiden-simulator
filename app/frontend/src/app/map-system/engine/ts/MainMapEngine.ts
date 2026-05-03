@@ -217,9 +217,17 @@ export class MainMapEngine extends BaseMapEngine {
 
   public resize(width: number, height: number) {
     super.resize(width, height);
+    this.capitalCoordCache.clear();
     // Re-cache all pixels on resize
     this.activeInvasions.forEach(inv => this.cacheInvasionPixels(inv));
   }
+
+  public setCountries(countries: any[]) {
+    super.setCountries(countries);
+    this.capitalCoordCache.clear();
+  }
+
+  private capitalCoordCache: Map<string, { x: number, y: number }> = new Map();
 
   protected drawOverlays(): void {
     this.drawInvasionPaths();
@@ -362,18 +370,18 @@ export class MainMapEngine extends BaseMapEngine {
     // Removed expensive shadowBlur for performance
 
     for (const country of this.countries) {
-      // Lazy Projection Cache
-      if (!country._px || !country._py) {
+      const id = country.name_id || country.name_en || country.nama_negara;
+      let coords = this.capitalCoordCache.get(id);
+
+      if (!coords) {
         const lat = country.lat !== undefined ? country.lat : country.latitude;
         const lon = country.lon !== undefined ? country.lon : country.longitude;
         if (lat === undefined || lon === undefined) continue;
-        const { x, y } = this.projector.project(Number(lon), Number(lat));
-        country._px = x;
-        country._py = y;
+        coords = this.projector.project(Number(lon), Number(lat));
+        this.capitalCoordCache.set(id, coords);
       }
 
-      const x = country._px;
-      const y = country._py;
+      const { x, y } = coords;
 
       // Viewport Culling: Skip if outside visible area
       if (x < vLeft || x > vRight || y < vTop || y > vBottom) continue;

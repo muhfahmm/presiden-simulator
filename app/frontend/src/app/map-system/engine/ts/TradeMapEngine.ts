@@ -98,6 +98,11 @@ export class TradeMapEngine extends BaseMapEngine {
     ctx.stroke(path);
   }
 
+  public resize(width: number, height: number) {
+    super.resize(width, height);
+    this.activeRoutesCache = {};
+  }
+
   protected drawOverlays(): void {
     const ctx = this.tacticalCtx;
     
@@ -114,12 +119,6 @@ export class TradeMapEngine extends BaseMapEngine {
     const now = performance.now();
     const deltaTime = this.lastTimestamp === 0 ? 0 : now - this.lastTimestamp;
     this.lastTimestamp = now;
-
-    if ((this as any)._lastW !== this.width || (this as any)._lastH !== this.height) {
-        this.activeRoutesCache = {};
-        (this as any)._lastW = this.width;
-        (this as any)._lastH = this.height;
-    }
 
     if (!this.gameState.isPaused) {
       this.requestRender();

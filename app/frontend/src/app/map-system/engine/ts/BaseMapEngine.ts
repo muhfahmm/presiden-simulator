@@ -107,6 +107,16 @@ export abstract class BaseMapEngine {
   }
 
   public invalidateCache() {
+    this.path2dCache.clear();
+    this.bboxCache.clear();
+    
+    // Pre-calculate BBOX for all features for fast culling
+    if (this.data && this.data.features) {
+        for (const feature of this.data.features) {
+            this.calculateAndCacheBBox(feature);
+        }
+    }
+
     this.needsBaseUpdate = true;
     this.requestRender();
   }

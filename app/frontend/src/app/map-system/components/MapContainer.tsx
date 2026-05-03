@@ -185,11 +185,15 @@ export default function MapContainer({
         engineRef.current = engine;
     }
 
-    const handleResize = () => {
-      if (!containerRef.current || !baseCanvasRef.current || !tacticalCanvasRef.current || !engineRef.current) return;
-      const newWidth = containerRef.current.clientWidth;
-      const newHeight = containerRef.current.clientHeight;
+    const handleResize = (entries: ResizeObserverEntry[]) => {
+      const entry = entries[0];
+      if (!entry || !baseCanvasRef.current || !tacticalCanvasRef.current || !engineRef.current) return;
       
+      const newWidth = entry.contentRect.width;
+      const newHeight = entry.contentRect.height;
+      
+      if (newWidth === 0 || newHeight === 0) return;
+
       baseCanvasRef.current.width = newWidth;
       baseCanvasRef.current.height = newHeight;
       tacticalCanvasRef.current.width = newWidth;
@@ -198,11 +202,11 @@ export default function MapContainer({
       engineRef.current.resize(newWidth, newHeight);
     };
 
-    window.addEventListener('resize', handleResize);
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(containerRef.current);
+
     return () => {
-        window.removeEventListener('resize', handleResize);
-        // Do NOT stop loop here to keep it alive during micro-remounts
-        // It will be stopped by the next mount if mode changes
+        resizeObserver.disconnect();
     };
   }, [data, countries, mode]);
 
