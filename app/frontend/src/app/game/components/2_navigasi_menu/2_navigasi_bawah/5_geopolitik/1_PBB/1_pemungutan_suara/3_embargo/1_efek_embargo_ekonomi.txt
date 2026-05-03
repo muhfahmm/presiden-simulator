@@ -4,37 +4,42 @@ KONFIGURASI EFEK: EMBARGO EKONOMI TOTAL (TOTAL TRADE)
 
 1. SEKTOR EKONOMI & PERDAGANGAN
 ------------------------------------------------------------
-* Efek Utama: Penurunan -80% seluruh Pendapatan Perdagangan.
-* Efek Sumber Daya: Penurunan -50% Pendapatan dari Resource (Emas, Minyak, dll).
-* Pembatasan: Tombol "Tambah Mitra Dagang" dinonaktifkan (Status: Frozen).
-* Sinyal Visual: Banner Merah (Rose) pulsing "EMBARGO EKONOMI AKTIF" di Hub Perdagangan.
+* [ ] Efek Utama: Penurunan -80% seluruh Pendapatan Perdagangan.
+* [ ] Efek Sumber Daya: Penurunan -50% Pendapatan dari Resource (Emas, Minyak, dll).
+* [ ] Pembatasan: Tombol "Tambah Mitra Dagang" dinonaktifkan (Status: Frozen).
+* [ ] Sinyal Visual: Banner Merah (Rose) pulsing "EMBARGO EKONOMI AKTIF" di Hub Perdagangan.
+
 
 2. SEKTOR PERPAJAKAN (TAXATION)
 ------------------------------------------------------------
-* Item Terdampak: 
-  - Bea Cukai (-80%)
-  - Tarif Ekspor (-80%)
-  - Tarif Impor (-80%)
-* Sinyal Visual: Nilai pendapatan dicoret (strikethrough) dengan warna merah Rose.
-* Notifikasi: Banner PBB berubah warna dari Kuning (Sanksi) menjadi Merah (Embargo).
+* [ ] Item Terdampak: 
+  - [ ] Bea Cukai (-80%)
+  - [ ] Tarif Ekspor (-80%)
+  - [ ] Tarif Impor (-80%)
+* [ ] Sinyal Visual: Nilai pendapatan dicoret (strikethrough) dengan warna merah Rose.
+* [ ] Notifikasi: Banner PBB berubah warna dari Kuning (Sanksi) menjadi Merah (Embargo).
+
 
 3. SEKTOR PEMBANGUNAN & INDUSTRI
 ------------------------------------------------------------
-* Biaya Konstruksi: Naik +30% (Multiplier 1.3x) untuk semua gedung baru.
-* Alasan: Kelangkaan bahan baku impor dan logistik internasional yang terputus.
-* Notifikasi: Warning "Biaya Naik akibat Embargo" pada modal pembangunan.
+* [ ] Biaya Konstruksi: Naik +30% (Multiplier 1.3x) untuk semua gedung baru.
+* [ ] Alasan: Kelangkaan bahan baku impor dan logistik internasional yang terputus.
+* [ ] Notifikasi: Warning "Biaya Naik akibat Embargo" pada modal pembangunan.
+
 
 4. SEKTOR PERTAHANAN (MILITER)
 ------------------------------------------------------------
-* Biaya Produksi: Kenaikan biaya pengadaan unit militer sebesar 15%.
-* Kompleksitas: Efek bertumpuk (stack) jika Embargo Senjata juga aktif.
-* Kecepatan: (Opsional) Penurunan kecepatan produksi unit berat sebesar 10%.
+* [ ] Biaya Produksi: Kenaikan biaya pengadaan unit militer sebesar 15%.
+* [ ] Kompleksitas: Efek bertumpuk (stack) jika Embargo Senjata juga aktif.
+* [ ] Kecepatan: (Opsional) Penurunan kecepatan produksi unit berat sebesar 10%.
+
 
 5. STATUS STRATEGIS NASIONAL
 ------------------------------------------------------------
-* Kesehatan Fiskal: Berubah menjadi "KRITIS (EMBARGO EKONOMI)".
-* Daily Budget: Angka surplus/defisit harian berkedip merah jika terjadi defisit akibat embargo.
-* Dashboard: Icon Kas Negara di Navbar berdenyut merah pelan.
+* [ ] Kesehatan Fiskal: Berubah menjadi "KRITIS (EMBARGO EKONOMI)".
+* [ ] Daily Budget: Angka surplus/defisit harian berkedip merah jika terjadi defisit akibat embargo.
+* [ ] Dashboard: Icon Kas Negara di Navbar berdenyut merah pelan.
+
 
 ============================================================
 Dibuat untuk integrasi Geopolitik PBB - Presiden Simulator

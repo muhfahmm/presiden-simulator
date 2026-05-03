@@ -4,31 +4,36 @@ KONFIGURASI EFEK: EMBARGO PENJUALAN SUMBER DAYA (RESOURCE)
 
 1. SEKTOR EKONOMI RILL (PERTAMBANGAN & ENERGI)
 ------------------------------------------------------------
-* Pendapatan Utama: Penurunan -60% (Multiplier 0.4x) pada pendapatan dari sektor SDA.
-* Komoditas Terdampak: Emas, Uranium, Minyak Bumi, Gas Alam, Batu Bara, dan Mineral Kritis.
-* Akses Pasar: Larangan ekspor sumber daya mentah ke pasar internasional.
-* Sinyal Visual: Icon Sumber Daya (Pickaxe/Mountain) di dashboard akan berwarna Merah Kusam.
+* [ ] Pendapatan Utama: Penurunan -60% (Multiplier 0.4x) pada pendapatan dari sektor SDA.
+* [ ] Komoditas Terdampak: Emas, Uranium, Minyak Bumi, Gas Alam, Batu Bara, dan Mineral Kritis.
+* [ ] Akses Pasar: Larangan ekspor sumber daya mentah ke pasar internasional.
+* [ ] Sinyal Visual: Icon Sumber Daya (Pickaxe/Mountain) di dashboard akan berwarna Merah Kusam.
+
 
 2. SEKTOR INDUSTRI & MANUFAKTUR DOMESTIK
 ------------------------------------------------------------
-* Biaya Produksi: Kenaikan biaya operasional industri sebesar +20%.
-* Kelangkaan: Stok bahan mentah (Asam Sulfat, Besi, Nikel) untuk industri lokal menipis.
-* Efek Domino: Penurunan output produksi barang jadi akibat gangguan pasokan bahan dasar.
+* [ ] Biaya Produksi: Kenaikan biaya operasional industri sebesar +20%.
+* [ ] Kelangkaan: Stok bahan mentah (Asam Sulfat, Besi, Nikel) untuk industri lokal menipis.
+* [ ] Efek Domino: Penurunan output produksi barang jadi akibat gangguan pasokan bahan dasar.
+
 
 3. SEKTOR PEMBANGUNAN (MATERIL)
 ------------------------------------------------------------
-* Biaya Konstruksi: Harga Besi, Baja, dan Semen lokal naik +15%.
-* Kenaikan Biaya: Proyek infrastruktur besar mengalami pembengkakan anggaran.
+* [ ] Biaya Konstruksi: Harga Besi, Baja, dan Semen lokal naik +15%.
+* [ ] Kenaikan Biaya: Proyek infrastruktur besar mengalami pembengkakan anggaran.
+
 
 4. SEKTOR ENERGI & ELEKTRIFIKASI
 ------------------------------------------------------------
-* Kapasitas Listrik: Risiko penurunan efisiensi pembangkit listrik (PLTU/PLTG) sebesar 10% jika terjadi kelangkaan suku cadang resource.
-* Harga Energi: Biaya listrik domestik naik, menurunkan kepuasan rakyat sebesar -2 poin per hari.
+* [ ] Kapasitas Listrik: Risiko penurunan efisiensi pembangkit listrik (PLTU/PLTG) sebesar 10% jika terjadi kelangkaan suku cadang resource.
+* [ ] Harga Energi: Biaya listrik domestik naik, menurunkan kepuasan rakyat sebesar -2 poin per hari.
+
 
 5. GEOPOLITIK & STABILITAS
 ------------------------------------------------------------
-* Hubungan: Hubungan dengan mitra industri berat internasional memburuk.
-* Stabilitas: Risiko kerusuhan di wilayah pertambangan akibat penurunan gaji buruh tambang.
+* [ ] Hubungan: Hubungan dengan mitra industri berat internasional memburuk.
+* [ ] Stabilitas: Risiko kerusuhan di wilayah pertambangan akibat penurunan gaji buruh tambang.
+
 
 ============================================================
 Dibuat untuk integrasi Geopolitik PBB - Presiden Simulator

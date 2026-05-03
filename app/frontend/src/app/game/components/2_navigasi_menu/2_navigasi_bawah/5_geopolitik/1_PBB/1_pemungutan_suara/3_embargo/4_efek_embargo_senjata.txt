@@ -4,33 +4,37 @@ KONFIGURASI EFEK: EMBARGO SENJATA (ARMS EMBARGO)
 
 1. SEKTOR PRODUKSI MILITER DOMESTIK
 ------------------------------------------------------------
-* Kecepatan Kerja: Penurunan -40% (Multiplier 0.6x) pada semua antrian produksi militer.
-* Biaya Manufaktur: Biaya produksi unit di pabrik senjata naik +15% akibat impor komponen ilegal yang mahal.
-* Komponen Langka: Mesin jet, sistem radar canggih, dan hulu ledak nuklir/konvensional sulit didapat.
-* Sinyal Visual: Progress bar produksi militer berwarna Merah Rose dan berkedip cepat.
+* [ ] Kecepatan Kerja: Penurunan -40% (Multiplier 0.6x) pada semua antrian produksi militer.
+* [ ] Biaya Manufaktur: Biaya produksi unit di pabrik senjata naik +15% akibat impor komponen ilegal yang mahal.
+* [ ] Komponen Langka: Mesin jet, sistem radar canggih, dan hulu ledak nuklir/konvensional sulit didapat.
+* [ ] Sinyal Visual: Progress bar produksi militer berwarna Merah Rose dan berkedip cepat.
+
 
 2. SEKTOR AKUISISI & KERJASAMA PERTAHANAN
 ------------------------------------------------------------
-* Impor Alutsista: Penutupan total akses pembelian unit dari "Pasar Senjata Internasional".
-* Kerjasama: Pembatalan semua rencana latihan militer bersama (Joint Exercises).
-* Upgrade Armada: Biaya modernisasi unit lama naik +30% karena keterbatasan teknologi suku cadang.
+* [ ] Impor Alutsista: Penutupan total akses pembelian unit dari "Pasar Senjata Internasional".
+* [ ] Kerjasama: Pembatalan semua rencana latihan militer bersama (Joint Exercises).
+* [ ] Upgrade Armada: Biaya modernisasi unit lama naik +30% karena keterbatasan teknologi suku cadang.
+
 
 3. KESIAPAN TEMPUR & PEMELIHARAAN
 ------------------------------------------------------------
-* Maintenance: Biaya perawatan armada militer aktif naik 10%.
-* Readiness: Penurunan perlahan tingkat kesiapan tempur (Combat Readiness) sebesar -0.5% per hari.
-* Logistik: Gangguan pada rantai pasok munisi dan bahan bakar militer tingkat tinggi.
+* [ ] Maintenance: Biaya perawatan armada militer aktif naik 10%.
+* [ ] Readiness: Penurunan perlahan tingkat kesiapan tempur (Combat Readiness) sebesar -0.5% per hari.
+* [ ] Logistik: Gangguan pada rantai pasok munisi dan bahan bakar militer tingkat tinggi.
 
 4. SEKTOR RISET MILITER
 ------------------------------------------------------------
-* Inovasi: Efisiensi riset teknologi militer (Weaponry R&D) turun sebesar -25%.
-* Spionase: Peningkatan risiko kegagalan misi intelijen militer di luar negeri.
+* [ ] Inovasi: Efisiensi riset teknologi militer (Weaponry R&D) turun sebesar -25%.
+* [ ] Spionase: Peningkatan risiko kegagalan misi intelijen militer di luar negeri.
+
 
 5. GEOPOLITIK & KEAMANAN INTERNASIONAL
 ------------------------------------------------------------
-* Status: Negara dalam status "Pengawasan Militer Ketat" oleh Dewan Keamanan PBB.
-* Hubungan: Penurunan signifikan pada skor opini dari semua negara anggota PBB.
-* Efek Psikologis: Penurunan kepercayaan jenderal-jenderal militer terhadap kepemimpinan presiden.
+* [ ] Status: Negara dalam status "Pengawasan Militer Ketat" oleh Dewan Keamanan PBB.
+* [ ] Hubungan: Penurunan signifikan pada skor opini dari semua negara anggota PBB.
+* [ ] Efek Psikologis: Penurunan kepercayaan jenderal-jenderal militer terhadap kepemimpinan presiden.
+
 
 ============================================================
 Dibuat untuk integrasi Geopolitik PBB - Presiden Simulator

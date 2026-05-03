@@ -4,33 +4,38 @@ KONFIGURASI EFEK: SANKSI EKONOMI (ECONOMIC SANCTIONS)
 
 1. SEKTOR FISKAL & PENDAPATAN NEGARA
 ------------------------------------------------------------
-* Pendapatan Pajak: Penurunan -25% (Multiplier 0.75x) pada semua jenis pajak domestik.
-* Pendapatan Harian: Penurunan otomatis pada total revenue harian sebesar 25%.
-* Sinyal Visual: Nilai pendapatan berwarna Kuning Amber dengan efek strikethrough pada nilai asli.
+* [ ] Pendapatan Pajak: Penurunan -25% (Multiplier 0.75x) pada semua jenis pajak domestik.
+* [ ] Pendapatan Harian: Penurunan otomatis pada total revenue harian sebesar 25%.
+* [ ] Sinyal Visual: Nilai pendapatan berwarna Kuning Amber dengan efek strikethrough pada nilai asli.
+
 
 2. SEKTOR PERDAGANGAN LUAR NEGERI
 ------------------------------------------------------------
-* Efisiensi Dagang: Penurunan -25% pada seluruh pendapatan dari rute perdagangan aktif.
-* Bea Cukai: Penurunan efektivitas pemungutan bea cukai internasional.
-* Sinyal Visual: Banner Kuning "NEGARA DALAM SANKSI EKONOMI" di Hub Ekonomi.
+* [ ] Efisiensi Dagang: Penurunan -25% pada seluruh pendapatan dari rute perdagangan aktif.
+* [ ] Bea Cukai: Penurunan efektivitas pemungutan bea cukai internasional.
+* [ ] Sinyal Visual: Banner Kuning "NEGARA DALAM SANKSI EKONOMI" di Hub Ekonomi.
+
 
 3. SEKTOR PEMBANGUNAN & INVESTASI
 ------------------------------------------------------------
-* Biaya Konstruksi: Kenaikan biaya pembangunan gedung baru sebesar +15% (Multiplier 1.15x).
-* Alasan: Kesulitan akses modal internasional dan biaya transaksi keuangan yang lebih tinggi.
-* Investasi: Perlambatan masuknya investasi asing langsung (FDI) sebesar 10%.
+* [ ] Biaya Konstruksi: Kenaikan biaya pembangunan gedung baru sebesar +15% (Multiplier 1.15x).
+* [ ] Alasan: Kesulitan akses modal internasional dan biaya transaksi keuangan yang lebih tinggi.
+* [ ] Investasi: Perlambatan masuknya investasi asing langsung (FDI) sebesar 10%.
+
 
 4. SEKTOR KEUANGAN & PERBANKAN
 ------------------------------------------------------------
-* Aset Internasional: Pembekuan sebagian aset negara di bank-bank internasional.
-* Hutang Luar Negeri: (Potensi) Peningkatan beban bunga hutang akibat penurunan credit rating.
-* Transaksi: Biaya administrasi transfer dana internasional naik secara signifikan.
+* [ ] Aset Internasional: Pembekuan sebagian aset negara di bank-bank internasional.
+* [ ] Hutang Luar Negeri: (Potensi) Peningkatan beban bunga hutang akibat penurunan credit rating.
+* [ ] Transaksi: Biaya administrasi transfer dana internasional naik secara signifikan.
+
 
 5. STATUS & REPUTASI GLOBAL
 ------------------------------------------------------------
-* Kesehatan Fiskal: Berubah menjadi "TERBATAS (SANKSI EKONOMI)".
-* Hubungan: Penurunan bertahap pada opini diplomatik dari negara-negara anggota PBB.
-* Visual: Dashboard keuangan utama akan memiliki aura amber untuk memperingatkan limitasi ekonomi.
+* [ ] Kesehatan Fiskal: Berubah menjadi "TERBATAS (SANKSI EKONOMI)".
+* [ ] Hubungan: Penurunan bertahap pada opini diplomatik dari negara-negara anggota PBB.
+* [ ] Visual: Dashboard keuangan utama akan memiliki aura amber untuk memperingatkan limitasi ekonomi.
+
 
 ============================================================
 Dibuat untuk integrasi Geopolitik PBB - Presiden Simulator
