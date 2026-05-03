@@ -878,6 +878,9 @@ func handleLoad(w http.ResponseWriter, r *http.Request) {
 	}
 	relRows.Close()
 
+	// 5. REPAIR: Enforce symmetry and clamping after loading from potentially old/asymmetric save data
+	server_hubungan.EnforceSymmetryAndClampingLocked()
+
 	fmt.Printf("[DB] Session LOADED: %s (%s)\n", country, sessionID)
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]string{"status": "loaded", "country": country})
@@ -1598,11 +1601,13 @@ func invokePolyglotWorkers(dateStr string) {
 		core.AddNewsItem("Python AI", "Analisis Strategi Ekonomi", string(pyOut), "economy", "low", dateStr)
 	}
 
-	// Rust Worker (Massive Matrix Drift)
+	// Rust Worker (Massive Matrix Drift) - DISABLED to maintain 0.1 precision
+	/*
 	rustOut, err := exec.Command("../rust/map_engine/map_engine.exe").Output()
 	if err == nil && len(rustOut) > 0 {
 		core.AddNewsItem("Rust Engine", "Pemrosesan Data Militer", string(rustOut), "global", "low", dateStr)
 	}
+	*/
 
 	// Java Worker (Naming Normalization)
 	javaOut, err := exec.Command("java", "-cp", "../java/map_engine", "map_engine").Output()
@@ -2014,13 +2019,13 @@ func handleInitPlayer(w http.ResponseWriter, r *http.Request) {
 		core.GlobalState.DayCounter = init.DayCounter
 		fmt.Printf("[GO] Synced Clock to Client: %s (Day %d)\n", init.GameDate, init.DayCounter)
 		
-		// Check for Monthly Reset immediately after sync
+		// Monthly reset check on sync
 		if d, err := time.Parse("2006-01-02", init.GameDate); err == nil {
 			checkMonthlyNewsReset(d)
 		}
 		
-		// Fast-forward any missed weekly drifts
-		server_hubungan.CatchUpDriftLocked(init.DayCounter)
+		// REMOVED: CatchUpDriftLocked was causing massive score jumps by re-simulating 
+		// history every time the game was resumed. We now rely on persistent state.
 	} else if core.GlobalState.DayCounter == 0 {
 		// Only happens if both are at Day 0
 		fmt.Printf("[GO] Both at Day 0. Initializing baseline.\n")

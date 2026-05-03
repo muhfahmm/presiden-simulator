@@ -33,7 +33,7 @@ export const kamerun_relations = [
   { id: 32, name: "burkina faso", relation: 50 },
   { id: 33, name: "burundi", relation: 50 },
   { id: 34, name: "ceko", relation: 50 },
-  { id: 35, name: "chad", relation: 50 },
+  { id: 35, name: "chad", relation: 70 },
   { id: 36, name: "chile", relation: 50 },
   { id: 37, name: "china", relation: 50 },
   { id: 38, name: "costa rica", relation: 50 },

@@ -26,7 +26,7 @@ export const namibia_relations = [
   { id: 25, name: "bhutan", relation: 50 },
   { id: 26, name: "bolivia", relation: 50 },
   { id: 27, name: "bosnia dan hercegovina", relation: 50 },
-  { id: 28, name: "botswana", relation: 70 },
+  { id: 28, name: "botswana", relation: 85 },
   { id: 29, name: "brazil", relation: 50 },
   { id: 30, name: "brunei", relation: 50 },
   { id: 31, name: "bulgaria", relation: 50 },

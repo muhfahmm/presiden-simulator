@@ -2,7 +2,7 @@ export const albania_relations = [
   { id: 1, name: "afganistan", relation: 50 },
   { id: 2, name: "afrika selatan", relation: 50 },
   { id: 3, name: "aljazair", relation: 50 },
-  { id: 4, name: "amerika serikat", relation: 50 },
+  { id: 4, name: "amerika serikat", relation: 85 },
   { id: 5, name: "andorra", relation: 50 },
   { id: 6, name: "angola", relation: 50 },
   { id: 7, name: "antigua dan barbuda", relation: 50 },

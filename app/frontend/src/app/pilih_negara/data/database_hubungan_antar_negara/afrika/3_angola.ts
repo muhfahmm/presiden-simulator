@@ -1,6 +1,6 @@
 export const angola_relations = [
   { id: 1, name: "afganistan", relation: 50 },
-  { id: 2, name: "afrika selatan", relation: 50 },
+  { id: 2, name: "afrika selatan", relation: 80 },
   { id: 3, name: "albania", relation: 50 },
   { id: 4, name: "aljazair", relation: 50 },
   { id: 5, name: "amerika serikat", relation: 50 },
@@ -158,7 +158,7 @@ export const angola_relations = [
   { id: 157, name: "republik zambia", relation: 70 },
   { id: 158, name: "republik zimbabwe", relation: 70 },
   { id: 159, name: "rusia", relation: 85 },
-  { id: 160, name: "rwanda", relation: 35 },
+  { id: 160, name: "rwanda", relation: 50 },
   { id: 161, name: "saint kitts dan nevis", relation: 50 },
   { id: 162, name: "saint lucia", relation: 50 },
   { id: 163, name: "saint vincent dan grenadine", relation: 50 },

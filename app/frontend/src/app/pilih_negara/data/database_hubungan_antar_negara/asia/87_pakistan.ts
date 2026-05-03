@@ -1,5 +1,5 @@
 export const pakistan_relations = [
-  { id: 1, name: "afganistan", relation: 35 },
+  { id: 1, name: "afganistan", relation: 50 },
   { id: 2, name: "afrika selatan", relation: 50 },
   { id: 3, name: "albania", relation: 50 },
   { id: 4, name: "aljazair", relation: 50 },
@@ -68,7 +68,7 @@ export const pakistan_relations = [
   { id: 67, name: "hong kong", relation: 50 },
   { id: 68, name: "hungaria", relation: 50 },
   { id: 69, name: "india", relation: 20 },
-  { id: 70, name: "indonesia", relation: 50 },
+  { id: 70, name: "indonesia", relation: 65 },
   { id: 71, name: "inggris", relation: 50 },
   { id: 72, name: "irak", relation: 50 },
   { id: 73, name: "iran", relation: 50 },

@@ -67,7 +67,7 @@ export const afganistan_relations = [
   { id: 66, name: "hong kong", relation: 50 },
   { id: 67, name: "hungaria", relation: 50 },
   { id: 68, name: "india", relation: 50 },
-  { id: 69, name: "indonesia", relation: 50 },
+  { id: 69, name: "indonesia", relation: 60 },
   { id: 70, name: "inggris", relation: 50 },
   { id: 71, name: "irak", relation: 50 },
   { id: 72, name: "iran", relation: 50 },

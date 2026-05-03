@@ -66,7 +66,7 @@ export const bhutan_relations = [
   { id: 65, name: "honduras", relation: 50 },
   { id: 66, name: "hong kong", relation: 50 },
   { id: 67, name: "hungaria", relation: 50 },
-  { id: 68, name: "india", relation: 50 },
+  { id: 68, name: "india", relation: 85 },
   { id: 69, name: "indonesia", relation: 50 },
   { id: 70, name: "inggris", relation: 50 },
   { id: 71, name: "irak", relation: 50 },

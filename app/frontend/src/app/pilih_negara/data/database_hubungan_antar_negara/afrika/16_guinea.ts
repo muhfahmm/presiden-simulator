@@ -30,7 +30,7 @@ export const guinea_relations = [
   { id: 29, name: "brazil", relation: 50 },
   { id: 30, name: "brunei", relation: 50 },
   { id: 31, name: "bulgaria", relation: 50 },
-  { id: 32, name: "burkina faso", relation: 50 },
+  { id: 32, name: "burkina faso", relation: 70 },
   { id: 33, name: "burundi", relation: 50 },
   { id: 34, name: "ceko", relation: 50 },
   { id: 35, name: "chad", relation: 50 },

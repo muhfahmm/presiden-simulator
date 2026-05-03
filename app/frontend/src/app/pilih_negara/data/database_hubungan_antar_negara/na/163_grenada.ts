@@ -3,7 +3,7 @@ export const grenada_relations = [
   { id: 2, name: "afrika selatan", relation: 50 },
   { id: 3, name: "albania", relation: 50 },
   { id: 4, name: "aljazair", relation: 50 },
-  { id: 5, name: "amerika serikat", relation: 50 },
+  { id: 5, name: "amerika serikat", relation: 60 },
   { id: 6, name: "andorra", relation: 50 },
   { id: 7, name: "angola", relation: 50 },
   { id: 8, name: "antigua dan barbuda", relation: 50 },

@@ -3,24 +3,16 @@
 /**
  * RelationSimulationService.ts
  * Simulasi AI untuk hubungan antar negara yang berjalan setiap pergantian hari.
- * Mengupdate semua hubungan dengan random fluctuation dan drift ke neutral.
+ * Hubungan naik +0.1 per hari jika ada kedutaan, turun -0.1 per hari jika tidak ada kedutaan.
  */
 
 import { getGlobalRelationMatrix, saveGlobalRelationMatrix, normalizeId, RelationMatrix, RelationEntry } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix";
 import { countries as centersData } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 
-// Configuration constants
-const FLUCTUATION_CONFIG = {
-  SMALL_CHANGE: { delta: 1, probability: 0.70 },    // ±1 point, 70% chance
-  MEDIUM_CHANGE: { delta: 2, probability: 0.20 },  // ±2 points, 20% chance
-  LARGE_CHANGE: { delta: 3, probability: 0.10 },   // ±3 points, 10% chance
-};
-
-const DRIFT_CONFIG = {
-  ENABLED: true,
-  ABOVE_NEUTRAL_DRIFT: -0.3,  // Slight drift down if above 50
-  BELOW_NEUTRAL_DRIFT: 0.3,   // Slight drift up if below 50
-  DRIFT_PROBABILITY: 0.3,     // 30% chance to apply drift
+// Configuration constants - Embassy-based daily change
+const DAILY_CHANGE_CONFIG = {
+  WITH_EMBASSY: 0.1,     // +0.1 per day if embassy exists
+  WITHOUT_EMBASSY: -0.1, // -0.1 per day if no embassy
 };
 
 const BOUNDS = {
@@ -82,22 +74,16 @@ class RelationSimulationService {
 
   /**
    * Simulate a single relation entry
+   * Embassy-based logic: +0.1 with embassy, -0.1 without embassy
    */
   private simulateRelationEntry(entry: RelationEntry, sourceId: string, targetId: string): RelationEntry {
     let newScore = entry.s;
 
-    // Apply random fluctuation
-    const fluctuation = this.calculateFluctuation();
-    newScore += fluctuation;
-
-    // Apply drift to neutral
-    if (DRIFT_CONFIG.ENABLED && Math.random() < DRIFT_CONFIG.DRIFT_PROBABILITY) {
-      if (newScore > BOUNDS.NEUTRAL) {
-        newScore += DRIFT_CONFIG.ABOVE_NEUTRAL_DRIFT;
-      } else if (newScore < BOUNDS.NEUTRAL) {
-        newScore += DRIFT_CONFIG.BELOW_NEUTRAL_DRIFT;
-      }
-    }
+    // Apply embassy-based daily change
+    const dailyChange = entry.e === 1 
+      ? DAILY_CHANGE_CONFIG.WITH_EMBASSY 
+      : DAILY_CHANGE_CONFIG.WITHOUT_EMBASSY;
+    newScore += dailyChange;
 
     // Clamp to bounds
     newScore = Math.max(BOUNDS.MIN, Math.min(BOUNDS.MAX, newScore));
@@ -111,27 +97,6 @@ class RelationSimulationService {
     };
   }
 
-  /**
-   * Calculate random fluctuation based on probability distribution
-   */
-  private calculateFluctuation(): number {
-    const rand = Math.random();
-    let delta = 0;
-    let cumulativeProbability = 0;
-
-    // Determine magnitude
-    const magnitude = 
-      rand < (cumulativeProbability += FLUCTUATION_CONFIG.SMALL_CHANGE.probability) 
-        ? FLUCTUATION_CONFIG.SMALL_CHANGE.delta :
-      rand < (cumulativeProbability += FLUCTUATION_CONFIG.MEDIUM_CHANGE.probability)
-        ? FLUCTUATION_CONFIG.MEDIUM_CHANGE.delta :
-      FLUCTUATION_CONFIG.LARGE_CHANGE.delta;
-
-    // Random direction (positive or negative)
-    const direction = Math.random() < 0.5 ? 1 : -1;
-
-    return magnitude * direction;
-  }
 
   /**
    * Create default relation entry

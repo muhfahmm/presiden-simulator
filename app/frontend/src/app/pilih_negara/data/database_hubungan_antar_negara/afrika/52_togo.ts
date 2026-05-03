@@ -21,7 +21,7 @@ export const togo_relations = [
   { id: 20, name: "belarus", relation: 50 },
   { id: 21, name: "belgia", relation: 50 },
   { id: 22, name: "belize", relation: 50 },
-  { id: 23, name: "benin", relation: 50 },
+  { id: 23, name: "benin", relation: 70 },
   { id: 24, name: "bermuda", relation: 50 },
   { id: 25, name: "bhutan", relation: 50 },
   { id: 26, name: "bolivia", relation: 50 },

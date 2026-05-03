@@ -25,13 +25,16 @@ export const RelationEngine = {
             console.log(`[RELATION-ENGINE] Running Geopolitical AI Turn...`);
 
             // 1. Run turn in Rust Core via Go API
+            // DISABLED: Rust Geopolitik Core Engine causes large integer jumps (±1, ±2, ±3).
+            // We now rely solely on the Go Backend's daily 0.1 drift for precise movement.
+            /*
             const updatedRelations = await matrixManager.runTurn();
-
-            if (updatedRelations.length > 0) {
-                // 2. Map updated relations back to existing UI state if needed
-                // For now, we rely on matrixManager.getRelation() throughout the app
+            if (updatedRelations && updatedRelations.length > 0) {
+                console.log("[RelationEngine] Monthly Geopolitical Shift Applied (Rust Core)");
                 saveGlobalRelationMatrix(this._convertArrayToMatrix(updatedRelations));
             }
+            */
+            console.log("[RelationEngine] Skipping Rust Core Turn to maintain 0.1 precision.");
 
             console.log("[RELATION-ENGINE] Daily Simulation Success.");
         } catch (error) {

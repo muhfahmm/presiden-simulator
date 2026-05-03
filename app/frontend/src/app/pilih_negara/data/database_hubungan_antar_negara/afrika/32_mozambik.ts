@@ -158,7 +158,7 @@ export const mozambik_relations = [
   { id: 157, name: "republik zambia", relation: 70 },
   { id: 158, name: "republik zimbabwe", relation: 70 },
   { id: 159, name: "rusia", relation: 50 },
-  { id: 160, name: "rwanda", relation: 50 },
+  { id: 160, name: "rwanda", relation: 70 },
   { id: 161, name: "saint kitts dan nevis", relation: 50 },
   { id: 162, name: "saint lucia", relation: 50 },
   { id: 163, name: "saint vincent dan grenadine", relation: 50 },

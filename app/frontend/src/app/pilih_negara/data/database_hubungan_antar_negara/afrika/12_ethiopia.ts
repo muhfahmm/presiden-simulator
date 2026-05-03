@@ -110,7 +110,7 @@ export const ethiopia_relations = [
   { id: 109, name: "malawi", relation: 50 },
   { id: 110, name: "malaysia", relation: 50 },
   { id: 111, name: "maldives", relation: 50 },
-  { id: 112, name: "mali", relation: 20 },
+  { id: 112, name: "mali", relation: 50 },
   { id: 113, name: "malta", relation: 50 },
   { id: 114, name: "maroko", relation: 50 },
   { id: 115, name: "marshall", relation: 50 },

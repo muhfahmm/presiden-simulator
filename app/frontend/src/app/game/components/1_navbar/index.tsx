@@ -371,6 +371,9 @@ export default function GameNavbar({
                       const diffTime = Math.abs(gameDate.getTime() - INITIAL_GAME_DATE.getTime());
                       const dayCounter = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
+                      const stabilityData = JSON.parse(localStorage.getItem("em_stability_data") || '{"value":50}');
+                      const stability = stabilityData?.value ?? 50;
+
                       const payload = {
                         country: countryData?.name_id,
                         budget: budget,

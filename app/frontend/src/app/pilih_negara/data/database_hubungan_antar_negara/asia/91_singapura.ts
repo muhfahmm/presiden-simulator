@@ -10,7 +10,7 @@ export const singapura_relations = [
   { id: 9, name: "arab saudi", relation: 50 },
   { id: 10, name: "argentina", relation: 50 },
   { id: 11, name: "armenia", relation: 50 },
-  { id: 12, name: "australia", relation: 50 },
+  { id: 12, name: "australia", relation: 70 },
   { id: 13, name: "austria", relation: 50 },
   { id: 14, name: "azerbaijan", relation: 50 },
   { id: 15, name: "bahama", relation: 50 },

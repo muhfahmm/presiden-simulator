@@ -2,7 +2,7 @@ export const mauritania_relations = [
   { id: 1, name: "afganistan", relation: 50 },
   { id: 2, name: "afrika selatan", relation: 50 },
   { id: 3, name: "albania", relation: 50 },
-  { id: 4, name: "aljazair", relation: 50 },
+  { id: 4, name: "aljazair", relation: 85 },
   { id: 5, name: "amerika serikat", relation: 50 },
   { id: 6, name: "andorra", relation: 50 },
   { id: 7, name: "angola", relation: 50 },

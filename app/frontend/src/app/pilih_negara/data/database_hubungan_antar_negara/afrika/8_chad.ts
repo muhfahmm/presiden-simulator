@@ -100,7 +100,7 @@ export const chad_relations = [
   { id: 99, name: "lebanon", relation: 50 },
   { id: 100, name: "lesotho", relation: 50 },
   { id: 101, name: "liberia", relation: 50 },
-  { id: 102, name: "libya", relation: 30 },
+  { id: 102, name: "libya", relation: 50 },
   { id: 103, name: "liechtenstein", relation: 50 },
   { id: 104, name: "lithuania", relation: 50 },
   { id: 105, name: "luksemburg", relation: 50 },

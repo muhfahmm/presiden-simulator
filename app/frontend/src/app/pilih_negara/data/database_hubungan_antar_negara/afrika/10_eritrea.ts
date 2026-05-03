@@ -174,7 +174,7 @@ export const eritrea_relations = [
   { id: 173, name: "siprus", relation: 50 },
   { id: 174, name: "slovenia", relation: 50 },
   { id: 175, name: "slowakia", relation: 50 },
-  { id: 176, name: "somalia", relation: 50 },
+  { id: 176, name: "somalia", relation: 85 },
   { id: 177, name: "spanyol", relation: 50 },
   { id: 178, name: "sri lanka", relation: 50 },
   { id: 179, name: "sudan selatan", relation: 50 },
