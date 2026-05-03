@@ -51,12 +51,28 @@ export function useAIGameSync() {
       // NEW: Explicit Sync from Backend (Go Server Authoritative)
       if (data.npcStates && typeof data.npcStates === 'object') {
         try {
+          if (data.resetTriggered) {
+            const keysToRemove = [
+              "em_relation_matrix", "em_global_news_v1",
+              "em_fresh_session", "em_game_date", "active_invasions",
+              "em_un_voting_data", "em_un_last_ai_resolution_day"
+            ];
+            keysToRemove.forEach(key => localStorage.removeItem(key));
+            localStorage.setItem("em_fresh_session", "true");
+            window.dispatchEvent(new Event("news_updated"));
+            window.dispatchEvent(new Event("ai_budget_updated"));
+            window.dispatchEvent(new Event("ai_population_updated"));
+            window.dispatchEvent(new Event("ai_happiness_updated"));
+            window.dispatchEvent(new Event("un_voting_updated"));
+            window.dispatchEvent(new CustomEvent('CLEAR_INVASIONS'));
+          }
+
           aiBudgetStorage.syncFromBackend(data.npcStates);
           aiPopulationStorage.syncFromBackend(data.npcStates);
           aiHappinessStorage.syncFromBackend(data.npcStates);
           
           // If we successfully synced from the server, we can safely clear the fresh session flag
-          if (isFreshSession) {
+          if (isFreshSession && !data.resetTriggered) {
              localStorage.removeItem("em_fresh_session");
              console.log(`[useAIGameSync] NPC states synced and fresh session flag cleared.`);
           }

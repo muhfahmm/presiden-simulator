@@ -52,6 +52,7 @@ import { tradeContractStorage } from "./components/AI_logic/4_AI_Ekonomi/1_perda
 import { aiHappinessStorage } from "./components/modals/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { aiBuildingStorage } from "./components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "./components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
+import { activeWarStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/1_misi_serangan/pages/logic/activeWarStorage";
 
 const STORAGE_KEY = "game_session";
 
@@ -162,10 +163,15 @@ export const gameStorage = {
     diplomaticTradeStorage.clear();
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
+    activeWarStorage.clearState();
     if (typeof window !== 'undefined') {
       localStorage.removeItem(RELATION_MATRIX_KEY);
+      localStorage.removeItem("active_invasions");
+      localStorage.removeItem("em_un_voting_data");
+      localStorage.removeItem("em_un_last_ai_resolution_day");
     }
   },
+
 
   getSession: (): GameSession | null => {
     if (typeof window === 'undefined') return null;
@@ -264,7 +270,12 @@ export const gameStorage = {
     diplomaticTradeStorage.clear();
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
+    activeWarStorage.clearState();
     localStorage.removeItem(RELATION_MATRIX_KEY);
+    localStorage.removeItem("active_invasions");
+    localStorage.removeItem("em_un_voting_data");
+    localStorage.removeItem("em_un_last_ai_resolution_day");
+
 
     window.location.href = '/pilih_negara';
   },
@@ -332,9 +343,10 @@ export const gameStorage = {
       const key = localStorage.key(i);
       if (key) {
         allKeys.push(key);
-        if (key.startsWith('em_') || key === 'game_taxes' || key === 'active_trade_transactions' || key === 'game_trades') {
+        if (key.startsWith('em_') || key === 'game_taxes' || key === 'active_trade_transactions' || key === 'game_trades' || key === 'active_invasions' || key === 'em_un_voting_data') {
           keysToRemove.add(key);
         }
+
       }
     }
 
@@ -513,8 +525,13 @@ export const gameStorage = {
     diplomaticTradeStorage.clear();
     aiTradeOfferStorage.clear();
     tradeContractStorage.clear();
+    activeWarStorage.clearState();
     localStorage.removeItem(RELATION_MATRIX_KEY);
+    localStorage.removeItem("active_invasions");
+    localStorage.removeItem("em_un_voting_data");
+    localStorage.removeItem("em_un_last_ai_resolution_day");
   },
+
 };
 
 
