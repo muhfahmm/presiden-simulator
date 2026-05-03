@@ -13,6 +13,7 @@ import (
 	"sync"
 	"time"
 	"bufio"
+	"strings"
 
 	"emserver/core"
 	"emserver/map_engine"
@@ -626,6 +627,7 @@ func handleSave(w http.ResponseWriter, r *http.Request) {
 	core.GlobalState.Player.Stability = payload.Stability
 	core.GlobalState.Player.GameDate = payload.GameDate
 	core.GlobalState.Player.DayCounter = payload.DayCounter
+	core.GlobalState.DayCounter = payload.DayCounter
 	core.GlobalState.Player.Buildings = payload.Buildings
 	core.GlobalState.Mu.Unlock()
 
@@ -684,6 +686,33 @@ func handleSave(w http.ResponseWriter, r *http.Request) {
 				stability = EXCLUDED.stability,
 				daily_income = EXCLUDED.daily_income;
 		`, sessionID, name, state.Population, state.Budget, state.Happiness, state.Stability, state.DailyIncome)
+	}
+
+	// 4. Save Relationships (Crucial for persistence - wrapped in transaction for performance)
+	tx, err := db_connect.DB.Begin()
+	if err == nil {
+		stmt, _ := tx.Prepare(`
+			INSERT INTO session_relationships 
+				(session_id, source_nation, target_nation, score, has_embassy, has_pact, has_alliance, has_trade_deal)
+			VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+			ON CONFLICT (session_id, source_nation, target_nation) DO UPDATE SET
+				score = EXCLUDED.score,
+				has_embassy = EXCLUDED.has_embassy,
+				has_pact = EXCLUDED.has_pact,
+				has_alliance = EXCLUDED.has_alliance,
+				has_trade_deal = EXCLUDED.has_trade_deal;
+		`)
+		
+		for source, targets := range core.GlobalState.Relationships {
+			for target, rel := range targets {
+				// Only save non-neutral or recently changed to save space/time
+				if !rel.Prune() {
+					stmt.Exec(sessionID, source, target, rel.S, rel.E == 1, rel.P == 1, rel.A == 1, rel.T == 1)
+				}
+			}
+		}
+		stmt.Close()
+		tx.Commit()
 	}
 
 	fmt.Printf("[DB] Progress saved for %s (Session: %s)\n", core.GlobalState.Player.Country, sessionID)
@@ -794,6 +823,7 @@ func handleLoad(w http.ResponseWriter, r *http.Request) {
 	core.GlobalState.Player.Stability = stab
 	core.GlobalState.Player.GameDate = date
 	core.GlobalState.Player.DayCounter = dayCounter
+	core.GlobalState.DayCounter = dayCounter
 	core.GlobalState.Player.Initialized = true
 	
 	// Reset buildings before loading
@@ -822,6 +852,31 @@ func handleLoad(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	npcRows.Close()
+
+	// 4. Load Relationships
+	relRows, _ := db_connect.DB.Query(`
+		SELECT source_nation, target_nation, score, has_embassy, has_pact, has_alliance, has_trade_deal 
+		FROM session_relationships WHERE session_id = $1`, sessionID)
+	
+	for relRows.Next() {
+		var source, target string
+		var score float64
+		var e, p, a, t bool
+		relRows.Scan(&source, &target, &score, &e, &p, &a, &t)
+		
+		if core.GlobalState.Relationships[source] == nil {
+			core.GlobalState.Relationships[source] = make(map[string]*core.Relationship)
+		}
+		
+		core.GlobalState.Relationships[source][target] = &core.Relationship{
+			S: score,
+			E: core.BoolToInt(e),
+			P: core.BoolToInt(p),
+			A: core.BoolToInt(a),
+			T: core.BoolToInt(t),
+		}
+	}
+	relRows.Close()
 
 	fmt.Printf("[DB] Session LOADED: %s (%s)\n", country, sessionID)
 	w.WriteHeader(http.StatusOK)
@@ -909,6 +964,7 @@ func simulationEngine() {
 		   happyDiff > 1.0 || popDiff > 5000 || 
 		   isNewMonth ||
 		   daysPassed >= pulseThreshold || 
+		   core.GlobalState.DayCounter % 5 == 0 || // Force pulse on relationship sync days
 		   now.Sub(lastSentStats.LastSync) >= 1500*time.Millisecond {
 			shouldPulse = true
 		}
@@ -930,28 +986,31 @@ func simulationEngine() {
 		// ─── MONTHLY DATA RESET CHECK ───
 		checkMonthlyNewsReset(nextDate)
 		checkMonthlyInboxReset(nextDate)
-
-		// 3. Background Simulation (Parallel Polyglot)
-		processPlayerDay(nextDate)
 		
-		// Throttled Heavy Tasks: Only run every 2 days to reduce lag
-		if core.GlobalState.DayCounter % 2 == 0 {
-			processNPCDay(nextDate)
-			server_ekonomi.ProcessDailyProduction()
+		// [IMMEDIATE BROADCAST ON MONTH CHANGE]
+		if nextDate.Day() == 1 {
+			fmt.Printf("[SYSTEM] Month change detected! Forcing immediate relationship broadcast.\n")
+			snapshot := createSnapshot()
+			go broadcastSSE(snapshot)
 		}
+
+		// 3. Background Simulation (Parallel Polyglot) - NOW RUNS DAILY
+		processPlayerDay(nextDate)
+		processNPCDay(nextDate)
+		server_ekonomi.ProcessDailyProduction()
 		
 		server_berita.ProcessNewsDay(nextDate)
 		server_inbox.ProcessInboxDay(nextDate)
-		server_hubungan.UpdateDailyRelationsLocked()
+		server_hubungan.UpdateDailyRelationsLocked(nextDateStr)
 
-		// 4. Final Broadcast (Pulse 2: Heavy Data Throttling)
 		isMajorUpdate := len(core.GlobalState.News) != lastBroadcastNewsLen || len(core.GlobalState.Inbox) != lastBroadcastInboxLen
-		isMonthlySync := core.GlobalState.DayCounter%30 == 0
+		isDateChange := nextDateStr != currentDate.Format("2006-01-02")
+		isMonthlySync := nextDate.Day() == 1
 		isWeeklySync := core.GlobalState.DayCounter%7 == 0 || core.GlobalState.DayCounter < 2
 
-		if isMonthlySync || isMajorUpdate || isWeeklySync || now.Sub(lastBroadcastTime) >= 10*time.Second {
+		if isMonthlySync || isMajorUpdate || isWeeklySync || isDateChange || now.Sub(lastBroadcastTime) >= 10*time.Second {
 			var snapshot []byte
-			if isMonthlySync || isWeeklySync || now.Sub(lastBroadcastTime) >= 10*time.Second {
+			if isMonthlySync || isWeeklySync || isDateChange || now.Sub(lastBroadcastTime) >= 10*time.Second {
 				snapshot = createSnapshot()
 			} else {
 				snapshot = createMajorUpdateSnapshot()
@@ -1213,15 +1272,15 @@ func processNPCDay(date time.Time) {
 				for _, name := range names {
 					state := core.GlobalState.NPCStates[name]
 					if state == nil { continue }
-					oldPop := state.Population
 					oldBudget := state.Budget
 					
-					state.Population = math.Round(state.Population * 1.00012)
+					state.PopulationDelta = math.Round(state.Population * 0.00012)
+					state.Population += state.PopulationDelta
 					state.Budget += state.DailyIncome * 0.95
 					calculateNPCHappiness(name, state)
 					
 					// Set Dirty flag if change is significant
-					if math.Abs(state.Population - oldPop) > 1 || math.Abs(state.Budget - oldBudget) > 1 {
+					if state.PopulationDelta > 0 || math.Abs(state.Budget - oldBudget) > 1 {
 						state.Dirty = true
 					}
 				}
@@ -1244,7 +1303,8 @@ func simulateInLanguage(w *PolyglotWorker, names []string) {
 	for _, name := range names {
 		state := core.GlobalState.NPCStates[name]
 		if state == nil { continue }
-		state.Population = math.Round(state.Population * 1.00008)
+		state.PopulationDelta = math.Round(state.Population * 0.00008)
+		state.Population += state.PopulationDelta
 		state.Budget += state.DailyIncome * 0.9
 		state.Dirty = true // Workers always mark as dirty for now
 	}
@@ -1599,7 +1659,7 @@ func createSnapshot() []byte {
 		Player:     core.GlobalState.Player,
 		NPCStates:  core.GlobalState.NPCStates,
 		NpcBuildingLevels: core.GlobalState.NPCBuildingLevels,
-		Relationships: getPrunedRelationships(),
+		Relationships: getPrunedRelationships(true), // Force full matrix on initial snapshot
 		VisualDelta:   map_engine.GlobalVisualState.GetHeatmap(),
 	}
 	
@@ -1614,10 +1674,11 @@ func createSnapshot() []byte {
 	return data
 }
 
-// getPrunedRelationships returns only non-neutral relationships
-func getPrunedRelationships() map[string]map[string]*core.Relationship {
-	if !core.GlobalState.RequestFullMatrix && core.GlobalState.DayCounter % 30 != 0 {
-		return nil // Lazy Loading: Send nothing if not requested and not month end
+func getPrunedRelationships(force bool) map[string]map[string]*core.Relationship {
+	// Force sync on the 1st of the month
+	isFirst := strings.HasPrefix(core.GlobalState.GameDate, "01-") || strings.HasSuffix(core.GlobalState.GameDate, "-01")
+	if !force && !isFirst && !core.GlobalState.RequestFullMatrix && core.GlobalState.DayCounter % 5 != 0 {
+		return nil 
 	}
 
 	pruned := make(map[string]map[string]*core.Relationship)
@@ -1677,7 +1738,7 @@ func createMajorUpdateSnapshot() []byte {
 		Inbox:      core.GlobalState.Inbox,
 		Player:     core.GlobalState.Player,
 		NPCStates:  getDeltaNPCStates(), // Delta update
-		Relationships: getPrunedRelationships(), // Pruned & Lazy
+		Relationships: getPrunedRelationships(false), // Regular pulse
 	}
 	data, _ := json.Marshal(payload)
 	return data

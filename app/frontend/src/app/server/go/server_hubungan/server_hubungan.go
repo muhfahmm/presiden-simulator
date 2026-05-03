@@ -22,6 +22,7 @@ func InitializeRelationships() error {
 // InitializeRelationshipsLocked performs the actual loading logic.
 // IMPORTANT: The caller must already hold core.GlobalState.Mu.Lock()
 func InitializeRelationshipsLocked() error {
+	fmt.Println("[HUBUNGAN] Starting initialization...")
 	// Always wipe and re-initialize for a fresh load (essential for Reset functionality)
 	core.GlobalState.Relationships = make(map[string]map[string]*core.Relationship)
 
@@ -113,11 +114,19 @@ func InitializeRelationshipsLocked() error {
 }
 
 // UpdateDailyRelationsLocked advances the simulation for all international relations by one day.
+// It applies a more significant "Monthly Shift" on the 1st of each month.
 // IMPORTANT: The caller must already hold core.GlobalState.Mu.Lock()
-func UpdateDailyRelationsLocked() {
-	// THROTLLING: Only process relationship drift every 7 days (Weekly Drift)
-	if core.GlobalState.DayCounter % 7 != 0 {
-		return
+func UpdateDailyRelationsLocked(date string) {
+	// [FREEZE] DO NOT UPDATE RELATIONSHIPS IN THE FIRST MONTH (As requested)
+	// This ensures users see default database values until Month 2 begins.
+	if core.GlobalState.DayCounter < 30 {
+		return 
+	}
+
+	isFirstOfMonth := strings.HasPrefix(date, "01-") || strings.HasSuffix(date, "-01")
+	
+	if isFirstOfMonth {
+		fmt.Printf("[HUBUNGAN] 📅 First of the Month detected (%s). Applying major geopolitical shift...\n", date)
 	}
 
 	for source, targets := range core.GlobalState.Relationships {
@@ -131,17 +140,34 @@ func UpdateDailyRelationsLocked() {
 			// Small positive drift for friends, small negative for rivals to create dynamic polarization
 			drift := 0.0
 			if rel.S > 65 {
-				drift = 0.035 // Stronger positive drift for allies
+				drift = 0.05 // Increased from 0.035
 			} else if rel.S > 50 {
-				drift = 0.015 // Slight positive drift for friends
+				drift = 0.02 // Increased from 0.015
 			} else if rel.S < 35 {
-				drift = -0.035 // Stronger negative drift for enemies
+				drift = -0.05 // Increased from -0.035
 			} else if rel.S < 50 {
-				drift = -0.015 // Slight negative drift for rivals
+				drift = -0.02 // Increased from -0.015
 			}
 
-			// 2. Random Volatility (Increased to make changes more noticeable)
-			volatility := (core.Rng.Float64() - 0.5) * 0.15 // +/- 0.075 jump daily
+			// 2. Random Volatility (Increased significantly for better visibility)
+			volatility := (core.Rng.Float64() - 0.5) * 0.8 // Increased from 0.25
+			
+			// 2.5 Neutral Jitter (Ensures relations at 50.0 still move slightly every day)
+			jitter := (core.Rng.Float64() - 0.5) * 0.05
+
+			// 2.6 Monthly Major Shift (As requested: Make it visible on the 1st)
+			monthlyShift := 0.0
+			if isFirstOfMonth {
+				// Significant random shift on the 1st of each month [-5.0, 5.0]
+				monthlyShift = (core.Rng.Float64() - 0.5) * 10.0
+				
+				// Polarization: If already high/low, push it significantly on the 1st
+				if rel.S > 75 {
+					monthlyShift += 1.5
+				} else if rel.S < 25 {
+					monthlyShift -= 1.5
+				}
+			}
 
 			// 3. Status Bonuses & Stability Alignment
 			bonus := 0.0
@@ -176,7 +202,7 @@ func UpdateDailyRelationsLocked() {
 			}
 
 			// 4. Final Calculation & Clamping
-			rel.S = math.Max(0, math.Min(100, rel.S + drift + volatility + bonus))
+			rel.S = math.Max(0, math.Min(100, rel.S + drift + volatility + bonus + jitter + monthlyShift))
 			
 			// Update status based on score thresholds
 			rel.E = boolToInt(rel.S >= 60)
@@ -200,7 +226,8 @@ func CatchUpDriftLocked(currentDay int) {
 		}
 
 		for i := 0; i < currentDay; i++ {
-			UpdateDailyRelationsLocked()
+			// Fake date for catch-up (doesn't trigger monthly shift for simplicity)
+			UpdateDailyRelationsLocked("02-01-2026") 
 		}
 
 		if malBefore > 0 {

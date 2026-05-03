@@ -54,7 +54,6 @@ import { aiHappinessStorage } from "./components/modals/1_info_strategis/6_Kepua
 import { aiBuildingStorage } from "./components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIBuildingStorage";
 import { aiProductionStorage } from "./components/AI_logic/5_AI_Pembangunan/antarmuka_data_pembangunan/AIProductionStorage";
 
-
 const STORAGE_KEY = "game_session";
 
 export interface GameSession {
@@ -299,10 +298,16 @@ export const gameStorage = {
     }
 
     // Get profile defaults
+    // Parse population (handle string with dots like "288.315.089")
     const defaultPopulation = typeof currentCountry.jumlah_penduduk === 'string'
       ? parseInt(currentCountry.jumlah_penduduk.replace(/\./g, ''))
-      : currentCountry.jumlah_penduduk;
-    const defaultBudget = typeof currentCountry.anggaran === 'number' ? currentCountry.anggaran : 0;
+      : (currentCountry.jumlah_penduduk || 0);
+    
+    // Parse budget (handle both string and number formats like "3.938" or 3938)
+    const defaultBudget = typeof currentCountry.anggaran === 'string'
+      ? parseInt(currentCountry.anggaran.replace(/\./g, ''))
+      : (currentCountry.anggaran || 0);
+    
     const defaultStability = 50;
 
     console.log(`[RESET] Defaults to restore: Pop=${defaultPopulation}, Budget=${defaultBudget}, Stability=${defaultStability}`);
@@ -387,6 +392,7 @@ export const gameStorage = {
       "em_population_version": "2",
       "em_budget_data": JSON.stringify({
         anggaran: defaultBudget,
+        lastUpdated: Date.now(),
         cumulativeProduction: {},
         lastProcessedDate: "2026-01-01T00:00:00.000Z"
       }),

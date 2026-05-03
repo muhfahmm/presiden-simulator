@@ -166,7 +166,7 @@ export const saveGlobalRelationMatrix = (matrix: RelationMatrix) => {
                 continue;
             }
 
-            const isSignificantNpcRelation = entry.s < 48 || entry.s > 52 || entry.e === 1 || entry.p === 1 || entry.a === 1 || entry.t === 1;
+            const isSignificantNpcRelation = Math.abs(entry.s - 50) > 0.0001 || entry.e === 1 || entry.p === 1 || entry.a === 1 || entry.t === 1;
             if (isSignificantNpcRelation) {
                 prunedTargets[targetId] = entry;
                 hasContent = true;

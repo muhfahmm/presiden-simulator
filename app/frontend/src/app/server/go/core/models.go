@@ -89,8 +89,9 @@ type NPCNationState struct {
 	GDPGrowth     float64            `json:"gdpGrowth"`
 	Stability     float64            `json:"stability"`
 	EconomicTier  int                `json:"economicTier"`
-	Population    float64            `json:"population"`
-	Budget        float64            `json:"budget"`
+	Population      float64            `json:"population"`
+	PopulationDelta float64            `json:"populationDelta"`
+	Budget          float64            `json:"budget"`
 	Happiness     float64            `json:"happiness"`
 	DailyIncome   float64            `json:"dailyIncome"`
 	Taxes         map[string]float64 `json:"taxes"`
@@ -109,8 +110,8 @@ type Relationship struct {
 }
 
 func (r *Relationship) Prune() bool {
-	// A relation is "Neutral/Default" if score is near 50 and no statuses are active
-	return math.Abs(r.S-50) < 1.0 && r.E == 0 && r.P == 0 && r.A == 0 && r.T == 0
+	// A relation is "Neutral/Default" only if it is EXACTLY 50.0 and no statuses are active
+	return math.Abs(r.S-50) < 0.0001 && r.E == 0 && r.P == 0 && r.A == 0 && r.T == 0
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -217,4 +218,11 @@ func AddInboxItemLocked(sender, subject, content, category, priority string, isP
 // NormalizeNationName converts a nation name to lowercase and replaces spaces with underscores.
 func NormalizeNationName(name string) string {
 	return strings.ToLower(strings.ReplaceAll(strings.TrimSpace(name), " ", "_"))
+}
+
+func BoolToInt(b bool) int {
+	if b {
+		return 1
+	}
+	return 0
 }

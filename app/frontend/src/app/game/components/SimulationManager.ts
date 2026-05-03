@@ -7,6 +7,7 @@ import { DebtAiService } from "@/app/game/components/2_navigasi_menu/2_navigasi_
 import { aiHappinessStorage } from "@/app/game/components/modals/1_info_strategis/6_Kepuasan/AIHappinessStorage";
 import { unVotingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/1_pemungutan_suara/logika_pemungutan_suara/unVotingStorage";
 import { regionalMembershipRouter } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/2_organisasi_regional/logic/router/RegionalMembershipRouter";
+import { relationSimulationService } from "@/app/game/components/AI_logic/7_AI_Hubungan/services/RelationSimulationService";
 
 /**
  * High-Performance Background Simulation Manager
@@ -56,6 +57,9 @@ class SimulationManager {
       researchStorage.updateProgress(gameDate);
       DebtAiService.checkMonthlyUpdate();
 
+      // 2. Relationship Simulation (Daily)
+      relationSimulationService.processDailyRelations(gameDate);
+
       // Persist to LocalStorage every 30 days (Month end)
       if (gameDate.getDate() === 1) {
           budgetStorage.persist();
@@ -64,7 +68,7 @@ class SimulationManager {
           regionalMembershipRouter.persist();
       }
 
-      // 2. Calendar-based Events (UN Security Council)
+      // 3. Calendar-based Events (UN Security Council)
       const month = gameDate.getMonth();
       const day = gameDate.getDate();
       const year = gameDate.getFullYear();

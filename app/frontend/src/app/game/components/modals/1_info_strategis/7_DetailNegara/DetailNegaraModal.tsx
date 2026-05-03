@@ -93,6 +93,12 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
     
   const initPop = isUser ? populationStorage.getPopulation() : (countryEntryRaw ? aiPopulationStorage.getPopulation(countryEntryRaw.name_en) : basePop);
   const [population, setPopulation] = useState(initPop);
+  const [popDelta, setPopDelta] = useState(0);
+  
+  const initBudget = isUser ? budgetStorage.getBudget() : (countryEntryRaw ? aiBudgetStorage.getBudget(countryEntryRaw.name_en) : 0);
+  const [budget, setBudget] = useState(initBudget);
+  const [income, setIncome] = useState(0);
+
   const [highlitCard, setHighlitCard] = useState<string | null>(null);
 
   // Real-time Relationship Tracking
@@ -110,20 +116,39 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
     window.addEventListener('ai_building_updated', handleUpdate);
     
     // Add population listener
-    const handlePopUpdate = (e: any) => {
+    const handlePopUpdate = () => {
+      const name = countryEntryRaw?.name_en || "";
       if (isUser) {
-        setPopulation(e.detail.population);
+        setPopulation(populationStorage.getPopulation());
+        setPopDelta(5884); // Baseline example for user
+      } else {
+        setPopulation(aiPopulationStorage.getPopulation(name));
+        setPopDelta(aiPopulationStorage.getDelta(name));
       }
     };
-    
-    const handleAiPopUpdate = () => {
-      if (!isUser && countryEntryRaw) {
-         setPopulation(aiPopulationStorage.getPopulation(countryEntryRaw.name_en) || basePop);
+
+    const handleBudgetUpdate = () => {
+      const name = countryEntryRaw?.name_en || "";
+      if (isUser) {
+        setBudget(budgetStorage.getBudget());
+        if (countryEntryRaw) {
+          const deltas = buildingStorage.getBuildingDeltas();
+          setIncome(calculateDailyBudgetDelta(countryEntryRaw as any, deltas));
+        }
+      } else {
+        setBudget(aiBudgetStorage.getBudget(name));
+        setIncome(aiBudgetStorage.getIncome(name));
       }
+    };
+
+    const handleAiPopUpdate = () => {
+      handlePopUpdate();
     };
     
     window.addEventListener('population_updated', handlePopUpdate);
     window.addEventListener('ai_population_updated', handleAiPopUpdate);
+    window.addEventListener('budget_updated', handleBudgetUpdate);
+    window.addEventListener('ai_budget_updated', handleBudgetUpdate);
 
     // Relationship listeners
     const updateRelation = () => {
@@ -141,7 +166,10 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
       }
     };
     
+    handlePopUpdate();
+    handleBudgetUpdate();
     updateRelation();
+    
     window.addEventListener(RELATION_EVENTS.MATRIX_UPDATED, updateRelation);
     window.addEventListener(RELATION_EVENTS.STATUS_UPDATED, updateRelation);
     
@@ -150,6 +178,8 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
       window.removeEventListener('ai_building_updated', handleUpdate);
       window.removeEventListener('population_updated', handlePopUpdate);
       window.removeEventListener('ai_population_updated', handleAiPopUpdate);
+      window.removeEventListener('budget_updated', handleBudgetUpdate);
+      window.removeEventListener('ai_budget_updated', handleBudgetUpdate);
       window.removeEventListener(RELATION_EVENTS.MATRIX_UPDATED, updateRelation);
       window.removeEventListener(RELATION_EVENTS.STATUS_UPDATED, updateRelation);
     };
@@ -382,6 +412,66 @@ export default function DetailNegaraModal({ isOpen, onClose, targetCountry, isUs
               {s.label}
             </button>
           ))}
+        </div>
+
+        {/* Quick Stats Header [DAILY UPDATES] */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 pt-8">
+            <div className="bg-zinc-900/40 border border-zinc-800/50 p-6 rounded-[32px] flex items-center justify-between group hover:border-amber-500/30 transition-all shadow-xl">
+              <div className="flex flex-col">
+                <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Populasi Nasional</p>
+                <div className="flex items-baseline gap-2">
+                  <p className="text-3xl font-black text-white tabular-nums tracking-tighter">{population.toLocaleString('id-ID')}</p>
+                  <p className={`text-sm font-black flex items-center gap-0.5 ${popDelta >= 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
+                    {popDelta >= 0 ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
+                    {popDelta >= 0 ? '+' : ''}{popDelta.toLocaleString('id-ID')}
+                  </p>
+                </div>
+              </div>
+              <div className="p-4 bg-zinc-950 rounded-[20px] border border-zinc-800 group-hover:scale-110 transition-transform shadow-inner">
+                <Users size={24} className="text-amber-500" />
+              </div>
+            </div>
+
+            <div className="bg-zinc-900/40 border border-zinc-800/50 p-6 rounded-[32px] flex items-center justify-between group hover:border-emerald-500/30 transition-all shadow-xl">
+              <div className="flex flex-col">
+                <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Kas Negara</p>
+                <p className="text-3xl font-black text-emerald-400 tabular-nums tracking-tighter">
+                  {budget.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">EM</span>
+                </p>
+              </div>
+              <div className="p-4 bg-zinc-950 rounded-[20px] border border-zinc-800 group-hover:scale-110 transition-transform shadow-inner">
+                <Landmark size={24} className="text-emerald-500" />
+              </div>
+            </div>
+
+            <div className="bg-zinc-900/40 border border-zinc-800/50 p-6 rounded-[32px] flex items-center justify-between group hover:border-indigo-500/30 transition-all shadow-xl">
+              <div className="flex flex-col">
+                <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Penghasilan Harian</p>
+                <div className="flex items-baseline gap-2">
+                  <p className={`text-3xl font-black tabular-nums tracking-tighter ${income >= 0 ? 'text-indigo-400' : 'text-rose-400'}`}>
+                    {income >= 0 ? '+' : ''}{income.toLocaleString('id-ID')}
+                  </p>
+                  <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">/hr</span>
+                </div>
+              </div>
+              <div className="p-4 bg-zinc-950 rounded-[20px] border border-zinc-800 group-hover:scale-110 transition-transform shadow-inner">
+                <Activity size={24} className="text-indigo-500" />
+              </div>
+            </div>
+
+            {/* AI Status Card */}
+            <div className="bg-zinc-900/40 border border-zinc-800/50 p-6 rounded-[32px] flex items-center justify-between group hover:border-blue-500/30 transition-all shadow-xl hidden lg:flex">
+              <div className="flex flex-col">
+                <p className="text-[10px] font-black tracking-widest text-zinc-500 uppercase mb-1">Sistem Simulasi</p>
+                <div className="flex items-center gap-2">
+                   <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
+                   <span className="text-xs font-black text-white tracking-widest uppercase italic">ACTIVE_CORE_V2</span>
+                </div>
+              </div>
+              <div className="p-4 bg-zinc-950 rounded-[20px] border border-zinc-800 group-hover:scale-110 transition-transform shadow-inner">
+                <Brain size={24} className="text-blue-500" />
+              </div>
+            </div>
         </div>
 
         {/* Content Area */}

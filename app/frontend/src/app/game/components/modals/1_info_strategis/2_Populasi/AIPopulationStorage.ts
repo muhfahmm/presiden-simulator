@@ -13,6 +13,7 @@ export interface AIPopulationData {
 
 // High-performance in-memory cache
 let memoryCache: AIPopulationData | null = null;
+let deltaCache: Record<string, number> = {}; // [NEW] Store daily deltas
 let saveTimeout: NodeJS.Timeout | null = null;
 
 export const aiPopulationStorage = {
@@ -88,12 +89,16 @@ export const aiPopulationStorage = {
     return initialData;
   },
 
-  /**
-   * Get population for a specific country.
-   */
   getPopulation: (countryNameEn: string): number => {
     const data = aiPopulationStorage.getAll();
     return data[countryNameEn] || 0;
+  },
+
+  /**
+   * Get the daily population delta for a specific country.
+   */
+  getDelta: (countryNameEn: string): number => {
+    return deltaCache[countryNameEn] || 0;
   },
 
   /**
@@ -145,11 +150,18 @@ export const aiPopulationStorage = {
 
     Object.keys(npcStates).forEach(nationName => {
       const state = npcStates[nationName];
-      if (state && typeof state.population === 'number') {
-        const serverPop = state.population;
-        if (currentData[nationName] !== serverPop) {
-          currentData[nationName] = serverPop;
-          hasChanged = true;
+      if (state) {
+        if (typeof state.population === 'number') {
+          const serverPop = state.population;
+          if (currentData[nationName] !== serverPop) {
+            currentData[nationName] = serverPop;
+            hasChanged = true;
+          }
+        }
+        // [NEW] Track the delta sent by server
+        if (typeof state.populationDelta === 'number') {
+           deltaCache[nationName] = state.populationDelta;
+           hasChanged = true; 
         }
       }
     });

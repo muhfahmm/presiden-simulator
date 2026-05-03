@@ -407,7 +407,7 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
                             <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">Sentimen Bilateral</span>
                           </div>
                           <span className={`text-2xl font-black font-mono tracking-tighter ${status.color}`}>
-                             {status.finalScore}
+                             {liveScore.toFixed(1)}
                           </span>
                        </div>
                        
@@ -415,9 +415,13 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
                           {status.label}
                        </div>
 
-                       <div className="p-3 bg-zinc-950/50 border border-zinc-800/50 rounded-xl text-zinc-700 group-hover:text-emerald-500 group-hover:border-emerald-500/30 transition-all">
-                          <TrendingUp size={18} />
-                       </div>
+                       <div className={`p-3 bg-zinc-950/50 border border-zinc-800/50 rounded-xl transition-all ${
+                          liveScore > rel.relation ? 'text-emerald-500 border-emerald-500/30' : 
+                          liveScore < rel.relation ? 'text-rose-500 border-rose-500/30' : 'text-zinc-700'
+                        }`}>
+                           {liveScore > rel.relation ? <TrendingUp size={18} /> : 
+                            liveScore < rel.relation ? <TrendingDown size={18} /> : <Activity size={18} />}
+                        </div>
                     </div>
                   </div>
                 );

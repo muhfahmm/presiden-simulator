@@ -64,11 +64,11 @@ export function useAIGameSync() {
           console.warn("[useAIGameSync] NPC State Sync Error:", e);
         }
       }
-      // 2. Sync Relationships (Diplomasi Bilateral) — Every 2 days to reduce lag
-      if (data.relationships && !isFreshSession && (gameDate.getDate() % 2 === 0 || data.resetTriggered)) {
+      // 2. Sync Relationships (Diplomasi Bilateral) — Authoritative sync from Go server
+      if (data.relationships && typeof data.relationships === 'object') {
         try {
           console.log(`[useAIGameSync] Syncing ${Object.keys(data.relationships).length} relationship sets from server.`);
-          RelationPersistence.syncFromServer(data.relationships, data.resetTriggered);
+          RelationPersistence.syncFromServer(data.relationships, data.resetTriggered || isFreshSession);
         } catch (e) {
           console.warn("[useAIGameSync] Relationship Sync Error:", e);
         }

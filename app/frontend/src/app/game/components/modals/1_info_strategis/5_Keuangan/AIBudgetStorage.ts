@@ -14,6 +14,7 @@ export interface AIBudgetData {
 
 // High-performance in-memory cache
 let memoryCache: AIBudgetData | null = null;
+let incomeCache: Record<string, number> = {}; // [NEW] Store daily income from server
 let saveTimeout: NodeJS.Timeout | null = null;
 
 export const aiBudgetStorage = {
@@ -87,12 +88,16 @@ export const aiBudgetStorage = {
     return initialData;
   },
 
-  /**
-   * Get the current budget for a specific country.
-   */
   getBudget: (countryNameEn: string): number => {
     const data = aiBudgetStorage.getAll();
     return data[countryNameEn] || 0;
+  },
+
+  /**
+   * Get the current daily income for a specific country (from server sync).
+   */
+  getIncome: (countryNameEn: string): number => {
+    return incomeCache[countryNameEn] || 0;
   },
 
   /**
@@ -158,11 +163,18 @@ export const aiBudgetStorage = {
 
     Object.keys(npcStates).forEach(nationName => {
       const state = npcStates[nationName];
-      if (state && typeof state.budget === 'number') {
-        const serverBudget = state.budget;
-        if (currentData[nationName] !== serverBudget) {
-          currentData[nationName] = serverBudget;
-          hasChanged = true;
+      if (state) {
+        if (typeof state.budget === 'number') {
+          const serverBudget = state.budget;
+          if (currentData[nationName] !== serverBudget) {
+            currentData[nationName] = serverBudget;
+            hasChanged = true;
+          }
+        }
+        // [NEW] Sync daily income from server
+        if (typeof state.dailyIncome === 'number') {
+            incomeCache[nationName] = state.dailyIncome;
+            hasChanged = true;
         }
       }
     });

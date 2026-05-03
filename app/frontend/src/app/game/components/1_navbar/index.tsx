@@ -473,14 +473,17 @@ export default function GameNavbar({
             const response = await fetch("http://localhost:8081/api/game/reset", { method: "POST" });
             if (!response.ok) console.warn("[RESET] Go Server reset failed");
 
-            // STEP 2: Reset localStorage
+            // STEP 2: Clear all game storage first
+            gameStorage.resetCurrentSession();
+            
+            // STEP 3: Then reset to defaults
             gameStorage.resetCurrentSessionToDefaults();
 
-            // STEP 3: Reset PBB Data
+            // STEP 4: Reset PBB Data
             const { unVotingStorage } = await import("../2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/1_pemungutan_suara/logika_pemungutan_suara/unVotingStorage");
             unVotingStorage.clear();
             
-            // STEP 4: Hard reload with cache bust
+            // STEP 5: Hard reload with cache bust
             const cacheUuid = Date.now() + "_" + Math.random().toString(36).substring(2, 9);
             window.location.href = window.location.origin + "/game?cb=" + cacheUuid;
           } catch (err) {
