@@ -34,10 +34,11 @@ export default function GamePageClient() {
   const { activeMenu, setActiveMenu } = useGamePath((params?.path as string[]) || []);
 
   const {
-    approval, budget, budgetDelta, happiness, stability, population, populationDelta,
+    approval, budget, budgetDelta, happiness, population, populationDelta,
     userCountry, isMounted, unreadCount, targetCountry, setTargetCountry,
     isGameOver, showWelcome, setShowWelcome, selectedCountrySDA, setSelectedCountrySDA
   } = useGameState(setActiveMenu);
+
 
   const {
     mapMode, setMapMode, containerRef, geoData, isCentered, setIsCentered,
@@ -148,9 +149,9 @@ export default function GamePageClient() {
           happiness={happiness}
           budget={budget}
           budgetDelta={budgetDelta}
-          stability={stability}
           population={population}
           populationDelta={populationDelta}
+
           setActiveMenu={setActiveMenu}
           onLogout={() => {
             window.dispatchEvent(new CustomEvent('CLEAR_INVASIONS'));
@@ -244,9 +245,9 @@ export default function GamePageClient() {
         countryData={countryData}
         approval={approval}
         budget={budget}
-        stability={stability}
         onClose={() => setShowWelcome(false)}
       />
+
     </div>
   );
 }

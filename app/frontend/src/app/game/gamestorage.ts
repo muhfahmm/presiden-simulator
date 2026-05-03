@@ -29,7 +29,6 @@ import { embassyStorage } from "./components/modals/2_diplomasi_hubungan/1_kedut
 import { relationStorage } from "./components/modals/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { militaryAidStorage } from "./components/modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
 import { playerMilitaryStorage } from "./components/modals/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
-import { stabilityStorage } from "./components/1_navbar/4_stabilitas";
 import { nuclearStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/nuclearStorage";
 import { aiBudgetStorage } from "./components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { importStockStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ImportStockStorage";
@@ -142,7 +141,6 @@ export const gameStorage = {
     relationStorage.clear();
     militaryAidStorage.clear();
     playerMilitaryStorage.clear();
-    stabilityStorage.clear();
     nuclearStorage.clear();
     aiBudgetStorage.clear();
     aiHappinessStorage.clear();
@@ -245,7 +243,6 @@ export const gameStorage = {
     relationStorage.clear();
     militaryAidStorage.clear();
     playerMilitaryStorage.clear();
-    stabilityStorage.clear();
     nuclearStorage.clear();
     aiBudgetStorage.clear();
     aiHappinessStorage.clear();
@@ -307,10 +304,9 @@ export const gameStorage = {
     const defaultBudget = typeof currentCountry.anggaran === 'string'
       ? parseInt(currentCountry.anggaran.replace(/\./g, ''))
       : (currentCountry.anggaran || 0);
-    
-    const defaultStability = 50;
 
-    console.log(`[RESET] Defaults to restore: Pop=${defaultPopulation}, Budget=${defaultBudget}, Stability=${defaultStability}`);
+    console.log(`[RESET] Defaults to restore: Pop=${defaultPopulation}, Budget=${defaultBudget}`);
+
 
     // SECTION 1: PHASE 1 - AGGRESSIVE WIPE
     console.log(`[RESET] PHASE 1: Removing all em_* and game_taxes keys...`);
@@ -396,10 +392,6 @@ export const gameStorage = {
         cumulativeProduction: {},
         lastProcessedDate: "2026-01-01T00:00:00.000Z"
       }),
-      "em_stability_data": JSON.stringify({
-        stability: defaultStability,
-        lastUpdated: Date.now()
-      })
     };
 
     console.log(`[RESET] PHASE 3B: Atomic write of ${Object.keys(resetData).length} keys...`);
@@ -433,13 +425,12 @@ export const gameStorage = {
 
       const popMatch = verifyPop.population === defaultPopulation;
       const budgetMatch = verifyBudget.anggaran === defaultBudget;
-      const stabMatch = verifyStability.stability === defaultStability;
 
       console.log(`[RESET]   Population: ${verifyPop.population} (expected: ${defaultPopulation}) ${popMatch ? '✓' : '✗'}`);
       console.log(`[RESET]   Budget: ${verifyBudget.anggaran} (expected: ${defaultBudget}) ${budgetMatch ? '✓' : '✗'}`);
-      console.log(`[RESET]   Stability: ${verifyStability.stability} (expected: ${defaultStability}) ${stabMatch ? '✓' : '✗'}`);
 
-      if (popMatch && budgetMatch && stabMatch) {
+      if (popMatch && budgetMatch) {
+
         console.log(`[RESET] ✓ VERIFICATION PASSED - All defaults correct!`);
       } else {
         console.error(`[RESET] ✗ VERIFICATION FAILED - Values don't match!`);
@@ -500,8 +491,8 @@ export const gameStorage = {
     relationStorage.clear();
     militaryAidStorage.clear();
     playerMilitaryStorage.clear();
-    stabilityStorage.clear();
     nuclearStorage.clear();
+
     aiBudgetStorage.clear();
     aiHappinessStorage.clear();
     aiBuildingStorage.clear();

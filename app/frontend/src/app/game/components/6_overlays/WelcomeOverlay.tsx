@@ -8,18 +8,18 @@ interface WelcomeOverlayProps {
   countryData: any;
   approval: number;
   budget: number;
-  stability: number;
   onClose: () => void;
 }
+
 
 export default function WelcomeOverlay({ 
   showWelcome, 
   countryData, 
   approval, 
   budget, 
-  stability, 
   onClose 
 }: WelcomeOverlayProps) {
+
   if (!showWelcome) return null;
 
   return (
@@ -60,12 +60,8 @@ export default function WelcomeOverlay({
               <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Treasury</span>
               <span className="text-lg font-black text-white">{budget.toLocaleString('id-ID')}</span>
             </div>
-            <div className="flex-1 bg-zinc-950/50 border border-white/5 p-4 rounded-2xl flex flex-col items-center gap-1">
-              <Shield size={16} className="text-green-500 mb-1" />
-              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Stability</span>
-              <span className="text-lg font-black text-white">{stability}%</span>
-            </div>
           </div>
+
 
           {/* Briefing Text */}
           <p className="text-zinc-400 text-sm leading-relaxed max-w-md font-medium italic">

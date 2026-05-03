@@ -5,12 +5,13 @@ import { HappinessBreakdown } from "@/app/game/components/1_navbar/1_kepuasan";
 import { gameStorage } from "@/app/game/gamestorage";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
-import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import GameTimeControls from "@/app/game/components/1_navbar/5_navigasi_waktu/GameTimeControls";
 import BudgetDetailModal from "@/app/game/components/1_navbar/3_kas_negara/BudgetDetailModal";
+
+
 
 import { motion, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import { useEffect as useReactEffect } from "react";
@@ -69,12 +70,12 @@ interface GameNavbarProps {
   happiness: HappinessBreakdown;
   budget: number;
   budgetDelta: number;
-  stability: number;
   population: number;
   populationDelta: number;
   setActiveMenu: (menu: string) => void;
   onLogout: () => void;
 }
+
 
 function SaveStatusModal({ 
   show, 
@@ -319,18 +320,20 @@ export default function GameNavbar({
   happiness,
   budget,
   budgetDelta,
-  stability,
   population,
   populationDelta,
   setActiveMenu,
   onLogout
 }: GameNavbarProps) {
+
   const [saveStatus, setSaveStatus] = useState<{ show: boolean; status: 'loading' | 'success' | 'error'; sessionId?: string }>({
     show: false,
     status: 'loading'
   });
   const [showResetModal, setShowResetModal] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+
 
   return (
     <>
@@ -431,11 +434,8 @@ export default function GameNavbar({
             delta={budgetDelta}
             suffix="EM"
           />
-          <StatusBadge
-            icon={<Shield className="h-4 w-4 text-green-500" />}
-            label="Stabilitas"
-            value={`${stability}%`}
-          />
+
+
           <GameTimeControls />
 
           <button
@@ -502,5 +502,7 @@ export default function GameNavbar({
         onClose={() => setShowLogoutModal(false)}
       />
     </>
+
+
   );
 }

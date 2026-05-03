@@ -8,7 +8,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { countries } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { calculateBudgetBreakdown } from "@/app/game/components/1_navbar/3_kas_negara/BudgetDeltaLogic";
 import { calculatePopulationHappiness } from "@/app/game/components/1_navbar/1_kepuasan";
-import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
+
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
@@ -30,7 +30,7 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
   const [budget, setBudget] = useState(0);
   const [budgetDelta, setBudgetDelta] = useState(0);
   const [happiness, setHappiness] = useState({ global: 50 });
-  const [stability, setStability] = useState(50);
+
   const [population, setPopulation] = useState(0);
   const [populationDelta, setPopulationDelta] = useState(0);
   const [userCountry, setUserCountry] = useState("Indonesia");
@@ -71,7 +71,7 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
     
     // Load initial values from localStorage (will be overridden by server)
     setBudget(budgetStorage.getBudget());
-    setStability(stabilityStorage.getStability());
+
     setPopulation(populationStorage.getPopulation());
     
     if (session?.isWelcomeSeen) {
@@ -136,7 +136,7 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
         populationDelta: 0,
         budget: budgetStorage.getBudget(),
         dailyIncome: dailyIncome,
-        stability: stabilityStorage.getStability(),
+
         gameDate: gameDateStr,
         dayCounter: dayCounter,
         taxes: initialTaxes,
@@ -186,7 +186,7 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
       setPopulation(Math.round(p.population));
       setPopulationDelta(Math.round(p.populationDelta));
       setHappiness({ global: Math.round(p.happiness * 10) / 10 });
-      setStability(Math.round(p.stability * 10) / 10);
+
 
       // Note: We DO NOT set budgetDelta here from the server echo
       // because we want the calculated UI value to be instantaneous.
@@ -204,7 +204,7 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
         budgetDeltaStorage.setDelta(p.dailyIncome);
         populationStorage.setPopulationDirect(Math.round(p.population));
         populationDeltaStorage.setDelta(Math.round(p.populationDelta));
-        stabilityStorage.setStabilityDirect(p.stability);
+
       }
     };
     window.addEventListener('game_state_sync', handleServerSync);
@@ -272,7 +272,7 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
     budget, setBudget,
     budgetDelta, setBudgetDelta,
     happiness, setHappiness,
-    stability, setStability,
+
     population, setPopulation,
     populationDelta, setPopulationDelta,
     userCountry, setUserCountry,
