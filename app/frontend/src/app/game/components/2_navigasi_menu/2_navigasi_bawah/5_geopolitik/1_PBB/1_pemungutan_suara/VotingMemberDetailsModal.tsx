@@ -30,8 +30,10 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
   const activeVotingData = (votingId && !isHistory) ? unVotingStorage.getData().activeVotings.find(v => v.id === votingId) : null;
   const historyVotingData = (votingId && isHistory) ? unVotingStorage.getData().votingHistory.find(h => h.id === votingId) : null; 
   
-  // Safe access to bribedCountries
+  // Safe access to bribedCountries and reasons
   const bribedCountries: Record<string, string> = (activeVotingData?.bribedCountries as any) || (historyVotingData?.bribedCountries as any) || {};
+  const storedReasons: Record<string, string> = (activeVotingData?.reasons as any) || (historyVotingData?.reasons as any) || {};
+
   const getTitle = () => {
     switch(type) {
       case 'supporters': return { text: 'Negara Mendukung', color: 'text-emerald-500', icon: <Check className="h-5 w-5 text-emerald-500" /> };
@@ -213,6 +215,7 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
         <div className="flex-1 overflow-y-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-3 content-start scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
           {detailedCountries.map((country: any, i) => {
             const isTarget = country.name_id === targetCountry || country.name_en === targetCountry;
+            const isProposer = country.name_id === proposer || country.name_en === proposer;
             const code = getCountryCode(country.flag);
             return (
               <div
@@ -221,30 +224,41 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
                 className={`flex flex-col gap-3 p-3 rounded-2xl transition-all group border cursor-pointer ${
                   isTarget 
                     ? "bg-rose-500/10 border-rose-500/50 shadow-[0_0_15px_rgba(244,63,94,0.1)]" 
+                    : isProposer
+                    ? "bg-emerald-500/10 border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.1)]"
                     : selectedCountryName === country.name_id
                     ? "bg-zinc-800/80 border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.1)]"
                     : "bg-zinc-900/30 border-zinc-800/50 hover:bg-zinc-800/50"
                 } ${selectedCountryName === country.name_id ? "scale-[1.02]" : "scale-100"}`}
               >
+
                 <div className="flex items-center gap-4">
-                  <div className={`relative w-10 h-7 rounded-lg overflow-hidden shadow-md border shrink-0 ${isTarget ? "border-rose-500/50" : "border-zinc-800"}`}>
+                  <div className={`relative w-10 h-7 rounded-lg overflow-hidden shadow-md border shrink-0 ${isTarget ? "border-rose-500/50" : isProposer ? "border-emerald-500/50" : "border-zinc-800"}`}>
                     <img 
                       src={`https://flagcdn.com/w160/${code}.png`} 
                       alt={country.name_id}
                       className="w-full h-full object-cover"
                     />
                     {isTarget && <div className="absolute inset-0 bg-rose-500/10" />}
+                    {isProposer && <div className="absolute inset-0 bg-emerald-500/10" />}
                   </div>
+
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <h4 className={`text-xs font-black uppercase tracking-tight ${isTarget ? "text-rose-400" : "text-white"}`}>{country.name_id}</h4>
+                        <h4 className={`text-xs font-black uppercase tracking-tight ${isTarget ? "text-rose-400" : isProposer ? "text-emerald-400" : "text-white"}`}>{country.name_id}</h4>
                         {isTarget && (
                           <span className="text-[7px] font-black bg-rose-500 text-white px-1.5 py-0.5 rounded uppercase tracking-tighter animate-pulse">
                             Target Utama
                           </span>
                         )}
+                        {isProposer && (
+                          <span className="text-[7px] font-black bg-emerald-500 text-white px-1.5 py-0.5 rounded uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.3)]">
+                            Negara Pengusul
+                          </span>
+                        )}
                       </div>
+
                       <MessageSquare className={`h-3 w-3 transition-colors ${selectedCountryName === country.name_id ? "text-cyan-400" : "text-zinc-700 group-hover:text-zinc-500"}`} />
                     </div>
                     <p className={`text-[8px] font-bold uppercase tracking-widest ${isTarget ? "text-rose-600" : "text-zinc-600"}`}>{country.capital}</p>
@@ -278,13 +292,14 @@ export function VotingMemberDetailsModal({ type, countryList, targetCountry, pro
                       Analisis Diplomatik
                     </div>
                     <p className="text-[11px] text-zinc-300 leading-relaxed italic font-medium">
-                      "{bribedCountries[country.name_id] || getVotingReason({ 
+                      "{bribedCountries[country.name_id] || storedReasons[country.name_id] || getVotingReason({ 
                         voter: country.name_id, 
                         proposer: proposer, 
                         target: targetCountry || "Global", 
                         type: type 
                       })}"
                     </p>
+
                   </div>
                 )}
               </div>

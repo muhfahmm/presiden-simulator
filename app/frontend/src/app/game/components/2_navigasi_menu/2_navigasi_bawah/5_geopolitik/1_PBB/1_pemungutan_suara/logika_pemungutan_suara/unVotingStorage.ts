@@ -29,7 +29,9 @@ export interface VotingHistoryItem {
     };
   };
   bribedCountries?: Record<string, string>; 
+  reasons?: Record<string, string>; // Format: { "Negara Name": "Alasan Utama | Detail" }
 }
+
 
 export interface ActiveVoting {
   id: string;
@@ -60,7 +62,9 @@ export interface ActiveVoting {
   };
   aiBribeAttempted?: boolean;
   bribedCountries?: Record<string, string>;
+  reasons?: Record<string, string>;
 }
+
 
 export interface UNVotingState {
   votingHistory: VotingHistoryItem[];
@@ -177,9 +181,15 @@ export const unVotingStorage = {
         weightedYes: results.weightedYes,
         weightedNo: results.weightedNo,
         weightedAbstain: results.weightedAbstain,
-        details: results.details
-      }
+        details: {
+          supporters: results.details.supporters,
+          opponents: results.details.opponents,
+          abstainers: results.details.abstainers
+        }
+      },
+      reasons: results.details.reasons
     };
+
     
     unVotingStorage.saveData({
       ...state,
@@ -205,9 +215,15 @@ export const unVotingStorage = {
         weightedYes: results.weightedYes,
         weightedNo: results.weightedNo,
         weightedAbstain: results.weightedAbstain,
-        details: results.details
-      }
+        details: {
+          supporters: results.details.supporters,
+          opponents: results.details.opponents,
+          abstainers: results.details.abstainers
+        }
+      },
+      reasons: results.details.reasons
     };
+
     
     unVotingStorage.saveData({
       ...state,

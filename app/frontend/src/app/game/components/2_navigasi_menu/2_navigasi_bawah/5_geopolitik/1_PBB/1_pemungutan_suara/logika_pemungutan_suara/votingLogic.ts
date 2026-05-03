@@ -22,6 +22,7 @@ export interface VoteResult {
     supporters: string[];
     opponents: string[];
     abstainers: string[];
+    reasons: Record<string, string>;
   };
 }
 
@@ -74,8 +75,10 @@ export const simulateUNVote = (
   const supporters: string[] = [];
   const opponents: string[] = [];
   const abstainers: string[] = [];
+  const reasons: Record<string, string> = {};
   
   let weightedYes = 0;
+
   let weightedNo = 0;
   let weightedAbstain = 0;
 
@@ -221,6 +224,26 @@ export const simulateUNVote = (
       abstainers.push(countryName);
       weightedAbstain += voteWeight;
     }
+
+    // --- GENERATE REASON (STRICT) ---
+    const { getVotingReasonStrict } = require("./votingReasons");
+    const voteType = supporters.includes(countryName) ? 'SETUJU' : opponents.includes(countryName) ? 'TOLAK' : 'ABSTAIN';
+
+    
+    const reasonObj = getVotingReasonStrict({
+      category,
+      voteType,
+      voter: countryName,
+      proposer: proposer,
+      target: targetCountry || "Global",
+      voterRelationWithTarget: targetCountry ? getRelation(countryName, targetCountry) : 50,
+      voterRelationWithProposer: getRelation(countryName, proposer),
+      isSameOrgWithTarget: targetCountry ? areInSameOrg(countryName, targetCountry) : false,
+      isSameOrgWithProposer: areInSameOrg(countryName, proposer)
+    });
+
+
+    reasons[countryName] = `${reasonObj.alasan} | ${reasonObj.detail}`;
   });
 
   return {
@@ -233,8 +256,10 @@ export const simulateUNVote = (
     details: {
       supporters: shuffleArray(supporters),
       opponents: shuffleArray(opponents),
-      abstainers: shuffleArray(abstainers)
+      abstainers: shuffleArray(abstainers),
+      reasons
     }
   };
 };
+
 
