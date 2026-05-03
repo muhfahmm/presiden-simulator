@@ -129,6 +129,16 @@ func UpdateDailyRelationsLocked(date string) {
 		return 
 	}
 
+	// Only update on dates 7, 14, 21, 28 to match UI explanation
+	parts := strings.Split(date, "-")
+	if len(parts) < 3 {
+		return
+	}
+	day := parts[2]
+	if day != "07" && day != "14" && day != "21" && day != "28" {
+		return
+	}
+
 	for source, targets := range core.GlobalState.Relationships {
 		for target, rel := range targets {
 			if source == target || rel == nil {

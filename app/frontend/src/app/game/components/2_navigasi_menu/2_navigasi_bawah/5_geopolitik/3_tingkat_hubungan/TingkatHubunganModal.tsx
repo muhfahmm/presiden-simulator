@@ -353,6 +353,10 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
               <span className="text-[9px] font-black uppercase tracking-widest text-blue-300">UNSC Bonus Active (+20%)</span>
             </div>
           )}
+          <div className="ml-4 flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-800/30 border border-zinc-700/30 shadow-inner group hover:bg-emerald-500/5 hover:border-emerald-500/20 transition-all duration-500">
+            <Activity size={10} className="text-zinc-500 group-hover:text-emerald-500 transition-colors" />
+            <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500 group-hover:text-emerald-400/80 transition-colors">Update: Setiap 7 Hari (Tgl 7, 14, 21, 28)</span>
+          </div>
         </div>
 
         {/* Content Section - SIMPLE VERTICAL LIST */}

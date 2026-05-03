@@ -2,18 +2,22 @@
 
 /**
  * RelationSimulationService.ts
- * Simulasi AI untuk hubungan antar negara yang berjalan setiap pergantian hari.
- * Hubungan naik +0.1 per hari jika ada kedutaan, turun -0.1 per hari jika tidak ada kedutaan.
+ * Simulasi AI untuk hubungan antar negara yang berjalan setiap minggu.
+ * Update terjadi pada tanggal 7, 14, 21, dan 28 setiap bulannya.
+ * Hubungan naik +0.1 per minggu jika ada kedutaan, turun -0.1 per minggu jika tidak ada kedutaan.
  */
 
 import { getGlobalRelationMatrix, saveGlobalRelationMatrix, normalizeId, RelationMatrix, RelationEntry } from "@/app/game/components/modals/1_info_strategis/8_Hubungan/RelationMatrix";
 import { countries as centersData } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 
-// Configuration constants - Embassy-based daily change
-const DAILY_CHANGE_CONFIG = {
-  WITH_EMBASSY: 0.1,     // +0.1 per day if embassy exists
-  WITHOUT_EMBASSY: -0.1, // -0.1 per day if no embassy
+// Configuration constants - Embassy-based weekly change
+const WEEKLY_CHANGE_CONFIG = {
+  WITH_EMBASSY: 0.1,     // +0.1 per week if embassy exists
+  WITHOUT_EMBASSY: -0.1, // -0.1 per week if no embassy
 };
+
+// Weekly update dates: 7, 14, 21, 28
+const WEEKLY_DATES = [7, 14, 21, 28];
 
 const BOUNDS = {
   MIN: 0,
@@ -26,9 +30,16 @@ class RelationSimulationService {
 
   /**
    * Main entry point - called daily by SimulationManager
+   * Only processes on weekly dates: 7, 14, 21, 28
    */
   public processDailyRelations(currentDate: Date): void {
     const dateStr = currentDate.toISOString().split('T')[0];
+    const dayOfMonth = currentDate.getDate();
+    
+    // Only process on specific weekly dates (7, 14, 21, 28)
+    if (!WEEKLY_DATES.includes(dayOfMonth)) {
+      return;
+    }
     
     // Prevent double-processing on same day
     if (this.lastProcessedDate === dateStr) {
@@ -42,7 +53,7 @@ class RelationSimulationService {
     // Batch save - only one write to localStorage
     saveGlobalRelationMatrix(updatedMatrix);
 
-    console.log(`[RELATION-SIMULATION] Daily update completed for ${dateStr}`);
+    console.log(`[RELATION-SIMULATION] Weekly update completed for ${dateStr}`);
   }
 
   /**
@@ -74,16 +85,16 @@ class RelationSimulationService {
 
   /**
    * Simulate a single relation entry
-   * Embassy-based logic: +0.1 with embassy, -0.1 without embassy
+   * Embassy-based logic: +0.1 with embassy, -0.1 without embassy (weekly)
    */
   private simulateRelationEntry(entry: RelationEntry, sourceId: string, targetId: string): RelationEntry {
     let newScore = entry.s;
 
-    // Apply embassy-based daily change
-    const dailyChange = entry.e === 1 
-      ? DAILY_CHANGE_CONFIG.WITH_EMBASSY 
-      : DAILY_CHANGE_CONFIG.WITHOUT_EMBASSY;
-    newScore += dailyChange;
+    // Apply embassy-based weekly change
+    const weeklyChange = entry.e === 1 
+      ? WEEKLY_CHANGE_CONFIG.WITH_EMBASSY 
+      : WEEKLY_CHANGE_CONFIG.WITHOUT_EMBASSY;
+    newScore += weeklyChange;
 
     // Clamp to bounds
     newScore = Math.max(BOUNDS.MIN, Math.min(BOUNDS.MAX, newScore));
