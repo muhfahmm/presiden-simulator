@@ -123,7 +123,8 @@ export function useGamePath(path: string[]) {
     else if (subMenu === 'naikkan') initialMenu = "Action:NaikkanKepuasan";
     else initialMenu = "Kepuasan";
   } else if (category === 'berita_internasional') {
-    const filter = path[1] || "all";
+    let filter = path[1] || "all";
+    if (filter === "nuklir") filter = "program_nuklir";
     const subFilter = path[2];
     if (filter === 'organisasi' && subFilter) {
       initialMenu = `Menu:Berita:${filter}:${subFilter}`;
@@ -257,6 +258,8 @@ export function useGamePath(path: string[]) {
       "Menu:Berita:kedutaan": "/game/berita_internasional/kedutaan",
       "Menu:Berita:pakta": "/game/berita_internasional/pakta",
       "Menu:Berita:aliansi": "/game/berita_internasional/aliansi",
+      "Menu:Berita:nuklir": "/game/berita_internasional/program_nuklir",
+      "Menu:Berita:program_nuklir": "/game/berita_internasional/program_nuklir",
       "Menu:Berita:organisasi": "/game/berita_internasional/organisasi/pbb",
       "Menu:Berita:organisasi:pbb": "/game/berita_internasional/organisasi/pbb",
       "Menu:Berita:organisasi:regional": "/game/berita_internasional/organisasi/regional",
