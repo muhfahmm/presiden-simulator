@@ -1,0 +1,44 @@
+RENCANA LOGIKA LANJUTAN: SIMULASI PERANG AI (V2)
+==================================================
+
+Agar peperangan tidak terjadi secara membabi buta setiap hari, logika berikut akan ditambahkan sebagai filter sebelum invasi diluncurkan:
+
+1. FILTER PAKTA NON-AGRESI (Diplomatic Shield)
+   - Deskripsi: Sebelum menyerang, AI wajib mengecek status 'Pact' di RelationMatrix.
+   - Aturan: Jika status Pakta = 1 (Aktif), probabilitas serangan menjadi 0%.
+   - Tujuan: Menghargai perjanjian diplomatik yang sudah dibuat pemain atau antar AI.
+
+2. FILTER PERBANDINGAN KEKUATAN MILITER (Strategic Analysis)
+   - Deskripsi: AI menghitung total Power (Darat + Laut + Udara) milik Target.
+   - Aturan: Serangan hanya dipicu jika (Power Penyerang * 1.2) > Power Target.
+   - Tujuan: Mencegah negara kecil menyerang negara superpower secara tidak logis.
+
+3. LOGIKA WAR FATIGUE (Kelelahan Perang)
+   - Deskripsi: Menambahkan cooldown setelah sebuah negara terlibat dalam perang.
+   - Aturan: Negara yang sedang memiliki invasi aktif di WarStorage tidak boleh memulai invasi baru.
+   - Tujuan: Mencegah satu negara menginvasi banyak negara sekaligus (Multi-front war).
+
+4. KESIAPAN ANGGARAN (Economic Readiness)
+   - Deskripsi: Mengecek saldo di AiBudgetStorage.
+   - Aturan: Membutuhkan minimal dana $50.000 (skala kas negara AI) untuk biaya mobilisasi pasukan.
+   - Tujuan: Menghindari perang saat negara sedang krisis ekonomi.
+
+5. GLOBAL TENSION MODIFIER (Skala Ketegangan Dunia)
+   - Deskripsi: Probabilitas dasar (5%) dipengaruhi oleh jumlah perang yang sedang terjadi.
+   - Aturan: Jika sudah ada > 5 perang di dunia, probabilitas serangan baru turun menjadi 1%.
+   - Tujuan: Menjaga stabilitas performa game dan peta agar tidak terlalu penuh jalur merah.
+
+6. INTERVENSI ALIANSI (Alliance Support)
+   - Deskripsi: Mengecek status 'Alliance' di RelationMatrix.
+   - Aturan: Jika target serangan memiliki sekutu, ada peluang 50% sekutu tersebut ikut mengirimkan pasukan bantuan untuk bertahan.
+   - Tujuan: Membuat aliansi terasa sangat berharga bagi pemain dan AI.
+
+7. FAKTOR JARAK GEOGRAFIS (Neighbor Priority)
+   - Deskripsi: Menghitung jarak antar koordinat negara.
+   - Aturan: Negara tetangga memiliki probabilitas serangan +2%, negara jauh -2%.
+   - Tujuan: Simulasi konflik regional yang lebih realistis (seperti sengketa perbatasan).
+
+8. DETERENSI NUKLIR (Nuclear Deterrence)
+   - Deskripsi: Mengecek kepemilikan senjata nuklir.
+   - Aturan: Negara yang memiliki status 'Nuclear Program Completed' 80% lebih jarang diserang oleh AI non-nuklir.
+   - Tujuan: Memberikan keuntungan strategis bagi negara yang berhasil mengembangkan nuklir.
