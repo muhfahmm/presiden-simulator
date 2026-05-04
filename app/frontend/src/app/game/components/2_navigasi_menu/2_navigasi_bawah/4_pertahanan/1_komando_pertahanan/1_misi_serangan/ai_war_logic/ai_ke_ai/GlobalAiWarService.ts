@@ -8,19 +8,30 @@ import { luncurkanInvasi } from "../../modals_pilih_negara/logic/InvasiLogic";
 import { warStorage, ActiveInvasion } from "../WarStorage";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
 
+import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { nuclearStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/nuclearStorage";
+
 class GlobalAiWarService {
   /**
    * Simulasi harian serangan NPC vs NPC.
    */
   public processDailyInvasions(currentDate: Date) {
+    // 9. TOTAL GLOBAL PROBABILITY (25% Chance Per Day)
+    if (Math.random() > 0.25) return;
+
     const matrix = getGlobalRelationMatrix();
     const allCountryIds = centersData.map(c => c.name_id.toLowerCase().trim());
+    const activeInvasions = warStorage.getInvasions();
     
+    // 5. GLOBAL TENSION MODIFIER
+    let maxAttacks = 1;
+    if (activeInvasions.length > 5) maxAttacks = 0; // Terlalu banyak perang, dunia butuh jeda
+    if (activeInvasions.length > 3) maxAttacks = Math.random() < 0.1 ? 1 : 0;
+
     let attackCount = 0;
-    const MAX_ATTACKS_PER_DAY = 1;
 
     for (const sourceId of allCountryIds) {
-      if (attackCount >= MAX_ATTACKS_PER_DAY) break;
+      if (attackCount >= maxAttacks) break;
 
       const sourceRelations = matrix[sourceId];
       if (!sourceRelations) continue;
@@ -28,32 +39,73 @@ class GlobalAiWarService {
       for (const targetId of allCountryIds) {
         if (sourceId === targetId) continue;
         const entry = sourceRelations[targetId];
+        
+        // KRITERIA DASAR: Hubungan sangat buruk
         if (!entry || entry.s > 15) continue; 
 
-        const existing = warStorage.getInvasions().find(inv => 
+        // 1. FILTER PAKTA NON-AGRESI (Diplomatic Shield)
+        if (entry.p === 1) continue; 
+
+        // CEK APAKAH SUDAH ADA PERANG AKTIF ANTARA KEDUA NEGARA
+        const existing = activeInvasions.find(inv => 
           (inv.source === sourceId && inv.target === targetId) ||
           (inv.source === targetId && inv.target === sourceId)
         );
         if (existing) continue;
 
-        if (Math.random() > 0.05) continue;
+        // 3. LOGIKA WAR FATIGUE (Kelelahan Perang)
+        const isSourceInWar = activeInvasions.some(inv => inv.source === sourceId);
+        if (isSourceInWar) continue; // Satu negara hanya bisa fokus pada satu front serangan
 
-        this.initiateAiAttack(sourceId, targetId, currentDate);
+        // 7. FAKTOR JARAK GEOGRAFIS (Neighbor Priority)
+        const sourceCountry = centersData.find(c => normalizeId(c.name_id) === sourceId);
+        const targetCountry = centersData.find(c => normalizeId(c.name_id) === targetId);
+        if (!sourceCountry || !targetCountry) continue;
+
+        const distance = this.calculateDistance(
+          { x: sourceCountry.lon, y: sourceCountry.lat },
+          { x: targetCountry.lon, y: targetCountry.lat }
+        );
+        let baseChance = 0.05;
+        if (distance < 1000) baseChance = 0.15; // Tetangga lebih rawan konflik
+        if (distance > 5000) baseChance = 0.01; // Negara jauh jarang diserang
+
+        if (Math.random() > baseChance) continue;
+
+        this.initiateAiAttack(sourceId, targetId, currentDate, sourceCountry, targetCountry, entry);
         attackCount++;
         break;
       }
     }
   }
 
-  private initiateAiAttack(sourceId: string, targetId: string, currentDate: Date) {
-    const sourceCountry = centersData.find(c => normalizeId(c.name_id) === sourceId);
-    const targetCountry = centersData.find(c => normalizeId(c.name_id) === targetId);
+  private calculateDistance(c1: { x: number; y: number }, c2: { x: number; y: number }) {
+    return Math.sqrt(Math.pow(c2.x - c1.x, 2) + Math.pow(c2.y - c1.y, 2));
+  }
 
-    if (!sourceCountry || !targetCountry) return;
+  private initiateAiAttack(sourceId: string, targetId: string, currentDate: Date, sourceCountry: any, targetCountry: any, entry: any) {
+    // 4. KESIAPAN ANGGARAN (Economic Readiness)
+    const budget = aiBudgetStorage.getBudget(sourceCountry.name_en);
+    if (budget < 50000) return;
+
+    // 8. DETERENSI NUKLIR (Nuclear Deterrence)
+    const hasNuclear = targetCountry.militer_strategis?.status_nuklir || 
+                      (targetCountry.militer_strategis?.operasi_strategis?.program_nuklir > 0);
+    
+    if (hasNuclear) { // Target punya senjata nuklir/reaktor besar
+       if (Math.random() < 0.8) return; // 80% Peluang membatalkan serangan karena takut nuklir
+    }
 
     const aiDefense = aiDefenseStorage.getData(sourceCountry.name_en);
-    const deployments: Record<string, number> = {};
     
+    // 2. FILTER PERBANDINGAN KEKUATAN MILITER (Strategic Analysis)
+    const sourcePower = calculateTotalMilitaryPower(sourceCountry as any, aiDefense.defenseDeltas).total;
+    const targetDefense = aiDefenseStorage.getData(targetCountry.name_en);
+    const targetPower = calculateTotalMilitaryPower(targetCountry as any, targetDefense.defenseDeltas).total;
+
+    if (sourcePower * 1.3 < targetPower) return; // Penyerang tidak akan bunuh diri menyerang yang jauh lebih kuat
+
+    const deployments: Record<string, number> = {};
     if (sourceCountry.armada_militer?.darat) {
       Object.keys(sourceCountry.armada_militer.darat).forEach(key => {
         const count = (sourceCountry.armada_militer.darat as any)[key] || 0;
@@ -66,6 +118,9 @@ class GlobalAiWarService {
 
     const { units, path } = luncurkanInvasi(sourceCountry as any, targetCountry as any, deployments);
     if (!path) return;
+
+    // Kurangi budget AI untuk biaya perang
+    aiBudgetStorage.updateBudgetManual(sourceCountry.name_en, -50000);
 
     warStorage.addInvasion({
       id: `ai-${sourceId}-${targetId}-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,

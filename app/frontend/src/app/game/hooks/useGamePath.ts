@@ -145,7 +145,8 @@ export function useGamePath(path: string[]) {
       "kedutaan": "embassy",
       "pakta": "pact",
       "aliansi": "alliance",
-      "pbb": "pbb"
+      "pbb": "pbb",
+      "militer": "militer"
     };
     initialMenu = `Menu:Inbox:${filterMap[filter] || "all"}`;
   } else if (category === 'populasi') {
@@ -265,6 +266,7 @@ export function useGamePath(path: string[]) {
       "Menu:Berita:organisasi:pbb": "/game/berita_internasional/organisasi/pbb",
       "Menu:Berita:organisasi:regional": "/game/berita_internasional/organisasi/regional",
       "Menu:Berita:organisasi:voting": "/game/berita_internasional/organisasi/voting",
+      "Menu:Berita:operasi_militer": "/game/berita_internasional/operasi_militer",
       "Menu:Inbox": "/game/inbox/semua",
       "Menu:Inbox:all": "/game/inbox/semua",
       "Menu:Inbox:finance": "/game/inbox/keuangan",
@@ -274,6 +276,7 @@ export function useGamePath(path: string[]) {
       "Menu:Inbox:alliance": "/game/inbox/aliansi",
       "Menu:Inbox:pbb": "/game/inbox/pbb",
       "Menu:Inbox:relationship": "/game/inbox/hubungan",
+      "Menu:Inbox:militer": "/game/inbox/militer",
       "Menu:Riset": "/game/riset",
       "Kepuasan": "/game/kepuasan",
       "Dashboard:Kepuasan": "/game/kepuasan/statistik_kepuasan",

@@ -356,7 +356,13 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
               <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Communication & Initiative Center</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
+          <button 
+            onClick={() => {
+              window.history.pushState(null, '', '/game');
+              onClose();
+            }} 
+            className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
+          >
               <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
               <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
           </button>
@@ -431,7 +437,11 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveMenu(`Menu:Inbox:${tab.id}`)}
+                  onClick={() => {
+                    const newPath = `/game/inbox/${tab.id}`;
+                    window.history.pushState(null, '', newPath);
+                    setActiveMenu(`Menu:Inbox:${tab.id}`);
+                  }}
                   className={`group relative flex items-center justify-between px-6 py-4 rounded-full transition-all cursor-pointer border ${
                     isActive 
                       ? 'bg-zinc-800 text-white border-zinc-700 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] translate-x-1' 

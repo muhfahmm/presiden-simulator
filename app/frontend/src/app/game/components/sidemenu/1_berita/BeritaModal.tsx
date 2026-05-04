@@ -53,6 +53,17 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
   const filter = activeMenu.startsWith("Menu:Berita:") ? parts[2] : "all";
   const subFilter = activeMenu.startsWith("Menu:Berita:") ? parts[3] : null;
 
+  // Sync URL with active category when modal is open
+  useEffect(() => {
+    if (isOpen && activeMenu.startsWith("Menu:Berita:")) {
+      const category = activeMenu.split(":")[2] || 'all';
+      const path = `/game/berita_internasional/${category}`;
+      if (window.location.pathname !== path) {
+        window.history.replaceState(null, '', path);
+      }
+    }
+  }, [isOpen, activeMenu]);
+
   useEffect(() => {
     if (isOpen) {
       setNews(newsStorage.getNews());
@@ -66,7 +77,7 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
   // Calculate total counts per category (resets weekly with news)
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {
-      all: 0, pembangunan: 0, keuangan: 0, perdagangan: 0, kedutaan: 0, pakta: 0, aliansi: 0, organisasi: 0, program_nuklir: 0, hubungan: 0, militer: 0
+      all: 0, pembangunan: 0, keuangan: 0, perdagangan: 0, kedutaan: 0, pakta: 0, aliansi: 0, organisasi: 0, program_nuklir: 0, hubungan: 0, operasi_militer: 0
     };
 
     news.forEach(item => {
@@ -74,7 +85,7 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
 
       const subj = item.subject.toLowerCase();
       
-      if (item.category === 'conflict' || /(perang|invasi|serangan|militer)/.test(subj)) counts.militer++;
+      if (item.category === 'conflict' || /(perang|invasi|serangan|militer)/.test(subj)) counts.operasi_militer++;
       else if (item.category === 'nuclear') counts.program_nuklir++;
       else if (item.category === 'construction') {
         if (/(nuklir|uranium|icbm|atom|reaktor)/.test(subj)) counts.program_nuklir++;
@@ -131,7 +142,8 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
         case 'nuklir':
         case 'program_nuklir': return <NuclearList {...commonProps} />;
         case 'hubungan': return <RelationList {...commonProps} />;
-        case 'militer': return <WarNewsList {...commonProps} />;
+        case 'militer':
+        case 'operasi_militer': return <WarNewsList {...commonProps} />;
         default: return <AllList {...commonProps} />;
     }
   };
@@ -153,7 +165,13 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
               <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">Global Intelligence & World Report</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
+          <button 
+            onClick={() => {
+              window.history.pushState(null, '', '/game');
+              onClose();
+            }} 
+            className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
+          >
               <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
               <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
           </button>
@@ -208,7 +226,7 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
               { id: 'organisasi', label: 'organisasi' },
               { id: 'program_nuklir', label: 'program nuklir' },
               { id: 'hubungan', label: 'hubungan internasional' },
-              { id: 'militer', label: 'operasi militer' }
+              { id: 'operasi_militer', label: 'operasi militer' }
             ].map((tab) => {
               const isActive = filter === tab.id;
               const count = categoryCounts[tab.id];
@@ -216,7 +234,11 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveMenu(`Menu:Berita:${tab.id}`)}
+                  onClick={() => {
+                    const newPath = `/game/berita_internasional/${tab.id}`;
+                    window.history.pushState(null, '', newPath); 
+                    setActiveMenu(`Menu:Berita:${tab.id}`);
+                  }}
                   className={`group relative flex items-center justify-between px-6 py-4 rounded-full transition-all cursor-pointer border ${
                     isActive 
                       ? 'bg-zinc-800 text-white border-zinc-700 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] translate-x-1' 
