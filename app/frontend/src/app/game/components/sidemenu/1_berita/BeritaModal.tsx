@@ -113,7 +113,6 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
         counts.organisasi++;
       }
       else {
-        // Fallback pattern matching for untagged categories
         if (/(pbb|imf|bank dunia|organisasi|keanggotaan|membership|asean|nato|brics|g20)/.test(subj)) counts.organisasi++;
       }
     });
