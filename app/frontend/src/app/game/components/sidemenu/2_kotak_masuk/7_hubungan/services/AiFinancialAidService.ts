@@ -139,7 +139,6 @@ class AiFinancialAidService {
     dateStr: string
   ): void {
     const countryName = this.formatCountryName(aiCountry);
-    const urgencyLevel = oldScore <= 25 ? 'KRITIS' : 'MEMBURUK';
     
     // Hitung kenaikan hubungan aktual
     const pointsGain = newScore - oldScore;
@@ -147,7 +146,7 @@ class AiFinancialAidService {
     inboxStorage.addMessage({
       source: `Departemen Keuangan ${countryName}`,
       subject: `💰 ${countryName} Kirim Bantuan ${formattedAmount}`,
-      content: `\n📢 KABAR BAIK\n\nNegara Anda menerima transfer dana diplomatik dari ${countryName}.\n\n💵 Detail Transfer:\n• Jumlah: ${formattedAmount}\n• Dari: ${countryName}\n• Status: ✅ BERHASIL MASUK KE KAS\n• Tanggal: ${dateStr}\n\n📈 Perubahan Hubungan:\n• Skor Sebelumnya: ${oldScore.toFixed(1)}/100\n• Skor Setelahnya: ${newScore.toFixed(1)}/100\n• Kenaikan: +${pointsGain.toFixed(2)} poin\n\n💡 Penjelasan:\n• Setiap 1.000 yang diterima = +0.1 poin hubungan\n• Bantuan ${formattedAmount} meningkatkan hubungan sebesar +${pointsGain.toFixed(2)} poin\n\n📊 Konteks Hubungan:\n• Status sebelumnya: ${oldScore.toFixed(1)} (${urgencyLevel})\n• ${countryName} memberikan bantuan untuk memperbaiki hubungan bilateral\n\n✅ Dana Sudah Tersedia\nUang sudah masuk ke kas negara dan siap digunakan untuk:\n• Pembangunan infrastruktur\n• Program sosial\n• Pertahanan\n• Kebutuhan negara lainnya\n\n💡 Tips:\nPertimbangkan untuk membangun Kedutaan Besar ${countryName} agar hubungan terus membaik (+0.1/minggu).`,
+      content: `Negara Anda menerima bantuan diplomatik dari ${countryName}.\n\n� ${formattedAmount} masuk ke kas negara.\n📈 Hubungan bertambah +${pointsGain.toFixed(2)} poin (${oldScore.toFixed(1)} → ${newScore.toFixed(1)}).`,
       time: dateStr,
       priority: newScore <= 25 ? 'high' : 'medium',
       category: 'relationship',

@@ -151,7 +151,7 @@ class AiMoneyOfferService {
       inboxStorage.addMessage({
         source: `Dinas Luar Negeri ${countryName}`,
         subject: `Bantuan Keuangan Diplomatik dari ${countryName}`,
-        content: `${countryName} mengirim bantuan ${formattedAmount} (${percentage}%) untuk memperbaiki hubungan bilateral.\n\n📈 Perubahan Hubungan:\n• Skor Sebelumnya: ${score.toFixed(1)}/100\n• Skor Setelahnya: ${newScore.toFixed(1)}/100\n• Kenaikan: +${pointsGain.toFixed(2)} poin\n\n💡 Penjelasan:\n• Setiap 1.000 yang diterima = +0.1 poin hubungan\n• Bantuan ${formattedAmount} meningkatkan hubungan sebesar +${pointsGain.toFixed(2)} poin\n\n✅ Dana telah masuk ke kas negara.\n\n💡 Rekomendasi: Bangun kedutaan untuk mewujudkan kenaikan hubungan (+0.1/minggu).`,
+        content: `${countryName} mengirim bantuan diplomatik untuk memperbaiki hubungan.\n\n� ${formattedAmount} masuk ke kas negara.\n📈 Hubungan bertambah +${pointsGain.toFixed(2)} poin (${score.toFixed(1)} → ${newScore.toFixed(1)}).`,
         time: dateStr,
         priority: newScore <= 25 ? 'high' : 'medium',
         category: 'relationship',

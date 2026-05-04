@@ -278,26 +278,12 @@ class AiDiplomaticGiftService {
     inboxStorage.addMessage({
       source: `Departemen Luar Negeri ${countryName}`,
       subject: subjects[tier.name],
-      content: `\n${narratives[tier.name]}\n\n💰 Detail Transfer:\n• Jumlah: ${formattedAmount}\n• Status: ✅ BERHASIL MASUK KE KAS\n• Tanggal: ${dateStr}\n\n📈 Perubahan Hubungan:\n• Skor Sebelumnya: ${oldScore.toFixed(1)}/100\n• Skor Setelahnya: ${newScore.toFixed(1)}/100 (${tier.name})\n• Kenaikan: +${pointsGain.toFixed(2)} poin\n\n💡 Penjelasan:\n• Setiap 1.000 yang diterima = +0.1 poin hubungan\n• Bantuan ${formattedAmount} meningkatkan hubungan sebesar +${pointsGain.toFixed(2)} poin\n\n📋 Konteks:\n${tier.description}\n\n💡 Rekomendasi:\n${this.getRecommendation(newScore, tier)}`,
+      content: `${narratives[tier.name]}\n\n💰 ${formattedAmount} masuk ke kas negara.\n📈 Hubungan bertambah +${pointsGain.toFixed(2)} poin (${oldScore.toFixed(1)} → ${newScore.toFixed(1)}).`,
       time: dateStr,
       priority: newScore < 40 ? 'high' : newScore < 60 ? 'medium' : 'low',
       category: 'relationship',
       isProposal: false
     });
-  }
-
-  private getRecommendation(score: number, tier: GiftTier): string {
-    if (score >= 80) {
-      return '• Pertahankan hubungan yang sangat baik\n• Pertimbangkan aliansi strategis\n• Tingkatkan kerja sama perdagangan';
-    } else if (score >= 60) {
-      return '• Manfaatkan momentum positif\n• Bangun kedutaan untuk memperkuat hubungan\n• Tawarkan proyek kolaboratif';
-    } else if (score >= 40) {
-      return '• Monitor perkembangan hubungan\n• Respon positif terhadap gestur AI\n• Pertimbangkan kunjungan diplomatik';
-    } else if (score >= 20) {
-      return '• Prioritaskan perbaikan hubungan\n• Bangun kedutaan segera (+0.1/minggu)\n• Hindari konflik bilateral';
-    } else {
-      return '• KRISIS: Bangun kedutaan SEGERA\n• Tunjukkan komitmen perbaikan\n• Pertimbangkan negosiasi resmi';
-    }
   }
 
   /**

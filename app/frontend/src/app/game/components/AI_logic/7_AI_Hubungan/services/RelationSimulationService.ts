@@ -30,9 +30,61 @@ const BOUNDS = {
   BAD: 50,           // Threshold for bad relationship (26-49) - Buruk
 };
 
+const LAST_PROCESSED_KEY = 'relation_sim_last_processed';
+const NOTIFIED_COUNTRIES_KEY = 'relation_sim_notified';
+const COOLDOWN_KEY = 'relation_sim_cooldown';
+
 class RelationSimulationService {
   private lastProcessedDate: string | null = null;
-  private notifiedCountries: Set<string> = new Set(); // Track countries already notified
+  private notifiedCountries: Set<string> = new Set();
+  private notifiedCountriesWithTime: Map<string, Date> = new Map();
+
+  private readonly MAX_NOTIFICATIONS_PER_WEEK = 5;
+  private readonly COOLDOWN_DAYS = 28;
+
+  constructor() {
+    this.loadFromStorage();
+  }
+
+  private loadFromStorage(): void {
+    if (typeof window === 'undefined') return;
+    
+    this.lastProcessedDate = localStorage.getItem(LAST_PROCESSED_KEY);
+    
+    const notifiedRaw = localStorage.getItem(NOTIFIED_COUNTRIES_KEY);
+    if (notifiedRaw) {
+      try {
+        const arr = JSON.parse(notifiedRaw);
+        this.notifiedCountries = new Set(arr);
+      } catch (e) {}
+    }
+    
+    const cooldownRaw = localStorage.getItem(COOLDOWN_KEY);
+    if (cooldownRaw) {
+      try {
+        const obj = JSON.parse(cooldownRaw);
+        Object.entries(obj).forEach(([key, dateStr]) => {
+          this.notifiedCountriesWithTime.set(key, new Date(dateStr as string));
+        });
+      } catch (e) {}
+    }
+  }
+
+  private saveToStorage(): void {
+    if (typeof window === 'undefined') return;
+    
+    if (this.lastProcessedDate) {
+      localStorage.setItem(LAST_PROCESSED_KEY, this.lastProcessedDate);
+    }
+    
+    localStorage.setItem(NOTIFIED_COUNTRIES_KEY, JSON.stringify([...this.notifiedCountries]));
+    
+    const cooldownObj: Record<string, string> = {};
+    this.notifiedCountriesWithTime.forEach((date, key) => {
+      cooldownObj[key] = date.toISOString();
+    });
+    localStorage.setItem(COOLDOWN_KEY, JSON.stringify(cooldownObj));
+  }
 
   /**
    * Main entry point - called daily by SimulationManager
@@ -56,6 +108,7 @@ class RelationSimulationService {
       return;
     }
     this.lastProcessedDate = dateStr;
+    this.saveToStorage();
 
     const matrix = getGlobalRelationMatrix();
     const updatedMatrix = this.simulateRelations(matrix);
@@ -134,32 +187,72 @@ class RelationSimulationService {
   private checkCriticalRelations(matrix: RelationMatrix, dateStr: string): void {
     const normalizedUser = this.getCurrentUserCountry();
     
-    Object.entries(matrix).forEach(([sourceId, targets]) => {
-      // Only check relations involving the player
-      if (sourceId !== normalizedUser) return;
-      
-      Object.entries(targets).forEach(([targetId, entry]) => {
+    // Collect all bad relationships for prioritization
+    const badRelations: Array<{targetId: string; score: number; countryName: string; type: 'critical' | 'bad'}> = [];
+    const processedCountries = new Set<string>(); // Track countries already added
+    
+    // Check relations where user is source
+    if (matrix[normalizedUser]) {
+      Object.entries(matrix[normalizedUser]).forEach(([targetId, entry]) => {
+        if (processedCountries.has(targetId)) return;
+        
         const score = entry.s;
         const countryName = this.formatCountryName(targetId);
         
-        // Determine notification type based on score
-        let notificationType: 'critical' | 'bad' | null = null;
+        if (score <= BOUNDS.CRITICAL_LOW) {
+          badRelations.push({targetId, score, countryName, type: 'critical'});
+          processedCountries.add(targetId);
+        } else if (score < BOUNDS.NEUTRAL) {
+          badRelations.push({targetId, score, countryName, type: 'bad'});
+          processedCountries.add(targetId);
+        }
+      });
+    }
+    
+    // Check relations where user is target (symmetric)
+    Object.entries(matrix).forEach(([sourceId, targets]) => {
+      if (sourceId === normalizedUser) return; // Skip, already checked above
+      
+      if (targets[normalizedUser]) {
+        if (processedCountries.has(sourceId)) return; // Skip if already added
+        
+        const entry = targets[normalizedUser];
+        const score = entry.s;
+        const countryName = this.formatCountryName(sourceId);
         
         if (score <= BOUNDS.CRITICAL_LOW) {
-          // 0-25: Sangat Buruk
-          notificationType = 'critical';
+          badRelations.push({targetId: sourceId, score, countryName, type: 'critical'});
+          processedCountries.add(sourceId);
         } else if (score < BOUNDS.NEUTRAL) {
-          // 26-49: Buruk
-          notificationType = 'bad';
+          badRelations.push({targetId: sourceId, score, countryName, type: 'bad'});
+          processedCountries.add(sourceId);
         }
-        
-        if (!notificationType) return;
-        
+      }
+    });
+    
+    // Sort by score (lowest first) and limit to max 5 per week
+    badRelations.sort((a, b) => a.score - b.score);
+    const topRelations = badRelations.slice(0, this.MAX_NOTIFICATIONS_PER_WEEK);
+      
+      topRelations.forEach(({targetId, score, countryName, type: notificationType}) => {
         const notificationKey = `${normalizedUser}-${targetId}-${notificationType}-${dateStr}`;
+        const cooldownKey = `${normalizedUser}-${targetId}`;
         
         // Prevent duplicate notifications for the same country on the same day
         if (this.notifiedCountries.has(notificationKey)) return;
+        
+        // Prevent notifying same country within cooldown period (4 weeks)
+        if (this.notifiedCountriesWithTime.has(cooldownKey)) {
+          const lastNotified = this.notifiedCountriesWithTime.get(cooldownKey);
+          if (lastNotified) {
+            const daysSince = (new Date(dateStr).getTime() - lastNotified.getTime()) / (1000 * 60 * 60 * 24);
+            if (daysSince < this.COOLDOWN_DAYS) return;
+          }
+        }
+        
         this.notifiedCountries.add(notificationKey);
+        this.notifiedCountriesWithTime.set(cooldownKey, new Date(dateStr));
+        this.saveToStorage();
         
         // Build notification based on type
         if (notificationType === 'critical') {
@@ -167,7 +260,7 @@ class RelationSimulationService {
           inboxStorage.addMessage({
             source: 'Dinas Luar Negeri',
             subject: `PERINGATAN KRITIS: Hubungan dengan ${countryName} sangat memburuk`,
-            content: `Yang Terhormat Presiden,\n\nHubungan diplomatik kita dengan ${countryName} telah mencapai level KRITIS (${score.toFixed(1)}).\n\n🔴 Status: SANGAT BURUK (0-25)\n\n⚠️ Dampak yang mungkin terjadi:\n• Risiko konflik militer meningkat drastis\n• Peluang perdagangan menurun drastis\n• Negara lain mungkin ragu untuk bersekutu dengan kita\n• Potensi sanksi internasional\n• Ancaman isolasi diplomatik\n\n📋 Rekomendasi Tindakan Segera:\n1. Segera bangun Kedutaan Besar untuk memperbaiki hubungan (+0.1/minggu)\n2. Kirim delegasi diplomatik untuk negosiasi darurat\n3. Tawarkan bantuan atau kerjasama bilateral\n4. Pertimbangkan pakta non-agresi segera\n5. Tingkatkan pengeluaran untuk diplomasi\n\n⚡ Jika tidak ditangani, hubungan bisa memburuk hingga mencapai titik nol (0) yang dapat memicu konflik terbuka.`,
+            content: `Hubungan dengan ${countryName} mencapai level KRITIS (${score.toFixed(1)}/100).\n\n🔴 Status: SANGAT BURUK (0-25)\n⚠️ Risiko konflik meningkat\n\n💡 Bangun kedutaan untuk memperbaiki hubungan (+0.1/minggu).`,
             time: dateStr,
             priority: 'high',
             category: 'relationship',
@@ -179,7 +272,7 @@ class RelationSimulationService {
           inboxStorage.addMessage({
             source: 'Dinas Luar Negeri',
             subject: `Peringatan: Hubungan dengan ${countryName} memburuk`,
-            content: `Yang Terhormat Presiden,\n\nHubungan diplomatik kita dengan ${countryName} sedang mengalami penurunan (${score.toFixed(1)}).\n\n🟡 Status: BURUK (26-49)\n\n⚠️ Dampak yang mungkin terjadi:\n• Perdagangan dengan ${countryName} menurun\n• Potensi ketegangan diplomatik\n• Peluang investasi dari negara tersebut berkurang\n• Reputasi diplomatik kita menurun sedikit\n\n📋 Rekomendasi Tindakan:\n1. Bangun Kedutaan Besar untuk memperbaiki hubungan secara bertahap (+0.1/minggu)\n2. Pertimbangkan kunjungan diplomatik\n3. Tawarkan kerjasama ekonomi\n4. Pantau perkembangan hubungan secara rutin\n\n💡 Jika tidak ditangani, hubungan bisa memburuk ke level KRITIS (0-25) dalam beberapa minggu.`,
+            content: `Hubungan dengan ${countryName} menurun (${score.toFixed(1)}/100).\n\n🟡 Status: BURUK (26-49)\n⚠️ Perdagangan & investasi berkurang\n\n✨ Bangun kedutaan untuk memperbaiki hubungan (+0.1/minggu).`,
             time: dateStr,
             priority: 'medium',
             category: 'relationship',
@@ -188,7 +281,6 @@ class RelationSimulationService {
           console.log(`[RELATION-SIMULATION] BAD alert sent for ${countryName} (${score})`);
         }
       });
-    });
     
     // Clean up old notifications (keep only last 30 days)
     const thirtyDaysAgo = new Date();
@@ -197,6 +289,13 @@ class RelationSimulationService {
       const keyDate = key.split('-').pop();
       if (keyDate && new Date(keyDate) < thirtyDaysAgo) {
         this.notifiedCountries.delete(key);
+      }
+    });
+    
+    // Clean up old cooldown entries (older than 28 days)
+    this.notifiedCountriesWithTime.forEach((date, key) => {
+      if (date < thirtyDaysAgo) {
+        this.notifiedCountriesWithTime.delete(key);
       }
     });
   }
