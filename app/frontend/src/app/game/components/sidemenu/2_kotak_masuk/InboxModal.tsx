@@ -31,6 +31,7 @@ import { PactList } from './4_pakta/PactList';
 import { AllianceList } from './5_aliansi/AllianceList';
 import { PBBList } from './6_pbb/PBBList';
 import { RelationshipList } from './7_hubungan/RelationshipList';
+import { WarReportList } from './8_perang/WarReportList';
 
 interface InboxModalProps {
   isOpen: boolean;
@@ -59,7 +60,8 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
         pact: 'pakta',
         alliance: 'aliansi',
         pbb: 'pbb',
-        relationship: 'hubungan'
+        relationship: 'hubungan',
+        militer: 'militer'
       };
       const path = `/game/inbox/${tabPathMap[tab] || 'semua'}`;
       if (window.location.pathname !== path) {
@@ -97,7 +99,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
   // Hitung jumlah unread per kategori untuk ditampilkan di badge tab
   const unreadCounts = useMemo(() => {
     const counts: Record<string, number> = {
-      all: 0, finance: 0, trade: 0, embassy: 0, pact: 0, alliance: 0, pbb: 0, relationship: 0
+      all: 0, finance: 0, trade: 0, embassy: 0, pact: 0, alliance: 0, pbb: 0, relationship: 0, militer: 0
     };
 
     messages.forEach((msg: InboxItem) => {
@@ -107,18 +109,18 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
 
       const subj = msg.subject.toLowerCase();
       
-      if (msg.category === 'pbb' || subj.includes('usulan sidang:')) counts.pbb++;
-      else if (msg.category === 'finance') counts.finance++;
-      else if (msg.category === 'trade') {
-        counts.trade++;
+      if (msg.category === 'defense') {
+        if (subj.includes('pakta')) counts.pact++;
+        else if (subj.includes('aliansi')) counts.aliansi++;
+        else counts.militer++;
       }
+      else if (subj.includes('invasi')) counts.militer++;
+      else if (msg.category === 'pbb' || subj.includes('usulan sidang:')) counts.pbb++;
+      else if (msg.category === 'finance') counts.finance++;
+      else if (msg.category === 'trade') counts.trade++;
       else if (msg.category === 'embassy') counts.embassy++;
       else if (msg.category === 'pact') counts.pact++;
       else if (msg.category === 'alliance') counts.alliance++;
-      else if (msg.category === 'defense') {
-        if (subj.includes('pakta')) counts.pact++;
-        else if (subj.includes('aliansi')) counts.alliance++;
-      }
       else if (msg.category === 'diplomacy') counts.embassy++;
       else if (msg.category === 'relationship') counts.relationship++;
     });
@@ -319,6 +321,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
         case 'alliance': return <AllianceList {...commonProps} />;
         case 'pbb': return <PBBList {...commonProps} />;
         case 'relationship': return <RelationshipList {...commonProps} />;
+        case 'militer': return <WarReportList />;
         default: return <AllList {...commonProps} />;
     }
   };
@@ -404,7 +407,8 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
               { id: 'pbb', label: 'pbb' },
               { id: 'pact', label: 'pakta' },
               { id: 'alliance', label: 'aliansi' },
-              { id: 'relationship', label: 'hubungan' }
+              { id: 'relationship', label: 'hubungan' },
+              { id: 'militer', label: 'militer' }
             ].map((tab) => {
               const isActive = filter === tab.id;
               const unread = unreadCounts[tab.id as keyof typeof unreadCounts];

@@ -34,6 +34,7 @@ import { AllianceList } from './6_aliansi/AllianceList';
 import { OrganisasiList } from './7_organisasi/OrganisasiList';
 import { NuclearList } from './8_nuklir/NuclearList';
 import { RelationList } from './9_hubungan/RelationList';
+import { WarNewsList } from './10_perang/WarNewsList';
 
 interface BeritaModalProps {
   isOpen: boolean;
@@ -65,14 +66,16 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
   // Calculate total counts per category (resets weekly with news)
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {
-      all: 0, pembangunan: 0, keuangan: 0, perdagangan: 0, kedutaan: 0, pakta: 0, aliansi: 0, organisasi: 0, program_nuklir: 0, hubungan: 0
+      all: 0, pembangunan: 0, keuangan: 0, perdagangan: 0, kedutaan: 0, pakta: 0, aliansi: 0, organisasi: 0, program_nuklir: 0, hubungan: 0, militer: 0
     };
 
     news.forEach(item => {
       counts.all++;
 
       const subj = item.subject.toLowerCase();
-      if (item.category === 'nuclear') counts.program_nuklir++;
+      
+      if (item.category === 'conflict' || /(perang|invasi|serangan|militer)/.test(subj)) counts.militer++;
+      else if (item.category === 'nuclear') counts.program_nuklir++;
       else if (item.category === 'construction') {
         if (/(nuklir|uranium|icbm|atom|reaktor)/.test(subj)) counts.program_nuklir++;
         else counts.pembangunan++;
@@ -128,6 +131,7 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
         case 'nuklir':
         case 'program_nuklir': return <NuclearList {...commonProps} />;
         case 'hubungan': return <RelationList {...commonProps} />;
+        case 'militer': return <WarNewsList {...commonProps} />;
         default: return <AllList {...commonProps} />;
     }
   };
@@ -203,7 +207,8 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
               { id: 'aliansi', label: 'aliansi' },
               { id: 'organisasi', label: 'organisasi' },
               { id: 'program_nuklir', label: 'program nuklir' },
-              { id: 'hubungan', label: 'hubungan internasional' }
+              { id: 'hubungan', label: 'hubungan internasional' },
+              { id: 'militer', label: 'operasi militer' }
             ].map((tab) => {
               const isActive = filter === tab.id;
               const count = categoryCounts[tab.id];

@@ -23,6 +23,9 @@ const WEEKLY_CHANGE_CONFIG = {
   WITHOUT_EMBASSY: -0.1, // -0.1 per week if no embassy
 };
 
+import { globalAiWarService } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/1_misi_serangan/ai_war_logic/ai_ke_ai/GlobalAiWarService";
+import { aiWarService } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/1_misi_serangan/ai_war_logic/ai_ke_user/AiWarService";
+
 // Weekly update dates: 7, 14, 21, 28
 const WEEKLY_DATES = [7, 14, 21, 28];
 
@@ -97,6 +100,7 @@ class RelationSimulationService {
   public processDailyRelations(currentDate: Date): void {
     const dateStr = currentDate.toISOString().split('T')[0];
     const dayOfMonth = currentDate.getDate();
+    const normalizedUser = this.getCurrentUserCountry();
     
     // === DAILY: Process diplomatic gifts (runs every day) ===
     // User-specific gifts
@@ -111,6 +115,12 @@ class RelationSimulationService {
     // Global NPC-to-NPC aid
     globalAiMoneyOfferService.processMoneyOffers(currentDate);
     globalAiFinancialAidService.processFinancialAid(currentDate);
+
+    // === DAILY: Process AI Invasions (War) ===
+    // NPC vs NPC
+    globalAiWarService.processDailyInvasions(currentDate);
+    // NPC vs User
+    aiWarService.processUserInvasions(currentDate, normalizedUser);
     
     // === WEEKLY: Only process on specific dates (7, 14, 21, 28) ===
     if (!WEEKLY_DATES.includes(dayOfMonth)) {
