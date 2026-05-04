@@ -1,0 +1,23 @@
+DOKUMENTASI LOGIKA: PERANG ANTAR AI (NPC vs NPC)
+================================================
+
+1. LOKASI FILE:
+   - Logic: GlobalAiWarService.ts
+   - UI News: WarNewsList.tsx
+
+2. SYARAT SERANGAN:
+   - Skor Hubungan: < 15 poin (Sangat Buruk).
+   - Probabilitas: 5% setiap hari jika syarat hubungan terpenuhi.
+   - Maksimal Serangan: 1 operasi militer baru per hari di seluruh dunia.
+
+3. KEKUATAN PASUKAN:
+   - Mengambil 30% dari total unit militer yang dimiliki negara penyerang (Darat, Udara, Laut).
+   - Termasuk infanteri (30% dari kapasitas barak).
+
+4. OUTPUT VISUAL:
+   - Memunculkan jalur merah di peta dunia.
+   - Menampilkan unit (tank/kapal/pesawat) yang bergerak menuju target.
+   - Mengirim berita ke "Pusat Informasi Global" dengan kategori 'conflict'.
+
+5. INTEGRASI:
+   - Diproses harian oleh RelationSimulationService.ts.

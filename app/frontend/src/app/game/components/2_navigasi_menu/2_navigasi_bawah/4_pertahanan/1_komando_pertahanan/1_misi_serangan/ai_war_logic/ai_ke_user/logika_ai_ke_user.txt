@@ -1,0 +1,23 @@
+DOKUMENTASI LOGIKA: SERANGAN AI KE USER (NPC vs USER)
+====================================================
+
+1. LOKASI FILE:
+   - Logic: AiWarService.ts
+   - UI Inbox: WarReportList.tsx
+
+2. SYARAT SERANGAN:
+   - Skor Hubungan: < 10 poin (Permusuhan Terbuka).
+   - Probabilitas: 3% setiap hari terhadap pemain.
+   - Pengecekan: Dilakukan secara individu untuk setiap negara NPC yang membenci pemain.
+
+3. KEKUATAN PASUKAN:
+   - Mengambil 40% dari total unit militer yang dimiliki negara penyerang (Lebih agresif dibanding serangan antar AI).
+   - Termasuk infanteri (40% dari kapasitas barak).
+
+4. OUTPUT VISUAL & NOTIFIKASI:
+   - Jalur merah langsung menuju wilayah pemain di peta.
+   - Mengirim pesan DARURAT ke "Kotak Masuk" pemain dengan kategori 'defense'.
+   - Muncul di tab "MILITER" pada Kotak Masuk dengan Progress Bar kedatangan pasukan.
+
+5. INTEGRASI:
+   - Diproses harian oleh RelationSimulationService.ts.
