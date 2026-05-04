@@ -42,3 +42,8 @@ Agar peperangan tidak terjadi secara membabi buta setiap hari, logika berikut ak
    - Deskripsi: Mengecek kepemilikan senjata nuklir.
    - Aturan: Negara yang memiliki status 'Nuclear Program Completed' 80% lebih jarang diserang oleh AI non-nuklir.
    - Tujuan: Memberikan keuntungan strategis bagi negara yang berhasil mengembangkan nuklir.
+
+9. TOTAL GLOBAL PROBABILITY (20% - 30% Chance Per Day)
+   - Deskripsi: Filter utama di awal simulasi harian.
+   - Aturan: Sistem melakukan kocokan tunggal: `Math.random() < 0.25`. Jika gagal, maka hari itu tidak akan ada negara AI manapun yang memulai perang baru.
+   - Tujuan: Menjamin adanya "Hari Damai" di dalam game. Perang tidak akan terjadi setiap hari, melainkan hanya terjadi sekitar 2-3 kali dalam 10 hari.
