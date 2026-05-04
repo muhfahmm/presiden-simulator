@@ -23,7 +23,12 @@ export interface InvasiUnit {
   count: number;
 }
 
-export const luncurkanInvasi = (playerCountry: CountryData, targetCountry: CountryData, deployments: Record<string, number>): { units: InvasiUnit[], path: JalurResult | null } => {
+export const luncurkanInvasi = (
+  playerCountry: CountryData, 
+  targetCountry: CountryData, 
+  deployments: Record<string, number>,
+  id?: string
+): { units: InvasiUnit[], path: JalurResult | null } => {
   const units: InvasiUnit[] = [];
 
   // Peta tipe unit berdasar kategori
@@ -94,7 +99,13 @@ export const luncurkanInvasi = (playerCountry: CountryData, targetCountry: Count
   // Trigger event ke Main Map (Canvas/Three.js/Mapbox)
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new CustomEvent('SPAWN_INVASION_UNITS', { 
-        detail: { targetCountry, units, path } 
+        detail: { 
+          id, // Masukkan ID di sini
+          sourceCountry: playerCountry, 
+          targetCountry, 
+          units, 
+          path 
+        } 
     }));
   }
 

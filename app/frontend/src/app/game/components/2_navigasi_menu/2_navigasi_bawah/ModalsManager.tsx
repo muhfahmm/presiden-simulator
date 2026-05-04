@@ -93,7 +93,24 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       }
     }
 
-    return () => window.removeEventListener('OPEN_WAR_REPORT', handleOpenWarReport);
+    const handleWarUpdate = () => {
+      if (activeWarReport) {
+        const saved = localStorage.getItem('active_invasions');
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved);
+            const inv = parsed.find((i: any) => i.id === activeWarReport.id);
+            if (inv) setActiveWarReport(inv);
+          } catch (e) {}
+        }
+      }
+    };
+    window.addEventListener('WAR_STORAGE_UPDATED', handleWarUpdate);
+
+    return () => {
+      window.removeEventListener('OPEN_WAR_REPORT', handleOpenWarReport);
+      window.removeEventListener('WAR_STORAGE_UPDATED', handleWarUpdate);
+    };
   }, [activeMenu, activeWarReport, setActiveMenu]);
 
   if (!isMounted) return null;

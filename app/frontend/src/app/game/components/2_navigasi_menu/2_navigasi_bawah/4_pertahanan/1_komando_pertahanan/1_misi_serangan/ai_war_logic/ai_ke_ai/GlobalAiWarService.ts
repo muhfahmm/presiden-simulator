@@ -16,7 +16,10 @@ class GlobalAiWarService {
    * Simulasi harian serangan NPC vs NPC.
    */
   public processDailyInvasions(currentDate: Date) {
-    // 9. TOTAL GLOBAL PROBABILITY (25% Chance Per Day)
+    // 1. Gerakkan semua pasukan yang sedang berjalan (Progress)
+    this.updateInvasionProgress();
+
+    // 2. Cek peluang konflik baru (Filter Global 25%)
     if (Math.random() > 0.25) return;
 
     const matrix = getGlobalRelationMatrix();
@@ -106,27 +109,46 @@ class GlobalAiWarService {
     if (sourcePower * 1.3 < targetPower) return; // Penyerang tidak akan bunuh diri menyerang yang jauh lebih kuat
 
     const deployments: Record<string, number> = {};
+    const deploymentRatio = 0.3 + (Math.random() * 0.3); // 30% - 60%
+
     if (sourceCountry.armada_militer?.darat) {
       Object.keys(sourceCountry.armada_militer.darat).forEach(key => {
         const count = (sourceCountry.armada_militer.darat as any)[key] || 0;
         const aiCount = aiDefense.defenseDeltas[key] || 0;
-        deployments[key] = Math.floor((count + aiCount) * 0.3);
+        deployments[key] = Math.floor((count + aiCount) * deploymentRatio);
       });
     }
-    const totalInfantry = (sourceCountry.armada_militer.barak || 0) * 10000;
-    deployments['infanteri'] = Math.floor(totalInfantry * 0.3);
 
-    const { units, path } = luncurkanInvasi(sourceCountry as any, targetCountry as any, deployments);
-    if (!path) return;
+    if (sourceCountry.armada_militer?.udara) {
+      Object.keys(sourceCountry.armada_militer.udara).forEach(key => {
+        const count = (sourceCountry.armada_militer.udara as any)[key] || 0;
+        const aiCount = aiDefense.defenseDeltas[key] || 0;
+        deployments[key] = Math.floor((count + aiCount) * deploymentRatio);
+      });
+    }
+
+    const totalInfantry = (sourceCountry.armada_militer.barak || 0) * 10000;
+    deployments['barak'] = Math.floor(totalInfantry * deploymentRatio); // luncurkanInvasi usually expects 'barak' for infantry
+
+    const invasionId = `ai-${sourceId}-${targetId}-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+    
+    const { units, path } = luncurkanInvasi(
+      sourceCountry as any, 
+      targetCountry as any, 
+      deployments,
+      invasionId
+    );
+    
+    if (!path || !units || units.length === 0) return;
 
     // Kurangi budget AI untuk biaya perang
     aiBudgetStorage.updateBudgetManual(sourceCountry.name_en, -50000);
 
     warStorage.addInvasion({
-      id: `ai-${sourceId}-${targetId}-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
+      id: invasionId,
       source: sourceId,
       target: targetId,
-      units,
+      units: units,
       path,
       progress: 0,
       arrived: false,
@@ -140,6 +162,27 @@ class GlobalAiWarService {
       category: "conflict",
       time: currentDate.toISOString().split('T')[0],
       priority: "high"
+    });
+  }
+
+  /**
+   * Menggerakkan semua unit yang sedang dalam perjalanan secara otomatis.
+   */
+  private updateInvasionProgress() {
+    const invasions = warStorage.getInvasions();
+    invasions.forEach(inv => {
+      if (inv.progress < 1) {
+        // Tambah progres harian antara 10% - 20%
+        const dailyProgress = 0.1 + (Math.random() * 0.1);
+        const newProgress = Math.min(1, inv.progress + dailyProgress);
+        const isArrived = newProgress >= 1;
+        
+        warStorage.updateProgress(inv.id, newProgress, isArrived);
+        
+        if (isArrived) {
+          console.log(`[WAR] Pasukan ${inv.source} telah tiba di ${inv.target}. Memulai fase pertempuran.`);
+        }
+      }
     });
   }
 }

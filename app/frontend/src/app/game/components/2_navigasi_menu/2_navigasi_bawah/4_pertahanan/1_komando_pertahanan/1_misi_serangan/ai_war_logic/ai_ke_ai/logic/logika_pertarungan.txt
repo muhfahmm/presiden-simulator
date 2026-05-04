@@ -1,0 +1,33 @@
+DOKUMENTASI LOGIKA: PERTARUNGAN & HASIL PERANG (NPC vs NPC)
+==========================================================
+
+1. LOKASI FILE:
+   - Logic: logic/WarBattleService.ts
+   - Integrasi: RelationSimulationService.ts (Diproses setiap hari)
+
+2. TAHAPAN PERANG:
+   - Fase 1 (Travel): Pasukan bergerak menuju target (Progress 0% -> 100%).
+   - Fase 2 (Battle/Siege): Setelah tiba (100%), pertempuran dimulai setiap hari.
+   - Fase 3 (Outcome): Perang berakhir dengan pengumuman pemenang di Berita (News).
+
+3. LOGIKA PERTEMPURAN (ATTRITION):
+   - Kekuatan Penyerang: Dihitung dari jumlah unit yang dikirim.
+   - Kekuatan Bertahan: Dihitung dari total Military Power negara target (termasuk bonus pertahanan AI).
+   - Kerusakan Harian: Kedua pihak kehilangan kekuatan secara acak (1-5% dari kekuatan lawan).
+
+4. PENENTUAN PEMENANG (VICTORY CONDITIONS):
+   - Penyerang Menang: Jika kekuatan penyerang jauh melampaui pertahanan target saat evaluasi selesai.
+   - Bertahan Menang: Jika kekuatan penyerang habis (atrisi) atau gagal menembus pertahanan dalam waktu lama.
+   - Peluang Selesai (Finish Chance): 
+     * Dimulai dari 5% per hari setelah pasukan tiba.
+     * Meningkat 0.5% setiap hari (Semakin lama perang, semakin besar peluang gencatan senjata atau salah satu pihak menyerah).
+
+5. OUTPUT REAL-TIME:
+   - Berita Internasional (News):
+     * Pengumuman Kemenangan: Muncul saat perang selesai.
+     * Laporan Berkala: Muncul setiap 30 hari jika perang berlangsung lama ("Perang Berlanjut").
+   - Kotak Masuk (Inbox):
+     * Notifikasi khusus kategori 'conflict' untuk memantau status.
+
+6. DURASI:
+   - Perang bisa berlangsung dari beberapa hari hingga berbulan-bulan tergantung pada perbandingan kekuatan dan keberuntungan (RNG).

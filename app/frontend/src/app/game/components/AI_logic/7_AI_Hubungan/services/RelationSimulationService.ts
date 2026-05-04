@@ -25,6 +25,7 @@ const WEEKLY_CHANGE_CONFIG = {
 
 import { globalAiWarService } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/1_misi_serangan/ai_war_logic/ai_ke_ai/GlobalAiWarService";
 import { aiWarService } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/1_misi_serangan/ai_war_logic/ai_ke_user/AiWarService";
+import { warBattleService } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/1_misi_serangan/ai_war_logic/ai_ke_ai/logic/WarBattleService";
 
 // Weekly update dates: 7, 14, 21, 28
 const WEEKLY_DATES = [7, 14, 21, 28];
@@ -121,6 +122,9 @@ class RelationSimulationService {
     globalAiWarService.processDailyInvasions(currentDate);
     // NPC vs User
     aiWarService.processUserInvasions(currentDate, normalizedUser);
+    
+    // === DAILY: Process Active War Battles (Siege/Attrition) ===
+    warBattleService.processActiveWars(currentDate);
     
     // === WEEKLY: Only process on specific dates (7, 14, 21, 28) ===
     if (!WEEKLY_DATES.includes(dayOfMonth)) {

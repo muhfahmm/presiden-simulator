@@ -94,19 +94,24 @@ export class MainMapEngine extends BaseMapEngine {
       this.initSimulationWorker();
       
       // Load saved invasions
-      this.loadInvasionsFromStorage();
+      this.loadActiveInvasions();
 
       window.addEventListener('SPAWN_INVASION_UNITS', (e: any) => {
         if (e.detail && e.detail.path) {
           const target = e.detail.targetCountry?.name_id || e.detail.target;
+          const source = e.detail.sourceCountry?.name_id || e.detail.source;
+          const id = e.detail.id;
+
           const existingIdx = this.activeInvasions.findIndex(inv => inv.target === target);
 
           const newInvasion = {
+            id: id,
+            source: source, // JANGAN DIBUANG LAGI!
+            target: target,
             path: e.detail.path,
             units: e.detail.units || [],
-            target: target,
             progress: 0,
-            speed: 0.001 + (Math.random() * 0.001),
+            speed: e.detail.speed || 0.0001,
             arrived: false
           };
 
@@ -174,12 +179,19 @@ export class MainMapEngine extends BaseMapEngine {
     if (typeof window === 'undefined') return;
     try {
         const toSave = this.activeInvasions.map(inv => ({
+            id: inv.id,
+            source: inv.source, // TAMBAHKAN INI! Supaya data tidak hilang
+            target: inv.target,
             path: inv.path,
             units: inv.units,
-            target: inv.target,
             progress: inv.progress,
             speed: inv.speed,
-            arrived: inv.arrived
+            arrived: inv.arrived,
+            // Simpan juga data battle jika ada
+            currentAttackerPower: inv.currentAttackerPower,
+            maxAttackerPower: inv.maxAttackerPower,
+            currentDefenderPower: inv.currentDefenderPower,
+            maxDefenderPower: inv.maxDefenderPower
         }));
         localStorage.setItem('active_invasions', JSON.stringify(toSave));
     } catch (e) {
@@ -187,18 +199,16 @@ export class MainMapEngine extends BaseMapEngine {
     }
   }
 
-  private loadInvasionsFromStorage() {
+  private loadActiveInvasions() {
     if (typeof window === 'undefined') return;
     try {
         const saved = localStorage.getItem('active_invasions');
         if (saved) {
             const parsed = JSON.parse(saved);
-            this.activeInvasions = parsed;
-            
-            this.activeInvasions.forEach(inv => {
-                if (inv.path && inv.path.pathCoordinates) {
-                    this.cacheInvasionPixels(inv);
-                }
+            // Pastikan kita menyimpan seluruh objek asli agar tidak kehilangan field 'source'
+            this.activeInvasions = parsed.map((inv: any) => {
+                this.cacheInvasionPixels(inv);
+                return inv;
             });
 
             this.simulationWorker?.postMessage({ type: 'INIT_INVASIONS', payload: this.activeInvasions });
@@ -314,6 +324,11 @@ export class MainMapEngine extends BaseMapEngine {
                         const cx = tp1.x + (tp2.x - tp1.x) * tFrac;
                         const cy = tp1.y + (tp2.y - tp1.y) * tFrac;
 
+                        // Store the position of the first unit for hit detection
+                        if (trailOffset === 0) {
+                            invasion.screenPos = { x: cx, y: cy };
+                        }
+
                         ctx.save();
                         ctx.translate(cx, cy);
                         const unitSize = 40 / this.scale; 
@@ -334,10 +349,10 @@ export class MainMapEngine extends BaseMapEngine {
   }
 
   public getInvasionAt(mouseX: number, mouseY: number): any | null {
-    const hitThreshold = 35; // Ukuran area klik lebih besar agar mudah
+    const hitThreshold = 40; // Ukuran area klik ditingkatkan agar lebih nyaman
     
     for (const invasion of this.activeInvasions) {
-        if (!invasion.arrived || !invasion.screenPos) continue;
+        if (!invasion.screenPos) continue;
         
         // Konversi koordinat peta ke koordinat layar (Canvas CSS pixels)
         const screenX = invasion.screenPos.x * this.scale + this.offsetX;

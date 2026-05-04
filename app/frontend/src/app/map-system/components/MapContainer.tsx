@@ -77,6 +77,8 @@ export default function MapContainer({
   const [isDragging, setIsDragging] = useState(false);
   const [lastMousePos, setLastMousePos] = useState({ x: 0, y: 0 });
   const [isHoveringStar, setIsHoveringStar] = useState(false);
+  const [selectedInvasion, setSelectedInvasion] = useState<any | null>(null);
+  const [clickPos, setClickPos] = useState({ x: 0, y: 0 });
 
   // Load Map Data
   useEffect(() => {
@@ -373,12 +375,13 @@ export default function MapContainer({
           if (engine && (engine as any).getInvasionAt) {
             const invasion = (engine as any).getInvasionAt(mouseX, mouseY);
             if (invasion) {
-              window.dispatchEvent(new CustomEvent('OPEN_WAR_REPORT', { 
-                detail: invasion 
-              }));
+              setSelectedInvasion(invasion);
+              setClickPos({ x: e.clientX, y: e.clientY });
               return;
             }
           }
+
+          setSelectedInvasion(null); // Close mini modal if clicked elsewhere
 
           const country = engine.getCountryAt(mouseX, mouseY);
           if (country) {
@@ -395,6 +398,93 @@ export default function MapContainer({
         }}
         style={{ opacity: isLoading ? 0 : 1 }}
       />
+
+      {/* Layer 3: Mini Modal (Floating Info) */}
+      <AnimatePresence>
+        {selectedInvasion && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 10 }}
+            style={{ 
+              position: 'fixed', 
+              left: clickPos.x - 100, 
+              top: clickPos.y - 140,
+              zIndex: 1000 
+            }}
+            className="w-[200px] bg-zinc-900/90 backdrop-blur-xl border border-red-500/30 rounded-2xl p-4 shadow-2xl pointer-events-auto"
+          >
+            <div className="flex justify-between items-start mb-3">
+              <div className="p-2 bg-red-500/10 rounded-lg">
+                <Globe className="h-4 w-4 text-red-500" />
+              </div>
+              <button 
+                onClick={() => setSelectedInvasion(null)}
+                className="p-1 hover:bg-zinc-800 rounded-md transition-colors"
+              >
+                <X className="h-3 w-3 text-zinc-500" />
+              </button>
+            </div>
+
+            <div className="space-y-1">
+              <p className="text-[8px] font-black text-zinc-500 uppercase tracking-widest leading-none">Misi Invasi Aktif</p>
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] font-bold text-white uppercase truncate">
+                  {(() => {
+                    // 1. Ambil langsung dari field source jika ada (Paling Akurat)
+                    if (selectedInvasion.source) return selectedInvasion.source;
+                    
+                    // 2. Jika tidak ada, bedah ID-nya (Fallback 1)
+                    const id = selectedInvasion.id || "";
+                    const parts = id.split(/[-_ ]/);
+                    const sourceId = id.startsWith('ai') ? parts[1] : parts[0];
+                    
+                    // 3. Cari di database (Fallback 2)
+                    const src = countries.find(c => 
+                      (c.name_id||'').toLowerCase() === (sourceId||'').toLowerCase() ||
+                      (c.name_en||'').toLowerCase() === (sourceId||'').toLowerCase()
+                    );
+                    
+                    return src?.name_id || sourceId || "Pasukan Penyerang";
+                  })()}
+                </span>
+                <div className="flex items-center gap-2">
+                   <div className="h-[1px] flex-1 bg-zinc-800" />
+                   <span className="text-[8px] font-black text-red-500">KE</span>
+                   <div className="h-[1px] flex-1 bg-zinc-800" />
+                </div>
+                <span className="text-[10px] font-bold text-rose-500 uppercase truncate">
+                  {(() => {
+                    if (selectedInvasion.target) return selectedInvasion.target;
+                    
+                    const id = selectedInvasion.id || "";
+                    const parts = id.split(/[-_ ]/);
+                    const targetId = id.startsWith('ai') ? parts[2] : parts[1];
+
+                    const tgt = countries.find(c => 
+                      (c.name_id||'').toLowerCase() === (targetId||'').toLowerCase() ||
+                      (c.name_en||'').toLowerCase() === (targetId||'').toLowerCase()
+                    );
+                    return tgt?.name_id || targetId || "Target";
+                  })()}
+                </span>
+              </div>
+            </div>
+
+            <button
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent('OPEN_WAR_REPORT', { 
+                  detail: selectedInvasion 
+                }));
+                setSelectedInvasion(null);
+              }}
+              className="mt-4 w-full py-2 bg-red-500 hover:bg-red-400 text-white text-[8px] font-black uppercase tracking-widest rounded-lg transition-all flex items-center justify-center gap-2"
+            >
+              Lihat Detail Medan Tempur
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

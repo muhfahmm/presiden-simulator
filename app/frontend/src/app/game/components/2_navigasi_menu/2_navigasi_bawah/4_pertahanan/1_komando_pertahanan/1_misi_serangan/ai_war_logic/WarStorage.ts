@@ -18,6 +18,11 @@ export interface ActiveInvasion {
   arrived: boolean;
   startDate: string;
   isAiVsUser?: boolean;
+  // Battle Stats
+  currentAttackerPower?: number;
+  maxAttackerPower?: number;
+  currentDefenderPower?: number;
+  maxDefenderPower?: number;
 }
 
 class WarStorage {
@@ -59,6 +64,17 @@ class WarStorage {
     if (inv) {
       inv.progress = progress;
       inv.arrived = arrived;
+      this.saveToStorage();
+    }
+  }
+
+  public updateBattleStats(id: string, attackerPower: number, defenderPower: number, maxAttacker?: number, maxDefender?: number) {
+    const inv = this.invasions.find(i => i.id === id);
+    if (inv) {
+      inv.currentAttackerPower = attackerPower;
+      inv.currentDefenderPower = defenderPower;
+      if (maxAttacker) inv.maxAttackerPower = maxAttacker;
+      if (maxDefender) inv.maxDefenderPower = maxDefender;
       this.saveToStorage();
     }
   }
