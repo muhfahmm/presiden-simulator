@@ -21,6 +21,7 @@ import { budgetStorage } from "../../1_navbar/3_kas_negara";
 import { AiDiplomacyService } from "@/app/game/logic/ai/ai_diplomacy_engine/services/AiDiplomacyService";
 import { timeStorage } from "../../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { calculateShippingDays } from "../../2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/tradeData";
+import { warStorage } from '../../2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/1_misi_serangan/ai_war_logic/WarStorage';
 
 // Modular Tab Components
 import { AllList } from './0_semua/AllList';
@@ -44,6 +45,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
   const [messages, setMessages] = useState<InboxItem[]>([]);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [invasionsCount, setInvasionsCount] = useState(0);
   
   // Derivasi filter dari URL/activeMenu state
   const filter = activeMenu.startsWith("Menu:Inbox:") ? activeMenu.split(":")[2] : "all";
@@ -77,7 +79,16 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
     
     const handleUpdate = () => setMessages(inboxStorage.getMessages());
     window.addEventListener('inbox_updated', handleUpdate);
-    return () => window.removeEventListener('inbox_updated', handleUpdate);
+    
+    // Sync War Storage Count
+    const updateWarCount = () => setInvasionsCount(warStorage.getInvasions().length);
+    updateWarCount();
+    window.addEventListener('WAR_STORAGE_UPDATED', updateWarCount);
+
+    return () => {
+      window.removeEventListener('inbox_updated', handleUpdate);
+      window.removeEventListener('WAR_STORAGE_UPDATED', updateWarCount);
+    };
   }, [isOpen]);
 
   // Logic to get active trade partners
@@ -102,6 +113,9 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
       all: 0, finance: 0, trade: 0, embassy: 0, pact: 0, alliance: 0, pbb: 0, relationship: 0, militer: 0
     };
 
+    // Militer Badge: Ambil dari jumlah invasi aktif di WarStorage
+    counts.militer = warStorage.getInvasions().length;
+
     messages.forEach((msg: InboxItem) => {
       if (msg.read) return;
 
@@ -112,7 +126,8 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
       if (msg.category === 'defense') {
         if (subj.includes('pakta')) counts.pact++;
         else if (subj.includes('aliansi')) counts.aliansi++;
-        else counts.militer++;
+        // Pesan defense lainnya yang bukan pakta/aliansi (seperti peringatan invasi) tetap masuk ke militer unread jika perlu
+        else counts.militer++; 
       }
       else if (subj.includes('invasi')) counts.militer++;
       else if (msg.category === 'pbb' || subj.includes('usulan sidang:')) counts.pbb++;
@@ -126,7 +141,7 @@ export default function InboxModal({ isOpen, onClose, activeMenu, setActiveMenu 
     });
 
     return counts;
-  }, [messages]);
+  }, [messages, invasionsCount]); // We'll add invasionsCount state to trigger re-memo
 
   if (!isOpen) return null;
 

@@ -29,9 +29,9 @@ export function WarReportList() {
 
   return (
     <div className="space-y-4">
-      {invasions.map((inv) => (
+      {invasions.map((inv, index) => (
         <div 
-          key={inv.id}
+          key={`${inv.id}-${index}`}
           className="bg-zinc-900/40 border border-zinc-800/50 rounded-[32px] p-6 hover:border-indigo-500/30 transition-all overflow-hidden relative"
         >
           {/* Progress Bar Background */}

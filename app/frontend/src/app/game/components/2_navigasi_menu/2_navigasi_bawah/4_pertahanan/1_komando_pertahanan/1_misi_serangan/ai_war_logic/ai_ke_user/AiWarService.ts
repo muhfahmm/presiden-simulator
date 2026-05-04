@@ -54,7 +54,7 @@ class AiWarService {
     if (!path) return;
 
     warStorage.addInvasion({
-      id: `ai-to-user-${sourceId}-${Date.now()}`,
+      id: `ai-to-user-${sourceId}-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
       source: sourceId,
       target: normalizeId(userCountryId),
       units,
