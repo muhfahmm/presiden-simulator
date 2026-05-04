@@ -33,6 +33,7 @@ import { PactList } from './5_pakta/PactList';
 import { AllianceList } from './6_aliansi/AllianceList';
 import { OrganisasiList } from './7_organisasi/OrganisasiList';
 import { NuclearList } from './8_nuklir/NuclearList';
+import { RelationList } from './9_hubungan/RelationList';
 
 interface BeritaModalProps {
   isOpen: boolean;
@@ -64,7 +65,7 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
   // Calculate total counts per category (resets weekly with news)
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {
-      all: 0, pembangunan: 0, keuangan: 0, perdagangan: 0, kedutaan: 0, pakta: 0, aliansi: 0, organisasi: 0, program_nuklir: 0
+      all: 0, pembangunan: 0, keuangan: 0, perdagangan: 0, kedutaan: 0, pakta: 0, aliansi: 0, organisasi: 0, program_nuklir: 0, hubungan: 0
     };
 
     news.forEach(item => {
@@ -86,6 +87,7 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
       else if (item.category === 'diplomacy') {
         if (/(pakta|perjanjian|mou|kesepakatan|traktat)/.test(subj)) counts.pakta++;
         else if (/(aliansi|sekutu|koalisi|blok|pertahanan)/.test(subj)) counts.aliansi++;
+        else if (/(hubungan|bantuan|persahabatan|stabilitas)/.test(subj)) counts.hubungan++;
         else if (/(kedutaan|bilateral|diplomatik|pertemuan)/.test(subj)) counts.kedutaan++;
         else counts.kedutaan++;
       }
@@ -125,6 +127,7 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
         case 'organisasi': return <OrganisasiList {...commonProps} subFilter={subFilter} />;
         case 'nuklir':
         case 'program_nuklir': return <NuclearList {...commonProps} />;
+        case 'hubungan': return <RelationList {...commonProps} />;
         default: return <AllList {...commonProps} />;
     }
   };
@@ -199,7 +202,8 @@ export default function BeritaModal({ isOpen, onClose, activeMenu, setActiveMenu
               { id: 'pakta', label: 'pakta' },
               { id: 'aliansi', label: 'aliansi' },
               { id: 'organisasi', label: 'organisasi' },
-              { id: 'program_nuklir', label: 'program nuklir' }
+              { id: 'program_nuklir', label: 'program nuklir' },
+              { id: 'hubungan', label: 'hubungan internasional' }
             ].map((tab) => {
               const isActive = filter === tab.id;
               const count = categoryCounts[tab.id];

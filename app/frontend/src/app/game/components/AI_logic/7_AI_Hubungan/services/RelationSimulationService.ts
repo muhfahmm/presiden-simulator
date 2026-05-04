@@ -11,7 +11,11 @@ import { getGlobalRelationMatrix, saveGlobalRelationMatrix, normalizeId, Relatio
 import { countries as centersData } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { aiFinancialAidService } from "@/app/game/components/sidemenu/2_kotak_masuk/7_hubungan/services/AiFinancialAidService";
+import { aiMoneyOfferService } from "@/app/game/components/sidemenu/2_kotak_masuk/7_hubungan/services/AiMoneyOfferService";
 import { aiDiplomaticGiftService } from "@/app/game/components/sidemenu/2_kotak_masuk/7_hubungan/services/AiDiplomaticGiftService";
+import { globalAiFinancialAidService } from "@/app/game/components/sidemenu/1_berita/9_hubungan/services/AiFinancialAidService";
+import { globalAiMoneyOfferService } from "@/app/game/components/sidemenu/1_berita/9_hubungan/services/AiMoneyOfferService";
+import { globalAiDiplomaticGiftService } from "@/app/game/components/sidemenu/1_berita/9_hubungan/services/AiDiplomaticGiftService";
 
 // Configuration constants - Embassy-based weekly change
 const WEEKLY_CHANGE_CONFIG = {
@@ -95,8 +99,18 @@ class RelationSimulationService {
     const dayOfMonth = currentDate.getDate();
     
     // === DAILY: Process diplomatic gifts (runs every day) ===
-    // AI gives money at ALL relationship levels with different percentages
+    // User-specific gifts
     aiDiplomaticGiftService.processDailyGifts(currentDate);
+    // Global NPC-to-NPC gifts
+    globalAiDiplomaticGiftService.processDailyGifts(currentDate);
+
+    // === DAILY: Process financial aid and money offers (runs every day) ===
+    // User-specific aid
+    aiMoneyOfferService.processMoneyOffers(currentDate);
+    aiFinancialAidService.processFinancialAid(currentDate);
+    // Global NPC-to-NPC aid
+    globalAiMoneyOfferService.processMoneyOffers(currentDate);
+    globalAiFinancialAidService.processFinancialAid(currentDate);
     
     // === WEEKLY: Only process on specific dates (7, 14, 21, 28) ===
     if (!WEEKLY_DATES.includes(dayOfMonth)) {
@@ -113,15 +127,12 @@ class RelationSimulationService {
     const matrix = getGlobalRelationMatrix();
     const updatedMatrix = this.simulateRelations(matrix);
     
+    // === IMPORTANT: Save simulation changes FIRST ===
+    // This prevents state loss if aid services update the matrix immediately after.
+    saveGlobalRelationMatrix(updatedMatrix);
+
     // Check for critical low relationships and send notifications
     this.checkCriticalRelations(updatedMatrix, dateStr);
-    
-    // === WEEKLY: Process financial aid for struggling relationships ===
-    // This is emergency aid only for relationships below 50
-    aiFinancialAidService.processWeeklyFinancialAid(dateStr);
-    
-    // Batch save - only one write to localStorage
-    saveGlobalRelationMatrix(updatedMatrix);
 
     console.log(`[RELATION-SIMULATION] Weekly update completed for ${dateStr}`);
   }
@@ -230,9 +241,22 @@ class RelationSimulationService {
       }
     });
     
-    // Sort by score (lowest first) and limit to max 5 per week
-    badRelations.sort((a, b) => a.score - b.score);
-    const topRelations = badRelations.slice(0, this.MAX_NOTIFICATIONS_PER_WEEK);
+    // Sort by score (lowest first), but filter out those on cooldown FIRST
+    // This ensures that on dates 14, 21, 28, we notify OTHER bad countries if the worst 5 are on cooldown.
+    const availableRelations = badRelations.filter(({targetId}) => {
+      const cooldownKey = `${normalizedUser}-${targetId}`;
+      if (this.notifiedCountriesWithTime.has(cooldownKey)) {
+        const lastNotified = this.notifiedCountriesWithTime.get(cooldownKey);
+        if (lastNotified) {
+          const daysSince = (new Date(dateStr).getTime() - lastNotified.getTime()) / (1000 * 60 * 60 * 24);
+          if (daysSince < this.COOLDOWN_DAYS) return false;
+        }
+      }
+      return true;
+    });
+
+    availableRelations.sort((a, b) => a.score - b.score);
+    const topRelations = availableRelations.slice(0, this.MAX_NOTIFICATIONS_PER_WEEK);
       
       topRelations.forEach(({targetId, score, countryName, type: notificationType}) => {
         const notificationKey = `${normalizedUser}-${targetId}-${notificationType}-${dateStr}`;
@@ -240,15 +264,6 @@ class RelationSimulationService {
         
         // Prevent duplicate notifications for the same country on the same day
         if (this.notifiedCountries.has(notificationKey)) return;
-        
-        // Prevent notifying same country within cooldown period (4 weeks)
-        if (this.notifiedCountriesWithTime.has(cooldownKey)) {
-          const lastNotified = this.notifiedCountriesWithTime.get(cooldownKey);
-          if (lastNotified) {
-            const daysSince = (new Date(dateStr).getTime() - lastNotified.getTime()) / (1000 * 60 * 60 * 24);
-            if (daysSince < this.COOLDOWN_DAYS) return;
-          }
-        }
         
         this.notifiedCountries.add(notificationKey);
         this.notifiedCountriesWithTime.set(cooldownKey, new Date(dateStr));

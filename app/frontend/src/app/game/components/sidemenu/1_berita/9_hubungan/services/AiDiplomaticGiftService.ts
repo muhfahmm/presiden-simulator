@@ -1,12 +1,11 @@
 "use client";
 
 /**
- * AiDiplomaticGiftService.ts
- * Sistem hadiah diplomatik dari AI ke USER
+ * GlobalAiDiplomaticGiftService.ts (NPC to NPC)
+ * Sistem hadiah diplomatik antar NPC (AI ke AI)
  */
 
-import { inboxStorage } from "../../inboxStorage";
-import { newsStorage } from "../../../1_berita/newsStorage";
+import { newsStorage } from "../../newsStorage";
 import { 
   getGlobalRelationMatrix, 
   normalizeId, 
@@ -15,7 +14,6 @@ import {
   addRelationScoreFromAid 
 } from "../../../../modals/1_info_strategis/8_Hubungan/RelationMatrix";
 import { countries as centersData } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
-import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 
 interface GiftTier {
@@ -41,9 +39,9 @@ interface GiftHistory {
   lastGiftDate: string;
 }
 
-class AiDiplomaticGiftService {
+class GlobalAiDiplomaticGiftService {
   private giftHistory: Map<string, GiftHistory> = new Map();
-  private readonly STORAGE_KEY = 'ai_diplomatic_gifts_history';
+  private readonly STORAGE_KEY = 'ai_diplomatic_gifts_global_history';
 
   constructor() { this.loadHistory(); }
 
@@ -100,8 +98,8 @@ class AiDiplomaticGiftService {
     
     Object.entries(matrix as RelationMatrix).forEach(([sourceId, targets]) => {
       Object.entries(targets).forEach(([targetId, entry]) => {
-        // HANYA PROSES KE USER
-        if (targetId !== normalizedUser) return;
+        // HANYA PROSES ANTAR NPC
+        if (targetId === normalizedUser || sourceId === normalizedUser) return;
 
         const score = (entry as RelationEntry).s;
         const tier = this.getTierByScore(score);
@@ -116,18 +114,20 @@ class AiDiplomaticGiftService {
 
         this.giftHistory.set(giftKey, { lastGiftDate: dateStr });
 
-        // User specific logic
-        this.addMoneyToBudget(amount);
+        // NPC specific logic
+        aiBudgetStorage.updateBudgetManual(targetId, amount);
         const newScore = addRelationScoreFromAid(sourceId, targetId, amount);
 
-        this.sendGiftNotification(sourceId, score, newScore, amount, tier, dateStr);
-
-        // News about AI helping user
+        // Berita Internasional (AI ke AI) - Tampilkan untuk semua level hubungan (Persahabatan Global)
         const sourceName = this.formatCountryName(sourceId);
+        const targetName = this.formatCountryName(targetId);
+        const formattedAmount = Math.round(amount).toLocaleString('id-ID');
+        const pointsGain = newScore - score;
+
         newsStorage.addNews({
           source: sourceId,
-          subject: `Hadiah Diplomatik dari ${sourceName}`,
-          content: `${sourceName} mempererat hubungan persahabatan dengan mengirimkan paket bantuan ${tier.name.toLowerCase()} senilai ${Math.round(amount).toLocaleString('id-ID')}.`,
+          subject: `${tier.emoji} ${sourceName} Kirim Hadiah ke ${targetName}`,
+          content: `${sourceName} mengirimkan token persahabatan kepada ${targetName}.\n💰 ${formattedAmount} disalurkan.\n📈 Hubungan bertambah +${pointsGain.toFixed(2)} poin (${score.toFixed(1)} → ${newScore.toFixed(1)}).`,
           category: 'diplomacy',
           priority: 'low',
           time: dateStr
@@ -138,35 +138,11 @@ class AiDiplomaticGiftService {
     this.saveHistory();
   }
 
-  private sendGiftNotification(aiCountry: string, oldScore: number, newScore: number, amount: number, tier: GiftTier, dateStr: string): void {
-    const countryName = this.formatCountryName(aiCountry);
-    const formattedAmount = Math.round(amount).toLocaleString('id-ID');
-    const pointsGain = newScore - oldScore;
-    inboxStorage.addMessage({
-      source: `Departemen Luar Negeri ${countryName}`,
-      subject: `${tier.emoji} Hadiah dari ${countryName}`,
-      content: `${countryName} mengirimkan token persahabatan.\n\n💰 ${formattedAmount} masuk ke kas negara.\n📈 Hubungan bertambah +${pointsGain.toFixed(2)} poin (${oldScore.toFixed(1)} → ${newScore.toFixed(1)}).`,
-      time: dateStr,
-      priority: 'low',
-      category: 'relationship',
-      isProposal: false
-    });
-  }
-
   private hasSufficientFunds(aiCountry: string): boolean {
     const countryData = centersData.find(c => normalizeId(c.name_id) === normalizeId(aiCountry) || normalizeId(c.name_en) === normalizeId(aiCountry));
     if (!countryData) return false;
     const aiKas = aiBudgetStorage.getBudget(countryData.name_en);
     return aiKas >= 100000;
-  }
-
-  private addMoneyToBudget(amount: number): void {
-    try {
-      const currentBudget = budgetStorage.getBudget ? budgetStorage.getBudget() : 0;
-      if (typeof currentBudget === 'number') budgetStorage.updateBudget(currentBudget + amount);
-    } catch (e) {
-      console.warn('[AI-GIFT] Could not update budget:', e);
-    }
   }
 
   private formatCountryName(countryId: string): string {
@@ -190,4 +166,4 @@ class AiDiplomaticGiftService {
   }
 }
 
-export const aiDiplomaticGiftService = new AiDiplomaticGiftService();
+export const globalAiDiplomaticGiftService = new GlobalAiDiplomaticGiftService();

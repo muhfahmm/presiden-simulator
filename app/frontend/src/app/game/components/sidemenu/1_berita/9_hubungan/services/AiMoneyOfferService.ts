@@ -1,12 +1,11 @@
 "use client";
 
 /**
- * AiMoneyOfferService.ts
- * Logika AI untuk memberikan uang kepada USER sebagai aksi diplomatik
+ * GlobalAiMoneyOfferService.ts (NPC to NPC)
+ * Logika AI untuk memberikan uang antar NPC (AI ke AI) sebagai aksi diplomatik global.
  */
 
-import { inboxStorage } from "../../inboxStorage";
-import { newsStorage } from "../../../1_berita/newsStorage";
+import { newsStorage } from "../../newsStorage";
 import { 
   getGlobalRelationMatrix, 
   normalizeId, 
@@ -15,7 +14,6 @@ import {
   addRelationScoreFromAid 
 } from "../../../../modals/1_info_strategis/8_Hubungan/RelationMatrix";
 import { countries as centersData } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
-import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 
 interface MoneyOfferConfig {
@@ -36,10 +34,10 @@ interface OfferHistory {
   lastOfferDate: string;
 }
 
-class AiMoneyOfferService {
+class GlobalAiMoneyOfferService {
   private notifiedOffers: Set<string> = new Set();
   private offerHistory: Map<string, OfferHistory> = new Map();
-  private readonly STORAGE_KEY = 'ai_money_offers_history';
+  private readonly STORAGE_KEY = 'ai_money_offers_global_history';
 
   constructor() {
     this.loadHistory();
@@ -98,8 +96,8 @@ class AiMoneyOfferService {
     
     Object.entries(matrix as RelationMatrix).forEach(([sourceId, targets]) => {
       Object.entries(targets).forEach(([targetId, entry]) => {
-        // HANYA PROSES KE USER
-        if (targetId !== normalizedUser) return;
+        // HANYA PROSES ANTAR NPC
+        if (targetId === normalizedUser || sourceId === normalizedUser) return;
 
         const score = (entry as RelationEntry).s;
         if (score >= OFFER_CONFIG.MIN_SCORE_FOR_OFFER) return;
@@ -125,57 +123,28 @@ class AiMoneyOfferService {
         this.notifiedOffers.add(dayOfferKey);
         this.offerHistory.set(offerKey, { lastOfferDate: dateStr });
 
-        // User specific logic
-        this.addMoneyToBudget(offerAmount);
+        // NPC to NPC logic
+        aiBudgetStorage.updateBudgetManual(targetId, offerAmount);
         const newScore = addRelationScoreFromAid(sourceId, targetId, offerAmount);
+
+        // Berita Internasional (AI ke AI)
+        const sourceName = this.formatCountryName(sourceId);
+        const targetName = this.formatCountryName(targetId);
+        const formattedAmount = Math.round(offerAmount).toLocaleString('id-ID');
         const pointsGain = newScore - score;
 
-        const countryName = this.formatCountryName(sourceId);
-        const formattedAmount = Math.round(offerAmount).toLocaleString('id-ID');
-        
-        inboxStorage.addMessage({
-          source: `Dinas Luar Negeri ${countryName}`,
-          subject: `Bantuan Keuangan Diplomatik dari ${countryName}`,
-          content: `${countryName} mengirim bantuan diplomatik untuk memperbaiki hubungan.\n\n💰 ${formattedAmount} masuk ke kas negara.\n📈 Hubungan bertambah +${pointsGain.toFixed(2)} poin (${score.toFixed(1)} → ${newScore.toFixed(1)}).`,
-          time: dateStr,
-          priority: newScore <= 25 ? 'high' : 'medium',
-          category: 'relationship',
-          isProposal: true,
-          proposalLabel: 'BANTUAN',
-          metadata: {
-            type: 'money_offer',
-            amount: offerAmount,
-            percentage: percentage,
-            country: sourceId,
-            score: newScore,
-            autoAccepted: true,
-          }
-        });
-
-        // News about AI helping user
         newsStorage.addNews({
           source: sourceId,
-          subject: `Bantuan Diplomatik dari ${countryName}`,
-          content: `Negara ${countryName} telah mengirimkan bantuan dana sebesar ${formattedAmount} kepada ${targetId} untuk memperkuat stabilitas hubungan bilateral.`,
+          subject: `Transfer Diplomatik: ${sourceName} ke ${targetName}`,
+          content: `${sourceName} secara resmi menyalurkan bantuan ekonomi kepada ${targetName} guna meredakan ketegangan diplomatik.\n💰 ${formattedAmount} disalurkan.\n📈 Hubungan bertambah +${pointsGain.toFixed(2)} poin (${score.toFixed(1)} → ${newScore.toFixed(1)}).`,
           category: 'diplomacy',
-          priority: 'medium',
+          priority: 'low',
           time: dateStr
         });
       });
     });
 
     this.saveHistory();
-  }
-
-  private addMoneyToBudget(amount: number): void {
-    try {
-      const currentBudget = budgetStorage.getBudget ? budgetStorage.getBudget() : 0;
-      if (typeof currentBudget === 'number') {
-        budgetStorage.updateBudget(currentBudget + amount);
-      }
-    } catch (e) {
-      console.warn('[AI-MONEY-OFFER] Could not update budget:', e);
-    }
   }
 
   private getCurrentUserCountry(): string {
@@ -212,4 +181,4 @@ class AiMoneyOfferService {
   }
 }
 
-export const aiMoneyOfferService = new AiMoneyOfferService();
+export const globalAiMoneyOfferService = new GlobalAiMoneyOfferService();

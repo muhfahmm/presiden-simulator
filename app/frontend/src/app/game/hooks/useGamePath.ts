@@ -260,6 +260,7 @@ export function useGamePath(path: string[]) {
       "Menu:Berita:aliansi": "/game/berita_internasional/aliansi",
       "Menu:Berita:nuklir": "/game/berita_internasional/program_nuklir",
       "Menu:Berita:program_nuklir": "/game/berita_internasional/program_nuklir",
+      "Menu:Berita:hubungan": "/game/berita_internasional/hubungan_internasional",
       "Menu:Berita:organisasi": "/game/berita_internasional/organisasi/pbb",
       "Menu:Berita:organisasi:pbb": "/game/berita_internasional/organisasi/pbb",
       "Menu:Berita:organisasi:regional": "/game/berita_internasional/organisasi/regional",

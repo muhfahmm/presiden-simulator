@@ -1,12 +1,11 @@
 "use client";
 
 /**
- * AiFinancialAidService.ts
- * Sistem bantuan keuangan otomatis dari AI ke USER
+ * GlobalAiFinancialAidService.ts (NPC to NPC)
+ * Sistem bantuan keuangan otomatis antar NPC (AI ke AI)
  */
 
-import { inboxStorage } from "../../inboxStorage";
-import { newsStorage } from "../../../1_berita/newsStorage";
+import { newsStorage } from "../../newsStorage";
 import { 
   getGlobalRelationMatrix, 
   normalizeId, 
@@ -15,7 +14,6 @@ import {
   addRelationScoreFromAid 
 } from "../../../../modals/1_info_strategis/8_Hubungan/RelationMatrix";
 import { countries as centersData } from "@/app/database/data/semua_fitur_negara/0_profiles/index";
-import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 
 interface FinancialThresholds {
@@ -34,10 +32,10 @@ interface AidHistory {
   lastAidDate: string;
 }
 
-class AiFinancialAidService {
+class GlobalAiFinancialAidService {
   private processedAids: Set<string> = new Set();
   private aidHistory: Map<string, AidHistory> = new Map();
-  private readonly STORAGE_KEY = 'ai_financial_aid_history';
+  private readonly STORAGE_KEY = 'ai_financial_aid_global_history';
 
   constructor() {
     this.loadHistory();
@@ -70,10 +68,7 @@ class AiFinancialAidService {
   }
 
   public calculateAidAmount(aiCountry: string, relationshipScore: number): { amount: number; formatted: string } {
-    const countryData = centersData.find(c => 
-      normalizeId(c.name_id) === normalizeId(aiCountry) ||
-      normalizeId(c.name_en) === normalizeId(aiCountry)
-    );
+    const countryData = centersData.find(c => normalizeId(c.name_id) === normalizeId(aiCountry) || normalizeId(c.name_en) === normalizeId(aiCountry));
     const dailyIncome = countryData ? aiBudgetStorage.calculateDailyIncome(countryData) : 10000;
     const aiKas = countryData ? aiBudgetStorage.getBudget(countryData.name_en) : 0;
     const daysOfIncome = relationshipScore >= 40 ? 1 :
@@ -97,8 +92,8 @@ class AiFinancialAidService {
     
     Object.entries(matrix as RelationMatrix).forEach(([sourceId, targets]) => {
       Object.entries(targets).forEach(([targetId, entry]) => {
-        // HANYA PROSES KE USER
-        if (targetId !== normalizedUser) return;
+        // HANYA PROSES ANTAR NPC
+        if (targetId === normalizedUser || sourceId === normalizedUser) return;
 
         const score = (entry as RelationEntry).s;
         if (score >= 50) return;
@@ -116,20 +111,21 @@ class AiFinancialAidService {
         this.processedAids.add(dayAidKey);
         this.aidHistory.set(aidKey, { lastAidDate: dateStr });
 
-        // User specific logic
-        this.addMoneyToBudget(amount);
+        // NPC specific logic
+        aiBudgetStorage.updateBudgetManual(targetId, amount);
         const newScore = addRelationScoreFromAid(sourceId, targetId, amount);
 
-        this.sendAidNotification(sourceId, score, newScore, amount, formatted, dateStr);
+        // Berita Internasional (AI ke AI)
+        const sourceName = this.formatCountryName(sourceId);
+        const targetName = this.formatCountryName(targetId);
+        const pointsGain = newScore - score;
 
-        // News about AI helping user
-        const countryName = this.formatCountryName(sourceId);
         newsStorage.addNews({
           source: sourceId,
-          subject: `Bantuan Darurat dari ${countryName}`,
-          content: `Menanggapi kondisi diplomatik yang kritis, ${countryName} telah menyalurkan bantuan finansial darurat senilai ${formatted} kepada ${targetId} sebagai bentuk dukungan stabilitas regional.`,
+          subject: `Bantuan Finansial: ${sourceName} ke ${targetName}`,
+          content: `${sourceName} menyalurkan bantuan finansial strategis kepada ${targetName} guna menjaga stabilitas bilateral.\n💰 ${formatted} disalurkan.\n📈 Hubungan bertambah +${pointsGain.toFixed(2)} poin (${score.toFixed(1)} → ${newScore.toFixed(1)}).`,
           category: 'diplomacy',
-          priority: 'high',
+          priority: 'medium',
           time: dateStr
         });
       });
@@ -138,34 +134,11 @@ class AiFinancialAidService {
     this.saveHistory();
   }
 
-  private sendAidNotification(aiCountry: string, oldScore: number, newScore: number, amount: number, formattedAmount: string, dateStr: string): void {
-    const countryName = this.formatCountryName(aiCountry);
-    const pointsGain = newScore - oldScore;
-    inboxStorage.addMessage({
-      source: `Departemen Keuangan ${countryName}`,
-      subject: `💰 ${countryName} Kirim Bantuan ${formattedAmount}`,
-      content: `Negara Anda menerima bantuan diplomatik dari ${countryName}.\n\n ${formattedAmount} masuk ke kas negara.\n📈 Hubungan bertambah +${pointsGain.toFixed(2)} poin (${oldScore.toFixed(1)} → ${newScore.toFixed(1)}).`,
-      time: dateStr,
-      priority: newScore <= 25 ? 'high' : 'medium',
-      category: 'relationship',
-      isProposal: false
-    });
-  }
-
   private hasSufficientFunds(aiCountry: string): boolean {
     const countryData = centersData.find(c => normalizeId(c.name_id) === normalizeId(aiCountry) || normalizeId(c.name_en) === normalizeId(aiCountry));
     if (!countryData) return false;
     const aiKas = aiBudgetStorage.getBudget(countryData.name_en);
     return aiKas >= THRESHOLDS.MIN_AI_BUDGET;
-  }
-
-  private addMoneyToBudget(amount: number): void {
-    try {
-      const currentBudget = budgetStorage.getBudget ? budgetStorage.getBudget() : 0;
-      if (typeof currentBudget === 'number') budgetStorage.updateBudget(currentBudget + amount);
-    } catch (e) {
-      console.warn('[AI-AID] Could not update budget:', e);
-    }
   }
 
   private formatCountryName(countryId: string): string {
@@ -189,4 +162,4 @@ class AiFinancialAidService {
   }
 }
 
-export const aiFinancialAidService = new AiFinancialAidService();
+export const globalAiFinancialAidService = new GlobalAiFinancialAidService();
