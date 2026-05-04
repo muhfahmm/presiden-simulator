@@ -15,8 +15,10 @@ export interface ActiveInvasion {
   units: InvasiUnit[];
   path: JalurResult;
   progress: number; 
+  speed: number; // Tambahkan properti kecepatan
   arrived: boolean;
   startDate: string;
+  totalDays: number; // Tambahkan ini untuk sinkronisasi kalender
   isAiVsUser?: boolean;
   // Battle Stats
   currentAttackerPower?: number;

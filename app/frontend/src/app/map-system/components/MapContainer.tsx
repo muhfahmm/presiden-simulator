@@ -471,6 +471,19 @@ export default function MapContainer({
               </div>
             </div>
 
+            {/* Estimasi Kedatangan */}
+            <div className="mt-3 pt-3 border-t border-zinc-800 flex justify-between items-center">
+              <span className="text-[7px] font-black text-zinc-500 uppercase tracking-widest">Estimasi Tiba</span>
+              <span className="text-[9px] font-bold text-emerald-500">
+                {(() => {
+                  if (!selectedInvasion.startDate || !selectedInvasion.totalDays) return "Segera";
+                  const start = new Date(selectedInvasion.startDate);
+                  const arrival = new Date(start.getTime() + (selectedInvasion.totalDays * 24 * 60 * 60 * 1000));
+                  return arrival.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+                })()}
+              </span>
+            </div>
+
             <button
               onClick={() => {
                 window.dispatchEvent(new CustomEvent('OPEN_WAR_REPORT', { 

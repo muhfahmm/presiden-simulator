@@ -85,7 +85,11 @@ export class MainMapEngine extends BaseMapEngine {
       this.gameState = { gameDate: date, isPaused: paused, speed: speed };
       this.simulationWorker?.postMessage({ 
         type: 'UPDATE_STATE', 
-        payload: { isPaused: paused, speed: speed } 
+        payload: { 
+          isPaused: paused, 
+          speed: speed,
+          gameDate: date.toISOString() // Kirim tanggal saat ini
+        } 
       });
     });
 
@@ -112,6 +116,8 @@ export class MainMapEngine extends BaseMapEngine {
             units: e.detail.units || [],
             progress: 0,
             speed: e.detail.speed || 0.0001,
+            startDate: e.detail.startDate, // Tangkap ini
+            totalDays: e.detail.totalDays, // Tangkap ini
             arrived: false
           };
 
@@ -187,6 +193,8 @@ export class MainMapEngine extends BaseMapEngine {
             progress: inv.progress,
             speed: inv.speed,
             arrived: inv.arrived,
+            startDate: inv.startDate, // SIMPAN INI!
+            totalDays: inv.totalDays, // SIMPAN INI!
             // Simpan juga data battle jika ada
             currentAttackerPower: inv.currentAttackerPower,
             maxAttackerPower: inv.maxAttackerPower,

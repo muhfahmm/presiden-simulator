@@ -7,6 +7,7 @@ import { calculateTotalMilitaryPower } from "@/app/game/components/2_navigasi_me
 import { luncurkanInvasi } from "../../modals_pilih_negara/logic/InvasiLogic";
 import { warStorage, ActiveInvasion } from "../WarStorage";
 import { newsStorage } from "@/app/game/components/sidemenu/1_berita/newsStorage";
+import { calculateTravelSpeed, getTravelDays } from "../../modals_pilih_negara/logic/WarTravelLogic";
 
 import { aiBudgetStorage } from "@/app/game/components/modals/1_info_strategis/5_Keuangan/AIBudgetStorage";
 import { nuclearStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/nuclearStorage";
@@ -128,7 +129,11 @@ class GlobalAiWarService {
     }
 
     const totalInfantry = (sourceCountry.armada_militer.barak || 0) * 10000;
-    deployments['barak'] = Math.floor(totalInfantry * deploymentRatio); // luncurkanInvasi usually expects 'barak' for infantry
+    deployments['barak'] = Math.floor(totalInfantry * deploymentRatio); // luncurkanInvasi biasanya expects 'barak' for infantry
+
+    // Hitung Kecepatan Berdasarkan Benua
+    const days = getTravelDays(sourceCountry.region || 'EROPA', targetCountry.region || 'EROPA');
+    const travelSpeed = calculateTravelSpeed(days);
 
     const invasionId = `ai-${sourceId}-${targetId}-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
     
@@ -136,7 +141,10 @@ class GlobalAiWarService {
       sourceCountry as any, 
       targetCountry as any, 
       deployments,
-      invasionId
+      invasionId,
+      travelSpeed,
+      currentDate.toISOString(), // Argument 6: startDate
+      days // Argument 7: totalDays
     );
     
     if (!path || !units || units.length === 0) return;
@@ -151,6 +159,8 @@ class GlobalAiWarService {
       units: units,
       path,
       progress: 0,
+      speed: travelSpeed,
+      totalDays: days, // Simpan total hari perjalanan
       arrived: false,
       startDate: currentDate.toISOString(),
     });

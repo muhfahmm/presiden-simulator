@@ -27,7 +27,10 @@ export const luncurkanInvasi = (
   playerCountry: CountryData, 
   targetCountry: CountryData, 
   deployments: Record<string, number>,
-  id?: string
+  id?: string,
+  speed?: number,
+  startDate?: string, // Tambahkan ini
+  totalDays?: number  // Tambahkan ini
 ): { units: InvasiUnit[], path: JalurResult | null } => {
   const units: InvasiUnit[] = [];
 
@@ -100,11 +103,14 @@ export const luncurkanInvasi = (
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new CustomEvent('SPAWN_INVASION_UNITS', { 
         detail: { 
-          id, // Masukkan ID di sini
+          id,
           sourceCountry: playerCountry, 
           targetCountry, 
           units, 
-          path 
+          path,
+          speed: speed || 0.001,
+          startDate, // Masukkan ke sini
+          totalDays  // Masukkan ke sini
         } 
     }));
   }
